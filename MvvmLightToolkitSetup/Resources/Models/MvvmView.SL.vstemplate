@@ -1,0 +1,25 @@
+<VSTemplate Version="2.0.0"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            Type="Item">
+    <TemplateData>
+        <Name>MvvmView (SL)</Name>
+        <Description>A view used in a Silverlight MVVM application (by GalaSoft Laurent Bugnion)</Description>
+        <Icon>GalaSoft.ico</Icon>
+        <ProjectType>CSharp</ProjectType>
+        <ProjectSubType>Silverlight</ProjectSubType>
+        <DefaultName>MvvmView.xaml</DefaultName>
+        <SortOrder>10</SortOrder>
+    </TemplateData>
+    <TemplateContent>
+        <References>
+            <Reference>
+                <Assembly>D:\GalaSoft\mydotnet\GalaSoft MVVM Light Toolkit\Backup\V2.0.0\Binaries\WPF\Debug\GalaSoft.MvvmLight.dll</Assembly>
+            </Reference>
+        </References>
+        <ProjectItem SubType="Form"
+                     TargetFileName="$fileinputname$.xaml"
+                     ReplaceParameters="true">ViewTemplate.xaml</ProjectItem>
+        <ProjectItem TargetFileName="$fileinputname$.xaml.cs"
+                     ReplaceParameters="true">ViewTemplate.xaml.cs</ProjectItem>
+    </TemplateContent>
+</VSTemplate>
