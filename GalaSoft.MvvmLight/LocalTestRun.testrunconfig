@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRunConfiguration name="Local Test Run" id="c92fdb60-a40e-4eb1-811b-ca5976109c47" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
+  <Description>This is a default test run configuration for a local test run.</Description>
+  <TestTypeSpecific />
+  <CodeCoverage enabled="true">
+    <Regular>
+      <CodeCoverageItem binaryFile="GalaSoft.MvvmLight\bin\Debug\GalaSoft.MvvmLight.dll" pdbFile="GalaSoft.MvvmLight\bin\Debug\GalaSoft.MvvmLight.pdb" instrumentInPlace="true" />
+    </Regular>
+  </CodeCoverage>
+</TestRunConfiguration>

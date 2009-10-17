@@ -1,0 +1,15 @@
+MvvmView (WPF|SL)
+A view used in a WPF MVVM application (by GalaSoft Laurent Bugnion)
+A view used in a Silverlight MVVM application (by GalaSoft Laurent Bugnion)
+
+MvvmViewModelLocator (WPF|SL)
+A Locator for ViewModels in a WPF MVVM application (by GalaSoft Laurent Bugnion)
+A Locator for ViewModels in a Silverlight MVVM application (by GalaSoft Laurent Bugnion)
+
+MvvmViewModel (WPF|SL)
+A ViewModel for a WPF MVVM application (by GalaSoft Laurent Bugnion)
+A ViewModel for a Silverlight MVVM application (by GalaSoft Laurent Bugnion)
+
+MvvmLight (WPF|SL)
+A "light" WPF Model-View-ViewModel application optimized for Expression Blend (by GalaSoft Laurent Bugnion)
+A "light" Silverlight Model-View-ViewModel application optimized for Expression Blend (by GalaSoft Laurent Bugnion)

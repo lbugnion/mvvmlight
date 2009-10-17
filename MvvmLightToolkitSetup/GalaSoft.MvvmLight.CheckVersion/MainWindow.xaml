@@ -1,0 +1,402 @@
+﻿<Window x:Class="GalaSoft.MvvmLight.CheckVersion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prop="clr-namespace:GalaSoft.MvvmLight.CheckVersion.Properties"
+        mc:Ignorable="d"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
+        Title="{Binding Source={x:Static prop:Resources.WindowTitle}}"
+        Background="{x:Null}"
+        Style="{StaticResource MainWindowStyle}">
+    <Window.Resources>
+        <Storyboard x:Key="ShutdownStoryboard">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="LayoutRoot"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:01"
+                                      Value="-0.5"
+                                      KeySpline="0.4,0,0.6,0.9" />
+                <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                      Value="0.1"
+                                      KeySpline="0.4,0.1,0.6,0.9" />
+                <SplineDoubleKeyFrame KeyTime="00:00:03"
+                                      Value="-0.01"
+                                      KeySpline="0.4,0.1,0.6,0.9" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="LayoutRoot"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:01"
+                                      Value="0.5"
+                                      KeySpline="0.4,0,0.6,0.9" />
+                <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                      Value="0.1"
+                                      KeySpline="0.4,0.1,0.6,0.9" />
+                <SplineDoubleKeyFrame KeyTime="00:00:03"
+                                      Value="0.01"
+                                      KeySpline="0.4,0.1,0.6,0.9" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="LayoutRoot"
+                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:01"
+                                      Value="0.7"
+                                      KeySpline="0.4,0,0.6,0.9" />
+                <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                      Value="0.3"
+                                      KeySpline="0.4,0.1,0.6,0.9" />
+                <SplineDoubleKeyFrame KeyTime="00:00:03"
+                                      Value="0"
+                                      KeySpline="0.4,0.1,0.6,0.9" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="ProcessingStoryboard"
+                    AutoReverse="True"
+                    RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="GalaSoftButton"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeyTime="00:00:01"
+                                      Value="360"
+                                      KeySpline="0.51,0,1,1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="ClientVersionHover">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="20" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="70" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="20" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="-15" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="1.5" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="1.5" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="-30" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ClientVersionHoverOut">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ServerVersionHover">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="-32" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="-36" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="-24" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="-15" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="1.5" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="1.5" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeySpline="0.4,0,0.6,1"
+                                      KeyTime="00:00:00.5000000"
+                                      Value="25" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ServerVersionHoverOut">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ClientVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                           Storyboard.TargetName="ServerVersionPanel"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000"
+                                      Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter"
+                      SourceName="ClientVersionPanelTrigger">
+            <BeginStoryboard x:Name="ClientVersionHover_BeginStoryboard"
+                             Storyboard="{StaticResource ClientVersionHover}" />
+            <StopStoryboard BeginStoryboardName="ClientVersionHoverOut_BeginStoryboard" />
+            <StopStoryboard BeginStoryboardName="ClientVersionHoverOut_BeginStoryboard" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave"
+                      SourceName="ClientVersionPanelTrigger">
+            <BeginStoryboard x:Name="ClientVersionHoverOut_BeginStoryboard"
+                             Storyboard="{StaticResource ClientVersionHoverOut}" />
+            <StopStoryboard BeginStoryboardName="ClientVersionHover_BeginStoryboard" />
+            <StopStoryboard BeginStoryboardName="ClientVersionHover_BeginStoryboard" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter"
+                      SourceName="ServerVersionPanelTrigger">
+            <BeginStoryboard x:Name="ServerVersionHover_BeginStoryboard"
+                             Storyboard="{StaticResource ServerVersionHover}" />
+            <StopStoryboard BeginStoryboardName="ServerVersionHoverOut_BeginStoryboard" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave"
+                      SourceName="ServerVersionPanelTrigger">
+            <BeginStoryboard x:Name="ServerVersionHoverOut_BeginStoryboard"
+                             Storyboard="{StaticResource ServerVersionHoverOut}" />
+            <StopStoryboard BeginStoryboardName="ServerVersionHover_BeginStoryboard" />
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid x:Name="LayoutRoot"
+          RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform />
+                <SkewTransform />
+                <RotateTransform />
+                <TranslateTransform />
+            </TransformGroup>
+        </Grid.RenderTransform>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="111" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <Path Grid.RowSpan="4"
+              Data="M0.5,35.5 C0.5,16.170034 16.170034,0.5 35.5,0.5 L248.5,0.5 C267.82997,0.5 283.5,16.170034 283.5,35.5 L283.5,282.5 C283.5,301.82997 267.82997,317.5 248.5,317.5 L35.5,317.5 C16.170034,317.5 0.5,301.82997 0.5,282.5 z"
+              Style="{StaticResource BackgroundPathStyle}" />
+
+        <Border Style="{StaticResource TitleBarBorderStyle}">
+            <Grid>
+                <Button ToolTip="Close"
+                        Content="Close"
+                        Style="{StaticResource CloseButtonStyle}"
+                        Command="{Binding ShutdownCommand}" />
+            </Grid>
+        </Border>
+
+        <StackPanel x:Name="ClientVersionPanel"
+                    Style="{StaticResource ClientVersionStringPanelStyle}"
+                    Grid.Row="1">
+
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+
+            <TextBlock Text="Version on this PC:"
+                       Style="{StaticResource ClientVersionStringLabelStyle}" />
+
+            <TextBlock Text="{Binding VersionOnClient.VersionString}"
+                       Style="{StaticResource VersionStringStyle}" />
+        </StackPanel>
+
+        <StackPanel x:Name="ServerVersionPanel"
+                    Style="{StaticResource ServerVersionStringPanelStyle}"
+                    Grid.Row="2">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+
+            <TextBlock Text="Version on the server:"
+                       Style="{StaticResource ServerVersionStringLabelStyle}" />
+
+            <TextBlock Text="{Binding VersionOnServer.VersionString}"
+                       Style="{StaticResource VersionStringStyle}" />
+        </StackPanel>
+
+        <Rectangle x:Name="ClientVersionPanelTrigger"
+                   Style="{StaticResource VersionPanelTriggerStyle}"
+                   Grid.Row="1" />
+
+        <Rectangle x:Name="ServerVersionPanelTrigger"
+                   Grid.Row="2"
+                   Style="{StaticResource VersionPanelTriggerStyle}" />
+
+        <Button Content="Check Server"
+                Grid.Row="3"
+                ToolTip="Check the version on the server"
+                Command="{Binding CheckServerCommand}"
+                Style="{StaticResource CheckServerButtonStyle}"
+                IsEnabled="{Binding IsIdle}" />
+
+        <Path Grid.RowSpan="2"
+              Data="M283.50001,106.16666 L283.5,282.5 C283.5,301.82997 267.82997,317.5 248.5,317.5 L35.5,317.5 C16.170034,317.5 0.5,301.82997 0.5,282.5 124.98654,236.32567 218.51229,177.21033 283.50001,106.16666 z"
+              Grid.Row="2"
+              IsHitTestVisible="False"
+              Style="{StaticResource HighlightStyle}" />
+
+        <TextBlock Text="{Binding StatusMessage}"
+                   Grid.Row="2"
+                   Style="{StaticResource StatusMessageStyle}"
+                   ToolTip="{Binding StatusMessage, Mode=Default}" />
+
+        <Button x:Name="GalaSoftButton"
+                Style="{StaticResource GalaSoftButtonStyle}"
+                ToolTip="Go to the Get Started web page"
+                Content="GalaSoft"
+                Command="{Binding NavigateToUrlCommand}"
+                CommandParameter="{Binding GetStartedLocation}"
+                RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+    </Grid>
+</Window>

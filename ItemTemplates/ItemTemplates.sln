@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemTemplates", "ItemTemplates\ItemTemplates.csproj", "{D4E19650-A6F9-450B-9D16-D729CE664996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemTemplates (SL)", "ItemTemplates (SL)\ItemTemplates (SL).csproj", "{E45EB537-99A5-4698-90B3-823EE80CD107}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4E19650-A6F9-450B-9D16-D729CE664996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E19650-A6F9-450B-9D16-D729CE664996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E19650-A6F9-450B-9D16-D729CE664996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E19650-A6F9-450B-9D16-D729CE664996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45EB537-99A5-4698-90B3-823EE80CD107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45EB537-99A5-4698-90B3-823EE80CD107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45EB537-99A5-4698-90B3-823EE80CD107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45EB537-99A5-4698-90B3-823EE80CD107}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
