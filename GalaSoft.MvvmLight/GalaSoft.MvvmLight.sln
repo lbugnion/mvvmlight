@@ -16,6 +16,24 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test", "GalaSoft.MvvmLight.Test\GalaSoft.MvvmLight.Test.csproj", "{BD7821F7-C24B-4445-B612-8F18CE16ACF9}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs08.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = GalaSoft.MvvmLight\\GalaSoft.MvvmLight.csproj
+		SccProjectName1 = GalaSoft.MvvmLight
+		SccLocalPath1 = GalaSoft.MvvmLight
+		SccProjectUniqueName2 = GalaSoft.MvvmLight\u0020(SL)\\GalaSoft.MvvmLight\u0020(SL).csproj
+		SccProjectName2 = GalaSoft.MvvmLight\u0020(SL)
+		SccLocalPath2 = GalaSoft.MvvmLight\u0020(SL)
+		SccProjectUniqueName3 = GalaSoft.MvvmLight.Test\u0020(SL)\\GalaSoft.MvvmLight.Test\u0020(SL).csproj
+		SccProjectName3 = GalaSoft.MvvmLight.Test\u0020(SL)
+		SccLocalPath3 = GalaSoft.MvvmLight.Test\u0020(SL)
+		SccProjectUniqueName4 = GalaSoft.MvvmLight.Test\\GalaSoft.MvvmLight.Test.csproj
+		SccProjectName4 = GalaSoft.MvvmLight.Test
+		SccLocalPath4 = GalaSoft.MvvmLight.Test
+	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = GalaSoft.MvvmLight.vsmdi
 	EndGlobalSection
