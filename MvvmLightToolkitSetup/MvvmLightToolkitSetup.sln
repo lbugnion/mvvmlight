@@ -113,6 +113,24 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmLightToolkit.Setup.Configure", "MvvmLightToolkit.Setup.Configure\MvvmLightToolkit.Setup.Configure.csproj", "{0DCB8E16-0315-4E6F-8D05-6A146A2FAE6E}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs08.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MvvmLightToolkit.Setup\\MvvmLightToolkit.Setup.vdproj
+		SccProjectName1 = MvvmLightToolkit.Setup
+		SccLocalPath1 = MvvmLightToolkit.Setup
+		SccProjectUniqueName2 = MvvmLightToolkit.Setup.Custom\\MvvmLightToolkit.Setup.Custom.csproj
+		SccProjectName2 = MvvmLightToolkit.Setup.Custom
+		SccLocalPath2 = MvvmLightToolkit.Setup.Custom
+		SccProjectUniqueName3 = GalaSoft.MvvmLight.CheckVersion\\GalaSoft.MvvmLight.CheckVersion.csproj
+		SccProjectName3 = GalaSoft.MvvmLight.CheckVersion
+		SccLocalPath3 = GalaSoft.MvvmLight.CheckVersion
+		SccProjectUniqueName4 = MvvmLightToolkit.Setup.Configure\\MvvmLightToolkit.Setup.Configure.csproj
+		SccProjectName4 = MvvmLightToolkit.Setup.Configure
+		SccLocalPath4 = MvvmLightToolkit.Setup.Configure
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

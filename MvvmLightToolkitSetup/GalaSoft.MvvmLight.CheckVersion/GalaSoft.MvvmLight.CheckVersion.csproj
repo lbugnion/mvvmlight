@@ -19,14 +19,10 @@
     </AssemblyOriginatorKeyFile>
     <ExpressionBlendVersion>3.0.1927.0</ExpressionBlendVersion>
     <ApplicationIcon>GalaSoft.ico</ApplicationIcon>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
     <ManifestCertificateThumbprint>E112350DB048D8663E48E2F97B56A777EB7358FC</ManifestCertificateThumbprint>
     <ManifestKeyFile>GalaSoft.MvvmLight.CheckVersion_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
