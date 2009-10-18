@@ -7,28 +7,16 @@
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
-"SccProjectName" = "8:"
-"SccLocalPath" = "8:"
-"SccAuxPath" = "8:"
-"SccProvider" = "8:"
+"SccProjectName" = "8:SAK"
+"SccLocalPath" = "8:SAK"
+"SccAuxPath" = "8:SAK"
+"SccProvider" = "8:SAK"
     "Hierarchy"
     {
         "Entry"
         {
         "MsmKey" = "8:_18912F951E534C999AA82EC02E37A88E"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_244B402DE106734AD48A47BBC927B61B"
-        "OwnerKey" = "8:_470E6297549B4A3FBF1C68498AF39FEC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_244B402DE106734AD48A47BBC927B61B"
-        "OwnerKey" = "8:_9EBF5544D9504E6BAE8D2E00D129F34A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -77,24 +65,6 @@
         {
         "MsmKey" = "8:_55EABD0384A0E25E7DD48F34C7145148"
         "OwnerKey" = "8:_18912F951E534C999AA82EC02E37A88E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_55EABD0384A0E25E7DD48F34C7145148"
-        "OwnerKey" = "8:_9EBF5544D9504E6BAE8D2E00D129F34A"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_55EABD0384A0E25E7DD48F34C7145148"
-        "OwnerKey" = "8:_244B402DE106734AD48A47BBC927B61B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_55EABD0384A0E25E7DD48F34C7145148"
-        "OwnerKey" = "8:_470E6297549B4A3FBF1C68498AF39FEC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -161,12 +131,6 @@
         {
         "MsmKey" = "8:_9DFEB056C8627C5ECB6BF55AAFA43A30"
         "OwnerKey" = "8:_470E6297549B4A3FBF1C68498AF39FEC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9DFEB056C8627C5ECB6BF55AAFA43A30"
-        "OwnerKey" = "8:_244B402DE106734AD48A47BBC927B61B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -263,12 +227,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_470E6297549B4A3FBF1C68498AF39FEC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_244B402DE106734AD48A47BBC927B61B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -436,37 +394,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_244B402DE106734AD48A47BBC927B61B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MvvmLightToolkit.Setup.Configure, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_244B402DE106734AD48A47BBC927B61B"
-                    {
-                    "Name" = "8:MvvmLightToolkit.Setup.Configure.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MvvmLightToolkit.Setup.Configure.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C9D7C962AC874D839FB16C57F68B2710"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_26EDAC7CCBE94445B53547459C684B83"
             {
             "SourcePath" = "8:..\\Resources\\Source\\GalaSoft.MvvmLight.Source.zip"
