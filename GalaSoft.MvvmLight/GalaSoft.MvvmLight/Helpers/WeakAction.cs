@@ -21,6 +21,7 @@ namespace GalaSoft.MvvmLight.Helpers
     /// Stores an <see cref="Action" /> without causing a hard reference
     /// to be created to the Action's owner. The owner can be garbage collected at any time.
     /// </summary>
+    ////[ClassInfo(typeof(Messenger))]
     public class WeakAction
     {
         private readonly Action _action;

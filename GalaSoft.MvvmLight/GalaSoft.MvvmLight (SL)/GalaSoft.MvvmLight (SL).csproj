@@ -86,9 +86,6 @@
     <Compile Include="..\GalaSoft.MvvmLight\Messaging\GenericMessage.cs">
       <Link>Messaging\GenericMessage.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\IMessageRecipient.cs">
-      <Link>Messaging\IMessageRecipient.cs</Link>
-    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight\Messaging\IMessenger.cs">
       <Link>Messaging\IMessenger.cs</Link>
     </Compile>
@@ -98,8 +95,20 @@
     <Compile Include="..\GalaSoft.MvvmLight\Messaging\Messenger.cs">
       <Link>Messaging\Messenger.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\OldMessenger.cs">
-      <Link>Messaging\OldMessenger.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessage.cs">
+      <Link>Messaging\NotificationMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageAction.cs">
+      <Link>Messaging\NotificationMessageAction.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageFunc.cs">
+      <Link>Messaging\NotificationMessageFunc.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageGeneric.cs">
+      <Link>Messaging\NotificationMessageGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageWithCallback.cs">
+      <Link>Messaging\NotificationMessageWithCallback.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight\Messaging\PropertyChangedMessage.cs">
       <Link>Messaging\PropertyChangedMessage.cs</Link>

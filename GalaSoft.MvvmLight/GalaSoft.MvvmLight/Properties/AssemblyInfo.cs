@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0008</LastBaseLevel>
+// <LastBaseLevel>BL0009</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -47,8 +47,8 @@ using System.Runtime.InteropServices;
 //      Minor Version 
 //      Build Number
 //      Revision
-[assembly: AssemblyVersion("2.0.0.0")]
-////[assembly: AssemblyFileVersion("2.0.0.0")]
+////[assembly: AssemblyVersion("2.0.0.*")]
+[assembly: AssemblyFileVersion("3.0.0.0/alpha1")]
 
 // FxCop
 [module: SuppressMessage("Microsoft.Naming",

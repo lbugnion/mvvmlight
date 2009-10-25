@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0006</LastBaseLevel>
+// <LastBaseLevel>BL0007</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -29,8 +29,8 @@ namespace GalaSoft.MvvmLight
     /// A base class for the ViewModel classes in the MVVM pattern.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase),
-    ////  VersionString = "2.0.0.0",
-    ////  DateString = "200909281609",
+    ////  VersionString = "3.0.0.0/BL0007",
+    ////  DateString = "200910251522",
     ////  Description = "A base class for the ViewModel classes in the MVVM pattern.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -52,7 +52,7 @@ namespace GalaSoft.MvvmLight
         /// <param name="messenger">An instance of a <see cref="Messenger" /> used to broadcast
         /// messages to other objects. If null, this class will attempt
         /// to broadcast using the Messenger's default instance.</param>
-        protected ViewModelBase(Messenger messenger)
+        protected ViewModelBase(IMessenger messenger)
         {
             MessengerInstance = messenger;
         }
@@ -115,11 +115,11 @@ namespace GalaSoft.MvvmLight
         }
 
         /// <summary>
-        /// Gets or sets an instance of a <see cref="Messenger" /> used to broadcast
+        /// Gets or sets an instance of a <see cref="IMessenger" /> used to broadcast
         /// messages to other objects. If null, this class will attempt
         /// to broadcast using the Messenger's default instance.
         /// </summary>
-        protected Messenger MessengerInstance
+        protected IMessenger MessengerInstance
         {
             get;
             set;
@@ -150,16 +150,10 @@ namespace GalaSoft.MvvmLight
             if (MessengerInstance != null)
             {
                 MessengerInstance.Send(message);
-                
-                // OLD
-                MessengerInstance.Broadcast(message);
             }
             else
             {
                 Messenger.Default.Send(message);
-
-                // OLD
-                Messenger.Default.Broadcast(message);
             }
         }
 
@@ -196,33 +190,6 @@ namespace GalaSoft.MvvmLight
             if (broadcast)
             {
                 Broadcast(oldValue, newValue, propertyName);
-            }
-        }
-
-        /// <summary>
-        /// Raises the PropertyChanged event if needed, and broadcasts a
-        /// PropertyChangedMessage using the Messenger instance (or the
-        /// static default instance if no Messenger instance is available).
-        /// This method is obsolete and should be replaced by a call to
-        /// RaisePropertyChanged(string, T, T, bool). Calling
-        /// this obsolete method will use default(T) as the OldValue 
-        /// of the PropertyChangedMessage.
-        /// </summary>
-        /// <typeparam name="T">The type of the property that changed.</typeparam>
-        /// <param name="propertyName">The name of the property that changed.</param>
-        /// <param name="newValue">The property's value after the change occurred.</param>
-        /// <param name="broadcast">If true, a PropertyChangedMessage will
-        /// be broadcasted. If false, only the event will be raised.</param>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
-            Justification = "This cannot be an event")]
-        [Obsolete("Use the method RaisePropertyChanged<T>(string, T, T, bool) instead.")]
-        protected virtual void RaisePropertyChanged<T>(string propertyName, T newValue, bool broadcast)
-        {
-            RaisePropertyChanged(propertyName);
-
-            if (broadcast)
-            {
-                Broadcast(default(T), newValue, propertyName);
             }
         }
 

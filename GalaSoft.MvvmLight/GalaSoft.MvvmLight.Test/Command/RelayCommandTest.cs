@@ -21,7 +21,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             command.CanExecuteChanged += canExecuteChangedEventHandler;
 
-            command.RaiseCanExecuteChanged(true);
+            command.RaiseCanExecuteChanged();
 
 #if SILVERLIGHT
             Assert.AreEqual(1, canExecuteChangedCalled);
@@ -31,7 +31,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 #endif
 
             command.CanExecuteChanged -= canExecuteChangedEventHandler;
-            command.RaiseCanExecuteChanged(true);
+            command.RaiseCanExecuteChanged();
 
 #if SILVERLIGHT
             Assert.AreEqual(1, canExecuteChangedCalled);

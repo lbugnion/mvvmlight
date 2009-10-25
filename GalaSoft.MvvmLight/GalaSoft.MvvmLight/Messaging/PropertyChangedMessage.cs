@@ -33,18 +33,6 @@ namespace GalaSoft.MvvmLight.Messaging
         /// Initializes a new instance of the <see cref="PropertyChangedMessage{T}" /> class.
         /// </summary>
         /// <param name="sender">The message's sender.</param>
-        /// <param name="content">The property's value after the change occurred.</param>
-        /// <param name="propertyName">The name of the property that changed.</param>
-        [Obsolete("Please use a constructor with oldValue and newValue instead.")]
-        public PropertyChangedMessage(object sender, T content, string propertyName)
-            : this(sender, default(T), content, propertyName)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PropertyChangedMessage{T}" /> class.
-        /// </summary>
-        /// <param name="sender">The message's sender.</param>
         /// <param name="oldValue">The property's value before the change occurred.</param>
         /// <param name="newValue">The property's value after the change occurred.</param>
         /// <param name="propertyName">The name of the property that changed.</param>
@@ -83,18 +71,6 @@ namespace GalaSoft.MvvmLight.Messaging
         {
             OldValue = oldValue;
             NewValue = newValue;
-        }
-
-        /// <summary>
-        /// Gets the value that the property has after the change.
-        /// </summary>
-        [Obsolete("Please use the NewValue property instead.")]
-        public T Content
-        {
-            get
-            {
-                return NewValue;
-            }
         }
 
         /// <summary>

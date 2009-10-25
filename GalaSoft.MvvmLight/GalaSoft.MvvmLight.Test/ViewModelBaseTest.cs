@@ -12,138 +12,211 @@ namespace GalaSoft.MvvmLight.Test
     [TestClass]
     public class ViewModelBaseTest
     {
-        private DateTime _receivedDateTime;
-
         [TestMethod]
-        public void DisposeTest()
+        public void TestDispose()
         {
             Messenger.Reset();
 
-            var vm = new OldTestViewModel();
-            Messenger.Default.Register(vm, typeof(OldTestMessage));
+            var vm = new TestViewModel();
+            Messenger.Default.Register<string>(vm, vm.HandleStringMessage);
 
             const string Content1 = "Hello world";
             const string Content2 = "Another message";
 
-            var message1 = new OldTestMessage(this, Content1);
-            Messenger.Default.Broadcast(message1);
+            Messenger.Default.Send(Content1);
 
             Assert.AreEqual(Content1, vm.ReceivedContent);
 
             vm.Dispose();
 
-            var message2 = new OldTestMessage(this, Content2);
-            Messenger.Default.Broadcast(message2);
+            Messenger.Default.Send(Content2);
 
             Assert.AreEqual(Content1, vm.ReceivedContent);
         }
 
         [TestMethod]
-        public void PropertyChangedTestBroadcast()
+        public void TestPropertyChangedSend()
         {
             Messenger.Reset();
-            _receivedDateTime = DateTime.MinValue;
+            var receivedDateTimeMessengerOld = DateTime.MaxValue;
+            var receivedDateTimeMessengerNew = DateTime.MinValue;
+            var receivedDateTimeLocal = DateTime.MinValue;
 
-            var recipient = new OldTestRecipient();
-            Messenger.Default.Register(recipient, typeof(PropertyChangedMessage<DateTime>));
+            Messenger.Default.Register<PropertyChangedMessage<DateTime>>(this, m =>
+                {
+                    if (m.PropertyName == TestViewModel.LastChanged1PropertyName)
+                    {
+                        receivedDateTimeMessengerOld = m.OldValue;
+                        receivedDateTimeMessengerNew = m.NewValue;
+                    }
+                });
 
-            var vm = new OldTestViewModel();
-            vm.PropertyChanged += VMPropertyChanged;
-
-            Assert.AreEqual(_receivedDateTime, DateTime.MinValue);
+            var vm = new TestViewModel();
+            vm.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == TestViewModel.LastChanged1PropertyName)
+                    {
+                        receivedDateTimeLocal = vm.LastChanged1;
+                    }
+                };
 
             var now = DateTime.Now;
-            vm.LastChanged2 = now;
-            Assert.AreEqual(now, vm.LastChanged2);
-            Assert.AreEqual(_receivedDateTime, vm.LastChanged2);
-            Assert.AreEqual(now, recipient.DateTimeContent);
+            vm.LastChanged1 = now;
+
+            Assert.AreEqual(now, vm.LastChanged1);
+            Assert.AreEqual(DateTime.MinValue, receivedDateTimeMessengerOld);
+            Assert.AreEqual(now, receivedDateTimeMessengerNew);
+            Assert.AreEqual(now, receivedDateTimeLocal);
         }
 
         [TestMethod]
-        public void PropertyChangedTestBroadcastApplicationMessenger()
+        public void TestPropertyChangedSendWithCustomMessenger()
         {
-            _receivedDateTime = DateTime.MinValue;
+            var receivedDateTime1 = DateTime.MinValue;
+            var receivedDateTime2 = DateTime.MinValue;
 
             var messenger = new Messenger();
 
-            var recipient1 = new OldTestRecipient();
-            var recipient2 = new OldTestRecipient();
-            messenger.Register(recipient1, typeof(PropertyChangedMessage<DateTime>));
-            Messenger.Default.Register(recipient2, typeof(PropertyChangedMessage<DateTime>));
+            messenger.Register<PropertyChangedMessage<DateTime>>(this, m => receivedDateTime1 = m.NewValue);
+            Messenger.Default.Register<PropertyChangedMessage<DateTime>>(this, m => receivedDateTime2 = m.NewValue);
 
-            var vm = new OldTestViewModel(messenger);
-            vm.PropertyChanged += VMPropertyChanged;
-
-            Assert.AreEqual(_receivedDateTime, DateTime.MinValue);
-
-            var now = DateTime.Now;
-            vm.LastChanged2 = now;
-            Assert.AreEqual(now, vm.LastChanged2);
-            Assert.AreEqual(_receivedDateTime, vm.LastChanged2);
-            Assert.AreEqual(now, recipient1.DateTimeContent);
-            Assert.AreEqual(DateTime.MinValue, recipient2.DateTimeContent);
-        }
-
-        [TestMethod]
-        public void PropertyChangedTestBroadcastNonStaticMessenger()
-        {
-            _receivedDateTime = DateTime.MinValue;
-
-            var messenger = new Messenger();
-
-            var recipient1 = new OldTestRecipient();
-            var recipient2 = new OldTestRecipient();
-            messenger.Register(recipient1, typeof(PropertyChangedMessage<DateTime>));
-            Messenger.Default.Register(recipient2, typeof(PropertyChangedMessage<DateTime>));
-
-            var vm = new OldTestViewModel(messenger);
-            vm.PropertyChanged += VMPropertyChanged;
-
-            Assert.AreEqual(_receivedDateTime, DateTime.MinValue);
-
-            var now = DateTime.Now;
-            vm.LastChanged2 = now;
-            Assert.AreEqual(now, vm.LastChanged2);
-            Assert.AreEqual(_receivedDateTime, vm.LastChanged2);
-            Assert.AreEqual(now, recipient1.DateTimeContent);
-            Assert.AreEqual(DateTime.MinValue, recipient2.DateTimeContent);
-        }
-
-        [TestMethod]
-        public void PropertyChangedTestNoBroadcast()
-        {
-            Messenger.Reset();
-            _receivedDateTime = DateTime.MinValue;
-
-            var recipient = new OldTestRecipient();
-            Messenger.Default.Register(recipient, typeof(PropertyChangedMessage<DateTime>));
-
-            var vm = new OldTestViewModel();
-            vm.PropertyChanged += VMPropertyChanged;
-
-            Assert.AreEqual(_receivedDateTime, DateTime.MinValue);
+            var vm = new TestViewModel(messenger);
 
             var now = DateTime.Now;
             vm.LastChanged1 = now;
             Assert.AreEqual(now, vm.LastChanged1);
-            Assert.AreEqual(_receivedDateTime, vm.LastChanged1);
-            Assert.AreEqual(DateTime.MinValue, recipient.DateTimeContent);
+            Assert.AreEqual(now, receivedDateTime1);
+            Assert.AreEqual(DateTime.MinValue, receivedDateTime2);
         }
 
-        private void VMPropertyChanged(object sender, PropertyChangedEventArgs e)
+        [TestMethod]
+        public void TestPropertyChangeNoBroadcast()
         {
-            if (e.PropertyName
-                == OldTestViewModel.LastChanged1PropertyName)
+            Messenger.Reset();
+            var receivedDateTimeLocal = DateTime.MinValue;
+            var receivedDateTimeMessenger = DateTime.MinValue;
+
+            Messenger.Default.Register<PropertyChangedMessage<DateTime>>(this, m =>
             {
-                _receivedDateTime = ((OldTestViewModel) sender).LastChanged1;
-                return;
-            }
-            if (e.PropertyName
-                == OldTestViewModel.LastChanged2PropertyName)
+                if (m.PropertyName == TestViewModel.LastChanged2PropertyName)
+                {
+                    receivedDateTimeMessenger = m.NewValue;
+                }
+            });
+
+            var vm = new TestViewModel();
+            vm.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == TestViewModel.LastChanged2PropertyName)
+                    {
+                        receivedDateTimeLocal = vm.LastChanged2;
+                    }
+                };
+
+            var now = DateTime.Now;
+            vm.LastChanged2 = now;
+            Assert.AreEqual(now, vm.LastChanged2);
+            Assert.AreEqual(now, receivedDateTimeLocal);
+            Assert.AreEqual(DateTime.MinValue, receivedDateTimeMessenger);
+        }
+    }
+
+    public class TestViewModel : ViewModelBase
+    {
+        public const string ReceivedContentPropertyName = "ReceivedContent";
+
+        private string _receivedContent;
+
+        public string ReceivedContent
+        {
+            get
             {
-                _receivedDateTime = ((OldTestViewModel) sender).LastChanged2;
-                return;
+                return _receivedContent;
             }
+
+            private set
+            {
+                if (_receivedContent == value)
+                {
+                    return;
+                }
+
+                _receivedContent = value;
+                RaisePropertyChanged(ReceivedContentPropertyName);
+            }
+        }
+
+        public const string LastChanged1PropertyName = "LastChanged1";
+
+        private DateTime _lastChanged1;
+
+        public DateTime LastChanged1
+        {
+            get
+            {
+                return _lastChanged1;
+            }
+
+            set
+            {
+                if (_lastChanged1 == value)
+                {
+                    return;
+                }
+
+                var oldValue = _lastChanged1;
+                _lastChanged1 = value;
+
+                // Update bindings and broadcast change using GalaSoft.Utility.Messenging
+                RaisePropertyChanged(LastChanged1PropertyName, oldValue, value, true);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="LastChanged2" /> property's name.
+        /// </summary>
+        public const string LastChanged2PropertyName = "LastChanged2";
+
+        private DateTime _lastChanged2;
+
+        /// <summary>
+        /// Gets the LastChanged2 property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public DateTime LastChanged2
+        {
+            get
+            {
+                return _lastChanged2;
+            }
+
+            set
+            {
+                if (_lastChanged2 == value)
+                {
+                    return;
+                }
+
+                _lastChanged2 = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(LastChanged2PropertyName);
+            }
+        }
+
+        internal void HandleStringMessage(string message)
+        {
+            ReceivedContent = message;
+        }
+
+        public TestViewModel()
+        {
+            
+        }
+
+        public TestViewModel(IMessenger messenger)
+            : base(messenger)
+        {
         }
     }
 }

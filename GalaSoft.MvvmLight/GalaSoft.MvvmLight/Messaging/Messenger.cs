@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0008</LastBaseLevel>
+// <LastBaseLevel>BL0009</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -28,24 +28,22 @@ namespace GalaSoft.MvvmLight.Messaging
     /// The Messenger is a class allowing objects to exchange messages.
     /// </summary>
     ////[ClassInfo(typeof(Messenger),
-    ////    VersionString = "2.0.0.0",
-    ////    DateString = "200909281606",
+    ////    VersionString = "3.0.0.0/BL0009",
+    ////    DateString = "200910251258",
     ////    Description = "A messenger class allowing a class to send a message to multiple recipients",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
     public class Messenger : IMessenger
     {
-        private readonly OldMessenger _oldMessenger = new OldMessenger();
-
         private static Messenger _defaultInstance;
 
-        private Dictionary<Type, List<WeakAction>> _recipientsOfSubclassesAction;
+        private Dictionary<Type, List<WeakActionAndToken>> _recipientsOfSubclassesAction;
 
-        private Dictionary<Type, List<WeakAction>> _recipientsStrictAction;
+        private Dictionary<Type, List<WeakActionAndToken>> _recipientsStrictAction;
 
         /// <summary>
         /// Gets the Messenger's default instance, allowing
-        /// to register and broadcast in a static manner.
+        /// to register and send messages in a static manner.
         /// </summary>
         public static Messenger Default
         {
@@ -60,6 +58,11 @@ namespace GalaSoft.MvvmLight.Messaging
             }
         }
 
+        public static void OverrideDefault(Messenger newMessenger)
+        {
+            _defaultInstance = newMessenger;
+        }
+
         /// <summary>
         /// Sets the Messenger's default (static) instance to null.
         /// </summary>
@@ -67,60 +70,6 @@ namespace GalaSoft.MvvmLight.Messaging
         {
             _defaultInstance = null;
         }
-
-        //// OLD
-
-        /// <summary>
-        /// Broacasts a message to the recipients who registered for
-        /// this type of message.
-        /// </summary>
-        /// <param name="message">The message to broadcast.</param>
-        [Obsolete("Please use the method Send<TMessage> instead.")]
-        public void Broadcast(MessageBase message)
-        {
-            _oldMessenger.Broadcast(message);
-        }
-
-        /// <summary>
-        /// Registers a message recipient for a given type of messages, with
-        /// the Messenger's default instance. Registration is made in a way that
-        /// it is not necessary to unregister a recipient before it is disposed.
-        /// </summary>
-        /// <param name="recipient">The recipient.</param>
-        /// <param name="messageType">The message type that the recipient registers
-        /// for. The type must inherit MessageBase.</param>
-        /// <exception cref="ArgumentException">If the messageType does not
-        /// inherit <see cref="MessageBase"/></exception>
-        [Obsolete("Please register a recipient with the generic methods 'Messenger.Register<TMessage>'.")]
-        public void Register(IMessageRecipient recipient, Type messageType)
-        {
-            Register(recipient, messageType, false);
-        }
-
-        /// <summary>
-        /// Registers a message recipient for a given type of messages, with
-        /// the Messenger's default instance. Registration is made in a way that
-        /// it is not necessary to unregister a recipient before it is disposed.
-        /// </summary>
-        /// <param name="recipient">The recipient.</param>
-        /// <param name="messageType">The message type that the recipient registers
-        /// for. The type must inherit MessageBase.</param>
-        /// <param name="receiveDerivedMessagesToo">If true, the recipient will also receive
-        /// message types deriving from the registered message type. For example, registering
-        /// for <see cref="MessageBase" /> will pass all the messages to the recipient.
-        /// If the message type registered is a generic type without type arguments, all the
-        /// messages of this generic type will be received. For example, registering the message
-        /// type "GenericMessage&lt;&gt;" will get the message types "GenericMessage&lt;string&gt;",
-        /// "GenericMessage&lt;Exception&gt;", etc...</param>
-        /// <exception cref="ArgumentException">If the messageType does not
-        /// inherit <see cref="MessageBase"/></exception>
-        [Obsolete("Please register a recipient with the generic methods 'Messenger.Register<TMessage>'.")]
-        public void Register(IMessageRecipient recipient, Type messageType, bool receiveDerivedMessagesToo)
-        {
-            _oldMessenger.Register(recipient, messageType, receiveDerivedMessagesToo);
-        }
-
-        //// NEW
 
         /// <summary>
         /// Registers a recipient for a type of message TMessage. The <see cref="action" />
@@ -133,9 +82,19 @@ namespace GalaSoft.MvvmLight.Messaging
         /// <param name="recipient">The recipient that will receive the messages.</param>
         /// <param name="action">The action that will be executed when a message
         /// of type TMessage is sent.</param>
-        public void Register<TMessage>(object recipient, Action<TMessage> action)
+        public virtual void Register<TMessage>(object recipient, Action<TMessage> action)
         {
-            Register(recipient, false, action);
+            Register(recipient, null, false, action);
+        }
+
+        public virtual void Register<TMessage>(object recipient, bool receiveDerivedMessagesToo, Action<TMessage> action)
+        {
+            Register(recipient, null, receiveDerivedMessagesToo, action);
+        }
+
+        public virtual void Register<TMessage>(object recipient, object token, Action<TMessage> action)
+        {
+            Register(recipient, token, false, action);
         }
 
         /// <summary>
@@ -163,17 +122,21 @@ namespace GalaSoft.MvvmLight.Messaging
         /// </param>
         /// <param name="action">The action that will be executed when a message
         /// of type TMessage is sent.</param>
-        public void Register<TMessage>(object recipient, bool receiveDerivedMessagesToo, Action<TMessage> action)
+        public virtual void Register<TMessage>(
+            object recipient, 
+            object token, 
+            bool receiveDerivedMessagesToo, 
+            Action<TMessage> action)
         {
             var messageType = typeof(TMessage);
 
-            Dictionary<Type, List<WeakAction>> recipients;
+            Dictionary<Type, List<WeakActionAndToken>> recipients;
 
             if (receiveDerivedMessagesToo)
             {
                 if (_recipientsOfSubclassesAction == null)
                 {
-                    _recipientsOfSubclassesAction = new Dictionary<Type, List<WeakAction>>();
+                    _recipientsOfSubclassesAction = new Dictionary<Type, List<WeakActionAndToken>>();
                 }
 
                 recipients = _recipientsOfSubclassesAction;
@@ -182,17 +145,17 @@ namespace GalaSoft.MvvmLight.Messaging
             {
                 if (_recipientsStrictAction == null)
                 {
-                    _recipientsStrictAction = new Dictionary<Type, List<WeakAction>>();
+                    _recipientsStrictAction = new Dictionary<Type, List<WeakActionAndToken>>();
                 }
 
                 recipients = _recipientsStrictAction;
             }
 
-            List<WeakAction> list;
+            List<WeakActionAndToken> list;
 
             if (!recipients.ContainsKey(messageType))
             {
-                list = new List<WeakAction>();
+                list = new List<WeakActionAndToken>();
                 recipients.Add(messageType, list);
             }
             else
@@ -201,9 +164,21 @@ namespace GalaSoft.MvvmLight.Messaging
             }
 
             var weakAction = new WeakAction<TMessage>(recipient, action);
-            list.Add(weakAction);
+            var item = new WeakActionAndToken
+            {
+                Action = weakAction,
+                Token = token
+            };
+            list.Add(item);
 
             Cleanup();
+        }
+
+        private struct WeakActionAndToken
+        {
+            public WeakAction Action;
+
+            public object Token;
         }
 
         /// <summary>
@@ -213,9 +188,9 @@ namespace GalaSoft.MvvmLight.Messaging
         /// </summary>
         /// <typeparam name="TMessage">The type of message that will be sent.</typeparam>
         /// <param name="message">The message to send to registered recipients.</param>
-        public void Send<TMessage>(TMessage message)
+        public virtual void Send<TMessage>(TMessage message)
         {
-            SendToTargetOrType(message, null);
+            SendToTargetOrType(message, null, null);
         }
 
         /// <summary>
@@ -232,54 +207,25 @@ namespace GalaSoft.MvvmLight.Messaging
             "Microsoft.Design",
             "CA1004:GenericMethodsShouldProvideTypeParameter",
             Justification = "This syntax is more convenient than other alternatives.")]
-        public void Send<TMessage, TTarget>(TMessage message)
+        public virtual void Send<TMessage, TTarget>(TMessage message)
         {
-            SendToTargetOrType(message, typeof(TTarget));
+            SendToTargetOrType(message, typeof(TTarget), null);
         }
 
-        //// OLD
-
-        /// <summary>
-        /// Unregisters a previously registered message recipient. After it is unregistered,
-        /// the recipient will not get any messages anymore.
-        /// </summary>
-        /// <param name="recipient">The recipient to unregister.</param>
-        [Obsolete("Please unregister a recipient with the generic methods 'Messenger.Unregister<TMessage>'.")]
-        public void Unregister(IMessageRecipient recipient)
+        public virtual void Send<TMessage>(TMessage message, object token)
         {
-            _oldMessenger.Unregister(recipient);
+            SendToTargetOrType(message, null, token);
         }
-
-        /// <summary>
-        /// Unregisters a previously registered message recipient. After it is unregistered,
-        /// the recipient will not get any messages of the given message type anymore..
-        /// </summary>
-        /// <param name="recipient">The recipient to unregister.</param>
-        /// <param name="messageType">The message type for which the
-        /// recipient wants to unregister.</param>
-        [Obsolete("Please unregister a recipient with the generic methods 'Messenger.Unregister<TMessage>'.")]
-        public void Unregister(IMessageRecipient recipient, Type messageType)
-        {
-            _oldMessenger.Unregister(recipient, messageType);
-        }
-
-        //// NEW
 
         /// <summary>
         /// Unregisters a messager recipient completely. After this method
         /// is executed, the recipient will not receive any messages anymore.
         /// </summary>
         /// <param name="recipient">The recipient that must be unregistered.</param>
-        public void Unregister(object recipient)
+        public virtual void Unregister(object recipient)
         {
             UnregisterFromLists(recipient, _recipientsOfSubclassesAction);
             UnregisterFromLists(recipient, _recipientsStrictAction);
-
-            var oldRecipient = recipient as IMessageRecipient;
-            if (oldRecipient != null)
-            {
-                _oldMessenger.Unregister(oldRecipient);
-            }
         }
 
         /// <summary>
@@ -296,7 +242,7 @@ namespace GalaSoft.MvvmLight.Messaging
             "CA1004:GenericMethodsShouldProvideTypeParameter",
             Justification =
                 "The type parameter TMessage identifies the message type that the recipient wants to unregister for.")]
-        public void Unregister<TMessage>(object recipient)
+        public virtual void Unregister<TMessage>(object recipient)
         {
             Unregister<TMessage>(recipient, null);
         }
@@ -313,14 +259,14 @@ namespace GalaSoft.MvvmLight.Messaging
         /// <param name="recipient">The recipient that must be unregistered.</param>
         /// <param name="action">The action that must be unregistered for
         /// the recipient and for the message type TMessage.</param>
-        public void Unregister<TMessage>(object recipient, Action<TMessage> action)
+        public virtual void Unregister<TMessage>(object recipient, Action<TMessage> action)
         {
             UnregisterFromLists(recipient, action, _recipientsStrictAction);
             UnregisterFromLists(recipient, action, _recipientsOfSubclassesAction);
             Cleanup();
         }
 
-        private static void CleanupList(IDictionary<Type, List<WeakAction>> lists)
+        private static void CleanupList(IDictionary<Type, List<WeakActionAndToken>> lists)
         {
             if (lists == null)
             {
@@ -330,13 +276,13 @@ namespace GalaSoft.MvvmLight.Messaging
             var listsToRemove = new List<Type>();
             foreach (var list in lists)
             {
-                var recipientsToRemove = new List<WeakAction>();
-                foreach (var recipient in list.Value)
+                var recipientsToRemove = new List<WeakActionAndToken>();
+                foreach (var item in list.Value)
                 {
-                    if (recipient == null
-                        || !recipient.IsAlive)
+                    if (item.Action == null
+                        || !item.Action.IsAlive)
                     {
-                        recipientsToRemove.Add(recipient);
+                        recipientsToRemove.Add(item);
                     }
                 }
 
@@ -357,18 +303,18 @@ namespace GalaSoft.MvvmLight.Messaging
             }
         }
 
-        private static bool Implements(Type messageType, Type type)
+        private static bool Implements(Type instanceType, Type interfaceType)
         {
-            if (type == null
-                || messageType == null)
+            if (interfaceType == null
+                || instanceType == null)
             {
                 return false;
             }
 
-            var interfaces = messageType.GetInterfaces();
+            var interfaces = instanceType.GetInterfaces();
             foreach (var currentInterface in interfaces)
             {
-                if (currentInterface == type)
+                if (currentInterface == interfaceType)
                 {
                     return true;
                 }
@@ -379,8 +325,9 @@ namespace GalaSoft.MvvmLight.Messaging
 
         private static void SendToList<TMessage>(
             TMessage message,
-            IEnumerable<WeakAction> list,
-            Type messageTargetType)
+            IEnumerable<WeakActionAndToken> list,
+            Type messageTargetType,
+            object token)
         {
             if (list != null)
             {
@@ -388,16 +335,19 @@ namespace GalaSoft.MvvmLight.Messaging
                 // Bug correction Messaging BL0004.007
                 var listClone = list.Take(list.Count()).ToList();
 
-                foreach (var action in listClone)
+                foreach (var item in listClone)
                 {
-                    var executeAction = action as IExecuteWithObject;
+                    var executeAction = item.Action as IExecuteWithObject;
 
-                    if (action != null
-                        && executeAction != null
-                        && action.IsAlive
-                        && action.Target != null
+                    if (executeAction != null
+                        && item.Action.IsAlive
+                        && item.Action.Target != null
+
                         && (messageTargetType == null
-                            || action.Target.GetType() == messageTargetType))
+                            || item.Action.Target.GetType() == messageTargetType
+                            || Implements(item.Action.Target.GetType(), messageTargetType))
+
+                        && item.Token == token)
                     {
                         executeAction.ExecuteWithObject(message);
                     }
@@ -405,7 +355,7 @@ namespace GalaSoft.MvvmLight.Messaging
             }
         }
 
-        private static void UnregisterFromLists(object recipient, Dictionary<Type, List<WeakAction>> lists)
+        private static void UnregisterFromLists(object recipient, Dictionary<Type, List<WeakActionAndToken>> lists)
         {
             if (recipient == null
                 || lists == null
@@ -418,9 +368,12 @@ namespace GalaSoft.MvvmLight.Messaging
             {
                 foreach (var messageType in lists.Keys)
                 {
-                    foreach (var weakAction in lists[messageType])
+                    foreach (var item in lists[messageType])
                     {
-                        if (recipient == weakAction.Target)
+                        var weakAction = item.Action;
+
+                        if (weakAction != null
+                            && recipient == weakAction.Target)
                         {
                             weakAction.MarkForDeletion();
                         }
@@ -432,7 +385,7 @@ namespace GalaSoft.MvvmLight.Messaging
         private static void UnregisterFromLists<TMessage>(
             object recipient,
             Action<TMessage> action,
-            Dictionary<Type, List<WeakAction>> lists)
+            Dictionary<Type, List<WeakActionAndToken>> lists)
         {
             var messageType = typeof(TMessage);
 
@@ -446,16 +399,16 @@ namespace GalaSoft.MvvmLight.Messaging
 
             lock (lists)
             {
-                foreach (var weakAction in lists[messageType])
+                foreach (var item in lists[messageType])
                 {
-                    var weakActionCasted = weakAction as WeakAction<TMessage>;
+                    var weakActionCasted = item.Action as WeakAction<TMessage>;
 
                     if (weakActionCasted != null
                         && recipient == weakActionCasted.Target
                         && (action == null
                             || action == weakActionCasted.Action))
                     {
-                        weakAction.MarkForDeletion();
+                        item.Action.MarkForDeletion();
                     }
                 }
             }
@@ -467,15 +420,19 @@ namespace GalaSoft.MvvmLight.Messaging
             CleanupList(_recipientsStrictAction);
         }
 
-        private void SendToTargetOrType<TMessage>(TMessage message, Type messageTargetType)
+        private void SendToTargetOrType<TMessage>(TMessage message, Type messageTargetType, object token)
         {
             var messageType = typeof(TMessage);
 
             if (_recipientsOfSubclassesAction != null)
             {
-                foreach (var type in _recipientsOfSubclassesAction.Keys)
+                // Clone to protect from people registering in a "receive message" method
+                // Bug correction Messaging BL0008.002
+                var listClone = _recipientsOfSubclassesAction.Keys.Take(_recipientsOfSubclassesAction.Count()).ToList();
+
+                foreach (var type in listClone)
                 {
-                    List<WeakAction> list = null;
+                    List<WeakActionAndToken> list = null;
 
                     if (messageType == type
                         || messageType.IsSubclassOf(type)
@@ -484,7 +441,7 @@ namespace GalaSoft.MvvmLight.Messaging
                         list = _recipientsOfSubclassesAction[type];
                     }
 
-                    SendToList(message, list, messageTargetType);
+                    SendToList(message, list, messageTargetType, token);
                 }
             }
 
@@ -493,7 +450,7 @@ namespace GalaSoft.MvvmLight.Messaging
                 if (_recipientsStrictAction.ContainsKey(messageType))
                 {
                     var list = _recipientsStrictAction[messageType];
-                    SendToList(message, list, messageTargetType);
+                    SendToList(message, list, messageTargetType, token);
                 }
             }
 

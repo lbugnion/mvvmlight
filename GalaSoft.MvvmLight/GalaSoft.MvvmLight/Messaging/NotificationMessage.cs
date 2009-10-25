@@ -1,5 +1,5 @@
 ﻿// ****************************************************************************
-// <copyright file="CommandMessage.cs" company="GalaSoft Laurent Bugnion">
+// <copyright file="NotificationMessage.cs" company="GalaSoft Laurent Bugnion">
 // Copyright © GalaSoft Laurent Bugnion 2009
 // </copyright>
 // ****************************************************************************
@@ -15,58 +15,59 @@
 
 ////using GalaSoft.Utilities.Attributes;
 
-using System;
 namespace GalaSoft.MvvmLight.Messaging
 {
     /// <summary>
-    /// Passes a string message (Command) to a recipient.
+    /// Passes a string message (Notification) to a recipient.
+    /// <para>Typically, notifications are defined as unique strings in a static class. To define
+    /// a unique string, you can use Guid.NewGuid().ToString() or any other unique
+    /// identifier.</para>
     /// </summary>
     ////[ClassInfo(typeof(Messenger))]
-    [Obsolete("This class has been replaced by NotificationMessage. Only the name changed. Please use the new class from now on.")]
-    public class CommandMessage : MessageBase
+    public class NotificationMessage : MessageBase
     {
         /// <summary>
-        /// Initializes a new instance of the CommandMessage class.
+        /// Initializes a new instance of the NotificationMessage class.
         /// </summary>
-        /// <param name="command">A string containing any arbitrary message to be
+        /// <param name="notification">A string containing any arbitrary message to be
         /// passed to recipient(s)</param>
-        public CommandMessage(string command)
+        public NotificationMessage(string notification)
         {
-            Command = command;
+            Notification = notification;
         }
 
         /// <summary>
-        /// Initializes a new instance of the CommandMessage class.
+        /// Initializes a new instance of the NotificationMessage class.
         /// </summary>
         /// <param name="sender">The message's sender.</param>
-        /// <param name="command">A string containing any arbitrary message to be
+        /// <param name="notification">A string containing any arbitrary message to be
         /// passed to recipient(s)</param>
-        public CommandMessage(object sender, string command)
+        public NotificationMessage(object sender, string notification)
             : base(sender)
         {
-            Command = command;
+            Notification = notification;
         }
 
         /// <summary>
-        /// Initializes a new instance of the CommandMessage class.
+        /// Initializes a new instance of the NotificationMessage class.
         /// </summary>
         /// <param name="sender">The message's sender.</param>
         /// <param name="target">The message's intended target. This parameter can be used
         /// to give an indication as to whom the message was intended for. Of course
         /// this is only an indication, amd may be null.</param>
-        /// <param name="command">A string containing any arbitrary message to be
+        /// <param name="notification">A string containing any arbitrary message to be
         /// passed to recipient(s)</param>
-        public CommandMessage(object sender, object target, string command)
+        public NotificationMessage(object sender, object target, string notification)
             : base(sender, target)
         {
-            Command = command;
+            Notification = notification;
         }
 
         /// <summary>
         /// Gets a string containing any arbitrary message to be
         /// passed to recipient(s).
         /// </summary>
-        public string Command
+        public string Notification
         {
             get;
             private set;

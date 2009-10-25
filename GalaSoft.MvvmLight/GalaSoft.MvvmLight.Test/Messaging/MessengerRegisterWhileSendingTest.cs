@@ -14,7 +14,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         private const string TestContentStringNested = "Hello earth";
 
         [TestMethod]
-        public void TestNewMessengerRegisteringWhileSending()
+        public void TestMessengerRegisteringWhileSending()
         {
             Messenger.Reset();
             TestRecipient.Reset();
@@ -38,7 +38,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         }
 
         [TestMethod]
-        public void TestNewMessengerRegisteringForMessageBaseWhileSending()
+        public void TestMessengerRegisteringForMessageBaseWhileSending()
         {
             Messenger.Reset();
             TestRecipient.Reset();
@@ -62,51 +62,70 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         }
 
         [TestMethod]
-        public void TestOldMessengerRegisteringWhileSending()
+        public void TestMessengerRegisteringInlineWhileReceiving()
         {
-            Messenger.Reset();
-            TestRecipient.Reset();
+            var receivedContent = string.Empty;
+            Messenger.Default.Register<string>(
+                this,
+                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, m2 => receivedContent = m2.NewValue));
 
-            var list = new List<TestRecipient1>();
-
-            for (var index = 0; index < 10; index++)
-            {
-                list.Add(new TestRecipient3());
-            }
-
-            Messenger.Default.Broadcast(new GenericMessage<string>(TestContentString));
-
-            Assert.AreEqual(null, TestRecipient.LastReceivedString);
-            Assert.AreEqual(0, TestRecipient.ReceivedStringMessages);
-
-            Messenger.Default.Broadcast(new GenericMessage<string>(TestContentStringNested));
-
-            Assert.AreEqual(TestContentStringNested, TestRecipient.LastReceivedString);
-            Assert.AreEqual(20, TestRecipient.ReceivedStringMessages);
+            Messenger.Default.Send("Hello world");
         }
 
         [TestMethod]
-        public void TestOldMessengerRegisteringForMessageBaseWhileSending()
+        public void TestMessengerRegisteringMessageBaseInlineWhileReceiving()
         {
-            Messenger.Reset();
-            TestRecipient.Reset();
+            var receivedContent = string.Empty;
+            Messenger.Default.Register<string>(
+                this,
+                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, true, m2 => receivedContent = m2.NewValue));
 
-            var list = new List<TestRecipient2>();
+            Messenger.Default.Send("Hello world");
+        }
 
-            for (var index = 0; index < 10; index++)
-            {
-                list.Add(new TestRecipient4());
-            }
+        [TestMethod]
+        public void TestMessengerRegisteringInlineWhileReceivingMessageBase()
+        {
+            var receivedContent = string.Empty;
+            Messenger.Default.Register<string>(
+                this,
+                true,
+                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, m2 => receivedContent = m2.NewValue));
 
-            Messenger.Default.Broadcast(new GenericMessage<string>(TestContentString));
+            Messenger.Default.Send("Hello world");
+        }
 
-            Assert.AreEqual(null, TestRecipient.LastReceivedString);
-            Assert.AreEqual(0, TestRecipient.ReceivedStringMessages);
+        [TestMethod]
+        public void TestMessengerRegisteringMessageBaseInlineWhileReceivingMessageBase()
+        {
+            var receivedContent = string.Empty;
+            Messenger.Default.Register<string>(
+                this,
+                true,
+                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, true, m2 => receivedContent = m2.NewValue));
 
-            Messenger.Default.Broadcast(new GenericMessage<string>(TestContentStringNested));
+            Messenger.Default.Send("Hello world");
+        }
 
-            Assert.AreEqual(TestContentStringNested, TestRecipient.LastReceivedString);
-            Assert.AreEqual(20, TestRecipient.ReceivedStringMessages);
+        [TestMethod]
+        public void TestMessengerUnregisteringWhileReceiving()
+        {
+            Messenger.Default.Register<string>(
+                this,
+                m => Messenger.Default.Unregister(this));
+
+            Messenger.Default.Send("Hello world");
+        }
+
+        [TestMethod]
+        public void TestMessengerUnregisteringFromMessageBaseWhileReceiving()
+        {
+            Messenger.Default.Register<string>(
+                this,
+                true,
+                m => Messenger.Default.Unregister(this));
+
+            Messenger.Default.Send("Hello world");
         }
 
         public abstract class TestRecipient
@@ -129,7 +148,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
                 ReceivedStringMessages = 0;
             }
         }
-        
+
         public class TestRecipient1 : TestRecipient
         {
             public TestRecipient1(bool register)
@@ -178,78 +197,6 @@ namespace GalaSoft.MvvmLight.Test.Messaging
                 {
                     ReceivedStringMessages++;
                     LastReceivedString = message.Content;
-                }
-            }
-        }
-
-        public class TestRecipient3 : TestRecipient1, IMessageRecipient
-        {
-            private TestRecipient3 _innerRecipient;
-
-            public TestRecipient3()
-                : base(false)
-            {
-                Messenger.Default.Register(this, typeof(GenericMessage<string>));
-            }
-
-            protected override void ReceiveString(GenericMessage<string> m)
-            {
-                _innerRecipient = new TestRecipient3();
-            }
-
-            public void ReceiveMessage(MessageBase message)
-            {
-                var casted = message as GenericMessage<string>;
-                if (casted != null)
-                {
-                    if (casted.Content == TestContentString)
-                    {
-                        ReceiveString(casted);
-                        return;
-                    }
-
-                    if (casted.Content == TestContentStringNested)
-                    {
-                        ReceiveStringNested(casted);
-                    }
-                }
-            }
-        }
-
-        public class TestRecipient4 : TestRecipient2, IMessageRecipient
-        {
-            private TestRecipient4 _innerRecipient;
-
-            public TestRecipient4()
-                : base(false)
-            {
-                Messenger.Default.Register(this, typeof(MessageBase), true);
-            }
-
-            protected override void ReceiveString(MessageBase m)
-            {
-                var message = m as GenericMessage<string>;
-                if (message != null)
-                {
-                    _innerRecipient = new TestRecipient4();
-                }
-            }
-
-            public void ReceiveMessage(MessageBase message)
-            {
-                var casted = message as GenericMessage<string>;
-                if (casted != null)
-                {
-                    if (casted.Content == TestContentString)
-                    {
-                        ReceiveString(casted);
-                        return;
-                    }
-
-                    if (casted.Content == TestContentStringNested)
-                    {
-                        ReceiveStringNested(casted);
-                    }
                 }
             }
         }

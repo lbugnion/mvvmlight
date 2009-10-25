@@ -10,7 +10,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0007</LastBaseLevel>
+// <LastBaseLevel>BL0008</LastBaseLevel>
 // ****************************************************************************
 // <credits>This class was developed by Josh Smith (http://joshsmithonwpf.wordpress.com) and
 // slightly modified with his permission.</credits>
@@ -32,8 +32,8 @@ namespace GalaSoft.MvvmLight.Command
     /// Execute and CanExecute callback methods.
     /// </summary>
     ////[ClassInfo(typeof(RelayCommand),
-    ////  VersionString = "2.0.0.0",
-    ////  DateString = "200909281610",
+    ////  VersionString = "3.0.0.0/BL0008",
+    ////  DateString = "200910251406",
     ////  Description = "A command whose sole purpose is to relay its functionality to other objects by invoking delegates.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -99,22 +99,6 @@ namespace GalaSoft.MvvmLight.Command
             }
         }
 #endif
-
-        /// <summary>
-        /// Raises the <see cref="CanExecuteChanged" /> event.
-        /// </summary>
-        /// <param name="force">This parameter has no effect and is always true.</param>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
-            Justification = "The this keyword is used in the Silverlight version")]
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
-            Justification = "This cannot be an event")]
-        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters",
-            Justification = "The parameter is used in the WPF version")]
-        [Obsolete("Use the method RaiseCanExecuteChanged() instead.")]
-        public void RaiseCanExecuteChanged(bool force)
-        {
-            RaiseCanExecuteChanged();
-        }
 
         /// <summary>
         /// Raises the <see cref="CanExecuteChanged" /> event.

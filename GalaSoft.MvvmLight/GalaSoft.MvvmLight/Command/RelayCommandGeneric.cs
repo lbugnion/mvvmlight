@@ -98,22 +98,6 @@ namespace GalaSoft.MvvmLight.Command
         /// <summary>
         /// Raises the <see cref="CanExecuteChanged" /> event.
         /// </summary>
-        /// <param name="force">This parameter has no effect and is always true.</param>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
-            Justification = "The this keyword is used in the Silverlight version")]
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
-            Justification = "This cannot be an event")]
-        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters",
-            Justification = "The parameter is used in the WPF version")]
-        [Obsolete("Use the method RaiseCanExecuteChanged() instead.")]
-        public void RaiseCanExecuteChanged(bool force)
-        {
-            RaiseCanExecuteChanged();
-        }
-
-        /// <summary>
-        /// Raises the <see cref="CanExecuteChanged" /> event.
-        /// </summary>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
             Justification = "The this keyword is used in the Silverlight version")]
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
