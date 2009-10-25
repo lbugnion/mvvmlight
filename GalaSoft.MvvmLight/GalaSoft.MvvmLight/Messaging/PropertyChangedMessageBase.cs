@@ -22,6 +22,7 @@ namespace GalaSoft.MvvmLight.Messaging
     /// class allows a recipient to register for all PropertyChangedMessages without
     /// having to specify the type T.
     /// </summary>
+    ////[ClassInfo(typeof(Messenger))]
     public abstract class PropertyChangedMessageBase : MessageBase
     {
         /// <summary>

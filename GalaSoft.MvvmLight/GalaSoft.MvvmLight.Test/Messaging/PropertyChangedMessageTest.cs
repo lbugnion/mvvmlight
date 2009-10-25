@@ -35,46 +35,43 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Messenger.Reset();
 
-            Messenger.Default.Register<PropertyChangedMessageBase>(this,
-                                                                   true,
-                                                                   m =>
-                                                                   {
-                                                                       receivedSender = m.Sender;
-                                                                       receivedTarget = m.Target;
-                                                                       messageWasReceived = true;
+            Messenger.Default.Register<PropertyChangedMessageBase>(
+                this,
+                true,
+                m =>
+                {
+                    receivedSender = m.Sender;
+                    receivedTarget = m.Target;
+                    messageWasReceived = true;
 
-                                                                       var exceptionMessage =
-                                                                           m as
-                                                                           PropertyChangedMessage
-                                                                               <InvalidOperationException>;
+                    var exceptionMessage =
+                        m as PropertyChangedMessage<InvalidOperationException>;
 
-                                                                       if (exceptionMessage != null
-                                                                           &&
-                                                                           exceptionMessage.PropertyName
-                                                                           == TestViewModel.MyExceptionPropertyName)
-                                                                       {
-                                                                           receivedPreviousException =
-                                                                               exceptionMessage.OldValue;
-                                                                           receivedCurrentException =
-                                                                               exceptionMessage.NewValue;
-                                                                           return;
-                                                                       }
+                    if (exceptionMessage != null
+                        &&
+                        exceptionMessage.PropertyName
+                        == TestViewModel.MyExceptionPropertyName)
+                    {
+                        receivedPreviousException =
+                            exceptionMessage.OldValue;
+                        receivedCurrentException =
+                            exceptionMessage.NewValue;
+                        return;
+                    }
 
-                                                                       var dateMessage =
-                                                                           m as PropertyChangedMessage<DateTime>;
+                    var dateMessage =
+                        m as PropertyChangedMessage<DateTime>;
 
-                                                                       if (dateMessage != null
-                                                                           &&
-                                                                           dateMessage.PropertyName
-                                                                           == TestViewModel.MyDatePropertyName)
-                                                                       {
-                                                                           receivedPreviousDateTime =
-                                                                               dateMessage.OldValue;
-                                                                           receivedCurrentDateTime =
-                                                                               dateMessage.NewValue;
-                                                                           return;
-                                                                       }
-                                                                   });
+                    if (dateMessage != null
+                        && dateMessage.PropertyName == TestViewModel.MyDatePropertyName)
+                    {
+                        receivedPreviousDateTime =
+                            dateMessage.OldValue;
+                        receivedCurrentDateTime =
+                            dateMessage.NewValue;
+                        return;
+                    }
+                });
 
             Assert.AreEqual(DateTime.MinValue, receivedPreviousDateTime);
             Assert.AreEqual(DateTime.MinValue, receivedCurrentDateTime);

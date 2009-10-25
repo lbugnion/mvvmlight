@@ -100,17 +100,14 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\DialogMessageTest.cs">
       <Link>Messaging\DialogMessageTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerBroadcastToAllTest.cs">
-      <Link>Messaging\MessengerBroadcastToAllTest.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerBroadcastToTypeTest.cs">
-      <Link>Messaging\MessengerBroadcastToTypeTest.cs</Link>
-    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerCreationDeletionTest.cs">
       <Link>Messaging\MessengerCreationDeletionTest.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerMultipleInstancesTest.cs">
       <Link>Messaging\MessengerMultipleInstancesTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerOverrideDefaultTest.cs">
+      <Link>Messaging\MessengerOverrideDefaultTest.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerRegisterUnregisterTest.cs">
       <Link>Messaging\MessengerRegisterUnregisterTest.cs</Link>
@@ -118,29 +115,23 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerRegisterWhileSendingTest.cs">
       <Link>Messaging\MessengerRegisterWhileSendingTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\OldExceptionMessage.cs">
-      <Link>Messaging\OldExceptionMessage.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerSendToAllTest.cs">
+      <Link>Messaging\MessengerSendToAllTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\OldInvalidOperationExceptionMessage.cs">
-      <Link>Messaging\OldInvalidOperationExceptionMessage.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerSendToTypeTest.cs">
+      <Link>Messaging\MessengerSendToTypeTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\OldMessengerTest.cs">
-      <Link>Messaging\OldMessengerTest.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerSendWithTokenTest.cs">
+      <Link>Messaging\MessengerSendWithTokenTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\OldTestCommandHost.cs">
-      <Link>Messaging\OldTestCommandHost.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\NotificationMessageActionTest.cs">
+      <Link>Messaging\NotificationMessageActionTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\OldTestMessage.cs">
-      <Link>Messaging\OldTestMessage.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\NotificationMessageFuncTest.cs">
+      <Link>Messaging\NotificationMessageFuncTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\OldTestRecipient.cs">
-      <Link>Messaging\OldTestRecipient.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\OldTestRecipient2.cs">
-      <Link>Messaging\OldTestRecipient2.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\OldTestViewModel.cs">
-      <Link>Messaging\OldTestViewModel.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\NotificationMessageTest.cs">
+      <Link>Messaging\NotificationMessageTest.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\PropertyChangedMessageTest.cs">
       <Link>Messaging\PropertyChangedMessageTest.cs</Link>

@@ -24,24 +24,25 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Messenger.Reset();
 
-            Messenger.Default.Register<CommandMessage<Exception>>(this,
-                                                                  m =>
-                                                                  {
-                                                                      receivedSender = m.Sender;
-                                                                      receivedTarget = m.Target;
+            Messenger.Default.Register<CommandMessage<Exception>>(
+                this,
+                m =>
+                {
+                    receivedSender = m.Sender;
+                    receivedTarget = m.Target;
 
-                                                                      if (m.Command == DummyCommand1)
-                                                                      {
-                                                                          receivedContent1 = testContent1;
-                                                                          return;
-                                                                      }
+                    if (m.Command == DummyCommand1)
+                    {
+                        receivedContent1 = testContent1;
+                        return;
+                    }
 
-                                                                      if (m.Command == DummyCommand2)
-                                                                      {
-                                                                          receivedContent2 = testContent2;
-                                                                          return;
-                                                                      }
-                                                                  });
+                    if (m.Command == DummyCommand2)
+                    {
+                        receivedContent2 = testContent2;
+                        return;
+                    }
+                });
 
             Assert.AreEqual(null, receivedContent1);
             Assert.AreEqual(null, receivedContent2);
@@ -135,24 +136,25 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Messenger.Reset();
 
-            Messenger.Default.Register<CommandMessage>(this,
-                                                       m =>
-                                                       {
-                                                           receivedSender = m.Sender;
-                                                           receivedTarget = m.Target;
+            Messenger.Default.Register<CommandMessage>(
+                this,
+                m =>
+                {
+                    receivedSender = m.Sender;
+                    receivedTarget = m.Target;
 
-                                                           if (m.Command == DummyCommand1)
-                                                           {
-                                                               receivedContent1 = TestContent1;
-                                                               return;
-                                                           }
+                    if (m.Command == DummyCommand1)
+                    {
+                        receivedContent1 = TestContent1;
+                        return;
+                    }
 
-                                                           if (m.Command == DummyCommand2)
-                                                           {
-                                                               receivedContent2 = TestContent2;
-                                                               return;
-                                                           }
-                                                       });
+                    if (m.Command == DummyCommand2)
+                    {
+                        receivedContent2 = TestContent2;
+                        return;
+                    }
+                });
 
             Assert.AreEqual(null, receivedContent1);
             Assert.AreEqual(null, receivedContent2);

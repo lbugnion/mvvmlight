@@ -13,6 +13,8 @@
 // </license>
 // ****************************************************************************
 
+using System;
+
 ////using GalaSoft.Utilities.Attributes;
 
 namespace GalaSoft.MvvmLight.Messaging
@@ -22,6 +24,7 @@ namespace GalaSoft.MvvmLight.Messaging
     /// </summary>
     /// <typeparam name="T">The type of the Content property.</typeparam>
     ////[ClassInfo(typeof(Messenger))]
+    [Obsolete("This class has been replaced by NotificationMessage<T>. Only the name changed, nothing else. Please use the new class from now on.")]
     public class CommandMessage<T> : GenericMessage<T>
     {
         /// <summary>

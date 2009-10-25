@@ -22,6 +22,7 @@ namespace GalaSoft.MvvmLight.Helpers
     /// to be created to the Action's owner. The owner can be garbage collected at any time.
     /// </summary>
     /// <typeparam name="T">The type of the Action's parameter.</typeparam>
+    ////[ClassInfo(typeof(Messenger))]
     public class WeakAction<T> : WeakAction, IExecuteWithObject
     {
         private readonly Action<T> _action;
