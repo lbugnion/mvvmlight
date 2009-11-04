@@ -13,8 +13,6 @@
 // </license>
 // ****************************************************************************
 
-using System;
-
 ////using GalaSoft.Utilities.Attributes;
 
 namespace GalaSoft.MvvmLight.Messaging

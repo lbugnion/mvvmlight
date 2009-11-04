@@ -28,7 +28,7 @@ namespace GalaSoft.MvvmLight.Messaging
         /// Initializes a new instance of the NotificationMessage class.
         /// </summary>
         /// <param name="content">A value to be passed to recipient(s).</param>
-        /// <param name="command">A string containing any arbitrary message to be
+        /// <param name="notification">A string containing any arbitrary message to be
         /// passed to recipient(s)</param>
         public NotificationMessage(T content, string notification)
             : base(content)

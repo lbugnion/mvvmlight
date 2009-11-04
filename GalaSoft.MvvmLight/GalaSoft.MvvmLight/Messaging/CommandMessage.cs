@@ -16,6 +16,7 @@
 ////using GalaSoft.Utilities.Attributes;
 
 using System;
+
 namespace GalaSoft.MvvmLight.Messaging
 {
     /// <summary>

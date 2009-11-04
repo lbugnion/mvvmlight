@@ -15,14 +15,6 @@ namespace GalaSoft.MvvmLight.Messaging
             _callback = callback;
         }
 
-        private static void CheckCallback(Delegate callback)
-        {
-            if (callback == null)
-            {
-                throw new ArgumentNullException("callback", "Callback may not be null");
-            }
-        }
-
         public NotificationMessageWithCallback(object sender, string notification, Delegate callback)
             : base(sender, notification)
         {
@@ -40,6 +32,14 @@ namespace GalaSoft.MvvmLight.Messaging
         public virtual object Execute(params object[] arguments)
         {
             return _callback.DynamicInvoke(arguments);
+        }
+
+        private static void CheckCallback(Delegate callback)
+        {
+            if (callback == null)
+            {
+                throw new ArgumentNullException("callback", "Callback may not be null");
+            }
         }
     }
 }

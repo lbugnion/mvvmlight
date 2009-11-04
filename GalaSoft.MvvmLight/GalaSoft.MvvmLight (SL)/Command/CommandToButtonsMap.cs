@@ -6,7 +6,7 @@
 // <author>Laurent Bugnion</author>
 // <email>laurent@galasoft.ch</email>
 // <date>22.4.2009</date>
-// <project>GalaSoft.Utilities.UX.Command</project>
+// <project>GalaSoft.MvvmLight.Command (SL)</project>
 // <web>http://www.galasoft.ch</web>
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt

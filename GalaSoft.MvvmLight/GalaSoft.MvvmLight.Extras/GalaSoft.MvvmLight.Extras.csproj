@@ -5,15 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ADB28C09-8DE9-4006-80D5-74856EB4A48B}</ProjectGuid>
+    <ProjectGuid>{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight</AssemblyName>
+    <AssemblyName>GalaSoft.MvvmLight.Extras</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>GalaSoft.MvvmLight.snk</AssemblyOriginatorKeyFile>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
@@ -27,8 +25,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <NoWarn>618</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -49,6 +45,16 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\WPF\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase">
@@ -56,35 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\IExecuteWithObject.cs" />
-    <Compile Include="Helpers\WeakAction.cs" />
-    <Compile Include="Helpers\WeakActionGeneric.cs" />
-    <Compile Include="Messaging\CommandMessage.cs" />
-    <Compile Include="Messaging\CommandMessageGeneric.cs" />
-    <Compile Include="Messaging\NotificationMessage.cs" />
-    <Compile Include="Messaging\NotificationMessageAction.cs" />
-    <Compile Include="Messaging\NotificationMessageFunc.cs" />
-    <Compile Include="Messaging\NotificationMessageGeneric.cs" />
-    <Compile Include="Messaging\IMessenger.cs" />
-    <Compile Include="Messaging\NotificationMessageWithCallback.cs" />
-    <Compile Include="Messaging\PropertyChangedMessageBase.cs" />
-    <Compile Include="Messaging\DialogMessage.cs" />
-    <Compile Include="Messaging\GenericMessage.cs" />
-    <Compile Include="Messaging\MessageBase.cs" />
-    <Compile Include="Messaging\Messenger.cs" />
-    <Compile Include="Messaging\PropertyChangedMessage.cs" />
+    <Compile Include="Command\EventToCommand.cs" />
+    <Compile Include="Command\EventToCommand.WPF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="Command\RelayCommandGeneric.cs" />
-    <Compile Include="ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GalaSoft.MvvmLight.FxCop" />
-    <None Include="GalaSoft.MvvmLight.snk" />
     <None Include="Settings.StyleCop" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

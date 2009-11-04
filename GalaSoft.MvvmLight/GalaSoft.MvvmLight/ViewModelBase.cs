@@ -67,7 +67,7 @@ namespace GalaSoft.MvvmLight
         /// or Visual Studio).
         /// </summary>
         [SuppressMessage(
-            "Microsoft.Security", 
+            "Microsoft.Security",
             "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands",
             Justification = "The security risk here is neglectible.")]
         public static bool IsInDesignModeStatic

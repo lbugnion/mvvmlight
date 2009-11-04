@@ -39,7 +39,10 @@ namespace GalaSoft.MvvmLight.Messaging
         {
         }
 
-        public NotificationMessageAction(object sender, object target, string notification, Action<TCallbackParameter> callback)
+        public NotificationMessageAction(object sender,
+                                         object target,
+                                         string notification,
+                                         Action<TCallbackParameter> callback)
             : base(sender, target, notification, callback)
         {
         }
