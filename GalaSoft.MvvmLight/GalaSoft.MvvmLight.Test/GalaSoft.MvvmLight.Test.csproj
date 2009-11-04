@@ -48,25 +48,30 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\WPF\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\EventToCommandTest.cs" />
     <Compile Include="Command\RelayCommandGenericTest.cs" />
     <Compile Include="Command\RelayCommandTest.cs" />
     <Compile Include="Messaging\CommandMessageTest.cs" />
-    <Compile Include="Messaging\MessengerOverrideDefaultTest.cs" />
-    <Compile Include="Messaging\MessengerRegisterWhileSendingTest.cs" />
-    <Compile Include="Messaging\MessengerSendToAllTest.cs" />
-    <Compile Include="Messaging\MessengerSendToTypeTest.cs" />
     <Compile Include="Messaging\MessengerSendWithTokenTest.cs" />
     <Compile Include="Messaging\NotificationMessageActionTest.cs" />
     <Compile Include="Messaging\NotificationMessageFuncTest.cs" />
     <Compile Include="Messaging\NotificationMessageTest.cs" />
+    <Compile Include="Messaging\MessengerOverrideDefaultTest.cs" />
+    <Compile Include="Messaging\MessengerRegisterWhileSendingTest.cs" />
     <Compile Include="Messaging\PropertyChangedMessageTest.cs" />
     <Compile Include="Messaging\DialogMessageTest.cs" />
+    <Compile Include="Messaging\MessengerSendToAllTest.cs" />
+    <Compile Include="Messaging\MessengerSendToTypeTest.cs" />
     <Compile Include="Messaging\MessengerCreationDeletionTest.cs" />
     <Compile Include="Messaging\MessengerMultipleInstancesTest.cs" />
     <Compile Include="Messaging\MessengerRegisterUnregisterTest.cs" />
@@ -74,6 +79,10 @@
     <Compile Include="ViewModelBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras\GalaSoft.MvvmLight.Extras.csproj">
+      <Project>{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}</Project>
+      <Name>GalaSoft.MvvmLight.Extras</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.csproj">
       <Project>{ADB28C09-8DE9-4006-80D5-74856EB4A48B}</Project>
       <Name>GalaSoft.MvvmLight</Name>

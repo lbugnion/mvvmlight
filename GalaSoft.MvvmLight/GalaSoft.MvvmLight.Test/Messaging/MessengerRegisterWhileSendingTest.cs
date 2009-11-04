@@ -64,47 +64,55 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         [TestMethod]
         public void TestMessengerRegisteringInlineWhileReceiving()
         {
-            var receivedContent = string.Empty;
             Messenger.Default.Register<string>(
                 this,
-                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, m2 => receivedContent = m2.NewValue));
+                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, m2 =>
+                {
+                }));
 
-            Messenger.Default.Send("Hello world");
+            const string SentContent = "Hello world";
+            Messenger.Default.Send(SentContent);
         }
 
         [TestMethod]
         public void TestMessengerRegisteringMessageBaseInlineWhileReceiving()
         {
-            var receivedContent = string.Empty;
             Messenger.Default.Register<string>(
                 this,
-                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, true, m2 => receivedContent = m2.NewValue));
+                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, true, m2 =>
+                {
+                }));
 
-            Messenger.Default.Send("Hello world");
+            const string SentContent = "Hello world";
+            Messenger.Default.Send(SentContent);
         }
 
         [TestMethod]
         public void TestMessengerRegisteringInlineWhileReceivingMessageBase()
         {
-            var receivedContent = string.Empty;
             Messenger.Default.Register<string>(
                 this,
                 true,
-                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, m2 => receivedContent = m2.NewValue));
+                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, m2 =>
+                {
+                }));
 
-            Messenger.Default.Send("Hello world");
+            const string SentContent = "Hello world";
+            Messenger.Default.Send(SentContent);
         }
 
         [TestMethod]
         public void TestMessengerRegisteringMessageBaseInlineWhileReceivingMessageBase()
         {
-            var receivedContent = string.Empty;
             Messenger.Default.Register<string>(
                 this,
                 true,
-                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, true, m2 => receivedContent = m2.NewValue));
+                m => Messenger.Default.Register<PropertyChangedMessage<string>>(this, true, m2 =>
+                {
+                }));
 
-            Messenger.Default.Send("Hello world");
+            const string SentContent = "Hello world";
+            Messenger.Default.Send(SentContent);
         }
 
         [TestMethod]

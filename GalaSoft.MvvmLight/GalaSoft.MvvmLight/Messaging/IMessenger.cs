@@ -86,7 +86,7 @@ namespace GalaSoft.MvvmLight.Messaging
         /// the message. The message won't be sent to recipients of another type.</typeparam>
         /// <param name="message">The message to send to registered recipients.</param>
         [SuppressMessage(
-            "Microsoft.Design", 
+            "Microsoft.Design",
             "CA1004:GenericMethodsShouldProvideTypeParameter",
             Justification = "This syntax is more convenient than other alternatives.")]
         void Send<TMessage, TTarget>(TMessage message);

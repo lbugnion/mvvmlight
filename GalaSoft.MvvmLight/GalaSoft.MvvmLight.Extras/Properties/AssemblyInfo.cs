@@ -5,8 +5,8 @@
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
 // <email>laurent@galasoft.ch</email>
-// <date>3.6.2009</date>
-// <project>GalaSoft.MvvmLight</project>
+// <date>3.11.2009</date>
+// <project>GalaSoft.MvvmLight.Extras</project>
 // <web>http://www.galasoft.ch</web>
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
@@ -19,11 +19,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("GalaSoft.MvvmLight")]
-[assembly: AssemblyDescription("A lightweight framework to implement Model-View-ViewModel applications in WPF")]
+[assembly: AssemblyTitle("GalaSoft.MvvmLight.Extras")]
+[assembly: AssemblyDescription("Extras components to implement Model-View-ViewModel applications in WPF")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
-[assembly: AssemblyProduct("GalaSoft.MvvmLight")]
+[assembly: AssemblyProduct("GalaSoft.MvvmLight.Extras")]
 [assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,7 +32,8 @@ using System.Runtime.InteropServices;
 
 [assembly: CLSCompliant(true)]
 
-[assembly: Guid("3cdfebcb-6e89-4a28-80eb-8c8d18fed4b7")]
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+[assembly: Guid("6ff199ef-d7c4-4e8c-919e-5813e9b8b504")]
 
 ////[assembly: AssemblyVersion("3.0.0.*")]
 [assembly: AssemblyFileVersion("3.0.0.0/alpha2")]
@@ -45,38 +46,5 @@ using System.Runtime.InteropServices;
 [module: SuppressMessage("Microsoft.Naming",
     "CA1704:IdentifiersShouldBeSpelledCorrectly",
     Scope = "namespace",
-    Target = "GalaSoft.MvvmLight",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Messaging",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
     Target = "GalaSoft.MvvmLight.Command",
     MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Helpers",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Design",
-    "CA1020:AvoidNamespacesWithFewTypes",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight")]
-
-[module: SuppressMessage("Microsoft.Design",
-    "CA1020:AvoidNamespacesWithFewTypes",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Command")]
-
-[module: SuppressMessage("Microsoft.Design",
-    "CA1020:AvoidNamespacesWithFewTypes",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Helpers")]
