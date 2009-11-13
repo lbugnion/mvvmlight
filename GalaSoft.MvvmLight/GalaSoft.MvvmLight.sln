@@ -19,9 +19,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (SL)", "GalaSoft.MvvmLight.Extras (SL)\GalaSoft.MvvmLight.Extras (SL).csproj", "{8ABB3CDF-47C4-468E-9C8A-56491C5F1C7D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{02A4F36A-A453-4AA0-B0FD-ED3FFA5FDFB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{38B6B51B-0A49-460E-ACFE-6944D91221C2}"
+	ProjectSection(SolutionItems) = preProject
+		External\Silverlight\Microsoft.Silverlight.Testing.dll = External\Silverlight\Microsoft.Silverlight.Testing.dll
+		External\Silverlight\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll = External\Silverlight\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll
+		External\Silverlight\System.Windows.Interactivity.dll = External\Silverlight\System.Windows.Interactivity.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{DA63512E-8316-48D0-BAB8-A41F26ADED6B}"
+	ProjectSection(SolutionItems) = preProject
+		External\WPF\System.Windows.Interactivity.dll = External\WPF\System.Windows.Interactivity.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs08.codeplex.com/
 		SccLocalPath0 = .
@@ -37,6 +51,12 @@ Global
 		SccProjectUniqueName4 = GalaSoft.MvvmLight.Test\\GalaSoft.MvvmLight.Test.csproj
 		SccProjectName4 = GalaSoft.MvvmLight.Test
 		SccLocalPath4 = GalaSoft.MvvmLight.Test
+		SccProjectUniqueName5 = GalaSoft.MvvmLight.Extras\\GalaSoft.MvvmLight.Extras.csproj
+		SccProjectName5 = GalaSoft.MvvmLight.Extras
+		SccLocalPath5 = GalaSoft.MvvmLight.Extras
+		SccProjectUniqueName6 = GalaSoft.MvvmLight.Extras\u0020(SL)\\GalaSoft.MvvmLight.Extras\u0020(SL).csproj
+		SccProjectName6 = GalaSoft.MvvmLight.Extras\u0020(SL)
+		SccLocalPath6 = GalaSoft.MvvmLight.Extras\u0020(SL)
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = GalaSoft.MvvmLight.vsmdi
@@ -66,8 +86,14 @@ Global
 		{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ABB3CDF-47C4-468E-9C8A-56491C5F1C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ABB3CDF-47C4-468E-9C8A-56491C5F1C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38B6B51B-0A49-460E-ACFE-6944D91221C2} = {02A4F36A-A453-4AA0-B0FD-ED3FFA5FDFB7}
+		{DA63512E-8316-48D0-BAB8-A41F26ADED6B} = {02A4F36A-A453-4AA0-B0FD-ED3FFA5FDFB7}
 	EndGlobalSection
 EndGlobal

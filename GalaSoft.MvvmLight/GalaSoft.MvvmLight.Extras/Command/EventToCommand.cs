@@ -29,17 +29,26 @@ namespace GalaSoft.MvvmLight.Command
     /// Typically, this element is used in XAML to connect the attached element
     /// to a command located in a ViewModel. This trigger can only be attached
     /// to a FrameworkElement or a class deriving from FrameworkElement.
+    /// <para>To access the EventArgs of the fired event, use a RelayCommand&lt;EventArgs&gt;
+    /// and leave the CommandParameter and CommandParameterValue empty!</para>
     /// </summary>
     ////[ClassInfo(typeof(EventToCommand),
-    ////  VersionString = "3.0.0.0/BL0001",
+    ////  VersionString = "3.0.0.0/BL0001A",
     ////  DateString = "200911032343",
     ////  Description = "A Trigger used to bind any event to an ICommand.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
     public partial class EventToCommand : TriggerAction<FrameworkElement>
     {
+        public bool PassEventArgsToCommand
+        {
+            get;
+            set;
+        }
+
         /// <summary>
-        /// Provides a simple way to invoke this trigger programatically.
+        /// Provides a simple way to invoke this trigger programatically
+        /// without any EventArgs.
         /// </summary>
         public void Invoke()
         {
@@ -48,8 +57,10 @@ namespace GalaSoft.MvvmLight.Command
 
         /// <summary>
         /// Executes the trigger.
+        /// <para>To access the EventArgs of the fired event, use a RelayCommand&lt;EventArgs&gt;
+        /// and leave the CommandParameter and CommandParameterValue empty!</para>
         /// </summary>
-        /// <param name="parameter">This parameter is always ignored.</param>
+        /// <param name="parameter">The EventArgs of the fired event.</param>
         protected override void Invoke(object parameter)
         {
             if (AssociatedElementIsDisabled())
@@ -59,6 +70,12 @@ namespace GalaSoft.MvvmLight.Command
 
             var command = GetCommand();
             var commandParameter = CommandParameterValue;
+
+            if (commandParameter == null
+                && PassEventArgsToCommand)
+            {
+                commandParameter = parameter;
+            }
 
             if (command != null
                 && command.CanExecute(commandParameter))
