@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanShutdown", "CleanShutdown\CleanShutdown.csproj", "{50332306-5DD8-45A0-A64D-3BDC4BCB57B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanShutdown.SL", "CleanShutdown.SL\CleanShutdown.SL.csproj", "{13C5E2B0-1707-4EF1-B30A-5B964F8012F4}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs08.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CleanShutdown.SL\\CleanShutdown.SL.csproj
+		SccProjectName1 = CleanShutdown.SL
+		SccLocalPath1 = CleanShutdown.SL
+		SccProjectUniqueName2 = CleanShutdown\\CleanShutdown.csproj
+		SccProjectName2 = CleanShutdown
+		SccLocalPath2 = CleanShutdown
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50332306-5DD8-45A0-A64D-3BDC4BCB57B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50332306-5DD8-45A0-A64D-3BDC4BCB57B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50332306-5DD8-45A0-A64D-3BDC4BCB57B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50332306-5DD8-45A0-A64D-3BDC4BCB57B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13C5E2B0-1707-4EF1-B30A-5B964F8012F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13C5E2B0-1707-4EF1-B30A-5B964F8012F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13C5E2B0-1707-4EF1-B30A-5B964F8012F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13C5E2B0-1707-4EF1-B30A-5B964F8012F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
