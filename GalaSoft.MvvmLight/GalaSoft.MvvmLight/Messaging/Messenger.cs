@@ -28,7 +28,7 @@ namespace GalaSoft.MvvmLight.Messaging
     /// The Messenger is a class allowing objects to exchange messages.
     /// </summary>
     ////[ClassInfo(typeof(Messenger),
-    ////    VersionString = "3.0.0.0/BL0009",
+    ////    VersionString = "3.0.0.0/BL0009A",
     ////    DateString = "200910251258",
     ////    Description = "A messenger class allowing a class to send a message to multiple recipients",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
@@ -344,7 +344,8 @@ namespace GalaSoft.MvvmLight.Messaging
                         && (messageTargetType == null
                             || item.Action.Target.GetType() == messageTargetType
                             || Implements(item.Action.Target.GetType(), messageTargetType))
-                        && item.Token == token)
+                        && ((item.Token == null && token == null)
+                            || item.Token != null && item.Token.Equals(token)))
                     {
                         executeAction.ExecuteWithObject(message);
                     }
