@@ -1,0 +1,25 @@
+﻿<!--App.xaml by GalaSoft Laurent Bugnion http://www.galasoft.ch -->
+<!--Project: CleanShutdown | Date: 15.10.2009-->
+<!--Copyright © GalaSoft Laurent Bugnion 2009 laurent@galasoft.ch-->
+<!--See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt-->
+
+<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             x:Class="CleanShutdown.App"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CleanShutdown.ViewModel"
+             mc:Ignorable="d">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--Global View Model Locator-->
+            <vm:ViewModelLocator x:Key="Locator"
+                                 d:IsDataSource="True" />
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

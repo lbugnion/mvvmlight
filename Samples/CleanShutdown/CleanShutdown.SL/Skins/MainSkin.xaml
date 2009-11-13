@@ -1,0 +1,156 @@
+﻿<!--MainSkin.xaml by GalaSoft Laurent Bugnion http://www.galasoft.ch -->
+<!--Project: CleanShutdown | Date: 15.10.2009-->
+<!--Copyright © GalaSoft Laurent Bugnion 2009 laurent@galasoft.ch-->
+<!--See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt-->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Storyboard x:Key="ShutdownStoryboard">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                       Storyboard.TargetName="LayoutRoot"
+                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+            <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                  Value="1440"
+                                  KeySpline="0.48,0,1,1" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                       Storyboard.TargetName="LayoutRoot"
+                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+            <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                  Value="0.1"
+                                  KeySpline="0.48,0,1,1" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                       Storyboard.TargetName="LayoutRoot"
+                                       Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+            <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                  Value="0.1"
+                                  KeySpline="0.48,0,1,1" />
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                       Storyboard.TargetName="LayoutRoot"
+                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+            <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                  Value="0"
+                                  KeySpline="0.48,0,1,1" />
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+
+    <Style x:Key="SettingsGridStyle"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="#99FFFFFF" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="Width"
+                Value="82" />
+        <Setter Property="Margin"
+                Value="50,95,0,93" />
+    </Style>
+    
+    <ControlTemplate x:Key="CloseButtonTemplate"
+                     TargetType="Button">
+        <Grid x:Name="Root"
+              Opacity="0.6"
+              RenderTransformOrigin="0.5,0.5"
+              Background="#00000000">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </Grid.RenderTransform>
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition From="Normal"
+                                          GeneratedDuration="00:00:00.3000000"
+                                          To="MouseOver" />
+                        <VisualTransition From="MouseOver"
+                                          GeneratedDuration="00:00:00.3000000"
+                                          To="Normal" />
+                    </VisualStateGroup.Transitions>
+
+                    <VisualState x:Name="Normal" />
+
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0.9" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0.9" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            
+            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
+        </Grid>
+    </ControlTemplate>
+    
+    <Style x:Key="CloseButtonStyle"
+           TargetType="Button">
+        <Setter Property="Template"
+                Value="{StaticResource CloseButtonTemplate}" />
+        <Setter Property="FontSize"
+                Value="150" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="FontStyle"
+                Value="Italic" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+    </Style>
+    
+    <Style x:Key="SliderStyle"
+           TargetType="Slider">
+        <Setter Property="Margin"
+                Value="0,10" />
+        <Setter Property="Maximum"
+                Value="255" />
+        <Setter Property="SmallChange"
+                Value="1" />
+        <Setter Property="LargeChange"
+                Value="5" />
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+    </Style>
+</ResourceDictionary>
