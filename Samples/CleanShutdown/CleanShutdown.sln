@@ -5,6 +5,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanShutdown", "CleanShutd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanShutdown.SL", "CleanShutdown.SL\CleanShutdown.SL.csproj", "{13C5E2B0-1707-4EF1-B30A-5B964F8012F4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{70A1CABC-8D25-49DE-AD4B-299174070BF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{9C1A8D9F-1C2C-4F1A-86FF-471048A098F1}"
+	ProjectSection(SolutionItems) = preProject
+		External\WPF\GalaSoft.MvvmLight.dll = External\WPF\GalaSoft.MvvmLight.dll
+		External\WPF\WPFToolkit.dll = External\WPF\WPFToolkit.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{E9EEB7C5-BFD5-4DA2-A2B3-B3256F89702B}"
+	ProjectSection(SolutionItems) = preProject
+		External\Silverlight\GalaSoft.MvvmLight.dll = External\Silverlight\GalaSoft.MvvmLight.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 3
@@ -34,5 +47,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9C1A8D9F-1C2C-4F1A-86FF-471048A098F1} = {70A1CABC-8D25-49DE-AD4B-299174070BF0}
+		{E9EEB7C5-BFD5-4DA2-A2B3-B3256F89702B} = {70A1CABC-8D25-49DE-AD4B-299174070BF0}
 	EndGlobalSection
 EndGlobal
