@@ -340,10 +340,13 @@
                         <cmd:EventToCommand PassEventArgsToCommand="True"
                                             Command="{Binding MoveMouseCommand}" />
                     </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseLeave">
+                        <cmd:EventToCommand Command="{Binding ResetCommand}" />
+                    </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Ellipse>
             <TextBlock HorizontalAlignment="Center"
-                       Text="Move the mouse"
+                       Text="EventToCommand with EventArgs (Move the mouse)"
                        TextWrapping="Wrap"
                        Grid.Row="7"
                        d:LayoutOverrides="Height"
