@@ -313,26 +313,29 @@
                       IsChecked="True"
                       Grid.ColumnSpan="2" />
             <Ellipse Fill="{Binding Brushes.Brush5}"
-            	Stroke="Black"
-            	Margin="10,8"
-            	Grid.ColumnSpan="2"
-            	Grid.Row="7">
-            	<i:Interaction.Triggers>
-            		<i:EventTrigger EventName="MouseMove">
-            			<cmd:EventToCommand PassEventArgsToCommand="True"
-            				Command="{Binding MoveMouseCommand}" />
-            		</i:EventTrigger>
-            	</i:Interaction.Triggers>
+                     Stroke="Black"
+                     Margin="10,8"
+                     Grid.ColumnSpan="2"
+                     Grid.Row="7">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseMove">
+                        <cmd:EventToCommand PassEventArgsToCommand="True"
+                                            Command="{Binding MoveMouseCommand}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="MouseLeave">
+                        <cmd:EventToCommand Command="{Binding ResetCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Ellipse>
             <TextBlock HorizontalAlignment="Center"
-            	Text="Move the mouse"
-            	TextWrapping="Wrap"
-            	Grid.Row="7"
-            	Grid.ColumnSpan="2"
-            	VerticalAlignment="Center"
-            	FontSize="20"
-            	FontWeight="Bold"
-            	IsHitTestVisible="False" />
+                       Text="EventToCommand with EventArgs (Move the mouse)"
+                       TextWrapping="Wrap"
+                       Grid.Row="7"
+                       Grid.ColumnSpan="2"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       IsHitTestVisible="False" />
         </Grid>
     </Border>
 </UserControl>
