@@ -10,7 +10,7 @@ namespace ProjectForTemplate
     {
         static App()
         {
-            DispatcherExtensions.Initialize();
+            DispatcherHelper.Initialize();
         }
     }
 }

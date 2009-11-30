@@ -6,6 +6,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectForTemplateSL", "ProjectForTemplateSL\ProjectForTemplateSL.csproj", "{54C85759-F8C8-40D4-A13F-9531F2B3C370}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs08.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ProjectForTemplate\\ProjectForTemplate.csproj
+		SccProjectName1 = ProjectForTemplate
+		SccLocalPath1 = ProjectForTemplate
+		SccProjectUniqueName2 = ProjectForTemplateSL\\ProjectForTemplateSL.csproj
+		SccProjectName2 = ProjectForTemplateSL
+		SccLocalPath2 = ProjectForTemplateSL
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms

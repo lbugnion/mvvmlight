@@ -19,7 +19,7 @@ namespace ProjectForTemplateSL
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             RootVisual = new MainPage();
-            DispatcherExtensions.Initialize();
+            DispatcherHelper.Initialize();
         }
 
         private void Application_Exit(object sender, EventArgs e)
