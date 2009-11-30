@@ -134,9 +134,6 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\NotificationMessageActionTest.cs">
       <Link>Messaging\NotificationMessageActionTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\NotificationMessageFuncTest.cs">
-      <Link>Messaging\NotificationMessageFuncTest.cs</Link>
-    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\NotificationMessageTest.cs">
       <Link>Messaging\NotificationMessageTest.cs</Link>
     </Compile>
