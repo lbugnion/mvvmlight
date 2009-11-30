@@ -1,5 +1,5 @@
 ﻿// ****************************************************************************
-// <copyright file="NotificationMessageWithCallback.cs" company="GalaSoft Laurent Bugnion">
+// <copyright file="NotificationMessageActionGeneric.cs" company="GalaSoft Laurent Bugnion">
 // Copyright © GalaSoft Laurent Bugnion 2009
 // </copyright>
 // ****************************************************************************
@@ -24,30 +24,29 @@ namespace GalaSoft.MvvmLight.Messaging
     /// is done processing the message, it can execute the callback to
     /// notify the sender that it is done. Use the <see cref="Execute" />
     /// method to execute the callback. The callback method has one parameter.
-    /// <seealso cref="NotificationMessageAction"/> and
-    /// <seealso cref="NotificationMessageAction&lt;TCallbackParameter&gt;"/>.
+    /// <seealso cref="NotificationMessageAction"/>.
     /// </summary>
-    public class NotificationMessageWithCallback : NotificationMessage
+    /// <typeparam name="TCallbackParameter">The type of the callback method's
+    /// only parameter.</typeparam>
+    public class NotificationMessageAction<TCallbackParameter> : NotificationMessageWithCallback
     {
-        private readonly Delegate _callback;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="NotificationMessageWithCallback" /> class.
+        /// Initializes a new instance of the
+        /// <see cref="NotificationMessageAction&lt;TCallbackParameter&gt;" /> class.
         /// </summary>
         /// <param name="notification">An arbitrary string that will be
         /// carried by the message.</param>
         /// <param name="callback">The callback method that can be executed
         /// by the recipient to notify the sender that the message has been
         /// processed.</param>
-        public NotificationMessageWithCallback(string notification, Delegate callback)
-            : base(notification)
+        public NotificationMessageAction(string notification, Action<TCallbackParameter> callback)
+            : base(notification, callback)
         {
-            CheckCallback(callback);
-            _callback = callback;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NotificationMessageWithCallback" /> class.
+        /// Initializes a new instance of the
+        /// <see cref="NotificationMessageAction&lt;TCallbackParameter&gt;" /> class.
         /// </summary>
         /// <param name="sender">The message's sender.</param>
         /// <param name="notification">An arbitrary string that will be
@@ -55,15 +54,14 @@ namespace GalaSoft.MvvmLight.Messaging
         /// <param name="callback">The callback method that can be executed
         /// by the recipient to notify the sender that the message has been
         /// processed.</param>
-        public NotificationMessageWithCallback(object sender, string notification, Delegate callback)
-            : base(sender, notification)
+        public NotificationMessageAction(object sender, string notification, Action<TCallbackParameter> callback)
+            : base(sender, notification, callback)
         {
-            CheckCallback(callback);
-            _callback = callback;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NotificationMessageWithCallback" /> class.
+        /// Initializes a new instance of the
+        /// <see cref="NotificationMessageAction&lt;TCallbackParameter&gt;" /> class.
         /// </summary>
         /// <param name="sender">The message's sender.</param>
         /// <param name="target">The message's intended target. This parameter can be used
@@ -74,31 +72,24 @@ namespace GalaSoft.MvvmLight.Messaging
         /// <param name="callback">The callback method that can be executed
         /// by the recipient to notify the sender that the message has been
         /// processed.</param>
-        public NotificationMessageWithCallback(object sender, object target, string notification, Delegate callback)
-            : base(sender, target, notification)
+        public NotificationMessageAction(
+            object sender,
+            object target,
+            string notification,
+            Action<TCallbackParameter> callback)
+            : base(sender, target, notification, callback)
         {
-            CheckCallback(callback);
-            _callback = callback;
         }
 
         /// <summary>
-        /// Executes the callback that was provided with the message with an
-        /// arbitrary number of parameters.
+        /// Executes the callback that was provided with the message.
         /// </summary>
-        /// <param name="arguments">A  number of parameters that will
-        /// be passed to the callback method.</param>
-        /// <returns>The object returned by the callback method.</returns>
-        public virtual object Execute(params object[] arguments)
+        /// <param name="parameter">A parameter requested by the message's
+        /// sender and providing additional information on the recipient's
+        /// state.</param>
+        public void Execute(TCallbackParameter parameter)
         {
-            return _callback.DynamicInvoke(arguments);
-        }
-
-        private static void CheckCallback(Delegate callback)
-        {
-            if (callback == null)
-            {
-                throw new ArgumentNullException("callback", "Callback may not be null");
-            }
+            base.Execute(parameter);
         }
     }
 }

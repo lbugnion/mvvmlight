@@ -143,6 +143,9 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\PropertyChangedMessageTest.cs">
       <Link>Messaging\PropertyChangedMessageTest.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test\Threading\TestDispatcherHelper.cs">
+      <Link>Threading\TestDispatcherHelper.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test\ViewModelBaseTest.cs">
       <Link>ViewModelBaseTest.cs</Link>
     </Compile>

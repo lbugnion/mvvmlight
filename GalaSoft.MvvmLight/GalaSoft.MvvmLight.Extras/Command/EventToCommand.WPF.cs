@@ -185,7 +185,8 @@ namespace GalaSoft.MvvmLight.Command
             get
             {
                 return this._mustToggleValue == null
-                    ? this.MustToggleIsEnabled : this._mustToggleValue.Value;
+                           ? this.MustToggleIsEnabled
+                           : this._mustToggleValue.Value;
             }
 
             set
