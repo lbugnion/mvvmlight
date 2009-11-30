@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight", "GalaSoft.MvvmLight\GalaSoft.MvvmLight.csproj", "{E8EF2656-7165-42D1-9C46-63E66679808D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test", "GalaSoft.MvvmLight.Test\GalaSoft.MvvmLight.Test.csproj", "{C78522AA-7312-4B48-9A33-44EA05EFDEA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A5CCD90E-3C68-4450-96F9-406543F15E99}"
+	ProjectSection(SolutionItems) = preProject
+		GalaSoft.MvvmLight.vsmdi = GalaSoft.MvvmLight.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras", "GalaSoft.MvvmLight.Extras\GalaSoft.MvvmLight.Extras.csproj", "{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (SL)", "GalaSoft.MvvmLight (SL)\GalaSoft.MvvmLight (SL).csproj", "{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{B55B33AA-CFDC-4337-8A85-784BDD103BE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{EC0E1F48-60DB-4924-9AD9-528B35B381C2}"
+	ProjectSection(SolutionItems) = preProject
+		External\WPF\System.Windows.Interactivity.dll = External\WPF\System.Windows.Interactivity.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{AA68CC2F-F6FF-45C5-8D85-A2CDBD829ADC}"
+	ProjectSection(SolutionItems) = preProject
+		External\Silverlight\Microsoft.Silverlight.Testing.dll = External\Silverlight\Microsoft.Silverlight.Testing.dll
+		External\Silverlight\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll = External\Silverlight\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll
+		External\Silverlight\System.Windows.Interactivity.dll = External\Silverlight\System.Windows.Interactivity.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (SL)", "GalaSoft.MvvmLight.Test (SL)\GalaSoft.MvvmLight.Test (SL).csproj", "{39385BF4-CF1C-49F7-8A74-E4D31D7727E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (SL)", "GalaSoft.MvvmLight.Extras (SL)\GalaSoft.MvvmLight.Extras (SL).csproj", "{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = GalaSoft.MvvmLight.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8EF2656-7165-42D1-9C46-63E66679808D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8EF2656-7165-42D1-9C46-63E66679808D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8EF2656-7165-42D1-9C46-63E66679808D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8EF2656-7165-42D1-9C46-63E66679808D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C78522AA-7312-4B48-9A33-44EA05EFDEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C78522AA-7312-4B48-9A33-44EA05EFDEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C78522AA-7312-4B48-9A33-44EA05EFDEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C78522AA-7312-4B48-9A33-44EA05EFDEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39385BF4-CF1C-49F7-8A74-E4D31D7727E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39385BF4-CF1C-49F7-8A74-E4D31D7727E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39385BF4-CF1C-49F7-8A74-E4D31D7727E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39385BF4-CF1C-49F7-8A74-E4D31D7727E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC0E1F48-60DB-4924-9AD9-528B35B381C2} = {B55B33AA-CFDC-4337-8A85-784BDD103BE5}
+		{AA68CC2F-F6FF-45C5-8D85-A2CDBD829ADC} = {B55B33AA-CFDC-4337-8A85-784BDD103BE5}
+	EndGlobalSection
+EndGlobal

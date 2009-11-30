@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E8EF2656-7165-42D1-9C46-63E66679808D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
+    <AssemblyName>GalaSoft.MvvmLight</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath />
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Command\RelayCommand.cs">
+      <Link>Command\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Command\RelayCommandGeneric.cs">
+      <Link>Command\RelayCommandGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Helpers\IExecuteWithObject.cs">
+      <Link>Helpers\IExecuteWithObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Helpers\WeakAction.cs">
+      <Link>Helpers\WeakAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Helpers\WeakActionGeneric.cs">
+      <Link>Helpers\WeakActionGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\ICleanup.cs">
+      <Link>ICleanup.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\DialogMessage.cs">
+      <Link>Messaging\DialogMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\GenericMessage.cs">
+      <Link>Messaging\GenericMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\IMessenger.cs">
+      <Link>Messaging\IMessenger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\MessageBase.cs">
+      <Link>Messaging\MessageBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\Messenger.cs">
+      <Link>Messaging\Messenger.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\NotificationMessage.cs">
+      <Link>Messaging\NotificationMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\NotificationMessageAction.cs">
+      <Link>Messaging\NotificationMessageAction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\NotificationMessageActionGeneric.cs">
+      <Link>Messaging\NotificationMessageActionGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\NotificationMessageGeneric.cs">
+      <Link>Messaging\NotificationMessageGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\NotificationMessageWithCallback.cs">
+      <Link>Messaging\NotificationMessageWithCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\PropertyChangedMessage.cs">
+      <Link>Messaging\PropertyChangedMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Messaging\PropertyChangedMessageBase.cs">
+      <Link>Messaging\PropertyChangedMessageBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight\ViewModelBase.cs">
+      <Link>ViewModelBase.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GalaSoft.MvvmLight.FxCop" />
+    <None Include="Settings.StyleCop" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
