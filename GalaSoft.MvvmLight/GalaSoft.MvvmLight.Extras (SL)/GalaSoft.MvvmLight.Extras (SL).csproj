@@ -57,11 +57,15 @@
     <Compile Include="..\GalaSoft.MvvmLight.Extras\Command\EventToCommand.cs">
       <Link>Command\EventToCommand.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras\Threading\DispatcherHelper.cs">
+      <Link>Threading\DispatcherHelper.cs</Link>
+    </Compile>
     <Compile Include="Command\EventToCommand.SL.cs" />
     <Compile Include="Helpers\BindingListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GalaSoft.MvvmLight.Extras %28SL%29.snk" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />

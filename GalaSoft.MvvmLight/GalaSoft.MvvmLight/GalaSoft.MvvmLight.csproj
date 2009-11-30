@@ -59,11 +59,12 @@
     <Compile Include="Helpers\IExecuteWithObject.cs" />
     <Compile Include="Helpers\WeakAction.cs" />
     <Compile Include="Helpers\WeakActionGeneric.cs" />
+    <Compile Include="ICleanup.cs" />
     <Compile Include="Messaging\CommandMessage.cs" />
     <Compile Include="Messaging\CommandMessageGeneric.cs" />
     <Compile Include="Messaging\NotificationMessage.cs" />
     <Compile Include="Messaging\NotificationMessageAction.cs" />
-    <Compile Include="Messaging\NotificationMessageFunc.cs" />
+    <Compile Include="Messaging\NotificationMessageActionGeneric.cs" />
     <Compile Include="Messaging\NotificationMessageGeneric.cs" />
     <Compile Include="Messaging\IMessenger.cs" />
     <Compile Include="Messaging\NotificationMessageWithCallback.cs" />

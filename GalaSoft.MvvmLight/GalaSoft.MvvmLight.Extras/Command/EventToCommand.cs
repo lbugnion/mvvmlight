@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0001</LastBaseLevel>
+// <LastBaseLevel>BL0002</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -33,13 +33,21 @@ namespace GalaSoft.MvvmLight.Command
     /// and leave the CommandParameter and CommandParameterValue empty!</para>
     /// </summary>
     ////[ClassInfo(typeof(EventToCommand),
-    ////  VersionString = "3.0.0.0/BL0001A",
-    ////  DateString = "200911032343",
+    ////  VersionString = "3.0.0.0/BL0002",
+    ////  DateString = "200911292047",
     ////  Description = "A Trigger used to bind any event to an ICommand.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
     public partial class EventToCommand : TriggerAction<FrameworkElement>
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether the EventArgs passed to the
+        /// event handler will be forwarded to the ICommand's Execute method
+        /// when the event is fired (if the bound ICommand accepts an argument
+        /// of type EventArgs).
+        /// <para>For example, use a RelayCommand&lt;MouseEventArgs&gt; to get
+        /// the arguments of a MouseMove event.</para>
+        /// </summary>
         public bool PassEventArgsToCommand
         {
             get;
@@ -85,7 +93,7 @@ namespace GalaSoft.MvvmLight.Command
         }
 
         private static void OnCommandChanged(
-            EventToCommand element, 
+            EventToCommand element,
             DependencyPropertyChangedEventArgs e)
         {
             if (element == null)
@@ -127,7 +135,8 @@ namespace GalaSoft.MvvmLight.Command
 
             var command = this.GetCommand();
 
-            if (this.MustToggleIsEnabledValue && command != null)
+            if (this.MustToggleIsEnabledValue
+                && command != null)
             {
                 element.IsEnabled = command.CanExecute(this.CommandParameterValue);
             }

@@ -21,6 +21,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+
 ////using GalaSoft.Utilities.Attributes;
 
 namespace GalaSoft.MvvmLight.Command
@@ -59,12 +60,12 @@ namespace GalaSoft.MvvmLight.Command
         /// </summary>
         /// <param name="button">An instance of ButtonBase.</param>
         /// <returns>The value of the Command dependency property.</returns>
-        [SuppressMessage("Microsoft.Design", 
+        [SuppressMessage("Microsoft.Design",
             "CA1011:ConsiderPassingBaseTypesAsParameters",
             Justification = "Commands are only for controls deriving from ButtonBase")]
         public static ICommand GetCommand(ButtonBase button)
         {
-            return (ICommand)button.GetValue(CommandProperty);
+            return (ICommand) button.GetValue(CommandProperty);
         }
 
         /// <summary>

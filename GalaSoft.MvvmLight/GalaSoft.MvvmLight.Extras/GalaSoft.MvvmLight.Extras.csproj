@@ -65,8 +65,10 @@
     <Compile Include="Command\EventToCommand.cs" />
     <Compile Include="Command\EventToCommand.WPF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Threading\DispatcherHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GalaSoft.MvvmLight.Extras.snk" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

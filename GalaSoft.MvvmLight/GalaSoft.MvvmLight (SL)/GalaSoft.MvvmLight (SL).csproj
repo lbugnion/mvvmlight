@@ -74,6 +74,9 @@
     <Compile Include="..\GalaSoft.MvvmLight\Helpers\WeakActionGeneric.cs">
       <Link>Helpers\WeakActionGeneric.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight\ICleanup.cs">
+      <Link>ICleanup.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight\Messaging\CommandMessage.cs">
       <Link>Messaging\CommandMessage.cs</Link>
     </Compile>
@@ -101,8 +104,8 @@
     <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageAction.cs">
       <Link>Messaging\NotificationMessageAction.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageFunc.cs">
-      <Link>Messaging\NotificationMessageFunc.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageActionGeneric.cs">
+      <Link>Messaging\NotificationMessageActionGeneric.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageGeneric.cs">
       <Link>Messaging\NotificationMessageGeneric.cs</Link>

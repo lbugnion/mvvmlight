@@ -3,6 +3,7 @@ using System.ComponentModel;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Test.Messaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GalaSoft.MvvmLight.Helpers;
 
 namespace GalaSoft.MvvmLight.Test
 {
@@ -28,6 +29,31 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreEqual(Content1, vm.ReceivedContent);
 
             vm.Dispose();
+
+            Messenger.Default.Send(Content2);
+
+            Assert.AreEqual(Content1, vm.ReceivedContent);
+        }
+
+        [TestMethod]
+        public void TestCleanup()
+        {
+            Messenger.Reset();
+
+            var vm = new TestViewModel();
+            Messenger.Default.Register<string>(vm, vm.HandleStringMessage);
+
+            const string Content1 = "Hello world";
+            const string Content2 = "Another message";
+
+            Messenger.Default.Send(Content1);
+
+            Assert.AreEqual(Content1, vm.ReceivedContent);
+
+            var cleanupVm = vm as ICleanup;
+            cleanupVm.Cleanup();
+
+            Assert.IsTrue(vm.CleanupWasCalled);
 
             Messenger.Default.Send(Content2);
 
@@ -119,10 +145,88 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreEqual(now, receivedDateTimeLocal);
             Assert.AreEqual(DateTime.MinValue, receivedDateTimeMessenger);
         }
+
+        [TestMethod]
+#if DEBUG
+        [ExpectedException(typeof(ArgumentException))]
+#endif
+        public void TestRaiseValidInvalidPropertyName()
+        {
+            var vm = new ViewModelStub();
+
+            var receivedPropertyChanged = false;
+            var invalidPropertyNameReceived = false;
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.RealPropertyPropertyName)
+                {
+                    receivedPropertyChanged = true;
+                }
+                else
+                {
+                    invalidPropertyNameReceived = true;
+                }
+            };
+
+            vm.RaisePropertyChanged(ViewModelStub.RealPropertyPropertyName);
+
+            Assert.IsTrue(receivedPropertyChanged);
+            Assert.IsFalse(invalidPropertyNameReceived);
+
+            vm.RaisePropertyChanged(ViewModelStub.RealPropertyPropertyName + "1");
+
+            Assert.IsTrue(invalidPropertyNameReceived);
+        }
+    }
+
+    public class ViewModelStub : ViewModelBase
+    {
+        /// <summary>
+        /// The <see cref="RealProperty" /> property's name.
+        /// </summary>
+        public const string RealPropertyPropertyName = "RealProperty";
+
+        private bool _realProperty;
+
+        /// <summary>
+        /// Gets the RealProperty property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public bool RealProperty
+        {
+            get
+            {
+                return _realProperty;
+            }
+
+            set
+            {
+                if (_realProperty.Equals(value))
+                {
+                    return;
+                }
+
+                _realProperty = value;
+
+                // Update bindings, no broadcast
+                RaisePropertyChanged(RealPropertyPropertyName);
+            }
+        }
+
+        public new void RaisePropertyChanged(string propertyName)
+        {
+            base.RaisePropertyChanged(propertyName);
+        }
     }
 
     public class TestViewModel : ViewModelBase
     {
+        public bool CleanupWasCalled
+        {
+            get;
+            private set;
+        }
+
         public const string ReceivedContentPropertyName = "ReceivedContent";
 
         private string _receivedContent;
@@ -217,6 +321,12 @@ namespace GalaSoft.MvvmLight.Test
         public TestViewModel(IMessenger messenger)
             : base(messenger)
         {
+        }
+
+        public override void Cleanup()
+        {
+            CleanupWasCalled = true;
+            base.Cleanup();
         }
     }
 }

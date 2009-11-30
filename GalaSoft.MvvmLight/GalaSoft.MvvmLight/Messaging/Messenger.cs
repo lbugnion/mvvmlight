@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0009</LastBaseLevel>
+// <LastBaseLevel>BL0010</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -28,8 +28,8 @@ namespace GalaSoft.MvvmLight.Messaging
     /// The Messenger is a class allowing objects to exchange messages.
     /// </summary>
     ////[ClassInfo(typeof(Messenger),
-    ////    VersionString = "3.0.0.0/BL0009A",
-    ////    DateString = "200910251258",
+    ////    VersionString = "3.0.0.0/BL0010",
+    ////    DateString = "200911292047",
     ////    Description = "A messenger class allowing a class to send a message to multiple recipients",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]

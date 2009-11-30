@@ -18,7 +18,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         {
             var trigger = new EventToCommand();
             var rectangle = new Rectangle();
-            ((IAttachedObject) trigger).Attach(rectangle);
+            ((IAttachedObject)trigger).Attach(rectangle);
 
             var vm = new TestViewModel();
             var binding = new Binding
@@ -195,7 +195,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 MustToggleIsEnabledValue = true
             };
 
-            var button = new Button()
+            var button = new Button
             {
                 IsEnabled = false
             };
@@ -224,7 +224,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestDisableCommandAndControl()
         {
-            var trigger = new EventToCommand()
+            var trigger = new EventToCommand
             {
                 MustToggleIsEnabledValue = true
             };
@@ -513,13 +513,13 @@ namespace GalaSoft.MvvmLight.Test.Command
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
 #endif
 
-            var commandParameter = "CommandParameter";
-            trigger.CommandParameterValue = commandParameter;
+            const string CommandParameter = "CommandParameter";
+            trigger.CommandParameterValue = CommandParameter;
 
             var args = new StringEventArgs("StringEventArgs");
             trigger.InvokeWithEventArgs(args);
             Assert.IsTrue(vm.CommandExecuted);
-            Assert.AreEqual(commandParameter, vm.ParameterReceived);
+            Assert.AreEqual(CommandParameter, vm.ParameterReceived);
         }
 
         [TestMethod]
@@ -595,53 +595,53 @@ namespace GalaSoft.MvvmLight.Test.Command
             public string ParameterReceived
             {
                 get;
-                set;
+                private set;
             }
 
             public ICommand SimpleCommand
             {
                 get;
-                set;
+                private set;
             }
 
             public ICommand ParameterCommand
             {
                 get;
-                set;
+                private set;
             }
 
             public ICommand ToggledCommand
             {
                 get;
-                set;
+                private set;
             }
 
             public ICommand ToggledCommandWithParameter
             {
                 get;
-                set;
+                private set;
             }
 
-            public RelayCommand<EventArgs> CommandWithEventArgs;
+            public readonly RelayCommand<EventArgs> CommandWithEventArgs;
 
             private bool _enableToggledCommand;
             public bool EnableToggledCommand
             {
-                get
+                private get
                 {
                     return _enableToggledCommand;
                 }
                 set
                 {
                     _enableToggledCommand = value;
-                    ((RelayCommand) ToggledCommand).RaiseCanExecuteChanged();
+                    ((RelayCommand)ToggledCommand).RaiseCanExecuteChanged();
                 }
             }
 
             public TestViewModel()
             {
                 SimpleCommand = new RelayCommand(() => CommandExecuted = true);
-                
+
                 ParameterCommand = new RelayCommand<string>(p =>
                 {
                     CommandExecuted = true;
