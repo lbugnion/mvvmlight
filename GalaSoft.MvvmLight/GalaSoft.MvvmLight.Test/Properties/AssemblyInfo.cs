@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight.Test")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

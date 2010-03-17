@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="DispatcherHelper.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009
+// Copyright © GalaSoft Laurent Bugnion 2009-2010
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -29,8 +29,8 @@ namespace GalaSoft.MvvmLight.Threading
     /// Helper class for dispatcher operations on the UI thread.
     /// </summary>
     //// [ClassInfo(typeof(DispatcherHelper),
-    ////  VersionString = "1.0.0.0/BL0001",
-    ////  DateString = "200911292047",
+    ////  VersionString = "1.0.0.0",
+    ////  DateString = "201003041420",
     ////  Description = "Helper class for dispatcher operations on the UI thread.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
