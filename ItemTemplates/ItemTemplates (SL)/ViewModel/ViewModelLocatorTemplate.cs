@@ -1,17 +1,17 @@
 ﻿/*
- * In App.xaml:
- * <Application.Resources>
- *     <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
- *                                  x:Key="Locator" />
- * </Application.Resources>
- * 
- * In the View:
- * DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
- * 
- * OR (WPF only):
- * 
- * xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
- * DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
+  In App.xaml:
+  <Application.Resources>
+      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
+                                   x:Key="Locator" />
+  </Application.Resources>
+  
+  In the View:
+  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
+  
+  OR (WPF only):
+  
+  xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
+  DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
 */
 
 namespace ItemTemplates.ViewModel
@@ -60,7 +60,7 @@ namespace ItemTemplates.ViewModel
         /// </summary>
         public ViewModelLocatorTemplate()
         {
-            ////if (ViewModelBase.IsInDesignMode)
+            ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
             ////    // Create design time view models
             ////}
@@ -70,9 +70,12 @@ namespace ItemTemplates.ViewModel
             ////}
         }
 
-        public static void Dispose()
+        /// <summary>
+        /// Cleans up all the resources.
+        /// </summary>
+        public static void Cleanup()
         {
-            // TODO Clear the ViewModels
+            // Call ClearViewModelName() for each ViewModel.
         }
     }
 }

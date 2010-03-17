@@ -31,11 +31,11 @@ namespace ItemTemplates.ViewModel
             ////}
         }
 
-        ////protected override void Dispose(bool disposing)
+        ////public override void Cleanup()
         ////{
-        ////    // Dispose own resources if needed
+        ////    // Clean own resources if needed
 
-        ////    base.Dispose(disposing);
+        ////    base.Cleanup();
         ////}
     }
 }
