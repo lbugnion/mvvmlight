@@ -1,32 +1,33 @@
 ﻿using System;
 using System.Windows;
+using GalaSoft.MvvmLight.Threading;
 using ProjectForTemplateSL.ViewModel;
 
 namespace ProjectForTemplateSL
 {
     public partial class App : Application
     {
-
         public App()
         {
-            Startup += Application_Startup;
-            Exit += Application_Exit;
-            UnhandledException += Application_UnhandledException;
+            Startup += this.ApplicationStartup;
+            Exit += ApplicationExit;
+            UnhandledException += this.ApplicationUnhandledException;
 
             InitializeComponent();
         }
 
-        private void Application_Startup(object sender, StartupEventArgs e)
+        private void ApplicationStartup(object sender, StartupEventArgs e)
         {
-            RootVisual = new Page();
+            RootVisual = new MainPage();
+            DispatcherHelper.Initialize();
         }
 
-        private void Application_Exit(object sender, EventArgs e)
+        private static void ApplicationExit(object sender, EventArgs e)
         {
-            ViewModelLocator.Dispose();
+            ViewModelLocator.Cleanup();
         }
 
-        private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
+        private void ApplicationUnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
             // If the app is running outside of the debugger then report the exception using
             // the browser's exception mechanism. On IE this will display it a yellow alert 
@@ -39,19 +40,19 @@ namespace ProjectForTemplateSL
                 // For production applications this error handling should be replaced with something that will 
                 // report the error to the website and stop the application.
                 e.Handled = true;
-                Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); });
+                Deployment.Current.Dispatcher.BeginInvoke(() => ReportErrorToDom(e));
             }
         }
-        private void ReportErrorToDOM(ApplicationUnhandledExceptionEventArgs e)
+        private static void ReportErrorToDom(ApplicationUnhandledExceptionEventArgs e)
         {
             try
             {
-                string errorMsg = e.ExceptionObject.Message + e.ExceptionObject.StackTrace;
+                var errorMsg = e.ExceptionObject.Message + e.ExceptionObject.StackTrace;
                 errorMsg = errorMsg.Replace('"', '\'').Replace("\r\n", @"\n");
 
                 System.Windows.Browser.HtmlPage.Window.Eval("throw new Error(\"Unhandled Error in Silverlight 2 Application " + errorMsg + "\");");
             }
-            catch (Exception)
+            catch
             {
             }
         }

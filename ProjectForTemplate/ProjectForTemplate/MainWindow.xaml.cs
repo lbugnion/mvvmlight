@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using GalaSoft.MvvmLight.Messaging;
 using ProjectForTemplate.ViewModel;
 
 namespace ProjectForTemplate
@@ -14,36 +13,8 @@ namespace ProjectForTemplate
         /// </summary>
         public MainWindow()
         {
-            Messenger.Default.Register<DialogMessage>(this, HandleDialogMessage);
-
             InitializeComponent();
-            Closing += (s, e) => ViewModelLocator.Dispose();
-        }
-
-        private void HandleDialogMessage(DialogMessage message)
-        {
-            if (message == null)
-            {
-                return;
-            }
-
-            if (message.Sender.GetType() == typeof(MainViewModel)
-                && message.Target == typeof(MainWindow))
-            {
-                var result = MessageBox.Show(
-                    this,
-                    message.Content,
-                    message.Caption,
-                    message.Button,
-                    message.Icon,
-                    message.DefaultResult,
-                    message.Options);
-
-                if (message.Callback != null)
-                {
-                    message.Callback(result);
-                }
-            }
+            Closing += (s, e) => ViewModelLocator.Cleanup();
         }
     }
 }

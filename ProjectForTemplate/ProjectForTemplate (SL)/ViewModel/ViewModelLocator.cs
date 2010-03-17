@@ -1,17 +1,17 @@
 ﻿/*
- * In App.xaml:
- * <Application.Resources>
- *     <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
- *                                  x:Key="Locator" />
- * </Application.Resources>
- * 
- * In the View:
- * DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
- * 
- * OR (WPF only):
- * 
- * xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
- * DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
+  In App.xaml:
+  <Application.Resources>
+      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:ProjectForTemplateSL.ViewModel"
+                                   x:Key="Locator" />
+  </Application.Resources>
+  
+  In the View:
+  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
+  
+  OR (WPF only):
+  
+  xmlns:vm="clr-namespace:ProjectForTemplateSL.ViewModel"
+  DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
 */
 
 namespace ProjectForTemplateSL.ViewModel
@@ -28,7 +28,7 @@ namespace ProjectForTemplateSL.ViewModel
     /// </para>
     /// <code>
     /// &lt;Application.Resources&gt;
-    ///     &lt;vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
+    ///     &lt;vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:ProjectForTemplateSL.ViewModel"
     ///                                  x:Key="Locator" /&gt;
     /// &lt;/Application.Resources&gt;
     /// </code>
@@ -49,13 +49,30 @@ namespace ProjectForTemplateSL.ViewModel
     /// the Main property and bind to the ViewModelNameStatic property instead:
     /// </para>
     /// <code>
-    /// xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
+    /// xmlns:vm="clr-namespace:ProjectForTemplateSL.ViewModel"
     /// DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
     /// </code>
     /// </summary>
     public class ViewModelLocator
     {
         private static MainViewModel _main;
+
+        /// <summary>
+        /// Initializes a new instance of the ViewModelLocator class.
+        /// </summary>
+        public ViewModelLocator()
+        {
+            ////if (ViewModelBase.IsInDesignModeStatic)
+            ////{
+            ////    // Create design time view models
+            ////}
+            ////else
+            ////{
+            ////    // Create run time view models
+            ////}
+
+            CreateMain();
+        }
 
         /// <summary>
         /// Gets the Main property.
@@ -92,7 +109,7 @@ namespace ProjectForTemplateSL.ViewModel
         /// </summary>
         public static void ClearMain()
         {
-            _main.Dispose();
+            _main.Cleanup();
             _main = null;
         }
 
@@ -110,7 +127,7 @@ namespace ProjectForTemplateSL.ViewModel
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>
-        public static void Dispose()
+        public static void Cleanup()
         {
             ClearMain();
         }
