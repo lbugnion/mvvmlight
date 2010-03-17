@@ -6,16 +6,11 @@
              xmlns:vm="clr-namespace:ProjectForTemplate.ViewModel"
              StartupUri="MainWindow.xaml"
              mc:Ignorable="d">
+
     <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Skins/MainSkin.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-            <!--Global View Model Locator-->
-            <vm:ViewModelLocator x:Key="Locator"
-                                 d:IsDataSource="True" />
-
-        </ResourceDictionary>
+        <!--Global View Model Locator-->
+        <vm:ViewModelLocator x:Key="Locator"
+                             d:IsDataSource="True" />
     </Application.Resources>
+
 </Application>

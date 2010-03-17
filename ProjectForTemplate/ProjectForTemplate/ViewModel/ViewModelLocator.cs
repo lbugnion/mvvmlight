@@ -1,17 +1,17 @@
 ﻿/*
- * In App.xaml:
- * <Application.Resources>
- *     <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
- *                                  x:Key="Locator" />
- * </Application.Resources>
- * 
- * In the View:
- * DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
- * 
- * OR (WPF only):
- * 
- * xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
- * DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
+  In App.xaml:
+  <Application.Resources>
+      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:ProjectForTemplate.ViewModel"
+                                   x:Key="Locator" />
+  </Application.Resources>
+  
+  In the View:
+  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
+  
+  OR (WPF only):
+  
+  xmlns:vm="clr-namespace:ProjectForTemplate.ViewModel"
+  DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
 */
 
 namespace ProjectForTemplate.ViewModel
@@ -28,7 +28,7 @@ namespace ProjectForTemplate.ViewModel
     /// </para>
     /// <code>
     /// &lt;Application.Resources&gt;
-    ///     &lt;vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
+    ///     &lt;vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:ProjectForTemplate.ViewModel"
     ///                                  x:Key="Locator" /&gt;
     /// &lt;/Application.Resources&gt;
     /// </code>
@@ -49,7 +49,7 @@ namespace ProjectForTemplate.ViewModel
     /// the Main property and bind to the ViewModelNameStatic property instead:
     /// </para>
     /// <code>
-    /// xmlns:vm="clr-namespace:NAMESPACE.ViewModel"
+    /// xmlns:vm="clr-namespace:ProjectForTemplate.ViewModel"
     /// DataContext="{Binding Source={x:Static vm:ViewModelLocatorTemplate.ViewModelNameStatic}}"
     /// </code>
     /// </summary>
@@ -62,7 +62,7 @@ namespace ProjectForTemplate.ViewModel
         /// </summary>
         public ViewModelLocator()
         {
-            ////if (ViewModelBase.IsInDesignMode)
+            ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
             ////    // Create design time view models
             ////}
@@ -109,7 +109,7 @@ namespace ProjectForTemplate.ViewModel
         /// </summary>
         public static void ClearMain()
         {
-            _main.Dispose();
+            _main.Cleanup();
             _main = null;
         }
 
@@ -127,7 +127,7 @@ namespace ProjectForTemplate.ViewModel
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>
-        public static void Dispose()
+        public static void Cleanup()
         {
             ClearMain();
         }

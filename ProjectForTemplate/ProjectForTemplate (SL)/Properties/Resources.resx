@@ -117,40 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ButtonContent" xml:space="preserve">
-    <value>Click me</value>
-    <comment>Click me</comment>
-  </data>
-  <data name="MessageBoxCaption" xml:space="preserve">
-    <value>Test dialog</value>
-    <comment>Test dialog</comment>
-  </data>
-  <data name="MessageBoxText" xml:space="preserve">
-    <value>Please confirm</value>
-    <comment>Please confirm</comment>
-  </data>
-  <data name="TextItemDesign" xml:space="preserve">
-    <value>Item #{0}, design</value>
-    <comment>Item #{0}, design</comment>
-  </data>
-  <data name="TextItemRuntime" xml:space="preserve">
-    <value>Item #{0}</value>
-    <comment>Item #{0}</comment>
-  </data>
-  <data name="TextItemViewModelDesign" xml:space="preserve">
-    <value>ViewModel item #{0}, design</value>
-    <comment>ViewModel item #{0}, design</comment>
-  </data>
-  <data name="TextItemViewModelRuntime" xml:space="preserve">
-    <value>ViewModel item #{0}</value>
-    <comment>ViewModel item #{0}</comment>
-  </data>
-  <data name="TextMainViewModel" xml:space="preserve">
-    <value>Change this in the MainViewModel class</value>
-    <comment>Change this in the MainViewModel class</comment>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>MVVM Light Project Template</value>
-    <comment>MVVM Light Project Template</comment>
-  </data>
 </root>
