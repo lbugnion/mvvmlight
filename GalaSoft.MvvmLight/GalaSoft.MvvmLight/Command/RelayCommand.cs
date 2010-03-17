@@ -1,5 +1,5 @@
 ﻿// <copyright file="RelayCommand.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009
+// Copyright © GalaSoft Laurent Bugnion 2009-2010
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -32,8 +32,8 @@ namespace GalaSoft.MvvmLight.Command
     /// Execute and CanExecute callback methods.
     /// </summary>
     ////[ClassInfo(typeof(RelayCommand),
-    ////  VersionString = "3.0.0.0/BL0008",
-    ////  DateString = "200910251406",
+    ////  VersionString = "3.0.0.0",
+    ////  DateString = "201003041420",
     ////  Description = "A command whose sole purpose is to relay its functionality to other objects by invoking delegates.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]

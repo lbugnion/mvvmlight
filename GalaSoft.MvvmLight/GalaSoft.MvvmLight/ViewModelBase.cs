@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="ViewModelBase.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009
+// Copyright © GalaSoft Laurent Bugnion 2009-2010
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -33,8 +33,8 @@ namespace GalaSoft.MvvmLight
     /// </para>
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase),
-    ////  VersionString = "3.0.0.0/BL0008",
-    ////  DateString = "200911292047",
+    ////  VersionString = "3.0.0.0",
+    ////  DateString = "201003041420",
     ////  Description = "A base class for the ViewModel classes in the MVVM pattern.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]

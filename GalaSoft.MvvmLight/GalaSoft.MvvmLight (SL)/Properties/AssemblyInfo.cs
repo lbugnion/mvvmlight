@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0011</LastBaseLevel>
+// <LastBaseLevel>BL0010</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -24,7 +24,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight (Silverlight)")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -34,8 +34,8 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("a04c60b3-f5c5-45e2-ae6d-e7303893ff49")]
 
-////[assembly: AssemblyVersion("3.0.0.*")]
-[assembly: AssemblyFileVersion("3.0.0.0/alpha3")]
+[assembly: AssemblyVersion("3.0.0.*")]
+////[assembly: AssemblyFileVersion("3.0.0.0/alpha3")]
 
 // FxCop
 [module: SuppressMessage(

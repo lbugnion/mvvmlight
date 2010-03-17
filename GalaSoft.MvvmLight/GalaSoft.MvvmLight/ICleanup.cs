@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="ICleanup.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009
+// Copyright © GalaSoft Laurent Bugnion 2009-2010
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
