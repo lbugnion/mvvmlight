@@ -18,7 +18,7 @@ using System;
 namespace GalaSoft.MvvmLight.Helpers
 {
     /// <summary>
-    /// Stores an <see cref="Action{T}" /> without causing a hard reference
+    /// Stores an Action without causing a hard reference
     /// to be created to the Action's owner. The owner can be garbage collected at any time.
     /// </summary>
     /// <typeparam name="T">The type of the Action's parameter.</typeparam>
@@ -32,7 +32,6 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <param name="target">The action's owner.</param>
         /// <param name="action">The action that will be associated to this instance.</param>
-        /// <typeparam name="T">The type of the Action's parameter.</typeparam>
         public WeakAction(object target, Action<T> action)
             : base(target, null)
         {

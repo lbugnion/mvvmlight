@@ -27,7 +27,7 @@ namespace GalaSoft.MvvmLight.Messaging
     public interface IMessenger
     {
         /// <summary>
-        /// Registers a recipient for a type of message TMessage. The <see cref="action" />
+        /// Registers a recipient for a type of message TMessage. The action
         /// parameter will be executed when a corresponding message is sent.
         /// <para>Registering a recipient does not create a hard reference to it,
         /// so if this recipient is deleted, no memory leak is caused.</para>
@@ -41,8 +41,8 @@ namespace GalaSoft.MvvmLight.Messaging
 
         /// <summary>
         /// Registers a recipient for a type of message TMessage.
-        /// The <see cref="action" /> parameter will be executed when a corresponding 
-        /// message is sent. See the <see cref="receiveDerivedMessagesToo" /> parameter
+        /// The action parameter will be executed when a corresponding 
+        /// message is sent. See the receiveDerivedMessagesToo parameter
         /// for details on how messages deriving from TMessage (or, if TMessage is an interface,
         /// messages implementing TMessage) can be received too.
         /// <para>Registering a recipient does not create a hard reference to it,
