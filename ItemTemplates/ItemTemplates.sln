@@ -1,23 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemTemplates", "ItemTemplates\ItemTemplates.csproj", "{D4E19650-A6F9-450B-9D16-D729CE664996}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemTemplates (SL)", "ItemTemplates (SL)\ItemTemplates (SL).csproj", "{E45EB537-99A5-4698-90B3-823EE80CD107}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs08.codeplex.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ItemTemplates\\ItemTemplates.csproj
-		SccProjectName1 = ItemTemplates
-		SccLocalPath1 = ItemTemplates
-		SccProjectUniqueName2 = ItemTemplates\u0020(SL)\\ItemTemplates\u0020(SL).csproj
-		SccProjectName2 = ItemTemplates\u0020(SL)
-		SccLocalPath2 = ItemTemplates\u0020(SL)
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
