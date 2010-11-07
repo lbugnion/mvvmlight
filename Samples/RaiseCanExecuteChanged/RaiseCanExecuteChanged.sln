@@ -1,36 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.Samples.RaiseCanExecuteChanged", "RaiseCanExecuteChanged\GalaSoft.Samples.RaiseCanExecuteChanged.csproj", "{CFFDC074-69FF-4CEE-B0B6-D2E169167043}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.Samples.RaiseCanExecuteChanged.SL", "RaiseCanExecuteChanged.SL\GalaSoft.Samples.RaiseCanExecuteChanged.SL.csproj", "{2199B511-9700-49D2-B776-36E6EC8763BB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{CFF064EE-B60B-410F-A1E9-5B0CBD2161D1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{1DCA2457-7174-4E91-B869-8986ED59FB32}"
-	ProjectSection(SolutionItems) = preProject
-		External\Silverlight\GalaSoft.MvvmLight.dll = External\Silverlight\GalaSoft.MvvmLight.dll
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{DFA33677-938F-4E34-A3A8-3CF9565E7A48}"
-	ProjectSection(SolutionItems) = preProject
-		External\WPF\GalaSoft.MvvmLight.dll = External\WPF\GalaSoft.MvvmLight.dll
-		External\WPF\WPFToolkit.dll = External\WPF\WPFToolkit.dll
-	EndProjectSection
-EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs08.codeplex.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = RaiseCanExecuteChanged.SL\\GalaSoft.Samples.RaiseCanExecuteChanged.SL.csproj
-		SccProjectName1 = RaiseCanExecuteChanged.SL
-		SccLocalPath1 = RaiseCanExecuteChanged.SL
-		SccProjectUniqueName2 = RaiseCanExecuteChanged\\GalaSoft.Samples.RaiseCanExecuteChanged.csproj
-		SccProjectName2 = RaiseCanExecuteChanged
-		SccLocalPath2 = RaiseCanExecuteChanged
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -47,9 +22,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1DCA2457-7174-4E91-B869-8986ED59FB32} = {CFF064EE-B60B-410F-A1E9-5B0CBD2161D1}
-		{DFA33677-938F-4E34-A3A8-3CF9565E7A48} = {CFF064EE-B60B-410F-A1E9-5B0CBD2161D1}
 	EndGlobalSection
 EndGlobal
