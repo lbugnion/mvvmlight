@@ -345,8 +345,9 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Ellipse>
+            
             <TextBlock HorizontalAlignment="Center"
-                       Text="EventToCommand with EventArgs (Move the mouse)"
+                       Text="With EventArgs (Move the mouse)"
                        TextWrapping="Wrap"
                        Grid.Row="7"
                        d:LayoutOverrides="Height"

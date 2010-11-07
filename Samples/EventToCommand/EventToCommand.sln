@@ -1,10 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventToCommand", "EventToCommand\EventToCommand.csproj", "{577563AE-A660-4C6A-ACAF-E827CB258F2E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventToCommand.SL", "EventToCommand.SL\EventToCommand.SL.csproj", "{E6B2437D-6D6F-4C87-A4B0-10AA46C849FA}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{A5EEEDBD-41EA-4871-9358-6138D0A4AF50}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{0A190E1D-FCF3-4DD9-BCB8-23857CE15005}"
@@ -22,19 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{2E465137-9FE
 		References\WPF\WPFToolkit.dll = References\WPF\WPFToolkit.dll
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventToCommand", "EventToCommand\EventToCommand.csproj", "{577563AE-A660-4C6A-ACAF-E827CB258F2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventToCommand.SL", "EventToCommand.SL\EventToCommand.SL.csproj", "{E6B2437D-6D6F-4C87-A4B0-10AA46C849FA}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs08.codeplex.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = EventToCommand.SL\\EventToCommand.SL.csproj
-		SccProjectName1 = EventToCommand.SL
-		SccLocalPath1 = EventToCommand.SL
-		SccProjectUniqueName2 = EventToCommand\\EventToCommand.csproj
-		SccProjectName2 = EventToCommand
-		SccLocalPath2 = EventToCommand
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
