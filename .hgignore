@@ -33,3 +33,4 @@ _Resharper.*/
 [Bb]uild[Ll]og.*
 *.[Pp]ublish.xml
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight/
+glob:GalaSoft.MvvmLight/GalaSoft.MvvmLight (SL4)/_ReSharper.GalaSoft.MvvmLight (SL4)/

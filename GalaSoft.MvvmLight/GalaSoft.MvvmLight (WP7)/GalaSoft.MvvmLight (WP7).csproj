@@ -51,73 +51,73 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GalaSoft.MvvmLight %28SL%29\Command\ButtonBaseExtensions.cs">
+    <Compile Include="..\GalaSoft.MvvmLight %28SL3%29\Command\ButtonBaseExtensions.cs">
       <Link>Command\ButtonBaseExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight %28SL%29\Command\CommandToButtonsMap.cs">
+    <Compile Include="..\GalaSoft.MvvmLight %28SL3%29\Command\CommandToButtonsMap.cs">
       <Link>Command\CommandToButtonsMap.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Command\RelayCommand.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Command\RelayCommand.cs">
       <Link>Command\RelayCommand.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Command\RelayCommandGeneric.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Command\RelayCommandGeneric.cs">
       <Link>Command\RelayCommandGeneric.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Helpers\IExecuteWithObject.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Helpers\IExecuteWithObject.cs">
       <Link>Helpers\IExecuteWithObject.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Helpers\WeakAction.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Helpers\WeakAction.cs">
       <Link>Helpers\WeakAction.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Helpers\WeakActionGeneric.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Helpers\WeakActionGeneric.cs">
       <Link>Helpers\WeakActionGeneric.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\ICleanup.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\ICleanup.cs">
       <Link>ICleanup.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\DialogMessage.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\DialogMessage.cs">
       <Link>Messaging\DialogMessage.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\GenericMessage.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\GenericMessage.cs">
       <Link>Messaging\GenericMessage.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\IMessenger.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\IMessenger.cs">
       <Link>Messaging\IMessenger.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\MessageBase.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\MessageBase.cs">
       <Link>Messaging\MessageBase.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\Messenger.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\Messenger.cs">
       <Link>Messaging\Messenger.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessage.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\NotificationMessage.cs">
       <Link>Messaging\NotificationMessage.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageAction.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\NotificationMessageAction.cs">
       <Link>Messaging\NotificationMessageAction.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageActionGeneric.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\NotificationMessageActionGeneric.cs">
       <Link>Messaging\NotificationMessageActionGeneric.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageGeneric.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\NotificationMessageGeneric.cs">
       <Link>Messaging\NotificationMessageGeneric.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\NotificationMessageWithCallback.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\NotificationMessageWithCallback.cs">
       <Link>Messaging\NotificationMessageWithCallback.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\PropertyChangedMessage.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\PropertyChangedMessage.cs">
       <Link>Messaging\PropertyChangedMessage.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\Messaging\PropertyChangedMessageBase.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\Messaging\PropertyChangedMessageBase.cs">
       <Link>Messaging\PropertyChangedMessageBase.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight\ViewModelBase.cs">
+    <Compile Include="..\GalaSoft.MvvmLight (NET35)\ViewModelBase.cs">
       <Link>ViewModelBase.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\GalaSoft.MvvmLight\License.txt">
+    <Content Include="..\GalaSoft.MvvmLight (NET35)\License.txt">
       <Link>License.txt</Link>
     </Content>
   </ItemGroup>
