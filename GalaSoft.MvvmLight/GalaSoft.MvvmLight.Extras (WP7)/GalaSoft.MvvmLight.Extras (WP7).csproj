@@ -52,22 +52,22 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GalaSoft.MvvmLight.Extras %28SL%29\Command\EventToCommand.SL.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28SL3%29\Command\EventToCommand.SL.cs">
       <Link>Command\EventToCommand.SL.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Extras %28SL%29\Helpers\BindingListener.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28SL3%29\Helpers\BindingListener.cs">
       <Link>Helpers\BindingListener.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Extras\Command\EventToCommand.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Extras (NET35)\Command\EventToCommand.cs">
       <Link>Command\EventToCommand.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Extras\Threading\DispatcherHelper.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Extras (NET35)\Threading\DispatcherHelper.cs">
       <Link>Threading\DispatcherHelper.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\GalaSoft.MvvmLight\License.txt">
+    <Content Include="..\GalaSoft.MvvmLight (NET35)\License.txt">
       <Link>License.txt</Link>
     </Content>
   </ItemGroup>
