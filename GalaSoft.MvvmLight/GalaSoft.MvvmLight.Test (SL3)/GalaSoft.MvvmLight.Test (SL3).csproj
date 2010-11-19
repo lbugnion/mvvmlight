@@ -13,7 +13,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalaSoft.MvvmLight.Test__SL_</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight.Test %28SL%29</AssemblyName>
+    <AssemblyName>GalaSoft.MvvmLight.Test %28SL3%29</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>
@@ -83,76 +83,67 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Silverlight.Testing, Version=2.0.21103.1925, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\External\Silverlight\Microsoft.Silverlight.Testing.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight, Version=2.0.21024.1838, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\External\Silverlight\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.Silverlight.Testing, Version=2.0.21103.1925, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight, Version=2.0.21024.1838, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows" />
     <Reference Include="mscorlib" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Interactivity, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\External\Silverlight\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Command\EventToCommandTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Command\EventToCommandTest.cs">
       <Link>Command\EventToCommandTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Command\RelayCommandGenericTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Command\RelayCommandGenericTest.cs">
       <Link>Command\RelayCommandGenericTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Command\RelayCommandTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Command\RelayCommandTest.cs">
       <Link>Command\RelayCommandTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\DialogMessageTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\DialogMessageTest.cs">
       <Link>Messaging\DialogMessageTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerCreationDeletionTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\MessengerCreationDeletionTest.cs">
       <Link>Messaging\MessengerCreationDeletionTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerMultipleInstancesTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\MessengerMultipleInstancesTest.cs">
       <Link>Messaging\MessengerMultipleInstancesTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerOverrideDefaultTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\MessengerOverrideDefaultTest.cs">
       <Link>Messaging\MessengerOverrideDefaultTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerRegisterUnregisterTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\MessengerRegisterUnregisterTest.cs">
       <Link>Messaging\MessengerRegisterUnregisterTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerRegisterWhileSendingTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\MessengerRegisterWhileSendingTest.cs">
       <Link>Messaging\MessengerRegisterWhileSendingTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerSendToAllTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\MessengerSendToAllTest.cs">
       <Link>Messaging\MessengerSendToAllTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerSendToTypeTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\MessengerSendToTypeTest.cs">
       <Link>Messaging\MessengerSendToTypeTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\MessengerSendWithTokenTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\MessengerSendWithTokenTest.cs">
       <Link>Messaging\MessengerSendWithTokenTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\NotificationMessageActionTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\NotificationMessageActionTest.cs">
       <Link>Messaging\NotificationMessageActionTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\NotificationMessageTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\NotificationMessageTest.cs">
       <Link>Messaging\NotificationMessageTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Messaging\PropertyChangedMessageTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\PropertyChangedMessageTest.cs">
       <Link>Messaging\PropertyChangedMessageTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\Threading\TestDispatcherHelper.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Threading\TestDispatcherHelper.cs">
       <Link>Threading\TestDispatcherHelper.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test\ViewModelBaseTest.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\ViewModelBaseTest.cs">
       <Link>ViewModelBaseTest.cs</Link>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -207,13 +198,13 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GalaSoft.MvvmLight %28SL%29\GalaSoft.MvvmLight %28SL%29.csproj">
+    <ProjectReference Include="..\GalaSoft.MvvmLight %28SL3%29\GalaSoft.MvvmLight %28SL3%29.csproj">
       <Project>{74712BA6-83BE-470C-9ED0-879DD1B08D9E}</Project>
-      <Name>GalaSoft.MvvmLight %28SL%29</Name>
+      <Name>GalaSoft.MvvmLight %28SL3%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras %28SL%29\GalaSoft.MvvmLight.Extras %28SL%29.csproj">
+    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras %28SL3%29\GalaSoft.MvvmLight.Extras %28SL3%29.csproj">
       <Project>{8ABB3CDF-47C4-468E-9C8A-56491C5F1C7D}</Project>
-      <Name>GalaSoft.MvvmLight.Extras %28SL%29</Name>
+      <Name>GalaSoft.MvvmLight.Extras %28SL3%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
