@@ -74,9 +74,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\External\WPF\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\External\NET35\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
@@ -105,13 +105,13 @@
     <Compile Include="ViewModelBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras\GalaSoft.MvvmLight.Extras.csproj">
+    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\GalaSoft.MvvmLight.Extras %28NET35%29.csproj">
       <Project>{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}</Project>
-      <Name>GalaSoft.MvvmLight.Extras</Name>
+      <Name>GalaSoft.MvvmLight.Extras %28NET35%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.csproj">
+    <ProjectReference Include="..\GalaSoft.MvvmLight %28NET35%29\GalaSoft.MvvmLight %28NET35%29.csproj">
       <Project>{ADB28C09-8DE9-4006-80D5-74856EB4A48B}</Project>
-      <Name>GalaSoft.MvvmLight</Name>
+      <Name>GalaSoft.MvvmLight %28NET35%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
