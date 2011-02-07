@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="AssemblyInfo.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2010
+// Copyright © GalaSoft Laurent Bugnion 2009-2011
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0010</LastBaseLevel>
+// <LastBaseLevel>alpha1/BL0014</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -20,23 +20,19 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("GalaSoft.MvvmLight.Extras")]
-[assembly: AssemblyDescription("Extras components to implement Model-View-ViewModel applications in WPF")]
+[assembly: AssemblyDescription("Extras components to implement Model-View-ViewModel applications in WPF, Silverlight and Windows Phone 7")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight.Extras")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2010")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
-
 [assembly: CLSCompliant(true)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("6ff199ef-d7c4-4e8c-919e-5813e9b8b504")]
-
-[assembly: AssemblyVersion("3.0.0.*")]
-////[assembly: AssemblyFileVersion("3.0.0.0/alpha3")]
+////[assembly: AssemblyVersion("4.0.0.*")]
+[assembly: AssemblyFileVersion("4.0.0.0/BL0014")]
 
 // FxCop
 [module: SuppressMessage("Microsoft.Naming",

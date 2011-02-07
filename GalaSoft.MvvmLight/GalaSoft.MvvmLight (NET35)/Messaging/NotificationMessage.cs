@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="NotificationMessage.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2010
+// Copyright © GalaSoft Laurent Bugnion 2009-2011
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>

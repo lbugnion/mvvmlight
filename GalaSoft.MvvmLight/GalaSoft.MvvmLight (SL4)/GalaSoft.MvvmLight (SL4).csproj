@@ -41,6 +41,7 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Debug\GalaSoft.MvvmLight.SL4.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,6 +53,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>GalaSoft.MvvmLight %28SL4%29.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
@@ -62,7 +69,7 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GalaSoft.MvvmLight (SL3)\Properties\AssemblyInfo.cs">
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight (NET35)\Command\RelayCommand.cs">
@@ -122,6 +129,7 @@
     <Compile Include="..\GalaSoft.MvvmLight (NET35)\ViewModelBase.cs">
       <Link>ViewModelBase.cs</Link>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.SL4.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -130,6 +138,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="GalaSoft.MvvmLight %28SL4%29.snk" />
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />

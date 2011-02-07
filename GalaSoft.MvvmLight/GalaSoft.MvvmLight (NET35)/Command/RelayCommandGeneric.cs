@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="RelayCommandGeneric.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2010
+// Copyright © GalaSoft Laurent Bugnion 2009-2011
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -66,34 +66,10 @@ namespace GalaSoft.MvvmLight.Command
             _canExecute = canExecute;
         }
 
-#if SILVERLIGHT
         /// <summary>
         /// Occurs when changes occur that affect whether the command should execute.
         /// </summary>
         public event EventHandler CanExecuteChanged;
-#else
-        /// <summary>
-        /// Occurs when changes occur that affect whether the command should execute.
-        /// </summary>
-        public event EventHandler CanExecuteChanged
-        {
-            add
-            {
-                if (_canExecute != null)
-                {
-                    CommandManager.RequerySuggested += value;
-                }
-            }
-
-            remove
-            {
-                if (_canExecute != null)
-                {
-                    CommandManager.RequerySuggested -= value;
-                }
-            }
-        }
-#endif
 
         /// <summary>
         /// Raises the <see cref="CanExecuteChanged" /> event.
@@ -104,15 +80,11 @@ namespace GalaSoft.MvvmLight.Command
             Justification = "This cannot be an event")]
         public void RaiseCanExecuteChanged()
         {
-#if SILVERLIGHT
             var handler = CanExecuteChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
             }
-#else
-            CommandManager.InvalidateRequerySuggested();
-#endif
         }
 
         /// <summary>

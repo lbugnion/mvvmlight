@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GalaSoft.MvvmLight.Test")]
+[assembly: AssemblyTitle("GalaSoft.MvvmLight.Test (NET4)")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GalaSoft.MvvmLight.Test")]
-[assembly: AssemblyCopyright("Copyright ©  2010")]
+[assembly: AssemblyCompany("GalaSoft Laurent Bugnion")]
+[assembly: AssemblyProduct("TestProject1")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b97d9e75-d399-4d05-9bc1-004e9600e9ee")]
+[assembly: Guid("af3b47b5-6e14-4512-89a6-5c3e6cac5e35")]
 
 // Version information for an assembly consists of the following four values:
 //

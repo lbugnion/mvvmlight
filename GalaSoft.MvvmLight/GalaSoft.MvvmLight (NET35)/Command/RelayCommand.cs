@@ -1,5 +1,5 @@
 ﻿// <copyright file="RelayCommand.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2010
+// Copyright © GalaSoft Laurent Bugnion 2009-2011
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -10,7 +10,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0008</LastBaseLevel>
+// <LastBaseLevel>BL0009</LastBaseLevel>
 // ****************************************************************************
 // <credits>This class was developed by Josh Smith (http://joshsmithonwpf.wordpress.com) and
 // slightly modified with his permission.</credits>
@@ -32,8 +32,8 @@ namespace GalaSoft.MvvmLight.Command
     /// Execute and CanExecute callback methods.
     /// </summary>
     ////[ClassInfo(typeof(RelayCommand),
-    ////  VersionString = "3.0.0.0",
-    ////  DateString = "201003041420",
+    ////  VersionString = "4.0.0.0/BL0009",
+    ////  DateString = "201102062245",
     ////  Description = "A command whose sole purpose is to relay its functionality to other objects by invoking delegates.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -71,34 +71,10 @@ namespace GalaSoft.MvvmLight.Command
             _canExecute = canExecute;
         }
 
-#if SILVERLIGHT
         /// <summary>
         /// Occurs when changes occur that affect whether the command should execute.
         /// </summary>
         public event EventHandler CanExecuteChanged;
-#else
-        /// <summary>
-        /// Occurs when changes occur that affect whether the command should execute.
-        /// </summary>
-        public event EventHandler CanExecuteChanged
-        {
-            add
-            {
-                if (_canExecute != null)
-                {
-                    CommandManager.RequerySuggested += value;
-                }
-            }
-
-            remove
-            {
-                if (_canExecute != null)
-                {
-                    CommandManager.RequerySuggested -= value;
-                }
-            }
-        }
-#endif
 
         /// <summary>
         /// Raises the <see cref="CanExecuteChanged" /> event.
@@ -109,15 +85,11 @@ namespace GalaSoft.MvvmLight.Command
             Justification = "This cannot be an event")]
         public void RaiseCanExecuteChanged()
         {
-#if SILVERLIGHT
             var handler = CanExecuteChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
             }
-#else
-            CommandManager.InvalidateRequerySuggested();
-#endif
         }
 
         /// <summary>
