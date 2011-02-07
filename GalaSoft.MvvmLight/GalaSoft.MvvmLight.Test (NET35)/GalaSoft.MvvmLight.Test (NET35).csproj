@@ -3,43 +3,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BD7821F7-C24B-4445-B612-8F18CE16ACF9}</ProjectGuid>
+    <ProjectGuid>{D08856FE-520C-48D8-9C2F-69B9CFDB92BE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight.Test</AssemblyName>
+    <RootNamespace>GalaSoft.MvvmLight.Test__NET35_</RootNamespace>
+    <AssemblyName>GalaSoft.MvvmLight.Test %28NET35%29</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,8 +23,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>618</NoWarn>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,82 +31,61 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="PresentationCore">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="PresentationFramework">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\External\NET35\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\EventToCommandTest.cs" />
     <Compile Include="Command\RelayCommandGenericTest.cs" />
     <Compile Include="Command\RelayCommandTest.cs" />
+    <Compile Include="Messaging\DialogMessageTest.cs" />
+    <Compile Include="Messaging\MessengerBroadcastToAllTest.cs" />
+    <Compile Include="Messaging\MessengerCreationDeletionTest.cs" />
+    <Compile Include="Messaging\MessengerMultipleInstancesTest.cs" />
+    <Compile Include="Messaging\MessengerOverrideDefaultTest.cs" />
+    <Compile Include="Messaging\MessengerRegisterUnregisterTest.cs" />
+    <Compile Include="Messaging\MessengerRegisterWhileSendingTest.cs" />
+    <Compile Include="Messaging\MessengerSendToAllTest.cs" />
+    <Compile Include="Messaging\MessengerSendToTypeTest.cs" />
     <Compile Include="Messaging\MessengerSendWithTokenTest.cs" />
     <Compile Include="Messaging\NotificationMessageActionTest.cs" />
     <Compile Include="Messaging\NotificationMessageTest.cs" />
-    <Compile Include="Messaging\MessengerOverrideDefaultTest.cs" />
-    <Compile Include="Messaging\MessengerRegisterWhileSendingTest.cs" />
     <Compile Include="Messaging\PropertyChangedMessageTest.cs" />
-    <Compile Include="Messaging\DialogMessageTest.cs" />
-    <Compile Include="Messaging\MessengerSendToAllTest.cs" />
-    <Compile Include="Messaging\MessengerSendToTypeTest.cs" />
-    <Compile Include="Messaging\MessengerCreationDeletionTest.cs" />
-    <Compile Include="Messaging\MessengerMultipleInstancesTest.cs" />
-    <Compile Include="Messaging\MessengerRegisterUnregisterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Threading\TestDispatcherHelper.cs" />
     <Compile Include="ViewModelBaseTest.cs" />
+    <Compile Include="ViewModel\TestViewModel.cs" />
+    <Compile Include="ViewModel\TestViewModelInlinePropertyChanged.cs" />
+    <Compile Include="ViewModel\TestViewModelNoMagicString.cs" />
+    <Compile Include="ViewModel\ViewModelStub.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\GalaSoft.MvvmLight.Extras %28NET35%29.csproj">
-      <Project>{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}</Project>
-      <Name>GalaSoft.MvvmLight.Extras %28NET35%29</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GalaSoft.MvvmLight %28NET35%29\GalaSoft.MvvmLight %28NET35%29.csproj">
       <Project>{ADB28C09-8DE9-4006-80D5-74856EB4A48B}</Project>
       <Name>GalaSoft.MvvmLight %28NET35%29</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
+    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\GalaSoft.MvvmLight.Extras %28NET35%29.csproj">
+      <Project>{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}</Project>
+      <Name>GalaSoft.MvvmLight.Extras %28NET35%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,27 +21,27 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             Messenger.Default.Register<string>(recipient21, recipient21.ReceiveMessage);
             Messenger.Default.Register<string>(recipient22, recipient22.ReceiveMessage);
 
-            const string TestContent1 = "abcd";
-            const string TestContent2 = "efgh";
+            const string testContent1 = "abcd";
+            const string testContent2 = "efgh";
 
             Assert.AreEqual(null, recipient11.ReceivedContentString);
             Assert.AreEqual(null, recipient12.ReceivedContentString);
             Assert.AreEqual(null, recipient21.ReceivedContentString);
             Assert.AreEqual(null, recipient22.ReceivedContentString);
 
-            Messenger.Default.Send<string, TestRecipient1>(TestContent1);
+            Messenger.Default.Send<string, TestRecipient1>(testContent1);
 
-            Assert.AreEqual(TestContent1, recipient11.ReceivedContentString);
-            Assert.AreEqual(TestContent1, recipient12.ReceivedContentString);
+            Assert.AreEqual(testContent1, recipient11.ReceivedContentString);
+            Assert.AreEqual(testContent1, recipient12.ReceivedContentString);
             Assert.AreEqual(null, recipient21.ReceivedContentString);
             Assert.AreEqual(null, recipient22.ReceivedContentString);
 
-            Messenger.Default.Send<string, TestRecipient2>(TestContent2);
+            Messenger.Default.Send<string, TestRecipient2>(testContent2);
 
-            Assert.AreEqual(TestContent1, recipient11.ReceivedContentString);
-            Assert.AreEqual(TestContent1, recipient12.ReceivedContentString);
-            Assert.AreEqual(TestContent2, recipient21.ReceivedContentString);
-            Assert.AreEqual(TestContent2, recipient22.ReceivedContentString);
+            Assert.AreEqual(testContent1, recipient11.ReceivedContentString);
+            Assert.AreEqual(testContent1, recipient12.ReceivedContentString);
+            Assert.AreEqual(testContent2, recipient21.ReceivedContentString);
+            Assert.AreEqual(testContent2, recipient22.ReceivedContentString);
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             Messenger.Default.Register<string>(recipient31, recipient31.DoSomething);
             Messenger.Default.Register<string>(recipient32, recipient32.DoSomething);
 
-            const string TestContent1 = "abcd";
+            const string testContent1 = "abcd";
 
             Assert.AreEqual(null, recipient11.ReceivedContentString);
             Assert.AreEqual(null, recipient12.ReceivedContentString);
@@ -72,14 +72,14 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             Assert.AreEqual(null, recipient31.ReceivedContentString);
             Assert.AreEqual(null, recipient32.ReceivedContentString);
 
-            Messenger.Default.Send<string, ITestRecipient>(TestContent1);
+            Messenger.Default.Send<string, ITestRecipient>(testContent1);
 
             Assert.AreEqual(null, recipient11.ReceivedContentString);
             Assert.AreEqual(null, recipient12.ReceivedContentString);
-            Assert.AreEqual(TestContent1, recipient21.ReceivedContentString);
-            Assert.AreEqual(TestContent1, recipient22.ReceivedContentString);
-            Assert.AreEqual(TestContent1, recipient31.ReceivedContentString);
-            Assert.AreEqual(TestContent1, recipient32.ReceivedContentString);
+            Assert.AreEqual(testContent1, recipient21.ReceivedContentString);
+            Assert.AreEqual(testContent1, recipient22.ReceivedContentString);
+            Assert.AreEqual(testContent1, recipient31.ReceivedContentString);
+            Assert.AreEqual(testContent1, recipient32.ReceivedContentString);
         }
 
         //// Helpers

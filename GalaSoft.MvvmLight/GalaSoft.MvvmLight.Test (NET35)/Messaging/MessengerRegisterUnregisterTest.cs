@@ -49,12 +49,13 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             private set;
         }
 
+#if !WINDOWS_PHONE
         [TestMethod]
         public void TestRegisterForGenericMessageBase()
         {
             var testContentException = new InvalidOperationException();
             var testContentDateTime = DateTime.Now;
-            const string TestContentString = "abcd";
+            const string testContentString = "abcd";
 
             Messenger.Reset();
             Reset();
@@ -114,10 +115,10 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Messenger.Default.Send(new TestMessageGeneric<string>
             {
-                Content = TestContentString
+                Content = testContentString
             });
 
-            Assert.AreEqual(TestContentString, ReceivedContentStringA1);
+            Assert.AreEqual(testContentString, ReceivedContentStringA1);
             Assert.AreEqual(testContentException, ReceivedContentException);
             Assert.AreEqual(testContentDateTime, ReceivedContentDateTime1);
         }
@@ -127,7 +128,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         {
             var testContentException = new InvalidOperationException();
             var testContentDateTime = DateTime.Now;
-            const string TestContentString = "abcd";
+            const string testContentString = "abcd";
 
             Messenger.Reset();
             Reset();
@@ -160,165 +161,19 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Messenger.Default.Send(new TestMessageGeneric<string>
             {
-                Content = TestContentString
+                Content = testContentString
             });
 
-            Assert.AreEqual(TestContentString, ReceivedContentStringA1);
+            Assert.AreEqual(testContentString, ReceivedContentStringA1);
             Assert.AreEqual(testContentException, ReceivedContentException);
             Assert.AreEqual(testContentDateTime, ReceivedContentDateTime1);
         }
 
         [TestMethod]
-        public void TestRegisterForSubclassesOfObject()
-        {
-            const string TestContentA = "abcd";
-            const string TestContentB = "efgh";
-
-            Reset();
-            Messenger.Reset();
-
-            Messenger.Default.Register<object>(
-                this,
-                true,
-                m =>
-                {
-                    var messageA = m as TestMessageA;
-                    if (messageA != null)
-                    {
-                        ReceivedContentStringA1 = messageA.Content;
-                        return;
-                    }
-
-                    var messageB = m as TestMessageB;
-                    if (messageB != null)
-                    {
-                        ReceivedContentStringB = messageB.Content;
-                        return;
-                    }
-                });
-
-            Assert.AreEqual(null, ReceivedContentStringA1);
-            Assert.AreEqual(null, ReceivedContentStringB);
-
-            Messenger.Default.Send(new TestMessageA
-            {
-                Content = TestContentA
-            });
-
-            Assert.AreEqual(TestContentA, ReceivedContentStringA1);
-            Assert.AreEqual(null, ReceivedContentStringB);
-
-            Messenger.Default.Send(new TestMessageB
-            {
-                Content = TestContentB
-            });
-
-            Assert.AreEqual(TestContentA, ReceivedContentStringA1);
-            Assert.AreEqual(TestContentB, ReceivedContentStringB);
-        }
-
-        [TestMethod]
-        public void TestRegisterForSubclassesOfTestMessageA()
-        {
-            const string TestContentA = "abcd";
-            const string TestContentAa = "1234";
-            const string TestContentB = "efgh";
-
-            Reset();
-            Messenger.Reset();
-
-            Messenger.Default.Register<TestMessageA>(
-                this,
-                true,
-                m =>
-                {
-                    var messageA = m;
-                    if (messageA != null)
-                    {
-                        ReceivedContentStringA1 = messageA.Content;
-                    }
-
-                    var messageAa = m as TestMessageAa;
-                    if (messageAa != null)
-                    {
-                        ReceivedContentStringA2 = messageAa.Content;
-                    }
-                });
-
-            Assert.AreEqual(null, ReceivedContentStringA1);
-            Assert.AreEqual(null, ReceivedContentStringA2);
-            Assert.AreEqual(null, ReceivedContentStringB);
-
-            Messenger.Default.Send(new TestMessageA
-            {
-                Content = TestContentA
-            });
-
-            Assert.AreEqual(TestContentA, ReceivedContentStringA1);
-            Assert.AreEqual(null, ReceivedContentStringA2);
-            Assert.AreEqual(null, ReceivedContentStringB);
-
-            Messenger.Default.Send(new TestMessageAa
-            {
-                Content = TestContentAa
-            });
-
-            Assert.AreEqual(TestContentAa, ReceivedContentStringA1);
-            Assert.AreEqual(TestContentAa, ReceivedContentStringA2);
-            Assert.AreEqual(null, ReceivedContentStringB);
-
-            Messenger.Default.Send(new TestMessageB
-            {
-                Content = TestContentB
-            });
-
-            Assert.AreEqual(TestContentAa, ReceivedContentStringA1);
-            Assert.AreEqual(TestContentAa, ReceivedContentStringA2);
-            Assert.AreEqual(null, ReceivedContentStringB);
-        }
-
-        [TestMethod]
-        public void TestRegisterSimpleTypes()
-        {
-            const string TestContentString = "abcd";
-            var testContentDateTime = DateTime.Now;
-            const int TestContentInt = 42;
-
-            Messenger.Reset();
-            Reset();
-
-            Messenger.Default.Register<string>(this, m => ReceivedContentStringA1 = m);
-            Messenger.Default.Register<DateTime>(this, m => ReceivedContentDateTime1 = m);
-            Messenger.Default.Register<int>(this, m => ReceivedContentInt = m);
-
-            Assert.AreEqual(null, ReceivedContentStringA1);
-            Assert.AreEqual(DateTime.MinValue, ReceivedContentDateTime1);
-            Assert.AreEqual(default(int), ReceivedContentInt);
-
-            Messenger.Default.Send(TestContentString);
-
-            Assert.AreEqual(TestContentString, ReceivedContentStringA1);
-            Assert.AreEqual(DateTime.MinValue, ReceivedContentDateTime1);
-            Assert.AreEqual(default(int), ReceivedContentInt);
-
-            Messenger.Default.Send(testContentDateTime);
-
-            Assert.AreEqual(TestContentString, ReceivedContentStringA1);
-            Assert.AreEqual(testContentDateTime, ReceivedContentDateTime1);
-            Assert.AreEqual(default(int), ReceivedContentInt);
-
-            Messenger.Default.Send(TestContentInt);
-
-            Assert.AreEqual(TestContentString, ReceivedContentStringA1);
-            Assert.AreEqual(testContentDateTime, ReceivedContentDateTime1);
-            Assert.AreEqual(TestContentInt, ReceivedContentInt);
-        }
-
-        [TestMethod]
-        public void TestRegisterStrictandNonStricRecipients()
+        public void TestRegisterStrictandNonStrictRecipients()
         {
             var testContentDateTime = DateTime.Now;
-            const string TestContentString = "abcd";
+            const string testContentString = "abcd";
 
             Messenger.Reset();
             Reset();
@@ -372,22 +227,178 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Messenger.Default.Send(new TestMessageGeneric<string>
             {
-                Content = TestContentString
+                Content = testContentString
             });
 
             Assert.AreEqual(3, receivedMessages);
-            Assert.AreEqual(TestContentString, ReceivedContentStringA1);
+            Assert.AreEqual(testContentString, ReceivedContentStringA1);
             Assert.AreEqual(testContentDateTime, ReceivedContentDateTime1);
             Assert.AreEqual(testContentDateTime, ReceivedContentDateTime2);
+        }
+
+        public class TestMessageGeneric<T> : TestMessageGenericBase
+        {
+            public T Content
+            {
+                get;
+                set;
+            }
+        }
+#endif
+
+        [TestMethod]
+        public void TestRegisterForSubclassesOfObject()
+        {
+            const string testContentA = "abcd";
+            const string testContentB = "efgh";
+
+            Reset();
+            Messenger.Reset();
+
+            Messenger.Default.Register<object>(
+                this,
+                true,
+                m =>
+                {
+                    var messageA = m as TestMessageA;
+                    if (messageA != null)
+                    {
+                        ReceivedContentStringA1 = messageA.Content;
+                        return;
+                    }
+
+                    var messageB = m as TestMessageB;
+                    if (messageB != null)
+                    {
+                        ReceivedContentStringB = messageB.Content;
+                        return;
+                    }
+                });
+
+            Assert.AreEqual(null, ReceivedContentStringA1);
+            Assert.AreEqual(null, ReceivedContentStringB);
+
+            Messenger.Default.Send(new TestMessageA
+            {
+                Content = testContentA
+            });
+
+            Assert.AreEqual(testContentA, ReceivedContentStringA1);
+            Assert.AreEqual(null, ReceivedContentStringB);
+
+            Messenger.Default.Send(new TestMessageB
+            {
+                Content = testContentB
+            });
+
+            Assert.AreEqual(testContentA, ReceivedContentStringA1);
+            Assert.AreEqual(testContentB, ReceivedContentStringB);
+        }
+
+        [TestMethod]
+        public void TestRegisterForSubclassesOfTestMessageA()
+        {
+            const string testContentA = "abcd";
+            const string testContentAa = "1234";
+            const string testContentB = "efgh";
+
+            Reset();
+            Messenger.Reset();
+
+            Messenger.Default.Register<TestMessageA>(
+                this,
+                true,
+                m =>
+                {
+                    var messageA = m;
+                    if (messageA != null)
+                    {
+                        ReceivedContentStringA1 = messageA.Content;
+                    }
+
+                    var messageAa = m as TestMessageAa;
+                    if (messageAa != null)
+                    {
+                        ReceivedContentStringA2 = messageAa.Content;
+                    }
+                });
+
+            Assert.AreEqual(null, ReceivedContentStringA1);
+            Assert.AreEqual(null, ReceivedContentStringA2);
+            Assert.AreEqual(null, ReceivedContentStringB);
+
+            Messenger.Default.Send(new TestMessageA
+            {
+                Content = testContentA
+            });
+
+            Assert.AreEqual(testContentA, ReceivedContentStringA1);
+            Assert.AreEqual(null, ReceivedContentStringA2);
+            Assert.AreEqual(null, ReceivedContentStringB);
+
+            Messenger.Default.Send(new TestMessageAa
+            {
+                Content = testContentAa
+            });
+
+            Assert.AreEqual(testContentAa, ReceivedContentStringA1);
+            Assert.AreEqual(testContentAa, ReceivedContentStringA2);
+            Assert.AreEqual(null, ReceivedContentStringB);
+
+            Messenger.Default.Send(new TestMessageB
+            {
+                Content = testContentB
+            });
+
+            Assert.AreEqual(testContentAa, ReceivedContentStringA1);
+            Assert.AreEqual(testContentAa, ReceivedContentStringA2);
+            Assert.AreEqual(null, ReceivedContentStringB);
+        }
+
+        [TestMethod]
+        public void TestRegisterSimpleTypes()
+        {
+            const string testContentString = "abcd";
+            var testContentDateTime = DateTime.Now;
+            const int testContentInt = 42;
+
+            Messenger.Reset();
+            Reset();
+
+            Messenger.Default.Register<string>(this, m => ReceivedContentStringA1 = m);
+            Messenger.Default.Register<DateTime>(this, m => ReceivedContentDateTime1 = m);
+            Messenger.Default.Register<int>(this, m => ReceivedContentInt = m);
+
+            Assert.AreEqual(null, ReceivedContentStringA1);
+            Assert.AreEqual(DateTime.MinValue, ReceivedContentDateTime1);
+            Assert.AreEqual(default(int), ReceivedContentInt);
+
+            Messenger.Default.Send(testContentString);
+
+            Assert.AreEqual(testContentString, ReceivedContentStringA1);
+            Assert.AreEqual(DateTime.MinValue, ReceivedContentDateTime1);
+            Assert.AreEqual(default(int), ReceivedContentInt);
+
+            Messenger.Default.Send(testContentDateTime);
+
+            Assert.AreEqual(testContentString, ReceivedContentStringA1);
+            Assert.AreEqual(testContentDateTime, ReceivedContentDateTime1);
+            Assert.AreEqual(default(int), ReceivedContentInt);
+
+            Messenger.Default.Send(testContentInt);
+
+            Assert.AreEqual(testContentString, ReceivedContentStringA1);
+            Assert.AreEqual(testContentDateTime, ReceivedContentDateTime1);
+            Assert.AreEqual(testContentInt, ReceivedContentInt);
         }
 
         [TestMethod]
         public void TestUnregisterOneAction()
         {
-            const string TestContentA1 = "abcd";
-            const string TestContentB1 = "1234";
-            const string TestContentA2 = "efgh";
-            const string TestContentB2 = "5678";
+            const string testContentA1 = "abcd";
+            const string testContentB1 = "1234";
+            const string testContentA2 = "efgh";
+            const string testContentB2 = "5678";
 
             Reset();
             Messenger.Reset();
@@ -409,46 +420,46 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Messenger.Default.Send(new TestMessageA
             {
-                Content = TestContentA1
+                Content = testContentA1
             });
 
             Messenger.Default.Send(new TestMessageB
             {
-                Content = TestContentB1
+                Content = testContentB1
             });
 
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA1);
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA2);
-            Assert.AreEqual(TestContentB1, ReceivedContentStringB);
-            Assert.AreEqual(TestContentA1, externalRecipient.ReceivedContentA);
-            Assert.AreEqual(TestContentB1, externalRecipient.ReceivedContentB);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA1);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA2);
+            Assert.AreEqual(testContentB1, ReceivedContentStringB);
+            Assert.AreEqual(testContentA1, externalRecipient.ReceivedContentA);
+            Assert.AreEqual(testContentB1, externalRecipient.ReceivedContentB);
 
             Messenger.Default.Unregister(this, actionA1);
 
             Messenger.Default.Send(new TestMessageA
             {
-                Content = TestContentA2
+                Content = testContentA2
             });
 
             Messenger.Default.Send(new TestMessageB
             {
-                Content = TestContentB2
+                Content = testContentB2
             });
 
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA1);
-            Assert.AreEqual(TestContentA2, ReceivedContentStringA2);
-            Assert.AreEqual(TestContentB2, ReceivedContentStringB);
-            Assert.AreEqual(TestContentA2, externalRecipient.ReceivedContentA);
-            Assert.AreEqual(TestContentB2, externalRecipient.ReceivedContentB);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA1);
+            Assert.AreEqual(testContentA2, ReceivedContentStringA2);
+            Assert.AreEqual(testContentB2, ReceivedContentStringB);
+            Assert.AreEqual(testContentA2, externalRecipient.ReceivedContentA);
+            Assert.AreEqual(testContentB2, externalRecipient.ReceivedContentB);
         }
 
         [TestMethod]
         public void TestUnregisterOneInstance()
         {
-            const string TestContentA1 = "abcd";
-            const string TestContentB1 = "1234";
-            const string TestContentA2 = "efgh";
-            const string TestContentB2 = "5678";
+            const string testContentA1 = "abcd";
+            const string testContentB1 = "1234";
+            const string testContentA2 = "efgh";
+            const string testContentB2 = "5678";
 
             Reset();
             Messenger.Reset();
@@ -468,46 +479,46 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Messenger.Default.Send(new TestMessageA
             {
-                Content = TestContentA1
+                Content = testContentA1
             });
 
             Messenger.Default.Send(new TestMessageB
             {
-                Content = TestContentB1
+                Content = testContentB1
             });
 
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA1);
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA2);
-            Assert.AreEqual(TestContentB1, ReceivedContentStringB);
-            Assert.AreEqual(TestContentA1, externalRecipient.ReceivedContentA);
-            Assert.AreEqual(TestContentB1, externalRecipient.ReceivedContentB);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA1);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA2);
+            Assert.AreEqual(testContentB1, ReceivedContentStringB);
+            Assert.AreEqual(testContentA1, externalRecipient.ReceivedContentA);
+            Assert.AreEqual(testContentB1, externalRecipient.ReceivedContentB);
 
             Messenger.Default.Unregister(this);
 
             Messenger.Default.Send(new TestMessageA
             {
-                Content = TestContentA2
+                Content = testContentA2
             });
 
             Messenger.Default.Send(new TestMessageB
             {
-                Content = TestContentB2
+                Content = testContentB2
             });
 
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA1);
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA2);
-            Assert.AreEqual(TestContentB1, ReceivedContentStringB);
-            Assert.AreEqual(TestContentA2, externalRecipient.ReceivedContentA);
-            Assert.AreEqual(TestContentB2, externalRecipient.ReceivedContentB);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA1);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA2);
+            Assert.AreEqual(testContentB1, ReceivedContentStringB);
+            Assert.AreEqual(testContentA2, externalRecipient.ReceivedContentA);
+            Assert.AreEqual(testContentB2, externalRecipient.ReceivedContentB);
         }
 
         [TestMethod]
         public void TestUnregisterOneMessageType()
         {
-            const string TestContentA1 = "abcd";
-            const string TestContentB1 = "1234";
-            const string TestContentA2 = "efgh";
-            const string TestContentB2 = "5678";
+            const string testContentA1 = "abcd";
+            const string testContentB1 = "1234";
+            const string testContentA2 = "efgh";
+            const string testContentB2 = "5678";
 
             Reset();
             Messenger.Reset();
@@ -527,44 +538,44 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Messenger.Default.Send(new TestMessageA
             {
-                Content = TestContentA1
+                Content = testContentA1
             });
 
             Messenger.Default.Send(new TestMessageB
             {
-                Content = TestContentB1
+                Content = testContentB1
             });
 
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA1);
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA2);
-            Assert.AreEqual(TestContentB1, ReceivedContentStringB);
-            Assert.AreEqual(TestContentA1, externalRecipient.ReceivedContentA);
-            Assert.AreEqual(TestContentB1, externalRecipient.ReceivedContentB);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA1);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA2);
+            Assert.AreEqual(testContentB1, ReceivedContentStringB);
+            Assert.AreEqual(testContentA1, externalRecipient.ReceivedContentA);
+            Assert.AreEqual(testContentB1, externalRecipient.ReceivedContentB);
 
             Messenger.Default.Unregister<TestMessageA>(this);
 
             Messenger.Default.Send(new TestMessageA
             {
-                Content = TestContentA2
+                Content = testContentA2
             });
 
             Messenger.Default.Send(new TestMessageB
             {
-                Content = TestContentB2
+                Content = testContentB2
             });
 
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA1);
-            Assert.AreEqual(TestContentA1, ReceivedContentStringA2);
-            Assert.AreEqual(TestContentB2, ReceivedContentStringB);
-            Assert.AreEqual(TestContentA2, externalRecipient.ReceivedContentA);
-            Assert.AreEqual(TestContentB2, externalRecipient.ReceivedContentB);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA1);
+            Assert.AreEqual(testContentA1, ReceivedContentStringA2);
+            Assert.AreEqual(testContentB2, ReceivedContentStringB);
+            Assert.AreEqual(testContentA2, externalRecipient.ReceivedContentA);
+            Assert.AreEqual(testContentB2, externalRecipient.ReceivedContentB);
         }
 
         [TestMethod]
         public void TestRegisterUnregisterInterfaceMessage()
         {
-            const string TestContent1 = "abcd";
-            const string TestContent2 = "efgh";
+            const string testContent1 = "abcd";
+            const string testContent2 = "efgh";
 
             Reset();
             Messenger.Reset();
@@ -573,15 +584,87 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
             Assert.AreEqual(null, ReceivedContentStringA1);
 
-            Messenger.Default.Send(new TestMessageImplementsIMessage(TestContent1));
+            Messenger.Default.Send(new TestMessageImplementsIMessage(testContent1));
 
-            Assert.AreEqual(TestContent1, ReceivedContentStringA1);
+            Assert.AreEqual(testContent1, ReceivedContentStringA1);
 
             Messenger.Default.Unregister<IMessage>(this);
 
-            Messenger.Default.Send(new TestMessageImplementsIMessage(TestContent2));
+            Messenger.Default.Send(new TestMessageImplementsIMessage(testContent2));
 
-            Assert.AreEqual(TestContent1, ReceivedContentStringA1);
+            Assert.AreEqual(testContent1, ReceivedContentStringA1);
+        }
+
+        [TestMethod]
+        public void TestRegisterUnregisterOneActionWithToken()
+        {
+            const string testContent1 = "abcd";
+            const string testContent2 = "efgh";
+            const string testContent3 = "ijkl";
+            const string testContent4 = "mnop";
+            const int token1 = 1234;
+            const int token2 = 4567;
+
+            Reset();
+            Messenger.Reset();
+
+            Action<string> action1 = m => ReceivedContentStringA1 = m;
+            Action<string> action2 = m => ReceivedContentStringA2 = m;
+            Action<string> action3 = m => ReceivedContentStringB = m;
+
+            Messenger.Default.Register(this, token1, action1);
+            Messenger.Default.Register(this, token2, action2);
+            Messenger.Default.Register(this, token2, action3);
+
+            Messenger.Default.Send(testContent1, token1);
+            Messenger.Default.Send(testContent2, token2);
+
+            Assert.AreEqual(testContent1, ReceivedContentStringA1);
+            Assert.AreEqual(testContent2, ReceivedContentStringA2);
+            Assert.AreEqual(testContent2, ReceivedContentStringB);
+
+            Messenger.Default.Unregister(this, token2, action3);
+            Messenger.Default.Send(testContent3, token1);
+            Messenger.Default.Send(testContent4, token2);
+
+            Assert.AreEqual(testContent3, ReceivedContentStringA1);
+            Assert.AreEqual(testContent4, ReceivedContentStringA2);
+            Assert.AreEqual(testContent2, ReceivedContentStringB);
+        }
+
+        [TestMethod]
+        public void TestRegisterUnregisterWithToken()
+        {
+            const string testContent1 = "abcd";
+            const string testContent2 = "efgh";
+            const string testContent3 = "ijkl";
+            const int token1 = 1234;
+            const int token2 = 4567;
+
+            Reset();
+            Messenger.Reset();
+
+            Messenger.Default.Register<string>(this, token1, m => ReceivedContentStringA1 = m);
+            Messenger.Default.Register<string>(this, token2, m => ReceivedContentStringA2 = m);
+
+            Assert.AreEqual(null, ReceivedContentStringA1);
+            Assert.AreEqual(null, ReceivedContentStringA2);
+
+            Messenger.Default.Send(testContent1, token1);
+
+            Assert.AreEqual(testContent1, ReceivedContentStringA1);
+            Assert.AreEqual(null, ReceivedContentStringA2);
+
+            Messenger.Default.Send(testContent2, token2);
+
+            Assert.AreEqual(testContent1, ReceivedContentStringA1);
+            Assert.AreEqual(testContent2, ReceivedContentStringA2);
+
+            Messenger.Default.Unregister<string>(this, token1);
+            Messenger.Default.Send(testContent3, token1);
+
+            Assert.AreEqual(testContent1, ReceivedContentStringA1);
+            Assert.AreEqual(testContent2, ReceivedContentStringA2);
         }
 
         //// Helpers
@@ -620,15 +703,6 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             }
         }
 
-        public class TestMessageGeneric<T> : TestMessageGenericBase
-        {
-            public T Content
-            {
-                get;
-                set;
-            }
-        }
-
         public class TestMessageGenericBase
         {
         }
@@ -638,13 +712,13 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             public string ReceivedContentA
             {
                 get;
-                set;
+                private set;
             }
 
             public string ReceivedContentB
             {
                 get;
-                set;
+                private set;
             }
 
             internal void RegisterWith(Messenger messenger)

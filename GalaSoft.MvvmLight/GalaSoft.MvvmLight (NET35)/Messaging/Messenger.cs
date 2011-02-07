@@ -1,6 +1,6 @@
 ﻿// **************************************************************************
 // <copyright file="Messenger.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2010
+// Copyright © GalaSoft Laurent Bugnion 2009-2011
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0010</LastBaseLevel>
+// <LastBaseLevel>BL0012</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -28,8 +28,8 @@ namespace GalaSoft.MvvmLight.Messaging
     /// The Messenger is a class allowing objects to exchange messages.
     /// </summary>
     ////[ClassInfo(typeof(Messenger),
-    ////    VersionString = "3.0.0.0",
-    ////    DateString = "201003041420",
+    ////    VersionString = "4.0.0.0/BL0012",
+    ////    DateString = "201102061040",
     ////    Description = "A messenger class allowing a class to send a message to multiple recipients",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
@@ -49,12 +49,7 @@ namespace GalaSoft.MvvmLight.Messaging
         {
             get
             {
-                if (_defaultInstance == null)
-                {
-                    _defaultInstance = new Messenger();
-                }
-
-                return _defaultInstance;
+                return _defaultInstance ?? (_defaultInstance = new Messenger());
             }
         }
 
@@ -295,17 +290,35 @@ namespace GalaSoft.MvvmLight.Messaging
         /// of type TMessage anymore, but will still receive other message types (if it
         /// registered for them previously).
         /// </summary>
+        /// <param name="recipient">The recipient that must be unregistered.</param>
         /// <typeparam name="TMessage">The type of messages that the recipient wants
         /// to unregister from.</typeparam>
-        /// <param name="recipient">The recipient that must be unregistered.</param>
         [SuppressMessage(
             "Microsoft.Design",
             "CA1004:GenericMethodsShouldProvideTypeParameter",
-            Justification =
-                "The type parameter TMessage identifies the message type that the recipient wants to unregister for.")]
+            Justification = "This syntax is more convenient than other alternatives.")]
         public virtual void Unregister<TMessage>(object recipient)
         {
-            Unregister<TMessage>(recipient, null);
+            Unregister<TMessage>(recipient, null, null);
+        }
+
+        /// <summary>
+        /// Unregisters a message recipient for a given type of messages only and for a given token. 
+        /// After this method is executed, the recipient will not receive messages
+        /// of type TMessage anymore with the given token, but will still receive other message types
+        /// or messages with other tokens (if it registered for them previously).
+        /// </summary>
+        /// <param name="recipient">The recipient that must be unregistered.</param>
+        /// <param name="token">The token for which the recipient must be unregistered.</param>
+        /// <typeparam name="TMessage">The type of messages that the recipient wants
+        /// to unregister from.</typeparam>
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1004:GenericMethodsShouldProvideTypeParameter",
+            Justification = "This syntax is more convenient than other alternatives.")]
+        public virtual void Unregister<TMessage>(object recipient, object token)
+        {
+            Unregister<TMessage>(recipient, token, null);
         }
 
         /// <summary>
@@ -322,8 +335,26 @@ namespace GalaSoft.MvvmLight.Messaging
         /// the recipient and for the message type TMessage.</param>
         public virtual void Unregister<TMessage>(object recipient, Action<TMessage> action)
         {
-            UnregisterFromLists(recipient, action, _recipientsStrictAction);
-            UnregisterFromLists(recipient, action, _recipientsOfSubclassesAction);
+            Unregister(recipient, null, action);
+        }
+
+        /// <summary>
+        /// Unregisters a message recipient for a given type of messages, for
+        /// a given action and a given token. Other message types will still be transmitted to the
+        /// recipient (if it registered for them previously). Other actions that have
+        /// been registered for the message type TMessage, for the given recipient and other tokens (if
+        /// available) will also remain available.
+        /// </summary>
+        /// <typeparam name="TMessage">The type of messages that the recipient wants
+        /// to unregister from.</typeparam>
+        /// <param name="recipient">The recipient that must be unregistered.</param>
+        /// <param name="token">The token for which the recipient must be unregistered.</param>
+        /// <param name="action">The action that must be unregistered for
+        /// the recipient and for the message type TMessage.</param>
+        public virtual void Unregister<TMessage>(object recipient, object token, Action<TMessage> action)
+        {
+            UnregisterFromLists(recipient, token, action, _recipientsStrictAction);
+            UnregisterFromLists(recipient, token, action, _recipientsOfSubclassesAction);
             Cleanup();
         }
 
@@ -444,6 +475,7 @@ namespace GalaSoft.MvvmLight.Messaging
 
         private static void UnregisterFromLists<TMessage>(
             object recipient,
+            object token,
             Action<TMessage> action,
             Dictionary<Type, List<WeakActionAndToken>> lists)
         {
@@ -466,7 +498,9 @@ namespace GalaSoft.MvvmLight.Messaging
                     if (weakActionCasted != null
                         && recipient == weakActionCasted.Target
                         && (action == null
-                            || action == weakActionCasted.Action))
+                            || action == weakActionCasted.Action)
+                        && (token == null
+                            || token.Equals(item.Token)))
                     {
                         item.Action.MarkForDeletion();
                     }

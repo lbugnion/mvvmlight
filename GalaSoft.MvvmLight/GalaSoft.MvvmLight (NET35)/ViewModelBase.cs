@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="ViewModelBase.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2010
+// Copyright © GalaSoft Laurent Bugnion 2009-2011
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -11,16 +11,17 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0008</LastBaseLevel>
+// <LastBaseLevel>BL0009</LastBaseLevel>
 // ****************************************************************************
 
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Helpers;
+using System.Linq.Expressions;
 
 ////using GalaSoft.Utilities.Attributes;
 
@@ -33,19 +34,20 @@ namespace GalaSoft.MvvmLight
     /// </para>
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase),
-    ////  VersionString = "3.0.0.0",
-    ////  DateString = "201003041420",
+    ////  VersionString = "4.0.0.0/BL0009",
+    ////  DateString = "201102062240",
     ////  Description = "A base class for the ViewModel classes in the MVVM pattern.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
     public abstract class ViewModelBase : INotifyPropertyChanged, ICleanup, IDisposable
     {
         private static bool? _isInDesignMode;
+        private IMessenger _messengerInstance;
 
         /// <summary>
         /// Initializes a new instance of the ViewModelBase class.
         /// </summary>
-        protected ViewModelBase()
+        public ViewModelBase()
             : this(null)
         {
         }
@@ -57,15 +59,26 @@ namespace GalaSoft.MvvmLight
         /// used to broadcast messages to other objects. If null, this class
         /// will attempt to broadcast using the Messenger's default
         /// instance.</param>
-        protected ViewModelBase(IMessenger messenger)
+        public ViewModelBase(IMessenger messenger)
         {
             MessengerInstance = messenger;
         }
 
         /// <summary>
-        /// Occurs when a property value changes.
+        /// Gets a value indicating whether the control is in design mode
+        /// (running under Blend or Visual Studio).
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        [SuppressMessage(
+            "Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "Non static member needed for data binding")]
+        public bool IsInDesignMode
+        {
+            get
+            {
+                return IsInDesignModeStatic;
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether the control is in design mode
@@ -87,8 +100,8 @@ namespace GalaSoft.MvvmLight
                     var prop = DesignerProperties.IsInDesignModeProperty;
                     _isInDesignMode
                         = (bool)DependencyPropertyDescriptor
-                        .FromProperty(prop, typeof(FrameworkElement))
-                        .Metadata.DefaultValue;
+                                     .FromProperty(prop, typeof(FrameworkElement))
+                                     .Metadata.DefaultValue;
 
                     // Just to be sure
                     if (!_isInDesignMode.Value
@@ -104,30 +117,63 @@ namespace GalaSoft.MvvmLight
         }
 
         /// <summary>
-        /// Gets a value indicating whether the control is in design mode
-        /// (running under Blend or Visual Studio).
-        /// </summary>
-        [SuppressMessage(
-            "Microsoft.Performance",
-            "CA1822:MarkMembersAsStatic",
-            Justification = "Non static member needed for data binding")]
-        public bool IsInDesignMode
-        {
-            get
-            {
-                return IsInDesignModeStatic;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets an instance of a <see cref="IMessenger" /> used to
         /// broadcast messages to other objects. If null, this class will
         /// attempt to broadcast using the Messenger's default instance.
         /// </summary>
         protected IMessenger MessengerInstance
         {
-            get;
-            set;
+            get
+            {
+                return _messengerInstance ?? Messenger.Default;
+            }
+            set
+            {
+                _messengerInstance = value;
+            }
+        }
+
+        /// <summary>
+        /// Unregisters this instance from the Messenger class.
+        /// <para>To cleanup additional resources, override this method, clean
+        /// up and then call base.Cleanup().</para>
+        /// </summary>
+        public virtual void Cleanup()
+        {
+            Messenger.Default.Unregister(this);
+        }
+
+        /// <summary>
+        /// Do not use this method anymore, it will be removed in a future
+        /// version. Use ICleanup.Cleanup() instead.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Verifies that a property name exists in this ViewModel. This method
+        /// can be called before the property is used, for instance before
+        /// calling RaisePropertyChanged. It avoids errors when a property name
+        /// is changed but some places are missed.
+        /// <para>This method is only active in DEBUG mode.</para>
+        /// </summary>
+        /// <param name="propertyName"></param>
+        [Conditional("DEBUG")]
+        [DebuggerStepThrough]
+        public void VerifyPropertyName(string propertyName)
+        {
+            var myType = this.GetType();
+            if (myType.GetProperty(propertyName) == null)
+            {
+                throw new ArgumentException("Property not found", propertyName);
+            }
         }
 
         /// <summary>
@@ -146,47 +192,21 @@ namespace GalaSoft.MvvmLight
         protected virtual void Broadcast<T>(T oldValue, T newValue, string propertyName)
         {
             var message = new PropertyChangedMessage<T>(this, oldValue, newValue, propertyName);
-
-            if (MessengerInstance != null)
-            {
-                MessengerInstance.Send(message);
-            }
-            else
-            {
-                Messenger.Default.Send(message);
-            }
+            MessengerInstance.Send(message);
         }
 
         /// <summary>
         /// Do not use this method anymore, it will be removed in a future
         /// version. Use ICleanup.Cleanup() instead.
         /// </summary>
-        [Obsolete("This interface will be removed from ViewModelBase in a future version, use ICleanup.Cleanup instead.")]
+        [Obsolete("This interface will be removed from ViewModelBase in a future version, use ICleanup.Cleanup instead."
+            )]
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
                 Cleanup();
             }
-        }
-
-        /// <summary>
-        /// Do not use this method anymore, it will be removed in a future
-        /// version. Use ICleanup.Cleanup() instead.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        /// <summary>
-        /// Unregisters this instance from the Messenger class.
-        /// <para>To cleanup additional resources, override this method, clean
-        /// up and then call base.Cleanup().</para>
-        /// </summary>
-        public virtual void Cleanup()
-        {
-            Messenger.Default.Unregister(this);
         }
 
         /// <summary>
@@ -235,23 +255,66 @@ namespace GalaSoft.MvvmLight
             }
         }
 
-        /// <summary>
-        /// Verifies that a property name exists in this ViewModel. This method
-        /// can be called before the property is used, for instance before
-        /// calling RaisePropertyChanged. It avoids errors when a property name
-        /// is changed but some places are missed.
-        /// <para>This method is only active in DEBUG mode.</para>
-        /// </summary>
-        /// <param name="propertyName"></param>
-        [Conditional("DEBUG")]
-        [DebuggerStepThrough]
-        public void VerifyPropertyName(string propertyName)
+        protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
         {
-            var myType = this.GetType();
-            if (myType.GetProperty(propertyName) == null)
+            if (propertyExpression == null)
             {
-                throw new ArgumentException("Property not found", propertyName);
+                return;
             }
+
+            var handler = PropertyChanged;
+
+            if (handler != null)
+            {
+                var body = propertyExpression.Body as MemberExpression;
+                var expression = body.Expression as ConstantExpression;
+                handler(expression.Value, new PropertyChangedEventArgs(body.Member.Name));
+            }
+        }
+
+        protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue, bool broadcast)
+        {
+            if (propertyExpression == null)
+            {
+                return;
+            }
+
+            var handler = PropertyChanged;
+
+            if (handler != null
+                || broadcast)
+            {
+                var body = propertyExpression.Body as MemberExpression;
+                var expression = body.Expression as ConstantExpression;
+
+                if (handler != null)
+                {
+                    handler(expression.Value, new PropertyChangedEventArgs(body.Member.Name));
+                }
+
+                if (broadcast)
+                {
+                    Broadcast(oldValue, newValue, body.Member.Name);
+                }
+            }
+        }
+
+        protected virtual void RaisePropertyChanged()
+        {
+            var frames = new StackTrace();
+
+            for (var i = 0; i < frames.FrameCount; i++)
+            {
+                var frame = frames.GetFrame(i).GetMethod() as MethodInfo;
+                if (frame != null)
+                    if (frame.IsSpecialName && frame.Name.StartsWith("set_", StringComparison.OrdinalIgnoreCase))
+                    {
+                        RaisePropertyChanged(frame.Name.Substring(4));
+                        return;
+                    }
+            }
+
+            throw new InvalidOperationException("RaisePropertyChanged() can only by invoked within a property setter.");
         }
     }
 }

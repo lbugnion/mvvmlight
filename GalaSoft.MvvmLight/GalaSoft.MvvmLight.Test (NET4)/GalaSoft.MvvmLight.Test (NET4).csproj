@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{083B72F7-370F-4AF3-B9B3-ED08DEB4B9A6}</ProjectGuid>
+    <ProjectGuid>{C0D93B39-BD59-4C2E-B6D7-121F20BCAD58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight.Test</AssemblyName>
+    <AssemblyName>GalaSoft.MvvmLight.Test.WPF4</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -53,6 +53,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\EventToCommandTest.cs">
+      <Link>Command\EventToCommandTest.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\RelayCommandGenericTest.cs">
       <Link>Command\RelayCommandGenericTest.cs</Link>
     </Compile>
@@ -104,7 +107,18 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModelBaseTest.cs">
       <Link>ViewModelBaseTest.cs</Link>
     </Compile>
-    <Compile Include="Command\EventToCommandTest.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModel.cs">
+      <Link>ViewModel\TestViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModelInlinePropertyChanged.cs">
+      <Link>ViewModel\TestViewModelInlinePropertyChanged.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModelNoMagicString.cs">
+      <Link>ViewModel\TestViewModelNoMagicString.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\ViewModelStub.cs">
+      <Link>ViewModel\ViewModelStub.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +130,9 @@
       <Project>{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}</Project>
       <Name>GalaSoft.MvvmLight.Extras %28NET4%29</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

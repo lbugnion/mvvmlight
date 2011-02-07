@@ -34,3 +34,8 @@ _Resharper.*/
 *.[Pp]ublish.xml
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight/
 glob:GalaSoft.MvvmLight/GalaSoft.MvvmLight (SL4)/_ReSharper.GalaSoft.MvvmLight (SL4)/
+glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (NET35)/
+glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (NET4)/
+glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (SL3)/
+glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (SL4)/
+glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (WP7)/

@@ -26,7 +26,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Source = vm.SimpleCommand
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -51,7 +51,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Source = vm.ParameterCommand
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -77,7 +77,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Source = vm.ParameterCommand
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -116,7 +116,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Path = new PropertyPath("Text")
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = bindingCommand;
             trigger.CommandParameter = bindingParameter;
 #else
@@ -171,7 +171,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             vm.EnableToggledCommand = true;
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -210,7 +210,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             vm.EnableToggledCommand = true;
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -240,7 +240,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             vm.EnableToggledCommand = false;
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -278,7 +278,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             vm.EnableToggledCommand = true;
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -311,7 +311,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             vm.EnableToggledCommand = false;
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -343,7 +343,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             trigger.CommandParameterValue = "Hel";
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -388,7 +388,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Path = new PropertyPath("Text")
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
             trigger.CommandParameter = bindingParameter;
 #else
@@ -425,7 +425,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Source = vm.SimpleCommand
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -453,7 +453,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Source = vm.ParameterCommand
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -480,7 +480,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Source = vm.CommandWithEventArgs
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -507,7 +507,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Source = vm.ParameterCommand
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
 #else
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
@@ -548,7 +548,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 Path = new PropertyPath("Text")
             };
 
-#if SILVERLIGHT
+#if SILVERLIGHT3
             trigger.Command = binding;
             trigger.CommandParameter = bindingParameter;
 #else
