@@ -72,8 +72,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL4", "SL4", "{E3327395-6DB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (SL4)", "GalaSoft.MvvmLight.Test (SL4)\GalaSoft.MvvmLight.Test (SL4).csproj", "{540219BD-EBEA-4956-AAF7-CA1A87B1D177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (WP7)", "GalaSoft.MvvmLight.Test (WP7)\GalaSoft.MvvmLight.Test (WP7).csproj", "{594E864D-76B9-45B6-B2C6-AEE511673777}"
-EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = GalaSoft.MvvmLight1.vsmdi
@@ -131,12 +129,6 @@ Global
 		{540219BD-EBEA-4956-AAF7-CA1A87B1D177}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{540219BD-EBEA-4956-AAF7-CA1A87B1D177}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{540219BD-EBEA-4956-AAF7-CA1A87B1D177}.Release|Any CPU.Build.0 = Release|Any CPU
-		{594E864D-76B9-45B6-B2C6-AEE511673777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{594E864D-76B9-45B6-B2C6-AEE511673777}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{594E864D-76B9-45B6-B2C6-AEE511673777}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{594E864D-76B9-45B6-B2C6-AEE511673777}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{594E864D-76B9-45B6-B2C6-AEE511673777}.Release|Any CPU.Build.0 = Release|Any CPU
-		{594E864D-76B9-45B6-B2C6-AEE511673777}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

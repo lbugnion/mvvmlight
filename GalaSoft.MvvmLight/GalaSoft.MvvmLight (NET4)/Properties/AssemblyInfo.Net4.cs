@@ -20,4 +20,4 @@ using System.Runtime.InteropServices;
 using System.Security;
 
 [assembly: Guid("4053e6aa-dac1-4b86-9478-443715f01d58")]
-[assembly: AllowPartiallyTrustedCallers]
+//[assembly: AllowPartiallyTrustedCallers]

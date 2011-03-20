@@ -7,34 +7,9 @@ using GalaSoft.MvvmLight.Helpers;
 
 namespace GalaSoft.MvvmLight.Test
 {
-    /// <summary>
-    /// Summary description for ViewModelBaseTest
-    /// </summary>
     [TestClass]
     public class ViewModelBaseTest
     {
-        [TestMethod]
-        public void TestDispose()
-        {
-            Messenger.Reset();
-
-            var vm = new TestViewModel();
-            Messenger.Default.Register<string>(vm, vm.HandleStringMessage);
-
-            const string Content1 = "Hello world";
-            const string Content2 = "Another message";
-
-            Messenger.Default.Send(Content1);
-
-            Assert.AreEqual(Content1, vm.ReceivedContent);
-
-            vm.Dispose();
-
-            Messenger.Default.Send(Content2);
-
-            Assert.AreEqual(Content1, vm.ReceivedContent);
-        }
-
         [TestMethod]
         public void TestCleanup()
         {

@@ -38,7 +38,7 @@ namespace GalaSoft.MvvmLight.Command
     ////  Description = "A Trigger used to bind any event to an ICommand.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
-    public partial class EventToCommand : TriggerAction<FrameworkElement>
+    public partial class EventToCommand : TriggerAction<DependencyObject>
     {
         /// <summary>
         /// Gets or sets a value indicating whether the EventArgs passed to the
@@ -119,9 +119,9 @@ namespace GalaSoft.MvvmLight.Command
         private bool AssociatedElementIsDisabled()
         {
             var element = GetAssociatedObject();
-
-            return element != null
-                   && !element.IsEnabled;
+            return AssociatedObject == null
+                || (element != null
+                   && !element.IsEnabled);
         }
 
         private void EnableDisableElement()

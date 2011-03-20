@@ -74,8 +74,6 @@ namespace GalaSoft.MvvmLight.Command
         /// <summary>
         /// Raises the <see cref="CanExecuteChanged" /> event.
         /// </summary>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
-            Justification = "The this keyword is used in the Silverlight version")]
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         public void RaiseCanExecuteChanged()

@@ -99,8 +99,17 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\NotifyPropertyChangedTest.cs">
+      <Link>NotifyPropertyChangedTest.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Threading\DispatcherHelperTest.cs">
+      <Link>Threading\DispatcherHelperTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestClassWithNotifyPropertyChanged.cs">
+      <Link>ViewModels\TestClassWithNotifyPropertyChanged.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModel.cs">
       <Link>ViewModels\TestViewModel.cs</Link>
@@ -158,9 +167,6 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Messaging\PropertyChangedMessageTest.cs">
       <Link>Messaging\PropertyChangedMessageTest.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\Threading\TestDispatcherHelper.cs">
-      <Link>Threading\TestDispatcherHelper.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test (NET35)\ViewModelBaseTest.cs">
       <Link>ViewModelBaseTest.cs</Link>

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Interactivity;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
