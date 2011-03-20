@@ -42,7 +42,7 @@ namespace GalaSoft.MvvmLight.Command
     ////  Description = "A Trigger used to bind any event to an ICommand.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
-    public class EventToCommand : TriggerAction<FrameworkElement>
+    public class EventToCommand : TriggerAction<DependencyObject>
     {
         /// <summary>
         /// Identifies the <see cref="CommandParameter" /> dependency property
@@ -231,13 +231,13 @@ namespace GalaSoft.MvvmLight.Command
         /// is attached.</returns>
         private FrameworkElement GetAssociatedObject()
         {
-            return AssociatedObject;
+            return AssociatedObject as FrameworkElement;
         }
 #endif
 
         /// <summary>
         /// This method is here for compatibility
-        /// with the Silverlight version.
+        /// with the Silverlight 3 version.
         /// </summary>
         /// <returns>The command that must be executed when
         /// this trigger is invoked.</returns>
@@ -246,6 +246,12 @@ namespace GalaSoft.MvvmLight.Command
             return Command;
         }
 
+        /// <summary>
+        /// Specifies whether the EventArgs of the event that triggered this
+        /// action should be passed to the bound RelayCommand. If this is true,
+        /// the command should accept arguments of the corresponding
+        /// type (for example RelayCommand&lt;MouseButtonEventArgs&gt;).
+        /// </summary>
         public bool PassEventArgsToCommand
         {
             get;
@@ -318,8 +324,9 @@ namespace GalaSoft.MvvmLight.Command
         {
             var element = GetAssociatedObject();
 
-            return element != null
-                   && !element.IsEnabled;
+            return AssociatedObject == null
+                || (element != null
+                   && !element.IsEnabled);
         }
 
         private void EnableDisableElement()

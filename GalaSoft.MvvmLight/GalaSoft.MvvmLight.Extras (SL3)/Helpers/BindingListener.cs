@@ -35,10 +35,13 @@ namespace Expression.Samples.Interactivity.DataHelpers
 
         private DependencyPropertyListener listener;
 
-        private FrameworkElement target;
+        private DependencyObject target;
 
         private object value;
 
+        /// <summary>
+        /// The context of the binding.
+        /// </summary>
         public object Context
         {
             get;
@@ -48,6 +51,7 @@ namespace Expression.Samples.Interactivity.DataHelpers
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <param name="context">The context of the binding.</param>
         /// <param name="changedHandler">Callback whenever the value of this binding has changed.</param>
         public BindingListener(object context, ChangedHandler changedHandler)
         {
@@ -81,7 +85,7 @@ namespace Expression.Samples.Interactivity.DataHelpers
         /// <summary>
         /// The element to be used as the context on which to evaluate the binding.
         /// </summary>
-        public FrameworkElement Element
+        public DependencyObject Element
         {
             get
             {
@@ -179,7 +183,7 @@ namespace Expression.Samples.Interactivity.DataHelpers
 
             private static int index;
 
-            private FrameworkElement target;
+            private DependencyObject target;
 
             public DependencyPropertyListener()
             {
@@ -191,7 +195,7 @@ namespace Expression.Samples.Interactivity.DataHelpers
 
             public event EventHandler<BindingChangedEventArgs> Changed;
 
-            public void Attach(FrameworkElement element, Binding binding)
+            public void Attach(DependencyObject element, Binding binding)
             {
                 if (this.target != null)
                 {
@@ -200,7 +204,7 @@ namespace Expression.Samples.Interactivity.DataHelpers
 
                 this.target = element;
 
-                this.target.SetBinding(this.property, binding);
+                BindingOperations.SetBinding(target, this.property, binding);
             }
 
             public void Detach()

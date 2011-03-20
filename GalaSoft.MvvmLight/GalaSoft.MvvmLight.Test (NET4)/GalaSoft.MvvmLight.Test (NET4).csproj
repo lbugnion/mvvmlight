@@ -101,11 +101,17 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\PropertyChangedMessageTest.cs">
       <Link>Messaging\PropertyChangedMessageTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Threading\TestDispatcherHelper.cs">
-      <Link>Threading\TestDispatcherHelper.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\NotifyPropertyChangedTest.cs">
+      <Link>NotifyPropertyChangedTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Threading\DispatcherHelperTest.cs">
+      <Link>Threading\DispatcherHelperTest.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModelBaseTest.cs">
       <Link>ViewModelBaseTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestClassWithNotifyPropertyChanged.cs">
+      <Link>ViewModel\TestClassWithNotifyPropertyChanged.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModel.cs">
       <Link>ViewModel\TestViewModel.cs</Link>
@@ -134,6 +140,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

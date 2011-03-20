@@ -197,7 +197,7 @@ namespace GalaSoft.MvvmLight.Command
         }
 
         /// <summary>
-        /// Called when this trigger is attached to a FrameworkElement.
+        /// Called when this trigger is attached to a DependencyObject.
         /// </summary>
         protected override void OnAttached()
         {
@@ -209,11 +209,11 @@ namespace GalaSoft.MvvmLight.Command
         /// This method is here for compatibility
         /// with the Silverlight version.
         /// </summary>
-        /// <returns>The FrameworkElement to which this trigger
-        /// is attached.</returns>
+        /// <returns>The object to which this trigger
+        /// is attached casted as a FrameworkElement.</returns>
         private FrameworkElement GetAssociatedObject()
         {
-            return AssociatedObject;
+            return AssociatedObject as FrameworkElement;
         }
 
         /// <summary>

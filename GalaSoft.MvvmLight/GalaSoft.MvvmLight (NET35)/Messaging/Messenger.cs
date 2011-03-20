@@ -1,4 +1,4 @@
-﻿// **************************************************************************
+﻿// ****************************************************************************
 // <copyright file="Messenger.cs" company="GalaSoft Laurent Bugnion">
 // Copyright © GalaSoft Laurent Bugnion 2009-2011
 // </copyright>
@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0012</LastBaseLevel>
+// <LastBaseLevel>BL0013</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -28,17 +28,16 @@ namespace GalaSoft.MvvmLight.Messaging
     /// The Messenger is a class allowing objects to exchange messages.
     /// </summary>
     ////[ClassInfo(typeof(Messenger),
-    ////    VersionString = "4.0.0.0/BL0012",
-    ////    DateString = "201102061040",
+    ////    VersionString = "4.0.0.0/BL0013",
+    ////    DateString = "201103201550",
     ////    Description = "A messenger class allowing a class to send a message to multiple recipients",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
     public class Messenger : IMessenger
     {
         private static Messenger _defaultInstance;
-
+        private readonly object _registerLock = new object();
         private Dictionary<Type, List<WeakActionAndToken>> _recipientsOfSubclassesAction;
-
         private Dictionary<Type, List<WeakActionAndToken>> _recipientsStrictAction;
 
         /// <summary>
@@ -53,23 +52,7 @@ namespace GalaSoft.MvvmLight.Messaging
             }
         }
 
-        /// <summary>
-        /// Provides a way to override the Messenger.Default instance with
-        /// a custom instance, for example for unit testing purposes.
-        /// </summary>
-        /// <param name="newMessenger">The instance that will be used as Messenger.Default.</param>
-        public static void OverrideDefault(Messenger newMessenger)
-        {
-            _defaultInstance = newMessenger;
-        }
-
-        /// <summary>
-        /// Sets the Messenger's default (static) instance to null.
-        /// </summary>
-        public static void Reset()
-        {
-            _defaultInstance = null;
-        }
+        #region IMessenger Members
 
         /// <summary>
         /// Registers a recipient for a type of message TMessage. The action
@@ -177,48 +160,51 @@ namespace GalaSoft.MvvmLight.Messaging
             bool receiveDerivedMessagesToo,
             Action<TMessage> action)
         {
-            var messageType = typeof(TMessage);
-
-            Dictionary<Type, List<WeakActionAndToken>> recipients;
-
-            if (receiveDerivedMessagesToo)
+            lock (_registerLock)
             {
-                if (_recipientsOfSubclassesAction == null)
+                Type messageType = typeof(TMessage);
+
+                Dictionary<Type, List<WeakActionAndToken>> recipients;
+
+                if (receiveDerivedMessagesToo)
                 {
-                    _recipientsOfSubclassesAction = new Dictionary<Type, List<WeakActionAndToken>>();
+                    if (_recipientsOfSubclassesAction == null)
+                    {
+                        _recipientsOfSubclassesAction = new Dictionary<Type, List<WeakActionAndToken>>();
+                    }
+
+                    recipients = _recipientsOfSubclassesAction;
+                }
+                else
+                {
+                    if (_recipientsStrictAction == null)
+                    {
+                        _recipientsStrictAction = new Dictionary<Type, List<WeakActionAndToken>>();
+                    }
+
+                    recipients = _recipientsStrictAction;
                 }
 
-                recipients = _recipientsOfSubclassesAction;
-            }
-            else
-            {
-                if (_recipientsStrictAction == null)
+                List<WeakActionAndToken> list;
+
+                if (!recipients.ContainsKey(messageType))
                 {
-                    _recipientsStrictAction = new Dictionary<Type, List<WeakActionAndToken>>();
+                    list = new List<WeakActionAndToken>();
+                    recipients.Add(messageType, list);
+                }
+                else
+                {
+                    list = recipients[messageType];
                 }
 
-                recipients = _recipientsStrictAction;
+                var weakAction = new WeakAction<TMessage>(recipient, action);
+                var item = new WeakActionAndToken
+                {
+                    Action = weakAction,
+                    Token = token
+                };
+                list.Add(item);
             }
-
-            List<WeakActionAndToken> list;
-
-            if (!recipients.ContainsKey(messageType))
-            {
-                list = new List<WeakActionAndToken>();
-                recipients.Add(messageType, list);
-            }
-            else
-            {
-                list = recipients[messageType];
-            }
-
-            var weakAction = new WeakAction<TMessage>(recipient, action);
-            var item = new WeakActionAndToken
-            {
-                Action = weakAction,
-                Token = token
-            };
-            list.Add(item);
 
             Cleanup();
         }
@@ -358,6 +344,26 @@ namespace GalaSoft.MvvmLight.Messaging
             Cleanup();
         }
 
+        #endregion
+
+        /// <summary>
+        /// Provides a way to override the Messenger.Default instance with
+        /// a custom instance, for example for unit testing purposes.
+        /// </summary>
+        /// <param name="newMessenger">The instance that will be used as Messenger.Default.</param>
+        public static void OverrideDefault(Messenger newMessenger)
+        {
+            _defaultInstance = newMessenger;
+        }
+
+        /// <summary>
+        /// Sets the Messenger's default (static) instance to null.
+        /// </summary>
+        public static void Reset()
+        {
+            _defaultInstance = null;
+        }
+
         private static void CleanupList(IDictionary<Type, List<WeakActionAndToken>> lists)
         {
             if (lists == null)
@@ -365,33 +371,36 @@ namespace GalaSoft.MvvmLight.Messaging
                 return;
             }
 
-            var listsToRemove = new List<Type>();
-            foreach (var list in lists)
+            lock (lists)
             {
-                var recipientsToRemove = new List<WeakActionAndToken>();
-                foreach (var item in list.Value)
+                var listsToRemove = new List<Type>();
+                foreach (var list in lists)
                 {
-                    if (item.Action == null
-                        || !item.Action.IsAlive)
+                    var recipientsToRemove = new List<WeakActionAndToken>();
+                    foreach (WeakActionAndToken item in list.Value)
                     {
-                        recipientsToRemove.Add(item);
+                        if (item.Action == null
+                            || !item.Action.IsAlive)
+                        {
+                            recipientsToRemove.Add(item);
+                        }
+                    }
+
+                    foreach (WeakActionAndToken recipient in recipientsToRemove)
+                    {
+                        list.Value.Remove(recipient);
+                    }
+
+                    if (list.Value.Count == 0)
+                    {
+                        listsToRemove.Add(list.Key);
                     }
                 }
 
-                foreach (var recipient in recipientsToRemove)
+                foreach (Type key in listsToRemove)
                 {
-                    list.Value.Remove(recipient);
+                    lists.Remove(key);
                 }
-
-                if (list.Value.Count == 0)
-                {
-                    listsToRemove.Add(list.Key);
-                }
-            }
-
-            foreach (var key in listsToRemove)
-            {
-                lists.Remove(key);
             }
         }
 
@@ -403,8 +412,8 @@ namespace GalaSoft.MvvmLight.Messaging
                 return false;
             }
 
-            var interfaces = instanceType.GetInterfaces();
-            foreach (var currentInterface in interfaces)
+            Type[] interfaces = instanceType.GetInterfaces();
+            foreach (Type currentInterface in interfaces)
             {
                 if (currentInterface == interfaceType)
                 {
@@ -425,9 +434,9 @@ namespace GalaSoft.MvvmLight.Messaging
             {
                 // Clone to protect from people registering in a "receive message" method
                 // Bug correction Messaging BL0004.007
-                var listClone = list.Take(list.Count()).ToList();
+                List<WeakActionAndToken> listClone = list.Take(list.Count()).ToList();
 
-                foreach (var item in listClone)
+                foreach (WeakActionAndToken item in listClone)
                 {
                     var executeAction = item.Action as IExecuteWithObject;
 
@@ -457,11 +466,11 @@ namespace GalaSoft.MvvmLight.Messaging
 
             lock (lists)
             {
-                foreach (var messageType in lists.Keys)
+                foreach (Type messageType in lists.Keys)
                 {
-                    foreach (var item in lists[messageType])
+                    foreach (WeakActionAndToken item in lists[messageType])
                     {
-                        var weakAction = item.Action;
+                        WeakAction weakAction = item.Action;
 
                         if (weakAction != null
                             && recipient == weakAction.Target)
@@ -479,7 +488,7 @@ namespace GalaSoft.MvvmLight.Messaging
             Action<TMessage> action,
             Dictionary<Type, List<WeakActionAndToken>> lists)
         {
-            var messageType = typeof(TMessage);
+            Type messageType = typeof(TMessage);
 
             if (recipient == null
                 || lists == null
@@ -491,7 +500,7 @@ namespace GalaSoft.MvvmLight.Messaging
 
             lock (lists)
             {
-                foreach (var item in lists[messageType])
+                foreach (WeakActionAndToken item in lists[messageType])
                 {
                     var weakActionCasted = item.Action as WeakAction<TMessage>;
 
@@ -516,15 +525,16 @@ namespace GalaSoft.MvvmLight.Messaging
 
         private void SendToTargetOrType<TMessage>(TMessage message, Type messageTargetType, object token)
         {
-            var messageType = typeof(TMessage);
+            Type messageType = typeof(TMessage);
 
             if (_recipientsOfSubclassesAction != null)
             {
                 // Clone to protect from people registering in a "receive message" method
                 // Bug correction Messaging BL0008.002
-                var listClone = _recipientsOfSubclassesAction.Keys.Take(_recipientsOfSubclassesAction.Count()).ToList();
+                List<Type> listClone =
+                    _recipientsOfSubclassesAction.Keys.Take(_recipientsOfSubclassesAction.Count()).ToList();
 
-                foreach (var type in listClone)
+                foreach (Type type in listClone)
                 {
                     List<WeakActionAndToken> list = null;
 
@@ -543,7 +553,7 @@ namespace GalaSoft.MvvmLight.Messaging
             {
                 if (_recipientsStrictAction.ContainsKey(messageType))
                 {
-                    var list = _recipientsStrictAction[messageType];
+                    List<WeakActionAndToken> list = _recipientsStrictAction[messageType];
                     SendToList(message, list, messageTargetType, token);
                 }
             }
@@ -551,11 +561,15 @@ namespace GalaSoft.MvvmLight.Messaging
             Cleanup();
         }
 
+        #region Nested type: WeakActionAndToken
+
         private struct WeakActionAndToken
         {
             public WeakAction Action;
 
             public object Token;
         }
+
+        #endregion
     }
 }

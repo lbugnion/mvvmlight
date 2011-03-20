@@ -9,7 +9,7 @@
     <ProjectGuid>{D08856FE-520C-48D8-9C2F-69B9CFDB92BE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GalaSoft.MvvmLight.Test__NET35_</RootNamespace>
+    <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
     <AssemblyName>GalaSoft.MvvmLight.Test %28NET35%29</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -69,8 +69,11 @@
     <Compile Include="Messaging\NotificationMessageActionTest.cs" />
     <Compile Include="Messaging\NotificationMessageTest.cs" />
     <Compile Include="Messaging\PropertyChangedMessageTest.cs" />
+    <Compile Include="NotifyPropertyChangedTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Threading\TestDispatcherHelper.cs" />
+
+    <Compile Include="ViewModel\TestClassWithNotifyPropertyChanged.cs" />
+    <Compile Include="Threading\DispatcherHelperTest.cs" />
     <Compile Include="ViewModelBaseTest.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
     <Compile Include="ViewModel\TestViewModelInlinePropertyChanged.cs" />
@@ -87,6 +90,7 @@
       <Name>GalaSoft.MvvmLight.Extras %28NET35%29</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

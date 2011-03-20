@@ -52,6 +52,7 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Release\GalaSoft.MvvmLight.SL4.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -69,6 +70,9 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\NotifyPropertyChanged.cs">
+      <Link>NotifyPropertyChanged.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
