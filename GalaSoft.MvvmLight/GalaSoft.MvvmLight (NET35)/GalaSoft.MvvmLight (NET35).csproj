@@ -99,7 +99,7 @@
     <Compile Include="Messaging\MessageBase.cs" />
     <Compile Include="Messaging\Messenger.cs" />
     <Compile Include="Messaging\PropertyChangedMessage.cs" />
-    <Compile Include="NotifyPropertyChanged.cs" />
+    <Compile Include="ObservableObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Command\RelayCommandGeneric.cs" />

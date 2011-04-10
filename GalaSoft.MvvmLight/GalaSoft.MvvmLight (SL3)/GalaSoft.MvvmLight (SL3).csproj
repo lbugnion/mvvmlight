@@ -88,8 +88,8 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\NotifyPropertyChanged.cs">
-      <Link>NotifyPropertyChanged.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ObservableObject.cs">
+      <Link>ObservableObject.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>

@@ -46,6 +46,9 @@
     <AssemblyOriginatorKeyFile>GalaSoft.MvvmLight.Extras %28NET4%29.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\External\NET4\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -63,6 +66,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\ISimpleIoc.cs">
+      <Link>Ioc\ISimpleIoc.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\PreferredConstructor.cs">
+      <Link>Ioc\PreferredConstructor.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\SimpleIoc.cs">
+      <Link>Ioc\SimpleIoc.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
