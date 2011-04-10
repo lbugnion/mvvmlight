@@ -44,6 +44,9 @@
     <DocumentationFile>Bin\Release\GalaSoft.MvvmLight.Extras.WP7.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\External\WP7\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -53,6 +56,12 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\PreferredConstructor.cs">
+      <Link>Ioc\PreferredConstructor.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\SimpleIoc.cs">
+      <Link>Ioc\SimpleIoc.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>

@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0010</LastBaseLevel>
+// <LastBaseLevel>BL0011</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -31,8 +31,8 @@ namespace GalaSoft.MvvmLight
     /// A base class for the ViewModel classes in the MVVM pattern.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase),
-    ////  VersionString = "4.0.0.0/BL0010",
-    ////  DateString = "201103201555",
+    ////  VersionString = "4.0.0.0/BL0011",
+    ////  DateString = "201104101020",
     ////  Description = "A base class for the ViewModel classes in the MVVM pattern.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -40,7 +40,7 @@ namespace GalaSoft.MvvmLight
         "Microsoft.Design",
         "CA1012",
         Justification = "Constructors should remain public to allow serialization.")]
-    public abstract class ViewModelBase : NotifyPropertyChanged, ICleanup
+    public abstract class ViewModelBase : ObservableObject, ICleanup
     {
         private static bool? _isInDesignMode;
         private IMessenger _messengerInstance;

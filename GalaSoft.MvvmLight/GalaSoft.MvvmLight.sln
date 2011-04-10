@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL3", "SL3", "{97B7C3DB-C0FB-4D7D-BA33-14E3F4E86BF6}"
 	ProjectSection(SolutionItems) = preProject
+		External\SL3\Microsoft.Practices.ServiceLocation.dll = External\SL3\Microsoft.Practices.ServiceLocation.dll
 		External\SL3\Microsoft.Silverlight.Testing.dll = External\SL3\Microsoft.Silverlight.Testing.dll
 		External\SL3\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll = External\SL3\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll
 		External\SL3\System.Windows.Interactivity.dll = External\SL3\System.Windows.Interactivity.dll
@@ -19,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL3", "SL3", "{97B7C3DB-C0F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET35", "NET35", "{30B76B96-22B6-46F7-9D74-5EB2A954452A}"
 	ProjectSection(SolutionItems) = preProject
+		External\NET35\Microsoft.Practices.ServiceLocation.dll = External\NET35\Microsoft.Practices.ServiceLocation.dll
+		External\NET35\Microsoft.Practices.ServiceLocation.XML = External\NET35\Microsoft.Practices.ServiceLocation.XML
 		External\NET35\System.Windows.Interactivity.dll = External\NET35\System.Windows.Interactivity.dll
 	EndProjectSection
 EndProject
@@ -46,6 +49,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WP7", "WP7", "{1AB1E221-6EE2-41CF-BEC8-AAB6B613DF9D}"
 	ProjectSection(SolutionItems) = preProject
+		External\WP7\Microsoft.Practices.ServiceLocation.dll = External\WP7\Microsoft.Practices.ServiceLocation.dll
 		External\WP7\Microsoft.Silverlight.Testing.dll = External\WP7\Microsoft.Silverlight.Testing.dll
 		External\WP7\Microsoft.Silverlight.Testing.pdb = External\WP7\Microsoft.Silverlight.Testing.pdb
 		External\WP7\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll = External\WP7\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll
@@ -55,11 +59,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WP7", "WP7", "{1AB1E221-6EE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET4", "NET4", "{967A19CF-5B35-40C7-B6C6-0288EDCB10B3}"
 	ProjectSection(SolutionItems) = preProject
+		External\NET4\Microsoft.Practices.ServiceLocation.dll = External\NET4\Microsoft.Practices.ServiceLocation.dll
+		External\NET4\Microsoft.Practices.ServiceLocation.XML = External\NET4\Microsoft.Practices.ServiceLocation.XML
 		External\NET4\System.Windows.Interactivity.dll = External\NET4\System.Windows.Interactivity.dll
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL4", "SL4", "{E3327395-6DB3-4E5E-A937-ADA098DE3B3F}"
 	ProjectSection(SolutionItems) = preProject
+		External\SL4\Microsoft.Practices.ServiceLocation.dll = External\SL4\Microsoft.Practices.ServiceLocation.dll
 		External\SL4\Microsoft.Silverlight.Testing.dll = External\SL4\Microsoft.Silverlight.Testing.dll
 		External\SL4\Microsoft.Silverlight.Testing.pdb = External\SL4\Microsoft.Silverlight.Testing.pdb
 		External\SL4\Microsoft.Silverlight.Testing.xml = External\SL4\Microsoft.Silverlight.Testing.xml

@@ -76,6 +76,10 @@
     <DocumentationFile>Bin\Release\GalaSoft.MvvmLight.Extras.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b09c1d25ac742833, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\SL3\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="mscorlib" />
     <Reference Include="system" />
@@ -86,6 +90,12 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\PreferredConstructor.cs">
+      <Link>Ioc\PreferredConstructor.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\SimpleIoc.cs">
+      <Link>Ioc\SimpleIoc.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>

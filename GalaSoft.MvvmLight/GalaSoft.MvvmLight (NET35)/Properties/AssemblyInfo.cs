@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0015</LastBaseLevel>
+// <LastBaseLevel>BL0016</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -32,7 +32,7 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 
 ////[assembly: AssemblyVersion("3.0.0.*")]
-[assembly: AssemblyFileVersion("4.0.0.0/BL0015")]
+[assembly: AssemblyFileVersion("4.0.0.0/BL0016")]
 
 // FxCop
 [module: SuppressMessage("Microsoft.Naming",
@@ -63,6 +63,12 @@ using System.Runtime.InteropServices;
     Target = "GalaSoft.MvvmLight.Helpers",
     MessageId = "Mvvm")]
 
+[module: SuppressMessage("Microsoft.Naming",
+    "CA1704:IdentifiersShouldBeSpelledCorrectly",
+    Scope = "namespace",
+    Target = "GalaSoft.MvvmLight.Ioc",
+    MessageId = "Mvvm")]
+
 [module: SuppressMessage("Microsoft.Design",
     "CA1020:AvoidNamespacesWithFewTypes",
     Scope = "namespace",
@@ -77,3 +83,8 @@ using System.Runtime.InteropServices;
     "CA1020:AvoidNamespacesWithFewTypes",
     Scope = "namespace",
     Target = "GalaSoft.MvvmLight.Helpers")]
+
+[module: SuppressMessage("Microsoft.Design",
+    "CA1020:AvoidNamespacesWithFewTypes",
+    Scope = "namespace",
+    Target = "GalaSoft.MvvmLight.Ioc")]
