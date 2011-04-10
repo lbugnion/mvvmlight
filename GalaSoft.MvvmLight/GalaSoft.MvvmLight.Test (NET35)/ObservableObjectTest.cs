@@ -9,17 +9,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace GalaSoft.MvvmLight.Test
 {
     [TestClass]
-    public class NotifyPropertyChangedTest
+    public class ObservableObjectTest
     {
         [TestMethod]
         public void TestPropertyChangeNoBroadcast()
         {
             var receivedDateTimeLocal = DateTime.MinValue;
 
-            var vm = new TestClassWithNotifyPropertyChanged();
+            var vm = new TestClassWithObservableObject();
             vm.PropertyChanged += (s, e) =>
             {
-                if (e.PropertyName == TestClassWithNotifyPropertyChanged.LastChangedPropertyName)
+                if (e.PropertyName == TestClassWithObservableObject.LastChangedPropertyName)
                 {
                     receivedDateTimeLocal = vm.LastChanged;
                 }
@@ -36,7 +36,7 @@ namespace GalaSoft.MvvmLight.Test
         {
             var receivedDateTimeLocal = DateTime.MinValue;
 
-            var vm = new TestClassWithNotifyPropertyChanged();
+            var vm = new TestClassWithObservableObject();
             vm.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == "LastChangedNoMagicString")
@@ -56,7 +56,7 @@ namespace GalaSoft.MvvmLight.Test
         {
             var receivedDateTimeLocal = DateTime.MinValue;
 
-            var vm = new TestClassWithNotifyPropertyChanged();
+            var vm = new TestClassWithObservableObject();
             vm.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == "LastChangedInline")
@@ -76,7 +76,7 @@ namespace GalaSoft.MvvmLight.Test
         [ExpectedException(typeof(InvalidOperationException))]
         public void TestPropertyChangedSendInlineOutOfSetter()
         {
-            var vm = new TestClassWithNotifyPropertyChanged();
+            var vm = new TestClassWithObservableObject();
             vm.RaisePropertyChangedInlineOutOfPropertySetter();
         }
 
@@ -86,13 +86,13 @@ namespace GalaSoft.MvvmLight.Test
 #endif
         public void TestRaiseValidInvalidPropertyName()
         {
-            var vm = new TestClassWithNotifyPropertyChanged();
+            var vm = new TestClassWithObservableObject();
 
             var receivedPropertyChanged = false;
             var invalidPropertyNameReceived = false;
             vm.PropertyChanged += (s, e) =>
             {
-                if (e.PropertyName == TestClassWithNotifyPropertyChanged.LastChangedPropertyName)
+                if (e.PropertyName == TestClassWithObservableObject.LastChangedPropertyName)
                 {
                     receivedPropertyChanged = true;
                 }
@@ -102,12 +102,12 @@ namespace GalaSoft.MvvmLight.Test
                 }
             };
 
-            vm.RaisePropertyChangedPublic(TestClassWithNotifyPropertyChanged.LastChangedPropertyName);
+            vm.RaisePropertyChangedPublic(TestClassWithObservableObject.LastChangedPropertyName);
 
             Assert.IsTrue(receivedPropertyChanged);
             Assert.IsFalse(invalidPropertyNameReceived);
 
-            vm.RaisePropertyChangedPublic(TestClassWithNotifyPropertyChanged.LastChangedPropertyName + "1");
+            vm.RaisePropertyChangedPublic(TestClassWithObservableObject.LastChangedPropertyName + "1");
 
             Assert.IsTrue(invalidPropertyNameReceived);
         }

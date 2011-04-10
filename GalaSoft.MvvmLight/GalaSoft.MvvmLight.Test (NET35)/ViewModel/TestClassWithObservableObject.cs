@@ -2,7 +2,7 @@
 
 namespace GalaSoft.MvvmLight.Test.Stubs
 {
-    public class TestClassWithNotifyPropertyChanged : NotifyPropertyChanged
+    public class TestClassWithObservableObject : ObservableObject
     {
         /// <summary>
         /// The <see cref="LastChanged" /> property's name.

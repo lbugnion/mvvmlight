@@ -1,4 +1,19 @@
-﻿using System;
+﻿// ****************************************************************************
+// <copyright file="ObservableObject.cs" company="GalaSoft Laurent Bugnion">
+// Copyright © GalaSoft Laurent Bugnion 2011
+// </copyright>
+// ****************************************************************************
+// <author>Laurent Bugnion</author>
+// <email>laurent@galasoft.ch</email>
+// <date>10.4.2011</date>
+// <project>GalaSoft.MvvmLight.Messaging</project>
+// <web>http://www.galasoft.ch</web>
+// <license>
+// See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
+// </license>
+// ****************************************************************************
+
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -11,7 +26,7 @@ namespace GalaSoft.MvvmLight
     /// A base class for the ViewModel classes in the MVVM pattern.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase))]
-    public abstract class NotifyPropertyChanged : INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged
     {
         /// <summary>
         /// Occurs when a property value changes.
