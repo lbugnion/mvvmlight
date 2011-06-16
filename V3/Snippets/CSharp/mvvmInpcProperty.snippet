@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>INPC Property</Title>
+      <Author>Laurent Bugnion (GalaSoft)</Author>
+      <Description>A property raising PropertyChanged. The class using this property should inherit GalaSoft.MvvmLight.ViewModelBase.</Description>
+      <HelpUrl>http://www.galasoft.ch/mvvm/getstarted</HelpUrl>
+      <Shortcut>mvvminpc</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>Type</ID>
+          <ToolTip>Property type</ToolTip>
+          <Default>bool</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>AttributeName</ID>
+          <ToolTip>Attribute name</ToolTip>
+          <Default>_myProperty</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>InitialValue</ID>
+          <ToolTip>Initial value</ToolTip>
+          <Default>false</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>PropertyName</ID>
+          <ToolTip>Property name</ToolTip>
+          <Default>MyProperty</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[/// <summary>
+/// The <see cref="$PropertyName$" /> property's name.
+/// </summary>
+public const string $PropertyName$PropertyName = "$PropertyName$";
+
+private $Type$ $AttributeName$ = $InitialValue$;
+
+/// <summary>
+/// Gets the $PropertyName$ property.
+/// TODO Update documentation:
+/// Changes to that property's value raise the PropertyChanged event. 
+/// This property's value is broadcasted by the Messenger's default instance when it changes.
+/// </summary>
+public $Type$ $PropertyName$
+{
+    get
+    {
+        return $AttributeName$;
+    }
+
+    set
+    {
+        if ($AttributeName$ == value)
+        {
+            return;
+        }
+
+        var oldValue = $AttributeName$;
+        $AttributeName$ = value;
+
+        // Remove one of the two calls below
+        throw new NotImplementedException();
+
+        // Update bindings, no broadcast
+        RaisePropertyChanged($PropertyName$PropertyName);
+
+        // Update bindings and broadcast change using GalaSoft.MvvmLight.Messenging
+        RaisePropertyChanged($PropertyName$PropertyName, oldValue, value, true);
+    }
+}]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

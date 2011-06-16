@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>ViewModelLocator property</Title>
+      <Author>Laurent Bugnion (GalaSoft)</Author>
+      <Description>A ViewModel property to be added to a GalaSoft.MvvmLight.ViewModelLocator class.</Description>
+      <HelpUrl>http://www.galasoft.ch/mvvm/getstarted</HelpUrl>
+      <Shortcut>mvvmlocatorproperty
+      </Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ViewModelType</ID>
+          <ToolTip>Type of the view model class</ToolTip>
+          <Default>ViewModelType</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>_viewModelPropertyName</ID>
+          <ToolTip>Name of the field used to store the instance.</ToolTip>
+          <Default>_viewModelPropertyName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ViewModelPropertyName</ID>
+          <ToolTip>Name of the ViewModel property</ToolTip>
+          <Default>ViewModelPropertyName</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[private static $ViewModelType$ $_viewModelPropertyName$;
+
+/// <summary>
+/// Gets the $ViewModelPropertyName$ property.
+/// </summary>
+public static $ViewModelType$ $ViewModelPropertyName$Static
+{
+    get
+    {
+        if ($_viewModelPropertyName$ == null)
+        {
+            Create$ViewModelPropertyName$();
+        }
+
+        return $_viewModelPropertyName$;
+    }
+}
+
+/// <summary>
+/// Gets the $ViewModelPropertyName$ property.
+/// </summary>
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+    "CA1822:MarkMembersAsStatic",
+    Justification = "This non-static member is needed for data binding purposes.")]
+public $ViewModelType$ $ViewModelPropertyName$
+{
+    get
+    {
+        return $ViewModelPropertyName$Static;
+    }
+}
+
+/// <summary>
+/// Provides a deterministic way to delete the $ViewModelPropertyName$ property.
+/// </summary>
+public static void Clear$ViewModelPropertyName$()
+{
+    $_viewModelPropertyName$.Cleanup();
+    $_viewModelPropertyName$ = null;
+}
+
+/// <summary>
+/// Provides a deterministic way to create the $ViewModelPropertyName$ property.
+/// </summary>
+public static void Create$ViewModelPropertyName$()
+{
+    if ($_viewModelPropertyName$ == null)
+    {
+        $_viewModelPropertyName$ = new $ViewModelType$();
+    }
+}
+
+/// <summary>
+/// Cleans up all the resources.
+/// </summary>
+public static void Cleanup()
+{
+    Clear$ViewModelPropertyName$();
+}]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

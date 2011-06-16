@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+      <Header>
+        <SnippetTypes>
+          <SnippetType>Expansion</SnippetType>
+        </SnippetTypes>
+        <Title>ViewModelLocator property</Title>
+        <Author>Laurent Bugnion (GalaSoft)</Author>
+        <Description>A ViewModel property to be added to a GalaSoft.MvvmLight.ViewModelLocator class.</Description>
+        <HelpUrl>http://www.galasoft.ch/mvvm/getstarted</HelpUrl>
+        <Shortcut>
+          mvvmlocatorproperty
+        </Shortcut>
+      </Header>
+      <Snippet>
+        <Declarations>
+          <Literal Editable="true">
+            <ID>ViewModelType</ID>
+            <ToolTip>Type of the view model class</ToolTip>
+            <Default>ViewModelType</Default>
+            <Function>
+            </Function>
+          </Literal>
+          <Literal Editable="true">
+            <ID>_viewModelPropertyName</ID>
+            <ToolTip>Name of the field used to store the instance.</ToolTip>
+            <Default>_viewModelPropertyName</Default>
+            <Function>
+            </Function>
+          </Literal>
+          <Literal Editable="true">
+            <ID>ViewModelPropertyName</ID>
+            <ToolTip>Name of the ViewModel property</ToolTip>
+            <Default>ViewModelPropertyName</Default>
+            <Function>
+            </Function>
+          </Literal>
+        </Declarations>
+      <Code Language="VB">
+        <![CDATA[
+      ''' <summary>
+      ''' The <see cref="$ViewModelType$" /> View Model's Name and Type
+      ''' PropertyName: $ViewModelPropertyName$
+      ''' PrivateName:  $_viewModelPropertyName$
+      ''' </summary>
+        Private Shared $_viewModelPropertyName$ As $ViewModelType$
+
+''' <summary>
+''' Gets the $ViewModelPropertyName$ property.
+''' </summary>
+Public Shared ReadOnly Property $ViewModelPropertyName$Static As $ViewModelType$
+    Get
+        If $_viewModelPropertyName$ Is Nothing Then
+          Create$ViewModelPropertyName$()
+        End If
+
+        return $_viewModelPropertyName$
+    End Get
+End Property
+
+
+''' <summary>
+''' Gets the Test property.
+''' </summary>
+<System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")>
+Public ReadOnly Property $ViewModelPropertyName$ as $ViewModelType$ 
+    Get
+      return $ViewModelPropertyName$Static
+    End Get
+End Property
+
+''' <summary>
+''' Provides a deterministic way to delete the $ViewModelPropertyName$ property.
+''' </summary>
+Public Shared Sub Clear$ViewModelPropertyName$()
+    $_viewModelPropertyName$.Cleanup()
+    $_viewModelPropertyName$ = Nothing
+End Sub
+
+''' <summary>
+''' Provides a deterministic way to create the $ViewModelPropertyName$ property.
+''' </summary>
+Public Shared Sub Create$ViewModelPropertyName$()
+    If $_viewModelPropertyName$ Is Nothing Then
+            $_viewModelPropertyName$ = new $ViewModelType$()
+    End If
+End Sub
+
+''' <summary>
+''' Cleans up all the resources.
+''' </summary>
+Public Shared Sub Cleanup()
+    Clear$ViewModelPropertyName$()
+End Sub
+]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
