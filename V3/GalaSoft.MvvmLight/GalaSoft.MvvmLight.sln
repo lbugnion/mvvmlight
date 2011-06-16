@@ -1,0 +1,162 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1E1F2CD-D999-4223-8F7F-80469E0B3875}"
+	ProjectSection(SolutionItems) = preProject
+		GalaSoft.MvvmLight.vsmdi = GalaSoft.MvvmLight.vsmdi
+		GalaSoft.MvvmLight1.vsmdi = GalaSoft.MvvmLight1.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{CE22CBE5-A263-463E-8BCD-A77A60995C0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL3", "SL3", "{97B7C3DB-C0FB-4D7D-BA33-14E3F4E86BF6}"
+	ProjectSection(SolutionItems) = preProject
+		External\SL3\Microsoft.Silverlight.Testing.dll = External\SL3\Microsoft.Silverlight.Testing.dll
+		External\SL3\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll = External\SL3\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll
+		External\SL3\System.Windows.Interactivity.dll = External\SL3\System.Windows.Interactivity.dll
+		External\SL3\System.Windows.Interactivity.xml = External\SL3\System.Windows.Interactivity.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET35", "NET35", "{30B76B96-22B6-46F7-9D74-5EB2A954452A}"
+	ProjectSection(SolutionItems) = preProject
+		External\NET35\System.Windows.Interactivity.dll = External\NET35\System.Windows.Interactivity.dll
+		External\NET35\System.Windows.Interactivity.xml = External\NET35\System.Windows.Interactivity.xml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (NET35)", "GalaSoft.MvvmLight (NET35)\GalaSoft.MvvmLight (NET35).csproj", "{ADB28C09-8DE9-4006-80D5-74856EB4A48B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (SL3)", "GalaSoft.MvvmLight (SL3)\GalaSoft.MvvmLight (SL3).csproj", "{74712BA6-83BE-470C-9ED0-879DD1B08D9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (SL3)", "GalaSoft.MvvmLight.Test (SL3)\GalaSoft.MvvmLight.Test (SL3).csproj", "{3A385A3C-0569-4F3B-8D3C-EDAEFB6AA6D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (NET35)", "GalaSoft.MvvmLight.Extras (NET35)\GalaSoft.MvvmLight.Extras (NET35).csproj", "{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (SL3)", "GalaSoft.MvvmLight.Extras (SL3)\GalaSoft.MvvmLight.Extras (SL3).csproj", "{8ABB3CDF-47C4-468E-9C8A-56491C5F1C7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (WP7)", "GalaSoft.MvvmLight (WP7)\GalaSoft.MvvmLight (WP7).csproj", "{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (WP7)", "GalaSoft.MvvmLight.Extras (WP7)\GalaSoft.MvvmLight.Extras (WP7).csproj", "{54CA67DF-6987-4855-A45E-5CB7C1677E9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (SL4)", "GalaSoft.MvvmLight (SL4)\GalaSoft.MvvmLight (SL4).csproj", "{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (NET4)", "GalaSoft.MvvmLight (NET4)\GalaSoft.MvvmLight (NET4).csproj", "{E8EF2656-7165-42D1-9C46-63E66679808D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (SL4)", "GalaSoft.MvvmLight.Extras (SL4)\GalaSoft.MvvmLight.Extras (SL4).csproj", "{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (NET4)", "GalaSoft.MvvmLight.Extras (NET4)\GalaSoft.MvvmLight.Extras (NET4).csproj", "{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WP7", "WP7", "{1AB1E221-6EE2-41CF-BEC8-AAB6B613DF9D}"
+	ProjectSection(SolutionItems) = preProject
+		External\WP7\Microsoft.Silverlight.Testing.dll = External\WP7\Microsoft.Silverlight.Testing.dll
+		External\WP7\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll = External\WP7\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll
+		External\WP7\System.Windows.Interactivity.dll = External\WP7\System.Windows.Interactivity.dll
+		External\WP7\System.Windows.Interactivity.xml = External\WP7\System.Windows.Interactivity.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NET4", "NET4", "{967A19CF-5B35-40C7-B6C6-0288EDCB10B3}"
+	ProjectSection(SolutionItems) = preProject
+		External\NET4\System.Windows.Interactivity.dll = External\NET4\System.Windows.Interactivity.dll
+		External\NET4\System.Windows.Interactivity.xml = External\NET4\System.Windows.Interactivity.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL4", "SL4", "{E3327395-6DB3-4E5E-A937-ADA098DE3B3F}"
+	ProjectSection(SolutionItems) = preProject
+		External\SL4\Microsoft.Silverlight.Testing.dll = External\SL4\Microsoft.Silverlight.Testing.dll
+		External\SL4\Microsoft.Silverlight.Testing.xml = External\SL4\Microsoft.Silverlight.Testing.xml
+		External\SL4\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll = External\SL4\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll
+		External\SL4\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.xml = External\SL4\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.xml
+		External\SL4\System.Windows.Interactivity.dll = External\SL4\System.Windows.Interactivity.dll
+		External\SL4\System.Windows.Interactivity.xml = External\SL4\System.Windows.Interactivity.xml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (SL4)", "GalaSoft.MvvmLight.Test (SL4)\GalaSoft.MvvmLight.Test (SL4).csproj", "{540219BD-EBEA-4956-AAF7-CA1A87B1D177}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (WP71)", "GalaSoft.MvvmLight (WP71)\GalaSoft.MvvmLight (WP71).csproj", "{7BC3C518-5E94-4FC3-92B5-01CC004D0936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (WP71)", "GalaSoft.MvvmLight.Extras (WP71)\GalaSoft.MvvmLight.Extras (WP71).csproj", "{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WP71", "WP71", "{FAF8137C-BD9F-45A5-8142-4D7D81C928CB}"
+	ProjectSection(SolutionItems) = preProject
+		External\WP71\System.Windows.Interactivity.dll = External\WP71\System.Windows.Interactivity.dll
+		External\WP71\System.Windows.Interactivity.xml = External\WP71\System.Windows.Interactivity.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = GalaSoft.MvvmLight1.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADB28C09-8DE9-4006-80D5-74856EB4A48B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB28C09-8DE9-4006-80D5-74856EB4A48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB28C09-8DE9-4006-80D5-74856EB4A48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB28C09-8DE9-4006-80D5-74856EB4A48B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74712BA6-83BE-470C-9ED0-879DD1B08D9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74712BA6-83BE-470C-9ED0-879DD1B08D9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74712BA6-83BE-470C-9ED0-879DD1B08D9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74712BA6-83BE-470C-9ED0-879DD1B08D9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A385A3C-0569-4F3B-8D3C-EDAEFB6AA6D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A385A3C-0569-4F3B-8D3C-EDAEFB6AA6D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A385A3C-0569-4F3B-8D3C-EDAEFB6AA6D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A385A3C-0569-4F3B-8D3C-EDAEFB6AA6D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ABB3CDF-47C4-468E-9C8A-56491C5F1C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ABB3CDF-47C4-468E-9C8A-56491C5F1C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ABB3CDF-47C4-468E-9C8A-56491C5F1C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ABB3CDF-47C4-468E-9C8A-56491C5F1C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54CA67DF-6987-4855-A45E-5CB7C1677E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54CA67DF-6987-4855-A45E-5CB7C1677E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54CA67DF-6987-4855-A45E-5CB7C1677E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54CA67DF-6987-4855-A45E-5CB7C1677E9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A41BAF-44C7-4F4E-9E7C-B9427414AEA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8EF2656-7165-42D1-9C46-63E66679808D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8EF2656-7165-42D1-9C46-63E66679808D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8EF2656-7165-42D1-9C46-63E66679808D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8EF2656-7165-42D1-9C46-63E66679808D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC59E77A-1843-4293-B7CC-1BC84F79ABB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{540219BD-EBEA-4956-AAF7-CA1A87B1D177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{540219BD-EBEA-4956-AAF7-CA1A87B1D177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{540219BD-EBEA-4956-AAF7-CA1A87B1D177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{540219BD-EBEA-4956-AAF7-CA1A87B1D177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BC3C518-5E94-4FC3-92B5-01CC004D0936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BC3C518-5E94-4FC3-92B5-01CC004D0936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BC3C518-5E94-4FC3-92B5-01CC004D0936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BC3C518-5E94-4FC3-92B5-01CC004D0936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{97B7C3DB-C0FB-4D7D-BA33-14E3F4E86BF6} = {CE22CBE5-A263-463E-8BCD-A77A60995C0C}
+		{30B76B96-22B6-46F7-9D74-5EB2A954452A} = {CE22CBE5-A263-463E-8BCD-A77A60995C0C}
+		{1AB1E221-6EE2-41CF-BEC8-AAB6B613DF9D} = {CE22CBE5-A263-463E-8BCD-A77A60995C0C}
+		{967A19CF-5B35-40C7-B6C6-0288EDCB10B3} = {CE22CBE5-A263-463E-8BCD-A77A60995C0C}
+		{E3327395-6DB3-4E5E-A937-ADA098DE3B3F} = {CE22CBE5-A263-463E-8BCD-A77A60995C0C}
+		{FAF8137C-BD9F-45A5-8142-4D7D81C928CB} = {CE22CBE5-A263-463E-8BCD-A77A60995C0C}
+	EndGlobalSection
+EndGlobal
