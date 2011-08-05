@@ -44,3 +44,4 @@ glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (WP71)/
 glob:*.sln.docstates
 glob:Snippets/_ReSharper.Snippets/
 glob:V3/Installer/_ReSharper.Installer/
+glob:*.docstates
