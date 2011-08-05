@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Dependency Property (SL)</Title>
+      <Author>Laurent Bugnion (GalaSoft)</Author>
+      <Description>Registers a DependencyProperty (Silverlight)</Description>
+      <HelpUrl>http://www.galasoft.ch/mvvm/getstarted</HelpUrl>
+      <Shortcut>mvvmslpropdp</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>int</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>property</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>MyProperty</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this Property.  Typically the class that it is declared in.</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>0</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[/// <summary>
+/// The <see cref="$property$" /> dependency property's name.
+/// </summary>
+public const string $property$PropertyName = "$property$";
+
+/// <summary>
+/// Gets or sets the value of the <see cref="$property$" />
+/// property. This is a dependency property.
+/// </summary>
+public $type$ $property$
+{
+    get
+    {
+        return ($type$)GetValue($property$Property);
+    }
+    set
+    {
+        SetValue($property$Property, value);
+    }
+}
+
+/// <summary>
+/// Identifies the <see cref="$property$" /> dependency property.
+/// </summary>
+public static readonly DependencyProperty $property$Property = DependencyProperty.Register(
+    $property$PropertyName, 
+    typeof($type$), 
+    typeof($ownerclass$), 
+    new PropertyMetadata($defaultvalue$));]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

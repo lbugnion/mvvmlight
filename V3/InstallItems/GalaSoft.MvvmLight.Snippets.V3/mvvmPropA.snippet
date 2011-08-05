@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Attached Property (WPF)</Title>
+      <Author>Laurent Bugnion (GalaSoft)</Author>
+      <Description>Registers an Attached DependencyProperty (WPF)</Description>
+      <HelpUrl>http://www.galasoft.ch/mvvm/getstarted</HelpUrl>
+      <Shortcut>mvvmpropa</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>property</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>MyProperty</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>int</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this Property.  Typically the class that it is declared in.</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>0</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[/// <summary>
+/// The $property$ attached property's name.
+/// </summary>
+public const string $property$PropertyName = "$property$";
+
+/// <summary>
+/// Gets the value of the $property$ attached property 
+/// for a given dependency object.
+/// </summary>
+/// <param name="obj">The object for which the property value
+/// is read.</param>
+/// <returns>The value of the $property$ property of the specified object.</returns>
+public static $type$ Get$property$(DependencyObject obj)
+{
+    return ($type$)obj.GetValue($property$Property);
+}
+
+/// <summary>
+/// Sets the value of the $property$ attached property
+/// for a given dependency object. 
+/// </summary>
+/// <param name="obj">The object to which the property value
+/// is written.</param>
+/// <param name="value">Sets the $property$ value of the specified object.</param>
+public static void Set$property$(DependencyObject obj, $type$ value)
+{
+    obj.SetValue($property$Property, value);
+}
+
+/// <summary>
+/// Identifies the $property$ attached property.
+/// </summary>
+public static readonly DependencyProperty $property$Property = DependencyProperty.RegisterAttached(
+    $property$PropertyName, 
+    typeof($type$), 
+    typeof($ownerclass$), 
+    new UIPropertyMetadata($defaultvalue$));]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
