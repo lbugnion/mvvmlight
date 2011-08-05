@@ -8,7 +8,7 @@
         <PreviewImage>MvvmLight.png</PreviewImage>
         <TemplateID>Microsoft.WindowsPhone.CSharp.GalaSoft.MvvmLight.WP7</TemplateID>
         <ProjectType>CSharp</ProjectType>
-        <ProjectSubType>Silverlight</ProjectSubType>
+        <ProjectSubType>WindowsPhone</ProjectSubType>
         <CreateNewFolder>true</CreateNewFolder>
         <DefaultName>MvvmLight</DefaultName>
         <ProvideDefaultName>true</ProvideDefaultName>

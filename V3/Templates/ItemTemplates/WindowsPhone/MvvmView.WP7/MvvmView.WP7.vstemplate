@@ -2,15 +2,19 @@
             xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
             Type="Item">
     <TemplateData>
-        <Name>MvvmView (SL)</Name>
+        <Name>MvvmView (WP7)</Name>
         <Description>A view used in a Silverlight MVVM application (by GalaSoft Laurent Bugnion)</Description>
         <Icon>MvvmLight.ico</Icon>
         <PreviewImage>MvvmLight.png</PreviewImage>
         <ProjectType>CSharp</ProjectType>
-        <ProjectSubType>Silverlight</ProjectSubType>
+		<ProjectSubType>WindowsPhone</ProjectSubType>
         <DefaultName>MvvmView.xaml</DefaultName>
         <SortOrder>2</SortOrder>
         <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+		<TemplateGroupID>Windows Phone</TemplateGroupID>
+		<MinFrameworkVersion>4.0</MinFrameworkVersion>
+		<MaxFrameworkVersion>5.0</MaxFrameworkVersion>
+		<RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
     </TemplateData>
     <TemplateContent>
         <ProjectItem SubType="Form"
