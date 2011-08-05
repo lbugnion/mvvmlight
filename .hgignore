@@ -24,6 +24,7 @@ syntax: glob
 *.lib
 *.sbr
 *.scc
+*.sdf
 [Bb]in
 [Dd]ebug*/
 obj/
@@ -40,3 +41,6 @@ glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (SL3)/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (SL4)/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (WP7)/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (WP71)/
+glob:*.sln.docstates
+glob:Snippets/_ReSharper.Snippets/
+glob:V3/Installer/_ReSharper.Installer/

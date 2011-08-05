@@ -7,7 +7,11 @@
         <Icon>MvvmLight.ico</Icon>
         <PreviewImage>MvvmLight.png</PreviewImage>
         <ProjectType>CSharp</ProjectType>
-        <ProjectSubType>Silverlight for Windows Phone</ProjectSubType>
+		<ProjectSubType>WindowsPhone</ProjectSubType>
+		<TemplateGroupID>Windows Phone</TemplateGroupID>
+		<MinFrameworkVersion>4.0</MinFrameworkVersion>
+		<MaxFrameworkVersion>5.0</MaxFrameworkVersion>
+		<RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
         <DefaultName>MvvmViewModel.cs</DefaultName>
         <SortOrder>1</SortOrder>
         <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>

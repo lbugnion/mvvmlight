@@ -1,1 +1,0 @@
-- For Blend 3, the templates must not be zipped. Instead, install the folders directly as is.
