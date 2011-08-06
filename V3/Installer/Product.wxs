@@ -112,7 +112,7 @@
                 <Directory Id="INSTALLLOCATION"
                            Name="Laurent Bugnion (GalaSoft)">
                     <Directory Id="PRODUCTDIR"
-                               Name="MvvmLight">
+                               Name="Mvvm Light Toolkit">
                         <Directory Id="BINARIES"
                                    Name="Binaries">
                             <Directory Id="SILVERLIGHT3"
