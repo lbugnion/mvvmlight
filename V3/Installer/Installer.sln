@@ -1,7 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "Installer.wixproj", "{9A2E2077-E1E9-491E-9306-DD8A172B5E19}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "Installer\Installer.wixproj", "{9A2E2077-E1E9-491E-9306-DD8A172B5E19}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CA15089-2685-498E-B0E1-1B020A63C3E7} = {4CA15089-2685-498E-B0E1-1B020A63C3E7}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModifyRegistryKey", "ModifyRegistryKey\ModifyRegistryKey.csproj", "{4CA15089-2685-498E-B0E1-1B020A63C3E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +18,10 @@ Global
 		{9A2E2077-E1E9-491E-9306-DD8A172B5E19}.Debug|x86.Build.0 = Debug|x86
 		{9A2E2077-E1E9-491E-9306-DD8A172B5E19}.Release|x86.ActiveCfg = Release|x86
 		{9A2E2077-E1E9-491E-9306-DD8A172B5E19}.Release|x86.Build.0 = Release|x86
+		{4CA15089-2685-498E-B0E1-1B020A63C3E7}.Debug|x86.ActiveCfg = Debug|x86
+		{4CA15089-2685-498E-B0E1-1B020A63C3E7}.Debug|x86.Build.0 = Debug|x86
+		{4CA15089-2685-498E-B0E1-1B020A63C3E7}.Release|x86.ActiveCfg = Release|x86
+		{4CA15089-2685-498E-B0E1-1B020A63C3E7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharp", "CSharp", "{D2F1F766-6230-4F5B-945B-54E7BD920FC6}"
+	ProjectSection(SolutionItems) = preProject
+		CSharp\mvvmInpc.snippet = CSharp\mvvmInpc.snippet
+		CSharp\mvvmInpcLambda.snippet = CSharp\mvvmInpcLambda.snippet
+		CSharp\mvvmInpcLambdaMsg.snippet = CSharp\mvvmInpcLambdaMsg.snippet
+		CSharp\mvvmInpcMsg.snippet = CSharp\mvvmInpcMsg.snippet
+		CSharp\mvvmInpcSet.snippet = CSharp\mvvmInpcSet.snippet
+		CSharp\mvvmInpcSetLambda.snippet = CSharp\mvvmInpcSetLambda.snippet
+		CSharp\mvvmInpcSetLambdaMsg.snippet = CSharp\mvvmInpcSetLambdaMsg.snippet
+		CSharp\mvvmInpcSetMsg.snippet = CSharp\mvvmInpcSetMsg.snippet
+		CSharp\mvvmPropA.snippet = CSharp\mvvmPropA.snippet
+		CSharp\mvvmPropDP.snippet = CSharp\mvvmPropDP.snippet
+		CSharp\mvvmRelay.snippet = CSharp\mvvmRelay.snippet
+		CSharp\mvvmRelayCanExecute.snippet = CSharp\mvvmRelayCanExecute.snippet
+		CSharp\mvvmRelayCanExecuteGeneric.snippet = CSharp\mvvmRelayCanExecuteGeneric.snippet
+		CSharp\mvvmRelayGeneric.snippet = CSharp\mvvmRelayGeneric.snippet
+		CSharp\mvvmSLPropA.snippet = CSharp\mvvmSLPropA.snippet
+		CSharp\mvvmSLPropDP.snippet = CSharp\mvvmSLPropDP.snippet
+		CSharp\mvvmViewModelLocatorProperty.snippet = CSharp\mvvmViewModelLocatorProperty.snippet
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
