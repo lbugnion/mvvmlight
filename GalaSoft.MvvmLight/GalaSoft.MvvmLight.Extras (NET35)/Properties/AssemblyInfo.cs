@@ -11,13 +11,14 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0016</LastBaseLevel>
+// <LastBaseLevel>BL0017</LastBaseLevel>
 // ****************************************************************************
 
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Windows.Markup;
 
 [assembly: AssemblyTitle("GalaSoft.MvvmLight.Extras")]
 [assembly: AssemblyDescription("Extras components to implement Model-View-ViewModel applications in WPF, Silverlight and Windows Phone 7")]
@@ -28,11 +29,13 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
+[assembly: XmlnsDefinition("http://www.galasoft.ch/mvvmlight", "GalaSoft.MvvmLight.Command")]
+
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
 ////[assembly: AssemblyVersion("4.0.0.*")]
-[assembly: AssemblyFileVersion("4.0.0.0/BL0016")]
+[assembly: AssemblyFileVersion("4.0.0.0/BL0017")]
 
 // FxCop
 [module: SuppressMessage("Microsoft.Naming",

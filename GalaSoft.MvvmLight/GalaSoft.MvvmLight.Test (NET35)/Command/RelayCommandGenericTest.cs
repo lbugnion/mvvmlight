@@ -114,5 +114,28 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             Assert.AreEqual(executed + parameter, dummy);
         }
+
+        private bool _canExecute = true;
+
+        [TestMethod]
+        public void TestCallingExecuteWhenCanExecuteIsFalse()
+        {
+            var result = string.Empty;
+            const string value1 = "Hello";
+            const string value2 = "World";
+
+            var command = new RelayCommand<string>(
+                s => result = s,
+                s => _canExecute);
+
+            command.Execute(value1);
+            Assert.AreEqual(value1, result);
+            _canExecute = false;
+            command.Execute(value2);
+            Assert.AreEqual(value1, result);
+            _canExecute = true;
+            command.Execute(value2);
+            Assert.AreEqual(value2, result);
+        }
     }
 }

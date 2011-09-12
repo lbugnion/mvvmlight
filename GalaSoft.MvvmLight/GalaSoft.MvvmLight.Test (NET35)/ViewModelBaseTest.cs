@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Test.ViewModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -208,35 +210,6 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
-        public void TestPropertyChangedSendInline()
-        {
-            var receivedDateTimeLocal = DateTime.MinValue;
-
-            var vm = new TestViewModelInlinePropertyChanged();
-            vm.PropertyChanged += (s, e) =>
-            {
-                if (e.PropertyName == "LastChanged1")
-                {
-                    receivedDateTimeLocal = vm.LastChanged1;
-                }
-            };
-
-            var now = DateTime.Now;
-            vm.LastChanged1 = now;
-
-            Assert.AreEqual(now, vm.LastChanged1);
-            Assert.AreEqual(now, receivedDateTimeLocal);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void TestPropertyChangedSendInlineOutOfSetter()
-        {
-            var vm = new TestViewModelInlinePropertyChanged();
-            vm.RaisePropertyChangedInlineOutOfPropertySetter();
-        }
-
-        [TestMethod]
 #if DEBUG
         [ExpectedException(typeof(ArgumentException))]
 #endif
@@ -266,6 +239,150 @@ namespace GalaSoft.MvvmLight.Test
             vm.RaisePropertyChanged(ViewModelStub.RealPropertyPropertyName + "1");
 
             Assert.IsTrue(invalidPropertyNameReceived);
+        }
+
+        [TestMethod]
+        public void TestRaiseWithEmptyString()
+        {
+            var vm = new TestViewModel();
+
+            var value1 = "Hello";
+            var value2 = "World";
+
+            var textBox1 = new TextBox();
+            var textBox2 = new TextBox();
+
+            var binding1 = new Binding("TestProperty1")
+            {
+                Source = vm,
+            };
+
+            var binding2 = new Binding("TestProperty2")
+            {
+                Source = vm,
+            };
+
+            BindingOperations.SetBinding(textBox1, TextBox.TextProperty, binding1);
+            BindingOperations.SetBinding(textBox2, TextBox.TextProperty, binding2);
+
+            Assert.AreEqual(string.Empty, textBox1.Text);
+            Assert.AreEqual(string.Empty, textBox2.Text);
+
+            vm.RaiseEmptyPropertyChanged(value1, value2);
+
+            Assert.AreEqual(value1, textBox1.Text);
+            Assert.AreEqual(value2, textBox2.Text);
+        }
+
+        [TestMethod]
+        public void TestGettingMessengerInstanceWhenNotSet()
+        {
+            var messenger = new Messenger();
+            var vm1 = new TestViewModel(messenger);
+            var vm2 = new TestViewModel();
+
+            Assert.AreSame(messenger, vm1.GetMessengerInstance());
+            Assert.AreSame(Messenger.Default, vm2.GetMessengerInstance());
+        }
+
+        [TestMethod]
+        public void TestSetBroadcast()
+        {
+            Messenger.Reset();
+
+            var vm = new ViewModelStub();
+            const int expectedValue = 1234;
+            var receivedValue = 0;
+            var receivedValueWithMessenger = 0;
+
+            Messenger.Default.Register<PropertyChangedMessage<int>>(this, msg => receivedValueWithMessenger = msg.NewValue);
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetBroadcastPropertyName)
+                {
+                    receivedValue = expectedValue;
+                }
+            };
+
+            vm.PropertyWithSetBroadcast = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValue);
+            Assert.AreEqual(expectedValue, receivedValueWithMessenger);
+        }
+
+        [TestMethod]
+        public void TestSetNoBroadcast()
+        {
+            Messenger.Reset();
+
+            var vm = new ViewModelStub();
+            const int expectedValue = 1234;
+            var receivedValue = 0;
+            var receivedValueWithMessenger = 0;
+
+            Messenger.Default.Register<PropertyChangedMessage<int>>(this, msg => receivedValueWithMessenger = msg.NewValue);
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetNoBroadcastPropertyName)
+                {
+                    receivedValue = expectedValue;
+                }
+            };
+
+            vm.PropertyWithSetNoBroadcast = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValue);
+            Assert.AreEqual(0, receivedValueWithMessenger);
+        }
+
+        [TestMethod]
+        public void TestSetWithStringBroadcast()
+        {
+            Messenger.Reset();
+
+            var vm = new ViewModelStub();
+            const int expectedValue = 1234;
+            var receivedValue = 0;
+            var receivedValueWithMessenger = 0;
+
+            Messenger.Default.Register<PropertyChangedMessage<int>>(this, msg => receivedValueWithMessenger = msg.NewValue);
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetBroadcastPropertyName)
+                {
+                    receivedValue = expectedValue;
+                }
+            };
+
+            vm.PropertyWithStringSetBroadcast = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValue);
+            Assert.AreEqual(expectedValue, receivedValueWithMessenger);
+        }
+
+        [TestMethod]
+        public void TestSetWithStringNoBroadcast()
+        {
+            Messenger.Reset();
+
+            var vm = new ViewModelStub();
+            const int expectedValue = 1234;
+            var receivedValue = 0;
+            var receivedValueWithMessenger = 0;
+
+            Messenger.Default.Register<PropertyChangedMessage<int>>(this, msg => receivedValueWithMessenger = msg.NewValue);
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetNoBroadcastPropertyName)
+                {
+                    receivedValue = expectedValue;
+                }
+            };
+
+            vm.PropertyWithStringSetNoBroadcast = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValue);
+            Assert.AreEqual(0, receivedValueWithMessenger);
         }
     }
 }

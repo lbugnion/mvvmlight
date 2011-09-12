@@ -28,7 +28,7 @@ namespace $rootnamespace$
     /// </summary>
     public class $safeitemname$
     {
-        static ViewModelLocator()
+        static $safeitemname$()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 

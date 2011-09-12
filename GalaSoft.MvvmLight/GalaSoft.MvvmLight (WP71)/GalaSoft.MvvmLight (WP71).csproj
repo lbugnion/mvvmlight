@@ -111,6 +111,9 @@
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Threading\DispatcherHelper.cs">
+      <Link>Threading\DispatcherHelper.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ViewModelBase.cs">
       <Link>ViewModelBase.cs</Link>
     </Compile>

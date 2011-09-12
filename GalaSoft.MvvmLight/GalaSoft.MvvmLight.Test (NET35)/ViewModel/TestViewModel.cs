@@ -92,6 +92,66 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             }
         }
 
+        /// <summary>
+        /// The <see cref="TestProperty1" /> property's name.
+        /// </summary>
+        public const string TestProperty1PropertyName = "TestProperty1";
+
+        private string _test1 = string.Empty;
+
+        /// <summary>
+        /// Gets the TestProperty1 property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string TestProperty1
+        {
+            get
+            {
+                return _test1;
+            }
+
+            set
+            {
+                if (_test1 == value)
+                {
+                    return;
+                }
+
+                _test1 = value;
+                RaisePropertyChanged(TestProperty1PropertyName);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="TestProperty2" /> property's name.
+        /// </summary>
+        public const string TestProperty2PropertyName = "TestProperty2";
+
+        private string _test2 = string.Empty;
+
+        /// <summary>
+        /// Gets the TestProperty2 property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string TestProperty2
+        {
+            get
+            {
+                return _test2;
+            }
+
+            set
+            {
+                if (_test2 == value)
+                {
+                    return;
+                }
+
+                _test2 = value;
+                RaisePropertyChanged(TestProperty2PropertyName);
+            }
+        }
+
         internal void HandleStringMessage(string message)
         {
             ReceivedContent = message;
@@ -111,6 +171,19 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
         {
             CleanupWasCalled = true;
             base.Cleanup();
+        }
+
+        public void RaiseEmptyPropertyChanged(string value1, string value2)
+        {
+            _test1 = value1;
+            _test2 = value2;
+
+            RaisePropertyChanged(string.Empty);
+        }
+
+        public IMessenger GetMessengerInstance()
+        {
+            return MessengerInstance;
         }
     }
 }

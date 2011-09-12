@@ -11,10 +11,11 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0011</LastBaseLevel>
+// <LastBaseLevel>BL0012</LastBaseLevel>
 // ****************************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -31,8 +32,8 @@ namespace GalaSoft.MvvmLight
     /// A base class for the ViewModel classes in the MVVM pattern.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase),
-    ////  VersionString = "4.0.0.0/BL0011",
-    ////  DateString = "201104101020",
+    ////  VersionString = "4.0.0.0/BL0012",
+    ////  DateString = "201109042117",
     ////  Description = "A base class for the ViewModel classes in the MVVM pattern.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -227,11 +228,10 @@ namespace GalaSoft.MvvmLight
                 || broadcast)
             {
                 var body = propertyExpression.Body as MemberExpression;
-                var expression = body.Expression as ConstantExpression;
 
                 if (handler != null)
                 {
-                    handler(expression.Value, new PropertyChangedEventArgs(body.Member.Name));
+                    handler(this, new PropertyChangedEventArgs(body.Member.Name));
                 }
 
                 if (broadcast)
@@ -239,6 +239,68 @@ namespace GalaSoft.MvvmLight
                     Broadcast(oldValue, newValue, body.Member.Name);
                 }
             }
+        }
+
+        /// <summary>
+        /// Assigns a new value to the property. Then, raises the
+        /// PropertyChanged event if needed, and broadcasts a
+        /// PropertyChangedMessage using the Messenger instance (or the
+        /// static default instance if no Messenger instance is available). 
+        /// </summary>
+        /// <typeparam name="T">The type of the property that
+        /// changed.</typeparam>
+        /// <param name="propertyExpression">An expression identifying the property
+        /// that changed.</param>
+        /// <param name="field">The field storing the property's value.</param>
+        /// <param name="newValue">The property's value after the change
+        /// occurred.</param>
+        /// <param name="broadcast">If true, a PropertyChangedMessage will
+        /// be broadcasted. If false, only the event will be raised.</param>
+        protected void Set<T>(
+            Expression<Func<T>> propertyExpression,
+            ref T field,
+            T newValue,
+            bool broadcast)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, newValue))
+            {
+                return;
+            }
+
+            var oldValue = field;
+            field = newValue;
+            RaisePropertyChanged(propertyExpression, oldValue, field, broadcast);
+        }
+
+        /// <summary>
+        /// Assigns a new value to the property. Then, raises the
+        /// PropertyChanged event if needed, and broadcasts a
+        /// PropertyChangedMessage using the Messenger instance (or the
+        /// static default instance if no Messenger instance is available). 
+        /// </summary>
+        /// <typeparam name="T">The type of the property that
+        /// changed.</typeparam>
+        /// <param name="propertyName">The name of the property that
+        /// changed.</param>
+        /// <param name="field">The field storing the property's value.</param>
+        /// <param name="newValue">The property's value after the change
+        /// occurred.</param>
+        /// <param name="broadcast">If true, a PropertyChangedMessage will
+        /// be broadcasted. If false, only the event will be raised.</param>
+        protected void Set<T>(
+            string propertyName,
+            ref T field,
+            T newValue,
+            bool broadcast)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, newValue))
+            {
+                return;
+            }
+
+            var oldValue = field;
+            field = newValue;
+            RaisePropertyChanged(propertyName, oldValue, field, broadcast);
         }
     }
 }

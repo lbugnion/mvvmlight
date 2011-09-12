@@ -76,7 +76,7 @@
     <DocumentationFile>Bin\Release\GalaSoft.MvvmLight.Extras.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b09c1d25ac742833, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\External\SL3\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -101,9 +101,6 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Extras (NET35)\Command\EventToCommand.cs">
       <Link>Command\EventToCommand.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Extras (NET35)\Threading\DispatcherHelper.cs">
-      <Link>Threading\DispatcherHelper.cs</Link>
     </Compile>
     <Compile Include="Command\EventToCommand.SL.cs" />
     <Compile Include="Helpers\BindingListener.cs" />

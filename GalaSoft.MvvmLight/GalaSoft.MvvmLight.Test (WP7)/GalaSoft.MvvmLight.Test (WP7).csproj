@@ -76,8 +76,14 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\RelayCommandTest.cs">
       <Link>Command\RelayCommandTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestContainsInstance.cs">
-      <Link>Ioc\SimpleIocTestContainsInstance.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestContains.cs">
+      <Link>Ioc\SimpleIocTestContains.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestCreationTime.cs">
+      <Link>Ioc\SimpleIocTestCreationTime.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestIsRegistered.cs">
+      <Link>Ioc\SimpleIocTestIsRegistered.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestMultipleConstructors.cs">
       <Link>Ioc\SimpleIocTestMultipleConstructors.cs</Link>
@@ -154,6 +160,9 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClass6.cs">
       <Link>Stubs\TestClass6.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClassForCreationTime.cs">
+      <Link>Stubs\TestClassForCreationTime.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClassWithMultiConstructors.cs">
       <Link>Stubs\TestClassWithMultiConstructors.cs</Link>
     </Compile>
@@ -168,9 +177,6 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModel.cs">
       <Link>ViewModel\TestViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModelInlinePropertyChanged.cs">
-      <Link>ViewModel\TestViewModelInlinePropertyChanged.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModelNoMagicString.cs">
       <Link>ViewModel\TestViewModelNoMagicString.cs</Link>

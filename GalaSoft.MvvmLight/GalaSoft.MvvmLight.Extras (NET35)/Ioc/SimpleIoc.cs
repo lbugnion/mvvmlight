@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0001</LastBaseLevel>
+// <LastBaseLevel>BL0002</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -31,8 +31,8 @@ namespace GalaSoft.MvvmLight.Ioc
     /// been extended with additional features.
     /// </summary>
     //// [ClassInfo(typeof(SimpleIoc),
-    ////  VersionString = "4.0.0.0/BL0001",
-    ////  DateString = "201104101020",
+    ////  VersionString = "4.0.0.0/BL0002",
+    ////  DateString = "201109042117",
     ////  Description = "A very simple IOC container.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -44,8 +44,12 @@ namespace GalaSoft.MvvmLight.Ioc
         private readonly string _uniqueKey = Guid.NewGuid().ToString();
 
         private static SimpleIoc _default;
-        private Dictionary<Type, Type> _registration = new Dictionary<Type, Type>();
-        private Dictionary<Type, Dictionary<string, object>> _rot = new Dictionary<Type, Dictionary<string, object>>();
+        private readonly Dictionary<Type, Type> _interfaceToClassMap 
+            = new Dictionary<Type, Type>();
+        private readonly Dictionary<Type, Dictionary<string, Delegate>> _factories
+            = new Dictionary<Type, Dictionary<string, Delegate>>();
+        private readonly Dictionary<Type, Dictionary<string, object>> _instancesRegistry
+            = new Dictionary<Type, Dictionary<string, object>>();
 
         /// <summary>
         /// This class' default instance.
@@ -80,7 +84,7 @@ namespace GalaSoft.MvvmLight.Ioc
         {
             var classType = typeof (TClass);
 
-            if (!_rot.ContainsKey(classType))
+            if (!_instancesRegistry.ContainsKey(classType))
             {
                 return false;
             }
@@ -90,7 +94,26 @@ namespace GalaSoft.MvvmLight.Ioc
                 return true;
             }
             
-            return _rot[classType].ContainsKey(key);
+            return _instancesRegistry[classType].ContainsKey(key);
+        }
+
+        public bool IsRegistered<T>()
+        {
+            var classType = typeof(T);
+            return _interfaceToClassMap.ContainsKey(classType);
+        }
+
+        public bool IsRegistered<T>(string key)
+        {
+            var classType = typeof(T);
+
+            if (!_interfaceToClassMap.ContainsKey(classType)
+                || !_factories.ContainsKey(classType))
+            {
+                return false;
+            }
+
+            return _factories[classType].ContainsKey(key);
         }
 
         /// <summary>
@@ -109,17 +132,26 @@ namespace GalaSoft.MvvmLight.Ioc
                 var interfaceType = typeof (TInterface);
                 var classType = typeof (TClass);
 
-                if (_registration.ContainsKey(interfaceType))
+                if (_interfaceToClassMap.ContainsKey(interfaceType))
                 {
-                    if (_registration[interfaceType] != classType)
+                    if (_interfaceToClassMap[interfaceType] != classType)
                     {
-                        _registration[interfaceType] = classType;
-                        _rot[interfaceType] = new Dictionary<string, object>();
+                        if (_instancesRegistry.ContainsKey(interfaceType))
+                        {
+                            _instancesRegistry.Remove(interfaceType);
+                        }
                     }
+                    
+                    _interfaceToClassMap[interfaceType] = classType;
                 }
                 else
                 {
-                    _registration.Add(interfaceType, classType);
+                    _interfaceToClassMap.Add(interfaceType, classType);
+                }
+
+                if (_factories.ContainsKey(interfaceType))
+                {
+                    _factories.Remove(interfaceType);
                 }
             }
         }
@@ -143,13 +175,18 @@ namespace GalaSoft.MvvmLight.Ioc
                     throw new ArgumentException("An interface cannot be registered alone");
                 }
 
-                if (_registration.ContainsKey(classType))
+                if (_interfaceToClassMap.ContainsKey(classType))
                 {
-                    _registration[classType] = null;
+                    _interfaceToClassMap[classType] = null;
                 }
                 else
                 {
-                    _registration.Add(classType, null);
+                    _interfaceToClassMap.Add(classType, null);
+                }
+
+                if (_factories.ContainsKey(classType))
+                {
+                    _factories.Remove(classType);
                 }
             }
         }
@@ -178,34 +215,43 @@ namespace GalaSoft.MvvmLight.Ioc
             {
                 var classType = typeof (TClass);
 
-                if (_registration.ContainsKey(classType))
+                if (_interfaceToClassMap.ContainsKey(classType))
                 {
-                    _registration[classType] = null;
+                    _interfaceToClassMap[classType] = null;
                 }
                 else
                 {
-                    _registration.Add(classType, null);
+                    _interfaceToClassMap.Add(classType, null);
                 }
 
-                Dictionary<string, object> list;
-
-                if (_rot.ContainsKey(classType))
+                if (_instancesRegistry.ContainsKey(classType)
+                    && _instancesRegistry[classType].ContainsKey(key))
                 {
-                    list = _rot[classType];
+                    _instancesRegistry[classType].Remove(key);
+                }
+
+                if (_factories.ContainsKey(classType))
+                {
+                    if (_factories[classType].ContainsKey(key))
+                    {
+                        _factories[classType][key] = factory;
+                    }
+                    else
+                    {
+                        _factories[classType].Add(key, factory);
+                    }
                 }
                 else
                 {
-                    list = new Dictionary<string, object>();
-                    _rot.Add(classType, list);
-                }
+                    var list = new Dictionary<string, Delegate>
+                    {
+                        {
+                            key, 
+                            factory
+                        }
+                    };
 
-                if (list.ContainsKey(key))
-                {
-                    list[key] = factory();
-                }
-                else
-                {
-                    list.Add(key, factory());
+                    _factories.Add(classType, list);
                 }
             }
         }
@@ -216,8 +262,9 @@ namespace GalaSoft.MvvmLight.Ioc
         /// </summary>
         public void Reset()
         {
-            _registration = new Dictionary<Type, Type>();
-            _rot = new Dictionary<Type, Dictionary<string, object>>();
+            _interfaceToClassMap.Clear();
+            _instancesRegistry.Clear();
+            _factories.Clear();
         }
 
         /// <summary>
@@ -235,14 +282,19 @@ namespace GalaSoft.MvvmLight.Ioc
             {
                 var classType = typeof (TClass);
 
-                if (_rot.ContainsKey(classType))
+                if (_instancesRegistry.ContainsKey(classType))
                 {
-                    _rot.Remove(classType);
+                    _instancesRegistry.Remove(classType);
                 }
 
-                if (_registration.ContainsKey(classType))
+                if (_interfaceToClassMap.ContainsKey(classType))
                 {
-                    _registration.Remove(classType);
+                    _interfaceToClassMap.Remove(classType);
+                }
+
+                if (_factories.ContainsKey(classType))
+                {
+                    _factories.Remove(classType);
                 }
             }
         }
@@ -259,14 +311,24 @@ namespace GalaSoft.MvvmLight.Ioc
             {
                 var classType = typeof (TClass);
 
-                if (_rot.ContainsKey(classType))
+                if (_instancesRegistry.ContainsKey(classType))
                 {
-                    var list = _rot[classType];
+                    var list = _instancesRegistry[classType];
 
                     var pairs = list.Where(pair => pair.Value == instance).ToList();
                     for (var index = 0; index < pairs.Count(); index++)
                     {
-                        list.Remove(pairs[index].Key);
+                        var key = pairs[index].Key;
+
+                        list.Remove(key);
+
+                        if (_factories.ContainsKey(classType))
+                        {
+                            if (_factories[classType].ContainsKey(key))
+                            {
+                                _factories[classType].Remove(key);
+                            }
+                        }
                     }
                 }
             }
@@ -288,14 +350,22 @@ namespace GalaSoft.MvvmLight.Ioc
             {
                 var classType = typeof (TClass);
 
-                if (_rot.ContainsKey(classType))
+                if (_instancesRegistry.ContainsKey(classType))
                 {
-                    var list = _rot[classType];
+                    var list = _instancesRegistry[classType];
 
                     var pairs = list.Where(pair => pair.Key == key).ToList();
                     for (var index = 0; index < pairs.Count(); index++)
                     {
                         list.Remove(pairs[index].Key);
+                    }
+                }
+
+                if (_factories.ContainsKey(classType))
+                {
+                    if (_factories[classType].ContainsKey(key))
+                    {
+                        _factories[classType].Remove(key);
                     }
                 }
             }
@@ -310,23 +380,53 @@ namespace GalaSoft.MvvmLight.Ioc
                     key = _uniqueKey;
                 }
 
-                if (!_rot.ContainsKey(serviceType))
+                Dictionary<string, object> instances;
+
+                if (!_instancesRegistry.ContainsKey(serviceType))
                 {
-                    if (!_registration.ContainsKey(serviceType))
+                    if (!_interfaceToClassMap.ContainsKey(serviceType))
                     {
                         throw new ActivationException("Type not found in cache: " + serviceType.FullName);
                     }
 
-                    // TODO Refactor and extract common code in a method
-                    var list = new Dictionary<string, object>();
-                    _rot.Add(serviceType, list);
+                    instances = new Dictionary<string, object>();
+                    _instancesRegistry.Add(serviceType, instances);
+                }
+                else
+                {
+                    instances = _instancesRegistry[serviceType];
+                }
 
+                if (instances.ContainsKey(key))
+                {
+                    return instances[key];
+                }
+
+                object instance = null;
+
+                if (_factories.ContainsKey(serviceType))
+                {
+                    if (_factories[serviceType].ContainsKey(key))
+                    {
+                        instance = _factories[serviceType][key].DynamicInvoke();
+                    }
+                    else
+                    {
+                        if (_factories[serviceType].ContainsKey(_uniqueKey))
+                        {
+                            instance = _factories[serviceType][_uniqueKey].DynamicInvoke();
+                        }
+                    }
+                }
+                
+                if (instance == null)
+                {
                     var constructor = GetConstructorInfo(serviceType);
                     var parameterInfos = constructor.GetParameters();
+
                     if (parameterInfos.Length == 0)
                     {
-                        var instance = constructor.Invoke(_emptyArguments);
-                        list.Add(key, instance);
+                        instance = constructor.Invoke(_emptyArguments);
                     }
                     else
                     {
@@ -336,45 +436,18 @@ namespace GalaSoft.MvvmLight.Ioc
                             parameters[parameterInfo.Position] = GetService(parameterInfo.ParameterType);
                         }
 
-                        var instance = constructor.Invoke(parameters);
-                        list.Add(key, instance);
-                    }
-                }
-                else
-                {
-                    if (!_rot[serviceType].ContainsKey(key))
-                    {
-                        var constructor = GetConstructorInfo(serviceType);
-                        var parameterInfos = constructor.GetParameters();
-
-                        object instance;
-
-                        if (parameterInfos.Length == 0)
-                        {
-                            instance = constructor.Invoke(_emptyArguments);
-                        }
-                        else
-                        {
-                            var parameters = new object[parameterInfos.Length];
-                            foreach (var parameterInfo in parameterInfos)
-                            {
-                                parameters[parameterInfo.Position] = GetService(parameterInfo.ParameterType);
-                            }
-
-                            instance = constructor.Invoke(parameters);
-                        }
-
-                        _rot[serviceType].Add(key, instance);
+                        instance = constructor.Invoke(parameters);
                     }
                 }
 
-                return _rot[serviceType][key];
+                instances.Add(key, instance);
+                return instance;
             }
         }
 
         private ConstructorInfo GetConstructorInfo(Type serviceType)
         {
-            var resolveTo = _registration[serviceType] ?? serviceType;
+            var resolveTo = _interfaceToClassMap[serviceType] ?? serviceType;
             var constructorInfos = resolveTo.GetConstructors();
 
             if (constructorInfos.Length > 1)
@@ -434,9 +507,9 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <returns>All the instances of the given type.</returns>
         public IEnumerable<object> GetAllInstances(Type serviceType)
         {
-            if (_rot.ContainsKey(serviceType))
+            if (_instancesRegistry.ContainsKey(serviceType))
             {
-                return _rot[serviceType].Values;
+                return _instancesRegistry[serviceType].Values;
             }
 
             return new List<object>();
@@ -453,9 +526,9 @@ namespace GalaSoft.MvvmLight.Ioc
         {
             var serviceType = typeof (TService);
 
-            if (_rot.ContainsKey(serviceType))
+            if (_instancesRegistry.ContainsKey(serviceType))
             {
-                return _rot[serviceType].Values.Select(instance => (TService) instance);
+                return _instancesRegistry[serviceType].Values.Select(instance => (TService) instance);
             }
 
             return new List<TService>();

@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0016</LastBaseLevel>
+// <LastBaseLevel>BL0017</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -31,8 +31,8 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-////[assembly: AssemblyVersion("3.0.0.*")]
-[assembly: AssemblyFileVersion("4.0.0.0/BL0016")]
+////[assembly: AssemblyVersion("4.0.0.*")]
+[assembly: AssemblyFileVersion("4.0.0.0/BL0017")]
 
 // FxCop
 [module: SuppressMessage("Microsoft.Naming",

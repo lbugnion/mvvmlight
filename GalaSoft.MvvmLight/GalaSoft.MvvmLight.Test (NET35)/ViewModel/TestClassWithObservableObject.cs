@@ -59,34 +59,32 @@ namespace GalaSoft.MvvmLight.Test.Stubs
             }
         }
 
-        private DateTime _lastChangedInline = DateTime.MinValue;
-
-        /// <summary>
-        /// Gets the LastChangedInline property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public DateTime LastChangedInline
+        public const string PropertyWithSetPropertyName = "PropertyWithSet";
+        private int _propertyWithSet;
+        public int PropertyWithSet
         {
             get
             {
-                return _lastChangedInline;
+                return _propertyWithSet;
             }
-
             set
             {
-                if (_lastChangedInline == value)
-                {
-                    return;
-                }
-
-                _lastChangedInline = value;
-                RaisePropertyChanged();
+                Set(() => PropertyWithSet, ref _propertyWithSet, value);
             }
         }
 
-        public void RaisePropertyChangedInlineOutOfPropertySetter()
+        public const string PropertyWithStringSetPropertyName = "PropertyWithStringSet";
+        private int _propertyWithStringSet;
+        public int PropertyWithStringSet
         {
-            RaisePropertyChanged();
+            get
+            {
+                return _propertyWithStringSet;
+            }
+            set
+            {
+                Set(PropertyWithStringSetPropertyName, ref _propertyWithStringSet, value);
+            }
         }
 
         public void RaisePropertyChangedPublic(string propertyName)

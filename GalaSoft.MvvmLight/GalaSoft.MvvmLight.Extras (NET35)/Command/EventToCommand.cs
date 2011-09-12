@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0002</LastBaseLevel>
+// <LastBaseLevel>BL0003</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -33,8 +33,8 @@ namespace GalaSoft.MvvmLight.Command
     /// and leave the CommandParameter and CommandParameterValue empty!</para>
     /// </summary>
     ////[ClassInfo(typeof(EventToCommand),
-    ////  VersionString = "3.0.0.0",
-    ////  DateString = "201003041420",
+    ////  VersionString = "4.0.0.0/BL0003",
+    ////  DateString = "201109042117",
     ////  Description = "A Trigger used to bind any event to an ICommand.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]

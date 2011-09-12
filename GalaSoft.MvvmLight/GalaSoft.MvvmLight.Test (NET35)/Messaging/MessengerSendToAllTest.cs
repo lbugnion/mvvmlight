@@ -47,6 +47,14 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             Assert.AreEqual(TestContent, externalRecipient.StringContent);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(System.NullReferenceException))]
+        public void TestSendingNullMessage()
+        {
+            Messenger.Reset();
+            Messenger.Default.Send<NotificationMessage>(null);
+        }
+
         //// Helpers
 
         private void Reset()

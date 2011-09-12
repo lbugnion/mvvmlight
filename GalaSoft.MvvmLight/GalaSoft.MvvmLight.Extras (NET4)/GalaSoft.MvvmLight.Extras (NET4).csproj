@@ -46,7 +46,8 @@
     <AssemblyOriginatorKeyFile>GalaSoft.MvvmLight.Extras %28NET4%29.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\External\NET4\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -77,9 +78,6 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Extras (NET35)\Threading\DispatcherHelper.cs">
-      <Link>Threading\DispatcherHelper.cs</Link>
     </Compile>
     <Compile Include="Command\EventToCommandVS10.cs" />
     <Compile Include="Properties\AssemblyInfo.Net4.cs" />
