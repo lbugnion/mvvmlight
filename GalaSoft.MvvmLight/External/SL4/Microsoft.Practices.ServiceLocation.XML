@@ -98,33 +98,6 @@
             the service instance.</exception>
             <returns>A sequence of instances of the requested <typeparamref name="TService"/>.</returns>
         </member>
-        <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocatorProvider">
-            <summary>
-            This delegate type is used to provide a method that will
-            return the current container. Used with the <see cref="T:Microsoft.Practices.ServiceLocation.ServiceLocator"/>
-            static accessor class.
-            </summary>
-            <returns>An <see cref="T:Microsoft.Practices.ServiceLocation.IServiceLocator"/>.</returns>
-        </member>
-        <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocator">
-            <summary>
-            This class provides the ambient container for this application. If your
-            framework defines such an ambient container, use ServiceLocator.Current
-            to get it.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Practices.ServiceLocation.ServiceLocator.SetLocatorProvider(Microsoft.Practices.ServiceLocation.ServiceLocatorProvider)">
-            <summary>
-            Set the delegate that is used to retrieve the current container.
-            </summary>
-            <param name="newProvider">Delegate that, when called, will return
-            the current ambient container.</param>
-        </member>
-        <member name="P:Microsoft.Practices.ServiceLocation.ServiceLocator.Current">
-            <summary>
-            The current ambient container.
-            </summary>
-        </member>
         <member name="T:Microsoft.Practices.ServiceLocation.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -149,6 +122,25 @@
         <member name="P:Microsoft.Practices.ServiceLocation.Properties.Resources.ActivationExceptionMessage">
             <summary>
               Looks up a localized string similar to Activation error occured while trying to get instance of type {0}, key &quot;{1}&quot;.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocator">
+            <summary>
+            This class provides the ambient container for this application. If your
+            framework defines such an ambient container, use ServiceLocator.Current
+            to get it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.ServiceLocation.ServiceLocator.SetLocatorProvider(Microsoft.Practices.ServiceLocation.ServiceLocatorProvider)">
+            <summary>
+            Set the delegate that is used to retrieve the current container.
+            </summary>
+            <param name="newProvider">Delegate that, when called, will return
+            the current ambient container.</param>
+        </member>
+        <member name="P:Microsoft.Practices.ServiceLocation.ServiceLocator.Current">
+            <summary>
+            The current ambient container.
             </summary>
         </member>
         <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocatorImplBase">
@@ -258,6 +250,14 @@
             <param name="actualException">The actual exception thrown by the implementation.</param>
             <param name="serviceType">Type of service requested.</param>
             <returns>The formatted exception message string.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocatorProvider">
+            <summary>
+            This delegate type is used to provide a method that will
+            return the current container. Used with the <see cref="T:Microsoft.Practices.ServiceLocation.ServiceLocator"/>
+            static accessor class.
+            </summary>
+            <returns>An <see cref="T:Microsoft.Practices.ServiceLocation.IServiceLocator"/>.</returns>
         </member>
     </members>
 </doc>

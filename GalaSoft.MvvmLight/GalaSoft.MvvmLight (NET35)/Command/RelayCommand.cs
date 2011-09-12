@@ -10,7 +10,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0009</LastBaseLevel>
+// <LastBaseLevel>BL0010</LastBaseLevel>
 // ****************************************************************************
 // <credits>This class was developed by Josh Smith (http://joshsmithonwpf.wordpress.com) and
 // slightly modified with his permission.</credits>
@@ -32,8 +32,8 @@ namespace GalaSoft.MvvmLight.Command
     /// Execute and CanExecute callback methods.
     /// </summary>
     ////[ClassInfo(typeof(RelayCommand),
-    ////  VersionString = "4.0.0.0/BL0009",
-    ////  DateString = "201102062245",
+    ////  VersionString = "4.0.0.0/BL0010",
+    ////  DateString = "201109042117",
     ////  Description = "A command whose sole purpose is to relay its functionality to other objects by invoking delegates.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -107,7 +107,10 @@ namespace GalaSoft.MvvmLight.Command
         /// <param name="parameter">This parameter will always be ignored.</param>
         public void Execute(object parameter)
         {
-            _execute();
+            if (CanExecute(parameter))
+            {
+                _execute();
+            }
         }
     }
 }

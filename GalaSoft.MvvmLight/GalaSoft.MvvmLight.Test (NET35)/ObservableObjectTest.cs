@@ -52,35 +52,6 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
-        public void TestPropertyChangedSendInline()
-        {
-            var receivedDateTimeLocal = DateTime.MinValue;
-
-            var vm = new TestClassWithObservableObject();
-            vm.PropertyChanged += (s, e) =>
-            {
-                if (e.PropertyName == "LastChangedInline")
-                {
-                    receivedDateTimeLocal = vm.LastChangedInline;
-                }
-            };
-
-            var now = DateTime.Now;
-            vm.LastChangedInline = now;
-
-            Assert.AreEqual(now, vm.LastChangedInline);
-            Assert.AreEqual(now, receivedDateTimeLocal);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void TestPropertyChangedSendInlineOutOfSetter()
-        {
-            var vm = new TestClassWithObservableObject();
-            vm.RaisePropertyChangedInlineOutOfPropertySetter();
-        }
-
-        [TestMethod]
 #if DEBUG
         [ExpectedException(typeof(ArgumentException))]
 #endif
@@ -110,6 +81,44 @@ namespace GalaSoft.MvvmLight.Test
             vm.RaisePropertyChangedPublic(TestClassWithObservableObject.LastChangedPropertyName + "1");
 
             Assert.IsTrue(invalidPropertyNameReceived);
+        }
+
+        [TestMethod]
+        public void TestSet()
+        {
+            var vm = new TestClassWithObservableObject();
+            const int expectedValue = 1234;
+            var receivedValue = 0;
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == TestClassWithObservableObject.PropertyWithSetPropertyName)
+                {
+                    receivedValue = expectedValue;
+                }
+            };
+
+            vm.PropertyWithSet = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValue);
+        }
+
+        [TestMethod]
+        public void TestSetWithString()
+        {
+            var vm = new TestClassWithObservableObject();
+            const int expectedValue = 1234;
+            var receivedValue = 0;
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == TestClassWithObservableObject.PropertyWithStringSetPropertyName)
+                {
+                    receivedValue = expectedValue;
+                }
+            };
+
+            vm.PropertyWithStringSet = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValue);
         }
     }
 }

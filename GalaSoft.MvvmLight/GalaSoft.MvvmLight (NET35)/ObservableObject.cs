@@ -14,6 +14,7 @@
 // ****************************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -57,7 +58,8 @@ namespace GalaSoft.MvvmLight
         public void VerifyPropertyName(string propertyName)
         {
             var myType = this.GetType();
-            if (myType.GetProperty(propertyName) == null)
+            if (!string.IsNullOrEmpty(propertyName)
+                && myType.GetProperty(propertyName) == null)
             {
                 throw new ArgumentException("Property not found", propertyName);
             }
@@ -110,35 +112,58 @@ namespace GalaSoft.MvvmLight
             if (handler != null)
             {
                 var body = propertyExpression.Body as MemberExpression;
-                var expression = body.Expression as ConstantExpression;
-                handler(expression.Value, new PropertyChangedEventArgs(body.Member.Name));
+                handler(this, new PropertyChangedEventArgs(body.Member.Name));
             }
         }
 
         /// <summary>
-        /// When called in a property setter, raises the PropertyChanged event for 
-        /// the current property.
+        /// Assigns a new value to the property. Then, raises the
+        /// PropertyChanged event if needed. 
         /// </summary>
-        /// <exception cref="InvalidOperationException">If this method is called outside
-        /// of a property setter.</exception>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
-            Justification = "This cannot be an event")]
-        protected virtual void RaisePropertyChanged()
+        /// <typeparam name="T">The type of the property that
+        /// changed.</typeparam>
+        /// <param name="propertyExpression">An expression identifying the property
+        /// that changed.</param>
+        /// <param name="field">The field storing the property's value.</param>
+        /// <param name="newValue">The property's value after the change
+        /// occurred.</param>
+        protected void Set<T>(
+            Expression<Func<T>> propertyExpression,
+            ref T field,
+            T newValue)
         {
-            var frames = new StackTrace();
-
-            for (var i = 0; i < frames.FrameCount; i++)
+            if (EqualityComparer<T>.Default.Equals(field, newValue))
             {
-                var frame = frames.GetFrame(i).GetMethod() as MethodInfo;
-                if (frame != null)
-                    if (frame.IsSpecialName && frame.Name.StartsWith("set_", StringComparison.OrdinalIgnoreCase))
-                    {
-                        RaisePropertyChanged(frame.Name.Substring(4));
-                        return;
-                    }
+                return;
             }
 
-            throw new InvalidOperationException("This method can only by invoked within a property setter.");
+            field = newValue;
+            RaisePropertyChanged(propertyExpression);
+        }
+
+        /// <summary>
+        /// Assigns a new value to the property. Then, raises the
+        /// PropertyChanged event if needed. 
+        /// </summary>
+        /// <typeparam name="T">The type of the property that
+        /// changed.</typeparam>
+        /// <param name="propertyName">The name of the property that
+        /// changed.</param>
+        /// <param name="field">The field storing the property's value.</param>
+        /// <param name="newValue">The property's value after the change
+        /// occurred.</param>
+        protected void Set<T>(
+            string propertyName,
+            ref T field,
+            T newValue)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, newValue))
+            {
+                return;
+            }
+
+            field = newValue;
+            RaisePropertyChanged(propertyName);
         }
     }
 }

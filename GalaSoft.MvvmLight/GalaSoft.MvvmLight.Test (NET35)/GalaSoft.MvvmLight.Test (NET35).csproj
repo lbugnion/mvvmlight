@@ -59,8 +59,11 @@
     <Compile Include="Command\EventToCommandTest.cs" />
     <Compile Include="Command\RelayCommandGenericTest.cs" />
     <Compile Include="Command\RelayCommandTest.cs" />
-    <Compile Include="Ioc\SimpleIocTestContainsInstance.cs" />
+    <Compile Include="Ioc\SimpleIocTestIsRegistered.cs" />
+    <Compile Include="Ioc\SimpleIocTestContains.cs" />
+    <Compile Include="Ioc\SimpleIocTestCreationTime.cs" />
     <Compile Include="Stubs\TestBindingTarget.cs" />
+    <Compile Include="Stubs\TestClassForCreationTime.cs" />
     <Compile Include="Stubs\TestViewModelWithBooleanSource.cs" />
     <Compile Include="Ioc\SimpleIocTestMultipleConstructors.cs" />
     <Compile Include="Ioc\SimpleIocTestMultipleInstances.cs" />
@@ -93,7 +96,6 @@
     <Compile Include="Threading\DispatcherHelperTest.cs" />
     <Compile Include="ViewModelBaseTest.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
-    <Compile Include="ViewModel\TestViewModelInlinePropertyChanged.cs" />
     <Compile Include="ViewModel\TestViewModelNoMagicString.cs" />
     <Compile Include="ViewModel\ViewModelStub.cs" />
   </ItemGroup>

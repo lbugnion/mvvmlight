@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0013</LastBaseLevel>
+// <LastBaseLevel>BL0014</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -28,13 +28,14 @@ namespace GalaSoft.MvvmLight.Messaging
     /// The Messenger is a class allowing objects to exchange messages.
     /// </summary>
     ////[ClassInfo(typeof(Messenger),
-    ////    VersionString = "4.0.0.0/BL0013",
-    ////    DateString = "201103201550",
+    ////    VersionString = "4.0.0.0/BL0014",
+    ////    DateString = "201109042117",
     ////    Description = "A messenger class allowing a class to send a message to multiple recipients",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
     public class Messenger : IMessenger
     {
+        private static readonly object CreationLock = new object();
         private static Messenger _defaultInstance;
         private readonly object _registerLock = new object();
         private Dictionary<Type, List<WeakActionAndToken>> _recipientsOfSubclassesAction;
@@ -48,7 +49,18 @@ namespace GalaSoft.MvvmLight.Messaging
         {
             get
             {
-                return _defaultInstance ?? (_defaultInstance = new Messenger());
+                if (_defaultInstance == null)
+                {
+                    lock (CreationLock)
+                    {
+                        if (_defaultInstance == null)
+                        {
+                            _defaultInstance = new Messenger();
+                        }
+                    }
+                }
+
+                return _defaultInstance;
             }
         }
 
@@ -185,25 +197,28 @@ namespace GalaSoft.MvvmLight.Messaging
                     recipients = _recipientsStrictAction;
                 }
 
-                List<WeakActionAndToken> list;
+                lock (recipients)
+                {
+                    List<WeakActionAndToken> list;
 
-                if (!recipients.ContainsKey(messageType))
-                {
-                    list = new List<WeakActionAndToken>();
-                    recipients.Add(messageType, list);
-                }
-                else
-                {
-                    list = recipients[messageType];
-                }
+                    if (!recipients.ContainsKey(messageType))
+                    {
+                        list = new List<WeakActionAndToken>();
+                        recipients.Add(messageType, list);
+                    }
+                    else
+                    {
+                        list = recipients[messageType];
+                    }
 
-                var weakAction = new WeakAction<TMessage>(recipient, action);
-                var item = new WeakActionAndToken
-                {
-                    Action = weakAction,
-                    Token = token
-                };
-                list.Add(item);
+                    var weakAction = new WeakAction<TMessage>(recipient, action);
+                    var item = new WeakActionAndToken
+                    {
+                        Action = weakAction,
+                        Token = token
+                    };
+                    list.Add(item);
+                }
             }
 
             Cleanup();
@@ -525,7 +540,7 @@ namespace GalaSoft.MvvmLight.Messaging
 
         private void SendToTargetOrType<TMessage>(TMessage message, Type messageTargetType, object token)
         {
-            Type messageType = typeof(TMessage);
+            Type messageType = message.GetType();
 
             if (_recipientsOfSubclassesAction != null)
             {
@@ -542,7 +557,10 @@ namespace GalaSoft.MvvmLight.Messaging
                         || messageType.IsSubclassOf(type)
                         || Implements(messageType, type))
                     {
-                        list = _recipientsOfSubclassesAction[type];
+                        lock (_recipientsOfSubclassesAction)
+                        {
+                            list = _recipientsOfSubclassesAction[type].Take(_recipientsOfSubclassesAction[type].Count()).ToList();
+                        }
                     }
 
                     SendToList(message, list, messageTargetType, token);
@@ -553,7 +571,13 @@ namespace GalaSoft.MvvmLight.Messaging
             {
                 if (_recipientsStrictAction.ContainsKey(messageType))
                 {
-                    List<WeakActionAndToken> list = _recipientsStrictAction[messageType];
+                    List<WeakActionAndToken> list = null;
+
+                    lock (_recipientsStrictAction)
+                    {
+                        list = _recipientsStrictAction[messageType].Take(_recipientsStrictAction[messageType].Count()).ToList();
+                    }
+
                     SendToList(message, list, messageTargetType, token);
                 }
             }

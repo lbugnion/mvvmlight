@@ -36,7 +36,7 @@ namespace GalaSoft.MvvmLight.Command
     {
         private readonly Action<T> _execute;
 
-        private readonly Predicate<T> _canExecute;
+        private readonly Func<T, bool> _canExecute;
 
         /// <summary>
         /// Initializes a new instance of the RelayCommand class that 
@@ -55,7 +55,7 @@ namespace GalaSoft.MvvmLight.Command
         /// <param name="execute">The execution logic.</param>
         /// <param name="canExecute">The execution status logic.</param>
         /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
-        public RelayCommand(Action<T> execute, Predicate<T> canExecute)
+        public RelayCommand(Action<T> execute, Func<T, bool> canExecute)
         {
             if (execute == null)
             {
@@ -103,7 +103,10 @@ namespace GalaSoft.MvvmLight.Command
         /// to be passed, this object can be set to a null reference</param>
         public void Execute(object parameter)
         {
-            _execute((T)parameter);
+            if (CanExecute(parameter))
+            {
+                _execute((T)parameter);
+            }
         }
     }
 }

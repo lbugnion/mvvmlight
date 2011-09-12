@@ -8,7 +8,7 @@ namespace GalaSoft.MvvmLight.Test.Command
     public class RelayCommandTest
     {
         [TestMethod]
-        public void CanExecuteChangedTest()
+        public void TestCanExecuteChanged()
         {
             var command = new RelayCommand(() =>
             {
@@ -32,7 +32,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        public void CanExecuteTest()
+        public void TestCanExecute()
         {
             var canExecute = true;
 
@@ -49,7 +49,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        public void CanExecuteTestNull()
+        public void TestCanExecuteNull()
         {
             var command = new RelayCommand(() =>
             {
@@ -60,20 +60,20 @@ namespace GalaSoft.MvvmLight.Test.Command
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorTestInvalidExecuteNull1()
+        public void TestConstructorInvalidExecuteNull1()
         {
             var command = new RelayCommand(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorTestInvalidExecuteNull2()
+        public void TestConstructorInvalidExecuteNull2()
         {
             var command = new RelayCommand(null, null);
         }
 
         [TestMethod]
-        public void ExecuteTest()
+        public void TestExecute()
         {
             var dummy = "Not executed";
             const string executed = "Executed";
@@ -86,6 +86,27 @@ namespace GalaSoft.MvvmLight.Test.Command
             command.Execute(null);
 
             Assert.AreEqual(executed, dummy);
+        }
+
+        private bool _canExecute = true;
+
+        [TestMethod]
+        public void TestCallingExecuteWhenCanExecuteIsFalse()
+        {
+            var counter = 0;
+
+            var command = new RelayCommand(
+                () => counter++,
+                () => _canExecute);
+
+            command.Execute(null);
+            Assert.AreEqual(1, counter);
+            _canExecute = false;
+            command.Execute(null);
+            Assert.AreEqual(1, counter);
+            _canExecute = true;
+            command.Execute(null);
+            Assert.AreEqual(2, counter);
         }
     }
 }

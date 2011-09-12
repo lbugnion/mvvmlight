@@ -33,15 +33,26 @@ _Resharper.*/
 [Tt]est[Rr]esult*
 [Bb]uild[Ll]og.*
 *.[Pp]ublish.xml
+glob:MvvmLightToolkitSetupBAK/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight/
+glob:VS10/GalaSoft.MvvmLight - TEMPO/
+glob:MvvmLightToolkitSetup/_ReSharper.MvvmLightToolkitSetup/
 glob:GalaSoft.MvvmLight/GalaSoft.MvvmLight (SL4)/_ReSharper.GalaSoft.MvvmLight (SL4)/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (NET35)/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (NET4)/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (SL3)/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (SL4)/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (WP7)/
-glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (WP71)/
-glob:*.sln.docstates
+glob:Experiments/New VML experiment 3/MvvmLight1/_ReSharper.MvvmLight1/
+glob:Experiments/InpcPerfTest/_ReSharper.InpcPerfTest/
+glob:Experiments/UniversalConverter/_ReSharper.UniversalConverter/
+glob:Experiments/TriggerToStoryboard/_ReSharper.MvvmLight1/
+glob:commonservicelocator-27688/main/_ReSharper.Microsoft.Practices.ServiceLocation/
+glob:ProjectForTemplate/_ReSharper.ProjectForTemplate/
+glob:Installer/_ReSharper.Installer/
+glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (WP71)
+glob:GalaSoft.MvvmLight/GalaSoft.MvvmLight (NET35).sln.docstates
+glob:ProjectForTemplates/_ReSharper.ProjectForTemplates/
 glob:Snippets/_ReSharper.Snippets/
-glob:V3/Installer/_ReSharper.Installer/
-glob:*.docstates
+glob:CleanOldFiles/_ReSharper.CleanOldFiles
+glob:*.sln.docstates

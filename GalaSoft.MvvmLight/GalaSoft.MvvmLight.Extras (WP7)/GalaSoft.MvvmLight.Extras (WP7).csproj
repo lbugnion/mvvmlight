@@ -74,9 +74,6 @@
     <Compile Include="..\GalaSoft.MvvmLight.Extras (NET35)\Command\EventToCommand.cs">
       <Link>Command\EventToCommand.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Extras (NET35)\Threading\DispatcherHelper.cs">
-      <Link>Threading\DispatcherHelper.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.WP7.cs" />
   </ItemGroup>
   <ItemGroup>

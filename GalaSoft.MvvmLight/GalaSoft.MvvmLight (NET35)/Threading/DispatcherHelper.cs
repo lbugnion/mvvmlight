@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0001</LastBaseLevel>
+// <LastBaseLevel>BL0002</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -29,8 +29,8 @@ namespace GalaSoft.MvvmLight.Threading
     /// Helper class for dispatcher operations on the UI thread.
     /// </summary>
     //// [ClassInfo(typeof(DispatcherHelper),
-    ////  VersionString = "1.0.0.0",
-    ////  DateString = "201003041420",
+    ////  VersionString = "4.0.0.0/BL0002",
+    ////  DateString = "201109042117",
     ////  Description = "Helper class for dispatcher operations on the UI thread.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
