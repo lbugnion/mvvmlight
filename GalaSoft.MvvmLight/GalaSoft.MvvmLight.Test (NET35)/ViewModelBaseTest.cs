@@ -1,11 +1,17 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Windows.Controls;
-using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Test.ViewModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GalaSoft.MvvmLight.Helpers;
+
+#if WIN8
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml;
+#else
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows;
+#endif
 
 namespace GalaSoft.MvvmLight.Test
 {
@@ -242,6 +248,9 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
+#if WIN8
+        [ExpectedException(typeof(NotSupportedException))]
+#endif
         public void TestRaiseWithEmptyString()
         {
             var vm = new TestViewModel();
@@ -252,13 +261,15 @@ namespace GalaSoft.MvvmLight.Test
             var textBox1 = new TextBox();
             var textBox2 = new TextBox();
 
-            var binding1 = new Binding("TestProperty1")
+            var binding1 = new Binding()
             {
+                Path = new PropertyPath("TestProperty1"),
                 Source = vm,
             };
 
-            var binding2 = new Binding("TestProperty2")
+            var binding2 = new Binding()
             {
+                Path = new PropertyPath("TestProperty2"),
                 Source = vm,
             };
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GalaSoft.MvvmLight.Test.Stubs
+namespace GalaSoft.MvvmLight.Test.ViewModel
 {
     public class TestClassWithObservableObject : ObservableObject
     {

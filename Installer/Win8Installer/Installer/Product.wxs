@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+    <Product Id="09663D3C-DEC5-4AB2-9EB2-43AE8805B158"
+             Name="MVVM Light Toolkit for Win8"
+             Language="1033"
+             Version="4.0.0.17"
+             Manufacturer="Laurent Bugnion (GalaSoft)"
+             UpgradeCode="0C724662-43C5-43F0-9727-2A1027AF07A4">
+
+        <Package InstallerVersion="200"
+                 Compressed="yes"
+                 Id="*"
+                 Keywords="Installer"
+                 Description="MVVM Light Toolkit Installer for Windows 8 (V4 beta 1)"
+                 Comments="The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed. This is the Windows 8 version only (preview)."
+                 Manufacturer="Laurent Bugnion (GalaSoft)"
+                 Languages="1033"
+                 SummaryCodepage="1252"
+                 Platform="x86" />
+
+        <Media Id="1"
+               Cabinet="media1.cab"
+               EmbedCab="yes" />
+
+        <Property Id="ARPHELPLINK">http://mvvmlight.codeplex.com/</Property>
+
+        <Property Id="ARPURLINFOABOUT">http://mvvmlight.codeplex.com/</Property>
+
+        <!--Registry key variables-->
+        <Property Id="VS11INSTALL">
+            <RegistrySearch Id="VS11Registry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="SOFTWARE\Microsoft\VisualStudio\11.0"
+                            Name="ShellFolder" />
+        </Property>
+
+        <!--Product installed variables-->
+        <Property Id="VS11EXISTS">
+            <DirectorySearch Id="CheckFileDirVS11"
+                             Path="[VS11INSTALL]\Common7\IDE"
+                             Depth="0">
+                <FileSearch Name="devenv.exe"/>
+            </DirectorySearch>
+        </Property>
+
+        <!--Files to install-->
+        <Directory Id="TARGETDIR"
+                   Name="SourceDir">
+            <Directory Id="AppDataFolder">
+                <Directory Id="AppDataMvvm"
+                           Name="MvvmLight">
+                    <Component Id="PostSetup"
+                               Guid="5B01F718-5639-4E33-B1FE-2E4441BCEE17">
+                        <File Id="ModifyRegistryKey.exe"
+                              Name="ModifyRegistryKey.exe"
+                              DiskId="1"
+                              Source="../../Standard/ModifyRegistryKey/bin/Debug/ModifyRegistryKey.exe" />
+                    </Component>
+                </Directory>
+            </Directory>
+
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLLOCATION"
+                           Name="Laurent Bugnion (GalaSoft)">
+                    <Directory Id="PRODUCTDIR"
+                               Name="Mvvm Light Toolkit">
+                        <Directory Id="SNIPPETS"
+                                   Name="SnippetsWin8">
+                            <Directory Id="SNIPPETSCS"
+                                       Name="CSharp">
+                                <Component Id="SnippetsCsComp"
+                                           DiskId="1"
+                                           Guid="DF69467C-FB36-46A6-ADDC-82C97E13E5AA">
+                                    <File Id="mvvmInpc.snippet.cs"
+                                          Name="mvvmInpc.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpc.snippet" />
+                                    <File Id="mvvmInpcLambda.snippet.cs"
+                                          Name="mvvmInpcLambda.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcLambda.snippet" />
+                                    <File Id="mvvmInpcLambdaMsg.snippet.cs"
+                                          Name="mvvmInpcLambdaMsg.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcLambdaMsg.snippet" />
+                                    <File Id="mvvmInpcMsg.snippet.cs"
+                                          Name="mvvmInpcMsg.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcMsg.snippet" />
+                                    <File Id="mvvmInpcSet.snippet.cs"
+                                          Name="mvvmInpcSet.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcSet.snippet" />
+                                    <File Id="mvvmInpcSetLambda.snippet.cs"
+                                          Name="mvvmInpcSetLambda.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcSetLambda.snippet" />
+                                    <File Id="mvvmInpcSetLambdaMsg.snippet.cs"
+                                          Name="mvvmInpcSetLambdaMsg.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcSetLambdaMsg.snippet" />
+                                    <File Id="mvvmInpcSetMsg.snippet.cs"
+                                          Name="mvvmInpcSetMsg.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcSetMsg.snippet" />
+                                    <File Id="mvvmPropA.snippet.cs"
+                                          Name="mvvmPropA.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmPropA.snippet" />
+                                    <File Id="mvvmPropDP.snippet.cs"
+                                          Name="mvvmPropDP.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmPropDP.snippet" />
+                                    <File Id="mvvmRelay.snippet.cs"
+                                          Name="mvvmRelay.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelay.snippet" />
+                                    <File Id="mvvmRelayCanExecute.snippet.cs"
+                                          Name="mvvmRelayCanExecute.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayCanExecute.snippet" />
+                                    <File Id="mvvmRelayGeneric.snippet.cs"
+                                          Name="mvvmRelayGeneric.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayGeneric.snippet" />
+                                    <File Id="mvvmRelayGenericCanExecute.snippet.cs"
+                                          Name="mvvmRelayGenericCanExecute.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayGenericCanExecute.snippet" />
+                                    <File Id="mvvmRelayMethod.snippet.cs"
+                                          Name="mvvmRelayMethod.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayMethod.snippet" />
+                                    <File Id="mvvmRelayMethodCanExecute.snippet.cs"
+                                          Name="mvvmRelayMethodCanExecute.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayMethodCanExecute.snippet" />
+                                    <File Id="mvvmRelayMethodGeneric.snippet.cs"
+                                          Name="mvvmRelayMethodGeneric.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayMethodGeneric.snippet" />
+                                    <File Id="mvvmRelayMethodGenericCanExecute.snippet.cs"
+                                          Name="mvvmRelayMethodGenericCanExecute.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayMethodGenericCanExecute.snippet" />
+                                    <File Id="mvvmSLPropA.snippet.cs"
+                                          Name="mvvmSLPropA.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmSLPropA.snippet" />
+                                    <File Id="mvvmSLPropDP.snippet.cs"
+                                          Name="mvvmSLPropDP.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmSLPropDP.snippet" />
+                                    <File Id="mvvmViewModelLocatorProperty.snippet.cs"
+                                          Name="mvvmViewModelLocatorProperty.snippet"
+                                          Source="../../Standard/InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmViewModelLocatorProperty.snippet" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+
+                        <Directory Id="BINARIES"
+                                   Name="Binaries">
+                            <Directory Id="WIN8BINARIES"
+                                       Name="Win8">
+                                <Component Id="Win8BinariesComp"
+                                           Guid="13566130-A20C-4AF2-9986-89197ADA6980">
+                                    <File Id="GalaSoft.MvvmLight.dll.Win8"
+                                          Name="GalaSoft.MvvmLight.Win8.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Win8/GalaSoft.MvvmLight.Win8.dll" />
+                                    <File Id="GalaSoft.MvvmLight.xml.Win8"
+                                          Name="GalaSoft.MvvmLight.Win8.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Win8/GalaSoft.MvvmLight.Win8.xml" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.dll.Win8"
+                                          Name="GalaSoft.MvvmLight.Extras.Win8.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Win8/GalaSoft.MvvmLight.Extras.Win8.dll" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.xml.Win8"
+                                          Name="GalaSoft.MvvmLight.Extras.Win8.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Win8/GalaSoft.MvvmLight.Extras.Win8.xml" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.dll.Win8"
+                                          Name="Microsoft.Practices.ServiceLocation.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Win8/Microsoft.Practices.ServiceLocation.dll" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.xml.Win8"
+                                          Name="Microsoft.Practices.ServiceLocation.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Win8/Microsoft.Practices.ServiceLocation.xml" />
+                                </Component>
+
+                                <!--<Component Id="AssemblyFoldersExRegistry.Win8"
+                                           Guid="{2CEB2FB3-C19F-453C-A467-250FBB65FD41}">
+                                    <RegistryKey Id="AssemblyRegistryKeyBinaries.Win8"
+                                                 Action="createAndRemoveOnUninstall"
+                                                 Key="SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                 Root="HKLM" />
+                                    <RegistryValue Id="reg2CEB2FB3C19F453CA467250FBB65FD41"
+                                                   Root="HKLM"
+                                                   Key="SOFTWARE\Microsoft\Microsoft SDKs\Windows\v8.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                   Value="[WIN8BINARIES]"
+                                                   Type="string"
+                                                   KeyPath="yes" />
+                                </Component>-->
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <!--VS2010 Templates-->
+            <Directory Id="VS11INSTALL">
+                <Directory Id="Vs11Common7"
+                           Name="Common7">
+                    <Directory Id="Vs11Common7Ide"
+                               Name="IDE">
+                        <Directory Id="Vs11ProjectTemplates"
+                                   Name="ProjectTemplates">
+                            <Directory Id="Vs11ProjectTemplatesCs"
+                                       Name="CSharp">
+                                <Directory Id="Vs11ProjectTemplatesCsMetro"
+                                           Name="Windows Metro style">
+                                    <Directory Id="Vs11ProjectTemplatesCsMetroMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs11ProjectTemplatesCsMetroMvvmWin8Comp"
+                                                   Guid="{583FD4C1-2F75-40FF-B7CC-D6F8979A6A02}">
+                                            <File Id="MvvmLight.Win8.zip.VS11"
+                                                  Name="MvvmLight.Win8.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Win8/MvvmLight.Win8.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder"
+                           Name="MvvmLight"/>
+            </Directory>
+        </Directory>
+
+        <DirectoryRef Id="ApplicationProgramsFolder">
+            <Component Id="ApplicationShortcut"
+                       Guid="{4BB94CF9-DCBC-470B-A8EB-5C6DECC666BD}">
+                <Shortcut Id="BinariesFolderShortcut"
+                        Name="Binaries"
+                        Description="Go to the Binaries folder"
+                        Target="[BINARIES]"
+                        WorkingDirectory="BINARIES" />
+
+                <Shortcut Id="UninstallProduct"
+                          Name="Uninstall Mvvm Light for Windows 8"
+                          Description="Uninstalls MvvmLight (Windows 8 preview edition)"
+                          Target="[System64Folder]msiexec.exe"
+                          Arguments="/x [ProductCode]"/>
+
+                <RemoveFolder Id="ApplicationProgramsFolder"
+                              On="uninstall"/>
+
+                <RegistryValue Root="HKCU"
+                               Key="Software\GalaSoft\MvvmLightWin8"
+                               Name="installed"
+                               Type="integer"
+                               Value="1"
+                               KeyPath="yes"/>
+            </Component>
+        </DirectoryRef>
+
+        <Feature Id="ProductFeature"
+                 Title="MVVM Light Toolkit for Windows 8 (preview)"
+                 Level="1"
+                 Description="The complete package."
+                 ConfigurableDirectory="INSTALLLOCATION"
+                 Display="expand">
+
+            <ComponentRef Id="ApplicationShortcut" />
+            <ComponentRef Id="PostSetup" />
+
+            <Feature Id="Binaries"
+                     Title="Binaries"
+                     Level="1"
+                     Description="MVVM Light binaries for Windows 8">
+                <ComponentRef Id="Win8BinariesComp" />
+                <!--<ComponentRef Id="AssemblyFoldersExRegistry.SL4" />-->
+                <Condition Level="0">NOT VS11EXISTS</Condition>
+            </Feature>
+
+            <Feature Id="Templates"
+                     Title="VS11 Templates"
+                     Level="1"
+                     Description="Project Templates for Visual Studio 11.">
+                <Condition Level="0">NOT VS11EXISTS</Condition>
+                <ComponentRef Id="Vs11ProjectTemplatesCsMetroMvvmWin8Comp" />
+            </Feature>
+
+            <Feature Id="VSSnippets"
+                     Title="Snippets"
+                     Level="1"
+                     Description="Code snippets for Visual Studio 11"
+                     Display="collapse">
+                <ComponentRef Id="SnippetsCsComp" />
+                <Condition Level="0">NOT VS11EXISTS</Condition>
+            </Feature>
+
+            <!-- Note: The following ComponentGroupRef is required to pull in generated authoring from project references. -->
+            <ComponentGroupRef Id="Product.Generated" />
+        </Feature>
+
+        <!--Dialog settings-->
+        <UIRef Id="WixUI_FeatureTree" />
+
+        <!--WixUI_FeatureTree is similar to the full set but it doesn't allow the user to chose between setup types. It always assumes Custom and goes directly to the feature customization dialog after the user has accepted the license agreement.-->
+        <UIRef Id="WixUI_ErrorProgressText" />
+
+        <WixVariable Id="WixUILicenseRtf"
+                     Value="License.rtf" />
+
+        <!--See http://www.tramontana.co.hu/wix/lesson2.php#2.1-->
+        <WixVariable Id="WixUIBannerBmp"
+                     Value="WixUIBannerBmp.bmp" />
+
+        <WixVariable Id="WixUIDialogBmp"
+                     Value="WixUIDialogBmp.bmp" />
+
+        <UI>
+            <ProgressText Action="VS11InstallVSTemplates">Updating Templates...</ProgressText>
+        </UI>
+
+        <CustomAction Id='VS11InstallVSTemplates'
+                      Execute='deferred'
+                      Impersonate='no'
+                      ExeCommand='[VS11INSTALL]\Common7\IDE\devenv.exe /setup'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostSetupActionVS11User'
+                      Execute='deferred'
+                      Impersonate='yes'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i11u "[SNIPPETS];'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostSetupActionVS11Machine'
+                      Execute='deferred'
+                      Impersonate='no'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i11m "[SNIPPETS];'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostRemoveActionUser'
+                      Execute='deferred'
+                      Impersonate='yes'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -uu "[SNIPPETS];'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostRemoveActionMachine'
+                      Execute='deferred'
+                      Impersonate='no'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -um "[SNIPPETS];'
+                      Directory='TARGETDIR' />
+
+        <InstallExecuteSequence>
+            <Custom Action="VS11InstallVSTemplates"
+                    After="InstallFiles">NOT VS11INSTALLED</Custom>
+
+            <Custom Action="PostSetupActionVS11User"
+                    After="InstallFiles">(NOT REMOVE) AND (NOT VS11INSTALLED)</Custom>
+            
+            <Custom Action="PostSetupActionVS11Machine"
+                    After="InstallFiles">(NOT REMOVE) AND (NOT VS11INSTALLED)</Custom>
+
+            <Custom Action="PostRemoveActionUser"
+                    Before="RemoveFiles">REMOVE="ALL"</Custom>
+
+            <Custom Action="PostRemoveActionMachine"
+                    Before="RemoveFiles">REMOVE="ALL"</Custom>
+        </InstallExecuteSequence>
+
+        <UI />
+    </Product>
+</Wix>

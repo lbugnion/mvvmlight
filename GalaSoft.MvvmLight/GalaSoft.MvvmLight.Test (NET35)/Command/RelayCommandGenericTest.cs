@@ -2,6 +2,10 @@
 using GalaSoft.MvvmLight.Command;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+#if WIN8
+using EventHandler = Windows.UI.Xaml.EventHandler;
+#endif
+
 namespace GalaSoft.MvvmLight.Test.Command
 {
     [TestClass]
