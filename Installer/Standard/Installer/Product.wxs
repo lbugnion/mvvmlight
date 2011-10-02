@@ -532,7 +532,7 @@
                 </Directory>
             </Directory>
 
-            <!--VS2008 Templates and snippets-->
+            <!--VS2008 Templates-->
             <Directory Id="VS90_ROOT_FOLDER">
                 <Directory Id="Vs08Common7"
                            Name="Common7">
@@ -625,7 +625,7 @@
                 </Directory>
             </Directory>
 
-            <!--VS2010 Templates and snippets-->
+            <!--VS2010 Templates-->
             <Directory Id="VS2010_ROOT_FOLDER">
                 <Directory Id="Vs10Common7"
                            Name="Common7">
