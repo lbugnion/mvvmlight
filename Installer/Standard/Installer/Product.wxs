@@ -1164,43 +1164,43 @@
         <CustomAction Id='PostSetupActionVS10User'
                       Execute='deferred'
                       Impersonate='yes'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i10u "[SNIPPETS];[VPDXINSTALL]'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -i10u "[SNIPPETS];[VPDXINSTALL]'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostSetupActionVS10Machine'
                       Execute='deferred'
                       Impersonate='no'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i10m "[SNIPPETS];[VPDXINSTALL]'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -i10m "[SNIPPETS];[VPDXINSTALL]'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostSetupActionVS08User'
                       Execute='deferred'
                       Impersonate='yes'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i08u "[SNIPPETS];[VPDXINSTALL]'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -i08u "[SNIPPETS];[VPDXINSTALL]'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostSetupActionVS08Machine'
                       Execute='deferred'
                       Impersonate='no'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i08m "[SNIPPETS];[VPDXINSTALL]'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -i08m "[SNIPPETS];[VPDXINSTALL]'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostSetupActionVs10x'
                       Execute='deferred'
                       Impersonate='no'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i10x "[SNIPPETS];[VPDXINSTALL]'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -i10x "[SNIPPETS];[VPDXINSTALL]'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostRemoveActionUser'
                       Execute='deferred'
                       Impersonate='yes'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -uu "[SNIPPETS];[VPDXINSTALL]'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -uu "[SNIPPETS];[VPDXINSTALL]'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostRemoveActionMachine'
                       Execute='deferred'
                       Impersonate='no'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -um "[SNIPPETS];[VPDXINSTALL]'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -um "[SNIPPETS];[VPDXINSTALL]'
                       Directory='TARGETDIR' />
 
         <InstallExecuteSequence>
