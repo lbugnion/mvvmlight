@@ -4,7 +4,7 @@
     <Product Id="09663D3C-DEC5-4AB2-9EB2-43AE8805B158"
              Name="MVVM Light Toolkit for Win8"
              Language="1033"
-             Version="4.0.0.17"
+             Version="4.0.0.171"
              Manufacturer="Laurent Bugnion (GalaSoft)"
              UpgradeCode="0C724662-43C5-43F0-9727-2A1027AF07A4">
 
@@ -28,6 +28,14 @@
         <Property Id="ARPURLINFOABOUT">http://mvvmlight.codeplex.com/</Property>
 
         <!--Registry key variables-->
+        <Property Id="VS11XINSTALL">
+            <RegistrySearch Id="VS11XRegistry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="SOFTWARE\Microsoft\VSWinExpress\11.0"
+                            Name="ShellFolder" />
+        </Property>
+
         <Property Id="VS11INSTALL">
             <RegistrySearch Id="VS11Registry"
                             Type="raw"
@@ -37,6 +45,14 @@
         </Property>
 
         <!--Product installed variables-->
+        <Property Id="VS11XEXISTS">
+            <DirectorySearch Id="CheckFileDirVS11X"
+                             Path="[VS11XINSTALL]\Common7\IDE"
+                             Depth="0">
+                <FileSearch Name="VSWinExpress.exe"/>
+            </DirectorySearch>
+        </Property>
+
         <Property Id="VS11EXISTS">
             <DirectorySearch Id="CheckFileDirVS11"
                              Path="[VS11INSTALL]\Common7\IDE"
@@ -56,7 +72,7 @@
                         <File Id="ModifyRegistryKey.exe"
                               Name="ModifyRegistryKey.exe"
                               DiskId="1"
-                              Source="../../Standard/ModifyRegistryKey/bin/Debug/ModifyRegistryKey.exe" />
+                              Source="../ModifyRegistryKey/bin/Debug/ModifyRegistryKey.exe" />
                     </Component>
                 </Directory>
             </Directory>
@@ -191,7 +207,7 @@
                 </Directory>
             </Directory>
 
-            <!--VS2010 Templates-->
+            <!--VS2011 Templates-->
             <Directory Id="VS11INSTALL">
                 <Directory Id="Vs11Common7"
                            Name="Common7">
@@ -213,6 +229,32 @@
                                                   Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Win8/MvvmLight.Win8.zip" />
                                         </Component>
                                     </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <!--VS2011Express Templates-->
+            <Directory Id="VS11XINSTALL">
+                <Directory Id="Vs11xCommon7"
+                           Name="Common7">
+                    <Directory Id="Vs11xCommon7Ide"
+                               Name="IDE">
+                        <Directory Id="Vs11xVsWinx"
+                                   Name="VSWinExpress">
+                            <Directory Id="Vs11xProjectTemplates"
+                                        Name="ProjectTemplates">
+                                <Directory Id="Vs11xProjectTemplatesMvvm"
+                                            Name="Mvvm">
+                                    <Component Id="Vs11xProjectTemplatesMvvmComp"
+                                                Guid="{71dbb618-7b65-4f28-9cb2-458d953e0ff3}">
+                                        <File Id="MvvmLight.Win8.zip.VS11x"
+                                                Name="MvvmLight.Win8.zip"
+                                                DiskId="1"
+                                                Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Win8/MvvmLight.Win8.zip" />
+                                    </Component>
                                 </Directory>
                             </Directory>
                         </Directory>
@@ -257,7 +299,6 @@
                  Title="MVVM Light Toolkit for Windows 8 (preview)"
                  Level="1"
                  Description="The complete package."
-                 ConfigurableDirectory="INSTALLLOCATION"
                  Display="expand">
 
             <ComponentRef Id="ApplicationShortcut" />
@@ -269,15 +310,23 @@
                      Description="MVVM Light binaries for Windows 8">
                 <ComponentRef Id="Win8BinariesComp" />
                 <!--<ComponentRef Id="AssemblyFoldersExRegistry.SL4" />-->
-                <Condition Level="0">NOT VS11EXISTS</Condition>
+                <Condition Level="0">NOT VS11EXISTS AND NOT VS11XEXISTS</Condition>
             </Feature>
 
-            <Feature Id="Templates"
+            <Feature Id="TemplatesVS11"
                      Title="VS11 Templates"
                      Level="1"
-                     Description="Project Templates for Visual Studio 11.">
+                     Description="Project Templates for Visual Studio 11 (full version).">
                 <Condition Level="0">NOT VS11EXISTS</Condition>
                 <ComponentRef Id="Vs11ProjectTemplatesCsMetroMvvmWin8Comp" />
+            </Feature>
+
+            <Feature Id="TemplatesVS11x"
+                     Level="1"
+                     Title="VS11 Express templates"
+                     Description="Project Templates for Visual Studio 2011">
+                <Condition Level="0">NOT VS11XEXISTS OR VS11EXISTS</Condition>
+                <ComponentRef Id="Vs11xProjectTemplatesMvvmComp" />
             </Feature>
 
             <Feature Id="VSSnippets"
@@ -286,7 +335,7 @@
                      Description="Code snippets for Visual Studio 11"
                      Display="collapse">
                 <ComponentRef Id="SnippetsCsComp" />
-                <Condition Level="0">NOT VS11EXISTS</Condition>
+                <Condition Level="0">NOT VS11XEXISTS AND NOT VS11EXISTS</Condition>
             </Feature>
 
             <!-- Note: The following ComponentGroupRef is required to pull in generated authoring from project references. -->
@@ -310,48 +359,67 @@
                      Value="WixUIDialogBmp.bmp" />
 
         <UI>
-            <ProgressText Action="VS11InstallVSTemplates">Updating Templates...</ProgressText>
+            <ProgressText Action="VS11xInstallVSTemplates">Updating VS11 Express Templates</ProgressText>
+            <ProgressText Action="VS11InstallVSTemplates">Updating VS11 Templates</ProgressText>
         </UI>
 
         <CustomAction Id='VS11InstallVSTemplates'
                       Execute='deferred'
                       Impersonate='no'
-                      ExeCommand='[VS11INSTALL]\Common7\IDE\devenv.exe /setup'
+                      ExeCommand='"[VS11INSTALL]\Common7\IDE\devenv.exe" /setup'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='VS11xInstallVSTemplates'
+                      Execute='deferred'
+                      Impersonate='no'
+                      ExeCommand='"[VS11XINSTALL]\Common7\IDE\VSWinExpress.exe" /setup'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostSetupActionVS11User'
                       Execute='deferred'
                       Impersonate='yes'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i11u "[SNIPPETS];'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -i11u "[SNIPPETS];'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostSetupActionVS11Machine'
                       Execute='deferred'
                       Impersonate='no'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i11m "[SNIPPETS];'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -i11m "[SNIPPETS];'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostSetupActionVs11x'
+                      Execute='deferred'
+                      Impersonate='no'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -i11x "[SNIPPETS];[VS11XINSTALL]'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostRemoveActionUser'
                       Execute='deferred'
                       Impersonate='yes'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -uu "[SNIPPETS];'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -uu "[SNIPPETS];'
                       Directory='TARGETDIR' />
 
         <CustomAction Id='PostRemoveActionMachine'
                       Execute='deferred'
                       Impersonate='no'
-                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -um "[SNIPPETS];'
+                      ExeCommand='"[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe" -um "[SNIPPETS];'
                       Directory='TARGETDIR' />
 
         <InstallExecuteSequence>
             <Custom Action="VS11InstallVSTemplates"
-                    After="InstallFiles">NOT VS11INSTALLED</Custom>
+                    After="InstallFiles">VS11EXISTS</Custom>
+
+            <Custom Action="VS11xInstallVSTemplates"
+                    After="InstallFiles">VS11XEXISTS AND NOT VS11EXISTS</Custom>
 
             <Custom Action="PostSetupActionVS11User"
-                    After="InstallFiles">(NOT REMOVE) AND (NOT VS11INSTALLED)</Custom>
+                    After="InstallFiles">(NOT REMOVE) AND (NOT VS11EXISTS)</Custom>
             
             <Custom Action="PostSetupActionVS11Machine"
-                    After="InstallFiles">(NOT REMOVE) AND (NOT VS11INSTALLED)</Custom>
+                    After="InstallFiles">(NOT REMOVE) AND (NOT VS11EXISTS)</Custom>
+
+            <Custom Action="PostSetupActionVs11x"
+                    After="InstallFiles">(NOT REMOVE) AND VS11XEXISTS AND (NOT VS11EXISTS)</Custom>
 
             <Custom Action="PostRemoveActionUser"
                     Before="RemoveFiles">REMOVE="ALL"</Custom>
