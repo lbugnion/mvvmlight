@@ -323,7 +323,7 @@ namespace GalaSoft.MvvmLight.Messaging
             Justification = "This syntax is more convenient than other alternatives.")]
         public virtual void Unregister<TMessage>(object recipient, object token)
         {
-            throw new NotImplementedException();
+            Unregister<TMessage>(recipient, token, null);
         }
 
         /// <summary>
@@ -360,7 +360,9 @@ namespace GalaSoft.MvvmLight.Messaging
         /// the recipient and for the message type TMessage.</param>
         public virtual void Unregister<TMessage>(object recipient, object token, Action<TMessage> action)
         {
-            throw new NotImplementedException();
+            UnregisterFromLists(recipient, token, action, _recipientsStrictAction);
+            UnregisterFromLists(recipient, token, action, _recipientsOfSubclassesAction);
+            Cleanup();
         }
 
         private static void CleanupList(IDictionary<Type, List<WeakActionAndToken>> lists)
@@ -503,6 +505,41 @@ namespace GalaSoft.MvvmLight.Messaging
                         && recipient == weakActionCasted.Target
                         && (action == null
                             || action == weakActionCasted.Action))
+                    {
+                        item.Action.MarkForDeletion();
+                    }
+                }
+            }
+        }
+
+        private static void UnregisterFromLists<TMessage>(
+            object recipient,
+            object token,
+            Action<TMessage> action,
+            Dictionary<Type, List<WeakActionAndToken>> lists)
+        {
+            Type messageType = typeof(TMessage);
+
+            if (recipient == null
+                || lists == null
+                || lists.Count == 0
+                || !lists.ContainsKey(messageType))
+            {
+                return;
+            }
+
+            lock (lists)
+            {
+                foreach (WeakActionAndToken item in lists[messageType])
+                {
+                    var weakActionCasted = item.Action as WeakAction<TMessage>;
+
+                    if (weakActionCasted != null
+                        && recipient == weakActionCasted.Target
+                        && (action == null
+                            || action == weakActionCasted.Action)
+                        && (token == null
+                            || token.Equals(item.Token)))
                     {
                         item.Action.MarkForDeletion();
                     }

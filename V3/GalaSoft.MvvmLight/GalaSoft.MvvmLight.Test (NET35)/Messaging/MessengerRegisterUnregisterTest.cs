@@ -592,6 +592,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             const string testContent1 = "abcd";
             const string testContent2 = "efgh";
             const string testContent3 = "ijkl";
+            const string testContent4 = "mnop";
             const int token1 = 1234;
             const int token2 = 4567;
 
@@ -613,11 +614,13 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             Assert.AreEqual(testContent2, ReceivedContentStringA2);
             Assert.AreEqual(testContent2, ReceivedContentStringB);
 
-            Messenger.Default.Unregister<string>(this, token2, action3);
+            Messenger.Default.Unregister(this, token2, action3);
             Messenger.Default.Send(testContent3, token1);
+            Messenger.Default.Send(testContent4, token2);
 
-            Assert.AreEqual(testContent1, ReceivedContentStringA1);
-            Assert.AreEqual(testContent2, ReceivedContentStringA2);
+            Assert.AreEqual(testContent3, ReceivedContentStringA1);
+            Assert.AreEqual(testContent4, ReceivedContentStringA2);
+            Assert.AreEqual(testContent2, ReceivedContentStringB);
         }
 
         [TestMethod]
