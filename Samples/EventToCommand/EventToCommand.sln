@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{A5EEEDBD-41EA-4871-9358-6138D0A4AF50}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{0A190E1D-FCF3-4DD9-BCB8-23857CE15005}"
+	ProjectSection(SolutionItems) = preProject
+		References\Silverlight\GalaSoft.MvvmLight.dll = References\Silverlight\GalaSoft.MvvmLight.dll
+		References\Silverlight\GalaSoft.MvvmLight.Extras.dll = References\Silverlight\GalaSoft.MvvmLight.Extras.dll
+		References\Silverlight\System.Windows.Interactivity.dll = References\Silverlight\System.Windows.Interactivity.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{2E465137-9FE2-4D04-8840-3DAA35713188}"
+	ProjectSection(SolutionItems) = preProject
+		References\WPF\GalaSoft.MvvmLight.dll = References\WPF\GalaSoft.MvvmLight.dll
+		References\WPF\GalaSoft.MvvmLight.Extras.dll = References\WPF\GalaSoft.MvvmLight.Extras.dll
+		References\WPF\System.Windows.Interactivity.dll = References\WPF\System.Windows.Interactivity.dll
+		References\WPF\WPFToolkit.dll = References\WPF\WPFToolkit.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventToCommand", "EventToCommand\EventToCommand.csproj", "{577563AE-A660-4C6A-ACAF-E827CB258F2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventToCommand.SL", "EventToCommand.SL\EventToCommand.SL.csproj", "{E6B2437D-6D6F-4C87-A4B0-10AA46C849FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{577563AE-A660-4C6A-ACAF-E827CB258F2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{577563AE-A660-4C6A-ACAF-E827CB258F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{577563AE-A660-4C6A-ACAF-E827CB258F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{577563AE-A660-4C6A-ACAF-E827CB258F2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6B2437D-6D6F-4C87-A4B0-10AA46C849FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6B2437D-6D6F-4C87-A4B0-10AA46C849FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6B2437D-6D6F-4C87-A4B0-10AA46C849FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6B2437D-6D6F-4C87-A4B0-10AA46C849FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A190E1D-FCF3-4DD9-BCB8-23857CE15005} = {A5EEEDBD-41EA-4871-9358-6138D0A4AF50}
+		{2E465137-9FE2-4D04-8840-3DAA35713188} = {A5EEEDBD-41EA-4871-9358-6138D0A4AF50}
+	EndGlobalSection
+EndGlobal

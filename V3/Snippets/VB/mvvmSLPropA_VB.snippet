@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Attached Property (SL)</Title>
+      <Author>Laurent Bugnion (GalaSoft)</Author>
+      <Description>Registers an Attached DependencyProperty (Silverlight)</Description>
+      <HelpUrl>http://www.galasoft.ch/mvvm/getstarted</HelpUrl>
+      <Shortcut>mvvmslpropa</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>property</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>MyProperty</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>Integer</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this Property.  Typically the class that it is declared in.</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>0</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="VB">
+        <![CDATA[''' <summary>
+''' The $property$ attached property's name.
+''' </summary>
+Public Const $property$PropertyName as String  = "$property$"
+
+''' <summary>
+''' Gets the value of the $property$ attached property 
+''' for a given dependency object.
+''' </summary>
+''' <param name="obj">The object for which the property value
+''' is read.</param>
+''' <returns>The value of the $property$ property of the specified object.</returns>
+Public Shared Function Get$property$(ByVal obj as DependencyObject) as $type$
+    return CType(obj.GetValue($property$Property), $type$)
+End Function
+
+''' <summary>
+''' Sets the value of the $property$ attached property
+''' for a given dependency object. 
+''' </summary>
+''' <param name="obj">The object to which the property value
+''' is written.</param>
+''' <param name="value">Sets the $property$ value of the specified object.</param>
+Public Shared Sub Set$property$(ByVal obj as DependencyObject , ByVal value as $type$)
+    obj.SetValue($property$Property, value)
+End Sub
+
+
+''' <summary>
+''' Identifies the $property$ attached property.
+''' </summary>
+Public Shared ReadOnly $property$Property as DependencyProperty = DependencyProperty.RegisterAttached( _
+    $property$PropertyName, _
+    GetType($type$), _
+    GetType($ownerclass$), _
+    new PropertyMetadata($defaultvalue$))]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

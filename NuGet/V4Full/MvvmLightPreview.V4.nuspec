@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+    <metadata>
+        <id>MvvmLightPreview</id>
+        <title>MVVM Light [Preview]</title>
+        <version>4.0.0</version>
+        <authors>Laurent Bugnion (GalaSoft)</authors>
+        <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF and Windows Phone 7. It is a light and pragmatic framework that contains only the essential components needed. This is a preview version of V4!</description>
+        <language>en-US</language>
+        <licenseUrl>http://mvvmlight.codeplex.com/license</licenseUrl>
+        <projectUrl>http://www.galasoft.ch/mvvm</projectUrl>
+        <iconUrl>http://www.galasoft.ch/mvvm/resources/Logo/icon_100x100_transparent.png</iconUrl>
+        <tags>mvvm mvvmlight silverlight wp7 wpf</tags>
+    </metadata>
+</package>

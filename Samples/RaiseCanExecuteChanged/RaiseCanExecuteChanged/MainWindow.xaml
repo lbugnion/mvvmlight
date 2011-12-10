@@ -1,0 +1,31 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="GalaSoft.Samples.RaiseCanExecuteChanged.MainWindow"
+        Title="RaiseCanExecuteChanged demo"
+        SizeToContent="WidthAndHeight"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <Grid Style="{StaticResource MainGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Counter}"
+                   Style="{StaticResource DisplayTextBlockStyle}" />
+
+        <Button Command="{Binding IncreaseCounterCommand}"
+                Grid.Row="2"
+                Style="{StaticResource IncrementButtonStyle}"
+                Content="Increment" />
+
+        <ToggleButton Margin="10,0,0,0"
+                      Style="{StaticResource ToggleButtonStyle}"
+                      IsChecked="{Binding CanIncrement, Mode=TwoWay}"
+                      Content="Enabled"
+                      Tag="Disabled" />
+    </Grid>
+</Window>

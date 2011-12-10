@@ -1,0 +1,7 @@
+<Modules>
+  <Module PersistentId="A0A2E622-A204-4B1C-9EC6-EE80A58C2375" ModuleId="ProjectForTemplates" />
+  <Module PersistentId="BD34A5C7-9416-476D-AB28-CD2420D0B9CA" ModuleId="ProjectForTemplates.SL" />
+  <Module PersistentId="D067610F-3CFD-4B89-9EDC-EABB105377FB" ModuleId="ProjectForTemplates.SL4" />
+  <Module PersistentId="3A57005D-EEC7-4F58-A135-A29C319CF030" ModuleId="ProjectForTemplates.WPF" />
+  <Module PersistentId="920D5F6F-836A-44E3-B99D-DCBC14322AEB" ModuleId="ProjectForTemplates.WP7" />
+</Modules>
