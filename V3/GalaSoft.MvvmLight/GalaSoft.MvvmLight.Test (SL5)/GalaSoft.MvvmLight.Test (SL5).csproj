@@ -163,7 +163,7 @@
       <Project>{2A90531C-0804-45AB-B37C-3A7A63C7BD95}</Project>
       <Name>GalaSoft.MvvmLight %28SL5%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras.SL5\GalaSoft.MvvmLight.Extras %28SL5%29.csproj">
+    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras %28SL5%29\GalaSoft.MvvmLight.Extras %28SL5%29.csproj">
       <Project>{0EE18A65-F713-4ADA-84C7-DF75E46E4F93}</Project>
       <Name>GalaSoft.MvvmLight.Extras %28SL5%29</Name>
     </ProjectReference>

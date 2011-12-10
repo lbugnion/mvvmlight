@@ -84,7 +84,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WP71", "WP71", "{FAF8137C-B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (SL5)", "GalaSoft.MvvmLight (SL5)\GalaSoft.MvvmLight (SL5).csproj", "{2A90531C-0804-45AB-B37C-3A7A63C7BD95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (SL5)", "GalaSoft.MvvmLight.Extras.SL5\GalaSoft.MvvmLight.Extras (SL5).csproj", "{0EE18A65-F713-4ADA-84C7-DF75E46E4F93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (SL5)", "GalaSoft.MvvmLight.Extras (SL5)\GalaSoft.MvvmLight.Extras (SL5).csproj", "{0EE18A65-F713-4ADA-84C7-DF75E46E4F93}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (SL5)", "GalaSoft.MvvmLight.Test (SL5)\GalaSoft.MvvmLight.Test (SL5).csproj", "{16E273CB-F729-4181-A0B1-1B7C30024073}"
 EndProject
