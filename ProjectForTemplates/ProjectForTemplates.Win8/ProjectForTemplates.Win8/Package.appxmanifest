@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  
+  <Identity Name="209c62d6-5090-4691-8f93-2eb81828c455"
+            Publisher="CN=laurent"
+            Version="1.0.0.0" />
+  
+  <Properties>
+    <DisplayName>ProjectForTemplates.Win8</DisplayName>
+    <PublisherDisplayName>laurent</PublisherDisplayName>
+    <Logo>Images\StoreLogo.png</Logo>
+    <Description>ProjectForTemplates.Win8</Description>
+  </Properties>
+  
+  <Prerequisites>
+    <OSMinVersion>6.2</OSMinVersion>
+    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+  </Prerequisites>
+  
+  <Resources>
+    <Resource Language="en-us"/>
+  </Resources>
+  
+  <Applications>
+    <Application Id="App" 
+        Executable="projectfortemplates.win8.exe" 
+        EntryPoint="ProjectForTemplates.Win8.App">
+        <VisualElements 
+            DisplayName="ProjectForTemplates.Win8"
+            Logo="Images\Logo.png"
+            SmallLogo="Images\SmallLogo.png"
+            Description="ProjectForTemplates.Win8"
+            ForegroundText="light"
+            BackgroundColor="#222222">
+            <SplashScreen Image="Images\SplashScreen.png" />
+        </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

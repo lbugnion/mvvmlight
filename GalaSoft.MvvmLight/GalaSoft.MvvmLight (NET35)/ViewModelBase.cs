@@ -20,9 +20,14 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 using System.Linq.Expressions;
+
+#if WIN8
+using PropertyChangedEventArgs = Windows.UI.Xaml.Data.PropertyChangedEventArgs;
+#else
+using System.Windows;
+#endif
 
 ////using GalaSoft.Utilities.Attributes;
 
@@ -99,6 +104,9 @@ namespace GalaSoft.MvvmLight
 #if SILVERLIGHT
                     _isInDesignMode = DesignerProperties.IsInDesignTool;
 #else
+#if WIN8
+                    _isInDesignMode = Windows.ApplicationModel.DesignMode.DesignModeEnabled;
+#else
                     var prop = DesignerProperties.IsInDesignModeProperty;
                     _isInDesignMode
                         = (bool)DependencyPropertyDescriptor
@@ -111,6 +119,7 @@ namespace GalaSoft.MvvmLight
                     {
                         _isInDesignMode = true;
                     }
+#endif
 #endif
                 }
 

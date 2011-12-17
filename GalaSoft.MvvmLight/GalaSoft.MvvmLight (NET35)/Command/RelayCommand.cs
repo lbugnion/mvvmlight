@@ -19,7 +19,13 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+
+#if WIN8
+using Windows.UI.Xaml.Input;
+using EventHandler = Windows.UI.Xaml.EventHandler;
+#else
 using System.Windows.Input;
+#endif
 
 ////using GalaSoft.Utilities.Attributes;
 

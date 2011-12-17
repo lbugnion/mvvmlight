@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using GalaSoft.MvvmLight.Helpers;
 
 ////using GalaSoft.Utilities.Attributes;
@@ -427,7 +428,12 @@ namespace GalaSoft.MvvmLight.Messaging
                 return false;
             }
 
+#if WIN8
+            IEnumerable<Type> interfaces = instanceType.GetTypeInfo().ImplementedInterfaces;
+#else
             Type[] interfaces = instanceType.GetInterfaces();
+#endif
+            
             foreach (Type currentInterface in interfaces)
             {
                 if (currentInterface == interfaceType)
@@ -553,6 +559,17 @@ namespace GalaSoft.MvvmLight.Messaging
                 {
                     List<WeakActionAndToken> list = null;
 
+#if WIN8
+                    if (messageType == type
+                        || type.GetTypeInfo().IsAssignableFrom(messageType.GetTypeInfo())
+                        || Implements(messageType, type))
+                    {
+                        lock (_recipientsOfSubclassesAction)
+                        {
+                            list = _recipientsOfSubclassesAction[type].Take(_recipientsOfSubclassesAction[type].Count()).ToList();
+                        }
+                    }
+#else
                     if (messageType == type
                         || messageType.IsSubclassOf(type)
                         || Implements(messageType, type))
@@ -562,6 +579,7 @@ namespace GalaSoft.MvvmLight.Messaging
                             list = _recipientsOfSubclassesAction[type].Take(_recipientsOfSubclassesAction[type].Count()).ToList();
                         }
                     }
+#endif
 
                     SendToList(message, list, messageTargetType, token);
                 }

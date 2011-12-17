@@ -170,7 +170,11 @@ namespace GalaSoft.MvvmLight.Ioc
             {
                 var classType = typeof (TClass);
 
+#if WIN8
+                if (classType.GetTypeInfo().IsInterface)
+#else
                 if (classType.IsInterface)
+#endif
                 {
                     throw new ArgumentException("An interface cannot be registered alone");
                 }
@@ -448,7 +452,12 @@ namespace GalaSoft.MvvmLight.Ioc
         private ConstructorInfo GetConstructorInfo(Type serviceType)
         {
             var resolveTo = _interfaceToClassMap[serviceType] ?? serviceType;
+
+#if WIN8
+            var constructorInfos = resolveTo.GetTypeInfo().DeclaredConstructors.ToArray();
+#else
             var constructorInfos = resolveTo.GetConstructors();
+#endif
 
             if (constructorInfos.Length > 1)
             {
@@ -456,8 +465,13 @@ namespace GalaSoft.MvvmLight.Ioc
 
                 for (var index = 0; index < constructorInfos.Length; index++)
                 {
+#if WIN8
+                    var attribute = constructorInfos[index].GetCustomAttribute(
+                        typeof (PreferredConstructorAttribute));
+#else
                     var attribute = Attribute.GetCustomAttribute(
                         constructorInfos[index], typeof (PreferredConstructorAttribute));
+#endif
 
                     if (attribute != null)
                     {

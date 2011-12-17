@@ -13,8 +13,11 @@
 // </license>
 // ****************************************************************************
 
+// TODO Win8
+
+#if !WIN8
+
 using System;
-using System.Windows;
 
 ////using GalaSoft.Utilities.Attributes;
 
@@ -152,3 +155,5 @@ namespace GalaSoft.MvvmLight.Messaging
         }
     }
 }
+
+#endif
