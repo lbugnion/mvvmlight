@@ -9,6 +9,8 @@ namespace ModifyRegistryKey
 {
     class Program
     {
+        private const string InstallActionVs11User = "-i11u";
+        private const string InstallActionVs11Machine = "-i11m";
         private const string InstallActionVs10User = "-i10u";
         private const string InstallActionVs10Machine = "-i10m";
         private const string InstallActionVs08User = "-i08u";
@@ -17,7 +19,7 @@ namespace ModifyRegistryKey
         private const string UninstallActionUser = "-uu";
         private const string UninstallActionMachine = "-um";
 
-        private const string PersonalFolderSnippetsPath = "Visual Studio 2010\\Code Snippets\\Visual C#";
+        private const string PersonalFolderVs10SnippetsPath = "Visual Studio 2010\\Code Snippets\\Visual C#";
 
         private static readonly PathInfo SnippetsRegistryPathInfoVs08Machine = new PathInfo
         {
@@ -30,6 +32,13 @@ namespace ModifyRegistryKey
         {
             RootKey = Registry.LocalMachine,
             KeyPath = @"Software\Microsoft\VisualStudio\10.0\Languages\CodeExpansions\CSharp\Paths",
+            KeyName = "Microsoft Visual CSharp"
+        };
+
+        private static readonly PathInfo SnippetsRegistryPathInfoVs11Machine = new PathInfo
+        {
+            RootKey = Registry.LocalMachine,
+            KeyPath = @"Software\Microsoft\VisualStudio\11.0\Languages\CodeExpansions\CSharp\Paths",
             KeyName = "Microsoft Visual CSharp"
         };
 
@@ -47,14 +56,23 @@ namespace ModifyRegistryKey
             KeyName = "path"
         };
 
+        private static readonly PathInfo SnippetsRegistryPathInfoVs11User = new PathInfo
+        {
+            RootKey = Registry.CurrentUser,
+            KeyPath = @"Software\Microsoft\VisualStudio\11.0\Languages\CodeExpansions\Visual C#",
+            KeyName = "path"
+        };
+
         static void Main(string[] args)
         {
-            // Console.WriteLine("008: " + args[0]);
-            // Console.ReadLine();
+            //Console.WriteLine("001: " + args[0]);
+            //Console.ReadLine();
 
             if (args.Length < 2
                 || string.IsNullOrEmpty(args[1])
-                || (args[0] != InstallActionVs10User
+                || (args[0] != InstallActionVs11User
+                    && args[0] != InstallActionVs11Machine
+                    && args[0] != InstallActionVs10User
                     && args[0] != InstallActionVs10Machine
                     && args[0] != InstallActionVs08User
                     && args[0] != InstallActionVs08Machine
@@ -62,13 +80,13 @@ namespace ModifyRegistryKey
                     && args[0] != UninstallActionUser
                     && args[0] != UninstallActionMachine))
             {
-                Console.WriteLine("Syntax: ModifyRegistryKey [-i10u|-i10m|-i10x|-i08u|-i08m|-uu|-um] [pathOfSnippetsFolder];[pathOfVs10Express]");
+                Console.WriteLine("Syntax: ModifyRegistryKey [-i11u|-i11m|-i10u|-i10m|-i10x|-i08u|-i08m|-uu|-um] [pathOfSnippetsFolder];[pathOfVs10Express]");
                 Console.ReadLine();
                 return;
             }
 
-            // Console.WriteLine("Arg 1: " + args[1]);
-            // Console.ReadLine();
+            //Console.WriteLine("Arg 1: " + args[1]);
+            //Console.ReadLine();
 
             var parsedArgs = args[1].Split(
                 new[]
@@ -98,27 +116,27 @@ namespace ModifyRegistryKey
 
         private static void RunUninstallVs10X()
         {
-            // Console.WriteLine("RunInstallVs10x");
-            // Console.ReadLine();
+            //Console.WriteLine("RunInstallVs10x");
+            //Console.ReadLine();
 
             try
             {
                 var personalFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                var destinationSnippetsRootFolder = Path.Combine(personalFolderPath, PersonalFolderSnippetsPath);
+                var destinationSnippetsRootFolder = Path.Combine(personalFolderPath, PersonalFolderVs10SnippetsPath);
 
                 var allLanguages = Directory.GetDirectories(destinationSnippetsRootFolder);
 
                 foreach (var language in allLanguages)
                 {
-                    // Console.WriteLine("In " + language);
-                    // Console.ReadLine();
+                    //Console.WriteLine("In " + language);
+                    //Console.ReadLine();
 
                     var mvvmLightFolderPath = Path.Combine(language, MvvmLightFolderName);
 
                     if (Directory.Exists(mvvmLightFolderPath))
                     {
-                        // Console.WriteLine("Deleting " + mvvmLightFolderPath);
-                        // Console.ReadLine();
+                        //Console.WriteLine("Deleting " + mvvmLightFolderPath);
+                        //Console.ReadLine();
                         Directory.Delete(mvvmLightFolderPath, true);
                     }
                 }
@@ -134,13 +152,13 @@ namespace ModifyRegistryKey
 
         private static void RunInstallVs10X(string snippetsPath)
         {
-            // Console.WriteLine("RunInstallVs10x");
-            // Console.ReadLine();
+            //Console.WriteLine("RunInstallVs10x");
+            //Console.ReadLine();
 
             try
             {
                 var personalFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                var destinationSnippetsRootFolder = Path.Combine(personalFolderPath, PersonalFolderSnippetsPath);
+                var destinationSnippetsRootFolder = Path.Combine(personalFolderPath, PersonalFolderVs10SnippetsPath);
 
                 var allLanguages = Directory.GetDirectories(destinationSnippetsRootFolder);
 
@@ -148,31 +166,31 @@ namespace ModifyRegistryKey
                 {
                     var languageFolder = new DirectoryInfo(Path.Combine(language, MvvmLightFolderName));
 
-                    // Console.WriteLine("In " + languageFolder.FullName);
-                    // Console.ReadLine();
+                    //Console.WriteLine("In " + languageFolder.FullName);
+                    //Console.ReadLine();
 
                     var sourceSnippetsFolders = Directory.GetDirectories(snippetsPath);
 
-                    // Console.WriteLine("Found {0} folders in {1}", sourceSnippetsFolders.Length, snippetsPath);
-                    // Console.ReadLine();
+                    //Console.WriteLine("Found {0} folders in {1}", sourceSnippetsFolders.Length, snippetsPath);
+                    //Console.ReadLine();
 
                     if (!languageFolder.Exists)
                     {
-                        // Console.WriteLine("Creating {0}", languageFolder.FullName);
-                        // Console.ReadLine();
+                        //Console.WriteLine("Creating {0}", languageFolder.FullName);
+                        //Console.ReadLine();
                         languageFolder.Create();
                     }
 
                     foreach (var sourceSnippetsFolder in sourceSnippetsFolders)
                     {
                         var snippets = Directory.GetFiles(sourceSnippetsFolder, "*.snippet");
-                        // Console.WriteLine("{0} files found in {1}", snippets.Length, snippetsPath);
-                        // Console.ReadLine();
+                        //Console.WriteLine("{0} files found in {1}", snippets.Length, snippetsPath);
+                        //Console.ReadLine();
 
                         foreach (var snippet in snippets)
                         {
-                            // Console.WriteLine("Copying " + snippet + " to " + language);
-                            // Console.ReadLine();
+                            //Console.WriteLine("Copying " + snippet + " to " + language);
+                            //Console.ReadLine();
 
                             var file = new FileInfo(snippet);
                             file.CopyTo(Path.Combine(languageFolder.FullName, file.Name), true);
@@ -193,13 +211,19 @@ namespace ModifyRegistryKey
         {
             try
             {
-                // Console.WriteLine("RunInstall");
-                // Console.ReadLine();
+                //Console.WriteLine("RunInstall");
+                //Console.ReadLine();
 
                 PathInfo pathInfo = null;
 
                 switch (command)
                 {
+                    case InstallActionVs11User:
+                        pathInfo = SnippetsRegistryPathInfoVs11User;
+                        break;
+                    case InstallActionVs11Machine:
+                        pathInfo = SnippetsRegistryPathInfoVs11Machine;
+                        break;
                     case InstallActionVs10User:
                         pathInfo = SnippetsRegistryPathInfoVs10User;
                         break;
@@ -235,8 +259,8 @@ namespace ModifyRegistryKey
 
                 if (!snippetsPaths.Contains(snippetsPath))
                 {
-                    // Console.WriteLine("New path: " + snippetsPaths + snippetsPath + ";");
-                    // Console.ReadLine();
+                    //Console.WriteLine("New path: " + snippetsPaths + snippetsPath + ";");
+                    //Console.ReadLine();
                     subKey.SetValue(pathInfo.KeyName, snippetsPaths + snippetsPath + ";");
                 }
             }
@@ -251,18 +275,18 @@ namespace ModifyRegistryKey
 
         private static string GetPath(PathInfo pathInfo, out RegistryKey subKey)
         {
-            // Console.WriteLine(
-                //"Checking subKey {0} in {1}", 
-                //pathInfo.KeyPath,
-                //pathInfo.RootKey.Name);
-            // Console.ReadLine();
+            //Console.WriteLine(
+            //   "Checking subKey {0} in {1}",
+            //   pathInfo.KeyPath,
+            //   pathInfo.RootKey.Name);
+            //Console.ReadLine();
 
             subKey = pathInfo.RootKey.OpenSubKey(pathInfo.KeyPath, true);
 
             if (subKey == null)
             {
-                // Console.WriteLine("subKey == null ({0})", pathInfo.KeyPath);
-                // Console.ReadLine();
+                //Console.WriteLine("subKey == null ({0})", pathInfo.KeyPath);
+                //Console.ReadLine();
                 return null;
             }
 
@@ -273,8 +297,8 @@ namespace ModifyRegistryKey
                 return null;
             }
 
-            // Console.WriteLine("Old path: " + path);
-            // Console.ReadLine();
+            //Console.WriteLine("Old path: " + path);
+            //Console.ReadLine();
             return path.ToString();
         }
 
@@ -282,8 +306,8 @@ namespace ModifyRegistryKey
         {
             try
             {
-                // Console.WriteLine("RunUninstall");
-                // Console.ReadLine();
+                //Console.WriteLine("RunUninstall");
+                //Console.ReadLine();
 
                 var allPathsInfo = new List<PathInfo>();
 
@@ -292,10 +316,12 @@ namespace ModifyRegistryKey
                     case UninstallActionUser:
                         allPathsInfo.Add(SnippetsRegistryPathInfoVs08User);
                         allPathsInfo.Add(SnippetsRegistryPathInfoVs10User);
+                        allPathsInfo.Add(SnippetsRegistryPathInfoVs11User);
                         break;
                     case UninstallActionMachine:
                         allPathsInfo.Add(SnippetsRegistryPathInfoVs08Machine);
                         allPathsInfo.Add(SnippetsRegistryPathInfoVs10Machine);
+                        allPathsInfo.Add(SnippetsRegistryPathInfoVs11Machine);
                         break;
                 }
 
@@ -303,8 +329,8 @@ namespace ModifyRegistryKey
 
                 foreach (var info in allPathsInfo)
                 {
-                    // Console.WriteLine("Checking {0}", info.KeyName);
-                    // Console.ReadLine();
+                    //Console.WriteLine("Checking {0}", info.KeyName);
+                    //Console.ReadLine();
 
                     RegistryKey subKey;
                     var snippetsPaths = GetPath(info, out subKey);
@@ -312,16 +338,16 @@ namespace ModifyRegistryKey
                     if (string.IsNullOrEmpty(snippetsPaths)
                         || subKey == null)
                     {
-                        // Console.WriteLine("Null");
-                        // Console.ReadLine();
+                        //Console.WriteLine("Null");
+                        //Console.ReadLine();
                         continue;
                     }
 
                     if (snippetsPaths.Contains(snippetsPath))
                     {
                         snippetsPaths = snippetsPaths.Replace(snippetsPath, "");
-                        // Console.WriteLine("New path: " + snippetsPaths);
-                        // Console.ReadLine();
+                        //Console.WriteLine("New path: " + snippetsPaths);
+                        //Console.ReadLine();
                         subKey.SetValue(info.KeyName, snippetsPaths);
                     }
                 }

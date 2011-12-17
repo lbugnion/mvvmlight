@@ -15,11 +15,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
+
+#if WIN8
+using Windows.UI.Xaml.Data;
+#else
+using System.ComponentModel;
+#endif
 
 namespace GalaSoft.MvvmLight
 {
@@ -58,11 +63,20 @@ namespace GalaSoft.MvvmLight
         public void VerifyPropertyName(string propertyName)
         {
             var myType = this.GetType();
+
+#if WIN8
+            if (!string.IsNullOrEmpty(propertyName)
+                && myType.GetTypeInfo().GetDeclaredProperty(propertyName) == null)
+            {
+                throw new ArgumentException("Property not found", propertyName);
+            }
+#else
             if (!string.IsNullOrEmpty(propertyName)
                 && myType.GetProperty(propertyName) == null)
             {
                 throw new ArgumentException("Property not found", propertyName);
             }
+#endif
         }
 
         /// <summary>
@@ -77,14 +91,26 @@ namespace GalaSoft.MvvmLight
             Justification = "This cannot be an event")]
         protected virtual void RaisePropertyChanged(string propertyName)
         {
-            VerifyPropertyName(propertyName);
-
-            var handler = PropertyChanged;
-
-            if (handler != null)
+#if WIN8
+            if (string.IsNullOrEmpty(propertyName))
             {
-                handler(this, new PropertyChangedEventArgs(propertyName));
+                throw new NotSupportedException(
+                    "Raising the PropertyChanged event with an empty string or null is not supported in the Windows 8 developer preview");
             }
+            else
+            {
+#endif
+                VerifyPropertyName(propertyName);
+
+                var handler = PropertyChanged;
+
+                if (handler != null)
+                {
+                    handler(this, new PropertyChangedEventArgs(propertyName));
+                }
+#if WIN8
+            }
+#endif
         }
 
         /// <summary>

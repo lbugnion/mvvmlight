@@ -56,3 +56,6 @@ glob:ProjectForTemplates/_ReSharper.ProjectForTemplates/
 glob:Snippets/_ReSharper.Snippets/
 glob:CleanOldFiles/_ReSharper.CleanOldFiles
 glob:*.sln.docstates
+glob:*.ldf
+glob:*.mdf
+glob:Installer/Win8Installer/_ReSharper.Installer/

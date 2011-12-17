@@ -15,9 +15,9 @@
 // ****************************************************************************
 
 using System;
-using System.Windows.Threading;
 
-#if SILVERLIGHT
+#if !WIN8
+using System.Windows.Threading;
 using System.Windows;
 #endif
 
