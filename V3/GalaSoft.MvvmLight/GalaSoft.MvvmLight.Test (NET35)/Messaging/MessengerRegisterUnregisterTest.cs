@@ -1,6 +1,5 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Messaging;
-using Microsoft.Silverlight.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GalaSoft.MvvmLight.Test.Messaging
@@ -586,7 +585,6 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         }
 
         [TestMethod]
-        [Tag("Token")]
         public void TestRegisterUnregisterOneActionWithToken()
         {
             const string testContent1 = "abcd";
@@ -624,7 +622,6 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         }
 
         [TestMethod]
-        [Tag("Token")]
         public void TestRegisterUnregisterWithToken()
         {
             const string testContent1 = "abcd";

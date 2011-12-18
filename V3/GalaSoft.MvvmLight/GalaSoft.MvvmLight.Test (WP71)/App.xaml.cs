@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace GalaSoft.MvvmLight.Test__WP7_
+namespace GalaSoft.MvvmLight.Test__WP71_
 {
     public partial class App : Application
     {

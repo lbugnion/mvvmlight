@@ -19,6 +19,10 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<TestClass>());
             SimpleIoc.Default.Register<TestClass>();
             Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass>());
+
+            var instance = SimpleIoc.Default.GetInstance<TestClass>();
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass>());
+
             SimpleIoc.Default.Unregister<TestClass>();
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<TestClass>());
         }
@@ -31,6 +35,10 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<ITestClass>());
             SimpleIoc.Default.Register<ITestClass, TestClass>();
             Assert.IsTrue(SimpleIoc.Default.IsRegistered<ITestClass>());
+
+            var instance = SimpleIoc.Default.GetInstance<ITestClass>();
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<ITestClass>());
+            
             SimpleIoc.Default.Unregister<ITestClass>();
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<ITestClass>());
         }
@@ -44,6 +52,10 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<TestClass>());
             SimpleIoc.Default.Register(() => instance);
             Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass>());
+
+            var getInstance = SimpleIoc.Default.GetInstance<TestClass>();
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass>());
+            
             SimpleIoc.Default.Unregister<TestClass>();
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<TestClass>());
         }
@@ -58,9 +70,14 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             var instance = new TestClass();
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<TestClass>(key1));
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<TestClass>(key2));
+            
             SimpleIoc.Default.Register(() => instance, key1);
             Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass>(key1));
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<TestClass>(key2));
+
+            var getInstance = SimpleIoc.Default.GetInstance<TestClass>(key1);
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass>(key1));
+
             SimpleIoc.Default.Unregister<TestClass>(key1);
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<TestClass>(key1));
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<TestClass>(key2));

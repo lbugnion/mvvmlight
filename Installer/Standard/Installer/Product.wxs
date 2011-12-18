@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-    <Product Id="fac86f6c-5a15-46fd-a6de-ca27cca61fe1"
+    <Product Id="3EDEDBCB-BA3B-408B-A15F-C0489250487D"
              Name="MVVM Light Toolkit"
              Language="1033"
-             Version="4.0.0.17"
+             Version="4.0.1.18"
              Manufacturer="Laurent Bugnion (GalaSoft)"
              UpgradeCode="ec07ea32-0293-4e2f-8318-16fddde66c03">
 
@@ -23,9 +23,9 @@
                Cabinet="media1.cab"
                EmbedCab="yes" />
 
-        <Property Id="ARPHELPLINK">http://mvvmlight.codeplex.com/</Property>
+        <Property Id="ARPHELPLINK">http://www.galasoft.ch/mvvm/</Property>
 
-        <Property Id="ARPURLINFOABOUT">http://mvvmlight.codeplex.com/</Property>
+        <Property Id="ARPURLINFOABOUT">http://www.galasoft.ch/mvvm/</Property>
 
         <!--Registry key variables-->
         <Property Id="VPDXINSTALL">
@@ -41,6 +41,14 @@
                             Type="raw"
                             Root="HKLM"
                             Key="Software\Microsoft\Expression\Blend\4.0"
+                            Name="InstallDir" />
+        </Property>
+
+        <Property Id="BLEND4SL5INSTALL">
+            <RegistrySearch Id="Blend4SL5Registry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="Software\Microsoft\Expression\Blend\4.1"
                             Name="InstallDir" />
         </Property>
 
@@ -68,6 +76,14 @@
                             Name="Install Path" />
         </Property>
 
+        <Property Id="INSTALLDIRSL5SDK">
+            <RegistrySearch Id="SL5SDKRegistry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="Software\Microsoft\Microsoft SDKs\Silverlight\v5.0\Install Path"
+                            Name="Install Path" />
+        </Property>
+
         <Property Id="VS10INSTALLED">
             <RegistrySearch Id="VS10InstalledRegistry"
                             Type="raw"
@@ -79,6 +95,12 @@
         <Property Id="BLEND4EXISTS">
             <DirectorySearch Id="CheckFileDirBlend4"
                              Path="[BLEND4INSTALL]"
+                             Depth="0" />
+        </Property>
+
+        <Property Id="BLEND4SL5EXISTS">
+            <DirectorySearch Id="CheckFileDirBlend4SL5"
+                             Path="[BLEND4SL5INSTALL]"
                              Depth="0" />
         </Property>
 
@@ -105,6 +127,12 @@
         <Property Id="SL4SDKEXISTS">
             <DirectorySearch Id="CheckFileDirSL4SDK"
                              Path="[INSTALLDIRSL4SDK]"
+                             Depth="0" />
+        </Property>
+
+        <Property Id="SL5SDKEXISTS">
+            <DirectorySearch Id="CheckFileDirSL5SDK"
+                             Path="[INSTALLDIRSL5SDK]"
                              Depth="0" />
         </Property>
 
@@ -217,35 +245,35 @@
                                     <File Id="GalaSoft.MvvmLight.dll.SL3"
                                           Name="GalaSoft.MvvmLight.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.dll" />
                                     <File Id="GalaSoft.MvvmLight.xml.SL3"
                                           Name="GalaSoft.MvvmLight.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.xml" />
                                     <File Id="GalaSoft.MvvmLight.Extras.dll.SL3"
                                           Name="GalaSoft.MvvmLight.Extras.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.Extras.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.Extras.dll" />
                                     <File Id="GalaSoft.MvvmLight.Extras.xml.SL3"
                                           Name="GalaSoft.MvvmLight.Extras.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.Extras.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.Extras.xml" />
                                     <File Id="System.Windows.Interactivity.dll.SL3"
                                           Name="System.Windows.Interactivity.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/System.Windows.Interactivity.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/System.Windows.Interactivity.dll" />
                                     <File Id="System.Windows.Interactivity.xml.SL3"
                                           Name="System.Windows.Interactivity.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/System.Windows.Interactivity.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/System.Windows.Interactivity.xml" />
                                     <File Id="Microsoft.Practices.ServiceLocation.dll.SL3"
                                           Name="Microsoft.Practices.ServiceLocation.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/Microsoft.Practices.ServiceLocation.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/Microsoft.Practices.ServiceLocation.dll" />
                                     <File Id="Microsoft.Practices.ServiceLocation.xml.SL3"
                                           Name="Microsoft.Practices.ServiceLocation.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/Microsoft.Practices.ServiceLocation.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/Microsoft.Practices.ServiceLocation.xml" />
                                 </Component>
 
                                 <Component Id="AssemblyFoldersExRegistry.SL3"
@@ -270,35 +298,35 @@
                                     <File Id="GalaSoft.MvvmLight.dll.SL4"
                                           Name="GalaSoft.MvvmLight.SL4.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.SL4.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.SL4.dll" />
                                     <File Id="GalaSoft.MvvmLight.xml.SL4"
                                           Name="GalaSoft.MvvmLight.SL4.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.SL4.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.SL4.xml" />
                                     <File Id="GalaSoft.MvvmLight.Extras.dll.SL4"
                                           Name="GalaSoft.MvvmLight.Extras.SL4.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.Extras.SL4.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.Extras.SL4.dll" />
                                     <File Id="GalaSoft.MvvmLight.Extras.xml.SL4"
                                           Name="GalaSoft.MvvmLight.Extras.SL4.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.Extras.SL4.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.Extras.SL4.xml" />
                                     <File Id="System.Windows.Interactivity.dll.SL4"
                                           Name="System.Windows.Interactivity.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/System.Windows.Interactivity.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/System.Windows.Interactivity.dll" />
                                     <File Id="System.Windows.Interactivity.xml.SL4"
                                           Name="System.Windows.Interactivity.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/System.Windows.Interactivity.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/System.Windows.Interactivity.xml" />
                                     <File Id="Microsoft.Practices.ServiceLocation.dll.SL4"
                                           Name="Microsoft.Practices.ServiceLocation.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/Microsoft.Practices.ServiceLocation.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/Microsoft.Practices.ServiceLocation.dll" />
                                     <File Id="Microsoft.Practices.ServiceLocation.xml.SL4"
                                           Name="Microsoft.Practices.ServiceLocation.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/Microsoft.Practices.ServiceLocation.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/Microsoft.Practices.ServiceLocation.xml" />
                                 </Component>
 
                                 <Component Id="AssemblyFoldersExRegistry.SL4"
@@ -316,6 +344,59 @@
                                 </Component>
                             </Directory>
 
+                            <Directory Id="SILVERLIGHT5"
+                                       Name="Silverlight5">
+                                <Component Id="Silverlight5Components"
+                                           Guid="B9AE70CD-8EA9-439E-AF2E-987B9BD491E8">
+                                    <File Id="GalaSoft.MvvmLight.dll.SL5"
+                                          Name="GalaSoft.MvvmLight.SL5.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/GalaSoft.MvvmLight.SL5.dll" />
+                                    <File Id="GalaSoft.MvvmLight.xml.SL5"
+                                          Name="GalaSoft.MvvmLight.SL5.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/GalaSoft.MvvmLight.SL5.xml" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.dll.SL5"
+                                          Name="GalaSoft.MvvmLight.Extras.SL5.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/GalaSoft.MvvmLight.Extras.SL5.dll" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.xml.SL5"
+                                          Name="GalaSoft.MvvmLight.Extras.SL5.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/GalaSoft.MvvmLight.Extras.SL5.xml" />
+                                    <File Id="System.Windows.Interactivity.dll.SL5"
+                                          Name="System.Windows.Interactivity.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/System.Windows.Interactivity.dll" />
+                                    <File Id="System.Windows.Interactivity.xml.SL5"
+                                          Name="System.Windows.Interactivity.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/System.Windows.Interactivity.xml" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.dll.SL5"
+                                          Name="Microsoft.Practices.ServiceLocation.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/Microsoft.Practices.ServiceLocation.dll" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.xml.SL5"
+                                          Name="Microsoft.Practices.ServiceLocation.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/Microsoft.Practices.ServiceLocation.xml" />
+                                </Component>
+
+                                <Component Id="AssemblyFoldersExRegistry.SL5"
+                                           Guid="{C6BBAB85-4298-4D25-8FE8-CC1034364609}">
+                                    <RegistryKey Id="AssemblyRegistryKeyBinaries.SL5"
+                                                 Action="createAndRemoveOnUninstall"
+                                                 Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v5.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                 Root="HKLM" />
+                                    <RegistryValue Id="regC6BBAB8542984D258FE8CC1034364609"
+                                                   Root="HKLM"
+                                                   Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v5.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                   Value="[SILVERLIGHT5]"
+                                                   Type="string"
+                                                   KeyPath="yes" />
+                                </Component>
+                            </Directory>
+
                             <Directory Id="WP7"
                                        Name="WP7">
                                 <Component Id="WP7Components"
@@ -323,35 +404,35 @@
                                     <File Id="GalaSoft.MvvmLight.dll.WP7"
                                           Name="GalaSoft.MvvmLight.WP7.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.WP7.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.WP7.dll" />
                                     <File Id="GalaSoft.MvvmLight.xml.WP7"
                                           Name="GalaSoft.MvvmLight.WP7.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.WP7.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.WP7.xml" />
                                     <File Id="GalaSoft.MvvmLight.Extras.dll.WP7"
                                           Name="GalaSoft.MvvmLight.Extras.WP7.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.Extras.WP7.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.Extras.WP7.dll" />
                                     <File Id="GalaSoft.MvvmLight.Extras.xml.WP7"
                                           Name="GalaSoft.MvvmLight.Extras.WP7.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.Extras.WP7.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.Extras.WP7.xml" />
                                     <File Id="System.Windows.Interactivity.dll.WP7"
                                           Name="System.Windows.Interactivity.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP7/System.Windows.Interactivity.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/System.Windows.Interactivity.dll" />
                                     <File Id="System.Windows.Interactivity.xml.WP7"
                                           Name="System.Windows.Interactivity.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP7/System.Windows.Interactivity.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/System.Windows.Interactivity.xml" />
                                     <File Id="Microsoft.Practices.ServiceLocation.dll.WP7"
                                           Name="Microsoft.Practices.ServiceLocation.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP7/Microsoft.Practices.ServiceLocation.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/Microsoft.Practices.ServiceLocation.dll" />
                                     <File Id="Microsoft.Practices.ServiceLocation.xml.WP7"
                                           Name="Microsoft.Practices.ServiceLocation.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP7/Microsoft.Practices.ServiceLocation.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/Microsoft.Practices.ServiceLocation.xml" />
                                 </Component>
 
                                 <Component Id="AssemblyFoldersExRegistry.WP7"
@@ -376,35 +457,35 @@
                                     <File Id="GalaSoft.MvvmLight.dll.WP71"
                                           Name="GalaSoft.MvvmLight.WP71.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.WP71.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.WP71.dll" />
                                     <File Id="GalaSoft.MvvmLight.xml.WP71"
                                           Name="GalaSoft.MvvmLight.WP71.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.WP71.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.WP71.xml" />
                                     <File Id="GalaSoft.MvvmLight.Extras.dll.WP71"
                                           Name="GalaSoft.MvvmLight.Extras.WP71.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.Extras.WP71.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.Extras.WP71.dll" />
                                     <File Id="GalaSoft.MvvmLight.Extras.xml.WP71"
                                           Name="GalaSoft.MvvmLight.Extras.WP71.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.Extras.WP71.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.Extras.WP71.xml" />
                                     <File Id="System.Windows.Interactivity.dll.WP71"
                                           Name="System.Windows.Interactivity.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP71/System.Windows.Interactivity.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/System.Windows.Interactivity.dll" />
                                     <File Id="System.Windows.Interactivity.xml.WP71"
                                           Name="System.Windows.Interactivity.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP71/System.Windows.Interactivity.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/System.Windows.Interactivity.xml" />
                                     <File Id="Microsoft.Practices.ServiceLocation.dll.WP71"
                                           Name="Microsoft.Practices.ServiceLocation.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP71/Microsoft.Practices.ServiceLocation.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/Microsoft.Practices.ServiceLocation.dll" />
                                     <File Id="Microsoft.Practices.ServiceLocation.xml.WP71"
                                           Name="Microsoft.Practices.ServiceLocation.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WP71/Microsoft.Practices.ServiceLocation.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/Microsoft.Practices.ServiceLocation.xml" />
                                 </Component>
 
                                 <Component Id="AssemblyFoldersExRegistry.WP71"
@@ -429,35 +510,35 @@
                                     <File Id="GalaSoft.MvvmLight.dll.NET35"
                                           Name="GalaSoft.MvvmLight.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.dll" />
                                     <File Id="GalaSoft.MvvmLight.xml.NET35"
                                           Name="GalaSoft.MvvmLight.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.xml" />
                                     <File Id="GalaSoft.MvvmLight.Extras.dll.NET35"
                                           Name="GalaSoft.MvvmLight.Extras.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.Extras.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.Extras.dll" />
                                     <File Id="GalaSoft.MvvmLight.Extras.xml.NET35"
                                           Name="GalaSoft.MvvmLight.Extras.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.Extras.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.Extras.xml" />
                                     <File Id="System.Windows.Interactivity.dll.NET35"
                                           Name="System.Windows.Interactivity.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/System.Windows.Interactivity.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/System.Windows.Interactivity.dll" />
                                     <File Id="System.Windows.Interactivity.xml.NET35"
                                           Name="System.Windows.Interactivity.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/System.Windows.Interactivity.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/System.Windows.Interactivity.xml" />
                                     <File Id="Microsoft.Practices.ServiceLocation.dll.NET35"
                                           Name="Microsoft.Practices.ServiceLocation.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/Microsoft.Practices.ServiceLocation.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/Microsoft.Practices.ServiceLocation.dll" />
                                     <File Id="Microsoft.Practices.ServiceLocation.xml.NET35"
                                           Name="Microsoft.Practices.ServiceLocation.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/Microsoft.Practices.ServiceLocation.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/Microsoft.Practices.ServiceLocation.xml" />
                                 </Component>
 
                                 <Component Id="AssemblyFoldersExRegistry.WPF35"
@@ -482,35 +563,35 @@
                                     <File Id="GalaSoft.MvvmLight.dll.NET4"
                                           Name="GalaSoft.MvvmLight.WPF4.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.WPF4.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.WPF4.dll" />
                                     <File Id="GalaSoft.MvvmLight.xml.NET4"
                                           Name="GalaSoft.MvvmLight.WPF4.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.WPF4.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.WPF4.xml" />
                                     <File Id="GalaSoft.MvvmLight.Extras.dll.NET4"
                                           Name="GalaSoft.MvvmLight.Extras.WPF4.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.Extras.WPF4.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.Extras.WPF4.dll" />
                                     <File Id="GalaSoft.MvvmLight.Extras.xml.NET4"
                                           Name="GalaSoft.MvvmLight.Extras.WPF4.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.Extras.WPF4.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.Extras.WPF4.xml" />
                                     <File Id="System.Windows.Interactivity.dll.NET4"
                                           Name="System.Windows.Interactivity.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/System.Windows.Interactivity.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/System.Windows.Interactivity.dll" />
                                     <File Id="System.Windows.Interactivity.xml.NET4"
                                           Name="System.Windows.Interactivity.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/System.Windows.Interactivity.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/System.Windows.Interactivity.xml" />
                                     <File Id="Microsoft.Practices.ServiceLocation.dll.NET4"
                                           Name="Microsoft.Practices.ServiceLocation.dll"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/Microsoft.Practices.ServiceLocation.dll" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/Microsoft.Practices.ServiceLocation.dll" />
                                     <File Id="Microsoft.Practices.ServiceLocation.xml.NET4"
                                           Name="Microsoft.Practices.ServiceLocation.xml"
                                           DiskId="1"
-                                          Source="../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/Microsoft.Practices.ServiceLocation.xml" />
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/Microsoft.Practices.ServiceLocation.xml" />
                                 </Component>
 
                                 <Component Id="AssemblyFoldersExRegistry.WPF4"
@@ -532,7 +613,7 @@
                 </Directory>
             </Directory>
 
-            <!--VS2008 Templates-->
+            <!--VS2008 Templates and snippets-->
             <Directory Id="VS90_ROOT_FOLDER">
                 <Directory Id="Vs08Common7"
                            Name="Common7">
@@ -625,7 +706,7 @@
                 </Directory>
             </Directory>
 
-            <!--VS2010 Templates-->
+            <!--VS2010 Templates and snippets-->
             <Directory Id="VS2010_ROOT_FOLDER">
                 <Directory Id="Vs10Common7"
                            Name="Common7">
@@ -639,6 +720,14 @@
                                            Name="Silverlight">
                                     <Directory Id="Vs10ProjectTemplatesCsSlMvvm"
                                                Name="Mvvm">
+                                        <Component Id="Vs10ProjectTemplatesCsSlMvvmSl5Comp"
+                                                   Guid="{55DD4EF7-3F9B-4BB1-9989-5676E2AC1C58}">
+                                            <File Id="MvvmLight.SL5.zip.VS10"
+                                                  Name="MvvmLight.SL5.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL5.zip" />
+                                        </Component>
+
                                         <Component Id="Vs10ProjectTemplatesCsSlMvvmSl4Comp"
                                                    Guid="{3CB47D93-0FC3-4D6D-971C-1F13A243E179}">
                                             <File Id="MvvmLight.SL4.zip.VS10"
@@ -778,7 +867,7 @@
                 </Directory>
             </Directory>
 
-            <!--VS2010Express Templates-->
+            <!--VS2010Express for WP7 Templates-->
             <Directory Id="VPDXINSTALL">
                 <Directory Id="Vs10xCommon7"
                            Name="Common7">
@@ -835,6 +924,7 @@
             </Directory>
 
             <!--Blend 4 Templates-->
+            <!--Blend 4 For Silverlight 5 Templates-->
             <Directory Id="PersonalFolder">
                 <Directory Id="Expression"
                            Name="Expression">
@@ -965,6 +1055,58 @@
                             </Directory>
                         </Directory>
                     </Directory>
+
+                    <Directory Id="BlendPreviewForSilverlight5"
+                               Name="Blend Preview for Silverlight 5">
+                        <Directory Id="Blend4SL5ItemTemplates"
+                                   Name="ItemTemplates">
+                            <Directory Id="Blend4SL5ItemTemplatesEnCs"
+                                       Name="CSharp">
+                                <Directory Id="Blend4SL5ItemTemplatesEnCsMvvm"
+                                           Name="Mvvm">
+                                    <Directory Id="Blend4SL5ItemTemplatesEnCsMvvmSl"
+                                               Name="Silverlight">
+                                        <Component Id="Blend4SL5ItemTemplatesEnCsMvvmSlComp"
+                                                   DiskId="1"
+                                                   Guid="2FF866FB-41B7-4C37-89A6-BFA3BE92B58B">
+                                            <File Id="Blend4MvvmView.SL5.zip"
+                                                  Name="MvvmView.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmView.SL.zip" />
+                                            <File Id="Blend4MvvmViewModel.SL5.zip"
+                                                  Name="MvvmViewModel.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModel.SL.zip" />
+                                            <File Id="Blend4MvvmViewModelLocator.SL5.zip"
+                                                  Name="MvvmViewModelLocator.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModelLocator.SL.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+
+                        <Directory Id="Blend4SL5ProjectTemplates"
+                                   Name="ProjectTemplates">
+                            <Directory Id="Blend4SL5ProjectTemplatesEnCs"
+                                       Name="CSharp">
+                                <Directory Id="Blend4SL5ProjectTemplatesEnCsMvvm"
+                                           Name="Mvvm">
+                                    <Directory Id="Blend4SL5ProjectTemplatesEnCsMvvmSl"
+                                               Name="Silverlight">
+                                        <Component Id="Blend4SL5ProjectTemplatesEnCsMvvmSlComp"
+                                                   DiskId="1"
+                                                   Guid="6A6EA09F-33D6-4F22-9A54-69B6E1E27EAC">
+                                            <File Id="Blend4MvvmLight.SL5.zip"
+                                                  Name="MvvmLight.SL5.zip"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL5.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                    </Directory>
                 </Directory>
             </Directory>
 
@@ -1033,6 +1175,15 @@
                     <Condition Level="0">NOT SL4SDKEXISTS</Condition>
                 </Feature>
 
+                <Feature Id="Silverlight5Feature"
+                         Title="Silverlight 5"
+                         Level="1"
+                         Description="Silverlight 5 Assemblies">
+                    <ComponentRef Id="Silverlight5Components" />
+                    <ComponentRef Id="AssemblyFoldersExRegistry.SL5" />
+                    <Condition Level="0">NOT SL5SDKEXISTS</Condition>
+                </Feature>
+
                 <Feature Id="WP7Feature"
                          Title="Windows Phone 7"
                          Level="1"
@@ -1073,6 +1224,7 @@
                          Title="VS2010"
                          Description="Item and Project Templates for Visual Studio 2010">
                     <Condition Level="0">NOT VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
+                    <ComponentRef Id="Vs10ProjectTemplatesCsSlMvvmSl5Comp" />
                     <ComponentRef Id="Vs10ProjectTemplatesCsSlMvvmSl4Comp" />
                     <ComponentRef Id="Vs10ProjectTemplatesCsSlMvvmSl3Comp" />
                     <ComponentRef Id="Vs10ProjectTemplatesCsWpfMvvmWpfComp" />
@@ -1119,6 +1271,16 @@
                     <ComponentRef Id="Blend4ItemTemplatesEnCsMvvmSlComp" />
                     <ComponentRef Id="Blend4ItemTemplatesEnCsMvvmWp7Comp" />
                     <ComponentRef Id="Blend4ItemTemplatesEnCsMvvmWpfComp" />
+                </Feature>
+
+                <Feature Id="blend4sl5"
+                         Level="1"
+                         Display="collapse"
+                         Title="Blend preview for Silverlight 5"
+                         Description="Item and Project Templates for Blend for Silverlight 5">
+                    <Condition Level="0">NOT BLEND4SL5EXISTS</Condition>
+                    <ComponentRef Id="Blend4SL5ProjectTemplatesEnCsMvvmSlComp" />
+                    <ComponentRef Id="Blend4SL5ItemTemplatesEnCsMvvmSlComp" />
                 </Feature>
             </Feature>
 
@@ -1225,6 +1387,10 @@
             <Custom Action="PostSetupActionVs10x"
                     After="InstallFiles">(NOT REMOVE) AND VPDXEXISTS AND (NOT VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED)</Custom>
         </InstallExecuteSequence>
+
+        <MajorUpgrade
+            Schedule="afterInstallInitialize"
+            DowngradeErrorMessage="A later version of MVVM Light is already installed. Setup will now exit." />
 
         <UI />
     </Product>
