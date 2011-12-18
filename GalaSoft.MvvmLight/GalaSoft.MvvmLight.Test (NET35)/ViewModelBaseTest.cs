@@ -10,6 +10,7 @@ using Windows.UI.Xaml;
 #else
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows;
 #endif
 
 namespace GalaSoft.MvvmLight.Test

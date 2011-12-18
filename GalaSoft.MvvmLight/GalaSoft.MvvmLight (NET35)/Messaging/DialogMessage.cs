@@ -18,6 +18,7 @@
 #if !WIN8
 
 using System;
+using System.Windows;
 
 ////using GalaSoft.Utilities.Attributes;
 

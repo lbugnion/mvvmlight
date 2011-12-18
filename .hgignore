@@ -59,3 +59,5 @@ glob:*.sln.docstates
 glob:*.ldf
 glob:*.mdf
 glob:Installer/Win8Installer/_ReSharper.Installer/
+glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (SL5)/
+glob:Installer/Standard/_ReSharper.Installer/
