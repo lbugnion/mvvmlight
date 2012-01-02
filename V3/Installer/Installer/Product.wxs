@@ -4,7 +4,7 @@
     <Product Id="3A41F087-4605-438C-9322-8BD77B37A552"
              Name="MVVM Light Toolkit"
              Language="1033"
-             Version="3.0.2.0"
+             Version="3.0.2.19"
              Manufacturer="Laurent Bugnion (GalaSoft)"
              UpgradeCode="ec07ea32-0293-4e2f-8318-16fddde66c03">
 
@@ -12,7 +12,7 @@
                  Compressed="yes"
                  Id="*"
                  Keywords="Installer"
-                 Description="MVVM Light Toolkit Installer (V3)"
+                 Description="MVVM Light Toolkit Installer (V3 / 3.0.2.19)"
                  Comments="The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed."
                  Manufacturer="Laurent Bugnion (GalaSoft)"
                  Languages="1033"

@@ -19,7 +19,7 @@
         <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     </TemplateData>
     <TemplateContent>
-        <Project File="ProjectForTemplateSL.csproj"
+        <Project File="MvvmLight.SL5.csproj"
                  ReplaceParameters="true">
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="App.xaml">App.xaml</ProjectItem>

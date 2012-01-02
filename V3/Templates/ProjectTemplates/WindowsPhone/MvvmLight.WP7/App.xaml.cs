@@ -16,11 +16,18 @@ using $safeprojectname$.ViewModel;
 
 namespace $safeprojectname$
 {
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
     public partial class App : Application
     {
 
         // Easy access to the root frame
-        public PhoneApplicationFrame RootFrame { get; private set; }
+        public PhoneApplicationFrame RootFrame
+        {
+            get;
+            private set;
+        }
 
         // Constructor
         public App()

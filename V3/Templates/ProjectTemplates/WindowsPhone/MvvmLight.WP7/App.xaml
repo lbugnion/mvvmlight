@@ -8,8 +8,8 @@
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:$safeprojectname$.ViewModel">
 
-    <!--Application Resources-->
     <Application.Resources>
+        <!--Global View Model Locator-->
         <vm:ViewModelLocator x:Key="Locator"
                              d:IsDataSource="True" />
     </Application.Resources>
