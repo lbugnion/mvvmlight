@@ -473,6 +473,39 @@
             Occurs when changes occur that affect whether the command should execute.
             </summary>
         </member>
+        <member name="T:GalaSoft.MvvmLight.Threading.DispatcherHelper">
+            <summary>
+            Helper class for dispatcher operations on the UI thread.
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.CheckBeginInvokeOnUI(System.Action)">
+            <summary>
+            Executes an action on the UI thread. If this method is called
+            from the UI thread, the action is executed immendiately. If the
+            method is called from another thread, the action will be enqueued
+            on the UI thread's dispatcher and executed asynchronously.
+            <para>For additional operations on the UI thread, you can get a
+            reference to the UI thread's dispatcher thanks to the property
+            <see cref="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher"/></para>.
+            </summary>
+            <param name="action">The action that will be executed on the UI
+            thread.</param>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize">
+            <summary>
+            This method should be called once on the UI thread to ensure that
+            the <see cref="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher"/> property is initialized.
+            <para>In a Silverlight application, call this method in the
+            Application_Startup event handler, after the MainPage is constructed.</para>
+            <para>In WPF, call this method on the static App() constructor.</para>
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher">
+            <summary>
+            Gets a reference to the UI thread's dispatcher, after the
+            <see cref="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize"/> method has been called on the UI thread.
+            </summary>
+        </member>
         <member name="T:GalaSoft.MvvmLight.ICleanup">
             <summary>
             Defines a common interface for classes that should be cleaned up,
@@ -869,13 +902,31 @@
             <param name="propertyExpression">An expression identifying the property
             that changed.</param>
         </member>
-        <member name="M:GalaSoft.MvvmLight.ObservableObject.RaisePropertyChanged">
+        <member name="M:GalaSoft.MvvmLight.ObservableObject.Set``1(System.Linq.Expressions.Expression{System.Func{``0}},``0@,``0)">
             <summary>
-            When called in a property setter, raises the PropertyChanged event for 
-            the current property.
+            Assigns a new value to the property. Then, raises the
+            PropertyChanged event if needed. 
             </summary>
-            <exception cref="T:System.InvalidOperationException">If this method is called outside
-            of a property setter.</exception>
+            <typeparam name="T">The type of the property that
+            changed.</typeparam>
+            <param name="propertyExpression">An expression identifying the property
+            that changed.</param>
+            <param name="field">The field storing the property's value.</param>
+            <param name="newValue">The property's value after the change
+            occurred.</param>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.ObservableObject.Set``1(System.String,``0@,``0)">
+            <summary>
+            Assigns a new value to the property. Then, raises the
+            PropertyChanged event if needed. 
+            </summary>
+            <typeparam name="T">The type of the property that
+            changed.</typeparam>
+            <param name="propertyName">The name of the property that
+            changed.</param>
+            <param name="field">The field storing the property's value.</param>
+            <param name="newValue">The property's value after the change
+            occurred.</param>
         </member>
         <member name="E:GalaSoft.MvvmLight.ObservableObject.PropertyChanged">
             <summary>
@@ -955,6 +1006,40 @@
             that changed.</param>
             <param name="oldValue">The property's value before the change
             occurred.</param>
+            <param name="newValue">The property's value after the change
+            occurred.</param>
+            <param name="broadcast">If true, a PropertyChangedMessage will
+            be broadcasted. If false, only the event will be raised.</param>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.ViewModelBase.Set``1(System.Linq.Expressions.Expression{System.Func{``0}},``0@,``0,System.Boolean)">
+            <summary>
+            Assigns a new value to the property. Then, raises the
+            PropertyChanged event if needed, and broadcasts a
+            PropertyChangedMessage using the Messenger instance (or the
+            static default instance if no Messenger instance is available). 
+            </summary>
+            <typeparam name="T">The type of the property that
+            changed.</typeparam>
+            <param name="propertyExpression">An expression identifying the property
+            that changed.</param>
+            <param name="field">The field storing the property's value.</param>
+            <param name="newValue">The property's value after the change
+            occurred.</param>
+            <param name="broadcast">If true, a PropertyChangedMessage will
+            be broadcasted. If false, only the event will be raised.</param>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.ViewModelBase.Set``1(System.String,``0@,``0,System.Boolean)">
+            <summary>
+            Assigns a new value to the property. Then, raises the
+            PropertyChanged event if needed, and broadcasts a
+            PropertyChangedMessage using the Messenger instance (or the
+            static default instance if no Messenger instance is available). 
+            </summary>
+            <typeparam name="T">The type of the property that
+            changed.</typeparam>
+            <param name="propertyName">The name of the property that
+            changed.</param>
+            <param name="field">The field storing the property's value.</param>
             <param name="newValue">The property's value after the change
             occurred.</param>
             <param name="broadcast">If true, a PropertyChangedMessage will
@@ -1078,7 +1163,7 @@
             <param name="execute">The execution logic.</param>
             <exception cref="T:System.ArgumentNullException">If the execute argument is null.</exception>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Command.RelayCommand`1.#ctor(System.Action{`0},System.Predicate{`0})">
+        <member name="M:GalaSoft.MvvmLight.Command.RelayCommand`1.#ctor(System.Action{`0},System.Func{`0,System.Boolean})">
             <summary>
             Initializes a new instance of the RelayCommand class.
             </summary>

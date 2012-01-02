@@ -98,5 +98,37 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             Assert.AreEqual(message, receivedContent2);
             Assert.IsNull(receivedContent3);
         }
+
+        [TestMethod]
+        public void TestSendNullObjectWithToken()
+        {
+            bool itemReceived = false;
+            bool itemIsNull = false;
+
+            Messenger.Reset();
+
+            var token1 = new object();
+
+            Messenger.Default.Register<string>(
+                this, 
+                token1, 
+                m =>
+                {
+                    itemReceived = true;
+
+                    if (m == null)
+                    {
+                        itemIsNull = true;
+                    }
+                });
+
+            Assert.IsFalse(itemReceived);
+            Assert.IsFalse(itemIsNull);
+            
+            Messenger.Default.Send<string>(null, token1);
+
+            Assert.IsTrue(itemReceived);
+            Assert.IsTrue(itemIsNull);
+        }
     }
 }
