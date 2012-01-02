@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-    <Product Id="3EDEDBCB-BA3B-408B-A15F-C0489250487D"
+    <Product Id="7254D594-26B0-4285-949F-00EE7E614995"
              Name="MVVM Light Toolkit"
              Language="1033"
-             Version="4.0.1.18"
+             Version="4.0.2.19"
              Manufacturer="Laurent Bugnion (GalaSoft)"
              UpgradeCode="ec07ea32-0293-4e2f-8318-16fddde66c03">
 
@@ -12,7 +12,7 @@
                  Compressed="yes"
                  Id="*"
                  Keywords="Installer"
-                 Description="MVVM Light Toolkit Installer (V4 beta 1)"
+                 Description="MVVM Light Toolkit Installer (V4 beta 1 / 4.0.2.19)"
                  Comments="The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed."
                  Manufacturer="Laurent Bugnion (GalaSoft)"
                  Languages="1033"
