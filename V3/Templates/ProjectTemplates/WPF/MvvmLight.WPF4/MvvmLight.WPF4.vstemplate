@@ -2,13 +2,12 @@
             xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
             Type="Project">
     <TemplateData>
-        <Name>MvvmLight (WPF)</Name>
+        <Name>MvvmLight (WPF4)</Name>
         <Description>A "light" WPF Model-View-ViewModel application optimized for Expression Blend (by GalaSoft Laurent Bugnion)</Description>
         <Icon>MvvmLight.ico</Icon>
-        <TemplateID>GalaSoft.MvvmLight</TemplateID>
+        <TemplateID>GalaSoft.MvvmLight.WPF4</TemplateID>
         <ProjectType>CSharp</ProjectType>
         <ProjectSubType>WPF</ProjectSubType>
-        <RequiredFrameworkVersion>3.0</RequiredFrameworkVersion>
         <CreateNewFolder>true</CreateNewFolder>
         <DefaultName>MvvmLight</DefaultName>
         <ProvideDefaultName>true</ProvideDefaultName>
@@ -20,7 +19,7 @@
         <PreviewImage>MvvmLight.png</PreviewImage>
     </TemplateData>
     <TemplateContent>
-        <Project File="ProjectForTemplate.csproj"
+        <Project File="MvvmLight.WPF4.csproj"
                  ReplaceParameters="true">
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="App.xaml">App.xaml</ProjectItem>

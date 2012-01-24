@@ -4,6 +4,39 @@
         <name>GalaSoft.MvvmLight.Extras.WPF4</name>
     </assembly>
     <members>
+        <member name="T:GalaSoft.MvvmLight.Threading.DispatcherHelper">
+            <summary>
+            Helper class for dispatcher operations on the UI thread.
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.CheckBeginInvokeOnUI(System.Action)">
+            <summary>
+            Executes an action on the UI thread. If this method is called
+            from the UI thread, the action is executed immendiately. If the
+            method is called from another thread, the action will be enqueued
+            on the UI thread's dispatcher and executed asynchronously.
+            <para>For additional operations on the UI thread, you can get a
+            reference to the UI thread's dispatcher thanks to the property
+            <see cref="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher"/></para>.
+            </summary>
+            <param name="action">The action that will be executed on the UI
+            thread.</param>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize">
+            <summary>
+            This method should be called once on the UI thread to ensure that
+            the <see cref="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher"/> property is initialized.
+            <para>In a Silverlight application, call this method in the
+            Application_Startup event handler, after the MainPage is constructed.</para>
+            <para>In WPF, call this method on the static App() constructor.</para>
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher">
+            <summary>
+            Gets a reference to the UI thread's dispatcher, after the
+            <see cref="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize"/> method has been called on the UI thread.
+            </summary>
+        </member>
         <member name="T:GalaSoft.MvvmLight.Command.EventToCommand">
             <summary>
             This <see cref="T:System.Windows.Interactivity.TriggerAction"/> can be
@@ -46,7 +79,7 @@
         <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.GetCommand">
             <summary>
             This method is here for compatibility
-            with the Silverlight version.
+            with the Silverlight 3 version.
             </summary>
             <returns>The command that must be executed when
             this trigger is invoked.</returns>
@@ -105,37 +138,12 @@
             For databinding, use the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabled"/> property.
             </summary>
         </member>
-        <member name="T:GalaSoft.MvvmLight.Threading.DispatcherHelper">
+        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.PassEventArgsToCommand">
             <summary>
-            Helper class for dispatcher operations on the UI thread.
-            </summary>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.CheckBeginInvokeOnUI(System.Action)">
-            <summary>
-            Executes an action on the UI thread. If this method is called
-            from the UI thread, the action is executed immendiately. If the
-            method is called from another thread, the action will be enqueued
-            on the UI thread's dispatcher and executed asynchronously.
-            <para>For additional operations on the UI thread, you can get a
-            reference to the UI thread's dispatcher thanks to the property
-            <see cref="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher"/></para>.
-            </summary>
-            <param name="action">The action that will be executed on the UI
-            thread.</param>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize">
-            <summary>
-            This method should be called once on the UI thread to ensure that
-            the <see cref="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher"/> property is initialized.
-            <para>In a Silverlight application, call this method in the
-            Application_Startup event handler, after the MainPage is constructed.</para>
-            <para>In WPF, call this method on the static App() constructor.</para>
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher">
-            <summary>
-            Gets a reference to the UI thread's dispatcher, after the
-            <see cref="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize"/> method has been called on the UI thread.
+            Specifies whether the EventArgs of the event that triggered this
+            action should be passed to the bound RelayCommand. If this is true,
+            the command should accept arguments of the corresponding
+            type (for example RelayCommand&lt;MouseButtonEventArgs&gt;).
             </summary>
         </member>
     </members>

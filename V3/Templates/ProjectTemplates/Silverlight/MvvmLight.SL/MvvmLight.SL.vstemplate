@@ -2,24 +2,25 @@
             xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
             Type="Project">
     <TemplateData>
-        <Name>MvvmLight (SL5)</Name>
+        <Name>MvvmLight (SL)</Name>
         <Description>A "light" Silverlight Model-View-ViewModel application optimized for Expression Blend (by GalaSoft Laurent Bugnion)</Description>
         <Icon>MvvmLight.ico</Icon>
         <PreviewImage>MvvmLight.png</PreviewImage>
-        <TemplateID>GalaSoft.MvvmLight.SL5</TemplateID>
+        <TemplateID>GalaSoft.MvvmLight.SL</TemplateID>
         <ProjectType>CSharp</ProjectType>
         <ProjectSubType>Silverlight</ProjectSubType>
         <CreateNewFolder>true</CreateNewFolder>
         <DefaultName>MvvmLight</DefaultName>
         <ProvideDefaultName>true</ProvideDefaultName>
         <SortOrder>1</SortOrder>
+        <RequiredFrameworkVersion>3.5</RequiredFrameworkVersion>
         <LocationField>Enabled</LocationField>
         <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
         <TemplateGroupID>Silverlight;Mvvm</TemplateGroupID>
         <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     </TemplateData>
     <TemplateContent>
-        <Project File="ProjectForTemplateSL.csproj"
+        <Project File="MvvmLight.SL.csproj"
                  ReplaceParameters="true">
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="App.xaml">App.xaml</ProjectItem>

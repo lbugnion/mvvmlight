@@ -2,33 +2,34 @@
             xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
             Type="Project">
     <TemplateData>
-        <Name>MvvmLight (SL4)</Name>
-        <Description>A "light" Silverlight Model-View-ViewModel application optimized for Expression Blend (by GalaSoft Laurent Bugnion)</Description>
+        <Name>MvvmLight (WPF)</Name>
+        <Description>A "light" WPF Model-View-ViewModel application optimized for Expression Blend (by GalaSoft Laurent Bugnion)</Description>
         <Icon>MvvmLight.ico</Icon>
-        <PreviewImage>MvvmLight.png</PreviewImage>
-        <TemplateID>GalaSoft.MvvmLight.SL4</TemplateID>
+        <TemplateID>GalaSoft.MvvmLight</TemplateID>
         <ProjectType>CSharp</ProjectType>
-        <ProjectSubType>Silverlight</ProjectSubType>
+        <ProjectSubType>WPF</ProjectSubType>
+        <RequiredFrameworkVersion>3.0</RequiredFrameworkVersion>
         <CreateNewFolder>true</CreateNewFolder>
         <DefaultName>MvvmLight</DefaultName>
         <ProvideDefaultName>true</ProvideDefaultName>
         <SortOrder>1</SortOrder>
         <LocationField>Enabled</LocationField>
         <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
-        <TemplateGroupID>Silverlight;Mvvm</TemplateGroupID>
+        <TemplateGroupID>WPF;Mvvm</TemplateGroupID>
         <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+        <PreviewImage>MvvmLight.png</PreviewImage>
     </TemplateData>
     <TemplateContent>
-        <Project File="ProjectForTemplateSL.csproj"
+        <Project File="MvvmLight.WPF.csproj"
                  ReplaceParameters="true">
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="App.xaml">App.xaml</ProjectItem>
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true"
-                         TargetFileName="MainPage.xaml">MainPage.xaml</ProjectItem>
+                         TargetFileName="MainWindow.xaml">MainWindow.xaml</ProjectItem>
             <ProjectItem ReplaceParameters="true"
-                         TargetFileName="MainPage.xaml.cs">MainPage.xaml.cs</ProjectItem>
+                         TargetFileName="MainWindow.xaml.cs">MainWindow.xaml.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true"
@@ -36,7 +37,9 @@
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="Properties\Resources.Designer.cs">Resources.Designer.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true"
-                         TargetFileName="Properties\AppManifest.xml">AppManifest.xml</ProjectItem>
+                         TargetFileName="Properties\Settings.settings">Settings.settings</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\Settings.Designer.cs">Settings.Designer.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="Skins\MainSkin.xaml">MainSkin.xaml</ProjectItem>
             <ProjectItem ReplaceParameters="true"
