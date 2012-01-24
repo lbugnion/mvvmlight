@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("$safeprojectname$")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("$registeredorganization$")]
 [assembly: AssemblyProduct("$safeprojectname$")]
-[assembly: AssemblyCopyright("Copyright © $year$")]
+[assembly: AssemblyCopyright("Copyright © $registeredorganization$ $year$")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
