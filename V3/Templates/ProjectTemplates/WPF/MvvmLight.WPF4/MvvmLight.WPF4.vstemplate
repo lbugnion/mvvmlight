@@ -19,7 +19,7 @@
         <PreviewImage>MvvmLight.png</PreviewImage>
     </TemplateData>
     <TemplateContent>
-        <Project File="ProjectForTemplate.csproj"
+        <Project File="MvvmLight.WPF4.csproj"
                  ReplaceParameters="true">
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="App.xaml">App.xaml</ProjectItem>
