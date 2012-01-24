@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (WP7)", "GalaSoft.MvvmLight.Extras (WP7)\GalaSoft.MvvmLight.Extras (WP7).csproj", "{54CA67DF-6987-4855-A45E-5CB7C1677E9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (WP7)", "GalaSoft.MvvmLight (WP7)\GalaSoft.MvvmLight (WP7).csproj", "{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (WP7)", "GalaSoft.MvvmLight.Test (WP7)\GalaSoft.MvvmLight.Test (WP7).csproj", "{594E864D-76B9-45B6-B2C6-AEE511673777}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54CA67DF-6987-4855-A45E-5CB7C1677E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54CA67DF-6987-4855-A45E-5CB7C1677E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54CA67DF-6987-4855-A45E-5CB7C1677E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54CA67DF-6987-4855-A45E-5CB7C1677E9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD51F6FA-CD5B-4405-B5F1-B65CCAE8845B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{594E864D-76B9-45B6-B2C6-AEE511673777}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{594E864D-76B9-45B6-B2C6-AEE511673777}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{594E864D-76B9-45B6-B2C6-AEE511673777}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{594E864D-76B9-45B6-B2C6-AEE511673777}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{594E864D-76B9-45B6-B2C6-AEE511673777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{594E864D-76B9-45B6-B2C6-AEE511673777}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

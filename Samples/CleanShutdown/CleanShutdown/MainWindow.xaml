@@ -1,0 +1,107 @@
+﻿<!--MainWindow.xaml by GalaSoft Laurent Bugnion http://www.galasoft.ch -->
+<!--Project: CleanShutdown | Date: 15.10.2009-->
+<!--Copyright © GalaSoft Laurent Bugnion 2009 laurent@galasoft.ch-->
+<!--See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt-->
+
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="CleanShutdown.MainWindow"
+        Height="400"
+        Width="400"
+        Top="300"
+        Left="300"
+        Title="Graceful Shutdown Demo"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Icon="GalaSoft.ico"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Storyboard x:Key="ShutdownStoryboard">
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                               Storyboard.TargetName="LayoutRoot"
+                                               Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                    <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                          Value="1440"
+                                          KeySpline="0.48,0,1,1" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                               Storyboard.TargetName="LayoutRoot"
+                                               Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                    <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                          Value="0.1"
+                                          KeySpline="0.48,0,1,1" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                               Storyboard.TargetName="LayoutRoot"
+                                               Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                    <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                          Value="0.1"
+                                          KeySpline="0.48,0,1,1" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                               Storyboard.TargetName="LayoutRoot"
+                                               Storyboard.TargetProperty="(UIElement.Opacity)">
+                    <SplineDoubleKeyFrame KeyTime="00:00:02"
+                                          Value="0"
+                                          KeySpline="0.48,0,1,1" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform />
+                <SkewTransform />
+                <RotateTransform />
+                <TranslateTransform />
+            </TransformGroup>
+        </Grid.RenderTransform>
+
+        <Ellipse Fill="{Binding BackgroundBrush}" />
+
+        <Button Content="X"
+                Style="{StaticResource CloseButtonStyle}"
+                Command="{Binding ShutdownCommand}"
+                ToolTipService.ToolTip="Click to shutdown" />
+
+        <Grid DataContext="{Binding Settings, Source={StaticResource Locator}}"
+              x:Name="SettingsRoot"
+              Style="{StaticResource SettingsGridStyle}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.33*" />
+                <ColumnDefinition Width="0.33*" />
+                <ColumnDefinition Width="0.33*" />
+            </Grid.ColumnDefinitions>
+
+            <Slider Orientation="Vertical"
+                    Style="{StaticResource SliderStyle}"
+                    Value="{Binding Red, Mode=TwoWay}"
+                    ToolTipService.ToolTip="Red" />
+
+            <Slider Orientation="Vertical"
+                    Grid.Column="1"
+                    Style="{StaticResource SliderStyle}"
+                    Value="{Binding Green, Mode=TwoWay}"
+                    ToolTipService.ToolTip="Green" />
+
+            <Slider Orientation="Vertical"
+                    Grid.Column="2"
+                    Style="{StaticResource SliderStyle}"
+                    Value="{Binding Blue, Mode=TwoWay}"
+                    ToolTipService.ToolTip="Blue" />
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,57 @@
+<VSTemplate Version="3.0.0"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            Type="Project">
+    <TemplateData>
+        <Name>MvvmLight (SL)</Name>
+        <Description>A "light" Silverlight Model-View-ViewModel application optimized for Expression Blend (by GalaSoft Laurent Bugnion)</Description>
+        <Icon>MvvmLight.ico</Icon>
+        <PreviewImage>MvvmLight.png</PreviewImage>
+        <TemplateID>GalaSoft.MvvmLight.SL</TemplateID>
+        <ProjectType>CSharp</ProjectType>
+        <ProjectSubType>Silverlight</ProjectSubType>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>MvvmLight</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <SortOrder>1</SortOrder>
+        <RequiredFrameworkVersion>3.5</RequiredFrameworkVersion>
+        <LocationField>Enabled</LocationField>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <TemplateGroupID>Silverlight;Mvvm</TemplateGroupID>
+        <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+    </TemplateData>
+    <TemplateContent>
+        <Project File="MvvmLight.SL.csproj"
+                 ReplaceParameters="true">
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="App.xaml">App.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\AppManifest.xml">AppManifest.xml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataItem.cs">DataItem.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataService.cs">DataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Design\DesignDataService.cs">DesignDataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\IDataService.cs">IDataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainPage.xaml">MainPage.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainPage.xaml.cs">MainPage.xaml.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Skins\MainSkin.xaml">MainSkin.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\MainViewModel.cs">MainViewModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\Resources.Designer.cs">Resources.Designer.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\Resources.resx">Resources.resx</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\ViewModelLocator.cs">ViewModelLocator.cs</ProjectItem>
+        </Project>
+    </TemplateContent>
+</VSTemplate>
