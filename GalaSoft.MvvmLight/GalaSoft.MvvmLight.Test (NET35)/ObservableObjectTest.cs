@@ -12,7 +12,7 @@ namespace GalaSoft.MvvmLight.Test
     public class ObservableObjectTest
     {
         [TestMethod]
-        public void TestPropertyChangeNoBroadcast()
+        public void TestPropertyChangedNoBroadcast()
         {
             var receivedDateTimeLocal = DateTime.MinValue;
 
@@ -32,7 +32,7 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
-        public void TestPropertyChangeNoMagicString()
+        public void TestPropertyChangedNoMagicString()
         {
             var receivedDateTimeLocal = DateTime.MinValue;
 
@@ -55,7 +55,7 @@ namespace GalaSoft.MvvmLight.Test
 #if DEBUG
         [ExpectedException(typeof(ArgumentException))]
 #endif
-        public void TestRaiseValidInvalidPropertyName()
+        public void TestRaisePropertyChangedValidInvalidPropertyName()
         {
             var vm = new TestClassWithObservableObject();
 

@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="AssemblyInfo.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2011
+// Copyright © GalaSoft Laurent Bugnion 2009-2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -24,7 +24,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2011")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

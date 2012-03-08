@@ -173,6 +173,11 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             base.Cleanup();
         }
 
+        public void RaiseEmptyPropertyChanged()
+        {
+            RaisePropertyChanged(string.Empty);
+        }
+
         public void RaiseEmptyPropertyChanged(string value1, string value2)
         {
             _test1 = value1;

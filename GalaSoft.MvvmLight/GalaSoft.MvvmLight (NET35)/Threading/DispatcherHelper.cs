@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="DispatcherHelper.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2011
+// Copyright © GalaSoft Laurent Bugnion 2009-2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -15,10 +15,15 @@
 // ****************************************************************************
 
 using System;
+
+#if WIN8
+using Windows.UI.Core;
+#else
 using System.Windows.Threading;
 
 #if SILVERLIGHT
 using System.Windows;
+#endif
 #endif
 
 ////using GalaSoft.Utilities.Attributes;
@@ -40,7 +45,11 @@ namespace GalaSoft.MvvmLight.Threading
         /// Gets a reference to the UI thread's dispatcher, after the
         /// <see cref="Initialize" /> method has been called on the UI thread.
         /// </summary>
+#if WIN8
+        public static CoreDispatcher UIDispatcher
+#else
         public static Dispatcher UIDispatcher
+#endif
         {
             get;
             private set;
@@ -59,14 +68,31 @@ namespace GalaSoft.MvvmLight.Threading
         /// thread.</param>
         public static void CheckBeginInvokeOnUI(Action action)
         {
+#if WIN8
+            if (UIDispatcher.HasThreadAccess)
+#else
             if (UIDispatcher.CheckAccess())
+#endif
             {
                 action();
             }
             else
             {
+#if WIN8
+                UIDispatcher.InvokeAsync(CoreDispatcherPriority.Normal, (s, e) => action(), UIDispatcher, null);
+#else
                 UIDispatcher.BeginInvoke(action);
+#endif
             }
+        }
+
+        public static void InvokeAsync(object sender, Action action)
+        {
+#if WIN8
+            UIDispatcher.InvokeAsync(CoreDispatcherPriority.Normal, (s, e) => action(), sender, null);
+#else
+            UIDispatcher.BeginInvoke(action);
+#endif
         }
 
         /// <summary>
@@ -78,15 +104,28 @@ namespace GalaSoft.MvvmLight.Threading
         /// </summary>
         public static void Initialize()
         {
+#if SILVERLIGHT
             if (UIDispatcher != null)
+#else
+#if WIN8
+            if (UIDispatcher != null)
+#else
+            if (UIDispatcher != null
+                && UIDispatcher.Thread.IsAlive)
+#endif
+#endif
             {
                 return;
             }
 
+#if WIN8
+            UIDispatcher = CoreWindow.Current.Dispatcher;
+#else
 #if SILVERLIGHT
             UIDispatcher = Deployment.Current.Dispatcher;
 #else
             UIDispatcher = Dispatcher.CurrentDispatcher;
+#endif
 #endif
         }
     }
