@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="AssemblyInfo.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2011
+// Copyright © GalaSoft Laurent Bugnion 2009-2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0017</LastBaseLevel>
+// <LastBaseLevel>BL0020</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -24,15 +24,15 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2011")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-////[assembly: AssemblyVersion("4.0.0.*")]
-[assembly: AssemblyFileVersion("4.0.0.0/BL0017")]
+////[assembly: AssemblyVersion("4.0.20.*")]
+[assembly: AssemblyFileVersion("4.0.20.0/beta1")]
 
 // FxCop
 [module: SuppressMessage("Microsoft.Naming",

@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="ViewModelBase.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2011
+// Copyright © GalaSoft Laurent Bugnion 2009-2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -23,9 +23,7 @@ using System.Reflection;
 using GalaSoft.MvvmLight.Messaging;
 using System.Linq.Expressions;
 
-#if WIN8
-using PropertyChangedEventArgs = Windows.UI.Xaml.Data.PropertyChangedEventArgs;
-#else
+#if !WIN8
 using System.Windows;
 #endif
 

@@ -48,7 +48,6 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.NullReferenceException))]
         public void TestSendingNullMessage()
         {
             Messenger.Reset();
