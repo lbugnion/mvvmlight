@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="Messenger.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2011
+// Copyright © GalaSoft Laurent Bugnion 2009-2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -546,7 +546,7 @@ namespace GalaSoft.MvvmLight.Messaging
 
         private void SendToTargetOrType<TMessage>(TMessage message, Type messageTargetType, object token)
         {
-            Type messageType = message.GetType();
+            Type messageType = typeof(TMessage);
 
             if (_recipientsOfSubclassesAction != null)
             {

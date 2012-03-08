@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="RelayCommandGeneric.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2011
+// Copyright © GalaSoft Laurent Bugnion 2009-2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -18,12 +18,11 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Helpers;
 
 #if WIN8
-using Windows.UI.Xaml.Input;
-using EventHandler = Windows.UI.Xaml.EventHandler;
-#else
-using System.Windows.Input;
+using System.Reflection;
 #endif
 
 ////using GalaSoft.Utilities.Attributes;
