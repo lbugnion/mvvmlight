@@ -2,10 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-#if WIN8
-using EventHandler = Windows.UI.Xaml.EventHandler;
-#endif
-
 namespace GalaSoft.MvvmLight.Test.Command
 {
     [TestClass]
@@ -14,10 +10,11 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestCanExecuteChanged()
         {
-            var command = new RelayCommand(() =>
-            {
-            },
-                                           () => true);
+            var command = new RelayCommand(
+                () =>
+                {
+                },
+                () => true);
 
             var canExecuteChangedCalled = 0;
 
@@ -55,25 +52,26 @@ namespace GalaSoft.MvvmLight.Test.Command
         [TestMethod]
         public void TestCanExecuteNull()
         {
-            var command = new RelayCommand(() =>
-            {
-            });
+            var command = new RelayCommand(
+                () =>
+                {
+                });
 
             Assert.AreEqual(true, command.CanExecute(null));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof (ArgumentNullException))]
         public void TestConstructorInvalidExecuteNull1()
         {
-            var command = new RelayCommand(null);
+            new RelayCommand(null);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof (ArgumentNullException))]
         public void TestConstructorInvalidExecuteNull2()
         {
-            var command = new RelayCommand(null, null);
+            new RelayCommand(null, null);
         }
 
         [TestMethod]
@@ -82,10 +80,11 @@ namespace GalaSoft.MvvmLight.Test.Command
             var dummy = "Not executed";
             const string executed = "Executed";
 
-            var command = new RelayCommand(() =>
-            {
-                dummy = executed;
-            });
+            var command = new RelayCommand(
+                () =>
+                {
+                    dummy = executed;
+                });
 
             command.Execute(null);
 

@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="ObservableObject.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2011
+// Copyright © GalaSoft Laurent Bugnion 2011-2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -15,27 +15,23 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-
-#if WIN8
-using Windows.UI.Xaml.Data;
-#else
-using System.ComponentModel;
-#endif
 
 namespace GalaSoft.MvvmLight
 {
     /// <summary>
-    /// A base class for the ViewModel classes in the MVVM pattern.
+    /// A base class for objects of which the properties must be observable.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase))]
     public class ObservableObject : INotifyPropertyChanged
     {
         /// <summary>
-        /// Occurs when a property value changes.
+        /// Occurs after a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -91,26 +87,14 @@ namespace GalaSoft.MvvmLight
             Justification = "This cannot be an event")]
         protected virtual void RaisePropertyChanged(string propertyName)
         {
-#if WIN8
-            if (string.IsNullOrEmpty(propertyName))
-            {
-                throw new NotSupportedException(
-                    "Raising the PropertyChanged event with an empty string or null is not supported in the Windows 8 developer preview");
-            }
-            else
-            {
-#endif
-                VerifyPropertyName(propertyName);
+            VerifyPropertyName(propertyName);
 
-                var handler = PropertyChanged;
+            var handler = PropertyChanged;
 
-                if (handler != null)
-                {
-                    handler(this, new PropertyChangedEventArgs(propertyName));
-                }
-#if WIN8
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
             }
-#endif
         }
 
         /// <summary>

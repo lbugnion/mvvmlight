@@ -1,5 +1,5 @@
 ﻿// <copyright file="RelayCommand.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2011
+// Copyright © GalaSoft Laurent Bugnion 2009-2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -17,15 +17,9 @@
 // ****************************************************************************
 
 using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-
-#if WIN8
-using Windows.UI.Xaml.Input;
-using EventHandler = Windows.UI.Xaml.EventHandler;
-#else
 using System.Windows.Input;
-#endif
+using GalaSoft.MvvmLight.Helpers;
 
 ////using GalaSoft.Utilities.Attributes;
 
@@ -101,7 +95,6 @@ namespace GalaSoft.MvvmLight.Command
         /// </summary>
         /// <param name="parameter">This parameter will always be ignored.</param>
         /// <returns>true if this command can be executed; otherwise, false.</returns>
-        [DebuggerStepThrough]
         public bool CanExecute(object parameter)
         {
             return _canExecute == null ? true : _canExecute();

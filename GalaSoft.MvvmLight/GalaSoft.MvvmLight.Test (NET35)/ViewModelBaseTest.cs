@@ -248,26 +248,24 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
-#if WIN8
-        [ExpectedException(typeof(NotSupportedException))]
-#endif
         public void TestRaiseWithEmptyString()
         {
+#if !WIN8
             var vm = new TestViewModel();
 
-            var value1 = "Hello";
-            var value2 = "World";
+            const string value1 = "Hello";
+            const string value2 = "World";
 
             var textBox1 = new TextBox();
             var textBox2 = new TextBox();
 
-            var binding1 = new Binding()
+            var binding1 = new Binding
             {
                 Path = new PropertyPath("TestProperty1"),
                 Source = vm,
             };
 
-            var binding2 = new Binding()
+            var binding2 = new Binding
             {
                 Path = new PropertyPath("TestProperty2"),
                 Source = vm,
@@ -283,6 +281,20 @@ namespace GalaSoft.MvvmLight.Test
 
             Assert.AreEqual(value1, textBox1.Text);
             Assert.AreEqual(value2, textBox2.Text);
+#else
+            var vm = new TestViewModel();
+            var raised = false;
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == string.Empty)
+                {
+                    raised = true;
+                }
+            };
+
+            vm.RaiseEmptyPropertyChanged();
+            Assert.IsTrue(raised);
+#endif
         }
 
         [TestMethod]

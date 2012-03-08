@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="AssemblyInfo.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2011
+// Copyright © GalaSoft Laurent Bugnion 2009-2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -18,18 +18,23 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
+
+#if !WIN8
 using System.Windows.Markup;
+#endif
 
 [assembly: AssemblyTitle("GalaSoft.MvvmLight.Extras")]
 [assembly: AssemblyDescription("Extras components to implement Model-View-ViewModel applications in WPF, Silverlight and Windows Phone 7")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight.Extras")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2011")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
+#if !WIN8
 [assembly: XmlnsDefinition("http://www.galasoft.ch/mvvmlight", "GalaSoft.MvvmLight.Command")]
+#endif
 
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
