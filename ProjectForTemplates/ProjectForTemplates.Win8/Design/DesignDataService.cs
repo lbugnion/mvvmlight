@@ -1,7 +1,7 @@
 ﻿using System;
-using ProjectForTemplates.Model;
+using ProjectForTemplates.Win8.Model;
 
-namespace ProjectForTemplates.Design
+namespace ProjectForTemplates.Win8.Design
 {
     public class DesignDataService : IDataService
     {

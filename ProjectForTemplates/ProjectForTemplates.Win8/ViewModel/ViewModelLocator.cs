@@ -1,7 +1,7 @@
 ﻿/*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:ProjectForTemplates.ViewModel"
+      <vm:ViewModelLocatorTemplate xmlns:vm="clr-namespace:ProjectForTemplates.Win8.ViewModel"
                                    x:Key="Locator" />
   </Application.Resources>
   
@@ -12,9 +12,9 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using ProjectForTemplates.Model;
+using ProjectForTemplates.Win8.Model;
 
-namespace ProjectForTemplates.ViewModel
+namespace ProjectForTemplates.Win8.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the

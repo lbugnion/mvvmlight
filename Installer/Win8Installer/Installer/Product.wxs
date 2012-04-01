@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-    <Product Id="09663D3C-DEC5-4AB2-9EB2-43AE8805B158"
+    <Product Id="7EE81735-A08B-46C0-9C7E-79250CACF5FF"
              Name="MVVM Light Toolkit for Win8"
              Language="1033"
-             Version="4.0.0.171"
+             Version="4.0.0.172"
              Manufacturer="Laurent Bugnion (GalaSoft)"
              UpgradeCode="0C724662-43C5-43F0-9727-2A1027AF07A4">
 
@@ -12,8 +12,8 @@
                  Compressed="yes"
                  Id="*"
                  Keywords="Installer"
-                 Description="MVVM Light Toolkit Installer for Windows 8 (V4 beta 1)"
-                 Comments="The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed. This is the Windows 8 version only (preview)."
+                 Description="MVVM Light Toolkit Installer for Windows 8 Consumer Preview (V4 beta 1)"
+                 Comments="The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed. This is the Windows 8 version only (consumer preview)."
                  Manufacturer="Laurent Bugnion (GalaSoft)"
                  Languages="1033"
                  SummaryCodepage="1252"
@@ -25,7 +25,7 @@
 
         <Property Id="ARPHELPLINK">http://mvvmlight.codeplex.com/</Property>
 
-        <Property Id="ARPURLINFOABOUT">http://mvvmlight.codeplex.com/</Property>
+        <Property Id="ARPURLINFOABOUT">http://www.galasoft.ch/mvvm/</Property>
 
         <!--Registry key variables-->
         <Property Id="VS11XINSTALL">
@@ -296,7 +296,7 @@
         </DirectoryRef>
 
         <Feature Id="ProductFeature"
-                 Title="MVVM Light Toolkit for Windows 8 (preview)"
+                 Title="MVVM Light Toolkit for Windows 8 (consumer preview)"
                  Level="1"
                  Description="The complete package."
                  Display="expand">
@@ -307,9 +307,8 @@
             <Feature Id="Binaries"
                      Title="Binaries"
                      Level="1"
-                     Description="MVVM Light binaries for Windows 8">
+                     Description="MVVM Light binaries for Windows 8 CP">
                 <ComponentRef Id="Win8BinariesComp" />
-                <!--<ComponentRef Id="AssemblyFoldersExRegistry.SL4" />-->
                 <Condition Level="0">NOT VS11EXISTS AND NOT VS11XEXISTS</Condition>
             </Feature>
 
@@ -324,7 +323,7 @@
             <Feature Id="TemplatesVS11x"
                      Level="1"
                      Title="VS11 Express templates"
-                     Description="Project Templates for Visual Studio 2011">
+                     Description="Project Templates for Visual Studio 2011 (express)">
                 <Condition Level="0">NOT VS11XEXISTS OR VS11EXISTS</Condition>
                 <ComponentRef Id="Vs11xProjectTemplatesMvvmComp" />
             </Feature>

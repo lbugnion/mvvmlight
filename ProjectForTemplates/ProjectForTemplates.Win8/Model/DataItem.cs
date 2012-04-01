@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ProjectForTemplates.Model
+namespace ProjectForTemplates.Win8.Model
 {
     public class DataItem
     {

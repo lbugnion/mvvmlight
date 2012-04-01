@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
-using ProjectForTemplates.Model;
+using ProjectForTemplates.Win8.Model;
 
-namespace ProjectForTemplates.ViewModel
+namespace ProjectForTemplates.Win8.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
