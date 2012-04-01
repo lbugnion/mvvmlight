@@ -1,0 +1,30 @@
+﻿<Page x:Class="$safeprojectname$.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ignore="http://www.ignore.com"
+      mc:Ignorable="d ignore"
+      d:DesignHeight="768"
+      d:DesignWidth="1366"
+      DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid  Background="{StaticResource ApplicationPageBackgroundBrush}">
+
+        <TextBlock FontSize="56"
+                   Text="{Binding WelcomeTitle}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Left"
+                   FontFamily="Segoe UI Light" 
+                   Margin="120,49,0,0" />
+
+    </Grid>
+
+</Page>
