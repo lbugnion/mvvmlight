@@ -170,7 +170,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         }
 
         [TestMethod]
-        public void TestRegisterStrictandNonStrictRecipients()
+        public void TestRegisterStrictAndNonStrictRecipients()
         {
             var testContentDateTime = DateTime.Now;
             const string testContentString = "abcd";
@@ -721,7 +721,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
                 private set;
             }
 
-            internal void RegisterWith(Messenger messenger)
+            internal void RegisterWith(IMessenger messenger)
             {
                 messenger.Register<TestMessageA>(this, m => ReceivedContentA = m.Content);
                 messenger.Register<TestMessageB>(this, m => ReceivedContentB = m.Content);

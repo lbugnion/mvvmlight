@@ -123,7 +123,11 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             }
         }
 
+#if SILVERLIGHT
+        public class TestRecipient1
+#else
         private class TestRecipient1
+#endif
         {
             public string ReceivedContentString
             {

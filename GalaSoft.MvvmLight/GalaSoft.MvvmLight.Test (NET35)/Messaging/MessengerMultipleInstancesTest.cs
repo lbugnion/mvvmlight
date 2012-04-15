@@ -47,7 +47,11 @@ namespace GalaSoft.MvvmLight.Test.Messaging
 
         //// Helpers
 
+#if SILVERLIGHT
+        public class TestRecipient1
+#else
         private class TestRecipient1
+#endif
         {
             public string ReceivedContentString
             {
@@ -61,7 +65,11 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             }
         }
 
+#if SILVERLIGHT
+        public class TestRecipient2
+#else
         private class TestRecipient2
+#endif
         {
             public string ReceivedContentString
             {

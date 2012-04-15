@@ -60,11 +60,20 @@
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\IExecuteWithObject.cs">
       <Link>Helpers\IExecuteWithObject.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\IExecuteWithObjectAndResult.cs">
+      <Link>Helpers\IExecuteWithObjectAndResult.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakAction.cs">
       <Link>Helpers\WeakAction.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakActionGeneric.cs">
       <Link>Helpers\WeakActionGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFunc.cs">
+      <Link>Helpers\WeakFunc.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFuncGeneric.cs">
+      <Link>Helpers\WeakFuncGeneric.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ICleanup.cs">
       <Link>ICleanup.cs</Link>

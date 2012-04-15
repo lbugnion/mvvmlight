@@ -72,7 +72,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
                 private set;
             }
 
-            internal void RegisterWith(Messenger messenger)
+            internal void RegisterWith(IMessenger messenger)
             {
                 messenger.Register<TestMessage>(this, m => StringContent = m.Content);
             }

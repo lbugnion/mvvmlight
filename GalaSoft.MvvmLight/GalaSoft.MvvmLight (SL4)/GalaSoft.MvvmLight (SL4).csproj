@@ -17,13 +17,6 @@
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath />
-    <SccProvider>
-    </SccProvider>
   </PropertyGroup>
   <!-- This property group is only here to support building this project using the 
        MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
@@ -70,6 +63,15 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\IExecuteWithObjectAndResult.cs">
+      <Link>Helpers\IExecuteWithObjectAndResult.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFunc.cs">
+      <Link>Helpers\WeakFunc.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFuncGeneric.cs">
+      <Link>Helpers\WeakFuncGeneric.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ObservableObject.cs">
       <Link>ObservableObject.cs</Link>
     </Compile>
@@ -136,6 +138,9 @@
     <Compile Include="..\GalaSoft.MvvmLight (NET35)\ViewModelBase.cs">
       <Link>ViewModelBase.cs</Link>
     </Compile>
+    <Compile Include="Helpers\INotifyPropertyChanging.cs" />
+    <Compile Include="Helpers\PropertyChangingEventArgs.cs" />
+    <Compile Include="Helpers\PropertyChangingEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.SL4.cs" />
   </ItemGroup>
   <ItemGroup />

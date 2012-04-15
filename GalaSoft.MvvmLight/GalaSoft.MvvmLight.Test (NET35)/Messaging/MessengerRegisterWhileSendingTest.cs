@@ -167,12 +167,20 @@ namespace GalaSoft.MvvmLight.Test.Messaging
                 }
             }
 
+#if SILVERLIGHT
+            public virtual void ReceiveString(GenericMessage<string> m)
+#else
             protected virtual void ReceiveString(GenericMessage<string> m)
+#endif
             {
                 Messenger.Default.Register<GenericMessage<string>>(this, ReceiveStringNested);
             }
 
+#if SILVERLIGHT
+            public void ReceiveStringNested(GenericMessage<string> m)
+#else
             protected void ReceiveStringNested(GenericMessage<string> m)
+#endif
             {
                 ReceivedStringMessages++;
                 LastReceivedString = m.Content;
@@ -189,7 +197,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
                 }
             }
 
-            protected virtual void ReceiveString(MessageBase m)
+            public virtual void ReceiveString(MessageBase m)
             {
                 var message = m as GenericMessage<string>;
                 if (message != null)
@@ -198,7 +206,7 @@ namespace GalaSoft.MvvmLight.Test.Messaging
                 }
             }
 
-            protected void ReceiveStringNested(MessageBase m)
+            public void ReceiveStringNested(MessageBase m)
             {
                 var message = m as GenericMessage<string>;
                 if (message != null)

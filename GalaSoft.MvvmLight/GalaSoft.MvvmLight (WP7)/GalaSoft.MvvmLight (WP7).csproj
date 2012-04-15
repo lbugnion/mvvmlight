@@ -52,6 +52,15 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\IExecuteWithObjectAndResult.cs">
+      <Link>Helpers\IExecuteWithObjectAndResult.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFunc.cs">
+      <Link>Helpers\WeakFunc.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFuncGeneric.cs">
+      <Link>Helpers\WeakFuncGeneric.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ObservableObject.cs">
       <Link>ObservableObject.cs</Link>
     </Compile>
@@ -66,6 +75,15 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28SL3%29\Command\CommandToButtonsMap.cs">
       <Link>Command\CommandToButtonsMap.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28SL4%29\Helpers\INotifyPropertyChanging.cs">
+      <Link>Helpers\INotifyPropertyChanging.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28SL4%29\Helpers\PropertyChangingEventArgs.cs">
+      <Link>Helpers\PropertyChangingEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28SL4%29\Helpers\PropertyChangingEventHandler.cs">
+      <Link>Helpers\PropertyChangingEventHandler.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight (NET35)\Command\RelayCommand.cs">
       <Link>Command\RelayCommand.cs</Link>

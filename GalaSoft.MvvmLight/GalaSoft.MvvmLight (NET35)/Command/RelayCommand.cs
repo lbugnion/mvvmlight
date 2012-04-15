@@ -10,7 +10,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0010</LastBaseLevel>
+// <LastBaseLevel>BL0011</LastBaseLevel>
 // ****************************************************************************
 // <credits>This class was developed by Josh Smith (http://joshsmithonwpf.wordpress.com) and
 // slightly modified with his permission.</credits>
@@ -19,7 +19,10 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
+
+#if !NET_FXCORE
 using GalaSoft.MvvmLight.Helpers;
+#endif
 
 ////using GalaSoft.Utilities.Attributes;
 
@@ -32,16 +35,16 @@ namespace GalaSoft.MvvmLight.Command
     /// Execute and CanExecute callback methods.
     /// </summary>
     ////[ClassInfo(typeof(RelayCommand),
-    ////  VersionString = "4.0.0.0/BL0010",
-    ////  DateString = "201109042117",
+    ////  VersionString = "4.0.11",
+    ////  DateString = "201204151330",
     ////  Description = "A command whose sole purpose is to relay its functionality to other objects by invoking delegates.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
     public class RelayCommand : ICommand
     {
-        private readonly Action _execute;
+        private readonly WeakAction _execute;
 
-        private readonly Func<bool> _canExecute;
+        private readonly WeakFunc<bool> _canExecute;
 
         /// <summary>
         /// Initializes a new instance of the RelayCommand class that 
@@ -67,27 +70,76 @@ namespace GalaSoft.MvvmLight.Command
                 throw new ArgumentNullException("execute");
             }
 
-            _execute = execute;
-            _canExecute = canExecute;
+            _execute = new WeakAction(execute);
+
+            if (canExecute != null)
+            {
+                _canExecute = new WeakFunc<bool>(canExecute);
+            }
         }
 
+#if SILVERLIGHT
         /// <summary>
         /// Occurs when changes occur that affect whether the command should execute.
         /// </summary>
         public event EventHandler CanExecuteChanged;
+#else
+#if NETFX_CORE
+        /// <summary>
+        /// Occurs when changes occur that affect whether the command should execute.
+        /// </summary>
+        public event EventHandler CanExecuteChanged;
+#else
+        /// <summary>
+        /// Occurs when changes occur that affect whether the command should execute.
+        /// </summary>
+        public event EventHandler CanExecuteChanged
+        {
+            add
+            {
+                if (_canExecute != null)
+                {
+                    CommandManager.RequerySuggested += value;
+                }
+            }
+
+            remove
+            {
+                if (_canExecute != null)
+                {
+                    CommandManager.RequerySuggested -= value;
+                }
+            }
+        }
+#endif
+#endif
 
         /// <summary>
         /// Raises the <see cref="CanExecuteChanged" /> event.
         /// </summary>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic",
+            Justification = "The this keyword is used in the Silverlight version")]
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         public void RaiseCanExecuteChanged()
         {
+#if SILVERLIGHT
             var handler = CanExecuteChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
             }
+#else
+#if NETFX_CORE
+            var handler = CanExecuteChanged;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+#else
+            CommandManager.InvalidateRequerySuggested();
+#endif
+#endif
         }
 
         /// <summary>
@@ -97,18 +149,24 @@ namespace GalaSoft.MvvmLight.Command
         /// <returns>true if this command can be executed; otherwise, false.</returns>
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute();
+            return _canExecute == null
+                ? true 
+                : (_canExecute.IsStatic || _canExecute.IsAlive)
+                    ? _canExecute.Execute()
+                    : false;
         }
 
         /// <summary>
         /// Defines the method to be called when the command is invoked. 
         /// </summary>
         /// <param name="parameter">This parameter will always be ignored.</param>
-        public void Execute(object parameter)
+        public virtual void Execute(object parameter)
         {
-            if (CanExecute(parameter))
+            if (CanExecute(parameter)
+                && _execute != null
+                && (_execute.IsStatic || _execute.IsAlive))
             {
-                _execute();
+                _execute.Execute();
             }
         }
     }
