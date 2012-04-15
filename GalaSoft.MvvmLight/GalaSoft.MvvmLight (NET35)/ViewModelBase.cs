@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0012</LastBaseLevel>
+// <LastBaseLevel>BL0013</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -23,7 +23,7 @@ using System.Reflection;
 using GalaSoft.MvvmLight.Messaging;
 using System.Linq.Expressions;
 
-#if !WIN8
+#if !NETFX_CORE
 using System.Windows;
 #endif
 
@@ -35,8 +35,8 @@ namespace GalaSoft.MvvmLight
     /// A base class for the ViewModel classes in the MVVM pattern.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase),
-    ////  VersionString = "4.0.0.0/BL0012",
-    ////  DateString = "201109042117",
+    ////  VersionString = "4.0.13",
+    ////  DateString = "201204151330",
     ////  Description = "A base class for the ViewModel classes in the MVVM pattern.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -102,7 +102,7 @@ namespace GalaSoft.MvvmLight
 #if SILVERLIGHT
                     _isInDesignMode = DesignerProperties.IsInDesignTool;
 #else
-#if WIN8
+#if NETFX_CORE
                     _isInDesignMode = Windows.ApplicationModel.DesignMode.DesignModeEnabled;
 #else
                     var prop = DesignerProperties.IsInDesignModeProperty;
@@ -110,13 +110,6 @@ namespace GalaSoft.MvvmLight
                         = (bool)DependencyPropertyDescriptor
                                      .FromProperty(prop, typeof(FrameworkElement))
                                      .Metadata.DefaultValue;
-
-                    // Just to be sure
-                    if (!_isInDesignMode.Value
-                        && Process.GetCurrentProcess().ProcessName.StartsWith("devenv", StringComparison.Ordinal))
-                    {
-                        _isInDesignMode = true;
-                    }
 #endif
 #endif
                 }
@@ -149,7 +142,7 @@ namespace GalaSoft.MvvmLight
         /// </summary>
         public virtual void Cleanup()
         {
-            Messenger.Default.Unregister(this);
+            MessengerInstance.Unregister(this);
         }
 
         /// <summary>
@@ -224,26 +217,21 @@ namespace GalaSoft.MvvmLight
             Justification = "This syntax is more convenient than other alternatives.")]
         protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue, bool broadcast)
         {
-            if (propertyExpression == null)
-            {
-                return;
-            }
-
             var handler = PropertyChangedHandler;
 
             if (handler != null
                 || broadcast)
             {
-                var body = propertyExpression.Body as MemberExpression;
+                var propertyName = GetPropertyName(propertyExpression);
 
                 if (handler != null)
                 {
-                    handler(this, new PropertyChangedEventArgs(body.Member.Name));
+                    handler(this, new PropertyChangedEventArgs(propertyName));
                 }
 
                 if (broadcast)
                 {
-                    Broadcast(oldValue, newValue, body.Member.Name);
+                    Broadcast(oldValue, newValue, propertyName);
                 }
             }
         }
