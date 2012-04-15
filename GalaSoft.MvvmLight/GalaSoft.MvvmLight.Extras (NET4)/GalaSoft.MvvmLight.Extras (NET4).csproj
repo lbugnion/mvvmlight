@@ -8,7 +8,7 @@
     <ProjectGuid>{4934C525-4BC4-400C-B5C8-E5B6CF7CBF7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GalaSoft.MvvmLight.Extras</RootNamespace>
+    <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
     <AssemblyName>GalaSoft.MvvmLight.Extras.WPF4</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -81,6 +81,11 @@
     </Compile>
     <Compile Include="Command\EventToCommandVS10.cs" />
     <Compile Include="Properties\AssemblyInfo.Net4.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\GalaSoft.MvvmLight (NET35)\License.txt">
@@ -89,6 +94,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GalaSoft.MvvmLight.Extras %28NET4%29.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

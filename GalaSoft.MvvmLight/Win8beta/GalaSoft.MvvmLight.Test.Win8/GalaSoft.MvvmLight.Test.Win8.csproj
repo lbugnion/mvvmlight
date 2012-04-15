@@ -6,23 +6,23 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{02F1CA60-3BF2-49D6-A310-19F0C4606E73}</ProjectGuid>
+    <ProjectGuid>{3AD0ED75-F579-49AE-A693-B1ED8E8BFF75}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
+    <RootNamespace>GalaSoft.MvvmLight.Test.Win8</RootNamespace>
     <AssemblyName>GalaSoft.MvvmLight.Test.Win8</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>GalaSoft.MvvmLight.Test.Win8_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>DACDCD5EF070D16D5E4CD088C3B21967B3ADB857</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>9E03DF96B2BD9EF094F8CE06932DC26A64BCC4EA</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NETFX_CORE; WIN8</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -30,7 +30,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE; WIN8</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -121,6 +121,12 @@
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Command\RelayCommandTest.cs">
       <Link>Command\RelayCommandTest.cs</Link>
     </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Command\TemporaryClass.cs">
+      <Link>Command\TemporaryClass.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestAutoCreation.cs">
+      <Link>Ioc\SimpleIocTestAutoCreation.cs</Link>
+    </Compile>
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestContains.cs">
       <Link>Ioc\SimpleIocTestContains.cs</Link>
     </Compile>
@@ -141,6 +147,9 @@
     </Compile>
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestUnregistration.cs">
       <Link>Ioc\SimpleIocTestUnregistration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\ITestMessage.cs">
+      <Link>Messaging\ITestMessage.cs</Link>
     </Compile>
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\MessengerBroadcastToAllTest.cs">
       <Link>Messaging\MessengerBroadcastToAllTest.cs</Link>
@@ -169,6 +178,9 @@
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\MessengerSendWithTokenTest.cs">
       <Link>Messaging\MessengerSendWithTokenTest.cs</Link>
     </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\MessengerTestConstrainingMessages.cs">
+      <Link>Messaging\MessengerTestConstrainingMessages.cs</Link>
+    </Compile>
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\NotificationMessageActionTest.cs">
       <Link>Messaging\NotificationMessageActionTest.cs</Link>
     </Compile>
@@ -178,8 +190,14 @@
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\PropertyChangedMessageTest.cs">
       <Link>Messaging\PropertyChangedMessageTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\ObservableObjectTest.cs">
-      <Link>ObservableObjectTest.cs</Link>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\TestMessageBase.cs">
+      <Link>Messaging\TestMessageBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\TestMessageImpl.cs">
+      <Link>Messaging\TestMessageImpl.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\ITestClass.cs">
       <Link>Stubs\ITestClass.cs</Link>
@@ -208,8 +226,8 @@
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClassWithMultiConstructors.cs">
       <Link>Stubs\TestClassWithMultiConstructors.cs</Link>
     </Compile>
-    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModelBaseTest.cs">
-      <Link>ViewModelBaseTest.cs</Link>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestViewModelWithBooleanSource.cs">
+      <Link>Stubs\TestViewModelWithBooleanSource.cs</Link>
     </Compile>
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestClassWithObservableObject.cs">
       <Link>ViewModel\TestClassWithObservableObject.cs</Link>
@@ -223,7 +241,6 @@
     <Compile Include="..\..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\ViewModelStub.cs">
       <Link>ViewModel\ViewModelStub.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -248,21 +265,21 @@
     <None Include="GalaSoft.MvvmLight.Test.Win8_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\External\WIN8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\GalaSoft.MvvmLight.Extras.Win8\GalaSoft.MvvmLight.Extras.Win8.csproj">
-      <Project>{267461bc-eb9d-46f2-9269-86304f21337f}</Project>
+      <Project>{4a373be8-fff8-4b76-86a1-5bd06b0bca1e}</Project>
       <Name>GalaSoft.MvvmLight.Extras.Win8</Name>
     </ProjectReference>
     <ProjectReference Include="..\GalaSoft.MvvmLight.Win8\GalaSoft.MvvmLight.Win8.csproj">
-      <Project>{943012f3-8fd2-435d-a3dc-230bd03f5d27}</Project>
+      <Project>{001a9dcb-fc1c-47ff-9371-a19df085a847}</Project>
       <Name>GalaSoft.MvvmLight.Win8</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\External\WIN8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

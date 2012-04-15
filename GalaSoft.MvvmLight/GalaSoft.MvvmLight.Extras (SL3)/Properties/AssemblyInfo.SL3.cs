@@ -13,8 +13,6 @@
 // </license>
 // ****************************************************************************
 
-using System;
 using System.Runtime.InteropServices;
-using System.Security;
 
 [assembly: Guid("bec2195b-0765-4cfe-a7ef-576dc43c2953")]
