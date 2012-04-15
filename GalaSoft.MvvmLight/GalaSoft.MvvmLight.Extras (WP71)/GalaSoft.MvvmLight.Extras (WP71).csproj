@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GalaSoft.MvvmLight.Extras</RootNamespace>
+    <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
     <AssemblyName>GalaSoft.MvvmLight.Extras.WP71</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -57,6 +57,9 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\ISimpleIoc.cs">
+      <Link>Ioc\ISimpleIoc.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\PreferredConstructor.cs">
       <Link>Ioc\PreferredConstructor.cs</Link>
     </Compile>
@@ -65,6 +68,9 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Properties\Resources.Designer.cs">
+      <Link>Properties\Resources.Designer.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET4%29\Command\EventToCommandVS10.cs">
       <Link>Command\EventToCommandVS10.cs</Link>
@@ -75,6 +81,11 @@
     <Content Include="..\GalaSoft.MvvmLight %28NET35%29\License.txt">
       <Link>License.txt</Link>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Properties\Resources.resx">
+      <Link>Properties\Resources.resx</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

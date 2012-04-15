@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GalaSoft.MvvmLight.Ioc;
+﻿using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Test.Stubs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -17,9 +13,9 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             SimpleIoc.Default.Reset();
             SimpleIoc.Default.Register<TestClass>();
 
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass>());
             SimpleIoc.Default.GetInstance<TestClass>();
-            Assert.IsTrue(SimpleIoc.Default.Contains<TestClass>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass>());
         }
 
         [TestMethod]
@@ -31,21 +27,21 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             SimpleIoc.Default.Register(() => instance, key1);
             SimpleIoc.Default.Register<TestClass2>();
 
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass>());
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass2>());
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass3>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass2>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass3>());
 
             SimpleIoc.Default.GetInstance<TestClass>(key1);
 
-            Assert.IsTrue(SimpleIoc.Default.Contains<TestClass>());
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass2>());
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass3>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass2>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass3>());
 
             SimpleIoc.Default.GetInstance<TestClass2>();
 
-            Assert.IsTrue(SimpleIoc.Default.Contains<TestClass>());
-            Assert.IsTrue(SimpleIoc.Default.Contains<TestClass2>());
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass3>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass2>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass3>());
         }
 
         [TestMethod]
@@ -58,17 +54,17 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             SimpleIoc.Default.Register(() => instance, key1);
             SimpleIoc.Default.Register<TestClass2>();
 
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass>());
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass>(key1));
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass>(key2));
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass>(key1));
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass>(key2));
 
             SimpleIoc.Default.GetInstance<TestClass>(key1);
 
-            Assert.IsTrue(SimpleIoc.Default.Contains<TestClass>());
-            Assert.IsTrue(SimpleIoc.Default.Contains<TestClass>(key1));
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass>(key2));
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass2>(key1));
-            Assert.IsFalse(SimpleIoc.Default.Contains<TestClass3>(key1));
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass>(key1));
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass>(key2));
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass2>(key1));
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass3>(key1));
         }
     }
 }
