@@ -7,6 +7,16 @@ namespace GalaSoft.MvvmLight.Test.Command
     [TestClass]
     public class RelayCommandGenericTest
     {
+        private bool _canExecute = true;
+        private WeakReference _reference;
+        private TemporaryClass _tempoInstance;
+
+        public RelayCommand<string> TestCommand
+        {
+            get;
+            private set;
+        }
+
         [TestMethod]
         public void CanExecuteChangedTest()
         {
@@ -24,13 +34,23 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             command.RaiseCanExecuteChanged();
 
-            Assert.AreEqual(1, canExecuteChangedCalled);
+#if SILVERLIGHT
+             Assert.AreEqual(1, canExecuteChangedCalled);
+#else
+            // In WPF, cannot trigger the CanExecuteChanged event like this
+            Assert.AreEqual(0, canExecuteChangedCalled);
+#endif
 
             command.CanExecuteChanged -= canExecuteChangedEventHandler;
 
             command.RaiseCanExecuteChanged();
 
-            Assert.AreEqual(1, canExecuteChangedCalled);
+#if SILVERLIGHT
+             Assert.AreEqual(1, canExecuteChangedCalled);
+#else
+            // In WPF, cannot trigger the CanExecuteChanged event like this
+            Assert.AreEqual(0, canExecuteChangedCalled);
+#endif
         }
 
         [TestMethod]
@@ -105,7 +125,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        public void ExecuteTest()
+        public void TestExecute()
         {
             var dummy = "Not executed";
             const string executed = "Executed";
@@ -122,7 +142,25 @@ namespace GalaSoft.MvvmLight.Test.Command
             Assert.AreEqual(executed + parameter, dummy);
         }
 
-        private bool _canExecute = true;
+        private static string _dummyStatic;
+        
+        [TestMethod]
+        public void TestExecuteStatic()
+        {
+            _dummyStatic = "Not executed";
+            const string executed = "Executed";
+            const string parameter = "Parameter";
+
+            var command = new RelayCommand<string>(
+                p =>
+                {
+                    _dummyStatic = executed + p;
+                });
+
+            command.Execute(parameter);
+
+            Assert.AreEqual(executed + parameter, _dummyStatic);
+        }
 
         [TestMethod]
         public void TestCallingExecuteWhenCanExecuteIsFalse()
@@ -143,6 +181,188 @@ namespace GalaSoft.MvvmLight.Test.Command
             _canExecute = true;
             command.Execute(value2);
             Assert.AreEqual(value2, result);
+        }
+
+        [TestMethod]
+        public void TestReleasingTargetForCanExecuteGeneric()
+        {
+            _tempoInstance = new TemporaryClass();
+            _reference = new WeakReference(_tempoInstance);
+
+            TestCommand = new RelayCommand<string>(
+                _tempoInstance.SetContent,
+                _tempoInstance.CheckEnabled);
+
+            Assert.IsTrue(_reference.IsAlive);
+
+            _tempoInstance = null;
+            GC.Collect();
+
+#if NETFX_CORE
+            Assert.IsTrue(_reference.IsAlive);
+            TestCommand = null;
+            GC.Collect();
+            Assert.IsFalse(_reference.IsAlive);
+#else
+            Assert.IsFalse(_reference.IsAlive);
+#endif
+        }
+
+        [TestMethod]
+        public void TestReleasingTargetForCanExecuteGenericPrivate()
+        {
+            _tempoInstance = new TemporaryClass();
+            _reference = new WeakReference(_tempoInstance);
+
+            _tempoInstance.CreateCommandGenericCanExecutePrivate();
+
+            Assert.IsTrue(_reference.IsAlive);
+
+            _tempoInstance = null;
+            GC.Collect();
+
+            Assert.IsFalse(_reference.IsAlive);
+        }
+
+        [TestMethod]
+        public void TestReleasingTargetForCanExecuteGenericInternal()
+        {
+            _tempoInstance = new TemporaryClass();
+            _reference = new WeakReference(_tempoInstance);
+
+            _tempoInstance.CreateCommandGenericCanExecuteInternal();
+
+            Assert.IsTrue(_reference.IsAlive);
+
+            _tempoInstance = null;
+            GC.Collect();
+
+            Assert.IsFalse(_reference.IsAlive);
+        }
+
+        [TestMethod]
+        public void TestReleasingTargetForExecuteGeneric()
+        {
+            _tempoInstance = new TemporaryClass();
+            _reference = new WeakReference(_tempoInstance);
+
+            TestCommand = new RelayCommand<string>(
+                _tempoInstance.SetContent);
+
+            Assert.IsTrue(_reference.IsAlive);
+
+            _tempoInstance = null;
+            GC.Collect();
+
+#if NETFX_CORE
+            Assert.IsTrue(_reference.IsAlive);
+            TestCommand = null;
+            GC.Collect();
+            Assert.IsFalse(_reference.IsAlive);
+#else
+            Assert.IsFalse(_reference.IsAlive);
+#endif
+        }
+
+        [TestMethod]
+        public void TestReleasingTargetForExecuteGenericPrivate()
+        {
+            _tempoInstance = new TemporaryClass();
+            _reference = new WeakReference(_tempoInstance);
+
+            _tempoInstance.CreateCommandGenericPrivate();
+
+            Assert.IsTrue(_reference.IsAlive);
+
+            _tempoInstance = null;
+            GC.Collect();
+
+            Assert.IsFalse(_reference.IsAlive);
+        }
+
+        [TestMethod]
+        public void TestReleasingTargetForExecuteGenericInternal()
+        {
+            _tempoInstance = new TemporaryClass();
+            _reference = new WeakReference(_tempoInstance);
+
+            _tempoInstance.CreateCommandGenericInternal();
+
+            Assert.IsTrue(_reference.IsAlive);
+
+            _tempoInstance = null;
+            GC.Collect();
+
+            Assert.IsFalse(_reference.IsAlive);
+        }
+
+        [TestMethod]
+        public void TestValueTypeCanExecute()
+        {
+            Reset();
+
+            var command = new RelayCommand<int>(
+                i => _methodWasExecuted = true,
+                i => true);
+
+            Assert.IsFalse(_methodWasExecuted);
+            command.Execute(null);
+            Assert.IsTrue(_methodWasExecuted);
+        }
+
+        [TestMethod]
+#if NETFX_CORE
+        [ExpectedException(typeof(InvalidCastException))] // TODO Try to find a way in Win8
+#endif
+        public void TestValueTypeConversion()
+        {
+            Reset();
+
+            const int inputInt = 1234;
+            const double inputDouble = 1234.5678;
+            const bool inputBool = true;
+
+            var resultInt = 0;
+            var resultBool = false;
+            var resultDouble = 0.0;
+
+            var commandInt = new RelayCommand<int>(
+                p =>
+                {
+                    resultInt = p;
+                },
+                p => true);
+
+            var commandBool = new RelayCommand<bool>(
+                p =>
+                {
+                    resultBool = p;
+                },
+                p => true);
+
+            var commandDouble = new RelayCommand<double>(
+                p =>
+                {
+                    resultDouble = p;
+                },
+                p => true);
+
+            Assert.AreEqual(0, resultInt);
+            Assert.AreEqual(false, resultBool);
+            Assert.AreEqual(0.0, resultDouble);
+            commandInt.Execute(inputInt.ToString());
+            commandBool.Execute(inputBool.ToString());
+            commandDouble.Execute(inputDouble.ToString());
+            Assert.AreEqual(inputInt, resultInt);
+            Assert.AreEqual(inputBool, resultBool);
+            Assert.AreEqual(inputDouble, resultDouble);
+        }
+
+        private bool _methodWasExecuted;
+
+        private void Reset()
+        {
+            _methodWasExecuted = false;
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Test.Stubs;
 using GalaSoft.MvvmLight.Test.ViewModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #if WIN8
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml;
 #else
 using System.Windows.Controls;
@@ -26,21 +27,21 @@ namespace GalaSoft.MvvmLight.Test
             var vm = new TestViewModel();
             Messenger.Default.Register<string>(vm, vm.HandleStringMessage);
 
-            const string Content1 = "Hello world";
-            const string Content2 = "Another message";
+            const string content1 = "Hello world";
+            const string content2 = "Another message";
 
-            Messenger.Default.Send(Content1);
+            Messenger.Default.Send(content1);
 
-            Assert.AreEqual(Content1, vm.ReceivedContent);
+            Assert.AreEqual(content1, vm.ReceivedContent);
 
             var cleanupVm = vm as ICleanup;
             cleanupVm.Cleanup();
 
             Assert.IsTrue(vm.CleanupWasCalled);
 
-            Messenger.Default.Send(Content2);
+            Messenger.Default.Send(content2);
 
-            Assert.AreEqual(Content1, vm.ReceivedContent);
+            Assert.AreEqual(content1, vm.ReceivedContent);
         }
 
         [TestMethod]
@@ -216,7 +217,12 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
+#if !NET40
 #if DEBUG
+        [ExpectedException(typeof(ArgumentException))]
+#endif
+#else
+        // For some reason the VS10 .NET4 test adapter throws exception even in Release mode
         [ExpectedException(typeof(ArgumentException))]
 #endif
         public void TestRaiseValidInvalidPropertyName()
@@ -407,5 +413,128 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreEqual(expectedValue, receivedValue);
             Assert.AreEqual(0, receivedValueWithMessenger);
         }
+
+        static void InstancePropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // Void
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestRaisePropertyChangedNoMagicStringNullExpression()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanged += InstancePropertyChanged;
+            instance.RaisePropertyChangedPublic<string>(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestRaisePropertyChangedNoMagicStringNullExpressionWithBroadcast()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanged += InstancePropertyChanged;
+            instance.RaisePropertyChangedPublic(null, "12", "34", true);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestRaisePropertyChangedNoMagicStringNonPropertyExpression()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanged += InstancePropertyChanged;
+            instance.RaisePropertyChangedPublic(() => DummyStringMethod());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestRaisePropertyChangedNoMagicStringNonPropertyExpressionWithBroadcast()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanged += InstancePropertyChanged;
+            instance.RaisePropertyChangedPublic(() => DummyStringMethod(), "12", "34", true);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestRaisePropertyChangingNoMagicStringNullExpression()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanging += InstancePropertyChanging;
+            instance.RaisePropertyChangingPublic<string>(null);
+        }
+
+        private static void InstancePropertyChanging(object sender, PropertyChangingEventArgs e)
+        {
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestRaisePropertyChangingNoMagicStringNonPropertyExpression()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanging += InstancePropertyChanging;
+            instance.RaisePropertyChangingPublic(() => DummyStringMethod());
+        }
+
+        private static string DummyStringMethod()
+        {
+            return string.Empty;
+        }
+
+#if !SILVERLIGHT
+#if !WIN8
+        [TestMethod]
+        public void TestTypeDescriptor()
+        {
+            var instance = new TestCustomTypeDescriptor();
+            var argumentExceptionWasThrown = false;
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(
+                    TestCustomTypeDescriptor.TestPropertyPropertyName);
+            }
+            catch (ArgumentException)
+            {
+                argumentExceptionWasThrown = true;
+            }
+
+            Assert.IsFalse(argumentExceptionWasThrown);
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(
+                    TestCustomTypeDescriptor.TestPropertyPropertyName + TestCustomTypeDescriptor.PropertyNameSuffix);
+            }
+            catch (ArgumentException)
+            {
+                argumentExceptionWasThrown = true;
+            }
+
+            Assert.IsFalse(argumentExceptionWasThrown);
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(
+                    TestCustomTypeDescriptor.TestPropertyPropertyName + "abcd");
+            }
+            catch (ArgumentException)
+            {
+                argumentExceptionWasThrown = true;
+            }
+
+#if NET40
+            Assert.IsTrue(argumentExceptionWasThrown);
+#else
+#if DEBUG
+            Assert.IsTrue(argumentExceptionWasThrown);
+#else
+            Assert.IsFalse(argumentExceptionWasThrown);
+#endif
+#endif
+        }
+#endif
+#endif
     }
 }

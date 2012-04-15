@@ -28,12 +28,17 @@ namespace GalaSoft.MvvmLight
     /// A base class for objects of which the properties must be observable.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase))]
-    public class ObservableObject : INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged, INotifyPropertyChanging
     {
         /// <summary>
         /// Occurs after a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Occurs before a property value changes.
+        /// </summary>
+        public event PropertyChangingEventHandler PropertyChanging;
 
         /// <summary>
         /// Provides access to the PropertyChanged event handler to derived classes.
@@ -43,6 +48,17 @@ namespace GalaSoft.MvvmLight
             get
             {
                 return PropertyChanged;
+            }
+        }
+
+        /// <summary>
+        /// Provides access to the PropertyChanging event handler to derived classes.
+        /// </summary>
+        protected PropertyChangingEventHandler PropertyChangingHandler
+        {
+            get
+            {
+                return PropertyChanging;
             }
         }
 
@@ -60,7 +76,7 @@ namespace GalaSoft.MvvmLight
         {
             var myType = this.GetType();
 
-#if WIN8
+#if NETFX_CORE
             if (!string.IsNullOrEmpty(propertyName)
                 && myType.GetTypeInfo().GetDeclaredProperty(propertyName) == null)
             {
@@ -70,7 +86,54 @@ namespace GalaSoft.MvvmLight
             if (!string.IsNullOrEmpty(propertyName)
                 && myType.GetProperty(propertyName) == null)
             {
+#if !SILVERLIGHT
+                var descriptor = this as ICustomTypeDescriptor;
+
+                if (descriptor != null)
+                {
+                    if (descriptor.GetProperties()
+                        .Cast<PropertyDescriptor>()
+                        .Any(property => property.Name == propertyName))
+                    {
+                        return;
+                    }
+                }
+#endif
+
                 throw new ArgumentException("Property not found", propertyName);
+            }
+#endif
+        }
+
+        /// <summary>
+        /// Raises the PropertyChanging event if needed.
+        /// </summary>
+        /// <remarks>If the propertyName parameter
+        /// does not correspond to an existing property on the current class, an
+        /// exception is thrown in DEBUG configuration only.</remarks>
+        /// <param name="propertyName">The name of the property that
+        /// changed.</param>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+            Justification = "This cannot be an event")]
+        protected virtual void RaisePropertyChanging(string propertyName)
+        {
+#if NETFX_CORE
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new NotSupportedException(
+                    "Raising the PropertyChanged event with an empty string or null is not supported in the Windows 8 developer preview");
+            }
+            else
+            {
+#endif
+            VerifyPropertyName(propertyName);
+
+            var handler = PropertyChanging;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangingEventArgs(propertyName));
+            }
+#if NETFX_CORE
             }
 #endif
         }
@@ -90,10 +153,32 @@ namespace GalaSoft.MvvmLight
             VerifyPropertyName(propertyName);
 
             var handler = PropertyChanged;
-
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        /// <summary>
+        /// Raises the PropertyChanging event if needed.
+        /// </summary>
+        /// <typeparam name="T">The type of the property that
+        /// changes.</typeparam>
+        /// <param name="propertyExpression">An expression identifying the property
+        /// that changes.</param>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+            Justification = "This cannot be an event")]
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1006:GenericMethodsShouldProvideTypeParameter",
+            Justification = "This syntax is more convenient than other alternatives.")]
+        protected virtual void RaisePropertyChanging<T>(Expression<Func<T>> propertyExpression)
+        {
+            var handler = PropertyChanging;
+            if (handler != null)
+            {
+                var propertyName = GetPropertyName(propertyExpression);
+                handler(this, new PropertyChangingEventArgs(propertyName));
             }
         }
 
@@ -112,18 +197,44 @@ namespace GalaSoft.MvvmLight
             Justification = "This syntax is more convenient than other alternatives.")]
         protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
         {
-            if (propertyExpression == null)
-            {
-                return;
-            }
-
             var handler = PropertyChanged;
-
             if (handler != null)
             {
-                var body = propertyExpression.Body as MemberExpression;
-                handler(this, new PropertyChangedEventArgs(body.Member.Name));
+                var propertyName = GetPropertyName(propertyExpression);
+                handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        /// <summary>
+        /// Extracts the name of a property from an expression.
+        /// </summary>
+        /// <typeparam name="T">The type of the property.</typeparam>
+        /// <param name="propertyExpression">An expression returning the property's name.</param>
+        /// <returns>The name of the property returned by the expression.</returns>
+        /// <exception cref="ArgumentNullException">If the expression is null.</exception>
+        /// <exception cref="ArgumentException">If the expression does not represent a property.</exception>
+        protected string GetPropertyName<T>(Expression<Func<T>> propertyExpression)
+        {
+            if (propertyExpression == null)
+            {
+                throw new ArgumentNullException("propertyExpression");
+            }
+
+            var body = propertyExpression.Body as MemberExpression;
+
+            if (body == null)
+            {
+                throw new ArgumentException("Invalid argument", "propertyExpression");
+            }
+
+            var property = body.Member as PropertyInfo;
+
+            if (property == null)
+            {
+                throw new ArgumentException("Argument is not a property", "propertyExpression");
+            }
+
+            return property.Name;
         }
 
         /// <summary>
@@ -137,18 +248,23 @@ namespace GalaSoft.MvvmLight
         /// <param name="field">The field storing the property's value.</param>
         /// <param name="newValue">The property's value after the change
         /// occurred.</param>
-        protected void Set<T>(
+        /// <returns>True if the PropertyChanged event has been raised,
+        /// false otherwise. The event is not raised if the old
+        /// value is equal to the new value.</returns>
+        protected bool Set<T>(
             Expression<Func<T>> propertyExpression,
             ref T field,
             T newValue)
         {
             if (EqualityComparer<T>.Default.Equals(field, newValue))
             {
-                return;
+                return false;
             }
 
+            RaisePropertyChanging(propertyExpression);
             field = newValue;
             RaisePropertyChanged(propertyExpression);
+            return true;
         }
 
         /// <summary>
@@ -162,18 +278,23 @@ namespace GalaSoft.MvvmLight
         /// <param name="field">The field storing the property's value.</param>
         /// <param name="newValue">The property's value after the change
         /// occurred.</param>
-        protected void Set<T>(
+        /// <returns>True if the PropertyChanged event has been raised,
+        /// false otherwise. The event is not raised if the old
+        /// value is equal to the new value.</returns>
+        protected bool Set<T>(
             string propertyName,
             ref T field,
             T newValue)
         {
             if (EqualityComparer<T>.Default.Equals(field, newValue))
             {
-                return;
+                return false;
             }
 
+            RaisePropertyChanging(propertyName);
             field = newValue;
             RaisePropertyChanged(propertyName);
+            return true;
         }
     }
 }
