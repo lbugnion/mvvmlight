@@ -11,13 +11,14 @@
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0002</LastBaseLevel>
+// <LastBaseLevel>BL0003</LastBaseLevel>
 // ****************************************************************************
 
 using System;
 
-#if WIN8
+#if NETFX_CORE
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 #else
 using System.Windows.Threading;
 
@@ -34,8 +35,8 @@ namespace GalaSoft.MvvmLight.Threading
     /// Helper class for dispatcher operations on the UI thread.
     /// </summary>
     //// [ClassInfo(typeof(DispatcherHelper),
-    ////  VersionString = "4.0.0.0/BL0002",
-    ////  DateString = "201109042117",
+    ////  VersionString = "4.0.3",
+    ////  DateString = "201204151330",
     ////  Description = "Helper class for dispatcher operations on the UI thread.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -45,7 +46,7 @@ namespace GalaSoft.MvvmLight.Threading
         /// Gets a reference to the UI thread's dispatcher, after the
         /// <see cref="Initialize" /> method has been called on the UI thread.
         /// </summary>
-#if WIN8
+#if NETFX_CORE
         public static CoreDispatcher UIDispatcher
 #else
         public static Dispatcher UIDispatcher
@@ -68,7 +69,7 @@ namespace GalaSoft.MvvmLight.Threading
         /// thread.</param>
         public static void CheckBeginInvokeOnUI(Action action)
         {
-#if WIN8
+#if NETFX_CORE
             if (UIDispatcher.HasThreadAccess)
 #else
             if (UIDispatcher.CheckAccess())
@@ -78,7 +79,7 @@ namespace GalaSoft.MvvmLight.Threading
             }
             else
             {
-#if WIN8
+#if NETFX_CORE
                 UIDispatcher.InvokeAsync(CoreDispatcherPriority.Normal, (s, e) => action(), UIDispatcher, null);
 #else
                 UIDispatcher.BeginInvoke(action);
@@ -88,7 +89,7 @@ namespace GalaSoft.MvvmLight.Threading
 
         public static void InvokeAsync(object sender, Action action)
         {
-#if WIN8
+#if NETFX_CORE
             UIDispatcher.InvokeAsync(CoreDispatcherPriority.Normal, (s, e) => action(), sender, null);
 #else
             UIDispatcher.BeginInvoke(action);
@@ -107,7 +108,7 @@ namespace GalaSoft.MvvmLight.Threading
 #if SILVERLIGHT
             if (UIDispatcher != null)
 #else
-#if WIN8
+#if NETFX_CORE
             if (UIDispatcher != null)
 #else
             if (UIDispatcher != null
@@ -118,8 +119,8 @@ namespace GalaSoft.MvvmLight.Threading
                 return;
             }
 
-#if WIN8
-            UIDispatcher = CoreWindow.Current.Dispatcher;
+#if NETFX_CORE
+            UIDispatcher = Window.Current.Dispatcher;
 #else
 #if SILVERLIGHT
             UIDispatcher = Deployment.Current.Dispatcher;
