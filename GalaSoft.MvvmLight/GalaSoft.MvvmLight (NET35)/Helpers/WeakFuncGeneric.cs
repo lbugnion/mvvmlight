@@ -1,11 +1,11 @@
 ﻿// ****************************************************************************
-// <copyright file="WeakActionGeneric.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2012
+// <copyright file="WeakFuncGeneric.cs" company="GalaSoft Laurent Bugnion">
+// Copyright © GalaSoft Laurent Bugnion 2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
 // <email>laurent@galasoft.ch</email>
-// <date>18.9.2009</date>
+// <date>15.1.2012</date>
 // <project>GalaSoft.MvvmLight</project>
 // <web>http://www.galasoft.ch</web>
 // <license>
@@ -18,34 +18,35 @@ using System;
 namespace GalaSoft.MvvmLight.Helpers
 {
     /// <summary>
-    /// Stores an Action without causing a hard reference
-    /// to be created to the Action's owner. The owner can be garbage collected at any time.
+    /// Stores an Func without causing a hard reference
+    /// to be created to the Func's owner. The owner can be garbage collected at any time.
     /// </summary>
-    /// <typeparam name="T">The type of the Action's parameter.</typeparam>
+    /// <typeparam name="T">The type of the Func's parameter.</typeparam>
+    /// <typeparam name="TResult">The type of the Func's return value.</typeparam>
     ////[ClassInfo(typeof(WeakAction))]
-    public class WeakAction<T> : WeakAction, IExecuteWithObject
+    public class WeakFunc<T, TResult> : WeakFunc<TResult>, IExecuteWithObjectAndResult
     {
 #if SILVERLIGHT
-        private Action<T> _action;
+        private Func<T, TResult> _func;
 #endif
-        private Action<T> _staticAction;
+        private Func<T, TResult> _staticFunc;
 
         /// <summary>
-        /// Gets the name of the method that this WeakAction represents.
+        /// Gets or sets the name of the method that this WeakFunc represents.
         /// </summary>
         public override string MethodName
         {
             get
             {
-                if (_staticAction != null)
+                if (_staticFunc != null)
                 {
-                    return _staticAction.Method.Name;
+                    return _staticFunc.Method.Name;
                 }
 
 #if SILVERLIGHT
-                if (_action != null)
+                if (_func != null)
                 {
-                    return _action.Method.Name;
+                    return _func.Method.Name;
                 }
 
                 if (Method != null)
@@ -61,20 +62,20 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// Gets a value indicating whether the Action's owner is still alive, or if it was collected
+        /// Gets a value indicating whether the Func's owner is still alive, or if it was collected
         /// by the Garbage Collector already.
         /// </summary>
         public override bool IsAlive
         {
             get
             {
-                if (_staticAction == null
+                if (_staticFunc == null
                     && Reference == null)
                 {
                     return false;
                 }
 
-                if (_staticAction != null)
+                if (_staticFunc != null)
                 {
                     if (Reference != null)
                     {
@@ -89,24 +90,24 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// Initializes a new instance of the WeakAction class.
+        /// Initializes a new instance of the WeakFunc class.
         /// </summary>
-        /// <param name="action">The action that will be associated to this instance.</param>
-        public WeakAction(Action<T> action)
-            : this(action.Target, action)
+        /// <param name="func">The func that will be associated to this instance.</param>
+        public WeakFunc(Func<T, TResult> func)
+            : this(func.Target, func)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the WeakAction class.
+        /// Initializes a new instance of the WeakFunc class.
         /// </summary>
-        /// <param name="target">The action's owner.</param>
-        /// <param name="action">The action that will be associated to this instance.</param>
-        public WeakAction(object target, Action<T> action)
+        /// <param name="target">The func's owner.</param>
+        /// <param name="func">The func that will be associated to this instance.</param>
+        public WeakFunc(object target, Func<T, TResult> func)
         {
-            if (action.Method.IsStatic)
+            if (func.Method.IsStatic)
             {
-                _staticAction = action;
+                _staticFunc = func;
 
                 if (target != null)
                 {
@@ -119,65 +120,64 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
 #if SILVERLIGHT
-            if (!action.Method.IsPublic
+            if (!func.Method.IsPublic
                 || (target != null
                     && !target.GetType().IsPublic
                     && !target.GetType().IsNestedPublic))
             {
-                _action = action;
+                _func = func;
             }
             else
             {
-                var name = action.Method.Name;
+                var name = func.Method.Name;
 
                 if (name.Contains("<")
                     && name.Contains(">"))
                 {
-                    _action = action;
+                    _func = func;
                 }
                 else
                 {
-                    Method = action.Method;
-                    ActionReference = new WeakReference(action.Target);
+                    Method = func.Method;
+                    FuncReference = new WeakReference(func.Target);
                 }
             }
 #else
-            Method = action.Method;
-            ActionReference = new WeakReference(action.Target);
+            Method = func.Method;
+            FuncReference = new WeakReference(func.Target);
 #endif
 
             Reference = new WeakReference(target);
         }
 
         /// <summary>
-        /// Executes the action. This only happens if the action's owner
-        /// is still alive. The action's parameter is set to default(T).
+        /// Executes the func. This only happens if the func's owner
+        /// is still alive. The func's parameter is set to default(T).
         /// </summary>
-        public new void Execute()
+        public new TResult Execute()
         {
-            Execute(default(T));
+            return Execute(default(T));
         }
 
         /// <summary>
-        /// Executes the action. This only happens if the action's owner
+        /// Executes the func. This only happens if the func's owner
         /// is still alive.
         /// </summary>
         /// <param name="parameter">A parameter to be passed to the action.</param>
-        public void Execute(T parameter)
+        public TResult Execute(T parameter)
         {
-            if (_staticAction != null)
+            if (_staticFunc != null)
             {
-                _staticAction(parameter);
-                return;
+                return _staticFunc(parameter);
             }
 
             if (IsAlive)
             {
                 if (Method != null
-                    && ActionReference != null)
+                    && FuncReference != null)
                 {
-                    Method.Invoke(
-                        ActionTarget,
+                    return (TResult) Method.Invoke(
+                        FuncTarget,
                         new object[]
                         {
                             parameter
@@ -185,40 +185,42 @@ namespace GalaSoft.MvvmLight.Helpers
                 }
 
 #if SILVERLIGHT
-                if (_action != null)
+                if (_func != null)
                 {
-                    _action(parameter);
-                    return;
+                    return _func(parameter);
                 }
 #endif
             }
+
+            return default(TResult);
         }
 
         /// <summary>
-        /// Executes the action with a parameter of type object. This parameter
+        /// Executes the func with a parameter of type object. This parameter
         /// will be casted to T. This method implements <see cref="IExecuteWithObject.ExecuteWithObject" />
-        /// and can be useful if you store multiple WeakAction{T} instances but don't know in advance
+        /// and can be useful if you store multiple WeakFunc{T} instances but don't know in advance
         /// what type T represents.
         /// </summary>
-        /// <param name="parameter">The parameter that will be passed to the action after
+        /// <param name="parameter">The parameter that will be passed to the func after
         /// being casted to T.</param>
-        public void ExecuteWithObject(object parameter)
+        /// <returns>The result of the execution as object, to be casted to T.</returns>
+        public object ExecuteWithObject(object parameter)
         {
-            var parameterCasted = (T) parameter;
-            Execute(parameterCasted);
+            var parameterCasted = (T)parameter;
+            return Execute(parameterCasted);
         }
 
         /// <summary>
-        /// Sets all the actions that this WeakAction contains to null,
-        /// which is a signal for containing objects that this WeakAction
+        /// Sets all the funcs that this WeakFunc contains to null,
+        /// which is a signal for containing objects that this WeakFunc
         /// should be deleted.
         /// </summary>
         public new void MarkForDeletion()
         {
 #if SILVERLIGHT
-            _action = null;
+            _func = null;
 #endif
-            _staticAction = null;
+            _staticFunc = null;
             base.MarkForDeletion();
         }
     }

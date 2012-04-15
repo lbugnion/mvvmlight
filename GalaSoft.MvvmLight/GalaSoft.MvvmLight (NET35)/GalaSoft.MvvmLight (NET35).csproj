@@ -83,6 +83,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\IExecuteWithObjectAndResult.cs" />
+    <Compile Include="Helpers\WeakFunc.cs" />
+    <Compile Include="Helpers\WeakFuncGeneric.cs" />
     <Compile Include="ICleanup.cs" />
     <Compile Include="Helpers\IExecuteWithObject.cs" />
     <Compile Include="Helpers\WeakAction.cs" />

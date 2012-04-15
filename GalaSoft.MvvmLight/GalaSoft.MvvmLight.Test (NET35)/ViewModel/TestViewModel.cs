@@ -152,7 +152,11 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             }
         }
 
+#if SILVERLIGHT
+        public void HandleStringMessage(string message)
+#else
         internal void HandleStringMessage(string message)
+#endif
         {
             ReceivedContent = message;
         }

@@ -59,6 +59,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\IExecuteWithObjectAndResult.cs">
+      <Link>Helpers\IExecuteWithObjectAndResult.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFunc.cs">
+      <Link>Helpers\WeakFunc.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFuncGeneric.cs">
+      <Link>Helpers\WeakFuncGeneric.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ObservableObject.cs">
       <Link>ObservableObject.cs</Link>
     </Compile>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace GalaSoft.MvvmLight.Test.ViewModel
@@ -85,6 +86,21 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
         public TestViewModelNoMagicString(IMessenger messenger)
             : base(messenger)
         {
+        }
+
+        public void RaisePropertyChangedPublic<T>(Expression<Func<T>> propertyExpression)
+        {
+            RaisePropertyChanged(propertyExpression);
+        }
+
+        public void RaisePropertyChangedPublic<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue, bool broadcast)
+        {
+            RaisePropertyChanged(propertyExpression, oldValue, newValue, broadcast);
+        }
+
+        public void RaisePropertyChangingPublic<T>(Expression<Func<T>> propertyExpression)
+        {
+            RaisePropertyChanging(propertyExpression);
         }
     }
 }

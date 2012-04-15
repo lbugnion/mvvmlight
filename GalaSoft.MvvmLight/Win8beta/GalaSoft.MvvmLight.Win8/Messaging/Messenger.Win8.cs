@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="Messenger.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2012
+// Copyright © GalaSoft Laurent Bugnion 2009-2011
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -11,20 +11,15 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0015</LastBaseLevel>
+// <LastBaseLevel>BL0014</LastBaseLevel>
 // ****************************************************************************
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using GalaSoft.MvvmLight.Helpers;
-
-#if SILVERLIGHT
-using System.Windows;
-#else
-using System.Windows.Threading;
-#endif
 
 ////using GalaSoft.Utilities.Attributes;
 
@@ -34,15 +29,15 @@ namespace GalaSoft.MvvmLight.Messaging
     /// The Messenger is a class allowing objects to exchange messages.
     /// </summary>
     ////[ClassInfo(typeof(Messenger),
-    ////    VersionString = "4.0.15",
-    ////    DateString = "201204151330",
+    ////    VersionString = "4.0.0.0/BL0014",
+    ////    DateString = "201109042117",
     ////    Description = "A messenger class allowing a class to send a message to multiple recipients",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
     public class Messenger : IMessenger
     {
         private static readonly object CreationLock = new object();
-        private static IMessenger _defaultInstance;
+        private static Messenger _defaultInstance;
         private readonly object _registerLock = new object();
         private Dictionary<Type, List<WeakActionAndToken>> _recipientsOfSubclassesAction;
         private Dictionary<Type, List<WeakActionAndToken>> _recipientsStrictAction;
@@ -51,7 +46,7 @@ namespace GalaSoft.MvvmLight.Messaging
         /// Gets the Messenger's default instance, allowing
         /// to register and send messages in a static manner.
         /// </summary>
-        public static IMessenger Default
+        public static Messenger Default
         {
             get
             {
@@ -218,21 +213,17 @@ namespace GalaSoft.MvvmLight.Messaging
                     }
 
                     var weakAction = new WeakAction<TMessage>(recipient, action);
-
                     var item = new WeakActionAndToken
                     {
                         Action = weakAction,
                         Token = token
                     };
-
                     list.Add(item);
                 }
             }
 
-            RequestCleanup();
+            Cleanup();
         }
-
-        private bool _isCleanupRegistered;
 
         /// <summary>
         /// Sends a message to registered recipients. The message will
@@ -366,7 +357,7 @@ namespace GalaSoft.MvvmLight.Messaging
         {
             UnregisterFromLists(recipient, token, action, _recipientsStrictAction);
             UnregisterFromLists(recipient, token, action, _recipientsOfSubclassesAction);
-            RequestCleanup();
+            Cleanup();
         }
 
         #endregion
@@ -376,7 +367,7 @@ namespace GalaSoft.MvvmLight.Messaging
         /// a custom instance, for example for unit testing purposes.
         /// </summary>
         /// <param name="newMessenger">The instance that will be used as Messenger.Default.</param>
-        public static void OverrideDefault(IMessenger newMessenger)
+        public static void OverrideDefault(Messenger newMessenger)
         {
             _defaultInstance = newMessenger;
         }
@@ -387,15 +378,6 @@ namespace GalaSoft.MvvmLight.Messaging
         public static void Reset()
         {
             _defaultInstance = null;
-        }
-
-        /// <summary>
-        /// Provides a non-static access to the static <see cref="Reset"/> method.
-        /// Sets the Messenger's default (static) instance to null.
-        /// </summary>
-        public void ResetAll()
-        {
-            Reset();
         }
 
         private static void CleanupList(IDictionary<Type, List<WeakActionAndToken>> lists)
@@ -411,7 +393,7 @@ namespace GalaSoft.MvvmLight.Messaging
                 foreach (var list in lists)
                 {
                     var recipientsToRemove = new List<WeakActionAndToken>();
-                    foreach (var item in list.Value)
+                    foreach (WeakActionAndToken item in list.Value)
                     {
                         if (item.Action == null
                             || !item.Action.IsAlive)
@@ -420,7 +402,7 @@ namespace GalaSoft.MvvmLight.Messaging
                         }
                     }
 
-                    foreach (var recipient in recipientsToRemove)
+                    foreach (WeakActionAndToken recipient in recipientsToRemove)
                     {
                         list.Value.Remove(recipient);
                     }
@@ -438,6 +420,31 @@ namespace GalaSoft.MvvmLight.Messaging
             }
         }
 
+        private static bool Implements(Type instanceType, Type interfaceType)
+        {
+            if (interfaceType == null
+                || instanceType == null)
+            {
+                return false;
+            }
+
+#if NETFX_CORE
+            IEnumerable<Type> interfaces = instanceType.GetTypeInfo().ImplementedInterfaces;
+#else
+            Type[] interfaces = instanceType.GetInterfaces();
+#endif
+            
+            foreach (Type currentInterface in interfaces)
+            {
+                if (currentInterface == interfaceType)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private static void SendToList<TMessage>(
             TMessage message,
             IEnumerable<WeakActionAndToken> list,
@@ -447,7 +454,7 @@ namespace GalaSoft.MvvmLight.Messaging
             if (list != null)
             {
                 // Clone to protect from people registering in a "receive message" method
-                // Correction Messaging BL0004.007
+                // Bug correction Messaging BL0004.007
                 List<WeakActionAndToken> listClone = list.Take(list.Count()).ToList();
 
                 foreach (WeakActionAndToken item in listClone)
@@ -459,7 +466,7 @@ namespace GalaSoft.MvvmLight.Messaging
                         && item.Action.Target != null
                         && (messageTargetType == null
                             || item.Action.Target.GetType() == messageTargetType
-                            || messageTargetType.IsAssignableFrom(item.Action.Target.GetType()))
+                            || Implements(item.Action.Target.GetType(), messageTargetType))
                         && ((item.Token == null && token == null)
                             || item.Token != null && item.Token.Equals(token)))
                     {
@@ -484,7 +491,7 @@ namespace GalaSoft.MvvmLight.Messaging
                 {
                     foreach (WeakActionAndToken item in lists[messageType])
                     {
-                        IExecuteWithObject weakAction = (IExecuteWithObject)item.Action;
+                        WeakAction weakAction = item.Action;
 
                         if (weakAction != null
                             && recipient == weakAction.Target)
@@ -521,7 +528,7 @@ namespace GalaSoft.MvvmLight.Messaging
                     if (weakActionCasted != null
                         && recipient == weakActionCasted.Target
                         && (action == null
-                            || action.Method.Name == weakActionCasted.MethodName)
+                            || action == weakActionCasted.Action)
                         && (token == null
                             || token.Equals(item.Token)))
                     {
@@ -531,52 +538,10 @@ namespace GalaSoft.MvvmLight.Messaging
             }
         }
 
-        /// <summary>
-        /// Notifies the Messenger that the lists of recipients should
-        /// be scanned and cleaned up.
-        /// Since recipients are stored as <see cref="WeakReference"/>, 
-        /// recipients can be garbage collected even though the Messenger keeps 
-        /// them in a list. During the cleanup operation, all "dead"
-        /// recipients are removed from the lists. Since this operation
-        /// can take a moment, it is only executed when the application is
-        /// idle. For this reason, a user of the Messenger class should use
-        /// <see cref="RequestCleanup"/> instead of forcing one with the 
-        /// <see cref="Cleanup" /> method.
-        /// </summary>
-        public void RequestCleanup()
-        {
-            if (!_isCleanupRegistered)
-            {
-                Action cleanupAction = Cleanup;
-
-#if SILVERLIGHT                
-                Deployment.Current.Dispatcher.BeginInvoke(cleanupAction);
-#else
-                Dispatcher.CurrentDispatcher.BeginInvoke(
-                    cleanupAction,
-                    DispatcherPriority.ApplicationIdle,
-                    null);
-#endif
-                _isCleanupRegistered = true;
-            }
-        }
-
-        /// <summary>
-        /// Scans the recipients' lists for "dead" instances and removes them.
-        /// Since recipients are stored as <see cref="WeakReference"/>, 
-        /// recipients can be garbage collected even though the Messenger keeps 
-        /// them in a list. During the cleanup operation, all "dead"
-        /// recipients are removed from the lists. Since this operation
-        /// can take a moment, it is only executed when the application is
-        /// idle. For this reason, a user of the Messenger class should use
-        /// <see cref="RequestCleanup"/> instead of forcing one with the 
-        /// <see cref="Cleanup" /> method.
-        /// </summary>
-        public void Cleanup()
+        private void Cleanup()
         {
             CleanupList(_recipientsOfSubclassesAction);
             CleanupList(_recipientsStrictAction);
-            _isCleanupRegistered = false;
         }
 
         private void SendToTargetOrType<TMessage>(TMessage message, Type messageTargetType, object token)
@@ -586,7 +551,7 @@ namespace GalaSoft.MvvmLight.Messaging
             if (_recipientsOfSubclassesAction != null)
             {
                 // Clone to protect from people registering in a "receive message" method
-                // Correction Messaging BL0008.002
+                // Bug correction Messaging BL0008.002
                 List<Type> listClone =
                     _recipientsOfSubclassesAction.Keys.Take(_recipientsOfSubclassesAction.Count()).ToList();
 
@@ -594,7 +559,7 @@ namespace GalaSoft.MvvmLight.Messaging
                 {
                     List<WeakActionAndToken> list = null;
 
-#if WIN8
+#if NETFX_CORE
                     if (messageType == type
                         || type.GetTypeInfo().IsAssignableFrom(messageType.GetTypeInfo())
                         || Implements(messageType, type))
@@ -607,7 +572,7 @@ namespace GalaSoft.MvvmLight.Messaging
 #else
                     if (messageType == type
                         || messageType.IsSubclassOf(type)
-                        || type.IsAssignableFrom(messageType))
+                        || Implements(messageType, type))
                     {
                         lock (_recipientsOfSubclassesAction)
                         {
@@ -622,20 +587,20 @@ namespace GalaSoft.MvvmLight.Messaging
 
             if (_recipientsStrictAction != null)
             {
-                lock (_recipientsStrictAction)
+                if (_recipientsStrictAction.ContainsKey(messageType))
                 {
-                    if (_recipientsStrictAction.ContainsKey(messageType))
-                    {
-                        var list = _recipientsStrictAction[messageType]
-                            .Take(_recipientsStrictAction[messageType].Count())
-                            .ToList();
+                    List<WeakActionAndToken> list = null;
 
-                        SendToList(message, list, messageTargetType, token);
+                    lock (_recipientsStrictAction)
+                    {
+                        list = _recipientsStrictAction[messageType].Take(_recipientsStrictAction[messageType].Count()).ToList();
                     }
+
+                    SendToList(message, list, messageTargetType, token);
                 }
             }
 
-            RequestCleanup();
+            Cleanup();
         }
 
         #region Nested type: WeakActionAndToken

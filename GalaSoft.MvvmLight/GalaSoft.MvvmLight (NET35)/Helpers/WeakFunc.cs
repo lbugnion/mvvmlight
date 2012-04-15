@@ -1,17 +1,16 @@
 ﻿// ****************************************************************************
-// <copyright file="WeakAction.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2012
+// <copyright file="WeakFunc.cs" company="GalaSoft Laurent Bugnion">
+// Copyright © GalaSoft Laurent Bugnion 2012
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
 // <email>laurent@galasoft.ch</email>
-// <date>18.9.2009</date>
+// <date>15.1.2012</date>
 // <project>GalaSoft.MvvmLight</project>
 // <web>http://www.galasoft.ch</web>
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0014</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -20,24 +19,19 @@ using System.Reflection;
 namespace GalaSoft.MvvmLight.Helpers
 {
     /// <summary>
-    /// Stores an <see cref="Action" /> without causing a hard reference
-    /// to be created to the Action's owner. The owner can be garbage collected at any time.
+    /// Stores a Func&lt;T&gt; without causing a hard reference
+    /// to be created to the Func's owner. The owner can be garbage collected at any time.
     /// </summary>
-    ////[ClassInfo(typeof(WeakAction),
-    ////    VersionString = "4.0.0.0/BL0014",
-    ////    DateString = "201109042117",
-    ////    Description = "A class allowing to store and invoke actions without keeping a hard reference to the action's target.",
-    ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
-    ////    Email = "laurent@galasoft.ch")]
-    public class WeakAction
+    ////[ClassInfo(typeof(WeakAction)]
+    public class WeakFunc<TResult>
     {
 #if SILVERLIGHT
-        private Action _action;
+        private Func<TResult> _func;
 #endif
-        private Action _staticAction;
+        private Func<TResult> _staticFunc;
 
         /// <summary>
-        /// Gets or sets the <see cref="MethodInfo" /> corresponding to this WeakAction's
+        /// Gets or sets the <see cref="MethodInfo" /> corresponding to this WeakFunc's
         /// method passed in the constructor.
         /// </summary>
         protected MethodInfo Method
@@ -46,22 +40,35 @@ namespace GalaSoft.MvvmLight.Helpers
             set;
         }
 
+        public bool IsStatic
+        {
+            get
+            {
+#if SILVERLIGHT
+                return (_func != null && _func.Target == null)
+                    || _staticFunc != null;
+#else
+                return _staticFunc != null;
+#endif
+            }
+        }
+
         /// <summary>
-        /// Gets the name of the method that this WeakAction represents.
+        /// Gets the name of the method that this WeakFunc represents.
         /// </summary>
         public virtual string MethodName
         {
             get
             {
-                if (_staticAction != null)
+                if (_staticFunc != null)
                 {
-                    return _staticAction.Method.Name;
+                    return _staticFunc.Method.Name;
                 }
 
 #if SILVERLIGHT
-                if (_action != null)
+                if (_func != null)
                 {
-                    return _action.Method.Name;
+                    return _func.Method.Name;
                 }
 
                 if (Method != null)
@@ -77,12 +84,12 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// Gets or sets a WeakReference to this WeakAction's action's target.
+        /// Gets or sets a WeakReference to this WeakFunc's action's target.
         /// This is not necessarily the same as
         /// <see cref="Reference" />, for example if the
         /// method is anonymous.
         /// </summary>
-        protected WeakReference ActionReference
+        protected WeakReference FuncReference
         {
             get;
             set;
@@ -90,8 +97,8 @@ namespace GalaSoft.MvvmLight.Helpers
 
         /// <summary>
         /// Gets or sets a WeakReference to the target passed when constructing
-        /// the WeakAction. This is not necessarily the same as
-        /// <see cref="ActionReference" />, for example if the
+        /// the WeakFunc. This is not necessarily the same as
+        /// <see cref="FuncReference" />, for example if the
         /// method is anonymous.
         /// </summary>
         protected WeakReference Reference
@@ -100,45 +107,32 @@ namespace GalaSoft.MvvmLight.Helpers
             set;
         }
 
-        public bool IsStatic
+        /// <summary>
+        /// Initializes an empty instance of the WeakFunc class.
+        /// </summary>
+        protected WeakFunc()
         {
-            get
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the WeakFunc class.
+        /// </summary>
+        /// <param name="func">The func that will be associated to this instance.</param>
+        public WeakFunc(Func<TResult> func)
+            : this(func.Target, func)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the WeakFunc class.
+        /// </summary>
+        /// <param name="target">The func's owner.</param>
+        /// <param name="func">The func that will be associated to this instance.</param>
+        public WeakFunc(object target, Func<TResult> func)
+        {
+            if (func.Method.IsStatic)
             {
-#if SILVERLIGHT
-                return (_action != null && _action.Target == null)
-                    || _staticAction != null;
-#else
-                return _staticAction != null;
-#endif
-            }
-        }
-
-        /// <summary>
-        /// Initializes an empty instance of the <see cref="WeakAction" /> class.
-        /// </summary>
-        protected WeakAction()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WeakAction" /> class.
-        /// </summary>
-        /// <param name="action">The action that will be associated to this instance.</param>
-        public WeakAction(Action action)
-            : this(action.Target, action)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WeakAction" /> class.
-        /// </summary>
-        /// <param name="target">The action's owner.</param>
-        /// <param name="action">The action that will be associated to this instance.</param>
-        public WeakAction(object target, Action action)
-        {
-            if (action.Method.IsStatic)
-            {
-                _staticAction = action;
+                _staticFunc = func;
 
                 if (target != null)
                 {
@@ -151,52 +145,52 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
 #if SILVERLIGHT
-            if (!action.Method.IsPublic
-                || (action.Target != null
-                    && !action.Target.GetType().IsPublic
-                    && !action.Target.GetType().IsNestedPublic))
+            if (!func.Method.IsPublic
+                || (target != null
+                    && !target.GetType().IsPublic
+                    && !target.GetType().IsNestedPublic))
             {
-                _action = action;
+                _func = func;
             }
             else
             {
-                var name = action.Method.Name;
+                var name = func.Method.Name;
 
                 if (name.Contains("<")
                     && name.Contains(">"))
                 {
                     // Anonymous method
-                    _action = action;
+                    _func = func;
                 }
                 else
                 {
-                    Method = action.Method;
-                    ActionReference = new WeakReference(action.Target);
+                    Method = func.Method;
+                    FuncReference = new WeakReference(func.Target);
                 }
             }
 #else
-            Method = action.Method;
-            ActionReference = new WeakReference(action.Target);
+            Method = func.Method;
+            FuncReference = new WeakReference(func.Target);
 #endif
 
             Reference = new WeakReference(target);
         }
 
         /// <summary>
-        /// Gets a value indicating whether the Action's owner is still alive, or if it was collected
+        /// Gets a value indicating whether the Func's owner is still alive, or if it was collected
         /// by the Garbage Collector already.
         /// </summary>
         public virtual bool IsAlive
         {
             get
             {
-                if (_staticAction == null
+                if (_staticFunc == null
                     && Reference == null)
                 {
                     return false;
                 }
 
-                if (_staticAction != null)
+                if (_staticFunc != null)
                 {
                     if (Reference != null)
                     {
@@ -211,7 +205,7 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// Gets the Action's owner. This object is stored as a 
+        /// Gets the Func's owner. This object is stored as a 
         /// <see cref="WeakReference" />.
         /// </summary>
         public object Target
@@ -228,50 +222,52 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Gets the owner of the Func that was passed as parameter.
+        /// This is not necessarily the same as
+        /// <see cref="Target" />, for example if the
+        /// method is anonymous.
         /// </summary>
-        protected object ActionTarget
+        protected object FuncTarget
         {
             get
             {
-                if (ActionReference == null)
+                if (FuncReference == null)
                 {
                     return null;
                 }
 
-                return ActionReference.Target;
+                return FuncReference.Target;
             }
         }
 
         /// <summary>
-        /// Executes the action. This only happens if the action's owner
+        /// Executes the action. This only happens if the func's owner
         /// is still alive.
         /// </summary>
-        public void Execute()
+        public TResult Execute()
         {
-            if (_staticAction != null)
+            if (_staticFunc != null)
             {
-                _staticAction();
-                return;
+                return _staticFunc();
             }
 
             if (IsAlive)
             {
                 if (Method != null
-                    && ActionReference != null)
+                    && FuncReference != null)
                 {
-                    Method.Invoke(ActionTarget, null);
-                    return;
+                    return (TResult)Method.Invoke(FuncTarget, null);
                 }
 
 #if SILVERLIGHT
-                if (_action != null)
+                if (_func != null)
                 {
-                    _action();
-                    return;
+                    return _func();
                 }
 #endif
             }
+
+            return default(TResult);
         }
 
         /// <summary>
@@ -280,12 +276,12 @@ namespace GalaSoft.MvvmLight.Helpers
         public void MarkForDeletion()
         {
             Reference = null;
-            ActionReference = null;
+            FuncReference = null;
             Method = null;
-            _staticAction = null;
+            _staticFunc = null;
 
 #if SILVERLIGHT
-            _action = null;
+            _func = null;
 #endif
         }
     }
