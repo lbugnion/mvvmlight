@@ -2,7 +2,7 @@
 using System.Windows;
 using Microsoft.Silverlight.Testing;
 
-namespace GalaSoft.MvvmLight.Test__SL5_
+namespace GalaSoft.MvvmLight.Test
 {
     public partial class App : Application
     {

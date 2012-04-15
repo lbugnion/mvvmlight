@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 

@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GalaSoft.MvvmLight.Test__SL5_</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight.Test %28SL5%29</AssemblyName>
+    <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
+    <AssemblyName>GalaSoft.MvvmLight.Test.SL5</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -18,9 +18,9 @@
     <SupportedCultures />
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>GalaSoft.MvvmLight.Test__SL5_.xap</XapFilename>
+    <XapFilename>GalaSoft.MvvmLight.Test.SL5.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>GalaSoft.MvvmLight.Test__SL5_.App</SilverlightAppEntry>
+    <SilverlightAppEntry>GalaSoft.MvvmLight.Test.App</SilverlightAppEntry>
     <TestPageFileName>TestPage.html</TestPageFileName>
     <CreateTestPage>true</CreateTestPage>
     <ValidateXaml>true</ValidateXaml>
@@ -87,7 +87,9 @@
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Interactivity, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\External\SL5\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
@@ -100,6 +102,66 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\RelayCommandTest.cs">
       <Link>Command\RelayCommandTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\TemporaryClass.cs">
+      <Link>Command\TemporaryClass.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\InternalTestClassGenericWithResult.cs">
+      <Link>Helpers\InternalTestClassGenericWithResult.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\InternalTestClassWithResult.cs">
+      <Link>Helpers\InternalTestClassWithResult.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\PublicTestClassGenericWithResult.cs">
+      <Link>Helpers\PublicTestClassGenericWithResult.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\PublicTestClassWithResult.cs">
+      <Link>Helpers\PublicTestClassWithResult.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\WeakActionGenericNestedTest.cs">
+      <Link>Helpers\WeakActionGenericNestedTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\WeakActionNestedTest.cs">
+      <Link>Helpers\WeakActionNestedTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\WeakFuncGenericNestedTest.cs">
+      <Link>Helpers\WeakFuncGenericNestedTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\WeakFuncGenericTest.cs">
+      <Link>Helpers\WeakFuncGenericTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\WeakFuncNestedTest.cs">
+      <Link>Helpers\WeakFuncNestedTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\WeakFuncTest.cs">
+      <Link>Helpers\WeakFuncTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestAutoCreation.cs">
+      <Link>Ioc\SimpleIocTestAutoCreation.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\CommonTestClass.cs">
+      <Link>Helpers\CommonTestClass.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\InternalTestClass.cs">
+      <Link>Helpers\InternalTestClass.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\InternalTestClassGeneric.cs">
+      <Link>Helpers\InternalTestClassGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\PublicTestClass.cs">
+      <Link>Helpers\PublicTestClass.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\PublicTestClassGeneric.cs">
+      <Link>Helpers\PublicTestClassGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\TestCase.cs">
+      <Link>Helpers\TestCase.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\WeakActionGenericTest.cs">
+      <Link>Helpers\WeakActionGenericTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\WeakActionTest.cs">
+      <Link>Helpers\WeakActionTest.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Ioc\SimpleIocTestContains.cs">
       <Link>Ioc\SimpleIocTestContains.cs</Link>
@@ -124,6 +186,12 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\DialogMessageTest.cs">
       <Link>Messaging\DialogMessageTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\GarbageCollectionTest.cs">
+      <Link>Messaging\GarbageCollectionTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\ITestMessage.cs">
+      <Link>Messaging\ITestMessage.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\MessengerBroadcastToAllTest.cs">
       <Link>Messaging\MessengerBroadcastToAllTest.cs</Link>
@@ -152,6 +220,9 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\MessengerSendWithTokenTest.cs">
       <Link>Messaging\MessengerSendWithTokenTest.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\MessengerTestConstrainingMessages.cs">
+      <Link>Messaging\MessengerTestConstrainingMessages.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\NotificationMessageActionTest.cs">
       <Link>Messaging\NotificationMessageActionTest.cs</Link>
     </Compile>
@@ -161,8 +232,20 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\PropertyChangedMessageTest.cs">
       <Link>Messaging\PropertyChangedMessageTest.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ObservableObjectTest.cs">
-      <Link>ObservableObjectTest.cs</Link>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\TestMessageBase.cs">
+      <Link>Messaging\TestMessageBase.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Messaging\TestMessageImpl.cs">
+      <Link>Messaging\TestMessageImpl.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ObservableObjectPropertyChangedTest.cs">
+      <Link>ObservableObjectPropertyChangedTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ObservableObjectPropertyChangingTest.cs">
+      <Link>ObservableObjectPropertyChangingTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\ITestClass.cs">
       <Link>Stubs\ITestClass.cs</Link>
@@ -218,7 +301,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.SL5.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
