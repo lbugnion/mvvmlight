@@ -29,6 +29,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
+                RaisePropertyChanging(LastChangedPropertyName);
                 _lastChanged = value;
                 RaisePropertyChanged(LastChangedPropertyName);
             }
@@ -54,9 +55,16 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
+                RaisePropertyChanging(() => LastChangedNoMagicString);
                 _lastChangedNoMagicString = value;
                 RaisePropertyChanged(() => LastChangedNoMagicString);
             }
+        }
+
+        public bool SetRaisedPropertyChangedEvent
+        {
+            get;
+            set;
         }
 
         public const string PropertyWithSetPropertyName = "PropertyWithSet";
@@ -69,7 +77,8 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             }
             set
             {
-                Set(() => PropertyWithSet, ref _propertyWithSet, value);
+                SetRaisedPropertyChangedEvent = false;
+                SetRaisedPropertyChangedEvent = Set(() => PropertyWithSet, ref _propertyWithSet, value);
             }
         }
 
@@ -83,13 +92,19 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             }
             set
             {
-                Set(PropertyWithStringSetPropertyName, ref _propertyWithStringSet, value);
+                SetRaisedPropertyChangedEvent = false;
+                SetRaisedPropertyChangedEvent = Set(PropertyWithStringSetPropertyName, ref _propertyWithStringSet, value);
             }
         }
 
         public void RaisePropertyChangedPublic(string propertyName)
         {
             RaisePropertyChanged(propertyName);
+        }
+
+        public void RaisePropertyChangingPublic(string propertyName)
+        {
+            RaisePropertyChanging(propertyName);
         }
     }
 }

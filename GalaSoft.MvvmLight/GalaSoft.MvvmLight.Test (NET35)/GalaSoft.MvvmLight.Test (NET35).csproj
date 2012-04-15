@@ -59,11 +59,40 @@
     <Compile Include="Command\EventToCommandTest.cs" />
     <Compile Include="Command\RelayCommandGenericTest.cs" />
     <Compile Include="Command\RelayCommandTest.cs" />
+    <Compile Include="Command\TemporaryClass.cs" />
+    <Compile Include="Helpers\PublicTestClassGenericWithResult.cs" />
+    <Compile Include="Helpers\InternalTestClassGenericWithResult.cs" />
+    <Compile Include="Helpers\InternalTestClassWithResult.cs" />
+    <Compile Include="Helpers\PublicTestClassWithResult.cs" />
+    <Compile Include="Helpers\WeakActionGenericNestedTest.cs" />
+    <Compile Include="Helpers\WeakActionNestedTest.cs" />
+    <Compile Include="Helpers\WeakFuncGenericNestedTest.cs" />
+    <Compile Include="Helpers\WeakFuncGenericTest.cs" />
+    <Compile Include="Helpers\WeakFuncNestedTest.cs" />
+    <Compile Include="Helpers\WeakFuncTest.cs" />
+    <Compile Include="Messaging\ITestMessage.cs" />
+    <Compile Include="Messaging\MessengerTestConstrainingMessages.cs" />
+    <Compile Include="Messaging\TestMessageBase.cs" />
+    <Compile Include="Messaging\TestMessageImpl.cs" />
+    <Compile Include="ObservableObjectPropertyChangingTest.cs" />
+    <Compile Include="Ioc\SimpleIocTestAutoCreation.cs" />
+    <Compile Include="Helpers\CommonTestClass.cs" />
+    <Compile Include="Helpers\InternalTestClassGeneric.cs" />
+    <Compile Include="Helpers\InternalTestClass.cs" />
+    <Compile Include="Helpers\PublicTestClassGeneric.cs" />
+    <Compile Include="Helpers\PublicTestClass.cs" />
+    <Compile Include="Helpers\TestCase.cs" />
+    <Compile Include="Helpers\WeakActionGenericTest.cs" />
+    <Compile Include="Helpers\WeakActionTest.cs" />
     <Compile Include="Ioc\SimpleIocTestIsRegistered.cs" />
     <Compile Include="Ioc\SimpleIocTestContains.cs" />
     <Compile Include="Ioc\SimpleIocTestCreationTime.cs" />
+    <Compile Include="Messaging\GarbageCollectionTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.Net35.cs" />
+    <Compile Include="Stubs\TestPropertyDescriptor.cs" />
     <Compile Include="Stubs\TestBindingTarget.cs" />
     <Compile Include="Stubs\TestClassForCreationTime.cs" />
+    <Compile Include="Stubs\TestCustomTypeDescriptor.cs" />
     <Compile Include="Stubs\TestViewModelWithBooleanSource.cs" />
     <Compile Include="Ioc\SimpleIocTestMultipleConstructors.cs" />
     <Compile Include="Ioc\SimpleIocTestMultipleInstances.cs" />
@@ -82,7 +111,7 @@
     <Compile Include="Messaging\NotificationMessageActionTest.cs" />
     <Compile Include="Messaging\NotificationMessageTest.cs" />
     <Compile Include="Messaging\PropertyChangedMessageTest.cs" />
-    <Compile Include="ObservableObjectTest.cs" />
+    <Compile Include="ObservableObjectPropertyChangedTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stubs\TestClass6.cs" />
     <Compile Include="Stubs\ITestClass.cs" />
@@ -109,7 +138,6 @@
       <Name>GalaSoft.MvvmLight.Extras %28NET35%29</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
