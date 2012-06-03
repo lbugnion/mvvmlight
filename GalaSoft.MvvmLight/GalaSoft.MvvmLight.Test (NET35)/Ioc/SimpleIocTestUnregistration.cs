@@ -1,7 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Test.Stubs;
 using Microsoft.Practices.ServiceLocation;
+
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace GalaSoft.MvvmLight.Test.Ioc
 {
@@ -9,7 +14,6 @@ namespace GalaSoft.MvvmLight.Test.Ioc
     public class SimpleIocTestUnregistration
     {
         [TestMethod]
-        [ExpectedException(typeof (ActivationException))]
         public void TestUnregisterClass()
         {
             SimpleIoc.Default.Reset();
@@ -19,11 +23,18 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             Assert.IsNotNull(instance1);
 
             SimpleIoc.Default.Unregister<TestClass>();
-            SimpleIoc.Default.GetInstance<TestClass>();
+
+            try
+            {
+                SimpleIoc.Default.GetInstance<TestClass>();
+                Assert.Fail("ActivationException was expected");
+            }
+            catch (ActivationException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ActivationException))]
         public void TestUnregisterInstance()
         {
             var instanceOriginal1 = new TestClass();
@@ -36,11 +47,17 @@ namespace GalaSoft.MvvmLight.Test.Ioc
 
             SimpleIoc.Default.Unregister(instanceOriginal1);
 
-            SimpleIoc.Default.GetInstance<TestClass>();
+            try
+            {
+                SimpleIoc.Default.GetInstance<TestClass>();
+                Assert.Fail("ActivationException was expected");
+            }
+            catch (ActivationException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ActivationException))]
         public void TestUnregisterInstanceWithKey()
         {
             var instanceOriginal1 = new TestClass();
@@ -59,7 +76,29 @@ namespace GalaSoft.MvvmLight.Test.Ioc
 
             SimpleIoc.Default.Unregister<TestClass>(key1);
 
-            SimpleIoc.Default.GetInstance<TestClass>(key1);
+            try
+            {
+                SimpleIoc.Default.GetInstance<TestClass>(key1);
+                Assert.Fail("ActivationException was expected");
+            }
+            catch (ActivationException)
+            {
+            }
+        }
+
+        [TestMethod]
+        public void TestUnregisterAndImmediateRegisterWithInterface()
+        {
+            SimpleIoc.Default.Reset();
+
+            SimpleIoc.Default.Register<ITestClass, TestClass>();
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<ITestClass>());
+
+            SimpleIoc.Default.Unregister<ITestClass>();
+            Assert.IsFalse(SimpleIoc.Default.IsRegistered<ITestClass>());
+
+            SimpleIoc.Default.Register<ITestClass, TestClass>();
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<ITestClass>());
         }
     }
 }

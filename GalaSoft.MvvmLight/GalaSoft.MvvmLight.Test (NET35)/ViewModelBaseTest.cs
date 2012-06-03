@@ -3,9 +3,14 @@ using System.ComponentModel;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Test.Stubs;
 using GalaSoft.MvvmLight.Test.ViewModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-#if WIN8
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
+
+#if NETFX_CORE
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml;
 #else
@@ -217,14 +222,6 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
-#if !NET40
-#if DEBUG
-        [ExpectedException(typeof(ArgumentException))]
-#endif
-#else
-        // For some reason the VS10 .NET4 test adapter throws exception even in Release mode
-        [ExpectedException(typeof(ArgumentException))]
-#endif
         public void TestRaiseValidInvalidPropertyName()
         {
             var vm = new ViewModelStub();
@@ -248,15 +245,25 @@ namespace GalaSoft.MvvmLight.Test
             Assert.IsTrue(receivedPropertyChanged);
             Assert.IsFalse(invalidPropertyNameReceived);
 
-            vm.RaisePropertyChanged(ViewModelStub.RealPropertyPropertyName + "1");
+            try
+            {
+                vm.RaisePropertyChanged(ViewModelStub.RealPropertyPropertyName + "1");
 
-            Assert.IsTrue(invalidPropertyNameReceived);
+#if DEBUG
+                Assert.Fail("ArgumentException was expected");
+#else
+                Assert.IsTrue(invalidPropertyNameReceived);
+#endif
+            }
+            catch (ArgumentException)
+            {
+            }
         }
 
         [TestMethod]
         public void TestRaiseWithEmptyString()
         {
-#if !WIN8
+#if !NETFX_CORE
             var vm = new TestViewModel();
 
             const string value1 = "Hello";
@@ -420,48 +427,83 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void TestRaisePropertyChangedNoMagicStringNullExpression()
         {
             var instance = new TestViewModelNoMagicString();
             instance.PropertyChanged += InstancePropertyChanged;
-            instance.RaisePropertyChangedPublic<string>(null);
+
+            try
+            {
+                instance.RaisePropertyChangedPublic<string>(null);
+                Assert.Fail("ArgumentNullException was expected");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void TestRaisePropertyChangedNoMagicStringNullExpressionWithBroadcast()
         {
             var instance = new TestViewModelNoMagicString();
             instance.PropertyChanged += InstancePropertyChanged;
-            instance.RaisePropertyChangedPublic(null, "12", "34", true);
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(null, "12", "34", true);
+                Assert.Fail("ArgumentNullException was expected");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestRaisePropertyChangedNoMagicStringNonPropertyExpression()
         {
             var instance = new TestViewModelNoMagicString();
             instance.PropertyChanged += InstancePropertyChanged;
-            instance.RaisePropertyChangedPublic(() => DummyStringMethod());
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(() => DummyStringMethod());
+                Assert.Fail("ArgumentException was expected");
+            }
+            catch (ArgumentException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestRaisePropertyChangedNoMagicStringNonPropertyExpressionWithBroadcast()
         {
             var instance = new TestViewModelNoMagicString();
             instance.PropertyChanged += InstancePropertyChanged;
-            instance.RaisePropertyChangedPublic(() => DummyStringMethod(), "12", "34", true);
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(() => DummyStringMethod(), "12", "34", true);
+                Assert.Fail("ArgumentException was expected");
+            }
+            catch (ArgumentException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void TestRaisePropertyChangingNoMagicStringNullExpression()
         {
             var instance = new TestViewModelNoMagicString();
             instance.PropertyChanging += InstancePropertyChanging;
-            instance.RaisePropertyChangingPublic<string>(null);
+
+            try
+            {
+                instance.RaisePropertyChangingPublic<string>(null);
+                Assert.Fail("ArgumentNullException was expected");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         private static void InstancePropertyChanging(object sender, PropertyChangingEventArgs e)
@@ -469,12 +511,19 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void TestRaisePropertyChangingNoMagicStringNonPropertyExpression()
         {
             var instance = new TestViewModelNoMagicString();
             instance.PropertyChanging += InstancePropertyChanging;
-            instance.RaisePropertyChangingPublic(() => DummyStringMethod());
+
+            try
+            {
+                instance.RaisePropertyChangingPublic(() => DummyStringMethod());
+                Assert.Fail("ArgumentException was expected");
+            }
+            catch (ArgumentException)
+            {
+            }
         }
 
         private static string DummyStringMethod()
@@ -483,7 +532,7 @@ namespace GalaSoft.MvvmLight.Test
         }
 
 #if !SILVERLIGHT
-#if !WIN8
+#if !NETFX_CORE
         [TestMethod]
         public void TestTypeDescriptor()
         {

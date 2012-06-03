@@ -410,26 +410,36 @@ namespace GalaSoft.MvvmLight.Ioc
         {
             lock (_syncLock)
             {
-                var classType = typeof(TClass);
+                var serviceType = typeof(TClass);
+                Type resolveTo;
 
-                if (_instancesRegistry.ContainsKey(classType))
+                if (_interfaceToClassMap.ContainsKey(serviceType))
                 {
-                    _instancesRegistry.Remove(classType);
+                    resolveTo = _interfaceToClassMap[serviceType] ?? serviceType;
+                }
+                else
+                {
+                    resolveTo = serviceType;
                 }
 
-                if (_interfaceToClassMap.ContainsKey(classType))
+                if (_instancesRegistry.ContainsKey(serviceType))
                 {
-                    _interfaceToClassMap.Remove(classType);
+                    _instancesRegistry.Remove(serviceType);
                 }
 
-                if (_factories.ContainsKey(classType))
+                if (_interfaceToClassMap.ContainsKey(serviceType))
                 {
-                    _factories.Remove(classType);
+                    _interfaceToClassMap.Remove(serviceType);
                 }
 
-                if (_constructorInfos.ContainsKey(classType))
+                if (_factories.ContainsKey(serviceType))
                 {
-                    _constructorInfos.Remove(classType);
+                    _factories.Remove(serviceType);
+                }
+
+                if (_constructorInfos.ContainsKey(resolveTo))
+                {
+                    _constructorInfos.Remove(resolveTo);
                 }
             }
         }

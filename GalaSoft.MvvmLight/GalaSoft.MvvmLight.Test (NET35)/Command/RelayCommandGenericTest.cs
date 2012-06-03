@@ -1,6 +1,11 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Command;
+
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace GalaSoft.MvvmLight.Test.Command
 {
@@ -37,8 +42,12 @@ namespace GalaSoft.MvvmLight.Test.Command
 #if SILVERLIGHT
              Assert.AreEqual(1, canExecuteChangedCalled);
 #else
+#if NETFX_CORE
+            Assert.AreEqual(1, canExecuteChangedCalled);
+#else
             // In WPF, cannot trigger the CanExecuteChanged event like this
             Assert.AreEqual(0, canExecuteChangedCalled);
+#endif
 #endif
 
             command.CanExecuteChanged -= canExecuteChangedEventHandler;
@@ -48,8 +57,12 @@ namespace GalaSoft.MvvmLight.Test.Command
 #if SILVERLIGHT
              Assert.AreEqual(1, canExecuteChangedCalled);
 #else
+#if NETFX_CORE
+            Assert.AreEqual(1, canExecuteChangedCalled);
+#else
             // In WPF, cannot trigger the CanExecuteChanged event like this
             Assert.AreEqual(0, canExecuteChangedCalled);
+#endif
 #endif
         }
 
@@ -67,7 +80,6 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        [ExpectedException(typeof (InvalidCastException))]
         public void CanExecuteTestInvalidParameterType()
         {
             var command = new RelayCommand<string>(
@@ -76,7 +88,14 @@ namespace GalaSoft.MvvmLight.Test.Command
                 },
                 p => p == "CanExecute");
 
-            command.CanExecute(DateTime.Now);
+            try
+            {
+                command.CanExecute(DateTime.Now);
+                Assert.Fail("InvalidCastException was not thrown");
+            }
+            catch (InvalidCastException)
+            {
+            }
         }
 
         [TestMethod]
@@ -111,17 +130,29 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ArgumentNullException))]
         public void ConstructorTestInvalidExecuteNull1()
         {
-            new RelayCommand<string>(null);
+            try
+            {
+                new RelayCommand<string>(null);
+                Assert.Fail("ArgumentNullException was not thrown");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ArgumentNullException))]
         public void ConstructorTestInvalidExecuteNull2()
         {
-            new RelayCommand<string>(null, null);
+            try
+            {
+                new RelayCommand<string>(null, null);
+                Assert.Fail("ArgumentNullException was not thrown");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         [TestMethod]
@@ -310,10 +341,9 @@ namespace GalaSoft.MvvmLight.Test.Command
             Assert.IsTrue(_methodWasExecuted);
         }
 
+#if !NETFX_CORE
+        // TODO Check if there is a way to do that in WinRT
         [TestMethod]
-#if NETFX_CORE
-        [ExpectedException(typeof(InvalidCastException))] // TODO Try to find a way in Win8
-#endif
         public void TestValueTypeConversion()
         {
             Reset();
@@ -357,6 +387,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             Assert.AreEqual(inputBool, resultBool);
             Assert.AreEqual(inputDouble, resultDouble);
         }
+#endif
 
         private bool _methodWasExecuted;
 

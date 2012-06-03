@@ -3,7 +3,12 @@ using System.Linq;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Test.Stubs;
 using Microsoft.Practices.ServiceLocation;
+
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace GalaSoft.MvvmLight.Test.Ioc
 {
@@ -88,7 +93,6 @@ namespace GalaSoft.MvvmLight.Test.Ioc
         }
 
         [TestMethod]
-        [ExpectedException(typeof (InvalidOperationException))]
         public void TestAddingFactoryAndKeyForClassRegisteredWithFactoryAndSameKey()
         {
             SimpleIoc.Default.Reset();
@@ -98,7 +102,15 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             SimpleIoc.Default.Register(() => instance1, key1);
 
             var instance2 = new TestClass();
-            SimpleIoc.Default.Register(() => instance2, key1);
+
+            try
+            {
+                SimpleIoc.Default.Register(() => instance2, key1);
+                Assert.Fail("InvalidOperationException was expected");
+            }
+            catch (InvalidOperationException)
+            {
+            }
         }
 
         [TestMethod]
@@ -853,13 +865,19 @@ namespace GalaSoft.MvvmLight.Test.Ioc
         }
 
         [TestMethod]
-        [ExpectedException(typeof (InvalidOperationException))]
         public void TestOverwritingDefaultClassWithFactory()
         {
             SimpleIoc.Default.Reset();
             SimpleIoc.Default.Register<TestClass>();
 
-            SimpleIoc.Default.Register(() => new TestClass());
+            try
+            {
+                SimpleIoc.Default.Register(() => new TestClass());
+                Assert.Fail("InvalidOperationException was expected");
+            }
+            catch (InvalidOperationException)
+            {
+            }
         }
 
         [TestMethod]
@@ -887,37 +905,54 @@ namespace GalaSoft.MvvmLight.Test.Ioc
         }
 
         [TestMethod]
-        [ExpectedException(typeof (InvalidOperationException))]
         public void TestOverwritingFactoryWithDefaultClass()
         {
             SimpleIoc.Default.Reset();
             SimpleIoc.Default.Register(() => new TestClass());
 
-            SimpleIoc.Default.Register<TestClass>();
+            try
+            {
+                SimpleIoc.Default.Register<TestClass>();
+                Assert.Fail("InvalidOperationException was expected");
+            }
+            catch (InvalidOperationException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof (InvalidOperationException))]
         public void TestOverwritingFactoryWithFactory()
         {
             SimpleIoc.Default.Reset();
             SimpleIoc.Default.Register(() => new TestClass());
 
-            SimpleIoc.Default.Register(() => new TestClass());
+            try
+            {
+                SimpleIoc.Default.Register(() => new TestClass());
+                Assert.Fail("InvalidOperationException was expected");
+            }
+            catch (InvalidOperationException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof (InvalidOperationException))]
         public void TestOverwritingInterfaceClassWithOtherClass()
         {
             SimpleIoc.Default.Reset();
             SimpleIoc.Default.Register<ITestClass, TestClass>();
 
-            SimpleIoc.Default.Register<ITestClass, TestClass4>();
+            try
+            {
+                SimpleIoc.Default.Register<ITestClass, TestClass4>();
+                Assert.Fail("InvalidOperationException was expected");
+            }
+            catch (InvalidOperationException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ActivationException))]
         public void TestGettingDefaultInstanceAfterRegisteringFactoryAndKey()
         {
             SimpleIoc.Default.Reset();
@@ -926,7 +961,14 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             var instance = new TestClass();
             SimpleIoc.Default.Register(() => instance, key1);
 
-            SimpleIoc.Default.GetInstance<TestClass>();
+            try
+            {
+                SimpleIoc.Default.GetInstance<TestClass>();
+                Assert.Fail("ActivationException was expected");
+            }
+            catch (ActivationException)
+            {
+            }
         }
 
         [TestMethod]
