@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GalaSoft.MvvmLight.Messaging;
+
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace GalaSoft.MvvmLight.Test.Messaging
 {
@@ -51,36 +56,54 @@ namespace GalaSoft.MvvmLight.Test.Messaging
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void TestNotificationMessageActionWithNullCallback1()
         {
             Messenger.Default.Register<NotificationMessageAction<DateTime>>(
                 this,
                 m => { });
 
-            Messenger.Default.Send(new NotificationMessageAction<DateTime>(DummyNotification1, null));
+            try
+            {
+                Messenger.Default.Send(new NotificationMessageAction<DateTime>(DummyNotification1, null));
+                Assert.Fail("ArgumentNullException was not thrown");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void TestNotificationMessageActionWithNullCallback2()
         {
             Messenger.Default.Register<NotificationMessageAction<DateTime>>(
                 this,
                 m => { });
 
-            Messenger.Default.Send(new NotificationMessageAction<DateTime>(this, DummyNotification1, null));
+            try
+            {
+                Messenger.Default.Send(new NotificationMessageAction<DateTime>(this, DummyNotification1, null));
+                Assert.Fail("ArgumentNullException was not thrown");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void TestNotificationMessageActionWithNullCallback3()
         {
             Messenger.Default.Register<NotificationMessageAction<DateTime>>(
                 this,
                 m => { });
 
-            Messenger.Default.Send(new NotificationMessageAction<DateTime>(this, this, DummyNotification1, null));
+            try
+            {
+                Messenger.Default.Send(new NotificationMessageAction<DateTime>(this, this, DummyNotification1, null));
+                Assert.Fail("ArgumentNullException was not thrown");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         private void ExecuteTest(object sender, object target)

@@ -1,6 +1,11 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Test.ViewModel;
+
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace GalaSoft.MvvmLight.Test
 {
@@ -48,14 +53,6 @@ namespace GalaSoft.MvvmLight.Test
         }
 
         [TestMethod]
-#if !NET40
-#if DEBUG
-        [ExpectedException(typeof(ArgumentException))]
-#endif
-#else
-        // For some reason the VS test adapter throws exception even in Release mode
-        [ExpectedException(typeof(ArgumentException))]
-#endif
         public void TestRaisePropertyChangedValidInvalidPropertyName()
         {
             var vm = new TestClassWithObservableObject();
@@ -79,9 +76,19 @@ namespace GalaSoft.MvvmLight.Test
             Assert.IsTrue(receivedPropertyChanged);
             Assert.IsFalse(invalidPropertyNameReceived);
 
-            vm.RaisePropertyChangedPublic(TestClassWithObservableObject.LastChangedPropertyName + "1");
+            try
+            {
+                vm.RaisePropertyChangedPublic(TestClassWithObservableObject.LastChangedPropertyName + "1");
 
-            Assert.IsTrue(invalidPropertyNameReceived);
+#if DEBUG
+                Assert.Fail("ArgumentException was expected");
+#else
+                Assert.IsTrue(invalidPropertyNameReceived);
+#endif
+            }
+            catch (ArgumentException)
+            {
+            }
         }
 
         [TestMethod]

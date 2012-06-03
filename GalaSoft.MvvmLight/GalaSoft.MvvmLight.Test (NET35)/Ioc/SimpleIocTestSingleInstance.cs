@@ -2,7 +2,12 @@
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Test.Stubs;
 using Microsoft.Practices.ServiceLocation;
+
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace GalaSoft.MvvmLight.Test.Ioc
 {
@@ -118,30 +123,49 @@ namespace GalaSoft.MvvmLight.Test.Ioc
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ActivationException))]
         public void TestGetInstanceWithUnregisteredClass()
         {
             SimpleIoc.Default.Reset();
-            SimpleIoc.Default.GetInstance<SimpleIocTestSingleInstance>();
+
+            try
+            {
+                SimpleIoc.Default.GetInstance<SimpleIocTestSingleInstance>();
+                Assert.Fail("ActivationException was expected");
+            }
+            catch (ActivationException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ActivationException))]
         public void TestRegisterInstanceWithMultiConstructors()
         {
             SimpleIoc.Default.Reset();
-            SimpleIoc.Default.Register<TestClassWithMultiConstructors>();
+
+            try
+            {
+                SimpleIoc.Default.Register<TestClassWithMultiConstructors>();
+                Assert.Fail("ActivationException was expected");
+            }
+            catch (ActivationException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ArgumentException))]
         public void TestRegisterInterfaceOnly()
         {
-            SimpleIoc.Default.Register<ITestClass>();
+            try
+            {
+                SimpleIoc.Default.Register<ITestClass>();
+                Assert.Fail("ArgumentException was expected");
+            }
+            catch (ArgumentException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ActivationException))]
         public void TestReset()
         {
             SimpleIoc.Default.Reset();
@@ -150,14 +174,16 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             var instance = SimpleIoc.Default.GetInstance<ITestClass>();
             Assert.IsNotNull(instance);
 
-            SimpleIoc.Default.Register<TestClass2>();
-            var instance2 = SimpleIoc.Default.GetInstance<TestClass2>();
-            Assert.IsNotNull(instance2);
-
             SimpleIoc.Default.Reset();
 
-            SimpleIoc.Default.GetInstance<ITestClass>();
-            SimpleIoc.Default.GetInstance<TestClass2>();
+            try
+            {
+                SimpleIoc.Default.GetInstance<ITestClass>();
+                Assert.Fail("ActivationException was expected");
+            }
+            catch (ActivationException)
+            {
+            }
         }
     }
 }

@@ -80,7 +80,7 @@ namespace GalaSoft.MvvmLight.Threading
             else
             {
 #if NETFX_CORE
-                UIDispatcher.InvokeAsync(CoreDispatcherPriority.Normal, (s, e) => action(), UIDispatcher, null);
+                UIDispatcher.RunAsync(CoreDispatcherPriority.Normal,  () => action());
 #else
                 UIDispatcher.BeginInvoke(action);
 #endif
@@ -90,7 +90,7 @@ namespace GalaSoft.MvvmLight.Threading
         public static void InvokeAsync(object sender, Action action)
         {
 #if NETFX_CORE
-            UIDispatcher.InvokeAsync(CoreDispatcherPriority.Normal, (s, e) => action(), sender, null);
+            UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
 #else
             UIDispatcher.BeginInvoke(action);
 #endif

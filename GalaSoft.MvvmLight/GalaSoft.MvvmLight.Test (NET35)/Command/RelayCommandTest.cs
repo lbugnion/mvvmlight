@@ -1,6 +1,11 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Command;
+
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace GalaSoft.MvvmLight.Test.Command
 {
@@ -74,8 +79,12 @@ namespace GalaSoft.MvvmLight.Test.Command
 #if SILVERLIGHT
              Assert.AreEqual(1, canExecuteChangedCalled);
 #else
+#if NETFX_CORE
+            Assert.AreEqual(1, canExecuteChangedCalled);
+#else
             // In WPF, cannot trigger the CanExecuteChanged event like this
             Assert.AreEqual(0, canExecuteChangedCalled);
+#endif
 #endif
 
             command.CanExecuteChanged -= canExecuteChangedEventHandler;
@@ -84,8 +93,12 @@ namespace GalaSoft.MvvmLight.Test.Command
 #if SILVERLIGHT
              Assert.AreEqual(1, canExecuteChangedCalled);
 #else
+#if NETFX_CORE
+            Assert.AreEqual(1, canExecuteChangedCalled);
+#else
             // In WPF, cannot trigger the CanExecuteChanged event like this
             Assert.AreEqual(0, canExecuteChangedCalled);
+#endif
 #endif
         }
 
@@ -101,17 +114,29 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ArgumentNullException))]
         public void TestConstructorInvalidExecuteNull1()
         {
-            new RelayCommand(null);
+            try
+            {
+                new RelayCommand(null);
+                Assert.Fail("ArgumentNullException was not thrown");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof (ArgumentNullException))]
         public void TestConstructorInvalidExecuteNull2()
         {
-            new RelayCommand(null, null);
+            try
+            {
+                new RelayCommand(null, null);
+                Assert.Fail("ArgumentNullException was not thrown");
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         [TestMethod]

@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0021</LastBaseLevel>
+// <LastBaseLevel>BL0022</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -39,8 +39,8 @@ using System.Windows.Markup;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("4.0.21.*")]
-////[assembly: AssemblyFileVersion("4.0.21.0/BL0021")]
+[assembly: AssemblyVersion("4.0.22.*")]
+////[assembly: AssemblyFileVersion("4.0.22.0/BL0022")]
 
 // FxCop
 [module: SuppressMessage("Microsoft.Naming",

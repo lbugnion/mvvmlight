@@ -1,6 +1,11 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Messaging;
+
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace GalaSoft.MvvmLight.Test.Messaging
 {
