@@ -1,0 +1,13 @@
+***Windows 8 Metro style only***
+
+Windows 8 has a new way to import CLR namespaces into XAML.
+
+In order to avoid issues, after installing MVVM Light through Nuget in your Windows 8 Metro style application, follow these steps:
+
+- open App.xaml
+
+- Locate the statement
+xmlns:vm="clr-namespace:[YouApplication].ViewModel"
+
+- Replace this statement with:
+xmlns:vm="using:[YouApplication].ViewModel"
