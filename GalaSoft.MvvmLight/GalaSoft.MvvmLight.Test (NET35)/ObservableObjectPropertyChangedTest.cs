@@ -96,18 +96,28 @@ namespace GalaSoft.MvvmLight.Test
         {
             var vm = new TestClassWithObservableObject();
             const int expectedValue = 1234;
-            var receivedValue = 0;
+            var receivedValueChanged = 0;
+            var receivedValueChanging = 0;
 
             vm.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == TestClassWithObservableObject.PropertyWithSetPropertyName)
                 {
-                    receivedValue = expectedValue;
+                    receivedValueChanged = vm.PropertyWithSet;
+                }
+            };
+
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == TestClassWithObservableObject.PropertyWithSetPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithSet;
                 }
             };
 
             vm.PropertyWithSet = expectedValue;
-            Assert.AreEqual(expectedValue, receivedValue);
+            Assert.AreEqual(expectedValue, receivedValueChanged);
+            Assert.AreEqual(-1, receivedValueChanging);
         }
 
         [TestMethod]
@@ -115,18 +125,28 @@ namespace GalaSoft.MvvmLight.Test
         {
             var vm = new TestClassWithObservableObject();
             const int expectedValue = 1234;
-            var receivedValue = 0;
+            var receivedValueChanged = 0;
+            var receivedValueChanging = 0;
 
             vm.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == TestClassWithObservableObject.PropertyWithStringSetPropertyName)
                 {
-                    receivedValue = expectedValue;
+                    receivedValueChanged = vm.PropertyWithStringSet;
+                }
+            };
+
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == TestClassWithObservableObject.PropertyWithStringSetPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithStringSet;
                 }
             };
 
             vm.PropertyWithStringSet = expectedValue;
-            Assert.AreEqual(expectedValue, receivedValue);
+            Assert.AreEqual(expectedValue, receivedValueChanged);
+            Assert.AreEqual(-1, receivedValueChanging);
         }
 
         [TestMethod]
@@ -134,26 +154,38 @@ namespace GalaSoft.MvvmLight.Test
         {
             var vm = new TestClassWithObservableObject();
             const int firstValue = 1234;
-            var receivedValue = 0;
+            var receivedValueChanged = 0;
+            var receivedValueChanging = 0;
 
             vm.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == TestClassWithObservableObject.PropertyWithSetPropertyName)
                 {
-                    receivedValue = vm.PropertyWithSet;
+                    receivedValueChanged = vm.PropertyWithSet;
+                }
+            };
+
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == TestClassWithObservableObject.PropertyWithSetPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithSet;
                 }
             };
 
             vm.PropertyWithSet = firstValue;
-            Assert.AreEqual(firstValue, receivedValue);
+            Assert.AreEqual(-1, receivedValueChanging);
+            Assert.AreEqual(firstValue, receivedValueChanged);
             Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
 
             vm.PropertyWithSet = firstValue;
-            Assert.AreEqual(firstValue, receivedValue);
+            Assert.AreEqual(-1, receivedValueChanging);
+            Assert.AreEqual(firstValue, receivedValueChanged);
             Assert.IsFalse(vm.SetRaisedPropertyChangedEvent);
 
             vm.PropertyWithSet = firstValue + 1;
-            Assert.AreEqual(firstValue + 1, receivedValue);
+            Assert.AreEqual(firstValue, receivedValueChanging);
+            Assert.AreEqual(firstValue + 1, receivedValueChanged);
             Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
         }
 
@@ -162,26 +194,38 @@ namespace GalaSoft.MvvmLight.Test
         {
             var vm = new TestClassWithObservableObject();
             const int firstValue = 1234;
-            var receivedValue = 0;
+            var receivedValueChanged = 0;
+            var receivedValueChanging = 0;
 
             vm.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == TestClassWithObservableObject.PropertyWithStringSetPropertyName)
                 {
-                    receivedValue = vm.PropertyWithStringSet;
+                    receivedValueChanged = vm.PropertyWithStringSet;
+                }
+            };
+
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == TestClassWithObservableObject.PropertyWithStringSetPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithStringSet;
                 }
             };
 
             vm.PropertyWithStringSet = firstValue;
-            Assert.AreEqual(firstValue, receivedValue);
+            Assert.AreEqual(-1, receivedValueChanging);
+            Assert.AreEqual(firstValue, receivedValueChanged);
             Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
 
             vm.PropertyWithStringSet = firstValue;
-            Assert.AreEqual(firstValue, receivedValue);
+            Assert.AreEqual(-1, receivedValueChanging);
+            Assert.AreEqual(firstValue, receivedValueChanged);
             Assert.IsFalse(vm.SetRaisedPropertyChangedEvent);
 
             vm.PropertyWithStringSet = firstValue + 1;
-            Assert.AreEqual(firstValue + 1, receivedValue);
+            Assert.AreEqual(firstValue, receivedValueChanging);
+            Assert.AreEqual(firstValue + 1, receivedValueChanged);
             Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
         }
     }

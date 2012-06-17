@@ -68,7 +68,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
         }
 
         public const string PropertyWithSetPropertyName = "PropertyWithSet";
-        private int _propertyWithSet;
+        private int _propertyWithSet = -1;
         public int PropertyWithSet
         {
             get
@@ -83,7 +83,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
         }
 
         public const string PropertyWithStringSetPropertyName = "PropertyWithStringSet";
-        private int _propertyWithStringSet;
+        private int _propertyWithStringSet = -1;
         public int PropertyWithStringSet
         {
             get
