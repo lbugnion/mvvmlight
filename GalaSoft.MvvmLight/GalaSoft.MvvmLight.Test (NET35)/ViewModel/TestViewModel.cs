@@ -36,7 +36,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
 
         public const string LastChanged1PropertyName = "LastChanged1";
 
-        private DateTime _lastChanged1;
+        private DateTime _lastChanged1 = DateTime.MaxValue;
 
         public DateTime LastChanged1
         {
@@ -52,6 +52,8 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
+                RaisePropertyChanging(LastChanged1PropertyName);
+
                 var oldValue = _lastChanged1;
                 _lastChanged1 = value;
 
@@ -65,7 +67,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
         /// </summary>
         public const string LastChanged2PropertyName = "LastChanged2";
 
-        private DateTime _lastChanged2;
+        private DateTime _lastChanged2 = DateTime.MaxValue;
 
         /// <summary>
         /// Gets the LastChanged2 property.
@@ -84,6 +86,8 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                 {
                     return;
                 }
+
+                RaisePropertyChanging(LastChanged2PropertyName);
 
                 _lastChanged2 = value;
 
@@ -188,6 +192,30 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             _test2 = value2;
 
             RaisePropertyChanged(string.Empty);
+        }
+
+        public void RaiseNullPropertyChanged()
+        {
+            RaisePropertyChanged(null);
+        }
+
+        public void RaiseNullPropertyChanged(string value1, string value2)
+        {
+            _test1 = value1;
+            _test2 = value2;
+
+            RaisePropertyChanged(null);
+        }
+
+        public void RaiseEmptyPropertyChangedWithBroadcast(string value1, string value2)
+        {
+            // This should fail
+            var oldValue1 = _test1;
+
+            _test1 = value1;
+            _test2 = value2;
+
+            RaisePropertyChanged(string.Empty, oldValue1, value1, true);
         }
 
         public IMessenger GetMessengerInstance()

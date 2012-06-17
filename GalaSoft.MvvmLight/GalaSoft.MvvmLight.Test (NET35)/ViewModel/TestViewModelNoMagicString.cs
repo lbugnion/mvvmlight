@@ -27,7 +27,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             }
         }
 
-        private DateTime _lastChanged1;
+        private DateTime _lastChanged1 = DateTime.MaxValue;
 
         public DateTime LastChanged1
         {
@@ -43,6 +43,8 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
+                RaisePropertyChanging(() => LastChanged1);
+
                 var oldValue = _lastChanged1;
                 _lastChanged1 = value;
 
@@ -51,7 +53,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             }
         }
 
-        private DateTime _lastChanged2;
+        private DateTime _lastChanged2 = DateTime.MaxValue;
 
         /// <summary>
         /// Gets the LastChanged2 property.
@@ -70,6 +72,8 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                 {
                     return;
                 }
+
+                RaisePropertyChanging(() => LastChanged2);
 
                 _lastChanged2 = value;
 

@@ -186,6 +186,11 @@ namespace GalaSoft.MvvmLight
             Justification = "This cannot be an event")]
         protected virtual void RaisePropertyChanged<T>(string propertyName, T oldValue, T newValue, bool broadcast)
         {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                throw new ArgumentException("This method cannot be called with an empty string", "propertyName");
+            }
+
             RaisePropertyChanged(propertyName);
 
             if (broadcast)
@@ -251,7 +256,7 @@ namespace GalaSoft.MvvmLight
         /// occurred.</param>
         /// <param name="broadcast">If true, a PropertyChangedMessage will
         /// be broadcasted. If false, only the event will be raised.</param>
-        protected void Set<T>(
+        protected bool Set<T>(
             Expression<Func<T>> propertyExpression,
             ref T field,
             T newValue,
@@ -259,12 +264,14 @@ namespace GalaSoft.MvvmLight
         {
             if (EqualityComparer<T>.Default.Equals(field, newValue))
             {
-                return;
+                return false;
             }
 
+            RaisePropertyChanging(propertyExpression);
             var oldValue = field;
             field = newValue;
             RaisePropertyChanged(propertyExpression, oldValue, field, broadcast);
+            return true;
         }
 
         /// <summary>
@@ -282,7 +289,7 @@ namespace GalaSoft.MvvmLight
         /// occurred.</param>
         /// <param name="broadcast">If true, a PropertyChangedMessage will
         /// be broadcasted. If false, only the event will be raised.</param>
-        protected void Set<T>(
+        protected bool Set<T>(
             string propertyName,
             ref T field,
             T newValue,
@@ -290,12 +297,14 @@ namespace GalaSoft.MvvmLight
         {
             if (EqualityComparer<T>.Default.Equals(field, newValue))
             {
-                return;
+                return false;
             }
 
+            RaisePropertyChanging(propertyName);
             var oldValue = field;
             field = newValue;
             RaisePropertyChanged(propertyName, oldValue, field, broadcast);
+            return true;
         }
     }
 }
