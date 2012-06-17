@@ -7,7 +7,7 @@
       </SnippetTypes>
       <Title>RelayCommand Generic</Title>
       <Author>Laurent Bugnion (GalaSoft)</Author>
-      <Description>Creates and initializes a new generic RelayCommand with CanExecute delegate. (V4.0.21.0)</Description>
+      <Description>Creates and initializes a new generic RelayCommand with an Execute lambda and a CanExecute lambda. (V4.0.21.0)</Description>
       <HelpUrl>http://www.galasoft.ch/mvvm</HelpUrl>
       <Shortcut>mvvmrelaygenericcanexecute</Shortcut>
     </Header>
@@ -42,146 +42,6 @@
           </Function>
         </Literal>
         <Literal Editable="true">
-          <ID>true</ID>
-          <ToolTip>true</ToolTip>
-          <Default>true</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>tru</ID>
-          <ToolTip>tru</ToolTip>
-          <Default>tru</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>tr</ID>
-          <ToolTip>tr</ToolTip>
-          <Default>tr</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>t</ID>
-          <ToolTip>t</ToolTip>
-          <Default>t</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>c</ID>
-          <ToolTip>c</ToolTip>
-          <Default>c</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>ca</ID>
-          <ToolTip>ca</ToolTip>
-          <Default>ca</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>can</ID>
-          <ToolTip>can</ToolTip>
-          <Default>can</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>cane</ID>
-          <ToolTip>cane</ToolTip>
-          <Default>cane</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canex</ID>
-          <ToolTip>canex</ToolTip>
-          <Default>canex</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexe</ID>
-          <ToolTip>canexe</ToolTip>
-          <Default>canexe</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexec</ID>
-          <ToolTip>canexec</ToolTip>
-          <Default>canexec</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexecu</ID>
-          <ToolTip>canexecu</ToolTip>
-          <Default>canexecu</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexecut</ID>
-          <ToolTip>canexecut</ToolTip>
-          <Default>canexecut</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexecute</ID>
-          <ToolTip>canexecute</ToolTip>
-          <Default>canexecute</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexecutev</ID>
-          <ToolTip>canexecutev</ToolTip>
-          <Default>canexecutev</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexecuteva</ID>
-          <ToolTip>canexecuteva</ToolTip>
-          <Default>canexecuteva</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexecuteval</ID>
-          <ToolTip>canexecuteval</ToolTip>
-          <Default>canexecuteval</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexecutevaly</ID>
-          <ToolTip>canexecutevaly</ToolTip>
-          <Default>canexecutevaly</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexecutevalye</ID>
-          <ToolTip>canexecutevalye</ToolTip>
-          <Default>canexecutevalye</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>canexecutevalu</ID>
-          <ToolTip>canexecutevalu</ToolTip>
-          <Default>canexecutevalu</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
           <ID>canexecutevalue</ID>
           <ToolTip>canexecutevalue</ToolTip>
           <Default>canexecutevalue</Default>
@@ -189,12 +49,12 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="csharp"><![CDATA[private ICommand $attribute$;
+      <Code Language="csharp"><![CDATA[private RelayCommand $attribute$;
 
         /// <summary>
         /// Gets the $commandname$.
         /// </summary>
-        public ICommand $commandname$
+        public RelayCommand $commandname$
         {
             get
             {
