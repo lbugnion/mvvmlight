@@ -13,9 +13,7 @@
 // </license>
 // ****************************************************************************
 
-// TODO Win8
-
-#if !WIN8
+#if !NETFX_CORE
 
 using System;
 using System.Windows;
