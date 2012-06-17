@@ -1,0 +1,329 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d">
+
+    <LinearGradientBrush x:Key="MainBackgroundBrush"
+                         EndPoint="0.973,1.133"
+                         StartPoint="0.499,0.29">
+        <GradientStop Color="#FFFF9090"
+                      Offset="0" />
+        <GradientStop Color="#FFFFE6A4"
+                      Offset="1" />
+    </LinearGradientBrush>
+
+    <Style x:Key="DisplayTextBlockStyle"
+           TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment"
+                Value="Center" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
+        <Setter Property="FontSize"
+                Value="64" />
+        <Setter Property="FontStyle"
+                Value="Italic" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+        <Setter Property="Margin"
+                Value="0,0,0,20" />
+    </Style>
+
+    <Style x:Key="MainGridStyle"
+           TargetType="Grid">
+        <Setter Property="Background"
+                Value="{StaticResource MainBackgroundBrush}" />
+        <Setter Property="Width"
+                Value="300" />
+        <Setter Property="Height"
+                Value="200" />
+    </Style>
+
+    <ControlTemplate x:Key="IncrementButtonTemplate"
+                     TargetType="Button">
+        <Grid x:Name="Root"
+              Opacity="0.8"
+              RenderTransformOrigin="0.5,0.5"
+              Background="#00000000">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="00:00:00" />
+                        <VisualTransition From="Normal"
+                                          GeneratedDuration="00:00:00.2000000"
+                                          To="MouseOver" />
+                        <VisualTransition From="MouseOver"
+                                          GeneratedDuration="00:00:00.2000000"
+                                          To="Normal" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Blur"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Background"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0.8" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Blur"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Background"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Blur"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Background"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0.95" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0.95" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0.4" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <ColorAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                          Duration="00:00:00.0010000"
+                                                          Storyboard.TargetName="Background"
+                                                          Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                                <LinearColorKeyFrame KeyTime="00:00:00"
+                                                     Value="#FF727272" />
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <Rectangle x:Name="Blur"
+                       Fill="#FFFFEA0D"
+                       Stroke="#FFFFEA0D"
+                       StrokeThickness="3"
+                       RadiusX="15"
+                       RadiusY="15"
+                       Opacity="0">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="20" />
+                </Rectangle.Effect>
+            </Rectangle>
+            <Rectangle x:Name="Background"
+                       Stroke="#FFFFEA0D"
+                       StrokeThickness="3"
+                       RadiusX="15"
+                       RadiusY="15">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="10" />
+                </Rectangle.Effect>
+            </Rectangle>
+            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="IncrementButtonStyle"
+           TargetType="Button">
+        <Setter Property="Margin"
+                Value="10" />
+        <Setter Property="Template"
+                Value="{StaticResource IncrementButtonTemplate}" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="FontSize"
+                Value="26.667" />
+        <Setter Property="FontStyle"
+                Value="Italic" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+    </Style>
+    <ControlTemplate x:Key="ToggleButtonControlTemplate"
+                     TargetType="ToggleButton">
+        <Grid x:Name="Root"
+              RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.Background>
+                <SolidColorBrush />
+            </Grid.Background>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1.1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="Root"
+                                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1.1" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed" />
+                    <VisualState x:Name="Disabled" />
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="CheckStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition GeneratedDuration="00:00:00.2000000" />
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Unchecked">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="DisabledText"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="1" />
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="EnabledText"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Indeterminate" />
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                           Duration="00:00:00.0010000"
+                                                           Storyboard.TargetName="DisabledText"
+                                                           Storyboard.TargetProperty="(UIElement.Opacity)">
+                                <LinearDoubleKeyFrame KeyTime="00:00:00"
+                                                      Value="0" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup x:Name="FocusStates">
+                    <VisualState x:Name="Unfocused" />
+                    <VisualState x:Name="Focused" />
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <TextBlock x:Name="EnabledText"
+                       Text="{TemplateBinding Content}"
+                       TextWrapping="Wrap"
+                       d:LayoutOverrides="Width, Height"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,0,5" />
+            <TextBlock x:Name="DisabledText"
+                       Text="{TemplateBinding Tag}"
+                       TextWrapping="Wrap"
+                       d:LayoutOverrides="Width, Height"
+                       Opacity="0"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,0,5" />
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="ToggleButtonStyle"
+           TargetType="ToggleButton">
+        <Setter Property="Height"
+                Value="30" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+        <Setter Property="FontStyle"
+                Value="Italic" />
+        <Setter Property="Template"
+                Value="{StaticResource ToggleButtonControlTemplate}" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+    </Style>
+
+</ResourceDictionary>

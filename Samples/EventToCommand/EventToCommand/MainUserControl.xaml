@@ -1,0 +1,383 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:GalaSoft_MvvmLight_Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras"
+	x:Class="EventToCommand.MainUserControl"
+	x:Name="UserControl"
+	d:DesignWidth="600" d:DesignHeight="402">
+
+	<UserControl.Resources>
+
+		<ControlTemplate x:Key="ButtonTemplate"
+			TargetType="{x:Type Button}">
+			<Grid x:Name="Root"
+				Opacity="0.8"
+				RenderTransformOrigin="0.5,0.5">
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform />
+						<SkewTransform />
+						<RotateTransform />
+						<TranslateTransform />
+					</TransformGroup>
+				</Grid.RenderTransform>
+
+				<VisualStateManager.VisualStateGroups>
+					<VisualStateGroup x:Name="CommonStates">
+						<VisualStateGroup.Transitions>
+							<VisualTransition From="MouseOver"
+								GeneratedDuration="00:00:00.2000000"
+								To="Normal" />
+							<VisualTransition From="Normal"
+								GeneratedDuration="00:00:00.2000000"
+								To="MouseOver" />
+						</VisualStateGroup.Transitions>
+						<VisualState x:Name="Normal" />
+						<VisualState x:Name="MouseOver">
+							<Storyboard>
+								<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+									Duration="00:00:00.0010000"
+									Storyboard.TargetName="Root"
+									Storyboard.TargetProperty="(UIElement.Opacity)">
+									<SplineDoubleKeyFrame KeyTime="00:00:00"
+										Value="1" />
+								</DoubleAnimationUsingKeyFrames>
+							</Storyboard>
+						</VisualState>
+						<VisualState x:Name="Pressed">
+							<Storyboard>
+								<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+									Duration="00:00:00.0010000"
+									Storyboard.TargetName="Root"
+									Storyboard.TargetProperty="(UIElement.Opacity)">
+									<SplineDoubleKeyFrame KeyTime="00:00:00"
+										Value="1" />
+								</DoubleAnimationUsingKeyFrames>
+								<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+									Duration="00:00:00.0010000"
+									Storyboard.TargetName="Root"
+									Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+									<SplineDoubleKeyFrame KeyTime="00:00:00"
+										Value="0.9" />
+								</DoubleAnimationUsingKeyFrames>
+								<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+									Duration="00:00:00.0010000"
+									Storyboard.TargetName="Root"
+									Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+									<SplineDoubleKeyFrame KeyTime="00:00:00"
+										Value="0.9" />
+								</DoubleAnimationUsingKeyFrames>
+							</Storyboard>
+						</VisualState>
+						<VisualState x:Name="Disabled">
+							<Storyboard>
+								<DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+									Duration="00:00:00.0010000"
+									Storyboard.TargetName="Root"
+									Storyboard.TargetProperty="(UIElement.Opacity)">
+									<SplineDoubleKeyFrame KeyTime="00:00:00"
+										Value="0.4" />
+								</DoubleAnimationUsingKeyFrames>
+							</Storyboard>
+						</VisualState>
+					</VisualStateGroup>
+				</VisualStateManager.VisualStateGroups>
+				<Rectangle Fill="{TemplateBinding Background}"
+					Stroke="Black"
+					RadiusX="8"
+					RadiusY="8" />
+				<TextBlock HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Text="{TemplateBinding Content}"
+					TextWrapping="Wrap"
+					FontSize="18"
+					FontWeight="Bold" />
+			</Grid>
+		</ControlTemplate>
+
+		<Style x:Key="ButtonStyle"
+			TargetType="{x:Type Button}">
+			<Setter Property="Template"
+				Value="{DynamicResource ButtonTemplate}" />
+			<Setter Property="Cursor"
+				Value="Hand" />
+		</Style>
+
+		<Style x:Key="RectangleStyle"
+			TargetType="{x:Type Rectangle}">
+			<Style.Triggers>
+				<Trigger Property="IsEnabled"
+					Value="False">
+					<Setter Property="Opacity"
+						Value="0.5" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
+		<GridLength x:Key="NormalRowHeight">60</GridLength>
+
+		<GridLength x:Key="ParameterRowHeight">30</GridLength>
+	</UserControl.Resources>
+
+	<Grid x:Name="LayoutRoot">
+
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="{DynamicResource NormalRowHeight}" />
+				<RowDefinition Height="{DynamicResource NormalRowHeight}" />
+				<RowDefinition Height="{DynamicResource NormalRowHeight}" />
+				<RowDefinition Height="{DynamicResource ParameterRowHeight}" />
+				<RowDefinition Height="{DynamicResource NormalRowHeight}" />
+				<RowDefinition Height="{DynamicResource NormalRowHeight}" />
+				<RowDefinition Height="{DynamicResource ParameterRowHeight}" />
+				<RowDefinition Height="0.884*" />
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="300" />
+				<ColumnDefinition Width="150" />
+				<ColumnDefinition Width="150" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock HorizontalAlignment="Center"
+				Margin="10,0"
+				VerticalAlignment="Center"
+				FontSize="18"
+				FontStyle="Italic"
+				FontWeight="Bold"
+				Foreground="{Binding LastUsedBrush, Mode=Default}"
+				Text="{Binding Status, Mode=Default}"
+				TextWrapping="Wrap"
+				Grid.ColumnSpan="2" />
+
+			<TextBox x:Name="ParameterTextBox"
+				Margin="40,0"
+				FontSize="16"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				Grid.ColumnSpan="3"
+				Grid.Row="3"
+				Text="Parameter for the command" />
+
+			<Button Background="{Binding Brushes.Brush1, Mode=Default}"
+				Margin="10"
+				Style="{DynamicResource ButtonStyle}"
+				Content="Simple Command"
+				Grid.Row="1"
+				ToolTip="Click to activate command">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding SimpleCommand, Mode=Default}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+
+			<Rectangle Fill="{Binding Brushes.Brush1, Mode=Default}"
+				Stroke="Black"
+				Margin="10"
+				Grid.Column="1"
+				Grid.Row="1"
+				Style="{DynamicResource RectangleStyle}"
+				ToolTip="MouseOver to activate command">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="MouseEnter">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding SimpleCommand, Mode=Default}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Rectangle>
+
+			<Button Background="{Binding Brushes.Brush2}"
+				Margin="10"
+				Style="{DynamicResource ButtonStyle}"
+				Content="Parameter Command (bound)"
+				Grid.Row="2"
+				ToolTip="Click to activate command">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ParameterCommand1, Mode=Default}"
+							CommandParameter="{Binding Text, ElementName=ParameterTextBox}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+
+			<Rectangle Fill="{Binding Brushes.Brush2, Mode=Default}"
+				Stroke="Black"
+				Margin="10"
+				Grid.Column="1"
+				Grid.Row="2"
+				Style="{DynamicResource RectangleStyle}"
+				ToolTip="MouseOver to activate command">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="MouseEnter">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ParameterCommand1, Mode=Default}"
+							CommandParameter="{Binding Text, ElementName=ParameterTextBox, Mode=Default}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Rectangle>
+
+			<Button Background="{Binding Brushes.Brush3, Mode=Default}"
+				Margin="10"
+				Style="{DynamicResource ButtonStyle}"
+				Content="Parameter Command (Hello)"
+				Grid.Row="4"
+				ToolTip="Click to activate command">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ParameterCommand2, Mode=Default}"
+							CommandParameter="Hello" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+
+			<Rectangle Fill="{Binding Brushes.Brush3, Mode=Default}"
+				Stroke="Black"
+				Margin="10"
+				Grid.Column="1"
+				Grid.Row="4"
+				Style="{DynamicResource RectangleStyle}"
+				ToolTip="MouseOver to activate command">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="MouseEnter">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ParameterCommand2, Mode=Default}"
+							CommandParameter="Hello" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Rectangle>
+
+			<Button Background="{Binding Brushes.Brush4, Mode=Default}"
+				Margin="10"
+				Style="{DynamicResource ButtonStyle}"
+				Content="&quot;Disablable&quot; Command"
+				Grid.Row="5"
+				ToolTip="Click to activate command">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding DisablableCommand, Mode=Default}"
+							CommandParameter="{Binding Text, ElementName=DisableCommandTextBox, Mode=Default}"
+							MustToggleIsEnabled="{Binding IsChecked, ElementName=checkBox, Mode=Default}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+
+			<Rectangle Fill="{Binding Brushes.Brush4, Mode=Default}"
+				Stroke="Black"
+				Margin="10"
+				Grid.Column="1"
+				Grid.Row="5"
+				ToolTip="Rectangles can also be disabled in WPF"
+				Style="{DynamicResource RectangleStyle}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="MouseEnter">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding DisablableCommand, Mode=Default}"
+							CommandParameter="{Binding Text, ElementName=DisableCommandTextBox, Mode=Default}"
+							MustToggleIsEnabled="{Binding IsChecked, ElementName=checkBox, Mode=Default}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Rectangle>
+
+			<TextBox x:Name="DisableCommandTextBox"
+				Margin="40,0,0,0"
+				FontSize="16"
+				HorizontalContentAlignment="Center"
+				VerticalContentAlignment="Center"
+				Grid.Row="6"
+				Text="Enter the word &quot;Hello&quot; to disable" />
+			<CheckBox x:Name="checkBox"
+				Content="Allow toggling IsEnabled"
+				Grid.Column="1"
+				Grid.Row="6"
+				FontSize="16"
+				VerticalAlignment="Center"
+				Margin="10,0,0,0"
+				IsChecked="True"
+				Grid.ColumnSpan="2" />
+			<ComboBox Margin="10"
+				Grid.Column="2"
+				Grid.Row="1"
+				ToolTip="Open to execute command"
+				BorderBrush="{Binding Brushes.Brush1, Mode=Default}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="DropDownOpened">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding SimpleCommand, Mode=Default}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</ComboBox>
+			<ComboBox Margin="10"
+				Grid.Column="2"
+				Grid.Row="2"
+				ToolTip="Open to execute command"
+				BorderBrush="{Binding Brushes.Brush2, Mode=Default}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="DropDownOpened">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ParameterCommand1, Mode=Default}"
+							CommandParameter="{Binding Text, ElementName=ParameterTextBox, Mode=Default}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</ComboBox>
+			<ComboBox Margin="10"
+				Grid.Column="2"
+				Grid.Row="4"
+				ToolTip="Open to execute command"
+				BorderBrush="{Binding Brushes.Brush3, Mode=Default}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="DropDownOpened">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ParameterCommand2, Mode=Default}"
+							CommandParameter="Hello" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</ComboBox>
+			<ComboBox Margin="10"
+				Grid.Column="2"
+				Grid.Row="5"
+				ToolTip="Open to execute command"
+				BorderBrush="{Binding Brushes.Brush4, Mode=Default}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="DropDownOpened">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding DisablableCommand, Mode=Default}"
+							CommandParameter="{Binding Text, ElementName=DisableCommandTextBox, Mode=Default}"
+							MustToggleIsEnabled="{Binding IsChecked, ElementName=checkBox, Mode=Default}" />
+					</i:EventTrigger>
+					<i:EventTrigger EventName="MouseLeave">
+						<GalaSoft_MvvmLight_Command:EventToCommand Command="{Binding ResetCommand, Mode=Default}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</ComboBox>
+		</Grid>
+	</Grid>
+</UserControl>

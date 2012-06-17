@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.Samples.RaiseCanExecuteChanged", "RaiseCanExecuteChanged\GalaSoft.Samples.RaiseCanExecuteChanged.csproj", "{CFFDC074-69FF-4CEE-B0B6-D2E169167043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.Samples.RaiseCanExecuteChanged.SL", "RaiseCanExecuteChanged.SL\GalaSoft.Samples.RaiseCanExecuteChanged.SL.csproj", "{2199B511-9700-49D2-B776-36E6EC8763BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFFDC074-69FF-4CEE-B0B6-D2E169167043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFFDC074-69FF-4CEE-B0B6-D2E169167043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFFDC074-69FF-4CEE-B0B6-D2E169167043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFFDC074-69FF-4CEE-B0B6-D2E169167043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2199B511-9700-49D2-B776-36E6EC8763BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2199B511-9700-49D2-B776-36E6EC8763BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2199B511-9700-49D2-B776-36E6EC8763BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2199B511-9700-49D2-B776-36E6EC8763BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

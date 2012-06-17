@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmLightDragAndDrop", "MvvmLightDragAndDrop\MvvmLightDragAndDrop.csproj", "{7A143947-668E-488A-91EF-E1424BAF2C5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{C5C00E2E-4B37-46F1-83C6-E9FA905A14A4}"
+	ProjectSection(SolutionItems) = preProject
+		External\GalaSoft.MvvmLight.dll = External\GalaSoft.MvvmLight.dll
+		External\GalaSoft.MvvmLight.Extras.dll = External\GalaSoft.MvvmLight.Extras.dll
+		External\System.Windows.Interactivity.dll = External\System.Windows.Interactivity.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A143947-668E-488A-91EF-E1424BAF2C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A143947-668E-488A-91EF-E1424BAF2C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A143947-668E-488A-91EF-E1424BAF2C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A143947-668E-488A-91EF-E1424BAF2C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

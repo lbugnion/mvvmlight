@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D08856FE-520C-48D8-9C2F-69B9CFDB92BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
+    <AssemblyName>GalaSoft.MvvmLight.Test %28NET35%29</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\External\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\NET35\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Command\EventToCommandTest.cs" />
+    <Compile Include="Command\RelayCommandGenericTest.cs" />
+    <Compile Include="Command\RelayCommandTest.cs" />
+    <Compile Include="Command\TemporaryClass.cs" />
+    <Compile Include="Helpers\PublicTestClassGenericWithResult.cs" />
+    <Compile Include="Helpers\InternalTestClassGenericWithResult.cs" />
+    <Compile Include="Helpers\InternalTestClassWithResult.cs" />
+    <Compile Include="Helpers\PublicTestClassWithResult.cs" />
+    <Compile Include="Helpers\WeakActionGenericNestedTest.cs" />
+    <Compile Include="Helpers\WeakActionNestedTest.cs" />
+    <Compile Include="Helpers\WeakFuncGenericNestedTest.cs" />
+    <Compile Include="Helpers\WeakFuncGenericTest.cs" />
+    <Compile Include="Helpers\WeakFuncNestedTest.cs" />
+    <Compile Include="Helpers\WeakFuncTest.cs" />
+    <Compile Include="Messaging\ITestMessage.cs" />
+    <Compile Include="Messaging\MessengerTestConstrainingMessages.cs" />
+    <Compile Include="Messaging\TestMessageBase.cs" />
+    <Compile Include="Messaging\TestMessageImpl.cs" />
+    <Compile Include="ObservableObjectPropertyChangingTest.cs" />
+    <Compile Include="Ioc\SimpleIocTestAutoCreation.cs" />
+    <Compile Include="Helpers\CommonTestClass.cs" />
+    <Compile Include="Helpers\InternalTestClassGeneric.cs" />
+    <Compile Include="Helpers\InternalTestClass.cs" />
+    <Compile Include="Helpers\PublicTestClassGeneric.cs" />
+    <Compile Include="Helpers\PublicTestClass.cs" />
+    <Compile Include="Helpers\TestCase.cs" />
+    <Compile Include="Helpers\WeakActionGenericTest.cs" />
+    <Compile Include="Helpers\WeakActionTest.cs" />
+    <Compile Include="Ioc\SimpleIocTestIsRegistered.cs" />
+    <Compile Include="Ioc\SimpleIocTestContains.cs" />
+    <Compile Include="Ioc\SimpleIocTestCreationTime.cs" />
+    <Compile Include="Messaging\GarbageCollectionTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.Net35.cs" />
+    <Compile Include="Stubs\TestPropertyDescriptor.cs" />
+    <Compile Include="Stubs\TestBindingTarget.cs" />
+    <Compile Include="Stubs\TestClassForCreationTime.cs" />
+    <Compile Include="Stubs\TestCustomTypeDescriptor.cs" />
+    <Compile Include="Stubs\TestViewModelWithBooleanSource.cs" />
+    <Compile Include="Ioc\SimpleIocTestMultipleConstructors.cs" />
+    <Compile Include="Ioc\SimpleIocTestMultipleInstances.cs" />
+    <Compile Include="Ioc\SimpleIocTestSingleInstance.cs" />
+    <Compile Include="Ioc\SimpleIocTestUnregistration.cs" />
+    <Compile Include="Messaging\DialogMessageTest.cs" />
+    <Compile Include="Messaging\MessengerBroadcastToAllTest.cs" />
+    <Compile Include="Messaging\MessengerCreationDeletionTest.cs" />
+    <Compile Include="Messaging\MessengerMultipleInstancesTest.cs" />
+    <Compile Include="Messaging\MessengerOverrideDefaultTest.cs" />
+    <Compile Include="Messaging\MessengerRegisterUnregisterTest.cs" />
+    <Compile Include="Messaging\MessengerRegisterWhileSendingTest.cs" />
+    <Compile Include="Messaging\MessengerSendToAllTest.cs" />
+    <Compile Include="Messaging\MessengerSendToTypeTest.cs" />
+    <Compile Include="Messaging\MessengerSendWithTokenTest.cs" />
+    <Compile Include="Messaging\NotificationMessageActionTest.cs" />
+    <Compile Include="Messaging\NotificationMessageTest.cs" />
+    <Compile Include="Messaging\PropertyChangedMessageTest.cs" />
+    <Compile Include="ObservableObjectPropertyChangedTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs\TestClass6.cs" />
+    <Compile Include="Stubs\ITestClass.cs" />
+    <Compile Include="Stubs\TestClass4.cs" />
+    <Compile Include="Stubs\TestClass3.cs" />
+    <Compile Include="Stubs\TestClass2.cs" />
+    <Compile Include="Stubs\TestClass5.cs" />
+    <Compile Include="Stubs\TestClassWithMultiConstructors.cs" />
+    <Compile Include="Stubs\TestClass.cs" />
+    <Compile Include="ViewModel\TestClassWithObservableObject.cs" />
+    <Compile Include="Threading\DispatcherHelperTest.cs" />
+    <Compile Include="ViewModelBaseTest.cs" />
+    <Compile Include="ViewModel\TestViewModel.cs" />
+    <Compile Include="ViewModel\TestViewModelNoMagicString.cs" />
+    <Compile Include="ViewModel\ViewModelStub.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GalaSoft.MvvmLight %28NET35%29\GalaSoft.MvvmLight %28NET35%29.csproj">
+      <Project>{ADB28C09-8DE9-4006-80D5-74856EB4A48B}</Project>
+      <Name>GalaSoft.MvvmLight %28NET35%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\GalaSoft.MvvmLight.Extras %28NET35%29.csproj">
+      <Project>{78EECC01-BAE7-4914-BE2D-6BAB1059F29B}</Project>
+      <Name>GalaSoft.MvvmLight.Extras %28NET35%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,1397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+    <Product Id="7254D594-26B0-4285-949F-00EE7E614995"
+             Name="MVVM Light Toolkit"
+             Language="1033"
+             Version="4.0.2.19"
+             Manufacturer="Laurent Bugnion (GalaSoft)"
+             UpgradeCode="ec07ea32-0293-4e2f-8318-16fddde66c03">
+
+        <Package InstallerVersion="200"
+                 Compressed="yes"
+                 Id="*"
+                 Keywords="Installer"
+                 Description="MVVM Light Toolkit Installer (V4 beta 1 / 4.0.2.19)"
+                 Comments="The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed."
+                 Manufacturer="Laurent Bugnion (GalaSoft)"
+                 Languages="1033"
+                 SummaryCodepage="1252"
+                 Platform="x86" />
+
+        <Media Id="1"
+               Cabinet="media1.cab"
+               EmbedCab="yes" />
+
+        <Property Id="ARPHELPLINK">http://www.galasoft.ch/mvvm/</Property>
+
+        <Property Id="ARPURLINFOABOUT">http://www.galasoft.ch/mvvm/</Property>
+
+        <!--Registry key variables-->
+        <Property Id="VPDXINSTALL">
+            <RegistrySearch Id="VPDXRegistry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="SOFTWARE\Microsoft\VPDExpress\10.0"
+                            Name="ShellFolder" />
+        </Property>
+
+        <Property Id="BLEND4INSTALL">
+            <RegistrySearch Id="Blend4Registry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="Software\Microsoft\Expression\Blend\4.0"
+                            Name="InstallDir" />
+        </Property>
+
+        <Property Id="BLEND4SL5INSTALL">
+            <RegistrySearch Id="Blend4SL5Registry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="Software\Microsoft\Expression\Blend\4.1"
+                            Name="InstallDir" />
+        </Property>
+
+        <Property Id="INSTALLDIRWP7TOOLS">
+            <RegistrySearch Id="WP7Registry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="Software\Microsoft\Phone Tools\CoreCon\10.0"
+                            Name="InstallDir" />
+        </Property>
+
+        <Property Id="INSTALLDIRSL3SDK">
+            <RegistrySearch Id="SL3SDKRegistry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="Software\Microsoft\Microsoft SDKs\Silverlight\v3.0\Install Path"
+                            Name="Install Path" />
+        </Property>
+
+        <Property Id="INSTALLDIRSL4SDK">
+            <RegistrySearch Id="SL4SDKRegistry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="Software\Microsoft\Microsoft SDKs\Silverlight\v4.0\Install Path"
+                            Name="Install Path" />
+        </Property>
+
+        <Property Id="INSTALLDIRSL5SDK">
+            <RegistrySearch Id="SL5SDKRegistry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="Software\Microsoft\Microsoft SDKs\Silverlight\v5.0\Install Path"
+                            Name="Install Path" />
+        </Property>
+
+        <Property Id="VS10INSTALLED">
+            <RegistrySearch Id="VS10InstalledRegistry"
+                            Type="raw"
+                            Root="HKLM"
+                            Key="SOFTWARE\Wow6432Node\Microsoft\VisualStudio\10.0\InstalledProducts\Microsoft Visual C#" />
+        </Property>
+
+        <!--Product installed variables-->
+        <Property Id="BLEND4EXISTS">
+            <DirectorySearch Id="CheckFileDirBlend4"
+                             Path="[BLEND4INSTALL]"
+                             Depth="0" />
+        </Property>
+
+        <Property Id="BLEND4SL5EXISTS">
+            <DirectorySearch Id="CheckFileDirBlend4SL5"
+                             Path="[BLEND4SL5INSTALL]"
+                             Depth="0" />
+        </Property>
+
+        <Property Id="VPDXEXISTS">
+            <DirectorySearch Id="CheckFileDirVPDX"
+                             Path="[VPDXINSTALL]\Common7\IDE"
+                             Depth="0">
+                <FileSearch Name="vpdexpress.exe"/>
+            </DirectorySearch>
+        </Property>
+
+        <Property Id="WP7TOOLSEXISTS">
+            <DirectorySearch Id="CheckFileDirWP7"
+                             Path="[INSTALLDIRWP7TOOLS]"
+                             Depth="0" />
+        </Property>
+        
+        <Property Id="SL3SDKEXISTS">
+            <DirectorySearch Id="CheckFileDirSL3SDK"
+                             Path="[INSTALLDIRSL3SDK]"
+                             Depth="0" />
+        </Property>
+
+        <Property Id="SL4SDKEXISTS">
+            <DirectorySearch Id="CheckFileDirSL4SDK"
+                             Path="[INSTALLDIRSL4SDK]"
+                             Depth="0" />
+        </Property>
+
+        <Property Id="SL5SDKEXISTS">
+            <DirectorySearch Id="CheckFileDirSL5SDK"
+                             Path="[INSTALLDIRSL5SDK]"
+                             Depth="0" />
+        </Property>
+
+        <PropertyRef Id="VS2010_ROOT_FOLDER"/>
+        <PropertyRef Id="VS90_ROOT_FOLDER"/>
+        <PropertyRef Id="VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED"/>
+        <PropertyRef Id="VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED"/>
+
+        <!--Files to install-->
+        <Directory Id="TARGETDIR"
+                   Name="SourceDir">
+            <Directory Id="AppDataFolder">
+                <Directory Id="AppDataMvvm"
+                           Name="MvvmLight">
+                    <Component Id="PostSetup"
+                               Guid="55f8e887-e170-484b-9628-b72f2e626a62">
+                        <File Id="ModifyRegistryKey.exe"
+                              Name="ModifyRegistryKey.exe"
+                              DiskId="1"
+                              Source="../ModifyRegistryKey/bin/Debug/ModifyRegistryKey.exe" />
+                    </Component>
+                </Directory>
+            </Directory>
+
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLLOCATION"
+                           Name="Laurent Bugnion (GalaSoft)">
+                    <Directory Id="PRODUCTDIR"
+                               Name="Mvvm Light Toolkit">
+                        <Directory Id="SNIPPETS"
+                                   Name="Snippets">
+                            <Directory Id="SNIPPETSCS"
+                                       Name="CSharp">
+                                <Component Id="SnippetsCsComp"
+                                           DiskId="1"
+                                           Guid="83AC8C71-9379-446D-A97A-F2009EC6E888">
+                                    <File Id="mvvmInpc.snippet.cs"
+                                          Name="mvvmInpc.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpc.snippet" />
+                                    <File Id="mvvmInpcLambda.snippet.cs"
+                                          Name="mvvmInpcLambda.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcLambda.snippet" />
+                                    <File Id="mvvmInpcLambdaMsg.snippet.cs"
+                                          Name="mvvmInpcLambdaMsg.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcLambdaMsg.snippet" />
+                                    <File Id="mvvmInpcMsg.snippet.cs"
+                                          Name="mvvmInpcMsg.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcMsg.snippet" />
+                                    <File Id="mvvmInpcSet.snippet.cs"
+                                          Name="mvvmInpcSet.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcSet.snippet" />
+                                    <File Id="mvvmInpcSetLambda.snippet.cs"
+                                          Name="mvvmInpcSetLambda.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcSetLambda.snippet" />
+                                    <File Id="mvvmInpcSetLambdaMsg.snippet.cs"
+                                          Name="mvvmInpcSetLambdaMsg.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcSetLambdaMsg.snippet" />
+                                    <File Id="mvvmInpcSetMsg.snippet.cs"
+                                          Name="mvvmInpcSetMsg.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmInpcSetMsg.snippet" />
+                                    <File Id="mvvmPropA.snippet.cs"
+                                          Name="mvvmPropA.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmPropA.snippet" />
+                                    <File Id="mvvmPropDP.snippet.cs"
+                                          Name="mvvmPropDP.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmPropDP.snippet" />
+                                    <File Id="mvvmRelay.snippet.cs"
+                                          Name="mvvmRelay.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelay.snippet" />
+                                    <File Id="mvvmRelayCanExecute.snippet.cs"
+                                          Name="mvvmRelayCanExecute.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayCanExecute.snippet" />
+                                    <File Id="mvvmRelayGeneric.snippet.cs"
+                                          Name="mvvmRelayGeneric.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayGeneric.snippet" />
+                                    <File Id="mvvmRelayGenericCanExecute.snippet.cs"
+                                          Name="mvvmRelayGenericCanExecute.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayGenericCanExecute.snippet" />
+                                    <File Id="mvvmRelayMethod.snippet.cs"
+                                          Name="mvvmRelayMethod.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayMethod.snippet" />
+                                    <File Id="mvvmRelayMethodCanExecute.snippet.cs"
+                                          Name="mvvmRelayMethodCanExecute.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayMethodCanExecute.snippet" />
+                                    <File Id="mvvmRelayMethodGeneric.snippet.cs"
+                                          Name="mvvmRelayMethodGeneric.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayMethodGeneric.snippet" />
+                                    <File Id="mvvmRelayMethodGenericCanExecute.snippet.cs"
+                                          Name="mvvmRelayMethodGenericCanExecute.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmRelayMethodGenericCanExecute.snippet" />
+                                    <File Id="mvvmSLPropA.snippet.cs"
+                                          Name="mvvmSLPropA.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmSLPropA.snippet" />
+                                    <File Id="mvvmSLPropDP.snippet.cs"
+                                          Name="mvvmSLPropDP.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmSLPropDP.snippet" />
+                                    <File Id="mvvmViewModelLocatorProperty.snippet.cs"
+                                          Name="mvvmViewModelLocatorProperty.snippet"
+                                          Source="../InstallItems/GalaSoft.MvvmLight.Snippets/CSharp/mvvmViewModelLocatorProperty.snippet" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+
+                        <Directory Id="BINARIES"
+                                   Name="Binaries">
+                            <Directory Id="SILVERLIGHT3"
+                                       Name="Silverlight3">
+                                <Component Id="Silverlight3Components"
+                                           Guid="91772a62-ee98-4b77-9d55-ec0d14209c50">
+                                    <File Id="GalaSoft.MvvmLight.dll.SL3"
+                                          Name="GalaSoft.MvvmLight.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.dll" />
+                                    <File Id="GalaSoft.MvvmLight.xml.SL3"
+                                          Name="GalaSoft.MvvmLight.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.xml" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.dll.SL3"
+                                          Name="GalaSoft.MvvmLight.Extras.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.Extras.dll" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.xml.SL3"
+                                          Name="GalaSoft.MvvmLight.Extras.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/GalaSoft.MvvmLight.Extras.xml" />
+                                    <File Id="System.Windows.Interactivity.dll.SL3"
+                                          Name="System.Windows.Interactivity.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/System.Windows.Interactivity.dll" />
+                                    <File Id="System.Windows.Interactivity.xml.SL3"
+                                          Name="System.Windows.Interactivity.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/System.Windows.Interactivity.xml" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.dll.SL3"
+                                          Name="Microsoft.Practices.ServiceLocation.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/Microsoft.Practices.ServiceLocation.dll" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.xml.SL3"
+                                          Name="Microsoft.Practices.ServiceLocation.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight3/Microsoft.Practices.ServiceLocation.xml" />
+                                </Component>
+
+                                <Component Id="AssemblyFoldersExRegistry.SL3"
+                                           Guid="{ECAEC30E-3067-4855-84FD-27BE370AE1C6}">
+                                    <RegistryKey Id="AssemblyRegistryKeyBinaries.SL3"
+                                                 Action="createAndRemoveOnUninstall"
+                                                 Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v3.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                 Root="HKLM" />
+                                    <RegistryValue Id="regECAEC30E30674a5584FD27BE3B0AE1C6"
+                                                   Root="HKLM"
+                                                   Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v3.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                   Value="[SILVERLIGHT3]"
+                                                   Type="string"
+                                                   KeyPath="yes" />
+                                </Component>
+                            </Directory>
+
+                            <Directory Id="SILVERLIGHT4"
+                                       Name="Silverlight4">
+                                <Component Id="Silverlight4Components"
+                                           Guid="91772a62-ee98-4b77-9d55-ec0d14209c51">
+                                    <File Id="GalaSoft.MvvmLight.dll.SL4"
+                                          Name="GalaSoft.MvvmLight.SL4.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.SL4.dll" />
+                                    <File Id="GalaSoft.MvvmLight.xml.SL4"
+                                          Name="GalaSoft.MvvmLight.SL4.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.SL4.xml" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.dll.SL4"
+                                          Name="GalaSoft.MvvmLight.Extras.SL4.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.Extras.SL4.dll" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.xml.SL4"
+                                          Name="GalaSoft.MvvmLight.Extras.SL4.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/GalaSoft.MvvmLight.Extras.SL4.xml" />
+                                    <File Id="System.Windows.Interactivity.dll.SL4"
+                                          Name="System.Windows.Interactivity.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/System.Windows.Interactivity.dll" />
+                                    <File Id="System.Windows.Interactivity.xml.SL4"
+                                          Name="System.Windows.Interactivity.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/System.Windows.Interactivity.xml" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.dll.SL4"
+                                          Name="Microsoft.Practices.ServiceLocation.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/Microsoft.Practices.ServiceLocation.dll" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.xml.SL4"
+                                          Name="Microsoft.Practices.ServiceLocation.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight4/Microsoft.Practices.ServiceLocation.xml" />
+                                </Component>
+
+                                <Component Id="AssemblyFoldersExRegistry.SL4"
+                                           Guid="{ECAEC30E-3067-4855-84FD-27BE370AE1C7}">
+                                    <RegistryKey Id="AssemblyRegistryKeyBinaries.SL4"
+                                                 Action="createAndRemoveOnUninstall"
+                                                 Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                 Root="HKLM" />
+                                    <RegistryValue Id="regECAEC30E30674a5584FD27BE3B0AE1C7"
+                                                   Root="HKLM"
+                                                   Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v4.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                   Value="[SILVERLIGHT4]"
+                                                   Type="string"
+                                                   KeyPath="yes" />
+                                </Component>
+                            </Directory>
+
+                            <Directory Id="SILVERLIGHT5"
+                                       Name="Silverlight5">
+                                <Component Id="Silverlight5Components"
+                                           Guid="B9AE70CD-8EA9-439E-AF2E-987B9BD491E8">
+                                    <File Id="GalaSoft.MvvmLight.dll.SL5"
+                                          Name="GalaSoft.MvvmLight.SL5.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/GalaSoft.MvvmLight.SL5.dll" />
+                                    <File Id="GalaSoft.MvvmLight.xml.SL5"
+                                          Name="GalaSoft.MvvmLight.SL5.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/GalaSoft.MvvmLight.SL5.xml" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.dll.SL5"
+                                          Name="GalaSoft.MvvmLight.Extras.SL5.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/GalaSoft.MvvmLight.Extras.SL5.dll" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.xml.SL5"
+                                          Name="GalaSoft.MvvmLight.Extras.SL5.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/GalaSoft.MvvmLight.Extras.SL5.xml" />
+                                    <File Id="System.Windows.Interactivity.dll.SL5"
+                                          Name="System.Windows.Interactivity.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/System.Windows.Interactivity.dll" />
+                                    <File Id="System.Windows.Interactivity.xml.SL5"
+                                          Name="System.Windows.Interactivity.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/System.Windows.Interactivity.xml" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.dll.SL5"
+                                          Name="Microsoft.Practices.ServiceLocation.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/Microsoft.Practices.ServiceLocation.dll" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.xml.SL5"
+                                          Name="Microsoft.Practices.ServiceLocation.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/Silverlight5/Microsoft.Practices.ServiceLocation.xml" />
+                                </Component>
+
+                                <Component Id="AssemblyFoldersExRegistry.SL5"
+                                           Guid="{C6BBAB85-4298-4D25-8FE8-CC1034364609}">
+                                    <RegistryKey Id="AssemblyRegistryKeyBinaries.SL5"
+                                                 Action="createAndRemoveOnUninstall"
+                                                 Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v5.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                 Root="HKLM" />
+                                    <RegistryValue Id="regC6BBAB8542984D258FE8CC1034364609"
+                                                   Root="HKLM"
+                                                   Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight\v5.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                   Value="[SILVERLIGHT5]"
+                                                   Type="string"
+                                                   KeyPath="yes" />
+                                </Component>
+                            </Directory>
+
+                            <Directory Id="WP7"
+                                       Name="WP7">
+                                <Component Id="WP7Components"
+                                           Guid="91772a62-ee98-4b77-9d55-ec0d14209c52">
+                                    <File Id="GalaSoft.MvvmLight.dll.WP7"
+                                          Name="GalaSoft.MvvmLight.WP7.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.WP7.dll" />
+                                    <File Id="GalaSoft.MvvmLight.xml.WP7"
+                                          Name="GalaSoft.MvvmLight.WP7.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.WP7.xml" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.dll.WP7"
+                                          Name="GalaSoft.MvvmLight.Extras.WP7.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.Extras.WP7.dll" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.xml.WP7"
+                                          Name="GalaSoft.MvvmLight.Extras.WP7.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/GalaSoft.MvvmLight.Extras.WP7.xml" />
+                                    <File Id="System.Windows.Interactivity.dll.WP7"
+                                          Name="System.Windows.Interactivity.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/System.Windows.Interactivity.dll" />
+                                    <File Id="System.Windows.Interactivity.xml.WP7"
+                                          Name="System.Windows.Interactivity.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/System.Windows.Interactivity.xml" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.dll.WP7"
+                                          Name="Microsoft.Practices.ServiceLocation.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/Microsoft.Practices.ServiceLocation.dll" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.xml.WP7"
+                                          Name="Microsoft.Practices.ServiceLocation.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP7/Microsoft.Practices.ServiceLocation.xml" />
+                                </Component>
+
+                                <Component Id="AssemblyFoldersExRegistry.WP7"
+                                           Guid="{ECAEC30E-3067-4855-84FD-27BE370AE1C8}">
+                                    <RegistryKey Id="AssemblyRegistryKeyBinaries.WP7"
+                                                 Action="createAndRemoveOnUninstall"
+                                                 Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight for Phone\v4.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                 Root="HKLM" />
+                                    <RegistryValue Id="regECAEC30E30674a5584FD27BE3B0AE1C8"
+                                                   Root="HKLM"
+                                                   Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight for Phone\v4.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                   Value="[WP7]"
+                                                   Type="string"
+                                                   KeyPath="yes" />
+                                </Component>
+                            </Directory>
+
+                            <Directory Id="WP71"
+                                       Name="WP71">
+                                <Component Id="WP71Components"
+                                           Guid="346e0fff-8245-4a80-99dc-a5da598a2e27">
+                                    <File Id="GalaSoft.MvvmLight.dll.WP71"
+                                          Name="GalaSoft.MvvmLight.WP71.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.WP71.dll" />
+                                    <File Id="GalaSoft.MvvmLight.xml.WP71"
+                                          Name="GalaSoft.MvvmLight.WP71.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.WP71.xml" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.dll.WP71"
+                                          Name="GalaSoft.MvvmLight.Extras.WP71.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.Extras.WP71.dll" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.xml.WP71"
+                                          Name="GalaSoft.MvvmLight.Extras.WP71.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/GalaSoft.MvvmLight.Extras.WP71.xml" />
+                                    <File Id="System.Windows.Interactivity.dll.WP71"
+                                          Name="System.Windows.Interactivity.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/System.Windows.Interactivity.dll" />
+                                    <File Id="System.Windows.Interactivity.xml.WP71"
+                                          Name="System.Windows.Interactivity.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/System.Windows.Interactivity.xml" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.dll.WP71"
+                                          Name="Microsoft.Practices.ServiceLocation.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/Microsoft.Practices.ServiceLocation.dll" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.xml.WP71"
+                                          Name="Microsoft.Practices.ServiceLocation.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WP71/Microsoft.Practices.ServiceLocation.xml" />
+                                </Component>
+
+                                <Component Id="AssemblyFoldersExRegistry.WP71"
+                                           Guid="{dfeac4f4-6baa-4730-a9ae-c200fd72da11}">
+                                    <RegistryKey Id="AssemblyRegistryKeyBinaries.WP71"
+                                                 Action="createAndRemoveOnUninstall"
+                                                 Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight for WindowsPhone\v4.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                 Root="HKLM" />
+                                    <RegistryValue Id="regDFEAC4f46BAA4730A9AEC200FD72DA11"
+                                                   Root="HKLM"
+                                                   Key="SOFTWARE\Microsoft\Microsoft SDKs\Silverlight for WindowsPhone\v4.0\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                   Value="[WP71]"
+                                                   Type="string"
+                                                   KeyPath="yes" />
+                                </Component>
+                            </Directory>
+
+                            <Directory Id="WPF35SP1"
+                                       Name="WPF35SP1">
+                                <Component Id="WPF35SP1Components"
+                                           Guid="91772a62-ee98-4b77-9d55-ec0d14209c53">
+                                    <File Id="GalaSoft.MvvmLight.dll.NET35"
+                                          Name="GalaSoft.MvvmLight.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.dll" />
+                                    <File Id="GalaSoft.MvvmLight.xml.NET35"
+                                          Name="GalaSoft.MvvmLight.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.xml" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.dll.NET35"
+                                          Name="GalaSoft.MvvmLight.Extras.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.Extras.dll" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.xml.NET35"
+                                          Name="GalaSoft.MvvmLight.Extras.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/GalaSoft.MvvmLight.Extras.xml" />
+                                    <File Id="System.Windows.Interactivity.dll.NET35"
+                                          Name="System.Windows.Interactivity.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/System.Windows.Interactivity.dll" />
+                                    <File Id="System.Windows.Interactivity.xml.NET35"
+                                          Name="System.Windows.Interactivity.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/System.Windows.Interactivity.xml" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.dll.NET35"
+                                          Name="Microsoft.Practices.ServiceLocation.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/Microsoft.Practices.ServiceLocation.dll" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.xml.NET35"
+                                          Name="Microsoft.Practices.ServiceLocation.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF35SP1/Microsoft.Practices.ServiceLocation.xml" />
+                                </Component>
+
+                                <Component Id="AssemblyFoldersExRegistry.WPF35"
+                                           Guid="{ECAEC30E-3067-4855-84FD-27BE370AE1C9}">
+                                    <RegistryKey Id="AssemblyRegistryKeyBinaries.WPF35"
+                                                 Action="createAndRemoveOnUninstall"
+                                                 Key="SOFTWARE\Microsoft\.NETFramework\v3.5\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                 Root="HKLM" />
+                                    <RegistryValue Id="regECAEC30E30674a5584FD27BE3B0AE1C9"
+                                                   Root="HKLM"
+                                                   Key="SOFTWARE\Microsoft\.NETFramework\v3.5\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                   Value="[WPF35SP1]"
+                                                   Type="string"
+                                                   KeyPath="yes" />
+                                </Component>
+                            </Directory>
+
+                            <Directory Id="WPF4"
+                                       Name="WPF4">
+                                <Component Id="WPF4Components"
+                                           Guid="91772a62-ee98-4b77-9d55-ec0d14209c54">
+                                    <File Id="GalaSoft.MvvmLight.dll.NET4"
+                                          Name="GalaSoft.MvvmLight.WPF4.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.WPF4.dll" />
+                                    <File Id="GalaSoft.MvvmLight.xml.NET4"
+                                          Name="GalaSoft.MvvmLight.WPF4.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.WPF4.xml" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.dll.NET4"
+                                          Name="GalaSoft.MvvmLight.Extras.WPF4.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.Extras.WPF4.dll" />
+                                    <File Id="GalaSoft.MvvmLight.Extras.xml.NET4"
+                                          Name="GalaSoft.MvvmLight.Extras.WPF4.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/GalaSoft.MvvmLight.Extras.WPF4.xml" />
+                                    <File Id="System.Windows.Interactivity.dll.NET4"
+                                          Name="System.Windows.Interactivity.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/System.Windows.Interactivity.dll" />
+                                    <File Id="System.Windows.Interactivity.xml.NET4"
+                                          Name="System.Windows.Interactivity.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/System.Windows.Interactivity.xml" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.dll.NET4"
+                                          Name="Microsoft.Practices.ServiceLocation.dll"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/Microsoft.Practices.ServiceLocation.dll" />
+                                    <File Id="Microsoft.Practices.ServiceLocation.xml.NET4"
+                                          Name="Microsoft.Practices.ServiceLocation.xml"
+                                          DiskId="1"
+                                          Source="../../../GalaSoft.MvvmLight/_Binaries/Release/WPF4/Microsoft.Practices.ServiceLocation.xml" />
+                                </Component>
+
+                                <Component Id="AssemblyFoldersExRegistry.WPF4"
+                                           Guid="{ECAEC30E-3067-4855-84FD-27BE370AE1CA}">
+                                    <RegistryKey Id="AssemblyRegistryKeyBinaries.WPF4"
+                                                 Action="createAndRemoveOnUninstall"
+                                                 Key="SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                 Root="HKLM" />
+                                    <RegistryValue Id="regECAEC30E30674a5584FD27BE3B0AE1CA"
+                                                   Root="HKLM"
+                                                   Key="SOFTWARE\Microsoft\.NETFramework\v4.0.30319\AssemblyFoldersEx\MVVM Light Toolkit"
+                                                   Value="[WPF4]"
+                                                   Type="string"
+                                                   KeyPath="yes" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <!--VS2008 Templates and snippets-->
+            <Directory Id="VS90_ROOT_FOLDER">
+                <Directory Id="Vs08Common7"
+                           Name="Common7">
+                    <Directory Id="Vs08Common7Ide"
+                               Name="IDE">
+                        <Directory Id="Vs08ProjectTemplates"
+                                   Name="ProjectTemplates">
+                            <Directory Id="Vs08ProjectTemplatesCs"
+                                       Name="CSharp">
+                                <Directory Id="Vs08ProjectTemplatesCsSl"
+                                           Name="Silverlight">
+                                    <Directory Id="Vs08ProjectTemplatesCsSlMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs08ProjectTemplatesCsSlMvvmSlComp"
+                                                   Guid="{3CB47D93-0FC3-4D6D-971C-1F13E243E179}">
+                                            <File Id="MvvmLight.SL.zip.VS08"
+                                                  Name="MvvmLight.SL3.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+
+                                <Directory Id="Vs08ProjectTemplatesCsWpf"
+                                           Name="Windows">
+                                    <Directory Id="Vs08ProjectTemplatesCsWpfMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs08ProjectTemplatesCsWpfMvvmWpfComp"
+                                                   Guid="{3CB47D93-0FC3-4D6D-971D-1F13A243E176}">
+                                            <File Id="MvvmLight.WPF.zip.VS08"
+                                                   Name="MvvmLight.WPF.zip"
+                                                   DiskId="1"
+                                                   Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WPF/MvvmLight.WPF.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+
+                        <Directory Id="Vs08ItemTemplates"
+                                   Name="ItemTemplates">
+                            <Directory Id="Vs08ItemTemplatesCs"
+                                       Name="CSharp">
+                                <Directory Id="Vs08ItemTemplatesCsSl"
+                                           Name="Silverlight">
+                                    <Directory Id="Vs08ItemTemplatesCsSlMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs08ItemTemplatesCsSlMvvmComp"
+                                                   Guid="{3CB48F93-0FC3-4D6D-971C-1F13E243E179}">
+                                            <File Id="MvvmView.SL.zip.VS08"
+                                                  Name="MvvmView.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmView.SL.zip" />
+                                            <File Id="MvvmViewModel.SL.zip.VS08"
+                                                  Name="MvvmViewModel.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModel.SL.zip" />
+                                            <File Id="MvvmViewModelLocator.SL.zip.VS08"
+                                                  Name="MvvmViewModelLocator.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModelLocator.SL.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+
+                                <Directory Id="Vs08ItemTemplatesCsWpf"
+                                           Name="WPF">
+                                    <Directory Id="Vs08ItemTemplatesCsWpfMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs08ItemTemplatesCsWpfMvvmWpfComp"
+                                                   Guid="{1FB52F93-0FC3-4D6D-971C-1F13E243E179}">
+                                            <File Id="MvvmView.WPF.zip.VS08"
+                                                  Name="MvvmView.WPF.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmView.WPF.zip" />
+                                            <File Id="MvvmViewModel.WPF.zip.VS08"
+                                                  Name="MvvmViewModel.WPF.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmViewModel.WPF.zip" />
+                                            <File Id="MvvmViewModelLocator.WPF.zip.VS08"
+                                                  Name="MvvmViewModelLocator.WPF.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmViewModelLocator.WPF.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <!--VS2010 Templates and snippets-->
+            <Directory Id="VS2010_ROOT_FOLDER">
+                <Directory Id="Vs10Common7"
+                           Name="Common7">
+                    <Directory Id="Vs10Common7Ide"
+                               Name="IDE">
+                        <Directory Id="Vs10ProjectTemplates"
+                                   Name="ProjectTemplates">
+                            <Directory Id="Vs10ProjectTemplatesCs"
+                                       Name="CSharp">
+                                <Directory Id="Vs10ProjectTemplatesCsSl"
+                                           Name="Silverlight">
+                                    <Directory Id="Vs10ProjectTemplatesCsSlMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs10ProjectTemplatesCsSlMvvmSl5Comp"
+                                                   Guid="{55DD4EF7-3F9B-4BB1-9989-5676E2AC1C58}">
+                                            <File Id="MvvmLight.SL5.zip.VS10"
+                                                  Name="MvvmLight.SL5.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL5.zip" />
+                                        </Component>
+
+                                        <Component Id="Vs10ProjectTemplatesCsSlMvvmSl4Comp"
+                                                   Guid="{3CB47D93-0FC3-4D6D-971C-1F13A243E179}">
+                                            <File Id="MvvmLight.SL4.zip.VS10"
+                                                  Name="MvvmLight.SL4.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL4.zip" />
+                                        </Component>
+
+                                        <Component Id="Vs10ProjectTemplatesCsSlMvvmSl3Comp"
+                                                   Guid="{3CB47D93-0FC3-4D6D-971C-1F13A243E17A}">
+                                            <File Id="MvvmLight.SL.zip.VS10"
+                                                  Name="MvvmLight.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+
+                                <Directory Id="Vs10ProjectTemplatesCsWp"
+                                           Name="Silverlight for Windows Phone">
+                                    <Directory Id="Vs10ProjectTemplatesCsWpMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs10ProjectTemplatesCsWpMvvmWp7Comp"
+                                                   Guid="{3CB47D93-0FC3-4D6D-971C-1F13A243E17B}">
+                                            <File Id="MvvmLight.WP7.zip.VS10"
+                                                  Name="MvvmLight.WP7.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP7.zip" />
+                                        </Component>
+
+                                        <Component Id="Vs10ProjectTemplatesCsWpMvvmWp71Comp"
+                                                   Guid="{b277d9fa-d976-4469-a61b-53a3e07ed367}">
+                                            <File Id="MvvmLight.WP71.zip.VS10"
+                                                  Name="MvvmLight.WP71.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP71.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+
+                                <Directory Id="Vs10ProjectTemplatesCsWpf"
+                                           Name="Windows">
+                                    <Directory Id="Vs10ProjectTemplatesCsWpfMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs10ProjectTemplatesCsWpfMvvmWpfComp"
+                                                   Guid="{3CB47D93-0FC3-4D6D-971C-1F13A243E176}">
+                                            <File Id="MvvmLight.WPF.zip.VS10"
+                                                  Name="MvvmLight.WPF.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WPF/MvvmLight.WPF.zip" />
+                                        </Component>
+
+                                        <Component Id="Vs10ProjectTemplatesCsWpfMvvmWpf4Comp"
+                                                   Guid="{3CB47D93-0FC3-4D6D-971C-1F13A243E178}">
+                                            <File Id="MvvmLight.WPF4.zip.VS10"
+                                                  Name="MvvmLight.WPF4.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WPF/MvvmLight.WPF4.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+
+                        <Directory Id="Vs10ItemTemplates"
+                                   Name="ItemTemplates">
+                            <Directory Id="Vs10ItemTemplatesCs"
+                                       Name="CSharp">
+                                <Directory Id="Vs10ItemTemplatesCsSl"
+                                           Name="Silverlight">
+                                    <Directory Id="Vs10ItemTemplatesCsSlMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs10ItemTemplatesCsSlMvvmSlComp"
+                                                   Guid="{3CB47D93-0FC3-47de-971C-1F13A243E179}">
+                                            <File Id="MvvmViewModelLocator.SL.zip.VS10"
+                                                  Name="MvvmViewModelLocator.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModelLocator.SL.zip" />
+                                            <File Id="MvvmViewModel.SL.zip.VS10"
+                                                  Name="MvvmViewModel.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModel.SL.zip" />
+                                            <File Id="MvvmView.SL.zip.VS10"
+                                                  Name="MvvmView.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmView.SL.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+
+                                <Directory Id="Vs10ItemTemplatesCsWp"
+                                           Name="Silverlight for Windows Phone">
+                                    <Directory Id="Vs10ItemTemplatesCsWpMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs10ItemTemplatesCsWpMvvmWp7Comp"
+                                                   Guid="{3CB47D93-0FC3-47de-971C-1a43A243E179}">
+                                            <File Id="MvvmView.WP7.zip.VS10"
+                                                  Name="MvvmView.WP7.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmView.WP7.zip" />
+                                            <File Id="MvvmViewModel.WP7.zip.VS10"
+                                                  Name="MvvmViewModel.WP7.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModel.WP7.zip" />
+                                            <File Id="MvvmViewModelLocator.WP7.zip.VS10"
+                                                  Name="MvvmViewModelLocator.WP7.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModelLocator.WP7.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+
+                                <Directory Id="Vs10ItemTemplatesCsWpf"
+                                           Name="WPF">
+                                    <Directory Id="Vs10ItemTemplatesCsWpfMvvm"
+                                               Name="Mvvm">
+                                        <Component Id="Vs10ItemTemplatesCsWpfMvvmWpfComp"
+                                                   Guid="{3CB37293-0FC3-47de-971C-1a43A243E179}">
+                                            <File Id="MvvmView.WPF.zip.VS10"
+                                                  Name="MvvmView.WPF.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmView.WPF.zip" />
+                                            <File Id="MvvmViewModel.WPF.zip.VS10"
+                                                  Name="MvvmViewModel.WPF.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmViewModel.WPF.zip" />
+                                            <File Id="MvvmViewModelLocator.WPF.zip.VS10"
+                                                  Name="MvvmViewModelLocator.WPF.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmViewModelLocator.WPF.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <!--VS2010Express for WP7 Templates-->
+            <Directory Id="VPDXINSTALL">
+                <Directory Id="Vs10xCommon7"
+                           Name="Common7">
+                    <Directory Id="Vs10xCommon7Ide"
+                               Name="IDE">
+                        <Directory Id="Vs10xVpd"
+                                   Name="VPDExpress">
+                            <Directory Id="Vs10xProjectTemplates"
+                                        Name="ProjectTemplates">
+                                <Directory Id="Vs10xProjectTemplatesCsWpMvvm"
+                                            Name="Mvvm">
+                                    <Component Id="Vs10xProjectTemplatesCsWpMvvmWp7Comp"
+                                                Guid="{71dbb618-7b65-4f28-9cb2-458d953e0ff3}">
+                                        <File Id="MvvmLight.WP7.zip.VS10x"
+                                                Name="MvvmLight.WP7.zip"
+                                                DiskId="1"
+                                                Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP7.zip" />
+                                    </Component>
+
+                                    <Component Id="Vs10xProjectTemplatesCsWpMvvmWp71Comp"
+                                                Guid="{26a642d9-41ff-44ae-b5fc-7a24d1d3758c}">
+                                        <File Id="MvvmLight.WP71.zip.VS10x"
+                                                Name="MvvmLight.WP71.zip"
+                                                DiskId="1"
+                                                Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP71.zip" />
+                                    </Component>
+                                </Directory>
+                            </Directory>
+
+                            <Directory Id="Vs10xItemTemplates"
+                                        Name="ItemTemplates">
+                                <Directory Id="Vs10xItemTemplatesCsWpMvvm"
+                                            Name="Mvvm">
+                                    <Component Id="Vs10xItemTemplatesCsWpMvvmWp7Comp"
+                                                Guid="{997df372-d06d-4f00-976b-8f6170eaca9e}">
+                                        <File Id="MvvmView.WP7.zip.VS10x"
+                                                Name="MvvmView.WP7.zip"
+                                                DiskId="1"
+                                                Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmView.WP7.zip" />
+                                        <File Id="MvvmViewModel.WP7.zip.VS10x"
+                                                Name="MvvmViewModel.WP7.zip"
+                                                DiskId="1"
+                                                Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModel.WP7.zip" />
+                                        <File Id="MvvmViewModelLocator.WP7.zip.VS10x"
+                                                Name="MvvmViewModelLocator.WP7.zip"
+                                                DiskId="1"
+                                                Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModelLocator.WP7.zip" />
+                                    </Component>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <!--Blend 4 Templates-->
+            <!--Blend 4 For Silverlight 5 Templates-->
+            <Directory Id="PersonalFolder">
+                <Directory Id="Expression"
+                           Name="Expression">
+                    <Directory Id="Blend4"
+                           Name="Blend 4">
+                        <Directory Id="Blend4ItemTemplates"
+                                   Name="ItemTemplates">
+                            <Directory Id="Blend4ItemTemplatesEnCs"
+                                        Name="CSharp">
+                                <Directory Id="Blend4ItemTemplatesEnCsMvvm"
+                                            Name="Mvvm">
+                                    <Directory Id="Blend4ItemTemplatesEnCsMvvmSl"
+                                                Name="Silverlight">
+                                        <Component Id="Blend4ItemTemplatesEnCsMvvmSlComp"
+                                                    DiskId="1"
+                                                    Guid="D852CBDD-D911-41EC-A5A9-5762E4DDE1A2">
+                                            <File Id="Blend4MvvmView.SL.zip"
+                                                    Name="MvvmView.SL.zip"
+                                                    DiskId="1"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmView.SL.zip" />
+                                            <File Id="Blend4MvvmViewModel.SL.zip"
+                                                    Name="MvvmViewModel.SL.zip"
+                                                    DiskId="1"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModel.SL.zip" />
+                                            <File Id="Blend4MvvmViewModelLocator.SL.zip"
+                                                    Name="MvvmViewModelLocator.SL.zip"
+                                                    DiskId="1"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModelLocator.SL.zip" />
+                                        </Component>
+                                    </Directory>
+
+                                    <Directory Id="Blend4ItemTemplatesEnCsMvvmWp7"
+                                                Name="WindowsPhone">
+                                        <Component Id="Blend4ItemTemplatesEnCsMvvmWp7Comp"
+                                                    DiskId="1"
+                                                    Guid="7FD5281B-3710-4FFD-82A3-50D8DD0737FF">
+                                            <File Id="Blend4MvvmView.WP7.zip"
+                                                    Name="MvvmView.WP7.zip"
+                                                    DiskId="1"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmView.WP7.zip" />
+                                            <File Id="Blend4MvvmViewModel.WP7.zip"
+                                                    Name="MvvmViewModel.WP7.zip"
+                                                    DiskId="1"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModel.WP7.zip" />
+                                            <File Id="Blend4MvvmViewModelLocator.WP7.zip"
+                                                    Name="MvvmViewModelLocator.WP7.zip"
+                                                    DiskId="1"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModelLocator.WP7.zip" />
+                                        </Component>
+                                    </Directory>
+
+                                    <Directory Id="Blend4ItemTemplatesEnCsMvvmWpf"
+                                                Name="WPF">
+                                        <Component Id="Blend4ItemTemplatesEnCsMvvmWpfComp"
+                                                    DiskId="1"
+                                                    Guid="98E10E71-0729-4496-BA82-CE7E505CA8A2">
+                                            <File Id="Blend4MvvmView.WPF.zip"
+                                                    Name="MvvmView.WPF.zip"
+                                                    DiskId="1"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmView.WPF.zip" />
+                                            <File Id="Blend4MvvmViewModel.WPF.zip"
+                                                    Name="MvvmViewModel.WPF.zip"
+                                                    DiskId="1"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmViewModel.WPF.zip" />
+                                            <File Id="Blend4MvvmViewModelLocator.WPF.zip"
+                                                    Name="MvvmViewModelLocator.WPF.zip"
+                                                    DiskId="1"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmViewModelLocator.WPF.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+
+                        <Directory Id="Blend4ProjectTemplates"
+                                   Name="ProjectTemplates">
+                            <Directory Id="Blend4ProjectTemplatesEnCs"
+                                        Name="CSharp">
+                                <Directory Id="Blend4ProjectTemplatesEnCsMvvm"
+                                            Name="Mvvm">
+                                    <Directory Id="Blend4ProjectTemplatesEnCsMvvmSl"
+                                                Name="Silverlight">
+                                        <Component Id="Blend4ProjectTemplatesEnCsMvvmSlComp"
+                                                    DiskId="1"
+                                                    Guid="A8A12F13-9D46-44DF-A247-F7325CC0B2A5">
+                                            <File Id="Blend4MvvmLight.SL.zip"
+                                                    Name="MvvmLight.SL.zip"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL.zip" />
+                                            <File Id="Blend4MvvmLight.SL4.zip"
+                                                    Name="MvvmLight.SL4.zip"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL4.zip" />
+                                        </Component>
+                                    </Directory>
+
+                                    <Directory Id="Blend4ProjectTemplatesEnCsMvvmWp7"
+                                                Name="WindowsPhone">
+                                        <Component Id="Blend4ProjectTemplatesEnCsMvvmWp7Comp"
+                                                    DiskId="1"
+                                                    Guid="8D9A1985-E771-4AC1-A421-ED59EE68CEA8">
+                                            <File Id="Blend4MvvmLight.WP7.zip"
+                                                    Name="MvvmLight.WP7.zip"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP7.zip" />
+                                        </Component>
+
+                                        <Component Id="Blend4ProjectTemplatesEnCsMvvmWp71Comp"
+                                                    DiskId="1"
+                                                    Guid="f81891ff-beab-4fad-a324-f9c6978c401d">
+                                            <File Id="Blend4MvvmLight.WP71.zip"
+                                                    Name="MvvmLight.WP71.zip"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP71.zip" />
+                                        </Component>
+                                    </Directory>
+
+                                    <Directory Id="Blend4ProjectTemplatesEnCsMvvmWpf"
+                                                Name="WPF">
+                                        <Component Id="Blend4ProjectTemplatesEnCsMvvmWpfComp"
+                                                    DiskId="1"
+                                                    Guid="7B1EB150-BDD1-42F0-A5A7-369A3C7CACD2">
+                                            <File Id="Blend4MvvmLight.WPF.zip"
+                                                    Name="MvvmLight.WPF.zip"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WPF/MvvmLight.WPF.zip" />
+                                            <File Id="Blend4MvvmLight.WPF4.zip"
+                                                    Name="MvvmLight.WPF4.zip"
+                                                    Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WPF/MvvmLight.WPF4.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+
+                    <Directory Id="BlendPreviewForSilverlight5"
+                               Name="Blend Preview for Silverlight 5">
+                        <Directory Id="Blend4SL5ItemTemplates"
+                                   Name="ItemTemplates">
+                            <Directory Id="Blend4SL5ItemTemplatesEnCs"
+                                       Name="CSharp">
+                                <Directory Id="Blend4SL5ItemTemplatesEnCsMvvm"
+                                           Name="Mvvm">
+                                    <Directory Id="Blend4SL5ItemTemplatesEnCsMvvmSl"
+                                               Name="Silverlight">
+                                        <Component Id="Blend4SL5ItemTemplatesEnCsMvvmSlComp"
+                                                   DiskId="1"
+                                                   Guid="2FF866FB-41B7-4C37-89A6-BFA3BE92B58B">
+                                            <File Id="Blend4MvvmView.SL5.zip"
+                                                  Name="MvvmView.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmView.SL.zip" />
+                                            <File Id="Blend4MvvmViewModel.SL5.zip"
+                                                  Name="MvvmViewModel.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModel.SL.zip" />
+                                            <File Id="Blend4MvvmViewModelLocator.SL5.zip"
+                                                  Name="MvvmViewModelLocator.SL.zip"
+                                                  DiskId="1"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModelLocator.SL.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+
+                        <Directory Id="Blend4SL5ProjectTemplates"
+                                   Name="ProjectTemplates">
+                            <Directory Id="Blend4SL5ProjectTemplatesEnCs"
+                                       Name="CSharp">
+                                <Directory Id="Blend4SL5ProjectTemplatesEnCsMvvm"
+                                           Name="Mvvm">
+                                    <Directory Id="Blend4SL5ProjectTemplatesEnCsMvvmSl"
+                                               Name="Silverlight">
+                                        <Component Id="Blend4SL5ProjectTemplatesEnCsMvvmSlComp"
+                                                   DiskId="1"
+                                                   Guid="6A6EA09F-33D6-4F22-9A54-69B6E1E27EAC">
+                                            <File Id="Blend4MvvmLight.SL5.zip"
+                                                  Name="MvvmLight.SL5.zip"
+                                                  Source="../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL5.zip" />
+                                        </Component>
+                                    </Directory>
+                                </Directory>
+                            </Directory>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
+
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder"
+                           Name="MvvmLight"/>
+            </Directory>
+        </Directory>
+
+        <DirectoryRef Id="ApplicationProgramsFolder">
+            <Component Id="ApplicationShortcut"
+                       Guid="{4BB94CF9-DCBC-470B-A8EB-5C6DECC666BD}">
+                <Shortcut Id="BinariesFolderShortcut"
+                        Name="Binaries"
+                        Description="Go to the Binaries folder"
+                        Target="[BINARIES]"
+                        WorkingDirectory="BINARIES" />
+
+                <Shortcut Id="UninstallProduct"
+                          Name="Uninstall Mvvm Light"
+                          Description="Uninstalls MvvmLight"
+                          Target="[System64Folder]msiexec.exe"
+                          Arguments="/x [ProductCode]"/>
+
+                <RemoveFolder Id="ApplicationProgramsFolder"
+                              On="uninstall"/>
+
+                <RegistryValue Root="HKCU"
+                               Key="Software\GalaSoft\MvvmLight"
+                               Name="installed"
+                               Type="integer"
+                               Value="1"
+                               KeyPath="yes"/>
+            </Component>
+        </DirectoryRef>
+
+        <Feature Id="ProductFeature"
+                 Title="MVVM Light Toolkit V4 beta 1"
+                 Level="1"
+                 Description="The complete package."
+                 ConfigurableDirectory="INSTALLLOCATION"
+                 Display="expand">
+
+            <ComponentRef Id="ApplicationShortcut" />
+            <ComponentRef Id="PostSetup" />
+
+            <Feature Id="Binaries"
+                     Title="Binaries"
+                     Level="1"
+                     Description="MVVM Light binaries">
+                <Feature Id="Silverlight3Feature"
+                         Title="Silverlight 3"
+                         Level="1"
+                         Description="Silverlight 3 Assemblies">
+                    <ComponentRef Id="Silverlight3Components" />
+                    <ComponentRef Id="AssemblyFoldersExRegistry.SL3" />
+                    <Condition Level="0">NOT SL3SDKEXISTS</Condition>
+                </Feature>
+
+                <Feature Id="Silverlight4Feature"
+                         Title="Silverlight 4"
+                         Level="1"
+                         Description="Silverlight 4 Assemblies">
+                    <ComponentRef Id="Silverlight4Components" />
+                    <ComponentRef Id="AssemblyFoldersExRegistry.SL4" />
+                    <Condition Level="0">NOT SL4SDKEXISTS</Condition>
+                </Feature>
+
+                <Feature Id="Silverlight5Feature"
+                         Title="Silverlight 5"
+                         Level="1"
+                         Description="Silverlight 5 Assemblies">
+                    <ComponentRef Id="Silverlight5Components" />
+                    <ComponentRef Id="AssemblyFoldersExRegistry.SL5" />
+                    <Condition Level="0">NOT SL5SDKEXISTS</Condition>
+                </Feature>
+
+                <Feature Id="WP7Feature"
+                         Title="Windows Phone 7"
+                         Level="1"
+                         Description="Windows Phone 7.0 and 7.1 Assemblies">
+                    <ComponentRef Id="WP7Components" />
+                    <ComponentRef Id="AssemblyFoldersExRegistry.WP7" />
+                    <ComponentRef Id="WP71Components" />
+                    <ComponentRef Id="AssemblyFoldersExRegistry.WP71" />
+                    <Condition Level="0">NOT WP7TOOLSEXISTS</Condition>
+                </Feature>
+
+                <Feature Id="NET35SP1Feature"
+                         Title=".NET 3.5SP1"
+                         Level="1"
+                         Description=".NET 3.5SP1 WPF Assemblies">
+                    <ComponentRef Id="WPF35SP1Components" />
+                    <ComponentRef Id="AssemblyFoldersExRegistry.WPF35" />
+                    <Condition Level="0">(NOT VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED) AND (NOT VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED)</Condition>
+                </Feature>
+
+                <Feature Id="NET4Feature"
+                         Title=".NET 4"
+                         Level="1"
+                         Description=".NET 4 WPF Assemblies">
+                    <ComponentRef Id="WPF4Components" />
+                    <ComponentRef Id="AssemblyFoldersExRegistry.WPF4" />
+                    <Condition Level="0">NOT VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
+                </Feature>
+            </Feature>
+
+            <Feature Id="Templates"
+                     Title="Templates"
+                     Level="1"
+                     Description="Project and Item Templates.">
+                <Feature Id="vs2010"
+                         Level="1"
+                         Display="collapse"
+                         Title="VS2010"
+                         Description="Item and Project Templates for Visual Studio 2010">
+                    <Condition Level="0">NOT VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
+                    <ComponentRef Id="Vs10ProjectTemplatesCsSlMvvmSl5Comp" />
+                    <ComponentRef Id="Vs10ProjectTemplatesCsSlMvvmSl4Comp" />
+                    <ComponentRef Id="Vs10ProjectTemplatesCsSlMvvmSl3Comp" />
+                    <ComponentRef Id="Vs10ProjectTemplatesCsWpfMvvmWpfComp" />
+                    <ComponentRef Id="Vs10ProjectTemplatesCsWpfMvvmWpf4Comp" />
+                    <ComponentRef Id="Vs10ProjectTemplatesCsWpMvvmWp7Comp" />
+                    <ComponentRef Id="Vs10ProjectTemplatesCsWpMvvmWp71Comp" />
+                    <ComponentRef Id="Vs10ItemTemplatesCsSlMvvmSlComp" />
+                    <ComponentRef Id="Vs10ItemTemplatesCsWpMvvmWp7Comp"  />
+                    <ComponentRef Id="Vs10ItemTemplatesCsWpfMvvmWpfComp"  />
+                </Feature>
+
+                <Feature Id="vs2010x"
+                         Level="1"
+                         Display="collapse"
+                         Title="VS Express for WP7"
+                         Description="Item and Project Templates for Visual Studio 2010 Express for Windows Phone">
+                    <Condition Level="0">NOT VPDXEXISTS OR VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
+                    <ComponentRef Id="Vs10xProjectTemplatesCsWpMvvmWp7Comp" />
+                    <ComponentRef Id="Vs10xProjectTemplatesCsWpMvvmWp71Comp" />
+                    <ComponentRef Id="Vs10xItemTemplatesCsWpMvvmWp7Comp"  />
+                </Feature>
+
+                <Feature Id="vs2008"
+                         Level="1"
+                         Display="collapse"
+                         Title="VS2008">
+                    <Condition Level="0">NOT VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED</Condition>
+                    <ComponentRef Id="Vs08ProjectTemplatesCsSlMvvmSlComp" />
+                    <ComponentRef Id="Vs08ProjectTemplatesCsWpfMvvmWpfComp" />
+                    <ComponentRef Id="Vs08ItemTemplatesCsSlMvvmComp" />
+                    <ComponentRef Id="Vs08ItemTemplatesCsWpfMvvmWpfComp" />
+                </Feature>
+
+                <Feature Id="blend4"
+                         Level="1"
+                         Display="collapse"
+                         Title="Blend 4"
+                         Description="Item and Project Templates for Blend 4">
+                    <Condition Level="0">NOT BLEND4EXISTS</Condition>
+                    <ComponentRef Id="Blend4ProjectTemplatesEnCsMvvmSlComp" />
+                    <ComponentRef Id="Blend4ProjectTemplatesEnCsMvvmWp7Comp" />
+                    <ComponentRef Id="Blend4ProjectTemplatesEnCsMvvmWp71Comp" />
+                    <ComponentRef Id="Blend4ProjectTemplatesEnCsMvvmWpfComp" />
+                    <ComponentRef Id="Blend4ItemTemplatesEnCsMvvmSlComp" />
+                    <ComponentRef Id="Blend4ItemTemplatesEnCsMvvmWp7Comp" />
+                    <ComponentRef Id="Blend4ItemTemplatesEnCsMvvmWpfComp" />
+                </Feature>
+
+                <Feature Id="blend4sl5"
+                         Level="1"
+                         Display="collapse"
+                         Title="Blend preview for Silverlight 5"
+                         Description="Item and Project Templates for Blend for Silverlight 5">
+                    <Condition Level="0">NOT BLEND4SL5EXISTS</Condition>
+                    <ComponentRef Id="Blend4SL5ProjectTemplatesEnCsMvvmSlComp" />
+                    <ComponentRef Id="Blend4SL5ItemTemplatesEnCsMvvmSlComp" />
+                </Feature>
+            </Feature>
+
+            <Feature Id="VSSnippets"
+                     Title="Snippets"
+                     Level="1"
+                     Description="Code snippets"
+                     Display="collapse">
+                <ComponentRef Id="SnippetsCsComp" />
+                <Condition Level="0">(NOT VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED) AND (NOT VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED) AND (NOT VPDXEXISTS OR VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED)</Condition>
+            </Feature>
+
+            <!-- Note: The following ComponentGroupRef is required to pull in generated authoring from project references. -->
+            <ComponentGroupRef Id="Product.Generated" />
+        </Feature>
+
+        <!--Dialog settings-->
+        <UIRef Id="WixUI_FeatureTree" />
+
+        <!--WixUI_FeatureTree is similar to the full set but it doesn't allow the user to chose between setup types. It always assumes Custom and goes directly to the feature customization dialog after the user has accepted the license agreement.-->
+        <UIRef Id="WixUI_ErrorProgressText" />
+
+        <WixVariable Id="WixUILicenseRtf"
+                     Value="License.rtf" />
+
+        <!--See http://www.tramontana.co.hu/wix/lesson2.php#2.1-->
+        <WixVariable Id="WixUIBannerBmp"
+                     Value="WixUIBannerBmp.bmp" />
+
+        <WixVariable Id="WixUIDialogBmp"
+                     Value="WixUIDialogBmp.bmp" />
+
+        <UI>
+            <ProgressText Action="VS2010InstallVSTemplates">Updating Templates...</ProgressText>
+            <ProgressText Action="VS90InstallVSTemplates">Updating Templates...</ProgressText>
+            <ProgressText Action="VPD2010InstallVSTemplates">Updating Templates...</ProgressText>
+        </UI>
+
+        <CustomActionRef Id="VS2010InstallVSTemplates" />
+        <CustomActionRef Id="VS90InstallVSTemplates" />
+        <CustomActionRef Id="VPD2010InstallVSTemplates" />
+        
+        <CustomAction Id='PostSetupActionVS10User'
+                      Execute='deferred'
+                      Impersonate='yes'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i10u "[SNIPPETS];[VPDXINSTALL]'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostSetupActionVS10Machine'
+                      Execute='deferred'
+                      Impersonate='no'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i10m "[SNIPPETS];[VPDXINSTALL]'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostSetupActionVS08User'
+                      Execute='deferred'
+                      Impersonate='yes'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i08u "[SNIPPETS];[VPDXINSTALL]'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostSetupActionVS08Machine'
+                      Execute='deferred'
+                      Impersonate='no'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i08m "[SNIPPETS];[VPDXINSTALL]'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostSetupActionVs10x'
+                      Execute='deferred'
+                      Impersonate='no'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -i10x "[SNIPPETS];[VPDXINSTALL]'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostRemoveActionUser'
+                      Execute='deferred'
+                      Impersonate='yes'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -uu "[SNIPPETS];[VPDXINSTALL]'
+                      Directory='TARGETDIR' />
+
+        <CustomAction Id='PostRemoveActionMachine'
+                      Execute='deferred'
+                      Impersonate='no'
+                      ExeCommand='[AppDataFolder]\MvvmLight\ModifyRegistryKey.exe -um "[SNIPPETS];[VPDXINSTALL]'
+                      Directory='TARGETDIR' />
+
+        <InstallExecuteSequence>
+            <Custom Action="PostSetupActionVS10User"
+                    After="InstallFiles">(NOT REMOVE) AND (VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED)</Custom>
+            
+            <Custom Action="PostSetupActionVS08User"
+                    After="InstallFiles">(NOT REMOVE) AND (VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED)</Custom>
+
+            <Custom Action="PostSetupActionVS10Machine"
+                    After="InstallFiles">(NOT REMOVE) AND (VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED)</Custom>
+
+            <Custom Action="PostSetupActionVS08Machine"
+                    After="InstallFiles">(NOT REMOVE) AND (VS90_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED)</Custom>
+
+            <Custom Action="PostRemoveActionUser"
+                    Before="RemoveFiles">REMOVE="ALL"</Custom>
+
+            <Custom Action="PostRemoveActionMachine"
+                    Before="RemoveFiles">REMOVE="ALL"</Custom>
+
+            <Custom Action="PostSetupActionVs10x"
+                    After="InstallFiles">(NOT REMOVE) AND VPDXEXISTS AND (NOT VS2010_IDE_VCSHARP_PROJECTSYSTEM_INSTALLED)</Custom>
+        </InstallExecuteSequence>
+
+        <MajorUpgrade
+            Schedule="afterInstallInitialize"
+            DowngradeErrorMessage="A later version of MVVM Light is already installed. Setup will now exit." />
+
+        <UI />
+    </Product>
+</Wix>

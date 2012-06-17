@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>ViewModelLocator property</Title>
+      <Author>Laurent Bugnion (GalaSoft)</Author>
+      <Description>A ViewModel property to be added to a GalaSoft.MvvmLight.ViewModelLocator class. (V4.0.21.0)</Description>
+      <HelpUrl>http://www.galasoft.ch/mvvm</HelpUrl>
+      <Shortcut>mvvmlocatorproperty</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ViewModelType</ID>
+          <ToolTip>Type of the view model class</ToolTip>
+          <Default>ViewModelType</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ViewModelPropertyName</ID>
+          <ToolTip>Name of the ViewModel property</ToolTip>
+          <Default>ViewModelPropertyName</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[static ViewModelLocator()
+        {
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            SimpleIoc.Default.Register<$ViewModelType$>();$end$
+        }
+
+        /// <summary>
+        /// Gets the $ViewModelPropertyName$ property.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public $ViewModelType$ $ViewModelPropertyName$
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<$ViewModelType$>();
+            }
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (WP71)", "GalaSoft.MvvmLight (WP71)\GalaSoft.MvvmLight (WP71).csproj", "{7BC3C518-5E94-4FC3-92B5-01CC004D0936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (WP71)", "GalaSoft.MvvmLight.Extras (WP71)\GalaSoft.MvvmLight.Extras (WP71).csproj", "{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (WP71)", "GalaSoft.MvvmLight.Test (WP71)\GalaSoft.MvvmLight.Test (WP71).csproj", "{04792885-DC81-4430-8C43-96CA0A9A3F8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BC3C518-5E94-4FC3-92B5-01CC004D0936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BC3C518-5E94-4FC3-92B5-01CC004D0936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BC3C518-5E94-4FC3-92B5-01CC004D0936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BC3C518-5E94-4FC3-92B5-01CC004D0936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9873ACC3-BB36-4EFA-92EA-0FB502AA5740}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04792885-DC81-4430-8C43-96CA0A9A3F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04792885-DC81-4430-8C43-96CA0A9A3F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04792885-DC81-4430-8C43-96CA0A9A3F8F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{04792885-DC81-4430-8C43-96CA0A9A3F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04792885-DC81-4430-8C43-96CA0A9A3F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04792885-DC81-4430-8C43-96CA0A9A3F8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
