@@ -7,7 +7,7 @@
       </SnippetTypes>
       <Title>RelayCommand</Title>
       <Author>Laurent Bugnion (GalaSoft)</Author>
-      <Description>Creates and initializes a new generic RelayCommand with CanExecute delegate. (V4.0.21.0)</Description>
+      <Description>Creates and initializes a new RelayCommand with an Execute method and a CanExecute method. (V4.0.21.0)</Description>
       <HelpUrl>http://www.galasoft.ch/mvvm</HelpUrl>
       <Shortcut>mvvmrelaymethodcanexecute</Shortcut>
     </Header>
@@ -35,23 +35,29 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="csharp"><![CDATA[private ICommand $attribute$;
+      <Code Language="csharp"><![CDATA[private RelayCommand $attribute$;
 
         /// <summary>
         /// Gets the $commandname$.
         /// </summary>
-        public ICommand $commandname$
+        public RelayCommand $commandname$
         {
             get
             {
-                return $attribute$ 
-                    ?? ($attribute$ = new RelayCommand(
-                                          () =>
-                                          {
-                                              $end$
-                                          },
-                                          () => $canexecute$));
+                return $attribute$ ?? ($attribute$ = new RelayCommand(
+                    Execute$commandname$,
+                    CanExecute$commandname$));
             }
+        }
+
+        private void Execute$commandname$()
+        {
+            $end$
+        }
+
+        private bool CanExecute$commandname$()
+        {
+            return true;
         }]]></Code>
     </Snippet>
   </CodeSnippet>
