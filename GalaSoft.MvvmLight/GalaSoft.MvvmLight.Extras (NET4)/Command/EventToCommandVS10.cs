@@ -11,7 +11,6 @@
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0004</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -36,12 +35,6 @@ namespace GalaSoft.MvvmLight.Command
     /// <para>To access the EventArgs of the fired event, use a RelayCommand&lt;EventArgs&gt;
     /// and leave the CommandParameter and CommandParameterValue empty!</para>
     /// </summary>
-    ////[ClassInfo(typeof(EventToCommand),
-    ////  VersionString = "4.0.4",
-    ////  DateString = "201204151330",
-    ////  Description = "A Trigger used to bind any event to an ICommand.",
-    ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
-    ////  Email = "laurent@galasoft.ch")]
     public class EventToCommand : TriggerAction<DependencyObject>
     {
         /// <summary>

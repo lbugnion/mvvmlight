@@ -40,6 +40,9 @@ namespace GalaSoft.MvvmLight.Helpers
             set;
         }
 
+        /// <summary>
+        /// Get a value indicating whether the WeakFunc is static or not.
+        /// </summary>
         public bool IsStatic
         {
             get

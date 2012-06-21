@@ -11,7 +11,6 @@
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0001</LastBaseLevel>
 // ****************************************************************************
 // This partial class contains the WPF-only implementation. See
 // EventToCommand.cs for the shared implementation, and EventToCommand.SL.cs

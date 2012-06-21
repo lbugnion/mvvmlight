@@ -36,7 +36,7 @@ namespace GalaSoft.MvvmLight.Command
     /// </summary>
     ////[ClassInfo(typeof(RelayCommand),
     ////  VersionString = "4.0.11",
-    ////  DateString = "201204151330",
+    ////  DateString = "201206191330",
     ////  Description = "A command whose sole purpose is to relay its functionality to other objects by invoking delegates.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]

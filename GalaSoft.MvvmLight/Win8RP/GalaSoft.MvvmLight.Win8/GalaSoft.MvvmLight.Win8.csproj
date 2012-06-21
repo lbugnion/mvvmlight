@@ -173,11 +173,6 @@
     <Compile Include="Messaging\Messenger.Win8.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\GalaSoft.MvvmLight %28NET35%29\License.txt">
-      <Link>License.txt</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="GalaSoft.MvvmLight.Win8.snk" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
