@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0003</LastBaseLevel>
+// <LastBaseLevel>BL0005</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -35,8 +35,8 @@ namespace GalaSoft.MvvmLight.Ioc
     /// been extended with additional features.
     /// </summary>
     //// [ClassInfo(typeof(SimpleIoc),
-    ////  VersionString = "4.0.3",
-    ////  DateString = "201204151330",
+    ////  VersionString = "4.0.5",
+    ////  DateString = "201206191330",
     ////  Description = "A very simple IOC container.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]

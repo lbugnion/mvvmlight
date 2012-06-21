@@ -20,7 +20,7 @@ namespace GalaSoft.MvvmLight.Helpers
     /// useful if you store multiple WeakFunc{T} instances but don't know in advance
     /// what type T represents.
     /// </summary>
-    ////[ClassInfo(typeof(WeakFunc))]
+    ////[ClassInfo(typeof(WeakAction))]
     public interface IExecuteWithObjectAndResult
     {
         /// <summary>
