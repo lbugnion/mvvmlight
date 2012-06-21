@@ -283,6 +283,11 @@
             method is anonymous.
             </summary>
         </member>
+        <member name="P:GalaSoft.MvvmLight.Helpers.WeakAction.IsStatic">
+            <summary>
+            Gets a value indicating whether the WeakAction is static or not.
+            </summary>
+        </member>
         <member name="P:GalaSoft.MvvmLight.Helpers.WeakAction.IsAlive">
             <summary>
             Gets a value indicating whether the Action's owner is still alive, or if it was collected
@@ -703,6 +708,12 @@
             </summary>
             <param name="action">The action that will be executed on the UI
             thread.</param>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.InvokeAsync(System.Action)">
+            <summary>
+            Invokes an action asynchronously on the UI thread.
+            </summary>
+            <param name="action">The action that must be executed.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize">
             <summary>
@@ -1171,6 +1182,11 @@
             <summary>
             Gets or sets the <see cref="T:System.Reflection.MethodInfo"/> corresponding to this WeakFunc's
             method passed in the constructor.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Helpers.WeakFunc`1.IsStatic">
+            <summary>
+            Get a value indicating whether the WeakFunc is static or not.
             </summary>
         </member>
         <member name="P:GalaSoft.MvvmLight.Helpers.WeakFunc`1.MethodName">
