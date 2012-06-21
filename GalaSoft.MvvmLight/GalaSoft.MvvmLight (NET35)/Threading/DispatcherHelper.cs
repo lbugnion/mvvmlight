@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0003</LastBaseLevel>
+// <LastBaseLevel>BL0004</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -35,8 +35,8 @@ namespace GalaSoft.MvvmLight.Threading
     /// Helper class for dispatcher operations on the UI thread.
     /// </summary>
     //// [ClassInfo(typeof(DispatcherHelper),
-    ////  VersionString = "4.0.3",
-    ////  DateString = "201204151330",
+    ////  VersionString = "4.0.4",
+    ////  DateString = "201206191330",
     ////  Description = "Helper class for dispatcher operations on the UI thread.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -87,7 +87,11 @@ namespace GalaSoft.MvvmLight.Threading
             }
         }
 
-        public static void InvokeAsync(object sender, Action action)
+        /// <summary>
+        /// Invokes an action asynchronously on the UI thread.
+        /// </summary>
+        /// <param name="action">The action that must be executed.</param>
+        public static void InvokeAsync(Action action)
         {
 #if NETFX_CORE
             UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());

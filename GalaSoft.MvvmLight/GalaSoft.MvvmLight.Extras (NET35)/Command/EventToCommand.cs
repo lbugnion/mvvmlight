@@ -34,7 +34,7 @@ namespace GalaSoft.MvvmLight.Command
     /// </summary>
     ////[ClassInfo(typeof(EventToCommand),
     ////  VersionString = "4.0.4",
-    ////  DateString = "201204151330",
+    ////  DateString = "201206191330",
     ////  Description = "A Trigger used to bind any event to an ICommand.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
