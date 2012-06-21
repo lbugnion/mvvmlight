@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0014</LastBaseLevel>
+// <LastBaseLevel>BL0015</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -24,8 +24,8 @@ namespace GalaSoft.MvvmLight.Helpers
     /// to be created to the Action's owner. The owner can be garbage collected at any time.
     /// </summary>
     ////[ClassInfo(typeof(WeakAction),
-    ////    VersionString = "4.0.0.0/BL0014",
-    ////    DateString = "201109042117",
+    ////    VersionString = "4.0.15",
+    ////    DateString = "201206191330",
     ////    Description = "A class allowing to store and invoke actions without keeping a hard reference to the action's target.",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
@@ -100,6 +100,9 @@ namespace GalaSoft.MvvmLight.Helpers
             set;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the WeakAction is static or not.
+        /// </summary>
         public bool IsStatic
         {
             get
@@ -255,10 +258,13 @@ namespace GalaSoft.MvvmLight.Helpers
                 return;
             }
 
+            var actionTarget = ActionTarget;
+
             if (IsAlive)
             {
                 if (Method != null
-                    && ActionReference != null)
+                    && ActionReference != null
+                    && actionTarget != null)
                 {
                     Method.Invoke(ActionTarget, null);
                     return;

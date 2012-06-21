@@ -11,7 +11,7 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0013</LastBaseLevel>
+// <LastBaseLevel>BL0014</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -35,8 +35,8 @@ namespace GalaSoft.MvvmLight
     /// A base class for the ViewModel classes in the MVVM pattern.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase),
-    ////  VersionString = "4.0.13",
-    ////  DateString = "201204151330",
+    ////  VersionString = "4.0.14",
+    ////  DateString = "201206191330",
     ////  Description = "A base class for the ViewModel classes in the MVVM pattern.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
