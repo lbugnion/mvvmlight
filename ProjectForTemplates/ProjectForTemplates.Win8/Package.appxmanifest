@@ -6,15 +6,15 @@
             Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>ProjectForTemplates.Win8</DisplayName>
+    <DisplayName>ProjectForTemplates</DisplayName>
     <PublisherDisplayName>Laurent</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
-    <Description>ProjectForTemplates.Win8</Description>
+    <Description>$projectname$</Description>
   </Properties>
 
   <Prerequisites>
-    <OSMinVersion>6.2</OSMinVersion>
-    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+    <OSMinVersion>6.2.0</OSMinVersion>
+    <OSMaxVersionTested>6.2.0</OSMaxVersionTested>
   </Prerequisites>
 
   <Resources>
@@ -24,14 +24,14 @@
   <Applications>
     <Application Id="App"
         Executable="$targetnametoken$.exe"
-        EntryPoint="ProjectForTemplates.Win8.App">
+        EntryPoint="ProjectForTemplates.App">
         <VisualElements
-            DisplayName="ProjectForTemplates.Win8"
+            DisplayName="ProjectForTemplates"
             Logo="Assets\Logo.png"
             SmallLogo="Assets\SmallLogo.png"
-            Description="ProjectForTemplates.Win8"
+            Description="ProjectForTemplates"
             ForegroundText="light"
-            BackgroundColor="#222222">
+            BackgroundColor="#464646">
             <DefaultTile ShowName="allLogos" />
             <SplashScreen Image="Assets\SplashScreen.png" />
         </VisualElements>

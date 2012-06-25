@@ -12,11 +12,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace $safeprojectname$
+namespace $rootnamespace$
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class $safeitemname$ : Page
     {
-        public MainPage()
+        public $safeitemname$()
         {
             this.InitializeComponent();
         }

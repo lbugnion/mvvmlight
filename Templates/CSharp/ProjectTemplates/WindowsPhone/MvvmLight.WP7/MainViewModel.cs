@@ -9,7 +9,7 @@ namespace $safeprojectname$.ViewModel
     /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
     /// </para>
     /// <para>
-    /// See http://www.galasoft.ch/mvvm/getstarted
+    /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
     public class MainViewModel : ViewModelBase

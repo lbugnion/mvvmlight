@@ -23,7 +23,7 @@ namespace $rootnamespace$
     /// to this locator.
     /// </para>
     /// <para>
-    /// See http://www.galasoft.ch/mvvm/getstarted
+    /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
     public class $safeitemname$

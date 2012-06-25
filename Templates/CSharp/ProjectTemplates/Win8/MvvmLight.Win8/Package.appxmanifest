@@ -4,23 +4,23 @@
   <Identity Name="$guid9$"
             Publisher="CN=$username$"
             Version="1.0.0.0" />
-  
+
   <Properties>
     <DisplayName>$projectname$</DisplayName>
     <PublisherDisplayName>$username$</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
     <Description>$projectname$</Description>
   </Properties>
-  
+
   <Prerequisites>
-    <OSMinVersion>6.2</OSMinVersion>
-    <OSMaxVersionTested>6.2</OSMaxVersionTested>
+    <OSMinVersion>6.2.0</OSMinVersion>
+    <OSMaxVersionTested>6.2.0</OSMaxVersionTested>
   </Prerequisites>
-  
+
   <Resources>
-    <Resource Language="en-us"/>
+    <Resource Language="x-generate"/>
   </Resources>
-  
+
   <Applications>
     <Application Id="App" 
         Executable="$targetnametoken$.exe" 
@@ -31,7 +31,8 @@
             SmallLogo="Assets\SmallLogo.png"
             Description="$projectname$"
             ForegroundText="light"
-            BackgroundColor="#222222">
+            BackgroundColor="#464646">
+            <DefaultTile ShowName="allLogos" />
             <SplashScreen Image="Assets\SplashScreen.png" />
         </VisualElements>
     </Application>

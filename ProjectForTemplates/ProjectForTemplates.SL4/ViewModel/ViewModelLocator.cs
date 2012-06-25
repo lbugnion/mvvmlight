@@ -24,7 +24,7 @@ namespace ProjectForTemplates.ViewModel
     /// to this locator.
     /// </para>
     /// <para>
-    /// See http://www.galasoft.ch/mvvm/getstarted
+    /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
     public class ViewModelLocator

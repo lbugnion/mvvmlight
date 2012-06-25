@@ -1,0 +1,25 @@
+<VSTemplate Version="3.0.0"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            Type="Item">
+    <TemplateData>
+        <Name>MvvmView (Win8)</Name>
+        <Description>A view used in a WinRT MVVM application (by GalaSoft Laurent Bugnion)</Description>
+        <Icon>MvvmLight.ico</Icon>
+        <PreviewImage>MvvmLight.png</PreviewImage>
+        <ProjectType>CSharp</ProjectType>
+		<TemplateGroupID>WinRT-Managed</TemplateGroupID>
+        <DefaultName>MvvmView.xaml</DefaultName>
+        <SortOrder>2</SortOrder>
+		<ShowByDefault>false</ShowByDefault>
+        <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+    </TemplateData>
+    <TemplateContent>
+        <ProjectItem ItemType="Page" 
+                     SubType="Designer" 
+                     CustomTool="MSBuild:Compile" 
+                     TargetFileName="$fileinputname$.xaml"
+                     ReplaceParameters="true">ViewTemplate.xaml</ProjectItem>
+        <ProjectItem TargetFileName="$fileinputname$.xaml.cs"
+                     ReplaceParameters="true">ViewTemplate.xaml.cs</ProjectItem>
+    </TemplateContent>
+</VSTemplate>

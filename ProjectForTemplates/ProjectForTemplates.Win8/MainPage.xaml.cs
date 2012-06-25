@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace ProjectForTemplates.Win8
+namespace ProjectForTemplates
 {
     public sealed partial class MainPage : Page
     {

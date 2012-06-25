@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProjectForTemplates.Win8.Model
+namespace ProjectForTemplates.Model
 {
     public class DataService : IDataService
     {

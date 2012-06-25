@@ -1,10 +1,19 @@
 using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using GalaSoft.MvvmLight.Threading;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
 namespace $safeprojectname$
 {
@@ -31,6 +40,14 @@ namespace $safeprojectname$
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            // Do not repeat app initialization when already running, just ensure that
+            // the window is active
+            if (args.PreviousExecutionState == ApplicationExecutionState.Running)
+            {
+                Window.Current.Activate();
+                return;
+            }
+
             if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
             {
                 //TODO: Load state from previously suspended application
@@ -38,13 +55,16 @@ namespace $safeprojectname$
 
             // Create a Frame to act navigation context and navigate to the first page
             var rootFrame = new Frame();
-            rootFrame.Navigate(typeof(MainPage));
+            if (!rootFrame.Navigate(typeof(MainPage)))
+            {
+                throw new Exception("Failed to create initial page");
+            }
 
             // Place the frame in the current Window and ensure that it is active
             Window.Current.Content = rootFrame;
             Window.Current.Activate();
-			
-			DispatcherHelper.Initialize();
+
+            DispatcherHelper.Initialize();
         }
 
         /// <summary>
@@ -54,9 +74,11 @@ namespace $safeprojectname$
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        void OnSuspending(object sender, SuspendingEventArgs e)
+        private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
+            deferral.Complete();
         }
     }
 }
