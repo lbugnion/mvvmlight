@@ -1,7 +1,7 @@
 ﻿/*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocatorTemplate xmlns:vm="using:ProjectForTemplates.ViewModel"
+      <vm:$safeitemname$ xmlns:vm="using:$rootnamespace$"
                                    x:Key="Locator" />
   </Application.Resources>
   
@@ -12,9 +12,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using $safeprojectname$.Model;
 
-namespace $safeprojectname$.ViewModel
+namespace $rootnamespace$
 {
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -27,19 +26,19 @@ namespace $safeprojectname$.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class ViewModelLocator
+    public class $safeitemname$
     {
-        static ViewModelLocator()
+        static $safeitemname$()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
+                // SimpleIoc.Default.Register<IDataService, Design.DesignDataService>();
             }
             else
             {
-                SimpleIoc.Default.Register<IDataService, DataService>();
+                // SimpleIoc.Default.Register<IDataService, DataService>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
@@ -57,13 +56,6 @@ namespace $safeprojectname$.ViewModel
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
-        }
-
-        /// <summary>
-        /// Cleans up all the resources.
-        /// </summary>
-        public static void Cleanup()
-        {
         }
     }
 }

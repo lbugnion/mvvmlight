@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
-using ProjectForTemplates.Win8.Model;
+using ProjectForTemplates.Model;
 
-namespace ProjectForTemplates.Win8.ViewModel
+namespace ProjectForTemplates.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -9,7 +9,7 @@ namespace ProjectForTemplates.Win8.ViewModel
     /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
     /// </para>
     /// <para>
-    /// See http://www.galasoft.ch/mvvm/getstarted
+    /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
     public class MainViewModel : ViewModelBase

@@ -1,10 +1,11 @@
-﻿<Application x:Class="ProjectForTemplates.Win8.App"
+﻿<Application x:Class="ProjectForTemplates.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:vm="using:ProjectForTemplates.Win8.ViewModel">
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:ignore="http://www.ignore.com"
+             mc:Ignorable="d ignore"
+             xmlns:vm="using:ProjectForTemplates.ViewModel">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -13,7 +14,7 @@
                                  d:IsDataSource="True" />
 
             <ResourceDictionary.MergedDictionaries>
-
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
                 <!-- 
                     Styles that define common aspects of the platform look and feel
                     Required by Visual Studio project and item templates

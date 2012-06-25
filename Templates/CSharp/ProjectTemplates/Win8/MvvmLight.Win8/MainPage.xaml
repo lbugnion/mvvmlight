@@ -8,6 +8,7 @@
       d:DesignHeight="768"
       d:DesignWidth="1366"
       DataContext="{Binding Main, Source={StaticResource Locator}}">
+    
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,8 +17,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid  Background="{StaticResource ApplicationPageBackgroundBrush}">
-
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <TextBlock FontSize="56"
                    Text="{Binding WelcomeTitle}"
                    VerticalAlignment="Top"
@@ -26,5 +26,4 @@
                    Margin="120,49,0,0" />
 
     </Grid>
-
 </Page>

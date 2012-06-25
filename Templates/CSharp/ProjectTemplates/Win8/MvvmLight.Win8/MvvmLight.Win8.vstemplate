@@ -59,18 +59,6 @@
 			<ProjectItem ReplaceParameters="false" 
                          TargetFileName="MvvmLight.Win8_TemporaryKey.pfx">MvvmLight.Win8_TemporaryKey.pfx</ProjectItem>
 			<ProjectItem ReplaceParameters="true" 
-			             TargetFileName="Common\BindableBase.cs">BindableBase.cs</ProjectItem>
-			<ProjectItem ReplaceParameters="true" 
-			             TargetFileName="Common\BooleanNegationConverter.cs">BooleanNegationConverter.cs</ProjectItem>
-			<ProjectItem ReplaceParameters="true" 
-			             TargetFileName="Common\BooleanToVisibilityConverter.cs">BooleanToVisibilityConverter.cs</ProjectItem>
-			<ProjectItem ReplaceParameters="true" 
-			             TargetFileName="Common\LayoutAwarePage.cs">LayoutAwarePage.cs</ProjectItem>
-			<ProjectItem ReplaceParameters="true" 
-			             TargetFileName="Common\ReadMe.txt">ReadMe.txt</ProjectItem>
-			<ProjectItem ReplaceParameters="true" 
-			             TargetFileName="Common\RichTextColumns.cs">RichTextColumns.cs</ProjectItem>
-			<ProjectItem ReplaceParameters="true" 
 			             TargetFileName="Common\StandardStyles.xaml">StandardStyles.xaml</ProjectItem>
         </Project>
     </TemplateContent>

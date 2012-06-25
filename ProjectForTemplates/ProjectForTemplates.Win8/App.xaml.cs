@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace ProjectForTemplates.Win8
+namespace ProjectForTemplates
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -28,8 +28,8 @@ namespace ProjectForTemplates.Win8
         /// </summary>
        public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -40,6 +40,14 @@ namespace ProjectForTemplates.Win8
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            // Do not repeat app initialization when already running, just ensure that
+            // the window is active
+            if (args.PreviousExecutionState == ApplicationExecutionState.Running)
+            {
+                Window.Current.Activate();
+                return;
+            }
+
             if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
             {
                 //TODO: Load state from previously suspended application
@@ -47,7 +55,10 @@ namespace ProjectForTemplates.Win8
 
             // Create a Frame to act navigation context and navigate to the first page
             var rootFrame = new Frame();
-            rootFrame.Navigate(typeof(MainPage));
+            if (!rootFrame.Navigate(typeof(MainPage)))
+            {
+                throw new Exception("Failed to create initial page");
+            }
 
             // Place the frame in the current Window and ensure that it is active
             Window.Current.Content = rootFrame;
@@ -63,9 +74,11 @@ namespace ProjectForTemplates.Win8
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        void OnSuspending(object sender, SuspendingEventArgs e)
+        private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
+            deferral.Complete();
         }
     }
 }
