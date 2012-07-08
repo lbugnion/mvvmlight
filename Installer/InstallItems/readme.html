@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>MVVM Light Toolkit</title>
+        <link rel="Stylesheet" type="text/css" href="html/gslb.global.css" />
+        <link rel="Stylesheet" type="text/css" href="html/gslb.mvvm.css" />
+    </head>
+
+    <body>
+        <div id="headerbackground" style="background-color:black;">
+            <div id="header">
+                <img src="html/header.png" 
+                     style="margin-left: -62px"
+                     alt="MVVM Light Toolkit by Laurent Bugnion"
+                     title="MVVM Light Toolkit by Laurent Bugnion (GalaSoft)" />
+            </div>
+        </div>
+  
+        <div id="main">
+            <div id="content" class="widebox">
+
+                <h1>MVVM Light Toolkit V4.0</h1>
+      
+                <div class="subnavigation" style="margin-top: 10px;">
+                    <strong>Jump to:</strong>
+                    <a href="#welcome">Welcome</a> /
+                    <a href="#installing">Installing</a> /
+                    <a href="#moreinfo">More info</a> /
+                    <a href="#videos">Videos</a> /
+                    <a href="#uninstalling">Uninstalling</a> /
+                    <a href="#seeagain">Find this page</a>
+                </div>
+
+                <h2><a id="welcome"></a>Welcome to a new version of MVVM Light Toolkit!</h2>
+
+                <p>You just installed the DLLs and code snippets of MVVM Light Toolkit. Thanks for your support! 
+                Now you can follow a few simple steps to have a complete development 
+                environment.</p>
+
+                <h2><a id="installing"></a>Installing the project and item templates</h2>
+
+                <p>In order to create new projects, new views and objects easily in Visual Studio and in Expression Blend, you
+                can install project templates and item templates. Since V4, MVVM Light uses the Visual Studion Extension Manager (VSIX)
+                to install the templates.</p>
+            
+                <ul class="squarelist">
+                    <li>Load the VSIX file corresponding to your Visual Studio environment.<ul class="squarelist">
+                        <li style="margin-top:10px;"><a href="VSIX/MvvmLight.VS2012.vsix">Visual Studio 2012</a> Pro, Premium, 
+                            Ultimate (Silverlight, WPF, WinRT)</li>
+                        <li><a href="VSIX/MvvmLight.MetroExpress2012.vsix">Visual Studio Express 2012</a> for Windows 8 (WinRT Metro only)</li>
+                        <li><a href="VSIX/MvvmLight.VS2010.vsix">Visual Studio 2010</a> Pro, Premium, Ultimate (Silverlight, WPF, Windows Phone)</li>
+                        <li><a href="VSIX/MvvmLight.WPFExpress2010.vsix">Visual Studio 2010 Express</a> for C# (WPF only)</li>
+                        <li><a href="VSIX/MvvmLight.SilverlightExpress2010.vsix">Visual Studio 2010 Express</a> for Web (Silverlight only)</li>
+                        </ul>
+                    </li>
+                    <li>Execute the VSIX file you just saved.</li>
+                    <li>Confirm the installation.</li>
+                </ul>
+
+                <h3>What about Expression Blend?</h3>
+                
+                <p>Project and Item templates for Expression Blend 4 (Silverlight 3 and 4, WPF, Windows Phone 7) are
+                installed automatically, as well as for Expression Blend 4 for Silverlight 5 (Silverlight 5 only).</p>
+
+                <p>There are no MVVM Light templates for Expression Blend 5 (for WinRT Metro style applications) at this time.
+                As a workaround, create the new MVVM Light application in Visual Studio 2012, and then open the project in Blend 5.</p>
+
+                <h3>What about Visual Studio Express 2010 for Windows Phone?</h3>
+               
+                <p>This version of Visual Studio Express does not support Extension Manager. If you have this version installed and do
+                    not have Visual Studio Prp, Premium or Ultimate installed, please select "Visual Phone Developer Express" under "Templates"
+                    in the installer main window.</p>
+
+                <img src="html/installer1.png"
+                     alt="Templates for Visual Studio Express 2010 for Windows Phone" 
+                     title="Templates for Visual Studio Express 2010 for Windows Phone" />
+
+                <h3 style="margin-top: 20px;">What about Visual Studio 2008</h3>
+                
+                <p>Visual Studio 2008 is not supported by the MVVM Light Toolkit installer. For a manual installation, please
+                    refer to <a href="http://www.galasoft.ch/mvvm/legacy">our legacy page</a>.</p>
+
+                <h3><a id="moreinfo"></a>More information</h3>
+
+                <p>You can find more information about MVVM Light V4 at the following locations:</p>
+
+                <ul class="squarelist" style="margin-top: -10px;">
+                    <li><a href="http://galasoft.ch/mvvm/installing/changes">V4 change log</a></li>
+                    <li><a href="http://galasoft.ch/mvvm/">MVVM Light Toolkit homepage</a></li>
+                    <li><a href="http://mvvmlight.codeplex.com/">Codeplex site</a></li>
+                    <li><a href="http://www.galasoft.ch/mvvm/creating/">Creating a new application in Visual Studio</a></li>
+                    <li><a href="http://www.galasoft.ch/mvvm/creatingblend/">Creating a new application in Expression Blend</a></li>
+                    <li><a href="http://www.galasoft.ch/mvvm/building/">Getting and building the source code</a></li>
+                </ul>
+
+                <h3 style="margin-top: 20px;"><a id="videos"></a>Videos about MVVM and the toolkit</h3>
+        
+                <ul class="squarelist">
+                    <li><a href="http://www.galasoft.ch/mvvmvideo1">Understanding the MVVM pattern</a></li>
+                    <li><a href="http://www.galasoft.ch/mvvmvideo2">Deep Dive MVVM</a></li>
+                    <li><a href="http://www.galasoft.ch/mvvmvideo3">MVVM Applied: From Silverlight to 
+                            Windows Phone to Windows 8</a></li>
+                </ul>
+        
+                <h2><a id="uninstalling"></a>Uninstalling MVVM Light</h2>
+        
+                <p>The MVVM Light binaries and snippets are removed from the Programs and Features control panel in Windows. Templates
+                are removed using the Extensions and Updates menu in Visual Studio 2012 (Extension Manager in Visual Studio 2010).</p>
+
+                <h3>Binaries and snippets</h3>
+        
+                <img src="html/ProgramsAndFeatures.png" 
+                     alt="Programs and Features" 
+                     title="Programs and Features" />
+        
+                <p>&nbsp;</p>
+
+                <h3>Templates</h3>
+        
+                <img src="html/ExtensionManager1.png" 
+                     alt="Extension Manager" 
+                     title="Extension Manager" />
+                <img src="html/ExtensionManager2.png" 
+                     alt="Extension Manager" 
+                     style="margin-top:20px;"
+                     title="Extension Manager" />
+        
+                <h2 style="margin-top: 20px;"><a id="seeagain"></a>To see this page again</h2>
+        
+                <p>Should you need to see this page again, use the Start menu to locate the MVVM Light
+                    program group, and click the readme shortcut.</p>
+                    
+                <p>On Windows 7, open the Start menu, then show all programs and expand the MVVM Light folder.</p>
+                
+                <p>On Windows 8, press the Start button to open the Start menu, then open the application
+                bar and press the All Applications button. Scroll to see the MVVM Light program group.</p>
+                    
+                <h3>Windows 7</h3>
+                
+                <img src="html/startmenu1.png" 
+                     alt="Start menu in Windows 7" 
+                     title="Start menu in Windows 7" />
+
+                <h3 style="margin-top:30px;">Windows 8</h3>
+
+                <img src="html/startmenu2.png" 
+                     alt="All Applications in Windows 8" 
+                     title="All Applications in Windows 8" />
+                <img src="html/startmenu3.png" 
+                     alt="MVVM Light program group in Windows 8" 
+                     style="margin-top:20px;"
+                     title="MVVM Light program group in Windows 8" />
+            </div>
+    
+            <div id="sidebar">
+                <div id="awards" class="narrowboxnoborder" style="margin-top:20px;">
+                    <a href="http://www.galasoft.ch/mvvm"><img src="html/MVVM_BlackText_190x147.png" /></a>
+                    <a href="/mvvm/donate/"><img src="https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate to MVVM Light Toolkit" style="margin-bottom: 0px;" /></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

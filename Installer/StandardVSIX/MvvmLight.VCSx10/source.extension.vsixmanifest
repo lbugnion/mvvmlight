@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Vsix Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
+    <Identifier Id="5862fabf-d5bd-45fc-ba04-64637cbfad2b">
+        <Name>MVVM Light Toolkit Templates</Name>
+        <Author>Laurent Bugnion (GalaSoft)</Author>
+        <Version>4.0.23.0</Version>
+        <Description xml:space="preserve">The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Windows 8, Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed.</Description>
+        <Locale>1033</Locale>
+        <MoreInfoUrl>http://www.galasoft.ch/mvvm</MoreInfoUrl>
+        <License>License.rtf</License>
+        <Icon>Icon Purple 100x100.png</Icon>
+        <PreviewImage>MvvmLight.png</PreviewImage>
+        <InstalledByMsi>false</InstalledByMsi>
+        <SupportedProducts>
+            <VisualStudio Version="10.0">
+                <Edition>VCSExpress</Edition>
+            </VisualStudio>
+        </SupportedProducts>
+        <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+    </Identifier>
+    <References />
+    <Content>
+        <VsPackage>|%CurrentProject%;PkgdefProjectOutputGroup|</VsPackage>
+        <ProjectTemplate>ProjectTemplates</ProjectTemplate>
+        <ItemTemplate>ItemTemplates</ItemTemplate>
+    </Content>
+</Vsix>

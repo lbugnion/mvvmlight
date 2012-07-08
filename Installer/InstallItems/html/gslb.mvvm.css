@@ -1,0 +1,73 @@
+﻿a
+{
+    color: #2F56C1;
+}
+        
+h1 a:hover
+{
+    color: #2F56C1;
+}
+
+h2 a:hover
+{
+    color: #2F56C1;
+}
+
+div#headerbackground
+{
+    background-color: Black;
+}
+
+.widebox 
+{
+    width: 550px;
+}
+
+div#navigation a:hover
+{
+    color: #2F56C1;
+}
+
+div#navigation a.selectednavigationlink
+{
+    color: #2F56C1;
+}
+
+div.subnavigation
+{
+    color: #2F56C1;
+}
+
+div.subnavigation a
+{
+    color: #2F56C1;
+}
+
+.widebox
+{
+  left: 120px;
+  top: -2px;
+  width: 501px;
+}
+
+.frame
+{
+    border: solid 1px #2F56C1;
+    background-color: #E3EAFF;
+}
+
+#sidebar .narrowbox
+{
+  left: -90px;
+  border: solid #2F56C1 1px;
+}
+
+#sidebar .narrowbox h1
+{
+  background-color: #E3EAFF;
+}
+
+#sidebar .narrowboxnoborder
+{
+  left: -90px;
+}

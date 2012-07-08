@@ -61,3 +61,6 @@ glob:*.mdf
 glob:Installer/Win8Installer/_ReSharper.Installer/
 glob:GalaSoft.MvvmLight/_ReSharper.GalaSoft.MvvmLight (SL5)/
 glob:Installer/Standard/_ReSharper.Installer/
+Installer/StandardMSI/_ReSharper.Installer/
+Installer/StandardVSIX/_ReSharper.MvvmLight.VS10/
+Installer/StandardVSIX/_ReSharper.MvvmLight.VS11/
