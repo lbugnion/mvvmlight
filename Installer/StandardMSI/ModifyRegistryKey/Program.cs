@@ -10,7 +10,7 @@ namespace ModifyRegistryKey
     // This installs a registry key to register the snippets folder with Visual Studio.
     class Program
     {
-        private const string LogPath = "c:\\temp\\mvvmlightlog.txt";
+        private const string LogPath = "c:\\mvvmlighttempo\\mvvmlightlog.txt";
 
         private const string InstallActionVs11User = "-i11u";
         private const string InstallActionVs11Machine = "-i11m";
@@ -130,88 +130,6 @@ namespace ModifyRegistryKey
                 RunInstall(args[0], args[1]);
             }
         }
-
-        //private const string MvvmLightFolderName = "MvvmLight";
-
-        //private static void RunUninstallVs10X()
-        //{
-        //    Log("RunInstallVs10x");
-            
-        //    try
-        //    {
-        //        var personalFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        //        var destinationSnippetsRootFolder = Path.Combine(personalFolderPath, PersonalFolderVs10SnippetsPath);
-
-        //        var allLanguages = Directory.GetDirectories(destinationSnippetsRootFolder);
-
-        //        foreach (var language in allLanguages)
-        //        {
-        //            Log("In " + language);
-                   
-        //            var mvvmLightFolderPath = Path.Combine(language, MvvmLightFolderName);
-
-        //            if (Directory.Exists(mvvmLightFolderPath))
-        //            {
-        //                Log("Deleting " + mvvmLightFolderPath);
-        //                Directory.Delete(mvvmLightFolderPath, true);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log("Error when uninstalling snippets for VS10 Express. Please contact laurent@galasoft.ch. Sorry...");
-        //        Log(ex.Message);
-        //    }
-        //}
-
-        //private static void RunInstallVs10X(string snippetsPath)
-        //{
-        //    Log("RunInstallVs10x");
-            
-        //    try
-        //    {
-        //        var personalFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        //        var destinationSnippetsRootFolder = Path.Combine(personalFolderPath, PersonalFolderVs10SnippetsPath);
-
-        //        var allLanguages = Directory.GetDirectories(destinationSnippetsRootFolder);
-
-        //        foreach (var language in allLanguages)
-        //        {
-        //            var languageFolder = new DirectoryInfo(Path.Combine(language, MvvmLightFolderName));
-
-        //            Log("In " + languageFolder.FullName);
-                    
-        //            var sourceSnippetsFolders = Directory.GetDirectories(snippetsPath);
-
-        //            Log(string.Format("Found {0} folders in {1}", sourceSnippetsFolders.Length, snippetsPath));
-                    
-        //            if (!languageFolder.Exists)
-        //            {
-        //                Log(string.Format("Creating {0}", languageFolder.FullName));
-        //                languageFolder.Create();
-        //            }
-
-        //            foreach (var sourceSnippetsFolder in sourceSnippetsFolders)
-        //            {
-        //                var snippets = Directory.GetFiles(sourceSnippetsFolder, "*.snippet");
-        //                Log(string.Format("{0} files found in {1}", snippets.Length, snippetsPath));
-                        
-        //                foreach (var snippet in snippets)
-        //                {
-        //                    Log("Copying " + snippet + " to " + language);
-                            
-        //                    var file = new FileInfo(snippet);
-        //                    file.CopyTo(Path.Combine(languageFolder.FullName, file.Name), true);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log("Error when installing snippets for VS10 Express. Please contact laurent@galasoft.ch. Sorry...");
-        //        Log(ex.Message);
-        //    }
-        //}
 
         private static void RunInstall(string command, string snippetsPath)
         {
@@ -371,6 +289,13 @@ namespace ModifyRegistryKey
 
         private static void Log(string message)
         {
+            var file = new FileInfo(LogPath);
+            if (file.Directory == null
+                || !file.Directory.Exists)
+            {
+                return;
+            }
+
             using (var stream = File.Open(LogPath, FileMode.Append))
             {
                 using (var writer = new StreamWriter(stream))
