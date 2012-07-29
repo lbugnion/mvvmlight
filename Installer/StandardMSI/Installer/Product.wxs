@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-    <Product Id="7B6A8A5F-D8FD-44E1-8FE4-BF72E544E8DD"
+    <Product Id="DD6D2482-72CD-490A-B509-93F841FCC917"
              Name="MVVM Light Toolkit"
              Language="1033"
-             Version="4.0.23.0"
+             Version="4.0.23"
              Manufacturer="Laurent Bugnion (GalaSoft)"
              UpgradeCode="ec07ea32-0293-4e2f-8318-16fddde66c03">
 
@@ -12,7 +12,7 @@
                  Compressed="yes"
                  Id="*"
                  Keywords="Installer"
-                 Description="MVVM Light Toolkit Installer (V4 / 4.0.23.0)"
+                 Description="MVVM Light Toolkit Installer (V4 / 4.0.23)"
                  Comments="The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Windows 8, Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed."
                  Manufacturer="Laurent Bugnion (GalaSoft)"
                  Languages="1033"
@@ -781,18 +781,18 @@
                                             Name="Mvvm">
                                     <Component Id="Vpdx10ProjectTemplatesMvvmWP7Comp"
                                                 Guid="{71dbb618-7b65-4f28-9cb2-458d953e0ff3}">
-                                        <File Id="MvvmLight.WP7.zip.VS10x"
-                                                Name="MvvmLight.WP7.zip"
+                                        <File Id="Mvvm.WP7.zip.VS10x"
+                                                Name="Mvvm.WP7.zip"
                                                 DiskId="1"
-                                                Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP7.zip" />
+                                                Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/Mvvm.WP7.zip" />
                                     </Component>
 
                                     <Component Id="Vpdx10ProjectTemplatesMvvmWP71Comp"
                                                 Guid="{26a642d9-41ff-44ae-b5fc-7a24d1d3758c}">
-                                        <File Id="MvvmLight.WP71.zip.VS10x"
-                                                Name="MvvmLight.WP71.zip"
+                                        <File Id="Mvvm.WP71.zip.VS10x"
+                                                Name="Mvvm.WP71.zip"
                                                 DiskId="1"
-                                                Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP71.zip" />
+                                                Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/Mvvm.WP71.zip" />
                                     </Component>
                                 </Directory>
                             </Directory>
@@ -805,18 +805,18 @@
                                                 Name="Mvvm">
                                         <Component Id="Vpdx10ItemTemplatesMvvmComp"
                                                     Guid="{997df372-d06d-4f00-976b-8f6170eaca9e}">
-                                            <File Id="MvvmView.WP7.zip.VS10x"
-                                                    Name="MvvmView.WP7.zip"
+                                            <File Id="View.WP7.zip.VS10x"
+                                                    Name="View.WP7.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmView.WP7.zip" />
-                                            <File Id="MvvmViewModel.WP7.zip.VS10x"
-                                                    Name="MvvmViewModel.WP7.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/View.WP7.zip" />
+                                            <File Id="Vm.WP7.zip.VS10x"
+                                                    Name="Vm.WP7.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModel.WP7.zip" />
-                                            <File Id="MvvmViewModelLocator.WP7.zip.VS10x"
-                                                    Name="MvvmViewModelLocator.WP7.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/Vm.WP7.zip" />
+                                            <File Id="Vml.WP7.zip.VS10x"
+                                                    Name="Vml.WP7.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModelLocator.WP7.zip" />
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/Vml.WP7.zip" />
                                         </Component>
                                     </Directory>
                                 </Directory>
@@ -844,18 +844,18 @@
                                         <Component Id="Blend4ItemTemplatesEnCsMvvmSlComp"
                                                     DiskId="1"
                                                     Guid="D852CBDD-D911-41EC-A5A9-5762E4DDE1A2">
-                                            <File Id="Blend4MvvmView.SL.zip"
-                                                    Name="MvvmView.SL.zip"
+                                            <File Id="Blend4View.SL.zip"
+                                                    Name="View.SL.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmView.SL.zip" />
-                                            <File Id="Blend4MvvmViewModel.SL.zip"
-                                                    Name="MvvmViewModel.SL.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/View.SL.zip" />
+                                            <File Id="Blend4Vm.SL.zip"
+                                                    Name="Vm.SL.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModel.SL.zip" />
-                                            <File Id="Blend4MvvmViewModelLocator.SL.zip"
-                                                    Name="MvvmViewModelLocator.SL.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/Vm.SL.zip" />
+                                            <File Id="Blend4Vml.SL.zip"
+                                                    Name="Vml.SL.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModelLocator.SL.zip" />
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/Vml.SL.zip" />
                                         </Component>
                                     </Directory>
 
@@ -864,18 +864,18 @@
                                         <Component Id="Blend4ItemTemplatesEnCsMvvmWp7Comp"
                                                     DiskId="1"
                                                     Guid="7FD5281B-3710-4FFD-82A3-50D8DD0737FF">
-                                            <File Id="Blend4MvvmView.WP7.zip"
-                                                    Name="MvvmView.WP7.zip"
+                                            <File Id="Blend4View.WP7.zip"
+                                                    Name="View.WP7.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmView.WP7.zip" />
-                                            <File Id="Blend4MvvmViewModel.WP7.zip"
-                                                    Name="MvvmViewModel.WP7.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/View.WP7.zip" />
+                                            <File Id="Blend4Vm.WP7.zip"
+                                                    Name="Vm.WP7.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModel.WP7.zip" />
-                                            <File Id="Blend4MvvmViewModelLocator.WP7.zip"
-                                                    Name="MvvmViewModelLocator.WP7.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/Vm.WP7.zip" />
+                                            <File Id="Blend4Vml.WP7.zip"
+                                                    Name="Vml.WP7.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/MvvmViewModelLocator.WP7.zip" />
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WindowsPhone/Vml.WP7.zip" />
                                         </Component>
                                     </Directory>
 
@@ -884,18 +884,18 @@
                                         <Component Id="Blend4ItemTemplatesEnCsMvvmWpfComp"
                                                     DiskId="1"
                                                     Guid="98E10E71-0729-4496-BA82-CE7E505CA8A2">
-                                            <File Id="Blend4MvvmView.WPF.zip"
-                                                    Name="MvvmView.WPF.zip"
+                                            <File Id="Blend4View.WPF.zip"
+                                                    Name="View.WPF.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmView.WPF.zip" />
-                                            <File Id="Blend4MvvmViewModel.WPF.zip"
-                                                    Name="MvvmViewModel.WPF.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/View.WPF.zip" />
+                                            <File Id="Blend4Vm.WPF.zip"
+                                                    Name="Vm.WPF.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmViewModel.WPF.zip" />
-                                            <File Id="Blend4MvvmViewModelLocator.WPF.zip"
-                                                    Name="MvvmViewModelLocator.WPF.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/Vm.WPF.zip" />
+                                            <File Id="Blend4Vml.WPF.zip"
+                                                    Name="Vml.WPF.zip"
                                                     DiskId="1"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/MvvmViewModelLocator.WPF.zip" />
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/WPF/Vml.WPF.zip" />
                                         </Component>
                                     </Directory>
                                 </Directory>
@@ -913,12 +913,12 @@
                                         <Component Id="Blend4ProjectTemplatesEnCsMvvmSlComp"
                                                     DiskId="1"
                                                     Guid="A8A12F13-9D46-44DF-A247-F7325CC0B2A5">
-                                            <File Id="Blend4MvvmLight.SL.zip"
-                                                    Name="MvvmLight.SL.zip"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL.zip" />
-                                            <File Id="Blend4MvvmLight.SL4.zip"
-                                                    Name="MvvmLight.SL4.zip"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL4.zip" />
+                                            <File Id="Blend4Mvvm.SL.zip"
+                                                    Name="Mvvm.SL.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/Mvvm.SL.zip" />
+                                            <File Id="Blend4Mvvm.SL4.zip"
+                                                    Name="Mvvm.SL4.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/Mvvm.SL4.zip" />
                                         </Component>
                                     </Directory>
 
@@ -927,17 +927,17 @@
                                         <Component Id="Blend4ProjectTemplatesEnCsMvvmWp7Comp"
                                                     DiskId="1"
                                                     Guid="8D9A1985-E771-4AC1-A421-ED59EE68CEA8">
-                                            <File Id="Blend4MvvmLight.WP7.zip"
-                                                    Name="MvvmLight.WP7.zip"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP7.zip" />
+                                            <File Id="Blend4Mvvm.WP7.zip"
+                                                    Name="Mvvm.WP7.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/Mvvm.WP7.zip" />
                                         </Component>
 
                                         <Component Id="Blend4ProjectTemplatesEnCsMvvmWp71Comp"
                                                     DiskId="1"
                                                     Guid="f81891ff-beab-4fad-a324-f9c6978c401d">
-                                            <File Id="Blend4MvvmLight.WP71.zip"
-                                                    Name="MvvmLight.WP71.zip"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/MvvmLight.WP71.zip" />
+                                            <File Id="Blend4Mvvm.WP71.zip"
+                                                    Name="Mvvm.WP71.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WindowsPhone/Mvvm.WP71.zip" />
                                         </Component>
                                     </Directory>
 
@@ -946,12 +946,12 @@
                                         <Component Id="Blend4ProjectTemplatesEnCsMvvmWpfComp"
                                                     DiskId="1"
                                                     Guid="7B1EB150-BDD1-42F0-A5A7-369A3C7CACD2">
-                                            <File Id="Blend4MvvmLight.WPF.zip"
-                                                    Name="MvvmLight.WPF.zip"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WPF/MvvmLight.WPF.zip" />
-                                            <File Id="Blend4MvvmLight.WPF4.zip"
-                                                    Name="MvvmLight.WPF4.zip"
-                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WPF/MvvmLight.WPF4.zip" />
+                                            <File Id="Blend4Mvvm.WPF.zip"
+                                                    Name="Mvvm.WPF.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WPF/Mvvm.WPF.zip" />
+                                            <File Id="Blend4Mvvm.WPF4.zip"
+                                                    Name="Mvvm.WPF4.zip"
+                                                    Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/WPF/Mvvm.WPF4.zip" />
                                         </Component>
                                     </Directory>
                                 </Directory>
@@ -972,18 +972,18 @@
                                         <Component Id="Blend4SL5ItemTemplatesEnCsMvvmSlComp"
                                                    DiskId="1"
                                                    Guid="2FF866FB-41B7-4C37-89A6-BFA3BE92B58B">
-                                            <File Id="Blend4MvvmView.SL5.zip"
-                                                  Name="MvvmView.SL.zip"
+                                            <File Id="Blend4View.SL5.zip"
+                                                  Name="View.SL.zip"
                                                   DiskId="1"
-                                                  Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmView.SL.zip" />
-                                            <File Id="Blend4MvvmViewModel.SL5.zip"
-                                                  Name="MvvmViewModel.SL.zip"
+                                                  Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/View.SL.zip" />
+                                            <File Id="Blend4Vm.SL5.zip"
+                                                  Name="Vm.SL.zip"
                                                   DiskId="1"
-                                                  Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModel.SL.zip" />
-                                            <File Id="Blend4MvvmViewModelLocator.SL5.zip"
-                                                  Name="MvvmViewModelLocator.SL.zip"
+                                                  Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/Vm.SL.zip" />
+                                            <File Id="Blend4Vml.SL5.zip"
+                                                  Name="Vml.SL.zip"
                                                   DiskId="1"
-                                                  Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/MvvmViewModelLocator.SL.zip" />
+                                                  Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ItemTemplates/Silverlight/Vml.SL.zip" />
                                         </Component>
                                     </Directory>
                                 </Directory>
@@ -1001,9 +1001,9 @@
                                         <Component Id="Blend4SL5ProjectTemplatesEnCsMvvmSlComp"
                                                    DiskId="1"
                                                    Guid="6A6EA09F-33D6-4F22-9A54-69B6E1E27EAC">
-                                            <File Id="Blend4MvvmLight.SL5.zip"
-                                                  Name="MvvmLight.SL5.zip"
-                                                  Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/MvvmLight.SL5.zip" />
+                                            <File Id="Blend4Mvvm.SL5.zip"
+                                                  Name="Mvvm.SL5.zip"
+                                                  Source="../../InstallItems/GalaSoft.MvvmLight.Templates/ProjectTemplates/Silverlight/Mvvm.SL5.zip" />
                                         </Component>
                                     </Directory>
                                 </Directory>
