@@ -142,87 +142,82 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\MvvmLight.SL.zip">
-      <Link>ProjectTemplates\Silverlight\Mvvm\MvvmLight.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\MvvmLight.SL4.zip">
-      <Link>ProjectTemplates\Silverlight\Mvvm\MvvmLight.SL4.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\MvvmLight.SL5.zip">
-      <Link>ProjectTemplates\Silverlight\Mvvm\MvvmLight.SL5.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\WPF\MvvmLight.WPF.zip">
-      <Link>ProjectTemplates\Windows\Mvvm\MvvmLight.WPF.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\WPF\MvvmLight.WPF4.zip">
-      <Link>ProjectTemplates\Windows\Mvvm\MvvmLight.WPF4.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Win8\MvvmLight.Win8.zip">
-      <Link>ProjectTemplates\Windows Metro Style\Mvvm\MvvmLight.Win8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\MvvmView.SL.zip">
-      <Link>ItemTemplates\Silverlight\Mvvm\MvvmView.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\MvvmViewModel.SL.zip">
-      <Link>ItemTemplates\Silverlight\Mvvm\MvvmViewModel.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\MvvmViewModelLocator.SL.zip">
-      <Link>ItemTemplates\Silverlight\Mvvm\MvvmViewModelLocator.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\WPF\MvvmView.WPF.zip">
-      <Link>ItemTemplates\WPF\Mvvm\MvvmView.WPF.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\WPF\MvvmViewModel.WPF.zip">
-      <Link>ItemTemplates\WPF\Mvvm\MvvmViewModel.WPF.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\WPF\MvvmViewModelLocator.WPF.zip">
-      <Link>ItemTemplates\WPF\Mvvm\MvvmViewModelLocator.WPF.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Win8\MvvmView.Win8.zip">
-      <Link>ItemTemplates\Windows Metro Style\Mvvm\MvvmView.Win8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Win8\MvvmViewModel.Win8.zip">
-      <Link>ItemTemplates\Windows Metro Style\Mvvm\MvvmViewModel.Win8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Win8\MvvmViewModelLocator.Win8.zip">
-      <Link>ItemTemplates\Windows Metro Style\Mvvm\MvvmViewModelLocator.Win8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Icon Purple 100x100.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="License.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\View.SL.zip">
+      <Link>ItemTemplates\Silverlight\View.SL.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\Vm.SL.zip">
+      <Link>ItemTemplates\Silverlight\Vm.SL.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\Vml.SL.zip">
+      <Link>ItemTemplates\Silverlight\Vml.SL.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Win8\View.Win8.zip">
+      <Link>ItemTemplates\Windows Metro Style\View.Win8.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Win8\Vm.Win8.zip">
+      <Link>ItemTemplates\Windows Metro Style\Vm.Win8.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Win8\Vml.Win8.zip">
+      <Link>ItemTemplates\Windows Metro Style\Vml.Win8.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\WPF\View.WPF.zip">
+      <Link>ItemTemplates\WPF\View.WPF.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\WPF\Vm.WPF.zip">
+      <Link>ItemTemplates\WPF\Vm.WPF.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\WPF\Vml.WPF.zip">
+      <Link>ItemTemplates\WPF\Vml.WPF.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\Mvvm.SL4.zip">
+      <Link>ProjectTemplates\Silverlight\Mvvm.SL4.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\Mvvm.SL5.zip">
+      <Link>ProjectTemplates\Silverlight\Mvvm.SL5.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Win8\Mvvm.Win8.zip">
+      <Link>ProjectTemplates\Windows Metro Style\Mvvm.Win8.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\WPF\Mvvm.WPF.zip">
+      <Link>ProjectTemplates\Windows\Mvvm.WPF.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\WPF\Mvvm.WPF4.zip">
+      <Link>ProjectTemplates\Windows\Mvvm.WPF4.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="source.extension.vsixmanifest">
@@ -239,6 +234,7 @@
     </Content>
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>

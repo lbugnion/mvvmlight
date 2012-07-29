@@ -131,42 +131,42 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\MvvmLight.SL.zip">
-      <Link>ProjectTemplates\Silverlight\Mvvm\MvvmLight.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\MvvmLight.SL4.zip">
-      <Link>ProjectTemplates\Silverlight\Mvvm\MvvmLight.SL4.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\MvvmLight.SL5.zip">
-      <Link>ProjectTemplates\Silverlight\Mvvm\MvvmLight.SL5.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\MvvmView.SL.zip">
-      <Link>ItemTemplates\Silverlight\Mvvm\MvvmView.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\MvvmViewModel.SL.zip">
-      <Link>ItemTemplates\Silverlight\Mvvm\MvvmViewModel.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\MvvmViewModelLocator.SL.zip">
-      <Link>ItemTemplates\Silverlight\Mvvm\MvvmViewModelLocator.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Icon Purple 100x100.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="License.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\View.SL.zip">
+      <Link>ItemTemplates\Silverlight\View.SL.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\Vm.SL.zip">
+      <Link>ItemTemplates\Silverlight\Vm.SL.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Silverlight\Vml.SL.zip">
+      <Link>ItemTemplates\Silverlight\Vml.SL.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\Mvvm.SL.zip">
+      <Link>ProjectTemplates\Silverlight\Mvvm.SL.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\Mvvm.SL4.zip">
+      <Link>ProjectTemplates\Silverlight\Mvvm.SL4.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Silverlight\Mvvm.SL5.zip">
+      <Link>ProjectTemplates\Silverlight\Mvvm.SL5.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="source.extension.vsixmanifest">
@@ -183,6 +183,7 @@
     </Content>
     <Content Include="Resources\Package.ico" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>
