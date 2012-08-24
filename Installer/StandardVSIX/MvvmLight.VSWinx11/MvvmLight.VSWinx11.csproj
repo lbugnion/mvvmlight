@@ -19,7 +19,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LaurentBugnionGalaSoft.MvvmLight_VS11</RootNamespace>
-    <AssemblyName>MvvmLight.MetroExpress2012</AssemblyName>
+    <AssemblyName>MvvmLight.Win8Express2012</AssemblyName>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -155,22 +155,22 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Win8\View.Win8.zip">
-      <Link>ItemTemplates\Windows Metro Style\View.Win8.zip</Link>
+      <Link>ItemTemplates\Windows Store\View.Win8.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Win8\Vm.Win8.zip">
-      <Link>ItemTemplates\Windows Metro Style\Vm.Win8.zip</Link>
+      <Link>ItemTemplates\Windows Store\Vm.Win8.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Win8\Vml.Win8.zip">
-      <Link>ItemTemplates\Windows Metro Style\Vml.Win8.zip</Link>
+      <Link>ItemTemplates\Windows Store\Vml.Win8.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\Win8\Mvvm.Win8.zip">
-      <Link>ProjectTemplates\Windows Metro Style\Mvvm.Win8.zip</Link>
+      <Link>ProjectTemplates\Windows Store\Mvvm.Win8.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
