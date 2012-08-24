@@ -20,10 +20,6 @@ namespace ProjectForTemplates.ViewModel
     /// This class contains static references to all the view models in the
     /// application and provides an entry point for the bindings.
     /// <para>
-    /// Use the <strong>mvvmlocatorproperty</strong> snippet to add ViewModels
-    /// to this locator.
-    /// </para>
-    /// <para>
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>

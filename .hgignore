@@ -64,3 +64,4 @@ glob:Installer/Standard/_ReSharper.Installer/
 Installer/StandardMSI/_ReSharper.Installer/
 Installer/StandardVSIX/_ReSharper.MvvmLight.VS10/
 Installer/StandardVSIX/_ReSharper.MvvmLight.VS11/
+GalaSoft.MvvmLight/Win8RP/_ReSharper.GalaSoft.MvvmLight.Win8/

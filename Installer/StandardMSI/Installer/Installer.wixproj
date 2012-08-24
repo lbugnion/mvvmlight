@@ -6,7 +6,7 @@
     <ProductVersion>3.5</ProductVersion>
     <ProjectGuid>{9a2e2077-e1e9-491e-9306-dd8a172b5e19}</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>GalaSoft.MvvmLight.4.0.23.3</OutputName>
+    <OutputName>GalaSoft.MvvmLight.4.0.23.4</OutputName>
     <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>

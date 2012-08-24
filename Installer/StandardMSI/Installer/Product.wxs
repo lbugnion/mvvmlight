@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-    <Product Id="DD6D2482-72CD-490A-B509-93F841FCC917"
+    <Product Id="1B3537EC-2499-4A87-B6BE-AA3E1F86DECA"
              Name="MVVM Light Toolkit"
              Language="1033"
-             Version="4.0.23"
+             Version="4.0.23.1"
              Manufacturer="Laurent Bugnion (GalaSoft)"
              UpgradeCode="ec07ea32-0293-4e2f-8318-16fddde66c03">
 
@@ -12,7 +12,7 @@
                  Compressed="yes"
                  Id="*"
                  Keywords="Installer"
-                 Description="MVVM Light Toolkit Installer (V4 / 4.0.23)"
+                 Description="MVVM Light Toolkit Installer (V4 / 4.0.23.1)"
                  Comments="The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Windows 8, Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed."
                  Manufacturer="Laurent Bugnion (GalaSoft)"
                  Languages="1033"
@@ -756,10 +756,10 @@
 
                             <Component Id="VSIXVSWINX11"
                                        Guid="3E3C83F7-108C-4E36-A2E0-6780A6881948">
-                                <File Id="MvvmLight.MetroExpress2012.vsix"
-                                      Name="MvvmLight.MetroExpress2012.vsix"
+                                <File Id="MvvmLight.Win8Express2012.vsix"
+                                      Name="MvvmLight.Win8Express2012.vsix"
                                       DiskId="1"
-                                      Source="..\..\InstallItems\VSIX\Release\MvvmLight.MetroExpress2012.vsix" />
+                                      Source="..\..\InstallItems\VSIX\Release\MvvmLight.Win8Express2012.vsix" />
                             </Component>
                         </Directory>
 
