@@ -63,7 +63,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Bin\Debug</OutputPath>
-    <DefineConstants>TRACE;DEBUG;SILVERLIGHT SILVERLIGHT3</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;SL3</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -75,7 +75,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Bin\Release</OutputPath>
-    <DefineConstants>TRACE;SILVERLIGHT;SILVERLIGHT3</DefineConstants>
+    <DefineConstants>TRACE;SILVERLIGHT;SL3</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -101,6 +101,7 @@
     <Reference Include="System.Windows.Interactivity, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\TemporaryClass.cs">
@@ -249,9 +250,6 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModel.cs">
       <Link>ViewModels\TestViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\TestViewModelNoMagicString.cs">
-      <Link>ViewModels\TestViewModelNoMagicString.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\ViewModel\ViewModelStub.cs">
       <Link>ViewModels\ViewModelStub.cs</Link>

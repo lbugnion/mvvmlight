@@ -35,6 +35,13 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             }
         }
 
+        public bool SetRaisedPropertyChangedEvent
+        {
+            get;
+            set;
+        }
+
+#if !SL3
         private DateTime _lastChangedNoMagicString = DateTime.MinValue;
 
         /// <summary>
@@ -59,12 +66,6 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                 _lastChangedNoMagicString = value;
                 RaisePropertyChanged(() => LastChangedNoMagicString);
             }
-        }
-
-        public bool SetRaisedPropertyChangedEvent
-        {
-            get;
-            set;
         }
 
         public const string PropertyWithSetPropertyName = "PropertyWithSet";
@@ -96,6 +97,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                 SetRaisedPropertyChangedEvent = Set(PropertyWithStringSetPropertyName, ref _propertyWithStringSet, value);
             }
         }
+#endif
 
         public void RaisePropertyChangedPublic(string propertyName)
         {

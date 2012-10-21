@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GalaSoft.MvvmLight.Extras %28NET35%29\Ioc\ISimpleIoc.cs">

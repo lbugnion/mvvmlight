@@ -18,9 +18,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+
+#if !SL3
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
+#endif
 
 namespace GalaSoft.MvvmLight
 {
@@ -159,6 +162,7 @@ namespace GalaSoft.MvvmLight
             }
         }
 
+#if !SL3
         /// <summary>
         /// Raises the PropertyChanging event if needed.
         /// </summary>
@@ -296,5 +300,6 @@ namespace GalaSoft.MvvmLight
             RaisePropertyChanged(propertyName);
             return true;
         }
+#endif
     }
 }

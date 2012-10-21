@@ -32,6 +32,7 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreEqual(now, receivedDateTimeLocal);
         }
 
+#if !SL3
         [TestMethod]
         public void TestPropertyChangedNoMagicString()
         {
@@ -51,6 +52,7 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreEqual(now, vm.LastChangedNoMagicString);
             Assert.AreEqual(now, receivedDateTimeLocal);
         }
+#endif
 
         [TestMethod]
         public void TestRaisePropertyChangedValidInvalidPropertyName()
@@ -91,6 +93,7 @@ namespace GalaSoft.MvvmLight.Test
             }
         }
 
+#if !SL3
         [TestMethod]
         public void TestSet()
         {
@@ -228,5 +231,6 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreEqual(firstValue + 1, receivedValueChanged);
             Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
         }
+#endif
     }
 }
