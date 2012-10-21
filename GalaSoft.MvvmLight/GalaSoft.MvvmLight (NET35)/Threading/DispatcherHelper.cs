@@ -19,6 +19,7 @@ using System;
 #if NETFX_CORE
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.Foundation;
 #else
 using System.Windows.Threading;
 
@@ -91,12 +92,16 @@ namespace GalaSoft.MvvmLight.Threading
         /// Invokes an action asynchronously on the UI thread.
         /// </summary>
         /// <param name="action">The action that must be executed.</param>
-        public static void InvokeAsync(Action action)
+#if NETFX_CORE
+        public static IAsyncAction RunAsync(Action action)
+#else
+        public static DispatcherOperation RunAsync(Action action)
+#endif
         {
 #if NETFX_CORE
-            UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
+            return UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
 #else
-            UIDispatcher.BeginInvoke(action);
+            return UIDispatcher.BeginInvoke(action);
 #endif
         }
 
