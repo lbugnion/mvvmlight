@@ -155,6 +155,7 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreEqual(DateTime.MinValue, receivedDateTimeMessenger);
         }
 
+#if !SL3
         [TestMethod]
         public void TestPropertyChangedSendNoMagicString()
         {
@@ -260,6 +261,7 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreEqual(DateTime.MaxValue, receivedDateTimeLocalChanging);
             Assert.AreEqual(DateTime.MinValue, receivedDateTimeMessenger);
         }
+#endif
 
         [TestMethod]
         public void TestRaiseValidInvalidPropertyName()
@@ -464,6 +466,12 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreSame(Messenger.Default, vm2.GetMessengerInstance());
         }
 
+        static void InstancePropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // Void
+        }
+
+#if !SL3
         [TestMethod]
         public void TestSetBroadcast()
         {
@@ -764,11 +772,6 @@ namespace GalaSoft.MvvmLight.Test
             Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
         }
 
-        static void InstancePropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            // Void
-        }
-
         [TestMethod]
         public void TestRaisePropertyChangedNoMagicStringNullExpression()
         {
@@ -868,6 +871,7 @@ namespace GalaSoft.MvvmLight.Test
             {
             }
         }
+#endif
 
         private static string DummyStringMethod()
         {

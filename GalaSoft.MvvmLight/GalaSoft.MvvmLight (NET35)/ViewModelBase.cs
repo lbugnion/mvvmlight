@@ -21,7 +21,10 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using GalaSoft.MvvmLight.Messaging;
+
+#if !SL3
 using System.Linq.Expressions;
+#endif
 
 #if !NETFX_CORE
 using System.Windows;
@@ -199,6 +202,7 @@ namespace GalaSoft.MvvmLight
             }
         }
 
+#if !SL3
         /// <summary>
         /// Raises the PropertyChanged event if needed, and broadcasts a
         /// PropertyChangedMessage using the Messenger instance (or the
@@ -306,5 +310,6 @@ namespace GalaSoft.MvvmLight
             RaisePropertyChanged(propertyName, oldValue, field, broadcast);
             return true;
         }
+#endif
     }
 }

@@ -40,6 +40,7 @@
             }
         }
 
+#if !SL3
         public const string PropertyWithSetBroadcastPropertyName = "PropertyWithSetBroadcast";
         private int _propertyWithSetBroadcast = -1;
         public int PropertyWithSetBroadcast
@@ -99,6 +100,7 @@
                 SetRaisedPropertyChangedEvent = Set(PropertyWithStringSetNoBroadcastPropertyName, ref _propertyWithStringSetNoBroadcast, value, false);
             }
         }
+#endif
 
         public new void RaisePropertyChanging(string propertyName)
         {
