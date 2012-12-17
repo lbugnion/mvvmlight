@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9B53BF33-4261-45FD-B170-04139CB8E1F8}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
+    <AssemblyName>GalaSoft.MvvmLight.WP8</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;WINDOWS_PHONE;WP8</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Debug\GalaSoft.MvvmLight.WP8.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;WP8</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Release\GalaSoft.MvvmLight.WP8.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Command\RelayCommand.cs">
+      <Link>Command\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Command\RelayCommandGeneric.cs">
+      <Link>Command\RelayCommandGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\IExecuteWithObject.cs">
+      <Link>Helpers\IExecuteWithObject.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\IExecuteWithObjectAndResult.cs">
+      <Link>Helpers\IExecuteWithObjectAndResult.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakAction.cs">
+      <Link>Helpers\WeakAction.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakActionGeneric.cs">
+      <Link>Helpers\WeakActionGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFunc.cs">
+      <Link>Helpers\WeakFunc.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFuncGeneric.cs">
+      <Link>Helpers\WeakFuncGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ICleanup.cs">
+      <Link>ICleanup.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\DialogMessage.cs">
+      <Link>Messaging\DialogMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\GenericMessage.cs">
+      <Link>Messaging\GenericMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\IMessenger.cs">
+      <Link>Messaging\IMessenger.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\MessageBase.cs">
+      <Link>Messaging\MessageBase.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\Messenger.cs">
+      <Link>Messaging\Messenger.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessage.cs">
+      <Link>Messaging\NotificationMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessageAction.cs">
+      <Link>Messaging\NotificationMessageAction.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessageActionGeneric.cs">
+      <Link>Messaging\NotificationMessageActionGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessageGeneric.cs">
+      <Link>Messaging\NotificationMessageGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessageWithCallback.cs">
+      <Link>Messaging\NotificationMessageWithCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\PropertyChangedMessage.cs">
+      <Link>Messaging\PropertyChangedMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\PropertyChangedMessageBase.cs">
+      <Link>Messaging\PropertyChangedMessageBase.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ObservableObject.cs">
+      <Link>ObservableObject.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Threading\DispatcherHelper.cs">
+      <Link>Threading\DispatcherHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ViewModelBase.cs">
+      <Link>ViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.WP8.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\GalaSoft.MvvmLight %28NET35%29\License.txt">
+      <Link>License.txt</Link>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
