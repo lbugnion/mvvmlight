@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using System;
+using System.Diagnostics;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Test.Stubs;
 using Microsoft.Practices.ServiceLocation;
 
@@ -11,7 +13,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace GalaSoft.MvvmLight.Test.Ioc
 {
     [TestClass]
-    public class SimpleIocTestMultipleConstructors
+    public class SimpleIocTestMultipleOrPrivateConstructors
     {
         [TestMethod]
         public void TestBuildInstanceWithMultipleConstructorsNotMarkedWithAttribute()
@@ -63,9 +65,40 @@ namespace GalaSoft.MvvmLight.Test.Ioc
                 SimpleIoc.Default.Register<TestClass6>();
                 Assert.Fail("ActivationException was expected");
             }
-            catch (ActivationException)
+            catch (ActivationException ex)
             {
+                Debug.WriteLine(ex.Message);
             }
+        }
+
+        [TestMethod]
+        public void TestBuildWithPrivateConstructor()
+        {
+            SimpleIoc.Default.Reset();
+
+            try
+            {
+                SimpleIoc.Default.Register<TestClass7>();
+                Assert.Fail("ActivationException was expected");
+            }
+            catch (ActivationException ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+        
+        [TestMethod]
+        public void TestBuildWithStaticConstructor()
+        {
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register<TestClass8>();
+        }
+
+        [TestMethod]
+        public void TestPublicAndInternalConstructor()
+        {
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register<TestClass9>();
         }
     }
 }
