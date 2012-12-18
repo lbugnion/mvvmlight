@@ -672,6 +672,41 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             Assert.AreEqual(testContent2, ReceivedContentStringA2);
         }
 
+        [TestMethod]
+        public void TestRegisterStaticHandler()
+        {
+            Reset();
+            Messenger.Reset();
+
+            _context = this;
+
+            Messenger.Default.Register<TestMessageImpl>(
+                this, 
+                msg =>
+                {
+                    if (msg.Sender != _context || !msg.Result)
+                        return;
+
+                    _result = msg.Result;
+                });
+
+            Assert.IsFalse(_result);
+            Messenger.Default.Send(
+                new TestMessageImpl(_context)
+                {
+                    Result = true
+                });
+            Assert.IsTrue(_result);
+        }
+
+        private static bool _result;
+        private static object _context;
+
+        public static void DoSomethingStatic(bool result)
+        {
+            _result = result;
+        }
+
         //// Helpers
 
         private void Reset()
@@ -684,6 +719,9 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             ReceivedContentDateTime1 = DateTime.MinValue;
             ReceivedContentDateTime2 = DateTime.MinValue;
             ReceivedContentException = null;
+
+            _context = null;
+            _result = false;
         }
 
         public class TestMessageA
