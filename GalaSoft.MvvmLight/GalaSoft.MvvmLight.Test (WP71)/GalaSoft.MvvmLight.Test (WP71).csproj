@@ -226,8 +226,14 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\ITestClass.cs">
       <Link>Stubs\ITestClass.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestBaseClass.cs">
+      <Link>Stubs\TestBaseClass.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestBindingTarget.cs">
       <Link>Stubs\TestBindingTarget.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestChildClass.cs">
+      <Link>Stubs\TestChildClass.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClass.cs">
       <Link>Stubs\TestClass.cs</Link>
@@ -246,6 +252,15 @@
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClass6.cs">
       <Link>Stubs\TestClass6.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClass7.cs">
+      <Link>Stubs\TestClass7.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClass8.cs">
+      <Link>Stubs\TestClass8.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClass9.cs">
+      <Link>Stubs\TestClass9.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Stubs\TestClassForCreationTime.cs">
       <Link>Stubs\TestClassForCreationTime.cs</Link>

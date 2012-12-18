@@ -100,5 +100,36 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             SimpleIoc.Default.Register<ITestClass, TestClass>();
             Assert.IsTrue(SimpleIoc.Default.IsRegistered<ITestClass>());
         }
+
+        [TestMethod]
+        public void TestUnregisterFromBaseClass()
+        {
+            //SimpleIoc.Default.Reset();
+
+            //SimpleIoc.Default.Register<TestChildClass>(true);
+
+            //Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestChildClass>());
+            //Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestChildClass>());
+
+            //var instance = SimpleIoc.Default.GetInstance<TestChildClass>();
+            //instance.Remove();
+
+            //Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestChildClass>());
+            //Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestChildClass>());
+        }
+
+        public void TestUnregisterInstanceAndGetNewInstance()
+        {
+            SimpleIoc.Default.Reset();
+
+            SimpleIoc.Default.Register<TestClass>();
+
+            var instance1 = SimpleIoc.Default.GetInstance<TestClass>();
+            SimpleIoc.Default.Unregister(instance1);
+
+            var instance2 = SimpleIoc.Default.GetInstance<TestClass>();
+
+            Assert.AreNotEqual(instance1.Identifier, instance2.Identifier);
+        }
     }
 }

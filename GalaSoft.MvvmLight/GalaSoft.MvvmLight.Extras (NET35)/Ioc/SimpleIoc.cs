@@ -21,10 +21,6 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Practices.ServiceLocation;
 
-#if !NETFX_CORE
-using GalaSoft.MvvmLight.Properties;
-#endif
-
 namespace GalaSoft.MvvmLight.Ioc
 {
     /// <summary>
@@ -102,7 +98,7 @@ namespace GalaSoft.MvvmLight.Ioc
 
             if (string.IsNullOrEmpty(key))
             {
-                return true;
+                return _instancesRegistry[classType].Count > 0;
             }
 
             return _instancesRegistry[classType].ContainsKey(key);
@@ -594,7 +590,7 @@ namespace GalaSoft.MvvmLight.Ioc
                     }
 
                     throw new InvalidOperationException(
-                        string.Format("Class {0} is already registered with key {1}.", key));
+                        string.Format("Class {0} is already registered with key {1}.", classType.FullName, key));
                 }
 
                 _factories[classType].Add(key, factory);
@@ -627,33 +623,67 @@ namespace GalaSoft.MvvmLight.Ioc
             }
 
 #if NETFX_CORE
-            var constructorInfos = resolveTo.GetTypeInfo().DeclaredConstructors.ToArray();
+            var constructorInfos = resolveTo.GetTypeInfo().DeclaredConstructors.Where(c => c.IsPublic).ToArray();
 #else
             var constructorInfos = resolveTo.GetConstructors();
 #endif
 
             if (constructorInfos.Length > 1)
             {
-                var preferredConstructorInfo
-                    = (from t in constructorInfos
-#if NETFX_CORE
-                       let attribute = t.GetCustomAttribute(typeof (PreferredConstructorAttribute))
-#else
-                       let attribute = Attribute.GetCustomAttribute(t, typeof(PreferredConstructorAttribute))
-#endif
-                       where attribute != null
-                       select t).FirstOrDefault();
-
-                if (preferredConstructorInfo == null)
+                if (constructorInfos.Length > 2)
                 {
-                    throw new ActivationException(
-                        "Cannot build instance: Multiple constructors found but none marked with PreferredConstructor.");
+                    return GetPreferredConstructorInfo(constructorInfos, resolveTo);
+                }
+                
+                if (constructorInfos.FirstOrDefault(i => i.Name == ".cctor") == null)
+                {
+                    return GetPreferredConstructorInfo(constructorInfos, resolveTo);
                 }
 
-                return preferredConstructorInfo;
+                var first = constructorInfos.FirstOrDefault(i => i.Name != ".cctor");
+
+                if (first == null
+                    || !first.IsPublic)
+                {
+                    throw new ActivationException(
+                        string.Format("Cannot register: No public constructor found in {0}.", resolveTo.Name));
+                }
+
+                return first;
+            }
+
+            if (constructorInfos.Length == 0
+                || (constructorInfos.Length == 1
+                    && !constructorInfos[0].IsPublic))
+            {
+                throw new ActivationException(
+                    string.Format("Cannot register: No public constructor found in {0}.", resolveTo.Name));
             }
 
             return constructorInfos[0];
+        }
+
+        private ConstructorInfo GetPreferredConstructorInfo(IEnumerable<ConstructorInfo> constructorInfos, Type resolveTo)
+        {
+            var preferredConstructorInfo
+                = (from t in constructorInfos
+#if NETFX_CORE
+                    let attribute = t.GetCustomAttribute(typeof(PreferredConstructorAttribute))
+#else
+                    let attribute = Attribute.GetCustomAttribute(t, typeof(PreferredConstructorAttribute))
+#endif
+                    where attribute != null
+                    select t).FirstOrDefault();
+
+            if (preferredConstructorInfo == null)
+            {
+                throw new ActivationException(
+                    string.Format(
+                        "Cannot register: Multiple constructors found in {0} but none marked with PreferredConstructor.",
+                        resolveTo.Name));
+            }
+
+            return preferredConstructorInfo;
         }
 
         private TClass MakeInstance<TClass>()

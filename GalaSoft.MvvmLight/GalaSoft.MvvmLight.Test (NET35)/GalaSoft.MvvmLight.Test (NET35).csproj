@@ -89,6 +89,11 @@
     <Compile Include="Ioc\SimpleIocTestCreationTime.cs" />
     <Compile Include="Messaging\GarbageCollectionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.Net35.cs" />
+    <Compile Include="Stubs\TestChildClass.cs" />
+    <Compile Include="Stubs\TestBaseClass.cs" />
+    <Compile Include="Stubs\TestClass7.cs" />
+    <Compile Include="Stubs\TestClass8.cs" />
+    <Compile Include="Stubs\TestClass9.cs" />
     <Compile Include="Stubs\TestPropertyDescriptor.cs" />
     <Compile Include="Stubs\TestBindingTarget.cs" />
     <Compile Include="Stubs\TestClassForCreationTime.cs" />

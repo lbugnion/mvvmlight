@@ -33,18 +33,21 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             SimpleIoc.Default.Register<TestClass2>();
 
             Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass>(key1));
             Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass2>());
             Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass3>());
 
             SimpleIoc.Default.GetInstance<TestClass>(key1);
 
             Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass>(key1));
             Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass2>());
             Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass3>());
 
             SimpleIoc.Default.GetInstance<TestClass2>();
 
             Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass>(key1));
             Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass2>());
             Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass3>());
         }
@@ -70,6 +73,22 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass>(key2));
             Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass2>(key1));
             Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass3>(key1));
+        }
+
+        [TestMethod]
+        public void TestContainsInstanceAfterUnregister()
+        {
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register<TestBaseClass>(true);
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestBaseClass>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestBaseClass>());
+
+            var instance = SimpleIoc.Default.GetInstance<TestBaseClass>();
+            instance.Remove();
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestBaseClass>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestBaseClass>());
         }
     }
 }

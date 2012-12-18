@@ -11,5 +11,11 @@ namespace GalaSoft.MvvmLight.Test.Messaging
             : base(sender)
         { 
         }
+
+        public bool Result
+        {
+            get;
+            set;
+        }
     }
 }
