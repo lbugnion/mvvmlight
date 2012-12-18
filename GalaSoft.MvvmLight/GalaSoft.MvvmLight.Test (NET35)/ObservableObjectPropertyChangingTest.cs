@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GalaSoft.MvvmLight.Test
 {
+#if !WP71
     [TestClass]
     public class ObservableObjectPropertyChangingTest
     {
@@ -215,4 +216,5 @@ namespace GalaSoft.MvvmLight.Test
         }
 #endif
     }
+#endif
 }
