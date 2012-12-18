@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 using GalaSoft.MvvmLight.Helpers;
 
 #if SILVERLIGHT
@@ -53,21 +54,21 @@ namespace GalaSoft.MvvmLight.Messaging
         /// </summary>
         public static IMessenger Default
         {
-            get
-            {
-                if (_defaultInstance == null)
-                {
-                    lock (CreationLock)
-                    {
-                        if (_defaultInstance == null)
-                        {
-                            _defaultInstance = new Messenger();
-                        }
-                    }
-                }
-
-                return _defaultInstance;
-            }
+             get
+             {
+                 if (_defaultInstance == null)
+                 {
+                     lock (CreationLock)
+                     {
+                         if (_defaultInstance == null)
+                         {
+                             _defaultInstance = new Messenger();
+                         }
+                     }
+                 }
+ 
+                 return _defaultInstance;
+             }
         }
 
         #region IMessenger Members
@@ -180,7 +181,7 @@ namespace GalaSoft.MvvmLight.Messaging
         {
             lock (_registerLock)
             {
-                Type messageType = typeof(TMessage);
+                var messageType = typeof(TMessage);
 
                 Dictionary<Type, List<WeakActionAndToken>> recipients;
 
@@ -410,15 +411,9 @@ namespace GalaSoft.MvvmLight.Messaging
                 var listsToRemove = new List<Type>();
                 foreach (var list in lists)
                 {
-                    var recipientsToRemove = new List<WeakActionAndToken>();
-                    foreach (var item in list.Value)
-                    {
-                        if (item.Action == null
-                            || !item.Action.IsAlive)
-                        {
-                            recipientsToRemove.Add(item);
-                        }
-                    }
+                    var recipientsToRemove = list.Value
+                        .Where(item => item.Action == null || !item.Action.IsAlive)
+                        .ToList();
 
                     foreach (var recipient in recipientsToRemove)
                     {
@@ -431,7 +426,7 @@ namespace GalaSoft.MvvmLight.Messaging
                     }
                 }
 
-                foreach (Type key in listsToRemove)
+                foreach (var key in listsToRemove)
                 {
                     lists.Remove(key);
                 }
@@ -440,17 +435,18 @@ namespace GalaSoft.MvvmLight.Messaging
 
         private static void SendToList<TMessage>(
             TMessage message,
-            IEnumerable<WeakActionAndToken> list,
+            IEnumerable<WeakActionAndToken> weakActionsAndTokens,
             Type messageTargetType,
             object token)
         {
-            if (list != null)
+            if (weakActionsAndTokens != null)
             {
                 // Clone to protect from people registering in a "receive message" method
                 // Correction Messaging BL0004.007
-                List<WeakActionAndToken> listClone = list.Take(list.Count()).ToList();
+                var list = weakActionsAndTokens.ToList();
+                var listClone = list.Take(list.Count()).ToList();
 
-                foreach (WeakActionAndToken item in listClone)
+                foreach (var item in listClone)
                 {
                     var executeAction = item.Action as IExecuteWithObject;
 
@@ -480,11 +476,11 @@ namespace GalaSoft.MvvmLight.Messaging
 
             lock (lists)
             {
-                foreach (Type messageType in lists.Keys)
+                foreach (var messageType in lists.Keys)
                 {
-                    foreach (WeakActionAndToken item in lists[messageType])
+                    foreach (var item in lists[messageType])
                     {
-                        IExecuteWithObject weakAction = (IExecuteWithObject)item.Action;
+                        var weakAction = (IExecuteWithObject)item.Action;
 
                         if (weakAction != null
                             && recipient == weakAction.Target)
@@ -502,7 +498,7 @@ namespace GalaSoft.MvvmLight.Messaging
             Action<TMessage> action,
             Dictionary<Type, List<WeakActionAndToken>> lists)
         {
-            Type messageType = typeof(TMessage);
+            var messageType = typeof(TMessage);
 
             if (recipient == null
                 || lists == null
@@ -514,7 +510,7 @@ namespace GalaSoft.MvvmLight.Messaging
 
             lock (lists)
             {
-                foreach (WeakActionAndToken item in lists[messageType])
+                foreach (var item in lists[messageType])
                 {
                     var weakActionCasted = item.Action as WeakAction<TMessage>;
 
@@ -581,16 +577,16 @@ namespace GalaSoft.MvvmLight.Messaging
 
         private void SendToTargetOrType<TMessage>(TMessage message, Type messageTargetType, object token)
         {
-            Type messageType = typeof(TMessage);
+            var messageType = typeof(TMessage);
 
             if (_recipientsOfSubclassesAction != null)
             {
                 // Clone to protect from people registering in a "receive message" method
                 // Correction Messaging BL0008.002
-                List<Type> listClone =
+                var listClone =
                     _recipientsOfSubclassesAction.Keys.Take(_recipientsOfSubclassesAction.Count()).ToList();
 
-                foreach (Type type in listClone)
+                foreach (var type in listClone)
                 {
                     List<WeakActionAndToken> list = null;
 
