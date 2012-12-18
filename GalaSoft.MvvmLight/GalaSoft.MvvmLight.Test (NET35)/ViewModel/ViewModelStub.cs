@@ -102,10 +102,12 @@
         }
 #endif
 
+#if !WP71
         public new void RaisePropertyChanging(string propertyName)
         {
             base.RaisePropertyChanging(propertyName);
         }
+#endif
 
         public new void RaisePropertyChanged(string propertyName)
         {

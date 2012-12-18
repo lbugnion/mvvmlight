@@ -43,7 +43,9 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
+#if !WP71
                 RaisePropertyChanging(() => LastChanged1);
+#endif
 
                 var oldValue = _lastChanged1;
                 _lastChanged1 = value;
@@ -73,7 +75,9 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
+#if !WP71
                 RaisePropertyChanging(() => LastChanged2);
+#endif
 
                 _lastChanged2 = value;
 
@@ -102,9 +106,11 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             RaisePropertyChanged(propertyExpression, oldValue, newValue, broadcast);
         }
 
+#if !WP71
         public void RaisePropertyChangingPublic<T>(Expression<Func<T>> propertyExpression)
         {
             RaisePropertyChanging(propertyExpression);
         }
+#endif
     }
 }
