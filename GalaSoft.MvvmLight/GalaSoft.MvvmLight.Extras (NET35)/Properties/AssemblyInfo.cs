@@ -39,8 +39,8 @@ using System.Windows.Markup;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("4.0.23.*")]
-////[assembly: AssemblyFileVersion("4.0.23.0/BL0023")]
+[assembly: AssemblyVersion("4.1.26.*")]
+////[assembly: AssemblyFileVersion("4.1.26.0/BL0026")]
 
 // FxCop
 [module: SuppressMessage("Microsoft.Naming",
