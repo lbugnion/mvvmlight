@@ -994,14 +994,10 @@ namespace GalaSoft.MvvmLight.Test
                 argumentExceptionWasThrown = true;
             }
 
-#if NET40
-            Assert.IsTrue(argumentExceptionWasThrown);
-#else
 #if DEBUG
             Assert.IsTrue(argumentExceptionWasThrown);
 #else
             Assert.IsFalse(argumentExceptionWasThrown);
-#endif
 #endif
         }
 #endif
