@@ -1,0 +1,66 @@
+<VSTemplate Version="3.0.0"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            Type="Project">
+    <TemplateData>
+        <Name>MvvmLight (WP8)</Name>
+        <Description>A "light" Windows Phone 8 Model-View-ViewModel application optimized for Expression Blend (by GalaSoft Laurent Bugnion)</Description>
+        <Icon>MvvmLight.ico</Icon>
+        <PreviewImage>MvvmLight.png</PreviewImage>
+        <TemplateID>Microsoft.WindowsPhone.CSharp.GalaSoft.MvvmLight.WP8</TemplateID>
+        <ProjectType>CSharp</ProjectType>
+        <ProjectSubType>
+        </ProjectSubType>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>MvvmLight</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <SortOrder>1</SortOrder>
+        <LocationField>Enabled</LocationField>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <TemplateGroupID>Windows Phone;Mvvm</TemplateGroupID>
+        <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+    </TemplateData>
+    <TemplateContent>
+        <Project File="Mvvm.WP8.csproj"
+                 ReplaceParameters="true">
+            <ProjectItem TargetFileName="Assets\ApplicationIcon.png">ApplicationIcon.png</ProjectItem>
+            <ProjectItem TargetFileName="Assets\AlignmentGrid.png">AlignmentGrid.png</ProjectItem>
+            <ProjectItem TargetFileName="Assets\Tiles\FlipCycleTileLarge.png">FlipCycleTileLarge.png</ProjectItem>
+            <ProjectItem TargetFileName="Assets\Tiles\FlipCycleTileMedium.png">FlipCycleTileMedium.png</ProjectItem>
+            <ProjectItem TargetFileName="Assets\Tiles\FlipCycleTileSmall.png">FlipCycleTileSmall.png</ProjectItem>
+            <ProjectItem TargetFileName="Assets\Tiles\IconicTileMediumLarge.png">IconicTileMediumLarge.png</ProjectItem>
+            <ProjectItem TargetFileName="Assets\Tiles\IconicTileSmall.png">IconicTileSmall.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="App.xaml">App.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\AppManifest.xml">AppManifest.xml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataItem.cs">DataItem.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataService.cs">DataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Design\DesignDataService.cs">DesignDataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\IDataService.cs">IDataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainPage.xaml">MainPage.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainPage.xaml.cs">MainPage.xaml.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\MainViewModel.cs">MainViewModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\ViewModelLocator.cs">ViewModelLocator.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\WMAppManifest.xml">WMAppManifest.xml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Resources\AppResources.Designer.cs">AppResources.Designer.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Resources\AppResources.resx">AppResources.resx</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="LocalizedStrings.cs">LocalizedStrings.cs</ProjectItem>
+        </Project>
+    </TemplateContent>
+</VSTemplate>

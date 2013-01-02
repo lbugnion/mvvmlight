@@ -1,0 +1,21 @@
+<VSTemplate Version="3.0.0"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            Type="Item">
+    <TemplateData>
+        <Name>MvvmViewModel (WP8)</Name>
+        <Description>A ViewModel for a Windows Phone MVVM application (by GalaSoft Laurent Bugnion)</Description>
+        <Icon>MvvmLight.ico</Icon>
+        <PreviewImage>MvvmLight.png</PreviewImage>
+        <ProjectType>CSharp</ProjectType>
+		<ProjectSubType>WindowsPhone</ProjectSubType>
+		<TemplateGroupID>Windows Phone</TemplateGroupID>
+        <DefaultName>MvvmViewModel.cs</DefaultName>
+        <SortOrder>1</SortOrder>
+        <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+    </TemplateData>
+    <TemplateContent>
+        <ProjectItem SubType="Code"
+                     TargetFileName="$fileinputname$.cs"
+                     ReplaceParameters="true">ViewModelTemplate.cs</ProjectItem>
+    </TemplateContent>
+</VSTemplate>
