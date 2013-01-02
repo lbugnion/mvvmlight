@@ -4,67 +4,6 @@
         <name>GalaSoft.MvvmLight.Extras.SL4</name>
     </assembly>
     <members>
-        <member name="T:GalaSoft.MvvmLight.Properties.Resources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.AnInterfaceCannotBeRegisteredAlone">
-            <summary>
-              Looks up a localized string similar to An interface cannot be registered alone..
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.CannotBuildInstance">
-            <summary>
-              Looks up a localized string similar to Cannot build instance: Multiple constructors found but none marked with PreferredConstructor..
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ClassIsAlreadyRegistered">
-            <summary>
-              Looks up a localized string similar to Class {0} is already registered..
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ClassIsAlreadyRegisteredWithKey">
-            <summary>
-              Looks up a localized string similar to Class {0} is already registered with key {1}..
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ThereIsAlreadyAClassRegisteredFor">
-            <summary>
-              Looks up a localized string similar to There is already a class registered for {0}..
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ThereIsAlreadyAFactoryRegisteredFor">
-            <summary>
-              Looks up a localized string similar to There is already a factory registered for {0}..
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ThereIsAlreadyAFactoryRegisteredForSameKey">
-            <summary>
-              Looks up a localized string similar to There is already a factory registered for {0} with key {1}..
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.TypeNotFoundInCache">
-            <summary>
-              Looks up a localized string similar to Type not found in cache: {0}..
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Properties.Resources.TypeNotFoundInCacheKeyLess">
-            <summary>
-              Looks up a localized string similar to Type not found in cache without a key: {0}.
-            </summary>
-        </member>
         <member name="T:GalaSoft.MvvmLight.Ioc.ISimpleIoc">
             <summary>
             A very simple IOC container with basic functionality needed to register and resolve
@@ -207,144 +146,6 @@
             </summary>
             <typeparam name="TClass">The type of the instance to be removed.</typeparam>
             <param name="key">The key corresponding to the instance that must be removed.</param>
-        </member>
-        <member name="T:GalaSoft.MvvmLight.Command.EventToCommand">
-            <summary>
-            This <see cref="T:System.Windows.Interactivity.TriggerAction"/> can be
-            used to bind any event on any FrameworkElement to an <see cref="T:System.Windows.Input.ICommand"/>.
-            Typically, this element is used in XAML to connect the attached element
-            to a command located in a ViewModel. This trigger can only be attached
-            to a FrameworkElement or a class deriving from FrameworkElement.
-            <para>To access the EventArgs of the fired event, use a RelayCommand&lt;EventArgs&gt;
-            and leave the CommandParameter and CommandParameterValue empty!</para>
-            </summary>
-        </member>
-        <member name="F:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameterProperty">
-            <summary>
-            Identifies the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameter"/> dependency property
-            </summary>
-        </member>
-        <member name="F:GalaSoft.MvvmLight.Command.EventToCommand.CommandProperty">
-            <summary>
-            Identifies the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/> dependency property
-            </summary>
-        </member>
-        <member name="F:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabledProperty">
-            <summary>
-            Identifies the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabled"/> dependency property
-            </summary>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.OnAttached">
-            <summary>
-            Called when this trigger is attached to a FrameworkElement.
-            </summary>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.GetCommand">
-            <summary>
-            This method is here for compatibility
-            with the Silverlight 3 version.
-            </summary>
-            <returns>The command that must be executed when
-            this trigger is invoked.</returns>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.Invoke">
-            <summary>
-            Provides a simple way to invoke this trigger programatically
-            without any EventArgs.
-            </summary>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.Invoke(System.Object)">
-            <summary>
-            Executes the trigger.
-            <para>To access the EventArgs of the fired event, use a RelayCommand&lt;EventArgs&gt;
-            and leave the CommandParameter and CommandParameterValue empty!</para>
-            </summary>
-            <param name="parameter">The EventArgs of the fired event.</param>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.Command">
-            <summary>
-            Gets or sets the ICommand that this trigger is bound to. This
-            is a DependencyProperty.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameter">
-            <summary>
-            Gets or sets an object that will be passed to the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/>
-            attached to this trigger. This is a DependencyProperty.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameterValue">
-            <summary>
-            Gets or sets an object that will be passed to the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/>
-            attached to this trigger. This property is here for compatibility
-            with the Silverlight version. This is NOT a DependencyProperty.
-            For databinding, use the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameter"/> property.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabled">
-            <summary>
-            Gets or sets a value indicating whether the attached element must be
-            disabled when the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/> property's CanExecuteChanged
-            event fires. If this property is true, and the command's CanExecute 
-            method returns false, the element will be disabled. If this property
-            is false, the element will not be disabled when the command's
-            CanExecute method changes. This is a DependencyProperty.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabledValue">
-            <summary>
-            Gets or sets a value indicating whether the attached element must be
-            disabled when the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/> property's CanExecuteChanged
-            event fires. If this property is true, and the command's CanExecute 
-            method returns false, the element will be disabled. This property is here for
-            compatibility with the Silverlight version. This is NOT a DependencyProperty.
-            For databinding, use the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabled"/> property.
-            </summary>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.PassEventArgsToCommand">
-            <summary>
-            Specifies whether the EventArgs of the event that triggered this
-            action should be passed to the bound RelayCommand. If this is true,
-            the command should accept arguments of the corresponding
-            type (for example RelayCommand&lt;MouseButtonEventArgs&gt;).
-            </summary>
-        </member>
-        <member name="T:GalaSoft.MvvmLight.Converters.UniversalConverter">
-            <summary>
-            Implements a universal converter able to take a lambda expression (as the parameter)
-            and to run this expression dynamically at runtime to convert the value.
-            Usage: Store an instance of UniversalConverter into the application's resources
-            and use this instance in XAML, for example with:
-            {Binding MyProperty,
-             Converter={StaticResource UniversalConverter},
-             ConverterParameter='b=>!b'}
-            </summary>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Converters.UniversalConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            Converts a value into another using an expression (lambda) passed as a string
-            and evaluated at runtime.
-            The process is optimized and already created expression cached for further use.
-            </summary>
-            <param name="value">The value to be converted.</param>
-            <param name="targetType">This parameter
-            is not used.</param>
-            <param name="parameter">The lambda expression to be evaluated at runtime,
-            expressed as a string. For example expressions such as 'b=>!b' or
-            'myValue=>myValue?Visibility.Visible:Visibility.Collapsed' (or more
-            complex expressions) can be used.</param>
-            <param name="culture">This parameter is not used.</param>
-            <returns>The result of the conversion.</returns>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Converters.UniversalConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            This method is not implemented.
-            </summary>
-            <param name="value">Unused parameter.</param>
-            <param name="targetType">Unused parameter.</param>
-            <param name="parameter">Unused parameter.</param>
-            <param name="culture">Unused parameter.</param>
-            <returns>This method is not implemented.</returns>
         </member>
         <member name="T:GalaSoft.MvvmLight.Ioc.PreferredConstructorAttribute">
             <summary>
@@ -617,6 +418,168 @@
         <member name="P:GalaSoft.MvvmLight.Ioc.SimpleIoc.Default">
             <summary>
             This class' default instance.
+            </summary>
+        </member>
+        <member name="T:GalaSoft.MvvmLight.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.AnInterfaceCannotBeRegisteredAlone">
+            <summary>
+              Looks up a localized string similar to An interface cannot be registered alone..
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.CannotBuildInstance">
+            <summary>
+              Looks up a localized string similar to Cannot build instance: Multiple constructors found but none marked with PreferredConstructor..
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ClassIsAlreadyRegistered">
+            <summary>
+              Looks up a localized string similar to Class {0} is already registered..
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ClassIsAlreadyRegisteredWithKey">
+            <summary>
+              Looks up a localized string similar to Class {0} is already registered with key {1}..
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ThereIsAlreadyAClassRegisteredFor">
+            <summary>
+              Looks up a localized string similar to There is already a class registered for {0}..
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ThereIsAlreadyAFactoryRegisteredFor">
+            <summary>
+              Looks up a localized string similar to There is already a factory registered for {0}..
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.ThereIsAlreadyAFactoryRegisteredForSameKey">
+            <summary>
+              Looks up a localized string similar to There is already a factory registered for {0} with key {1}..
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.TypeNotFoundInCache">
+            <summary>
+              Looks up a localized string similar to Type not found in cache: {0}..
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Properties.Resources.TypeNotFoundInCacheKeyLess">
+            <summary>
+              Looks up a localized string similar to Type not found in cache without a key: {0}.
+            </summary>
+        </member>
+        <member name="T:GalaSoft.MvvmLight.Command.EventToCommand">
+            <summary>
+            This <see cref="T:System.Windows.Interactivity.TriggerAction"/> can be
+            used to bind any event on any FrameworkElement to an <see cref="T:System.Windows.Input.ICommand"/>.
+            Typically, this element is used in XAML to connect the attached element
+            to a command located in a ViewModel. This trigger can only be attached
+            to a FrameworkElement or a class deriving from FrameworkElement.
+            <para>To access the EventArgs of the fired event, use a RelayCommand&lt;EventArgs&gt;
+            and leave the CommandParameter and CommandParameterValue empty!</para>
+            </summary>
+        </member>
+        <member name="F:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameterProperty">
+            <summary>
+            Identifies the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameter"/> dependency property
+            </summary>
+        </member>
+        <member name="F:GalaSoft.MvvmLight.Command.EventToCommand.CommandProperty">
+            <summary>
+            Identifies the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/> dependency property
+            </summary>
+        </member>
+        <member name="F:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabledProperty">
+            <summary>
+            Identifies the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabled"/> dependency property
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.OnAttached">
+            <summary>
+            Called when this trigger is attached to a FrameworkElement.
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.GetCommand">
+            <summary>
+            This method is here for compatibility
+            with the Silverlight 3 version.
+            </summary>
+            <returns>The command that must be executed when
+            this trigger is invoked.</returns>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.Invoke">
+            <summary>
+            Provides a simple way to invoke this trigger programatically
+            without any EventArgs.
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.Invoke(System.Object)">
+            <summary>
+            Executes the trigger.
+            <para>To access the EventArgs of the fired event, use a RelayCommand&lt;EventArgs&gt;
+            and leave the CommandParameter and CommandParameterValue empty!</para>
+            </summary>
+            <param name="parameter">The EventArgs of the fired event.</param>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.Command">
+            <summary>
+            Gets or sets the ICommand that this trigger is bound to. This
+            is a DependencyProperty.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameter">
+            <summary>
+            Gets or sets an object that will be passed to the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/>
+            attached to this trigger. This is a DependencyProperty.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameterValue">
+            <summary>
+            Gets or sets an object that will be passed to the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/>
+            attached to this trigger. This property is here for compatibility
+            with the Silverlight version. This is NOT a DependencyProperty.
+            For databinding, use the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.CommandParameter"/> property.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabled">
+            <summary>
+            Gets or sets a value indicating whether the attached element must be
+            disabled when the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/> property's CanExecuteChanged
+            event fires. If this property is true, and the command's CanExecute 
+            method returns false, the element will be disabled. If this property
+            is false, the element will not be disabled when the command's
+            CanExecute method changes. This is a DependencyProperty.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabledValue">
+            <summary>
+            Gets or sets a value indicating whether the attached element must be
+            disabled when the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.Command"/> property's CanExecuteChanged
+            event fires. If this property is true, and the command's CanExecute 
+            method returns false, the element will be disabled. This property is here for
+            compatibility with the Silverlight version. This is NOT a DependencyProperty.
+            For databinding, use the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabled"/> property.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.PassEventArgsToCommand">
+            <summary>
+            Specifies whether the EventArgs of the event that triggered this
+            action should be passed to the bound RelayCommand. If this is true,
+            the command should accept arguments of the corresponding
+            type (for example RelayCommand&lt;MouseButtonEventArgs&gt;).
             </summary>
         </member>
     </members>

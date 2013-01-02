@@ -151,7 +151,7 @@
         </member>
         <member name="M:Microsoft.Practices.ServiceLocation.ServiceLocatorImplBase.GetService(System.Type)">
             <summary>
-            Implementation of <see cref="M:System.IServiceProvider.GetService(System.Type)"/>.
+            Get an instance of the given <paramref name="serviceType"/>.
             </summary>
             <param name="serviceType">The requested service.</param>
             <exception cref="T:Microsoft.Practices.ServiceLocation.ActivationException">if there is an error in resolving the service instance.</exception>
