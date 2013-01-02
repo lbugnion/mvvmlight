@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Threading;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using ProjectForTemplates.ViewModel;
@@ -103,6 +104,8 @@ namespace ProjectForTemplates
             // screen to remain active until the application is ready to render.
             RootFrame = new PhoneApplicationFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
+
+            DispatcherHelper.Initialize();
 
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;

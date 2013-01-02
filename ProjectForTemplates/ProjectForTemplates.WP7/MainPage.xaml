@@ -5,18 +5,17 @@
                             xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:ignore="http://www.ignore.com"
+                            mc:Ignorable="d ignore"
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
                             Foreground="{StaticResource PhoneForegroundBrush}"
                             SupportedOrientations="Portrait"
                             Orientation="Portrait"
-                            mc:Ignorable="d"
-                            d:DesignWidth="480"
-                            d:DesignHeight="768"
                             shell:SystemTray.IsVisible="True"
                             DataContext="{Binding Main, Source={StaticResource Locator}}">
 
-    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot"
           Background="Transparent">
         <Grid.RowDefinitions>
@@ -27,24 +26,26 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel"
                     Grid.Row="0"
-                    Margin="24,24,0,12">
-            <TextBlock x:Name="ApplicationTitle"
-                       Text="{Binding ApplicationTitle}"
-                       Style="{StaticResource PhoneTextNormalStyle}" />
-            <TextBlock x:Name="PageTitle"
-                       Text="{Binding PageName}"
-                       Margin="-3,-8,0,0"
+                    Margin="12,17,0,28">
+            <TextBlock Text="MY APPLICATION"
+                       Style="{StaticResource PhoneTextNormalStyle}"
+                       Margin="12,0" />
+            <TextBlock Text="page name"
+                       Margin="9,-7,0,0"
                        Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentGrid"
-              Grid.Row="1">
+        <Grid x:Name="ContentPanel"
+              Grid.Row="1"
+              Margin="12,0,12,0">
 
             <TextBlock Text="{Binding WelcomeTitle}"
                        Style="{StaticResource PhoneTextNormalStyle}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
                        FontSize="40" />
 
         </Grid>
