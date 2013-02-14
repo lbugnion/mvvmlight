@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MvvmLight</id>
-        <version>4.1.26.1</version>
+        <version>4.1.27.0</version>
         <title>MVVM Light</title>
         <authors>Laurent Bugnion (GalaSoft)</authors>
         <owners>Laurent Bugnion (GalaSoft)</owners>
@@ -10,96 +10,42 @@
         <projectUrl>http://www.galasoft.ch/mvvm</projectUrl>
         <iconUrl>http://www.galasoft.ch/mvvm/resources/Logo/icon_100x100_transparent.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone 7 and Windows 8. It is a light and pragmatic framework that contains only the essential components needed. This is V4 RTM!</description>
-        <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in all versions of Silverlight, WPF, Windows Phone 7 and Windows 8.</summary>
+        <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone and Windows 8. It is a light and pragmatic framework that contains only the essential components needed.</description>
+        <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in all versions of Silverlight, WPF, Windows Phone and Windows 8.</summary>
         <copyright>Copyright 2013 Laurent Bugnion (GalaSoft)</copyright>
         <language>en-US</language>
         <tags>mvvm mvvmlight silverlight wp7 windows8 winrt win8 wpf windowsphone windowsphone7 windowsphone8</tags>
+        <dependencies>
+            <group targetFramework=".NETFramework3.5">
+                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+            </group>
+            <group targetFramework=".NETFramework4.0">
+                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+            </group>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+            </group>
+            <group targetFramework="Silverlight4.0">
+                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+            </group>
+            <group targetFramework="Silverlight5.0">
+                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+            </group>
+            <group targetFramework="Silverlight4.0-WindowsPhone71">
+                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+            </group>
+            <group targetFramework="WindowsPhone8.0">
+                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+            </group>
+            <group targetFramework=".NETCore4.5">
+                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+            </group>
+        </dependencies>
     </metadata>
     <files>
         <file src="Content\ViewModel\MainViewModel.cs.pp" target="Content\ViewModel\MainViewModel.cs.pp" />
         <file src="Content\ViewModel\ViewModelLocator.cs.pp" target="Content\ViewModel\ViewModelLocator.cs.pp" />
         <file src="Content\App.xaml.transform" target="Content\App.xaml.transform" />
         <file src="Content\MVVMLight.Nuget.Readme.txt" target="Content\MVVMLight.Nuget.Readme.txt" />
-        <file src="lib\net35\GalaSoft.MvvmLight.dll" target="lib\net35\GalaSoft.MvvmLight.dll" />
-        <file src="lib\net35\GalaSoft.MvvmLight.Extras.dll" target="lib\net35\GalaSoft.MvvmLight.Extras.dll" />
-        <file src="lib\net35\GalaSoft.MvvmLight.Extras.XML" target="lib\net35\GalaSoft.MvvmLight.Extras.XML" />
-        <file src="lib\net35\GalaSoft.MvvmLight.XML" target="lib\net35\GalaSoft.MvvmLight.XML" />
-        <file src="lib\net35\Microsoft.Practices.ServiceLocation.dll" target="lib\net35\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\net35\Microsoft.Practices.ServiceLocation.xml" target="lib\net35\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\net35\System.Windows.Interactivity.dll" target="lib\net35\System.Windows.Interactivity.dll" />
-        <file src="lib\net35\System.Windows.Interactivity.xml" target="lib\net35\System.Windows.Interactivity.xml" />
-        <file src="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll" target="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll" />
-        <file src="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.XML" target="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.XML" />
-        <file src="lib\net40\GalaSoft.MvvmLight.WPF4.dll" target="lib\net40\GalaSoft.MvvmLight.WPF4.dll" />
-        <file src="lib\net40\GalaSoft.MvvmLight.WPF4.XML" target="lib\net40\GalaSoft.MvvmLight.WPF4.XML" />
-        <file src="lib\net40\Microsoft.Practices.ServiceLocation.dll" target="lib\net40\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\net40\Microsoft.Practices.ServiceLocation.xml" target="lib\net40\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\net40\System.Windows.Interactivity.dll" target="lib\net40\System.Windows.Interactivity.dll" />
-        <file src="lib\net40\System.Windows.Interactivity.xml" target="lib\net40\System.Windows.Interactivity.xml" />
-        <file src="lib\net45\GalaSoft.MvvmLight.Extras.WPF45.dll" target="lib\net45\GalaSoft.MvvmLight.Extras.WPF45.dll" />
-        <file src="lib\net45\GalaSoft.MvvmLight.Extras.WPF45.xml" target="lib\net45\GalaSoft.MvvmLight.Extras.WPF45.xml" />
-        <file src="lib\net45\GalaSoft.MvvmLight.WPF45.dll" target="lib\net45\GalaSoft.MvvmLight.WPF45.dll" />
-        <file src="lib\net45\GalaSoft.MvvmLight.WPF45.xml" target="lib\net45\GalaSoft.MvvmLight.WPF45.xml" />
-        <file src="lib\net45\Microsoft.Practices.ServiceLocation.dll" target="lib\net45\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\net45\Microsoft.Practices.ServiceLocation.xml" target="lib\net45\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\net45\System.Windows.Interactivity.dll" target="lib\net45\System.Windows.Interactivity.dll" />
-        <file src="lib\net45\System.Windows.Interactivity.xml" target="lib\net45\System.Windows.Interactivity.xml" />
-        <file src="lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll" target="lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll" />
-        <file src="lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.pri" target="lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.pri" />
-        <file src="lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.xml" target="lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.xml" />
-        <file src="lib\netcore45\GalaSoft.MvvmLight.Win8.dll" target="lib\netcore45\GalaSoft.MvvmLight.Win8.dll" />
-        <file src="lib\netcore45\GalaSoft.MvvmLight.Win8.pri" target="lib\netcore45\GalaSoft.MvvmLight.Win8.pri" />
-        <file src="lib\netcore45\GalaSoft.MvvmLight.Win8.xml" target="lib\netcore45\GalaSoft.MvvmLight.Win8.xml" />
-        <file src="lib\netcore45\Microsoft.Practices.ServiceLocation.dll" target="lib\netcore45\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\netcore45\Microsoft.Practices.ServiceLocation.pri" target="lib\netcore45\Microsoft.Practices.ServiceLocation.pri" />
-        <file src="lib\netcore45\Microsoft.Practices.ServiceLocation.xml" target="lib\netcore45\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\SL3\GalaSoft.MvvmLight.dll" target="lib\SL3\GalaSoft.MvvmLight.dll" />
-        <file src="lib\SL3\GalaSoft.MvvmLight.Extras.dll" target="lib\SL3\GalaSoft.MvvmLight.Extras.dll" />
-        <file src="lib\SL3\GalaSoft.MvvmLight.Extras.XML" target="lib\SL3\GalaSoft.MvvmLight.Extras.XML" />
-        <file src="lib\SL3\GalaSoft.MvvmLight.XML" target="lib\SL3\GalaSoft.MvvmLight.XML" />
-        <file src="lib\SL3\Microsoft.Practices.ServiceLocation.dll" target="lib\SL3\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\SL3\Microsoft.Practices.ServiceLocation.xml" target="lib\SL3\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\SL3\System.Windows.Interactivity.dll" target="lib\SL3\System.Windows.Interactivity.dll" />
-        <file src="lib\SL3\System.Windows.Interactivity.xml" target="lib\SL3\System.Windows.Interactivity.xml" />
-        <file src="lib\sl3-wp\GalaSoft.MvvmLight.Extras.WP7.dll" target="lib\sl3-wp\GalaSoft.MvvmLight.Extras.WP7.dll" />
-        <file src="lib\sl3-wp\GalaSoft.MvvmLight.Extras.WP7.XML" target="lib\sl3-wp\GalaSoft.MvvmLight.Extras.WP7.XML" />
-        <file src="lib\sl3-wp\GalaSoft.MvvmLight.WP7.dll" target="lib\sl3-wp\GalaSoft.MvvmLight.WP7.dll" />
-        <file src="lib\sl3-wp\GalaSoft.MvvmLight.WP7.XML" target="lib\sl3-wp\GalaSoft.MvvmLight.WP7.XML" />
-        <file src="lib\sl3-wp\Microsoft.Practices.ServiceLocation.dll" target="lib\sl3-wp\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\sl3-wp\Microsoft.Practices.ServiceLocation.xml" target="lib\sl3-wp\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\sl3-wp\System.Windows.Interactivity.dll" target="lib\sl3-wp\System.Windows.Interactivity.dll" />
-        <file src="lib\sl3-wp\System.Windows.Interactivity.xml" target="lib\sl3-wp\System.Windows.Interactivity.xml" />
-        <file src="lib\SL4\GalaSoft.MvvmLight.Extras.SL4.dll" target="lib\SL4\GalaSoft.MvvmLight.Extras.SL4.dll" />
-        <file src="lib\SL4\GalaSoft.MvvmLight.Extras.SL4.XML" target="lib\SL4\GalaSoft.MvvmLight.Extras.SL4.XML" />
-        <file src="lib\SL4\GalaSoft.MvvmLight.SL4.dll" target="lib\SL4\GalaSoft.MvvmLight.SL4.dll" />
-        <file src="lib\SL4\GalaSoft.MvvmLight.SL4.XML" target="lib\SL4\GalaSoft.MvvmLight.SL4.XML" />
-        <file src="lib\SL4\Microsoft.Practices.ServiceLocation.dll" target="lib\SL4\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\SL4\Microsoft.Practices.ServiceLocation.xml" target="lib\SL4\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\SL4\System.Windows.Interactivity.dll" target="lib\SL4\System.Windows.Interactivity.dll" />
-        <file src="lib\SL4\System.Windows.Interactivity.xml" target="lib\SL4\System.Windows.Interactivity.xml" />
-        <file src="lib\sl4-wp71\GalaSoft.MvvmLight.Extras.WP71.dll" target="lib\sl4-wp71\GalaSoft.MvvmLight.Extras.WP71.dll" />
-        <file src="lib\sl4-wp71\GalaSoft.MvvmLight.Extras.WP71.xml" target="lib\sl4-wp71\GalaSoft.MvvmLight.Extras.WP71.xml" />
-        <file src="lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll" target="lib\sl4-wp71\GalaSoft.MvvmLight.WP71.dll" />
-        <file src="lib\sl4-wp71\GalaSoft.MvvmLight.WP71.xml" target="lib\sl4-wp71\GalaSoft.MvvmLight.WP71.xml" />
-        <file src="lib\sl4-wp71\Microsoft.Practices.ServiceLocation.dll" target="lib\sl4-wp71\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\sl4-wp71\Microsoft.Practices.ServiceLocation.xml" target="lib\sl4-wp71\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\sl4-wp71\System.Windows.Interactivity.dll" target="lib\sl4-wp71\System.Windows.Interactivity.dll" />
-        <file src="lib\sl4-wp71\System.Windows.Interactivity.xml" target="lib\sl4-wp71\System.Windows.Interactivity.xml" />
-        <file src="lib\SL5\GalaSoft.MvvmLight.Extras.SL5.dll" target="lib\SL5\GalaSoft.MvvmLight.Extras.SL5.dll" />
-        <file src="lib\SL5\GalaSoft.MvvmLight.Extras.SL5.xml" target="lib\SL5\GalaSoft.MvvmLight.Extras.SL5.xml" />
-        <file src="lib\SL5\GalaSoft.MvvmLight.SL5.dll" target="lib\SL5\GalaSoft.MvvmLight.SL5.dll" />
-        <file src="lib\SL5\GalaSoft.MvvmLight.SL5.xml" target="lib\SL5\GalaSoft.MvvmLight.SL5.xml" />
-        <file src="lib\SL5\Microsoft.Practices.ServiceLocation.dll" target="lib\SL5\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\SL5\Microsoft.Practices.ServiceLocation.xml" target="lib\SL5\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\SL5\System.Windows.Interactivity.dll" target="lib\SL5\System.Windows.Interactivity.dll" />
-        <file src="lib\SL5\System.Windows.Interactivity.xml" target="lib\SL5\System.Windows.Interactivity.xml" />
-        <file src="lib\wp8\GalaSoft.MvvmLight.Extras.WP8.dll" target="lib\wp8\GalaSoft.MvvmLight.Extras.WP8.dll" />
-        <file src="lib\wp8\GalaSoft.MvvmLight.Extras.WP8.xml" target="lib\wp8\GalaSoft.MvvmLight.Extras.WP8.xml" />
-        <file src="lib\wp8\GalaSoft.MvvmLight.WP8.dll" target="lib\wp8\GalaSoft.MvvmLight.WP8.dll" />
-        <file src="lib\wp8\GalaSoft.MvvmLight.WP8.xml" target="lib\wp8\GalaSoft.MvvmLight.WP8.xml" />
-        <file src="lib\wp8\Microsoft.Practices.ServiceLocation.dll" target="lib\wp8\Microsoft.Practices.ServiceLocation.dll" />
-        <file src="lib\wp8\Microsoft.Practices.ServiceLocation.xml" target="lib\wp8\Microsoft.Practices.ServiceLocation.xml" />
-        <file src="lib\wp8\System.Windows.Interactivity.dll" target="lib\wp8\System.Windows.Interactivity.dll" />
     </files>
 </package>
