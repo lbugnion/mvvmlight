@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="SimpleIoc.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2011-2012
+// Copyright © GalaSoft Laurent Bugnion 2011-2013
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -31,8 +31,8 @@ namespace GalaSoft.MvvmLight.Ioc
     /// been extended with additional features.
     /// </summary>
     //// [ClassInfo(typeof(SimpleIoc),
-    ////  VersionString = "4.0.5",
-    ////  DateString = "201206191330",
+    ////  VersionString = "4.1.6",
+    ////  DateString = "201212161200",
     ////  Description = "A very simple IOC container.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]

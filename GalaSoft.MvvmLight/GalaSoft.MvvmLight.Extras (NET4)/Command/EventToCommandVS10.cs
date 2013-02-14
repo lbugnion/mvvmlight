@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="EventToCommand.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2012
+// Copyright © GalaSoft Laurent Bugnion 2009-2013
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -35,6 +35,12 @@ namespace GalaSoft.MvvmLight.Command
     /// <para>To access the EventArgs of the fired event, use a RelayCommand&lt;EventArgs&gt;
     /// and leave the CommandParameter and CommandParameterValue empty!</para>
     /// </summary>
+    ////[ClassInfo(typeof(EventToCommand),
+    ////  VersionString = "4.1.5",
+    ////  DateString = "201212161200",
+    ////  Description = "A Trigger used to bind any event to an ICommand.",
+    ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
+    ////  Email = "laurent@galasoft.ch")]
     public class EventToCommand : TriggerAction<DependencyObject>
     {
         /// <summary>
