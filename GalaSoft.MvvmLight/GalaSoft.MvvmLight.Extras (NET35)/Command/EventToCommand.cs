@@ -33,8 +33,8 @@ namespace GalaSoft.MvvmLight.Command
     /// and leave the CommandParameter and CommandParameterValue empty!</para>
     /// </summary>
     ////[ClassInfo(typeof(EventToCommand),
-    ////  VersionString = "4.0.4",
-    ////  DateString = "201206191330",
+    ////  VersionString = "4.1.5",
+    ////  DateString = "201212161200",
     ////  Description = "A Trigger used to bind any event to an ICommand.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]

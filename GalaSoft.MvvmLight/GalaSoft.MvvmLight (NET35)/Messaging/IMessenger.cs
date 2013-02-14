@@ -1,6 +1,6 @@
 ﻿// **************************************************************************
 // <copyright file="IMessenger.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2012
+// Copyright © GalaSoft Laurent Bugnion 2009-2013
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
