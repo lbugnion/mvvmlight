@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MvvmLightLibs</id>
-        <version>4.1.27.0</version>
+        <version>4.1.27.1</version>
         <title>MVVM Light libraries only</title>
         <authors>Laurent Bugnion (GalaSoft)</authors>
         <owners>Laurent Bugnion (GalaSoft)</owners>
@@ -12,6 +12,7 @@
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone and Windows 8. It is a light and pragmatic framework that contains only the essential components needed. This version contains only the libraries!</description>
         <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in all versions of Silverlight, WPF, Windows Phone 7 and Windows 8.</summary>
+        <releaseNotes>No changes, this version is only here to match the full MVVM Light package's version.</releaseNotes>
         <copyright>Copyright 2013 Laurent Bugnion (GalaSoft)</copyright>
         <language>en-US</language>
         <tags>mvvm mvvmlight silverlight wp7 windows8 winrt win8 wpf windowsphone windowsphone7 windowsphone8</tags>

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MvvmLight</id>
-        <version>4.1.27.0</version>
+        <version>4.1.27.1</version>
         <title>MVVM Light</title>
         <authors>Laurent Bugnion (GalaSoft)</authors>
         <owners>Laurent Bugnion (GalaSoft)</owners>
@@ -12,6 +12,7 @@
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone and Windows 8. It is a light and pragmatic framework that contains only the essential components needed.</description>
         <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in all versions of Silverlight, WPF, Windows Phone and Windows 8.</summary>
+        <releaseNotes>This version includes a Powershell script that runs after the package is installed. It edits the App.xaml file to include the ViewModelLocator in the App's resources. This replaces the previous transformation files, which were too unreliable.</releaseNotes>
         <copyright>Copyright 2013 Laurent Bugnion (GalaSoft)</copyright>
         <language>en-US</language>
         <tags>mvvm mvvmlight silverlight wp7 windows8 winrt win8 wpf windowsphone windowsphone7 windowsphone8</tags>
@@ -45,7 +46,6 @@
     <files>
         <file src="Content\ViewModel\MainViewModel.cs.pp" target="Content\ViewModel\MainViewModel.cs.pp" />
         <file src="Content\ViewModel\ViewModelLocator.cs.pp" target="Content\ViewModel\ViewModelLocator.cs.pp" />
-        <file src="Content\App.xaml.transform" target="Content\App.xaml.transform" />
-        <file src="Content\MVVMLight.Nuget.Readme.txt" target="Content\MVVMLight.Nuget.Readme.txt" />
+        <file src="tools\install.ps1" target="tools\install.ps1" />
     </files>
 </package>
