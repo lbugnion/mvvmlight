@@ -606,16 +606,21 @@ namespace GalaSoft.MvvmLight.Messaging
 
             if (_recipientsStrictAction != null)
             {
+                List<WeakActionAndToken> list = null;
+
                 lock (_recipientsStrictAction)
                 {
                     if (_recipientsStrictAction.ContainsKey(messageType))
                     {
-                        var list = _recipientsStrictAction[messageType]
+                        list = _recipientsStrictAction[messageType]
                             .Take(_recipientsStrictAction[messageType].Count())
                             .ToList();
-
-                        SendToList(message, list, messageTargetType, token);
                     }
+                }
+
+                if (list != null)
+                {
+                    SendToList(message, list, messageTargetType, token);
                 }
             }
 
