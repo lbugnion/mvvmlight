@@ -231,7 +231,7 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// 
+        /// The target of the weak reference.
         /// </summary>
         protected object ActionTarget
         {
@@ -266,7 +266,7 @@ namespace GalaSoft.MvvmLight.Helpers
                     && ActionReference != null
                     && actionTarget != null)
                 {
-                    Method.Invoke(ActionTarget, null);
+                    Method.Invoke(actionTarget, null);
                     return;
                 }
 
