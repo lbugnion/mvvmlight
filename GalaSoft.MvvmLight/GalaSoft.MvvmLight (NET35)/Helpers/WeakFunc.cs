@@ -22,6 +22,8 @@ namespace GalaSoft.MvvmLight.Helpers
     /// Stores a Func&lt;T&gt; without causing a hard reference
     /// to be created to the Func's owner. The owner can be garbage collected at any time.
     /// </summary>
+    /// <typeparam name="TResult">The type of the result of the Func that will be stored
+    /// by this weak reference.</typeparam>
     ////[ClassInfo(typeof(WeakAction)]
     public class WeakFunc<TResult>
     {
@@ -120,7 +122,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <summary>
         /// Initializes a new instance of the WeakFunc class.
         /// </summary>
-        /// <param name="func">The func that will be associated to this instance.</param>
+        /// <param name="func">The Func that will be associated to this instance.</param>
         public WeakFunc(Func<TResult> func)
             : this(func.Target, func)
         {
@@ -129,8 +131,8 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <summary>
         /// Initializes a new instance of the WeakFunc class.
         /// </summary>
-        /// <param name="target">The func's owner.</param>
-        /// <param name="func">The func that will be associated to this instance.</param>
+        /// <param name="target">The Func's owner.</param>
+        /// <param name="func">The Func that will be associated to this instance.</param>
         public WeakFunc(object target, Func<TResult> func)
         {
             if (func.Method.IsStatic)
@@ -244,9 +246,10 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// Executes the action. This only happens if the func's owner
+        /// Executes the action. This only happens if the Func's owner
         /// is still alive.
         /// </summary>
+        /// <returns>The result of the Func stored as reference.</returns>
         public TResult Execute()
         {
             if (_staticFunc != null)
@@ -254,12 +257,15 @@ namespace GalaSoft.MvvmLight.Helpers
                 return _staticFunc();
             }
 
+            var funcTarget = FuncTarget;
+
             if (IsAlive)
             {
                 if (Method != null
-                    && FuncReference != null)
+                    && FuncReference != null
+                    && funcTarget != null)
                 {
-                    return (TResult)Method.Invoke(FuncTarget, null);
+                    return (TResult)Method.Invoke(funcTarget, null);
                 }
 
 #if SILVERLIGHT
