@@ -15,6 +15,7 @@
 // ****************************************************************************
 
 using System;
+using System.Text;
 
 #if NETFX_CORE
 using Windows.UI.Core;
@@ -36,8 +37,8 @@ namespace GalaSoft.MvvmLight.Threading
     /// Helper class for dispatcher operations on the UI thread.
     /// </summary>
     //// [ClassInfo(typeof(DispatcherHelper),
-    ////  VersionString = "4.0.4",
-    ////  DateString = "201206191330",
+    ////  VersionString = "4.1.6",
+    ////  DateString = "201305190047",
     ////  Description = "Helper class for dispatcher operations on the UI thread.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -70,6 +71,13 @@ namespace GalaSoft.MvvmLight.Threading
         /// thread.</param>
         public static void CheckBeginInvokeOnUI(Action action)
         {
+            if (action == null)
+            {
+                return;
+            }
+
+            CheckDispatcher();
+
 #if NETFX_CORE
             if (UIDispatcher.HasThreadAccess)
 #else
@@ -88,6 +96,30 @@ namespace GalaSoft.MvvmLight.Threading
             }
         }
 
+        private static void CheckDispatcher()
+        {
+            if (UIDispatcher == null)
+            {
+                var error = new StringBuilder("The DispatcherHelper is not initialized.");
+                error.AppendLine();
+
+#if SILVERLIGHT
+#if WINDOWS_PHONE
+                error.Append("Call DispatcherHelper.Initialize() at the end of App.InitializePhoneApplication.");
+#else
+                error.Append("Call DispatcherHelper.Initialize() in Application_Startup (App.xaml.cs).");
+#endif
+#elif NETFX_CORE
+                error.Append("Call DispatcherHelper.Initialize() at the end of App.OnLaunched.");
+#else
+                error.Append("Call DispatcherHelper.Initialize() in the static App constructor.");
+#endif
+
+                throw new InvalidOperationException(error.ToString());
+            }
+        }
+
+#if NETFX_CORE
         /// <summary>
         /// Invokes an action asynchronously on the UI thread.
         /// </summary>
@@ -104,6 +136,8 @@ namespace GalaSoft.MvvmLight.Threading
         public static DispatcherOperation RunAsync(Action action)
 #endif
         {
+            CheckDispatcher();
+
 #if NETFX_CORE
             return UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
 #else
@@ -143,6 +177,14 @@ namespace GalaSoft.MvvmLight.Threading
             UIDispatcher = Dispatcher.CurrentDispatcher;
 #endif
 #endif
+        }
+
+        /// <summary>
+        /// Resets the class by deleting the <see cref="UIDispatcher"/>
+        /// </summary>
+        public static void Reset()
+        {
+            UIDispatcher = null;
         }
     }
 }
