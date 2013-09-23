@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C60629E9-3A54-4A25-B83D-BDC6B3C508F0}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>GalaSoft.MvvmLight.Ios</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;XAMARIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DocumentationFile>bin\iPhone\Debug\GalaSoft.MvvmLight.Ios.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DefineConstants>XAMARIN</DefineConstants>
+    <DocumentationFile>bin\iPhone\Release\GalaSoft.MvvmLight.Ios.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Command\RelayCommand.cs">
+      <Link>Command\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Command\RelayCommandGeneric.cs">
+      <Link>Command\RelayCommandGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\IExecuteWithObject.cs">
+      <Link>Helpers\IExecuteWithObject.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\IExecuteWithObjectAndResult.cs">
+      <Link>Helpers\IExecuteWithObjectAndResult.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakAction.cs">
+      <Link>Helpers\WeakAction.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakActionGeneric.cs">
+      <Link>Helpers\WeakActionGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFunc.cs">
+      <Link>Helpers\WeakFunc.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Helpers\WeakFuncGeneric.cs">
+      <Link>Helpers\WeakFuncGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ICleanup.cs">
+      <Link>ICleanup.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\GenericMessage.cs">
+      <Link>Messaging\GenericMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\IMessenger.cs">
+      <Link>Messaging\IMessenger.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\MessageBase.cs">
+      <Link>Messaging\MessageBase.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\Messenger.cs">
+      <Link>Messaging\Messenger.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessage.cs">
+      <Link>Messaging\NotificationMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessageAction.cs">
+      <Link>Messaging\NotificationMessageAction.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessageActionGeneric.cs">
+      <Link>Messaging\NotificationMessageActionGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessageGeneric.cs">
+      <Link>Messaging\NotificationMessageGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\NotificationMessageWithCallback.cs">
+      <Link>Messaging\NotificationMessageWithCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\PropertyChangedMessage.cs">
+      <Link>Messaging\PropertyChangedMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Messaging\PropertyChangedMessageBase.cs">
+      <Link>Messaging\PropertyChangedMessageBase.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ObservableObject.cs">
+      <Link>ObservableObject.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ViewModelBase.cs">
+      <Link>ViewModelBase.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+</Project>

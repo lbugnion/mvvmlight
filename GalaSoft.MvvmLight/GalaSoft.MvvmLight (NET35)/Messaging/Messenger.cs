@@ -25,11 +25,13 @@ using GalaSoft.MvvmLight.Helpers;
 #if SILVERLIGHT
 using System.Windows;
 #else
+#if !XAMARIN
 #if NETFX_CORE
 using Windows.UI.Xaml;
 using Windows.UI.Core;
 #else
 using System.Windows.Threading;
+#endif
 #endif
 #endif
 
@@ -563,6 +565,10 @@ namespace GalaSoft.MvvmLight.Messaging
 #if SILVERLIGHT
                 Deployment.Current.Dispatcher.BeginInvoke(cleanupAction);
 #else
+#if XAMARIN
+                // TODO ANDROID How to dispatch in order to use lower priority
+                cleanupAction();
+#else
 #if NETFX_CORE
                 if (Window.Current != null
                     && Window.Current.Dispatcher != null)
@@ -581,6 +587,7 @@ namespace GalaSoft.MvvmLight.Messaging
                     cleanupAction,
                     DispatcherPriority.ApplicationIdle,
                     null);
+#endif
 #endif
 #endif
                 _isCleanupRegistered = true;

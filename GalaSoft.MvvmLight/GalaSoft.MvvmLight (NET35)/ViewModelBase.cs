@@ -109,13 +109,18 @@ namespace GalaSoft.MvvmLight
                     _isInDesignMode = DesignerProperties.IsInDesignTool;
 #else
 #if NETFX_CORE
-                    _isInDesignMode = Windows.ApplicationModel.DesignMode.DesignModeEnabled;
+                    _isInDesignMode = DesignMode.DesignModeEnabled;
+#else
+#if XAMARIN
+                    // TODO XAMARIN Is there such a thing as design mode? How to detect it?
+                    _isInDesignMode = false;
 #else
                     var prop = DesignerProperties.IsInDesignModeProperty;
                     _isInDesignMode
                         = (bool)DependencyPropertyDescriptor
-                                     .FromProperty(prop, typeof(FrameworkElement))
-                                     .Metadata.DefaultValue;
+                                        .FromProperty(prop, typeof(FrameworkElement))
+                                        .Metadata.DefaultValue;
+#endif
 #endif
 #endif
                 }

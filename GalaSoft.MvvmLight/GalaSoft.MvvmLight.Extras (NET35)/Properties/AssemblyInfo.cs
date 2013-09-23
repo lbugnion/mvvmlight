@@ -20,7 +20,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 #if !NETFX_CORE
+#if !XAMARIN
 using System.Windows.Markup;
+#endif
 #endif
 
 [assembly: AssemblyTitle("GalaSoft.MvvmLight.Extras")]
@@ -33,7 +35,9 @@ using System.Windows.Markup;
 [assembly: AssemblyCulture("")]
 
 #if !NETFX_CORE
+#if !XAMARIN
 [assembly: XmlnsDefinition("http://www.galasoft.ch/mvvmlight", "GalaSoft.MvvmLight.Command")]
+#endif
 #endif
 
 [assembly: ComVisible(false)]

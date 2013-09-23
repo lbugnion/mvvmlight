@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Ios", "GalaSoft.MvvmLight (iOS)\GalaSoft.MvvmLight.Ios.csproj", "{C60629E9-3A54-4A25-B83D-BDC6B3C508F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras.Ios", "GalaSoft.MvvmLight.Extras (iOS)\GalaSoft.MvvmLight.Extras.Ios.csproj", "{E45C410C-6110-4485-9C43-EF10AACA1987}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C60629E9-3A54-4A25-B83D-BDC6B3C508F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60629E9-3A54-4A25-B83D-BDC6B3C508F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60629E9-3A54-4A25-B83D-BDC6B3C508F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60629E9-3A54-4A25-B83D-BDC6B3C508F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E45C410C-6110-4485-9C43-EF10AACA1987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E45C410C-6110-4485-9C43-EF10AACA1987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E45C410C-6110-4485-9C43-EF10AACA1987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E45C410C-6110-4485-9C43-EF10AACA1987}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
