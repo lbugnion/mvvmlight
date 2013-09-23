@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Command\EventToCommand.cs" />
     <Compile Include="Command\EventToCommand.WPF.cs" />
+    <Compile Include="Command\IEventArgsConverter.cs" />
     <Compile Include="Ioc\ISimpleIoc.cs" />
     <Compile Include="Ioc\PreferredConstructor.cs" />
     <Compile Include="Ioc\SimpleIoc.cs" />

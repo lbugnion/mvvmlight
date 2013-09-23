@@ -33,8 +33,8 @@ namespace GalaSoft.MvvmLight.Command
     /// and leave the CommandParameter and CommandParameterValue empty!</para>
     /// </summary>
     ////[ClassInfo(typeof(EventToCommand),
-    ////  VersionString = "4.1.5",
-    ////  DateString = "201212161200",
+    ////  VersionString = "4.1.6",
+    ////  DateString = "201305182300",
     ////  Description = "A Trigger used to bind any event to an ICommand.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -53,6 +53,48 @@ namespace GalaSoft.MvvmLight.Command
             get;
             set;
         }
+
+        /// <summary>
+        /// Gets or sets a converter used to convert the EventArgs when using
+        /// <see cref="PassEventArgsToCommand"/>. If PassEventArgsToCommand is false,
+        /// this property is never used.
+        /// </summary>
+        public IEventArgsConverter EventArgsConverter
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The <see cref="EventArgsConverterParameter" /> dependency property's name.
+        /// </summary>
+        public const string EventArgsConverterParameterPropertyName = "EventArgsConverterParameter";
+
+        /// <summary>
+        /// Gets or sets a parameters for the converter used to convert the EventArgs when using
+        /// <see cref="PassEventArgsToCommand"/>. If PassEventArgsToCommand is false,
+        /// this property is never used. This is a dependency property.
+        /// </summary>
+        public object EventArgsConverterParameter
+        {
+            get
+            {
+                return GetValue(EventArgsConverterParameterProperty);
+            }
+            set
+            {
+                SetValue(EventArgsConverterParameterProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="EventArgsConverterParameter" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty EventArgsConverterParameterProperty = DependencyProperty.Register(
+            EventArgsConverterParameterPropertyName,
+            typeof(object),
+            typeof(EventToCommand),
+            new UIPropertyMetadata(null));
 
         /// <summary>
         /// Provides a simple way to invoke this trigger programatically
@@ -82,7 +124,9 @@ namespace GalaSoft.MvvmLight.Command
             if (commandParameter == null
                 && PassEventArgsToCommand)
             {
-                commandParameter = parameter;
+                commandParameter = EventArgsConverter == null 
+                    ? parameter 
+                    : EventArgsConverter.Convert(parameter, EventArgsConverterParameter);
             }
 
             if (command != null
@@ -133,12 +177,12 @@ namespace GalaSoft.MvvmLight.Command
                 return;
             }
 
-            var command = this.GetCommand();
+            var command = GetCommand();
 
-            if (this.MustToggleIsEnabledValue
+            if (MustToggleIsEnabledValue
                 && command != null)
             {
-                element.IsEnabled = command.CanExecute(this.CommandParameterValue);
+                element.IsEnabled = command.CanExecute(CommandParameterValue);
             }
         }
 

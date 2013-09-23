@@ -57,10 +57,15 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\EventToCommandEventArgsTest.cs" />
+    <Compile Include="Command\EventArgsConverter.cs" />
+    <Compile Include="Command\EventToCommandStub.cs" />
     <Compile Include="Command\EventToCommandTest.cs" />
     <Compile Include="Command\RelayCommandGenericTest.cs" />
     <Compile Include="Command\RelayCommandTest.cs" />
+    <Compile Include="Command\StringEventArgs.cs" />
     <Compile Include="Command\TemporaryClass.cs" />
+    <Compile Include="Command\TestViewModel.cs" />
     <Compile Include="Helpers\PublicTestClassGenericWithResult.cs" />
     <Compile Include="Helpers\InternalTestClassGenericWithResult.cs" />
     <Compile Include="Helpers\InternalTestClassWithResult.cs" />
