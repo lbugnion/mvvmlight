@@ -70,6 +70,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\EventArgsConverter.cs">
+      <Link>Command\EventArgsConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\EventToCommandEventArgsTest.cs">
+      <Link>Command\EventToCommandEventArgsTest.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\EventToCommandStub.cs">
+      <Link>Command\EventToCommandStub.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\EventToCommandTest.cs">
       <Link>Command\EventToCommandTest.cs</Link>
     </Compile>
@@ -79,8 +88,14 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\RelayCommandTest.cs">
       <Link>Command\RelayCommandTest.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\StringEventArgs.cs">
+      <Link>Command\StringEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\TemporaryClass.cs">
       <Link>Command\TemporaryClass.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Command\TestViewModel.cs">
+      <Link>Command\TestViewModel.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28NET35%29\Helpers\InternalTestClassGenericWithResult.cs">
       <Link>Helpers\InternalTestClassGenericWithResult.cs</Link>
