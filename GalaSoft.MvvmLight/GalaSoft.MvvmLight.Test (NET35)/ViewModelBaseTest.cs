@@ -1002,5 +1002,109 @@ namespace GalaSoft.MvvmLight.Test
         }
 #endif
 #endif
+
+#if CMNATTR
+        [TestMethod]
+        public void TestCallerMemberNameAndBroadcastWithSet()
+        {
+            Messenger.Reset();
+
+            var instance = new TestViewModel();
+
+            const string value1 = "1234";
+            const string value2 = "5678";
+
+            instance.TestPropertyWithCallerMemberNameAndSetAndBroadcast = value1;
+
+            var changedWasRaised = false;
+            var changeWasReceived = false;
+
+            instance.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName != TestViewModel.TestPropertyWithCallerMemberNameAndSetAndBroadcastPropertyName)
+                {
+                    return;
+                }
+
+                var sender = (TestViewModel)s;
+                Assert.AreSame(instance, sender);
+
+                Assert.AreEqual(value2, instance.TestPropertyWithCallerMemberNameAndSetAndBroadcast);
+                changedWasRaised = true;
+            };
+
+            Messenger.Default.Register<PropertyChangedMessage<string>>(
+                this,
+                message =>
+                {
+                    if (message.PropertyName != TestViewModel.TestPropertyWithCallerMemberNameAndSetAndBroadcastPropertyName)
+                    {
+                        return;
+                    }
+
+                    var sender = (TestViewModel)message.Sender;
+                    Assert.AreSame(instance, sender);
+
+                    Assert.AreEqual(value1, message.OldValue);
+                    Assert.AreEqual(value2, message.NewValue);
+                    changeWasReceived = true;
+                });
+
+            instance.TestPropertyWithCallerMemberNameAndSetAndBroadcast = value2;
+            Assert.IsTrue(changedWasRaised);
+            Assert.IsTrue(changeWasReceived);
+        }
+
+        [TestMethod]
+        public void TestCallerMemberNameAndBroadcast()
+        {
+            Messenger.Reset();
+
+            var instance = new TestViewModel();
+
+            const string value1 = "1234";
+            const string value2 = "5678";
+
+            instance.TestPropertyWithCallerMemberNameAndBroadcast = value1;
+
+            var changedWasRaised = false;
+            var changeWasReceived = false;
+
+            instance.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName != TestViewModel.TestPropertyWithCallerMemberNameAndBroadcastPropertyName)
+                {
+                    return;
+                }
+
+                var sender = (TestViewModel)s;
+                Assert.AreSame(instance, sender);
+
+                Assert.AreEqual(value2, instance.TestPropertyWithCallerMemberNameAndBroadcast);
+                changedWasRaised = true;
+            };
+
+            Messenger.Default.Register<PropertyChangedMessage<string>>(
+                this,
+                message =>
+                {
+                    if (message.PropertyName != TestViewModel.TestPropertyWithCallerMemberNameAndBroadcastPropertyName)
+                    {
+                        return;
+                    }
+
+                    var sender = (TestViewModel)message.Sender;
+                    Assert.AreSame(instance, sender);
+
+                    Assert.AreEqual(value1, message.OldValue);
+                    Assert.AreEqual(value2, message.NewValue);
+                    changeWasReceived = true;
+                });
+
+            instance.TestPropertyWithCallerMemberNameAndBroadcast = value2;
+            Assert.IsTrue(changedWasRaised);
+            Assert.IsTrue(changeWasReceived);
+        }
+#endif
     }
 }

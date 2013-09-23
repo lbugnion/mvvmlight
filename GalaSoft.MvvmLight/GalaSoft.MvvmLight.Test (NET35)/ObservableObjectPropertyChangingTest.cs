@@ -214,5 +214,54 @@ namespace GalaSoft.MvvmLight.Test
             Assert.IsTrue(changedWasRaised);
         }
 #endif
+
+#if CMNATTR
+        [TestMethod]
+        public void TestPropertyChangingWithCallerMemberName()
+        {
+            var instance = new TestViewModel();
+
+            const string value1 = "1234";
+            const string value2 = "5678";
+
+            instance.TestPropertyWithCallerMemberName = value1;
+
+            var changingWasRaised = false;
+            var changedWasRaised = false;
+
+            instance.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName != TestViewModel.TestPropertyWithCallerMemberNamePropertyName)
+                {
+                    return;
+                }
+
+                var sender = (TestViewModel)s;
+                Assert.AreSame(instance, sender);
+
+                Assert.AreEqual(value1, instance.TestPropertyWithCallerMemberName);
+                changingWasRaised = true;
+            };
+
+            instance.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName != TestViewModel.TestPropertyWithCallerMemberNamePropertyName)
+                {
+                    return;
+                }
+
+                var sender = (TestViewModel)s;
+                Assert.AreSame(instance, sender);
+
+                Assert.AreEqual(value2, instance.TestPropertyWithCallerMemberName);
+                changedWasRaised = true;
+            };
+
+            instance.TestPropertyWithCallerMemberName = value2;
+
+            Assert.IsTrue(changingWasRaised);
+            Assert.IsTrue(changedWasRaised);
+        }
+#endif
     }
 }

@@ -156,6 +156,121 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             }
         }
 
+#if CMNATTR
+        /// <summary>
+        /// The <see cref="TestPropertyWithCallerMemberName" /> property's name.
+        /// </summary>
+        public const string TestPropertyWithCallerMemberNamePropertyName = "TestPropertyWithCallerMemberName";
+
+        private string _testPropertyWithCallerMemberName;
+
+        /// <summary>
+        /// Sets and gets the TestPropertyWithCallerMemberName property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string TestPropertyWithCallerMemberName
+        {
+            get
+            {
+                return _testPropertyWithCallerMemberName;
+            }
+
+            set
+            {
+                if (_testPropertyWithCallerMemberName == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging();
+                _testPropertyWithCallerMemberName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="TestPropertyWithCallerMemberNameAndBroadcast" /> property's name.
+        /// </summary>
+        public const string TestPropertyWithCallerMemberNameAndBroadcastPropertyName = "TestPropertyWithCallerMemberNameAndBroadcast";
+
+        private string _testPropertyWithCallerMemberNameAndBroadcast;
+
+        /// <summary>
+        /// Sets and gets the TestPropertyWithCallerMemberNameAndBroadcast property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// This property's value is broadcasted by the MessengerInstance when it changes.
+        /// </summary>
+        public string TestPropertyWithCallerMemberNameAndBroadcast
+        {
+            get
+            {
+                return _testPropertyWithCallerMemberNameAndBroadcast;
+            }
+
+            set
+            {
+                if (_testPropertyWithCallerMemberNameAndBroadcast == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging();
+                var oldValue = _testPropertyWithCallerMemberNameAndBroadcast;
+                _testPropertyWithCallerMemberNameAndBroadcast = value;
+                RaisePropertyChanged(oldValue: oldValue, newValue: value, broadcast: true);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="TestPropertyWithCallerMemberNameAndSet" /> property's name.
+        /// </summary>
+        public const string TestPropertyWithCallerMemberNameAndSetPropertyName = "TestPropertyWithCallerMemberNameAndSet";
+
+        private string _testPropertyWithCallerMemberNameAndSet;
+
+        /// <summary>
+        /// Sets and gets the TestPropertyWithCallerMemberNameAndSet property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string TestPropertyWithCallerMemberNameAndSet
+        {
+            get
+            {
+                return _testPropertyWithCallerMemberNameAndSet;
+            }
+
+            set
+            {
+                Set(ref _testPropertyWithCallerMemberNameAndSet, value);
+            }
+        }
+
+
+        /// <summary>
+        /// The <see cref="TestPropertyWithCallerMemberNameAndSetAndBroadcast" /> property's name.
+        /// </summary>
+        public const string TestPropertyWithCallerMemberNameAndSetAndBroadcastPropertyName = "TestPropertyWithCallerMemberNameAndSetAndBroadcast";
+
+        private string _testPropertyWithCallerMemberNameAndSetAndBroadcast;
+
+        /// <summary>
+        /// Sets and gets the TestPropertyWithCallerMemberNameAndSetAndBroadcast property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string TestPropertyWithCallerMemberNameAndSetAndBroadcast
+        {
+            get
+            {
+                return _testPropertyWithCallerMemberNameAndSetAndBroadcast;
+            }
+
+            set
+            {
+                Set(ref _testPropertyWithCallerMemberNameAndSetAndBroadcast, value, true);
+            }
+        }
+#endif
+
 #if SILVERLIGHT
         public void HandleStringMessage(string message)
 #else

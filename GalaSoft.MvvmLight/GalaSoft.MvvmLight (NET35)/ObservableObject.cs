@@ -111,7 +111,20 @@ namespace GalaSoft.MvvmLight
 #endif
         }
 
-#if !WP71
+#if CMNATTR
+        /// <summary>
+        /// Raises the PropertyChanging event if needed.
+        /// </summary>
+        /// <remarks>If the propertyName parameter
+        /// does not correspond to an existing property on the current class, an
+        /// exception is thrown in DEBUG configuration only.</remarks>
+        /// <param name="propertyName">(optional) The name of the property that
+        /// changed.</param>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+            Justification = "This cannot be an event")]
+        protected virtual void RaisePropertyChanging(
+            [CallerMemberName] string propertyName = null)
+#else
         /// <summary>
         /// Raises the PropertyChanging event if needed.
         /// </summary>
@@ -122,7 +135,9 @@ namespace GalaSoft.MvvmLight
         /// changed.</param>
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
-        protected virtual void RaisePropertyChanging(string propertyName)
+        protected virtual void RaisePropertyChanging(
+            string propertyName)
+#endif
         {
 #if NETFX_CORE
             if (string.IsNullOrEmpty(propertyName))
@@ -144,8 +159,21 @@ namespace GalaSoft.MvvmLight
             }
 #endif
         }
-#endif
 
+#if CMNATTR
+        /// <summary>
+        /// Raises the PropertyChanged event if needed.
+        /// </summary>
+        /// <remarks>If the propertyName parameter
+        /// does not correspond to an existing property on the current class, an
+        /// exception is thrown in DEBUG configuration only.</remarks>
+        /// <param name="propertyName">(optional) The name of the property that
+        /// changed.</param>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+            Justification = "This cannot be an event")]
+        protected virtual void RaisePropertyChanged(
+            [CallerMemberName] string propertyName = null)
+#else
         /// <summary>
         /// Raises the PropertyChanged event if needed.
         /// </summary>
@@ -156,7 +184,9 @@ namespace GalaSoft.MvvmLight
         /// changed.</param>
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
-        protected virtual void RaisePropertyChanged(string propertyName)
+        protected virtual void RaisePropertyChanged(
+            string propertyName) 
+#endif
         {
             VerifyPropertyName(propertyName);
 
@@ -319,6 +349,30 @@ namespace GalaSoft.MvvmLight
             field = newValue;
             RaisePropertyChanged(propertyName);
             return true;
+        }
+#endif
+
+#if CMNATTR
+        /// <summary>
+        /// Assigns a new value to the property. Then, raises the
+        /// PropertyChanged event if needed. 
+        /// </summary>
+        /// <typeparam name="T">The type of the property that
+        /// changed.</typeparam>
+        /// <param name="field">The field storing the property's value.</param>
+        /// <param name="newValue">The property's value after the change
+        /// occurred.</param>
+        /// <param name="propertyName">(optional) The name of the property that
+        /// changed.</param>
+        /// <returns>True if the PropertyChanged event has been raised,
+        /// false otherwise. The event is not raised if the old
+        /// value is equal to the new value.</returns>
+        protected bool Set<T>(
+            ref T field,
+            T newValue,
+            [CallerMemberName] string propertyName = null)
+        {
+            return Set(propertyName, ref field, newValue);
         }
 #endif
     }

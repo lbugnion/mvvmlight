@@ -1,4 +1,5 @@
 ﻿using System;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Test.ViewModel;
 
 #if NETFX_CORE
@@ -230,6 +231,67 @@ namespace GalaSoft.MvvmLight.Test
             Assert.AreEqual(firstValue, receivedValueChanging);
             Assert.AreEqual(firstValue + 1, receivedValueChanged);
             Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
+        }
+#endif
+
+#if CMNATTR
+        [TestMethod]
+        public void TestCallerMemberName()
+        {
+            var instance = new TestViewModel();
+
+            const string value1 = "1234";
+            const string value2 = "5678";
+
+            instance.TestPropertyWithCallerMemberName = value1;
+
+            var changedWasRaised = false;
+
+            instance.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName != TestViewModel.TestPropertyWithCallerMemberNamePropertyName)
+                {
+                    return;
+                }
+
+                var sender = (TestViewModel)s;
+                Assert.AreSame(instance, sender);
+
+                Assert.AreEqual(value2, instance.TestPropertyWithCallerMemberName);
+                changedWasRaised = true;
+            };
+
+            instance.TestPropertyWithCallerMemberName = value2;
+            Assert.IsTrue(changedWasRaised);
+        }
+        [TestMethod]
+        public void TestCallerMemberNameWithSet()
+        {
+            var instance = new TestViewModel();
+
+            const string value1 = "1234";
+            const string value2 = "5678";
+
+            instance.TestPropertyWithCallerMemberNameAndSet = value1;
+
+            var changedWasRaised = false;
+
+            instance.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName != TestViewModel.TestPropertyWithCallerMemberNameAndSetPropertyName)
+                {
+                    return;
+                }
+
+                var sender = (TestViewModel)s;
+                Assert.AreSame(instance, sender);
+
+                Assert.AreEqual(value2, instance.TestPropertyWithCallerMemberNameAndSet);
+                changedWasRaised = true;
+            };
+
+            instance.TestPropertyWithCallerMemberNameAndSet = value2;
+            Assert.IsTrue(changedWasRaised);
         }
 
 #endif

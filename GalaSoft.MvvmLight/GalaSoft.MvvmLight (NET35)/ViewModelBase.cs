@@ -20,13 +20,16 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight.Messaging;
 
 #if !SL3
 using System.Linq.Expressions;
 #endif
 
-#if !NETFX_CORE
+#if NETFX_CORE
+using Windows.ApplicationModel;
+#else
 using System.Windows;
 #endif
 
@@ -187,7 +190,15 @@ namespace GalaSoft.MvvmLight
         /// exception is thrown in DEBUG configuration only.</remarks>
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
-        protected virtual void RaisePropertyChanged<T>(string propertyName, T oldValue, T newValue, bool broadcast)
+        protected virtual void RaisePropertyChanged<T>(
+#if CMNATTR
+            [CallerMemberName] string propertyName = null, 
+#else
+            string propertyName,
+#endif
+            T oldValue = default(T), 
+            T newValue = default(T), 
+            bool broadcast = false)
         {
             if (string.IsNullOrEmpty(propertyName))
             {
@@ -309,8 +320,8 @@ namespace GalaSoft.MvvmLight
         protected bool Set<T>(
             string propertyName,
             ref T field,
-            T newValue,
-            bool broadcast)
+            T newValue = default(T),
+            bool broadcast = false)
         {
             if (EqualityComparer<T>.Default.Equals(field, newValue))
             {
@@ -318,7 +329,42 @@ namespace GalaSoft.MvvmLight
             }
 
             RaisePropertyChanging(propertyName);
+            var oldValue = field;
+            field = newValue;
+            RaisePropertyChanged(propertyName, oldValue, field, broadcast);
+            return true;
+        }
 #endif
+
+#if CMNATTR
+        /// <summary>
+        /// Assigns a new value to the property. Then, raises the
+        /// PropertyChanged event if needed, and broadcasts a
+        /// PropertyChangedMessage using the Messenger instance (or the
+        /// static default instance if no Messenger instance is available). 
+        /// </summary>
+        /// <typeparam name="T">The type of the property that
+        /// changed.</typeparam>
+        /// <param name="field">The field storing the property's value.</param>
+        /// <param name="newValue">The property's value after the change
+        /// occurred.</param>
+        /// <param name="broadcast">If true, a PropertyChangedMessage will
+        /// be broadcasted. If false, only the event will be raised.</param>
+        /// <param name="propertyName">(optional) The name of the property that
+        /// changed.</param>
+        /// <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
+        protected bool Set<T>(
+            ref T field,
+            T newValue = default(T),
+            bool broadcast = false,
+            [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, newValue))
+            {
+                return false;
+            }
+
+            RaisePropertyChanging(propertyName);
             var oldValue = field;
             field = newValue;
             RaisePropertyChanged(propertyName, oldValue, field, broadcast);
