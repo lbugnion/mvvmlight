@@ -14,6 +14,7 @@
 // ****************************************************************************
 
 using System;
+using System.Reflection;
 
 namespace GalaSoft.MvvmLight.Helpers
 {
@@ -40,7 +41,11 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 if (_staticFunc != null)
                 {
+#if NETFX_CORE
+                    return _staticFunc.GetMethodInfo().Name;
+#else
                     return _staticFunc.Method.Name;
+#endif
                 }
 
 #if SILVERLIGHT
@@ -105,7 +110,11 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <param name="func">The Func that will be associated to this instance.</param>
         public WeakFunc(object target, Func<T, TResult> func)
         {
+#if NETFX_CORE
+            if (func.GetMethodInfo().IsStatic)
+#else
             if (func.Method.IsStatic)
+#endif
             {
                 _staticFunc = func;
 
@@ -143,7 +152,11 @@ namespace GalaSoft.MvvmLight.Helpers
                 }
             }
 #else
+#if NETFX_CORE
+            Method = func.GetMethodInfo();
+#else
             Method = func.Method;
+#endif
             FuncReference = new WeakReference(func.Target);
 #endif
 

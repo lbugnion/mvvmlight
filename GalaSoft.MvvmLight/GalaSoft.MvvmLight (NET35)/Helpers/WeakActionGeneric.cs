@@ -14,6 +14,7 @@
 // ****************************************************************************
 
 using System;
+using System.Reflection;
 
 namespace GalaSoft.MvvmLight.Helpers
 {
@@ -39,7 +40,11 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 if (_staticAction != null)
                 {
+#if NETFX_CORE
+                    return _staticAction.GetMethodInfo().Name;
+#else
                     return _staticAction.Method.Name;
+#endif
                 }
 
 #if SILVERLIGHT
@@ -104,7 +109,11 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <param name="action">The action that will be associated to this instance.</param>
         public WeakAction(object target, Action<T> action)
         {
+#if NETFX_CORE
+            if (action.GetMethodInfo().IsStatic)
+#else
             if (action.Method.IsStatic)
+#endif
             {
                 _staticAction = action;
 
@@ -142,7 +151,11 @@ namespace GalaSoft.MvvmLight.Helpers
                 }
             }
 #else
+#if NETFX_CORE
+            Method = action.GetMethodInfo();
+#else
             Method = action.Method;
+#endif
             ActionReference = new WeakReference(action.Target);
 #endif
 
