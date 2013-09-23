@@ -83,5 +83,18 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             SimpleIoc.Default.Unregister<ITestClass>();
             Assert.IsFalse(SimpleIoc.Default.IsRegistered<ITestClass>());
         }
+
+        [TestMethod]
+        public void TestIsRegisteredThenContinue()
+        {
+            SimpleIoc.Default.Reset();
+
+            SimpleIoc.Default.Register<ITestClass, TestClass>();
+
+            // Previous versions of SimpleIoc would throw an exception. Instead
+            // new versions just ignore and continue. This fixes issues with Expression Blend,
+            // for instance.
+            SimpleIoc.Default.Register<ITestClass, TestClass>();
+        }
     }
 }
