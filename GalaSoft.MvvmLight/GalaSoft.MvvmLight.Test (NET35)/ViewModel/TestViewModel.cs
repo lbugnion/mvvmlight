@@ -52,9 +52,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
-#if !WP71
                 RaisePropertyChanging(LastChanged1PropertyName);
-#endif
 
                 var oldValue = _lastChanged1;
                 _lastChanged1 = value;
@@ -89,9 +87,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
-#if !WP71
                 RaisePropertyChanging(LastChanged2PropertyName);
-#endif
 
                 _lastChanged2 = value;
 

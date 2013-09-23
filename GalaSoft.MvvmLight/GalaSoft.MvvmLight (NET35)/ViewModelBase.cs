@@ -279,9 +279,7 @@ namespace GalaSoft.MvvmLight
                 return false;
             }
 
-#if !WP71
             RaisePropertyChanging(propertyExpression);
-#endif
             var oldValue = field;
             field = newValue;
             RaisePropertyChanged(propertyExpression, oldValue, field, broadcast);
@@ -319,7 +317,6 @@ namespace GalaSoft.MvvmLight
                 return false;
             }
 
-#if !WP71
             RaisePropertyChanging(propertyName);
 #endif
             var oldValue = field;

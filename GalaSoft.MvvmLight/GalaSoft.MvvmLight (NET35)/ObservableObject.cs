@@ -23,6 +23,8 @@ using System.Reflection;
 #if !SL3
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+
 #endif
 
 namespace GalaSoft.MvvmLight
@@ -31,10 +33,7 @@ namespace GalaSoft.MvvmLight
     /// A base class for objects of which the properties must be observable.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase))]
-    public class ObservableObject : INotifyPropertyChanged
-#if !WP71
-        , INotifyPropertyChanging
-#endif
+    public class ObservableObject : INotifyPropertyChanged, INotifyPropertyChanging
     {
         /// <summary>
         /// Occurs after a property value changes.
@@ -52,7 +51,6 @@ namespace GalaSoft.MvvmLight
             }
         }
 
-#if !WP71
         /// <summary>
         /// Occurs before a property value changes.
         /// </summary>
@@ -68,7 +66,6 @@ namespace GalaSoft.MvvmLight
                 return PropertyChanging;
             }
         }
-#endif
 
         /// <summary>
         /// Verifies that a property name exists in this ViewModel. This method
@@ -171,7 +168,6 @@ namespace GalaSoft.MvvmLight
         }
 
 #if !SL3
-#if !WP71
         /// <summary>
         /// Raises the PropertyChanging event if needed.
         /// </summary>
@@ -194,7 +190,6 @@ namespace GalaSoft.MvvmLight
                 handler(this, new PropertyChangingEventArgs(propertyName));
             }
         }
-#endif
 
         /// <summary>
         /// Raises the PropertyChanged event if needed.
@@ -286,9 +281,7 @@ namespace GalaSoft.MvvmLight
                 return false;
             }
 
-#if !WP71
             RaisePropertyChanging(propertyExpression);
-#endif
             field = newValue;
             RaisePropertyChanged(propertyExpression);
             return true;
@@ -322,9 +315,7 @@ namespace GalaSoft.MvvmLight
                 return false;
             }
 
-#if !WP71
             RaisePropertyChanging(propertyName);
-#endif
             field = newValue;
             RaisePropertyChanged(propertyName);
             return true;
