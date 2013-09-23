@@ -94,7 +94,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <param name="func">The Func that will be associated to this instance.</param>
         public WeakFunc(Func<T, TResult> func)
-            : this(func.Target, func)
+            : this(func == null ? null : func.Target, func)
         {
         }
 

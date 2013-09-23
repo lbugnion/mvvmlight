@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
   
-  <Identity Name="75b1fbda-337b-4237-83f4-6ef37e3e40eb"
+  <Identity Name="cfe1ae29-b74a-4f96-8451-0d2f1d5d165d"
             Publisher="CN=Laurent"
             Version="1.0.0.0" />
   
@@ -50,5 +50,7 @@
         </VisualElements>
     </Application>
   </Applications>
-  
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
 </Package>

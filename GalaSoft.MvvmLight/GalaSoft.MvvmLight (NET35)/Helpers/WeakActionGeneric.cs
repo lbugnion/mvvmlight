@@ -93,7 +93,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <param name="action">The action that will be associated to this instance.</param>
         public WeakAction(Action<T> action)
-            : this(action.Target, action)
+            : this(action == null ? null : action.Target, action)
         {
         }
 

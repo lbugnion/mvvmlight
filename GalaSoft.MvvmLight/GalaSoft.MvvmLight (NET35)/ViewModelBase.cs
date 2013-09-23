@@ -260,6 +260,14 @@ namespace GalaSoft.MvvmLight
         /// occurred.</param>
         /// <param name="broadcast">If true, a PropertyChangedMessage will
         /// be broadcasted. If false, only the event will be raised.</param>
+        /// <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1006:DoNotNestGenericTypesInMemberSignatures"), 
+        System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1045:DoNotPassTypesByReference", 
+            MessageId = "1#")]
         protected bool Set<T>(
             Expression<Func<T>> propertyExpression,
             ref T field,
@@ -295,6 +303,11 @@ namespace GalaSoft.MvvmLight
         /// occurred.</param>
         /// <param name="broadcast">If true, a PropertyChangedMessage will
         /// be broadcasted. If false, only the event will be raised.</param>
+        /// <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1045:DoNotPassTypesByReference", 
+            MessageId = "1#")]
         protected bool Set<T>(
             string propertyName,
             ref T field,

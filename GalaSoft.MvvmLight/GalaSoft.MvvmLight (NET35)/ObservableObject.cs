@@ -75,9 +75,10 @@ namespace GalaSoft.MvvmLight
         /// can be called before the property is used, for instance before
         /// calling RaisePropertyChanged. It avoids errors when a property name
         /// is changed but some places are missed.
-        /// <para>This method is only active in DEBUG mode.</para>
         /// </summary>
-        /// <param name="propertyName"></param>
+        /// <remarks>This method is only active in DEBUG mode.</remarks>
+        /// <param name="propertyName">The name of the property that will be
+        /// checked.</param>
         [Conditional("DEBUG")]
         [DebuggerStepThrough]
         public void VerifyPropertyName(string propertyName)
@@ -226,7 +227,11 @@ namespace GalaSoft.MvvmLight
         /// <returns>The name of the property returned by the expression.</returns>
         /// <exception cref="ArgumentNullException">If the expression is null.</exception>
         /// <exception cref="ArgumentException">If the expression does not represent a property.</exception>
-        protected string GetPropertyName<T>(Expression<Func<T>> propertyExpression)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters"), System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1006:DoNotNestGenericTypesInMemberSignatures", 
+            Justification="This design is better than the alternative.")]
+        protected static string GetPropertyName<T>(Expression<Func<T>> propertyExpression)
         {
             if (propertyExpression == null)
             {
@@ -264,6 +269,13 @@ namespace GalaSoft.MvvmLight
         /// <returns>True if the PropertyChanged event has been raised,
         /// false otherwise. The event is not raised if the old
         /// value is equal to the new value.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1006:DoNotNestGenericTypesInMemberSignatures"), 
+        System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1045:DoNotPassTypesByReference", 
+            MessageId = "1#")]
         protected bool Set<T>(
             Expression<Func<T>> propertyExpression,
             ref T field,
@@ -296,6 +308,10 @@ namespace GalaSoft.MvvmLight
         /// <returns>True if the PropertyChanged event has been raised,
         /// false otherwise. The event is not raised if the old
         /// value is equal to the new value.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1045:DoNotPassTypesByReference", 
+            MessageId = "1#")]
         protected bool Set<T>(
             string propertyName,
             ref T field,

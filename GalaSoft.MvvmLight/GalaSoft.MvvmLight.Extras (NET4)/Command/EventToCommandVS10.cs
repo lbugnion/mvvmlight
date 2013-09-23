@@ -27,7 +27,7 @@ using System.Windows.Controls;
 namespace GalaSoft.MvvmLight.Command
 {
     /// <summary>
-    /// This <see cref="System.Windows.Interactivity.TriggerAction" /> can be
+    /// This <see cref="T:System.Windows.Interactivity.TriggerAction`1" /> can be
     /// used to bind any event on any FrameworkElement to an <see cref="ICommand" />.
     /// Typically, this element is used in XAML to connect the attached element
     /// to a command located in a ViewModel. This trigger can only be attached
