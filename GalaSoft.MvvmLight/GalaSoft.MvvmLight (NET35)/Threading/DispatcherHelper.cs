@@ -92,9 +92,15 @@ namespace GalaSoft.MvvmLight.Threading
         /// Invokes an action asynchronously on the UI thread.
         /// </summary>
         /// <param name="action">The action that must be executed.</param>
-#if NETFX_CORE
+        /// <returns>The object that provides handlers for the completed async event dispatch.</returns>
         public static IAsyncAction RunAsync(Action action)
 #else
+        /// <summary>
+        /// Invokes an action asynchronously on the UI thread.
+        /// </summary>
+        /// <param name="action">The action that must be executed.</param>
+        /// <returns>An object, which is returned immediately after BeginInvoke is called, that can be used to interact
+        ///  with the delegate as it is pending execution in the event queue.</returns>
         public static DispatcherOperation RunAsync(Action action)
 #endif
         {

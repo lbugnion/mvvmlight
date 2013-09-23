@@ -44,7 +44,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             var trigger = new EventToCommand();
             ((IAttachedObject)trigger).Attach(rectangle);
 
-            const string ParameterSent = "Hello world";
+            const string parameterSent = "Hello world";
 
             var vm = new TestViewModel();
             var binding = new Binding
@@ -58,11 +58,11 @@ namespace GalaSoft.MvvmLight.Test.Command
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
 #endif
 
-            trigger.CommandParameterValue = ParameterSent;
+            trigger.CommandParameterValue = parameterSent;
             trigger.Invoke();
 
             Assert.IsTrue(vm.CommandExecuted);
-            Assert.AreEqual(ParameterSent, vm.ParameterReceived);
+            Assert.AreEqual(parameterSent, vm.ParameterReceived);
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             var trigger = new EventToCommand();
             ((IAttachedObject)trigger).Attach(rectangle);
 
-            const string ParameterSent = "Hello world";
+            const string parameterSent = "Hello world";
 
             var vm = new TestViewModel();
             var bindingCommand = new Binding
@@ -108,7 +108,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             var textBox = new TextBox
             {
-                Text = ParameterSent
+                Text = parameterSent
             };
 
             var bindingParameter = new Binding
@@ -128,7 +128,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             trigger.Invoke();
 
             Assert.IsTrue(vm.CommandExecuted);
-            Assert.AreEqual(ParameterSent, vm.ParameterReceived);
+            Assert.AreEqual(parameterSent, vm.ParameterReceived);
         }
 
         [TestMethod]
@@ -139,7 +139,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             var trigger = new EventToCommand();
             ((IAttachedObject)trigger).Attach(rectangle);
 
-            const string ParameterSent = "Hello world";
+            const string parameterSent = "Hello world";
 
             var vm = new TestViewModel();
             var binding = new Binding
@@ -149,11 +149,11 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             BindingOperations.SetBinding(trigger, EventToCommand.CommandProperty, binding);
 
-            trigger.CommandParameter = ParameterSent;
+            trigger.CommandParameter = parameterSent;
             trigger.Invoke();
 
             Assert.IsTrue(vm.CommandExecuted);
-            Assert.AreEqual(ParameterSent, vm.ParameterReceived);
+            Assert.AreEqual(parameterSent, vm.ParameterReceived);
 #endif
         }
 

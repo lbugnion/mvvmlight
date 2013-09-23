@@ -394,6 +394,7 @@ namespace GalaSoft.MvvmLight.Messaging
         /// Provides a non-static access to the static <see cref="Reset"/> method.
         /// Sets the Messenger's default (static) instance to null.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void ResetAll()
         {
             Reset();
@@ -545,7 +546,7 @@ namespace GalaSoft.MvvmLight.Messaging
             {
                 Action cleanupAction = Cleanup;
 
-#if SILVERLIGHT                
+#if SILVERLIGHT
                 Deployment.Current.Dispatcher.BeginInvoke(cleanupAction);
 #else
                 Dispatcher.CurrentDispatcher.BeginInvoke(

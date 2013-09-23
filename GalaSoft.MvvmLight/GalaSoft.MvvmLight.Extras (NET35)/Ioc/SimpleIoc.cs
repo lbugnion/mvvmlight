@@ -602,7 +602,7 @@ namespace GalaSoft.MvvmLight.Ioc
                     {
                         key,
                         factory
-                        }
+                    }
                 };
 
                 _factories.Add(classType, list);
