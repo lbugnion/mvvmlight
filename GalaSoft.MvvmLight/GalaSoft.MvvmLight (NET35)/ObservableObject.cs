@@ -139,15 +139,6 @@ namespace GalaSoft.MvvmLight
             string propertyName)
 #endif
         {
-#if NETFX_CORE
-            if (string.IsNullOrEmpty(propertyName))
-            {
-                throw new NotSupportedException(
-                    "Raising the PropertyChanged event with an empty string or null is not supported in Windows 8");
-            }
-            else
-            {
-#endif
             VerifyPropertyName(propertyName);
 
             var handler = PropertyChanging;
@@ -155,9 +146,6 @@ namespace GalaSoft.MvvmLight
             {
                 handler(this, new PropertyChangingEventArgs(propertyName));
             }
-#if NETFX_CORE
-            }
-#endif
         }
 
 #if CMNATTR
