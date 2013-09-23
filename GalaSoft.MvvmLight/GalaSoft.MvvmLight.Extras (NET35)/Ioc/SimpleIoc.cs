@@ -583,14 +583,8 @@ namespace GalaSoft.MvvmLight.Ioc
             {
                 if (_factories[classType].ContainsKey(key))
                 {
-                    if (key == _defaultKey)
-                    {
-                        throw new InvalidOperationException(
-                            string.Format("Class {0} is already registered.", classType.FullName));
-                    }
-
-                    throw new InvalidOperationException(
-                        string.Format("Class {0} is already registered with key {1}.", classType.FullName, key));
+                    // The class is already registered, ignore and continue.
+                    return;
                 }
 
                 _factories[classType].Add(key, factory);
