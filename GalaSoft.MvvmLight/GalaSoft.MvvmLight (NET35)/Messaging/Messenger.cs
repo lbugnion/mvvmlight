@@ -18,13 +18,19 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using GalaSoft.MvvmLight.Helpers;
 
 #if SILVERLIGHT
 using System.Windows;
 #else
+#if NETFX_CORE
+using Windows.UI.Xaml;
+using Windows.UI.Core;
+#else
 using System.Windows.Threading;
+#endif
 #endif
 
 ////using GalaSoft.Utilities.Attributes;
@@ -456,7 +462,11 @@ namespace GalaSoft.MvvmLight.Messaging
                         && item.Action.Target != null
                         && (messageTargetType == null
                             || item.Action.Target.GetType() == messageTargetType
+#if NETFX_CORE
+                            || messageTargetType.GetTypeInfo().IsAssignableFrom(item.Action.Target.GetType().GetTypeInfo()))
+#else
                             || messageTargetType.IsAssignableFrom(item.Action.Target.GetType()))
+#endif
                         && ((item.Token == null && token == null)
                             || item.Token != null && item.Token.Equals(token)))
                     {
@@ -518,7 +528,11 @@ namespace GalaSoft.MvvmLight.Messaging
                     if (weakActionCasted != null
                         && recipient == weakActionCasted.Target
                         && (action == null
+#if NETFX_CORE
+                            || action.GetMethodInfo().Name == weakActionCasted.MethodName)
+#else
                             || action.Method.Name == weakActionCasted.MethodName)
+#endif
                         && (token == null
                             || token.Equals(item.Token)))
                     {
@@ -549,10 +563,25 @@ namespace GalaSoft.MvvmLight.Messaging
 #if SILVERLIGHT
                 Deployment.Current.Dispatcher.BeginInvoke(cleanupAction);
 #else
+#if NETFX_CORE
+                if (Window.Current != null
+                    && Window.Current.Dispatcher != null)
+                {
+                    Window.Current.Dispatcher.RunAsync(
+                        CoreDispatcherPriority.Normal,
+                        new DispatchedHandler(cleanupAction));
+                }
+                else
+                {
+                    // Runs without a window (unit test)
+                    cleanupAction();
+                }
+#else
                 Dispatcher.CurrentDispatcher.BeginInvoke(
                     cleanupAction,
                     DispatcherPriority.ApplicationIdle,
                     null);
+#endif
 #endif
                 _isCleanupRegistered = true;
             }
@@ -592,8 +621,13 @@ namespace GalaSoft.MvvmLight.Messaging
                     List<WeakActionAndToken> list = null;
 
                     if (messageType == type
+#if NETFX_CORE
+                        || messageType.GetTypeInfo().IsSubclassOf(type)
+                        || type.GetTypeInfo().IsAssignableFrom(messageType.GetTypeInfo()))
+#else
                         || messageType.IsSubclassOf(type)
                         || type.IsAssignableFrom(messageType))
+#endif
                     {
                         lock (_recipientsOfSubclassesAction)
                         {

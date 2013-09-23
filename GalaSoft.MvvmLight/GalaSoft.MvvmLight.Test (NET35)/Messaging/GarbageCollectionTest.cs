@@ -4,7 +4,12 @@ using System.Linq;
 using System.Text;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Test.Helpers;
+
+#if NETFX_CORE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace GalaSoft.MvvmLight.Test.Messaging
 {

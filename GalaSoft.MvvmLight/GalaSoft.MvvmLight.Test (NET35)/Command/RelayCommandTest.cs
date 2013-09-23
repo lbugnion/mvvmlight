@@ -190,14 +190,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             _tempoInstance = null;
             GC.Collect();
 
-#if NETFX_CORE
-            Assert.IsTrue(_reference.IsAlive);
-            TestCommand = null;
-            GC.Collect();
             Assert.IsFalse(_reference.IsAlive);
-#else
-            Assert.IsFalse(_reference.IsAlive);
-#endif
         }
 
         [TestMethod]
@@ -214,14 +207,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             _tempoInstance = null;
             GC.Collect();
 
-#if NETFX_CORE
-            Assert.IsTrue(_reference.IsAlive);
-            TestCommand = null;
-            GC.Collect();
             Assert.IsFalse(_reference.IsAlive);
-#else
-            Assert.IsFalse(_reference.IsAlive);
-#endif
         }
     }
 }
