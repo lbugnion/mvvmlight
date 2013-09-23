@@ -87,6 +87,12 @@ namespace GalaSoft.MvvmLight.Command
         /// </summary>
         public event EventHandler CanExecuteChanged;
 #else
+#if XAMARIN
+        /// <summary>
+        /// Occurs when changes occur that affect whether the command should execute.
+        /// </summary>
+        public event EventHandler CanExecuteChanged;
+#else
         /// <summary>
         /// Occurs when changes occur that affect whether the command should execute.
         /// </summary>
@@ -108,6 +114,7 @@ namespace GalaSoft.MvvmLight.Command
                 }
             }
         }
+#endif
 #endif
 #endif
 
@@ -134,7 +141,15 @@ namespace GalaSoft.MvvmLight.Command
                 handler(this, EventArgs.Empty);
             }
 #else
+#if XAMARIN
+            var handler = CanExecuteChanged;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+#else
             CommandManager.InvalidateRequerySuggested();
+#endif
 #endif
 #endif
         }
