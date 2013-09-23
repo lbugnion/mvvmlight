@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (SL5)", "GalaSoft.MvvmLight (SL5)\GalaSoft.MvvmLight (SL5).csproj", "{D9C091D2-648C-46F0-B897-1522CE9EF728}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (SL5)", "GalaSoft.MvvmLight.Extras (SL5)\GalaSoft.MvvmLight.Extras (SL5).csproj", "{26BF62F8-CA28-4C4F-90D3-873C78139122}"

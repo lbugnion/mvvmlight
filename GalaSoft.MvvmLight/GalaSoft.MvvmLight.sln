@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1E1F2CD-D999-4223-8F7F-80469E0B3875}"
 	ProjectSection(SolutionItems) = preProject
 		GalaSoft.MvvmLight.vsmdi = GalaSoft.MvvmLight.vsmdi
