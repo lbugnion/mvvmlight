@@ -41,8 +41,8 @@ namespace GalaSoft.MvvmLight
     /// A base class for the ViewModel classes in the MVVM pattern.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase),
-    ////  VersionString = "4.0.14",
-    ////  DateString = "201206191330",
+    ////  VersionString = "4.2.15",
+    ////  DateString = "201309262235",
     ////  Description = "A base class for the ViewModel classes in the MVVM pattern.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -193,7 +193,11 @@ namespace GalaSoft.MvvmLight
         /// <remarks>If the propertyName parameter
         /// does not correspond to an existing property on the current class, an
         /// exception is thrown in DEBUG configuration only.</remarks>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1026:DefaultParametersShouldNotBeUsed"), 
+        SuppressMessage(
+            "Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         protected virtual void RaisePropertyChanged<T>(
 #if CMNATTR
@@ -319,6 +323,9 @@ namespace GalaSoft.MvvmLight
         /// be broadcasted. If false, only the event will be raised.</param>
         /// <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1026:DefaultParametersShouldNotBeUsed"), 
+        System.Diagnostics.CodeAnalysis.SuppressMessage(
             "Microsoft.Design", 
             "CA1045:DoNotPassTypesByReference", 
             MessageId = "1#")]

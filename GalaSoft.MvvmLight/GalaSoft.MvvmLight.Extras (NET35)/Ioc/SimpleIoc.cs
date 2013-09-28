@@ -31,8 +31,8 @@ namespace GalaSoft.MvvmLight.Ioc
     /// been extended with additional features.
     /// </summary>
     //// [ClassInfo(typeof(SimpleIoc),
-    ////  VersionString = "4.1.6",
-    ////  DateString = "201212161200",
+    ////  VersionString = "4.2.7",
+    ////  DateString = "201309262235",
     ////  Description = "A very simple IOC container.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]

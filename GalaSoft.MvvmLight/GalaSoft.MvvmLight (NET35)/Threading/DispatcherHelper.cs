@@ -37,8 +37,8 @@ namespace GalaSoft.MvvmLight.Threading
     /// Helper class for dispatcher operations on the UI thread.
     /// </summary>
     //// [ClassInfo(typeof(DispatcherHelper),
-    ////  VersionString = "4.1.6",
-    ////  DateString = "201305190047",
+    ////  VersionString = "4.2.7",
+    ////  DateString = "201309262235",
     ////  Description = "Helper class for dispatcher operations on the UI thread.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
