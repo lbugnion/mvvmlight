@@ -24,8 +24,8 @@ namespace GalaSoft.MvvmLight.Helpers
     /// to be created to the Action's owner. The owner can be garbage collected at any time.
     /// </summary>
     ////[ClassInfo(typeof(WeakAction),
-    ////    VersionString = "4.0.15",
-    ////    DateString = "201206191330",
+    ////    VersionString = "4.2.16",
+    ////    DateString = "201309262235",
     ////    Description = "A class allowing to store and invoke actions without keeping a hard reference to the action's target.",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
@@ -141,6 +141,10 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <param name="target">The action's owner.</param>
         /// <param name="action">The action that will be associated to this instance.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+            "Microsoft.Design", 
+            "CA1062:Validate arguments of public methods", 
+            MessageId = "1")]
         public WeakAction(object target, Action action)
         {
 #if NETFX_CORE

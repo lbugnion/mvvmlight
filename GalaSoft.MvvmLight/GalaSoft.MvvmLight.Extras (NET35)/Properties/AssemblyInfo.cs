@@ -43,22 +43,5 @@ using System.Windows.Markup;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("4.1.27.*")]
-////[assembly: AssemblyFileVersion("4.1.27.0/BL0027")]
-
-// FxCop
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Command",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Threading",
-    MessageId = "Mvvm")]
+[assembly: AssemblyVersion("4.2.29.*")]
+////[assembly: AssemblyFileVersion("4.2.29.0/BL0029")]

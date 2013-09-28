@@ -15,7 +15,6 @@
 // ****************************************************************************
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -31,60 +30,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("4.1.27.*")]
-////[assembly: AssemblyFileVersion("4.1.27.0/BL0027")]
-
-// FxCop
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Messaging",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Command",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Helpers",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Naming",
-    "CA1704:IdentifiersShouldBeSpelledCorrectly",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Ioc",
-    MessageId = "Mvvm")]
-
-[module: SuppressMessage("Microsoft.Design",
-    "CA1020:AvoidNamespacesWithFewTypes",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight")]
-
-[module: SuppressMessage("Microsoft.Design",
-    "CA1020:AvoidNamespacesWithFewTypes",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Command")]
-
-[module: SuppressMessage("Microsoft.Design",
-    "CA1020:AvoidNamespacesWithFewTypes",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Helpers")]
-
-[module: SuppressMessage("Microsoft.Design",
-    "CA1020:AvoidNamespacesWithFewTypes",
-    Scope = "namespace",
-    Target = "GalaSoft.MvvmLight.Ioc")]
+[assembly: AssemblyVersion("4.2.29.*")]
+////[assembly: AssemblyFileVersion("4.1.29.0/BL0029")]
