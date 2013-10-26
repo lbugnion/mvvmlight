@@ -1,4 +1,4 @@
-﻿// ****************************************************************************
+﻿// *************************************30*************************************
 // <copyright file="AssemblyInfo.cs" company="GalaSoft Laurent Bugnion">
 // Copyright © GalaSoft Laurent Bugnion 2009-2013
 // </copyright>
@@ -17,6 +17,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 #if !NETFX_CORE
@@ -42,6 +43,7 @@ using System.Windows.Markup;
 
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
+[assembly:NeutralResourcesLanguage("en-US")]
 
-[assembly: AssemblyVersion("4.2.29.*")]
-////[assembly: AssemblyFileVersion("4.2.29.0/BL0029")]
+[assembly: AssemblyVersion("4.2.30.*")]
+////[assembly: AssemblyFileVersion("4.2.30.0/BL0030")]

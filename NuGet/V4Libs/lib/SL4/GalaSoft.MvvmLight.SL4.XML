@@ -13,16 +13,19 @@
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.IExecuteWithObjectAndResult.ExecuteWithObject(System.Object)">
             <summary>
-            Executes a func and returns the result.
+            Executes a Func and returns the result.
             </summary>
             <param name="parameter">A parameter passed as an object,
             to be casted to the appropriate type.</param>
+            <returns>The result of the operation.</returns>
         </member>
         <member name="T:GalaSoft.MvvmLight.Helpers.WeakFunc`1">
             <summary>
             Stores a Func&lt;T&gt; without causing a hard reference
             to be created to the Func's owner. The owner can be garbage collected at any time.
             </summary>
+            <typeparam name="TResult">The type of the result of the Func that will be stored
+            by this weak reference.</typeparam>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`1.#ctor">
             <summary>
@@ -33,20 +36,21 @@
             <summary>
             Initializes a new instance of the WeakFunc class.
             </summary>
-            <param name="func">The func that will be associated to this instance.</param>
+            <param name="func">The Func that will be associated to this instance.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`1.#ctor(System.Object,System.Func{`0})">
             <summary>
             Initializes a new instance of the WeakFunc class.
             </summary>
-            <param name="target">The func's owner.</param>
-            <param name="func">The func that will be associated to this instance.</param>
+            <param name="target">The Func's owner.</param>
+            <param name="func">The Func that will be associated to this instance.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`1.Execute">
             <summary>
-            Executes the action. This only happens if the func's owner
+            Executes the action. This only happens if the Func's owner
             is still alive.
             </summary>
+            <returns>The result of the Func stored as reference.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`1.MarkForDeletion">
             <summary>
@@ -117,36 +121,38 @@
             <summary>
             Initializes a new instance of the WeakFunc class.
             </summary>
-            <param name="func">The func that will be associated to this instance.</param>
+            <param name="func">The Func that will be associated to this instance.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`2.#ctor(System.Object,System.Func{`0,`1})">
             <summary>
             Initializes a new instance of the WeakFunc class.
             </summary>
-            <param name="target">The func's owner.</param>
-            <param name="func">The func that will be associated to this instance.</param>
+            <param name="target">The Func's owner.</param>
+            <param name="func">The Func that will be associated to this instance.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`2.Execute">
             <summary>
-            Executes the func. This only happens if the func's owner
-            is still alive. The func's parameter is set to default(T).
+            Executes the Func. This only happens if the Func's owner
+            is still alive. The Func's parameter is set to default(T).
             </summary>
+            <returns>The result of the Func stored as reference.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`2.Execute(`0)">
             <summary>
-            Executes the func. This only happens if the func's owner
+            Executes the Func. This only happens if the Func's owner
             is still alive.
             </summary>
             <param name="parameter">A parameter to be passed to the action.</param>
+            <returns>The result of the Func stored as reference.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.WeakFunc`2.ExecuteWithObject(System.Object)">
             <summary>
-            Executes the func with a parameter of type object. This parameter
+            Executes the Func with a parameter of type object. This parameter
             will be casted to T. This method implements <see cref="M:GalaSoft.MvvmLight.Helpers.IExecuteWithObject.ExecuteWithObject(System.Object)"/>
             and can be useful if you store multiple WeakFunc{T} instances but don't know in advance
             what type T represents.
             </summary>
-            <param name="parameter">The parameter that will be passed to the func after
+            <param name="parameter">The parameter that will be passed to the Func after
             being casted to T.</param>
             <returns>The result of the execution as object, to be casted to T.</returns>
         </member>
@@ -189,9 +195,10 @@
             can be called before the property is used, for instance before
             calling RaisePropertyChanged. It avoids errors when a property name
             is changed but some places are missed.
-            <para>This method is only active in DEBUG mode.</para>
             </summary>
-            <param name="propertyName"></param>
+            <remarks>This method is only active in DEBUG mode.</remarks>
+            <param name="propertyName">The name of the property that will be
+            checked.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.ObservableObject.RaisePropertyChanging(System.String)">
             <summary>
@@ -316,6 +323,8 @@
             Invokes an action asynchronously on the UI thread.
             </summary>
             <param name="action">The action that must be executed.</param>
+            <returns>An object, which is returned immediately after BeginInvoke is called, that can be used to interact
+             with the delegate as it is pending execution in the event queue.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize">
             <summary>
@@ -324,6 +333,11 @@
             <para>In a Silverlight application, call this method in the
             Application_Startup event handler, after the MainPage is constructed.</para>
             <para>In WPF, call this method on the static App() constructor.</para>
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Threading.DispatcherHelper.Reset">
+            <summary>
+            Resets the class by deleting the <see cref="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher"/>
             </summary>
         </member>
         <member name="P:GalaSoft.MvvmLight.Threading.DispatcherHelper.UIDispatcher">
@@ -535,7 +549,7 @@
         </member>
         <member name="P:GalaSoft.MvvmLight.Helpers.WeakAction.ActionTarget">
             <summary>
-            
+            The target of the weak reference.
             </summary>
         </member>
         <member name="T:GalaSoft.MvvmLight.Helpers.WeakAction`1">
@@ -1613,6 +1627,7 @@
             occurred.</param>
             <param name="broadcast">If true, a PropertyChangedMessage will
             be broadcasted. If false, only the event will be raised.</param>
+            <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.ViewModelBase.Set``1(System.String,``0@,``0,System.Boolean)">
             <summary>
@@ -1630,6 +1645,7 @@
             occurred.</param>
             <param name="broadcast">If true, a PropertyChangedMessage will
             be broadcasted. If false, only the event will be raised.</param>
+            <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
         </member>
         <member name="P:GalaSoft.MvvmLight.ViewModelBase.IsInDesignMode">
             <summary>

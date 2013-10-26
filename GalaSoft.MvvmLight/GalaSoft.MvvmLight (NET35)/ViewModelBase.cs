@@ -193,7 +193,7 @@ namespace GalaSoft.MvvmLight
         /// <remarks>If the propertyName parameter
         /// does not correspond to an existing property on the current class, an
         /// exception is thrown in DEBUG configuration only.</remarks>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        [SuppressMessage(
             "Microsoft.Design", 
             "CA1026:DefaultParametersShouldNotBeUsed"), 
         SuppressMessage(
@@ -238,12 +238,14 @@ namespace GalaSoft.MvvmLight
         /// occurred.</param>
         /// <param name="broadcast">If true, a PropertyChangedMessage will
         /// be broadcasted. If false, only the event will be raised.</param>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+        [SuppressMessage(
+            "Microsoft.Design", 
+            "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         [SuppressMessage(
             "Microsoft.Design",
             "CA1006:GenericMethodsShouldProvideTypeParameter",
-            Justification = "This syntax is more convenient than other alternatives.")]
+            Justification = "This syntax is more convenient than the alternatives.")]
         protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue, bool broadcast)
         {
             var handler = PropertyChangedHandler;
@@ -281,10 +283,11 @@ namespace GalaSoft.MvvmLight
         /// <param name="broadcast">If true, a PropertyChangedMessage will
         /// be broadcasted. If false, only the event will be raised.</param>
         /// <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
-            "Microsoft.Design", 
-            "CA1006:DoNotNestGenericTypesInMemberSignatures"), 
-        System.Diagnostics.CodeAnalysis.SuppressMessage(
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1006:DoNotNestGenericTypesInMemberSignatures",
+            Justification = "This syntax is more convenient than the alternatives."), 
+         SuppressMessage(
             "Microsoft.Design", 
             "CA1045:DoNotPassTypesByReference", 
             MessageId = "1#")]
@@ -322,10 +325,10 @@ namespace GalaSoft.MvvmLight
         /// <param name="broadcast">If true, a PropertyChangedMessage will
         /// be broadcasted. If false, only the event will be raised.</param>
         /// <returns>True if the PropertyChanged event was raised, false otherwise.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        [SuppressMessage(
             "Microsoft.Design", 
             "CA1026:DefaultParametersShouldNotBeUsed"), 
-        System.Diagnostics.CodeAnalysis.SuppressMessage(
+         SuppressMessage(
             "Microsoft.Design", 
             "CA1045:DoNotPassTypesByReference", 
             MessageId = "1#")]

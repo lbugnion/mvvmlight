@@ -120,7 +120,9 @@ namespace GalaSoft.MvvmLight
         /// exception is thrown in DEBUG configuration only.</remarks>
         /// <param name="propertyName">(optional) The name of the property that
         /// changed.</param>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+        [SuppressMessage(
+            "Microsoft.Design", 
+            "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         protected virtual void RaisePropertyChanging(
             [CallerMemberName] string propertyName = null)
@@ -133,7 +135,9 @@ namespace GalaSoft.MvvmLight
         /// exception is thrown in DEBUG configuration only.</remarks>
         /// <param name="propertyName">The name of the property that
         /// changed.</param>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+        [SuppressMessage(
+            "Microsoft.Design", 
+            "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         protected virtual void RaisePropertyChanging(
             string propertyName)
@@ -157,7 +161,9 @@ namespace GalaSoft.MvvmLight
         /// exception is thrown in DEBUG configuration only.</remarks>
         /// <param name="propertyName">(optional) The name of the property that
         /// changed.</param>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+        [SuppressMessage(
+            "Microsoft.Design", 
+            "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         protected virtual void RaisePropertyChanged(
             [CallerMemberName] string propertyName = null)
@@ -170,7 +176,9 @@ namespace GalaSoft.MvvmLight
         /// exception is thrown in DEBUG configuration only.</remarks>
         /// <param name="propertyName">The name of the property that
         /// changed.</param>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+        [SuppressMessage(
+            "Microsoft.Design", 
+            "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         protected virtual void RaisePropertyChanged(
             string propertyName) 
@@ -193,7 +201,9 @@ namespace GalaSoft.MvvmLight
         /// changes.</typeparam>
         /// <param name="propertyExpression">An expression identifying the property
         /// that changes.</param>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+        [SuppressMessage(
+            "Microsoft.Design", 
+            "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         [SuppressMessage(
             "Microsoft.Design",
@@ -216,7 +226,9 @@ namespace GalaSoft.MvvmLight
         /// changed.</typeparam>
         /// <param name="propertyExpression">An expression identifying the property
         /// that changed.</param>
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
+        [SuppressMessage(
+            "Microsoft.Design", 
+            "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
         [SuppressMessage(
             "Microsoft.Design",
@@ -240,10 +252,14 @@ namespace GalaSoft.MvvmLight
         /// <returns>The name of the property returned by the expression.</returns>
         /// <exception cref="ArgumentNullException">If the expression is null.</exception>
         /// <exception cref="ArgumentException">If the expression does not represent a property.</exception>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters"), System.Diagnostics.CodeAnalysis.SuppressMessage(
+        [SuppressMessage(
             "Microsoft.Design", 
-            "CA1006:DoNotNestGenericTypesInMemberSignatures", 
-            Justification="This design is better than the alternative.")]
+            "CA1011:ConsiderPassingBaseTypesAsParameters",
+            Justification = "This syntax is more convenient than the alternatives."), 
+         SuppressMessage(
+            "Microsoft.Design",
+            "CA1006:DoNotNestGenericTypesInMemberSignatures",
+            Justification = "This syntax is more convenient than the alternatives.")]
         protected static string GetPropertyName<T>(Expression<Func<T>> propertyExpression)
         {
             if (propertyExpression == null)
@@ -282,13 +298,15 @@ namespace GalaSoft.MvvmLight
         /// <returns>True if the PropertyChanged event has been raised,
         /// false otherwise. The event is not raised if the old
         /// value is equal to the new value.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1006:DoNotNestGenericTypesInMemberSignatures",
+            Justification = "This syntax is more convenient than the alternatives."), 
+         SuppressMessage(
             "Microsoft.Design", 
-            "CA1006:DoNotNestGenericTypesInMemberSignatures"), 
-        System.Diagnostics.CodeAnalysis.SuppressMessage(
-            "Microsoft.Design", 
-            "CA1045:DoNotPassTypesByReference", 
-            MessageId = "1#")]
+            "CA1045:DoNotPassTypesByReference",
+            MessageId = "1#",
+            Justification = "This syntax is more convenient than the alternatives.")]
         protected bool Set<T>(
             Expression<Func<T>> propertyExpression,
             ref T field,
@@ -319,10 +337,11 @@ namespace GalaSoft.MvvmLight
         /// <returns>True if the PropertyChanged event has been raised,
         /// false otherwise. The event is not raised if the old
         /// value is equal to the new value.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        [SuppressMessage(
             "Microsoft.Design", 
-            "CA1045:DoNotPassTypesByReference", 
-            MessageId = "1#")]
+            "CA1045:DoNotPassTypesByReference",
+            MessageId = "1#",
+            Justification = "This syntax is more convenient than the alternatives.")]
         protected bool Set<T>(
             string propertyName,
             ref T field,

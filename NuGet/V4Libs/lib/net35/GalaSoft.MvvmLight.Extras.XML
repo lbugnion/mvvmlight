@@ -22,6 +22,16 @@
             to a FrameworkElement or a class deriving from FrameworkElement.
             </summary>
         </member>
+        <member name="F:GalaSoft.MvvmLight.Command.EventToCommand.EventArgsConverterParameterPropertyName">
+            <summary>
+            The <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.EventArgsConverterParameter"/> dependency property's name.
+            </summary>
+        </member>
+        <member name="F:GalaSoft.MvvmLight.Command.EventToCommand.EventArgsConverterParameterProperty">
+            <summary>
+            Identifies the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.EventArgsConverterParameter"/> dependency property.
+            </summary>
+        </member>
         <member name="M:GalaSoft.MvvmLight.Command.EventToCommand.Invoke">
             <summary>
             Provides a simple way to invoke this trigger programatically
@@ -82,6 +92,20 @@
             the arguments of a MouseMove event.</para>
             </summary>
         </member>
+        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.EventArgsConverter">
+            <summary>
+            Gets or sets a converter used to convert the EventArgs when using
+            <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.PassEventArgsToCommand"/>. If PassEventArgsToCommand is false,
+            this property is never used.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.EventArgsConverterParameter">
+            <summary>
+            Gets or sets a parameters for the converter used to convert the EventArgs when using
+            <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.PassEventArgsToCommand"/>. If PassEventArgsToCommand is false,
+            this property is never used. This is a dependency property.
+            </summary>
+        </member>
         <member name="P:GalaSoft.MvvmLight.Command.EventToCommand.Command">
             <summary>
             Gets or sets the ICommand that this trigger is bound to. This
@@ -121,6 +145,26 @@
             compatibility with the Silverlight version. This is NOT a DependencyProperty.
             For databinding, use the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.MustToggleIsEnabled"/> property.
             </summary>
+        </member>
+        <member name="T:GalaSoft.MvvmLight.Command.IEventArgsConverter">
+            <summary>
+            The definition of the converter used to convert an EventArgs
+            in the <see cref="T:GalaSoft.MvvmLight.Command.EventToCommand"/> class, if the
+            <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.PassEventArgsToCommand"/> property is true.
+            Set an instance of this class to the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.EventArgsConverter"/>
+            property of the EventToCommand instance.
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Command.IEventArgsConverter.Convert(System.Object,System.Object)">
+            <summary>
+            The method used to convert the EventArgs instance.
+            </summary>
+            <param name="value">An instance of EventArgs passed by the
+            event that the EventToCommand instance is handling.</param>
+            <param name="parameter">An optional parameter used for the conversion. Use
+            the <see cref="P:GalaSoft.MvvmLight.Command.EventToCommand.EventArgsConverterParameter"/> property
+            to set this value. This may be null.</param>
+            <returns>The converted value.</returns>
         </member>
         <member name="T:GalaSoft.MvvmLight.Ioc.ISimpleIoc">
             <summary>
