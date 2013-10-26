@@ -14,6 +14,7 @@
 // ****************************************************************************
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace GalaSoft.MvvmLight.Helpers
@@ -137,7 +138,11 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <param name="target">The Func's owner.</param>
         /// <param name="func">The Func that will be associated to this instance.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "1")]
+        [SuppressMessage(
+            "Microsoft.Design", 
+            "CA1062:Validate arguments of public methods",
+            MessageId = "1",
+            Justification = "Method should fail with an exception if func is null.")]
         public WeakFunc(object target, Func<TResult> func)
         {
 #if NETFX_CORE

@@ -15,6 +15,7 @@
 // ****************************************************************************
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace GalaSoft.MvvmLight.Helpers
@@ -141,10 +142,11 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <param name="target">The action's owner.</param>
         /// <param name="action">The action that will be associated to this instance.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage(
+        [SuppressMessage(
             "Microsoft.Design", 
-            "CA1062:Validate arguments of public methods", 
-            MessageId = "1")]
+            "CA1062:Validate arguments of public methods",
+            MessageId = "1",
+            Justification = "Method should fail with an exception if action is null.")]
         public WeakAction(object target, Action action)
         {
 #if NETFX_CORE

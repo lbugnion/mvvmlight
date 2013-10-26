@@ -4,33 +4,6 @@
         <name>Microsoft.Practices.ServiceLocation</name>
     </assembly>
     <members>
-        <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocatorProvider">
-            <summary>
-            This delegate type is used to provide a method that will
-            return the current container. Used with the <see cref="T:Microsoft.Practices.ServiceLocation.ServiceLocator"/>
-            static accessor class.
-            </summary>
-            <returns>An <see cref="T:Microsoft.Practices.ServiceLocation.IServiceLocator"/>.</returns>
-        </member>
-        <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocator">
-            <summary>
-            This class provides the ambient container for this application. If your
-            framework defines such an ambient container, use ServiceLocator.Current
-            to get it.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Practices.ServiceLocation.ServiceLocator.SetLocatorProvider(Microsoft.Practices.ServiceLocation.ServiceLocatorProvider)">
-            <summary>
-            Set the delegate that is used to retrieve the current container.
-            </summary>
-            <param name="newProvider">Delegate that, when called, will return
-            the current ambient container.</param>
-        </member>
-        <member name="P:Microsoft.Practices.ServiceLocation.ServiceLocator.Current">
-            <summary>
-            The current ambient container.
-            </summary>
-        </member>
         <member name="T:Microsoft.Practices.ServiceLocation.ActivationException">
             <summary>
             The standard exception thrown when a ServiceLocator has an error in resolving an object.
@@ -59,6 +32,23 @@
             <param name="innerException">
             The exception that is the cause of the current exception, or a null reference (Nothing in Visual Basic) if no inner exception is specified. 
             </param>
+        </member>
+        <member name="M:Microsoft.Practices.ServiceLocation.ActivationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Exception" /> class with serialized data.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown. 
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination. 
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            The <paramref name="info" /> parameter is null. 
+            </exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">
+            The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). 
+            </exception>
         </member>
         <member name="T:Microsoft.Practices.ServiceLocation.IServiceLocator">
             <summary>
@@ -124,6 +114,51 @@
             <exception cref="T:Microsoft.Practices.ServiceLocation.ActivationException">if there is are errors resolving
             the service instance.</exception>
             <returns>A sequence of instances of the requested <typeparamref name="TService"/>.</returns>
+        </member>
+        <member name="T:Microsoft.Practices.ServiceLocation.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.ServiceLocation.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.ServiceLocation.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.ServiceLocation.Properties.Resources.ActivateAllExceptionMessage">
+            <summary>
+              Looks up a localized string similar to Activation error occured while trying to get all instances of type {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.ServiceLocation.Properties.Resources.ActivationExceptionMessage">
+            <summary>
+              Looks up a localized string similar to Activation error occured while trying to get instance of type {0}, key &quot;{1}&quot;.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocator">
+            <summary>
+            This class provides the ambient container for this application. If your
+            framework defines such an ambient container, use ServiceLocator.Current
+            to get it.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.ServiceLocation.ServiceLocator.SetLocatorProvider(Microsoft.Practices.ServiceLocation.ServiceLocatorProvider)">
+            <summary>
+            Set the delegate that is used to retrieve the current container.
+            </summary>
+            <param name="newProvider">Delegate that, when called, will return
+            the current ambient container.</param>
+        </member>
+        <member name="P:Microsoft.Practices.ServiceLocation.ServiceLocator.Current">
+            <summary>
+            The current ambient container.
+            </summary>
         </member>
         <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocatorImplBase">
             <summary>
@@ -233,31 +268,13 @@
             <param name="serviceType">Type of service requested.</param>
             <returns>The formatted exception message string.</returns>
         </member>
-        <member name="T:Microsoft.Practices.ServiceLocation.Properties.Resources">
+        <member name="T:Microsoft.Practices.ServiceLocation.ServiceLocatorProvider">
             <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
+            This delegate type is used to provide a method that will
+            return the current container. Used with the <see cref="T:Microsoft.Practices.ServiceLocation.ServiceLocator"/>
+            static accessor class.
             </summary>
-        </member>
-        <member name="P:Microsoft.Practices.ServiceLocation.Properties.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Practices.ServiceLocation.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Practices.ServiceLocation.Properties.Resources.ActivateAllExceptionMessage">
-            <summary>
-              Looks up a localized string similar to Activation error occured while trying to get all instances of type {0}.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Practices.ServiceLocation.Properties.Resources.ActivationExceptionMessage">
-            <summary>
-              Looks up a localized string similar to Activation error occured while trying to get instance of type {0}, key &quot;{1}&quot;.
-            </summary>
+            <returns>An <see cref="T:Microsoft.Practices.ServiceLocation.IServiceLocator"/>.</returns>
         </member>
     </members>
 </doc>

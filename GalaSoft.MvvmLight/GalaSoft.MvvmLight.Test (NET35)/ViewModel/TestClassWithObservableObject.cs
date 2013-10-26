@@ -29,9 +29,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
-#if !WP71
                 RaisePropertyChanging(LastChangedPropertyName);
-#endif
                 _lastChanged = value;
                 RaisePropertyChanged(LastChangedPropertyName);
             }
@@ -64,9 +62,7 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
                     return;
                 }
 
-#if !WP71
                 RaisePropertyChanging(() => LastChangedNoMagicString);
-#endif
                 _lastChangedNoMagicString = value;
                 RaisePropertyChanged(() => LastChangedNoMagicString);
             }
@@ -108,11 +104,9 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             RaisePropertyChanged(propertyName);
         }
 
-#if !WP71
         public void RaisePropertyChangingPublic(string propertyName)
         {
             RaisePropertyChanging(propertyName);
         }
-#endif
     }
 }

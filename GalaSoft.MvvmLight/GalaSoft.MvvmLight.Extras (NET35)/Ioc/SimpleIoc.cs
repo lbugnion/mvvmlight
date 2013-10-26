@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Practices.ServiceLocation;
@@ -36,6 +37,10 @@ namespace GalaSoft.MvvmLight.Ioc
     ////  Description = "A very simple IOC container.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
+    [SuppressMessage(
+        "Microsoft.Naming", 
+        "CA1704:IdentifiersShouldBeSpelledCorrectly", 
+        MessageId = "Ioc")]
     public class SimpleIoc : ISimpleIoc
     {
         private readonly Dictionary<Type, ConstructorInfo> _constructorInfos
@@ -178,6 +183,7 @@ namespace GalaSoft.MvvmLight.Ioc
                     {
                         throw new InvalidOperationException(
                             string.Format(
+                                CultureInfo.InvariantCulture,
                                 "There is already a class registered for {0}.",
                                 interfaceType.FullName));
                     }
@@ -247,7 +253,10 @@ namespace GalaSoft.MvvmLight.Ioc
                         // registered, which means there is a default factory
                         // for this class.
                         throw new InvalidOperationException(
-                            string.Format("Class {0} is already registered.", classType));
+                            string.Format(
+                                CultureInfo.InvariantCulture,
+                                "Class {0} is already registered.", 
+                                classType));
                     }
 
                     return;
@@ -306,7 +315,10 @@ namespace GalaSoft.MvvmLight.Ioc
                     && _factories[classType].ContainsKey(_defaultKey))
                 {
                     throw new InvalidOperationException(
-                        string.Format("There is already a factory registered for {0}.", classType.FullName));
+                        string.Format(
+                            CultureInfo.InvariantCulture, 
+                            "There is already a factory registered for {0}.", 
+                            classType.FullName));
                 }
 
                 if (!_interfaceToClassMap.ContainsKey(classType))
@@ -361,6 +373,7 @@ namespace GalaSoft.MvvmLight.Ioc
                 {
                     throw new InvalidOperationException(
                         string.Format(
+                            CultureInfo.InvariantCulture,
                             "There is already a factory registered for {0} with key {1}.",
                             classType.FullName,
                             key));
@@ -531,6 +544,7 @@ namespace GalaSoft.MvvmLight.Ioc
                     {
                         throw new ActivationException(
                             string.Format(
+                                CultureInfo.InvariantCulture,
                                 "Type not found in cache: {0}.",
                                 serviceType.FullName));
                     }
@@ -566,6 +580,7 @@ namespace GalaSoft.MvvmLight.Ioc
                         {
                             throw new ActivationException(
                                 string.Format(
+                                    CultureInfo.InvariantCulture,
                                     "Type not found in cache without a key: {0}", 
                                     serviceType.FullName));
                         }
@@ -640,7 +655,10 @@ namespace GalaSoft.MvvmLight.Ioc
                     || !first.IsPublic)
                 {
                     throw new ActivationException(
-                        string.Format("Cannot register: No public constructor found in {0}.", resolveTo.Name));
+                        string.Format(
+                            CultureInfo.InvariantCulture,
+                            "Cannot register: No public constructor found in {0}.", 
+                            resolveTo.Name));
                 }
 
                 return first;
@@ -651,13 +669,20 @@ namespace GalaSoft.MvvmLight.Ioc
                     && !constructorInfos[0].IsPublic))
             {
                 throw new ActivationException(
-                    string.Format("Cannot register: No public constructor found in {0}.", resolveTo.Name));
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        "Cannot register: No public constructor found in {0}.", 
+                        resolveTo.Name));
             }
 
             return constructorInfos[0];
         }
 
-        private ConstructorInfo GetPreferredConstructorInfo(IEnumerable<ConstructorInfo> constructorInfos, Type resolveTo)
+        [SuppressMessage(
+            "Microsoft.Naming", 
+            "CA2204:Literals should be spelled correctly", 
+            MessageId = "PreferredConstructor")]
+        private static ConstructorInfo GetPreferredConstructorInfo(IEnumerable<ConstructorInfo> constructorInfos, Type resolveTo)
         {
             var preferredConstructorInfo
                 = (from t in constructorInfos
@@ -673,6 +698,7 @@ namespace GalaSoft.MvvmLight.Ioc
             {
                 throw new ActivationException(
                     string.Format(
+                        CultureInfo.InvariantCulture,
                         "Cannot register: Multiple constructors found in {0} but none marked with PreferredConstructor.",
                         resolveTo.Name));
             }

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MvvmLight</id>
-        <version>4.1.27.1</version>
+        <version>4.2.30.0</version>
         <title>MVVM Light</title>
         <authors>Laurent Bugnion (GalaSoft)</authors>
         <owners>Laurent Bugnion (GalaSoft)</owners>
@@ -18,28 +18,28 @@
         <tags>mvvm mvvmlight silverlight wp7 windows8 winrt win8 wpf windowsphone windowsphone7 windowsphone8</tags>
         <dependencies>
             <group targetFramework=".NETFramework3.5">
-                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+                <dependency id="MvvmLightLibs" version="4.2.30.0" />
             </group>
             <group targetFramework=".NETFramework4.0">
-                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+                <dependency id="MvvmLightLibs" version="4.2.30.0" />
             </group>
             <group targetFramework=".NETFramework4.5">
-                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+                <dependency id="MvvmLightLibs" version="4.2.30.0" />
             </group>
             <group targetFramework="Silverlight4.0">
-                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+                <dependency id="MvvmLightLibs" version="4.2.30.0" />
             </group>
             <group targetFramework="Silverlight5.0">
-                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+                <dependency id="MvvmLightLibs" version="4.2.30.0" />
             </group>
             <group targetFramework="Silverlight4.0-WindowsPhone71">
-                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+                <dependency id="MvvmLightLibs" version="4.2.30.0" />
             </group>
             <group targetFramework="WindowsPhone8.0">
-                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+                <dependency id="MvvmLightLibs" version="4.2.30.0" />
             </group>
             <group targetFramework=".NETCore4.5">
-                <dependency id="MvvmLightLibs" version="4.1.27.0" />
+                <dependency id="MvvmLightLibs" version="4.2.30.0" />
             </group>
         </dependencies>
     </metadata>

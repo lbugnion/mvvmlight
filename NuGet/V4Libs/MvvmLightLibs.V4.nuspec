@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MvvmLightLibs</id>
-        <version>4.1.27.1</version>
+        <version>4.2.30.0</version>
         <title>MVVM Light libraries only</title>
         <authors>Laurent Bugnion (GalaSoft)</authors>
         <owners>Laurent Bugnion (GalaSoft)</owners>
@@ -12,10 +12,10 @@
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone and Windows 8. It is a light and pragmatic framework that contains only the essential components needed. This version contains only the libraries!</description>
         <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in all versions of Silverlight, WPF, Windows Phone 7 and Windows 8.</summary>
-        <releaseNotes>No changes, this version is only here to match the full MVVM Light package's version.</releaseNotes>
+        <releaseNotes>See http://www.galasoft.ch/mvvm/installing/changes for a list of changes.</releaseNotes>
         <copyright>Copyright 2013 Laurent Bugnion (GalaSoft)</copyright>
         <language>en-US</language>
-        <tags>mvvm mvvmlight silverlight wp7 windows8 winrt win8 wpf windowsphone windowsphone7 windowsphone8</tags>
+        <tags>mvvm mvvmlight silverlight windows8 winrt win8 wpf windowsphone windowsphone7 windowsphone8</tags>
         <dependencies>
             <group targetFramework=".NETFramework3.5">
                 <dependency id="CommonServiceLocator" version="1.0" />
@@ -38,17 +38,17 @@
         <file src="lib\net35\GalaSoft.MvvmLight.dll" target="lib\net35\GalaSoft.MvvmLight.dll" />
         <file src="lib\net35\GalaSoft.MvvmLight.Extras.dll" target="lib\net35\GalaSoft.MvvmLight.Extras.dll" />
         <file src="lib\net35\GalaSoft.MvvmLight.Extras.pdb" target="lib\net35\GalaSoft.MvvmLight.Extras.pdb" />
-        <file src="lib\net35\GalaSoft.MvvmLight.Extras.xml" target="lib\net35\GalaSoft.MvvmLight.Extras.xml" />
+        <file src="lib\net35\GalaSoft.MvvmLight.Extras.XML" target="lib\net35\GalaSoft.MvvmLight.Extras.xml" />
         <file src="lib\net35\GalaSoft.MvvmLight.pdb" target="lib\net35\GalaSoft.MvvmLight.pdb" />
-        <file src="lib\net35\GalaSoft.MvvmLight.xml" target="lib\net35\GalaSoft.MvvmLight.xml" />
+        <file src="lib\net35\GalaSoft.MvvmLight.XML" target="lib\net35\GalaSoft.MvvmLight.xml" />
         <file src="lib\net35\System.Windows.Interactivity.dll" target="lib\net35\System.Windows.Interactivity.dll" />
         <file src="lib\net35\System.Windows.Interactivity.xml" target="lib\net35\System.Windows.Interactivity.xml" />
         <file src="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll" target="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll" />
         <file src="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.pdb" target="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.pdb" />
-        <file src="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.xml" target="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.xml" />
+        <file src="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.XML" target="lib\net40\GalaSoft.MvvmLight.Extras.WPF4.xml" />
         <file src="lib\net40\GalaSoft.MvvmLight.WPF4.dll" target="lib\net40\GalaSoft.MvvmLight.WPF4.dll" />
         <file src="lib\net40\GalaSoft.MvvmLight.WPF4.pdb" target="lib\net40\GalaSoft.MvvmLight.WPF4.pdb" />
-        <file src="lib\net40\GalaSoft.MvvmLight.WPF4.xml" target="lib\net40\GalaSoft.MvvmLight.WPF4.xml" />
+        <file src="lib\net40\GalaSoft.MvvmLight.WPF4.XML" target="lib\net40\GalaSoft.MvvmLight.WPF4.xml" />
         <file src="lib\net40\System.Windows.Interactivity.dll" target="lib\net40\System.Windows.Interactivity.dll" />
         <file src="lib\net40\System.Windows.Interactivity.xml" target="lib\net40\System.Windows.Interactivity.xml" />
         <file src="lib\net45\GalaSoft.MvvmLight.Extras.WPF45.dll" target="lib\net45\GalaSoft.MvvmLight.Extras.WPF45.dll" />
