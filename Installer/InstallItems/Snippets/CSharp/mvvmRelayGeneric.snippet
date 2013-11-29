@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>RelayCommand Generic</Title>
+      <Author>Laurent Bugnion (GalaSoft)</Author>
+      <Description>Creates and initializes a new generic RelayCommand with an Execute lambda. (V4.0.21.0)</Description>
+      <HelpUrl>http://www.galasoft.ch/mvvm</HelpUrl>
+      <Shortcut>mvvmrelaygeneric</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>attribute</ID>
+          <ToolTip>Name of the attribute holding the RelayCommand.</ToolTip>
+          <Default>_myCommand</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>commandname</ID>
+          <ToolTip>Name of the RelayCommand.</ToolTip>
+          <Default>MyCommand</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>type</ID>
+          <ToolTip>Type of the RelayCommand's parameter.</ToolTip>
+          <Default>string</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>param</ID>
+          <ToolTip>Name of the RelayCommand's parameter.</ToolTip>
+          <Default>p</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[private RelayCommand<$type$> $attribute$;
+
+        /// <summary>
+        /// Gets the $commandname$.
+        /// </summary>
+        public RelayCommand<$type$> $commandname$
+        {
+            get
+            {
+                return $attribute$ 
+                    ?? ($attribute$ = new RelayCommand<$type$>(
+                                          $param$ =>
+                                          {
+                                              $end$
+                                          }));
+            }
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
