@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>ViewModel Property</Title>
+      <Author>Laurent Bugnion (GalaSoft)</Author>
+      <Description>A property allowing easy access to a view's DataContext. (V4.0.21.0)</Description>
+      <HelpUrl>http://www.galasoft.ch/mvvm</HelpUrl>
+      <Shortcut>mvvmvm</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>VmType</ID>
+          <ToolTip>ViewModel type</ToolTip>
+          <Default>MainViewModel</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[/// <summary>
+        /// Gets the view's ViewModel.
+        /// </summary>
+        public $VmType$ Vm
+        {
+            get
+            {
+                return ($VmType$)DataContext;
+            }
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
