@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="ISimpleIoc.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2011-2013
+// Copyright © GalaSoft Laurent Bugnion 2011-2014
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>

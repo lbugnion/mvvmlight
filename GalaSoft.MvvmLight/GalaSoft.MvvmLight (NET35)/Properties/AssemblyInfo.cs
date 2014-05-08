@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="AssemblyInfo.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2013
+// Copyright © GalaSoft Laurent Bugnion 2009-2014
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -11,7 +11,6 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0023</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -19,7 +18,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("GalaSoft.MvvmLight")]
-[assembly: AssemblyDescription("A lightweight framework to implement Model-View-ViewModel applications in WPF, Windows Store, Windows Phone, Silverlight.")]
+[assembly: AssemblyDescription("A lightweight framework to implement Model-View-ViewModel applications in WPF, Windows Store, Windows Phone, Silverlight, Xamarin.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight")]
@@ -30,4 +29,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("4.3.31.*")]
+[assembly: AssemblyVersion("4.4.32.*")]

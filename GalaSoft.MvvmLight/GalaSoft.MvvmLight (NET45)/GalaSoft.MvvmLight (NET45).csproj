@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight.WPF45</AssemblyName>
+    <AssemblyName>GalaSoft.MvvmLight</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,16 +20,16 @@
     <DefineConstants>TRACE;DEBUG;CMNATTR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\GalaSoft.MvvmLight.WPF45.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\GalaSoft.MvvmLight.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;CMNATTR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\GalaSoft.MvvmLight.WPF45.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\GalaSoft.MvvmLight.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

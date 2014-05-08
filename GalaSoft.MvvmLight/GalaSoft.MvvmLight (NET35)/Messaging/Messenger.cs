@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="Messenger.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2013
+// Copyright © GalaSoft Laurent Bugnion 2009-2014
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -24,14 +24,12 @@ using GalaSoft.MvvmLight.Helpers;
 
 #if SILVERLIGHT
 using System.Windows;
-#else
-#if !XAMARIN
+#elif !XAMARIN && !PORTABLE
 #if NETFX_CORE
 using Windows.UI.Xaml;
 using Windows.UI.Core;
 #else
 using System.Windows.Threading;
-#endif
 #endif
 #endif
 
@@ -55,6 +53,10 @@ namespace GalaSoft.MvvmLight.Messaging
         private readonly object _registerLock = new object();
         private Dictionary<Type, List<WeakActionAndToken>> _recipientsOfSubclassesAction;
         private Dictionary<Type, List<WeakActionAndToken>> _recipientsStrictAction;
+
+#if PORTABLE
+        private readonly SynchronizationContext _context = SynchronizationContext.Current;
+#endif
 
         /// <summary>
         /// Gets the Messenger's default instance, allowing
@@ -567,12 +569,19 @@ namespace GalaSoft.MvvmLight.Messaging
 
 #if SILVERLIGHT
                 Deployment.Current.Dispatcher.BeginInvoke(cleanupAction);
-#else
-#if XAMARIN
+#elif XAMARIN
                 // TODO ANDROID How to dispatch in order to use lower priority
                 cleanupAction();
-#else
-#if NETFX_CORE
+#elif PORTABLE
+                if (_context != null)
+                {
+                    _context.Post(_ => cleanupAction(), null);
+                }
+                else
+                {
+                    cleanupAction(); // run inline w/o a context
+                }
+#elif NETFX_CORE
                 if (Window.Current != null
                     && Window.Current.Dispatcher != null)
                 {
@@ -590,8 +599,6 @@ namespace GalaSoft.MvvmLight.Messaging
                     cleanupAction,
                     DispatcherPriority.ApplicationIdle,
                     null);
-#endif
-#endif
 #endif
                 _isCleanupRegistered = true;
             }

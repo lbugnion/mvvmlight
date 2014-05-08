@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="ObservableObject.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2011-2013
+// Copyright © GalaSoft Laurent Bugnion 2011-2014
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -18,13 +18,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-
-#if !SL3
 using System.Linq;
+using System.Reflection;
 using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
 
+#if CMNATTR
+using System.Runtime.CompilerServices;
 #endif
 
 namespace GalaSoft.MvvmLight
@@ -51,6 +50,7 @@ namespace GalaSoft.MvvmLight
             }
         }
 
+#if !PORTABLE && !SL4
         /// <summary>
         /// Occurs before a property value changes.
         /// </summary>
@@ -66,6 +66,7 @@ namespace GalaSoft.MvvmLight
                 return PropertyChanging;
             }
         }
+#endif
 
         /// <summary>
         /// Verifies that a property name exists in this ViewModel. This method
@@ -111,6 +112,7 @@ namespace GalaSoft.MvvmLight
 #endif
         }
 
+#if !PORTABLE && !SL4
 #if CMNATTR
         /// <summary>
         /// Raises the PropertyChanging event if needed.
@@ -151,6 +153,7 @@ namespace GalaSoft.MvvmLight
                 handler(this, new PropertyChangingEventArgs(propertyName));
             }
         }
+#endif
 
 #if CMNATTR
         /// <summary>
@@ -193,7 +196,7 @@ namespace GalaSoft.MvvmLight
             }
         }
 
-#if !SL3
+#if !PORTABLE && !SL4
         /// <summary>
         /// Raises the PropertyChanging event if needed.
         /// </summary>
@@ -218,6 +221,7 @@ namespace GalaSoft.MvvmLight
                 handler(this, new PropertyChangingEventArgs(propertyName));
             }
         }
+#endif
 
         /// <summary>
         /// Raises the PropertyChanged event if needed.
@@ -317,7 +321,9 @@ namespace GalaSoft.MvvmLight
                 return false;
             }
 
+#if !PORTABLE && !SL4
             RaisePropertyChanging(propertyExpression);
+#endif
             field = newValue;
             RaisePropertyChanged(propertyExpression);
             return true;
@@ -352,12 +358,13 @@ namespace GalaSoft.MvvmLight
                 return false;
             }
 
+#if !PORTABLE && !SL4
             RaisePropertyChanging(propertyName);
+#endif
             field = newValue;
             RaisePropertyChanged(propertyName);
             return true;
         }
-#endif
 
 #if CMNATTR
         /// <summary>

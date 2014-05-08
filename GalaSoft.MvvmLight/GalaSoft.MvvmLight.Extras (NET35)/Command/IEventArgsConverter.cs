@@ -1,4 +1,19 @@
-﻿namespace GalaSoft.MvvmLight.Command
+﻿// ****************************************************************************
+// <copyright file="IEventArgsConverter.cs" company="GalaSoft Laurent Bugnion">
+// Copyright © GalaSoft Laurent Bugnion 2009-2014
+// </copyright>
+// ****************************************************************************
+// <author>Laurent Bugnion</author>
+// <email>laurent@galasoft.ch</email>
+// <date>18.05.2013</date>
+// <project>GalaSoft.MvvmLight.Extras</project>
+// <web>http://www.galasoft.ch</web>
+// <license>
+// See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
+// </license>
+// ****************************************************************************
+
+namespace GalaSoft.MvvmLight.Command
 {
     /// <summary>
     /// The definition of the converter used to convert an EventArgs
