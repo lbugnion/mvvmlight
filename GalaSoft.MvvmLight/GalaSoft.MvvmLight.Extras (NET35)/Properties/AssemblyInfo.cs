@@ -27,11 +27,11 @@ using System.Windows.Markup;
 #endif
 
 [assembly: AssemblyTitle("GalaSoft.MvvmLight.Extras")]
-[assembly: AssemblyDescription("Extras components to implement Model-View-ViewModel applications in WPF, Silverlight and Windows Phone 7")]
+[assembly: AssemblyDescription("Extras components to implement Model-View-ViewModel applications in WPF, Windows Store, Windows Phone, Silverlight.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight.Extras")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2013")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -45,5 +45,4 @@ using System.Windows.Markup;
 [assembly: CLSCompliant(true)]
 [assembly:NeutralResourcesLanguage("en-US")]
 
-[assembly: AssemblyVersion("4.2.30.*")]
-////[assembly: AssemblyFileVersion("4.2.30.0/BL0030")]
+[assembly: AssemblyVersion("4.3.31.*")]
