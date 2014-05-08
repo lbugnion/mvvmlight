@@ -49,10 +49,10 @@ namespace GalaSoft.MvvmLight.Android.Helpers
         /// implements INPC, and TwoWay if both the source and the target implement INPC.</param>
         /// <returns>The new Binding instance.</returns>
         public static Binding<T> AddBinding<T>(
-            this object target,
-            Expression<Func<T>> targetPropertyExpression,
-            object source,
+            this object source,
             Expression<Func<T>> sourcePropertyExpression,
+            object target,
+            Expression<Func<T>> targetPropertyExpression,
             BindingMode mode = BindingMode.Default)
         {
             return new Binding<T>(
@@ -83,10 +83,10 @@ namespace GalaSoft.MvvmLight.Android.Helpers
         /// implements INPC, and TwoWay if both the source and the target implement INPC.</param>
         /// <returns>The new Binding instance.</returns>
         public static Binding<T> AddBinding<T>(
-            this object target,
-            string targetPropertyName,
-            object source,
+            this object source,
             string sourcePropertyName,
+            object target,
+            string targetPropertyName,
             BindingMode mode = BindingMode.Default)
         {
             return new Binding<T>(
