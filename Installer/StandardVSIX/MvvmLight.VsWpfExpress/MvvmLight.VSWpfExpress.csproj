@@ -8,6 +8,21 @@
     </FileUpgradeFlags>
     <OldToolsVersion>12.0</OldToolsVersion>
     <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -15,11 +30,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{725602F5-67B3-460F-9CE0-AFC148E05A89}</ProjectGuid>
+    <ProjectGuid>{A36CD776-8DDC-4BB6-B326-D4BD44FF3023}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvvmLight.VS12</RootNamespace>
-    <AssemblyName>MvvmLight.VS2013</AssemblyName>
+    <RootNamespace>MvvmLight.VS12WpfExpress</RootNamespace>
+    <AssemblyName>MvvmLight.VS2013WpfExpress</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>false</IncludeAssemblyInVSIXContainer>
@@ -49,103 +64,38 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Assets\MvvmLightCSharpSnippets.pkgdef">
-      <Link>MvvmLightCSharpSnippets\MvvmLightCSharpSnippets.pkgdef</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\View.SL.zip">
-      <Link>ItemTemplates\Silverlight\View.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\View.Win8.zip">
-      <Link>ItemTemplates\Windows Store\View.Win8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\View.WP8.zip">
-      <Link>ItemTemplates\Windows Phone\View.WP8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\View.WPF.zip">
       <Link>ItemTemplates\WPF\View.WPF.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Vm.SL.zip">
-      <Link>ItemTemplates\Silverlight\Vm.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Vm.Win8.zip">
-      <Link>ItemTemplates\Windows Store\Vm.Win8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Vm.WP8.zip">
-      <Link>ItemTemplates\Windows Phone\Vm.WP8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Vm.WPF.zip">
       <Link>ItemTemplates\WPF\Vm.WPF.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Vml.SL.zip">
-      <Link>ItemTemplates\Silverlight\Vml.SL.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Vml.Win8.zip">
-      <Link>ItemTemplates\Windows Store\Vml.Win8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Vml.WP8.zip">
-      <Link>ItemTemplates\Windows Phone\Vml.WP8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ItemTemplates\Vml.WPF.zip">
       <Link>ItemTemplates\WPF\Vml.WPF.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.SL5.zip">
-      <Link>ProjectTemplates\Silverlight\Mvvm.SL5.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.Win8.zip">
-      <Link>ProjectTemplates\Windows Store\Mvvm.Win8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.Win81.zip">
-      <Link>ProjectTemplates\Windows Store\Mvvm.Win81.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WP8.zip">
-      <Link>ProjectTemplates\Windows Phone\Mvvm.WP8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WPF.zip">
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013WpfExpress\Mvvm.WPF.zip">
       <Link>ProjectTemplates\Windows\Mvvm.WPF.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WPF4.zip">
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013WpfExpress\Mvvm.WPF4.zip">
       <Link>ProjectTemplates\Windows\Mvvm.WPF4.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WPF45.zip">
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013WpfExpress\Mvvm.WPF45.zip">
       <Link>ProjectTemplates\Windows\Mvvm.WPF45.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\Assets\License.rtf">
+      <Link>License.rtf</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -259,6 +209,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.4.2.30.0.nupkg">
+      <Link>Packages\MvvmLightLibs.4.2.30.0.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.0.nupkg">
+      <Link>Packages\CommonServiceLocator.1.0.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="..\..\InstallItems\Snippets\VB\mvvmInpc.snippet">
       <Link>MvvmLightVbSnippets\mvvmInpc.snippet</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -274,29 +234,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.0.nupkg">
-      <Link>Packages\CommonServiceLocator.1.0.nupkg</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.4.2.30.0.nupkg">
-      <Link>Packages\MvvmLightLibs.4.2.30.0.nupkg</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\Assets\MvvmLightVbSnippets.pkgdef">
-      <Link>MvvmLightVbSnippets\MvvmLightVbSnippets.pkgdef</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\Assets\License.rtf">
-      <Link>License.rtf</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <None Include="source.extension.vsixmanifest">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="source.extension.vsixmanifest" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Assets\Icon Purple 100x100.png">
@@ -304,13 +242,33 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="..\Assets\License.rtf">
+      <Link>License.rtf</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\Assets\MvvmLight.png">
       <Link>MvvmLight.png</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

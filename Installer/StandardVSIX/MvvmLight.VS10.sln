@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmLight.VS10", "MvvmLight.VS10\MvvmLight.VS10.csproj", "{3E206F33-2936-415F-8A8D-AA0472A43C7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmLight.VCSx10", "MvvmLight.VCSx10\MvvmLight.VCSx10.csproj", "{8265CD72-2EEC-4381-9D27-560043AC5593}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmLight.VWDx10", "MvvmLight.VWDx10\MvvmLight.VWDx10.csproj", "{D2791F12-194E-4779-8CFD-D81806FDD59C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E206F33-2936-415F-8A8D-AA0472A43C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E206F33-2936-415F-8A8D-AA0472A43C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E206F33-2936-415F-8A8D-AA0472A43C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E206F33-2936-415F-8A8D-AA0472A43C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8265CD72-2EEC-4381-9D27-560043AC5593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8265CD72-2EEC-4381-9D27-560043AC5593}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8265CD72-2EEC-4381-9D27-560043AC5593}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8265CD72-2EEC-4381-9D27-560043AC5593}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2791F12-194E-4779-8CFD-D81806FDD59C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2791F12-194E-4779-8CFD-D81806FDD59C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2791F12-194E-4779-8CFD-D81806FDD59C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2791F12-194E-4779-8CFD-D81806FDD59C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

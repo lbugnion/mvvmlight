@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="875218ab-5857-46ff-8435-73e73cb17171" Version="4.2.30.0" Language="en-US" Publisher="Laurent Bugnion (GalaSoft)" />
+        <DisplayName>MVVM Light (Windows Phone Express)</DisplayName>
+        <Description xml:space="preserve">The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Windows 8, Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed.</Description>
+        <MoreInfo>http://www.galasoft.ch/mvvm</MoreInfo>
+        <License>License.rtf</License>
+        <ReleaseNotes>http://galasoft.ch/mvvm/installing/changes/</ReleaseNotes>
+        <Icon>Icon Purple 100x100.png</Icon>
+        <PreviewImage>MvvmLight.png</PreviewImage>
+    </Metadata>
+    <Installation>
+        <InstallationTarget Version="[11.0,13.0)" Id="Microsoft.VisualStudio.VPDExpress" />
+    </Installation>
+    <Dependencies>
+    </Dependencies>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Windows Phone\Mvvm.WP71.zip" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Windows Phone\Mvvm.WP8.zip" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Windows Phone\View.WP7.zip" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Windows Phone\Vm.WP7.zip" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Windows Phone\Vml.WP7.zip" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Windows Phone\View.WP8.zip" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Windows Phone\Vm.WP8.zip" />
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="File" Path="ItemTemplates" d:TargetPath="ItemTemplates\Windows Phone\Vml.WP8.zip" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" Path="MvvmLightCSharpSnippets\MvvmLightCSharpSnippets.pkgdef" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" Path="MvvmLightVbSnippets\MvvmLightVbSnippets.pkgdef" />
+    </Assets>
+</PackageManifest>
