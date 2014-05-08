@@ -82,21 +82,21 @@ if exist ".\GalaSoft.MvvmLight (Win8)\bin\Release\GalaSoft.MvvmLight.Win8.pdb" c
 if exist ".\GalaSoft.MvvmLight (Win8)\bin\Release\GalaSoft.MvvmLight.Win8.pri" copy ".\GalaSoft.MvvmLight (Win8)\bin\Release\GalaSoft.MvvmLight.Win8.pri" .\_Binaries\Release\Win8\GalaSoft.MvvmLight.Win8.pri
 if exist ".\GalaSoft.MvvmLight (Win8)\bin\Release\GalaSoft.MvvmLight.Win8.xml" copy ".\GalaSoft.MvvmLight (Win8)\bin\Release\GalaSoft.MvvmLight.Win8.xml" .\_Binaries\Release\Win8\GalaSoft.MvvmLight.Win8.xml
 
-if exist ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.Android.dll" copy ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.Android.dll" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Android.dll
-if exist ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.Android.dll.mdb" copy ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.Android.dll.mdb" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Android.dll.mdb
-if exist ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.Android.pdb" copy ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.Android.pdb" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Android.pdb
-if exist ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.Android.xml" copy ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.Android.xml" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Android.xml
-if exist ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.Android.dll" copy ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.Android.dll" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Android.dll
-if exist ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.Android.pdb" copy ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.Android.pdb" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Android.pdb
-if exist ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.Android.xml" copy ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.Android.xml" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Android.xml
+if exist ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.dll.mdb" copy ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.dll.mdb" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.dll.mdb
+if exist ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (Android)\bin\Debug\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.dll" .\_Binaries\Release\Android\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\Android\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (Android)\bin\Release\GalaSoft.MvvmLight.xml" .\_Binaries\Release\Android\GalaSoft.MvvmLight.xml
 
-if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.iOS.dll" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.iOS.dll" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.iOS.dll
-if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.iOS.dll.mdb" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.iOS.dll.mdb" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.iOS.dll.mdb
-if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.iOS.pdb" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.iOS.pdb" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.iOS.pdb
-if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.iOS.xml" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.iOS.xml" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.iOS.xml
-if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.iOS.dll" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.iOS.dll" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.iOS.dll
-if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.iOS.pdb" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.iOS.pdb" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.iOS.pdb
-if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.iOS.xml" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.iOS.xml" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.iOS.xml
+if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.dll.mdb" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.dll.mdb" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.dll.mdb
+if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.dll" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.xml" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.xml
 
 
 if exist ".\GalaSoft.MvvmLight.Extras (NET45)\bin\Debug\GalaSoft.MvvmLight.Extras.WPF45.dll" copy ".\GalaSoft.MvvmLight.Extras (NET45)\bin\Debug\GalaSoft.MvvmLight.Extras.WPF45.dll" .\_Binaries\Debug\WPF45\GalaSoft.MvvmLight.Extras.WPF45.dll
@@ -157,21 +157,21 @@ if exist ".\GalaSoft.MvvmLight.Extras (Win8)\bin\Release\GalaSoft.MvvmLight.Extr
 if exist ".\GalaSoft.MvvmLight.Extras (Win8)\bin\Release\GalaSoft.MvvmLight.Extras.Win8.pri" copy ".\GalaSoft.MvvmLight.Extras (Win8)\bin\Release\GalaSoft.MvvmLight.Extras.Win8.pri" .\_Binaries\Release\Win8\GalaSoft.MvvmLight.Extras.Win8.pri
 if exist ".\GalaSoft.MvvmLight.Extras (Win8)\bin\Release\GalaSoft.MvvmLight.Extras.Win8.xml" copy ".\GalaSoft.MvvmLight.Extras (Win8)\bin\Release\GalaSoft.MvvmLight.Extras.Win8.xml" .\_Binaries\Release\Win8\GalaSoft.MvvmLight.Extras.Win8.xml
 
-if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.Android.dll" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.Android.dll" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Extras.Android.dll
-if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.Android.dll.mdb" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.Android.dll.mdb" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Extras.Android.dll.mdb
-if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.Android.pdb" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.Android.pdb" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Extras.Android.pdb
-if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.Android.xml" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.Android.xml" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Extras.Android.xml
-if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.Android.dll" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.Android.dll" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Extras.Android.dll
-if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.Android.pdb" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.Android.pdb" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Extras.Android.pdb
-if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.Android.xml" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.Android.xml" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Extras.Android.xml
+if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.dll" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.dll" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Extras.dll
+if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.dll.mdb" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.dll.mdb" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Extras.dll.mdb
+if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.pdb" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.pdb" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Extras.pdb
+if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.xml" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Debug\GalaSoft.MvvmLight.Extras.xml" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Extras.xml
+if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.dll" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.dll" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Extras.dll
+if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.pdb" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.pdb" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Extras.pdb
+if exist ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.xml" copy ".\GalaSoft.MvvmLight.Extras (Android)\bin\Release\GalaSoft.MvvmLight.Extras.xml" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Extras.xml
 
-if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.iOS.dll" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.iOS.dll" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.Extras.iOS.dll
-if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.iOS.dll.mdb" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.iOS.dll.mdb" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.Extras.iOS.dll.mdb
-if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.iOS.pdb" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.iOS.pdb" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.Extras.iOS.pdb
-if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.iOS.xml" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.iOS.xml" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.Extras.iOS.xml
-if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.iOS.dll" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.iOS.dll" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.Extras.iOS.dll
-if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.iOS.pdb" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.iOS.pdb" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.Extras.iOS.pdb
-if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.iOS.xml" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.iOS.xml" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.Extras.iOS.xml
+if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.dll" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.dll" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.Extras.dll
+if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.dll.mdb" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.dll.mdb" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.Extras.dll.mdb
+if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.pdb" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.pdb" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.Extras.pdb
+if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.xml" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Debug\GalaSoft.MvvmLight.Extras.xml" .\_Binaries\Debug\iOS\GalaSoft.MvvmLight.Extras.xml
+if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.dll" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.dll" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.Extras.dll
+if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.pdb" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.pdb" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.Extras.pdb
+if exist ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.xml" copy ".\GalaSoft.MvvmLight.Extras (iOS)\bin\iPhone\Release\GalaSoft.MvvmLight.Extras.xml" .\_Binaries\Release\iOS\GalaSoft.MvvmLight.Extras.xml
 
 
 if exist ".\GalaSoft.MvvmLight.Extras (NET45)\bin\Debug\Microsoft.Practices.ServiceLocation.dll" copy ".\GalaSoft.MvvmLight.Extras (NET45)\bin\Debug\Microsoft.Practices.ServiceLocation.dll" .\_Binaries\Debug\WPF45\Microsoft.Practices.ServiceLocation.dll
