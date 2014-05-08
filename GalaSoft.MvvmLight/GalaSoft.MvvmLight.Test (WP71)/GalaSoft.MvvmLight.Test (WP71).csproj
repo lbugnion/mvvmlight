@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight.Test.WP71</AssemblyName>
+    <AssemblyName>GalaSoft.MvvmLight.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>

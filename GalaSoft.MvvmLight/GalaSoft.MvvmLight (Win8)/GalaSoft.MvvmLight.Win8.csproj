@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight.Win8</AssemblyName>
+    <AssemblyName>GalaSoft.MvvmLight</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -23,7 +23,7 @@
     <DefineConstants>TRACE;DEBUG;NETFX_CORE;CMNATTR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\GalaSoft.MvvmLight.Win8.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\GalaSoft.MvvmLight.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE;NETFX_CORE;CMNATTR</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\GalaSoft.MvvmLight.Win8.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\GalaSoft.MvvmLight.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -174,15 +174,9 @@
     <Compile Include="..\GalaSoft.MvvmLight %28NET35%29\ViewModelBase.cs">
       <Link>ViewModelBase.cs</Link>
     </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight %28SL4%29\Helpers\INotifyPropertyChanging.cs">
-      <Link>Helpers\INotifyPropertyChanging.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight %28SL4%29\Helpers\PropertyChangingEventArgs.cs">
-      <Link>Helpers\PropertyChangingEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\GalaSoft.MvvmLight %28SL4%29\Helpers\PropertyChangingEventHandler.cs">
-      <Link>Helpers\PropertyChangingEventHandler.cs</Link>
-    </Compile>
+    <Compile Include="Helpers\INotifyPropertyChanging.cs" />
+    <Compile Include="Helpers\PropertyChangingEventArgs.cs" />
+    <Compile Include="Helpers\PropertyChangingEventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GalaSoft.MvvmLight.Win8.snk" />

@@ -1,5 +1,5 @@
 ﻿// <copyright file="RelayCommand.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2013
+// Copyright © GalaSoft Laurent Bugnion 2009-2014
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -83,14 +83,12 @@ namespace GalaSoft.MvvmLight.Command
         /// Occurs when changes occur that affect whether the command should execute.
         /// </summary>
         public event EventHandler CanExecuteChanged;
-#else
-#if NETFX_CORE
+#elif NETFX_CORE
         /// <summary>
         /// Occurs when changes occur that affect whether the command should execute.
         /// </summary>
         public event EventHandler CanExecuteChanged;
-#else
-#if XAMARIN
+#elif XAMARIN
         /// <summary>
         /// Occurs when changes occur that affect whether the command should execute.
         /// </summary>
@@ -118,8 +116,6 @@ namespace GalaSoft.MvvmLight.Command
             }
         }
 #endif
-#endif
-#endif
 
         /// <summary>
         /// Raises the <see cref="CanExecuteChanged" /> event.
@@ -140,15 +136,13 @@ namespace GalaSoft.MvvmLight.Command
             {
                 handler(this, EventArgs.Empty);
             }
-#else
-#if NETFX_CORE
+#elif NETFX_CORE
             var handler = CanExecuteChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
             }
-#else
-#if XAMARIN
+#elif XAMARIN
             var handler = CanExecuteChanged;
             if (handler != null)
             {
@@ -156,8 +150,6 @@ namespace GalaSoft.MvvmLight.Command
             }
 #else
             CommandManager.InvalidateRequerySuggested();
-#endif
-#endif
 #endif
         }
 

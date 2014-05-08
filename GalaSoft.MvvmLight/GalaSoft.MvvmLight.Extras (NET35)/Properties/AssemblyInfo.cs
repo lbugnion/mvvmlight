@@ -1,6 +1,6 @@
-﻿// *************************************30*************************************
+﻿// ****************************************************************************
 // <copyright file="AssemblyInfo.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2013
+// Copyright © GalaSoft Laurent Bugnion 2009-2014
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -11,7 +11,6 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0023</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -45,4 +44,4 @@ using System.Windows.Markup;
 [assembly: CLSCompliant(true)]
 [assembly:NeutralResourcesLanguage("en-US")]
 
-[assembly: AssemblyVersion("4.3.31.*")]
+[assembly: AssemblyVersion("4.4.32.*")]

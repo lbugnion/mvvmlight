@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="ViewModelBase.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2013
+// Copyright © GalaSoft Laurent Bugnion 2009-2014
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -17,18 +17,17 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using GalaSoft.MvvmLight.Helpers;
 using GalaSoft.MvvmLight.Messaging;
 
-#if !SL3
-using System.Linq.Expressions;
-#endif
-
 #if NETFX_CORE
+#if !PORTABLE
 using Windows.ApplicationModel;
+#endif
 #else
 using System.Windows;
 #endif
@@ -105,13 +104,13 @@ namespace GalaSoft.MvvmLight
             {
                 if (!_isInDesignMode.HasValue)
                 {
-#if SILVERLIGHT
+#if PORTABLE
+                    _isInDesignMode = IsInDesignModePortable();
+#elif SILVERLIGHT
                     _isInDesignMode = DesignerProperties.IsInDesignTool;
-#else
-#if NETFX_CORE
+#elif NETFX_CORE
                     _isInDesignMode = DesignMode.DesignModeEnabled;
-#else
-#if XAMARIN
+#elif XAMARIN
                     // TODO XAMARIN Is there such a thing as design mode? How to detect it?
                     _isInDesignMode = false;
 #else
@@ -120,8 +119,6 @@ namespace GalaSoft.MvvmLight
                         = (bool)DependencyPropertyDescriptor
                                         .FromProperty(prop, typeof(FrameworkElement))
                                         .Metadata.DefaultValue;
-#endif
-#endif
 #endif
                 }
 
@@ -222,7 +219,6 @@ namespace GalaSoft.MvvmLight
             }
         }
 
-#if !SL3
         /// <summary>
         /// Raises the PropertyChanged event if needed, and broadcasts a
         /// PropertyChangedMessage using the Messenger instance (or the
@@ -302,7 +298,9 @@ namespace GalaSoft.MvvmLight
                 return false;
             }
 
+#if !PORTABLE && !SL4
             RaisePropertyChanging(propertyExpression);
+#endif
             var oldValue = field;
             field = newValue;
             RaisePropertyChanged(propertyExpression, oldValue, field, broadcast);
@@ -343,13 +341,14 @@ namespace GalaSoft.MvvmLight
                 return false;
             }
 
+#if !PORTABLE && !SL4
             RaisePropertyChanging(propertyName);
+#endif
             var oldValue = field;
             field = newValue;
             RaisePropertyChanged(propertyName, oldValue, field, broadcast);
             return true;
         }
-#endif
 
 #if CMNATTR
         /// <summary>
@@ -379,7 +378,9 @@ namespace GalaSoft.MvvmLight
                 return false;
             }
 
+#if !PORTABLE
             RaisePropertyChanging(propertyName);
+#endif
             var oldValue = field;
             field = newValue;
             RaisePropertyChanged(propertyName, oldValue, field, broadcast);

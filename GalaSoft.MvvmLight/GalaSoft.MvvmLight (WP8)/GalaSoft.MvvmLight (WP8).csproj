@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight.WP8</AssemblyName>
+    <AssemblyName>GalaSoft.MvvmLight</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -29,7 +29,8 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>Bin\Debug\GalaSoft.MvvmLight.WP8.XML</DocumentationFile>
+    <DocumentationFile>Bin\Debug\GalaSoft.MvvmLight.xml</DocumentationFile>
+    <IntermediateOutputPath>C:\Users\Laurent\AppData\Local\Temp\vs376B.tmp\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,7 +41,8 @@
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>Bin\Release\GalaSoft.MvvmLight.WP8.XML</DocumentationFile>
+    <DocumentationFile>Bin\Release\GalaSoft.MvvmLight.xml</DocumentationFile>
+    <IntermediateOutputPath>C:\Users\Laurent\AppData\Local\Temp\vs376B.tmp\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>

@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="EventToCommand.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2012
+// Copyright © GalaSoft Laurent Bugnion 2009-2014
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -11,7 +11,6 @@
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0004</LastBaseLevel>
 // ****************************************************************************
 
 using System;
@@ -19,12 +18,16 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interactivity;
 
+#if SILVERLIGHT
+using System.Windows.Controls;
+#endif
+
 ////using GalaSoft.Utilities.Attributes;
 
 namespace GalaSoft.MvvmLight.Command
 {
     /// <summary>
-    /// This <see cref="System.Windows.Interactivity.TriggerAction" /> can be
+    /// This <see cref="T:System.Windows.Interactivity.TriggerAction`1" /> can be
     /// used to bind any event on any FrameworkElement to an <see cref="ICommand" />.
     /// Typically, this element is used in XAML to connect the attached element
     /// to a command located in a ViewModel. This trigger can only be attached
@@ -38,15 +41,215 @@ namespace GalaSoft.MvvmLight.Command
     ////  Description = "A Trigger used to bind any event to an ICommand.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
-    public partial class EventToCommand : TriggerAction<DependencyObject>
+    public class EventToCommand : TriggerAction<DependencyObject>
     {
         /// <summary>
-        /// Gets or sets a value indicating whether the EventArgs passed to the
-        /// event handler will be forwarded to the ICommand's Execute method
-        /// when the event is fired (if the bound ICommand accepts an argument
-        /// of type EventArgs).
-        /// <para>For example, use a RelayCommand&lt;MouseEventArgs&gt; to get
-        /// the arguments of a MouseMove event.</para>
+        /// Identifies the <see cref="CommandParameter" /> dependency property
+        /// </summary>
+        public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register(
+            "CommandParameter",
+            typeof(object),
+            typeof(EventToCommand),
+            new PropertyMetadata(
+                null,
+                (s, e) =>
+                {
+                    var sender = s as EventToCommand;
+                    if (sender == null)
+                    {
+                        return;
+                    }
+
+                    if (sender.AssociatedObject == null)
+                    {
+                        return;
+                    }
+
+                    sender.EnableDisableElement();
+                }));
+
+        /// <summary>
+        /// Identifies the <see cref="Command" /> dependency property
+        /// </summary>
+        public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(
+            "Command",
+            typeof(ICommand),
+            typeof(EventToCommand),
+            new PropertyMetadata(
+                null,
+                (s, e) => OnCommandChanged(s as EventToCommand, e)));
+
+        /// <summary>
+        /// Identifies the <see cref="MustToggleIsEnabled" /> dependency property
+        /// </summary>
+        public static readonly DependencyProperty MustToggleIsEnabledProperty = DependencyProperty.Register(
+            "MustToggleIsEnabled",
+            typeof(bool),
+            typeof(EventToCommand),
+            new PropertyMetadata(
+                false,
+                (s, e) =>
+                {
+                    var sender = s as EventToCommand;
+                    if (sender == null)
+                    {
+                        return;
+                    }
+
+                    if (sender.AssociatedObject == null)
+                    {
+                        return;
+                    }
+
+                    sender.EnableDisableElement();
+                }));
+
+        private object _commandParameterValue;
+
+        private bool? _mustToggleValue;
+
+        /// <summary>
+        /// Gets or sets the ICommand that this trigger is bound to. This
+        /// is a DependencyProperty.
+        /// </summary>
+        public ICommand Command
+        {
+            get
+            {
+                return (ICommand) GetValue(CommandProperty);
+            }
+
+            set
+            {
+                SetValue(CommandProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets an object that will be passed to the <see cref="Command" />
+        /// attached to this trigger. This is a DependencyProperty.
+        /// </summary>
+        public object CommandParameter
+        {
+            get
+            {
+                return GetValue(CommandParameterProperty);
+            }
+
+            set
+            {
+                SetValue(CommandParameterProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets an object that will be passed to the <see cref="Command" />
+        /// attached to this trigger. This property is here for compatibility
+        /// with the Silverlight version. This is NOT a DependencyProperty.
+        /// For databinding, use the <see cref="CommandParameter" /> property.
+        /// </summary>
+        public object CommandParameterValue
+        {
+            get
+            {
+                return _commandParameterValue ?? CommandParameter;
+            }
+
+            set
+            {
+                _commandParameterValue = value;
+                EnableDisableElement();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the attached element must be
+        /// disabled when the <see cref="Command" /> property's CanExecuteChanged
+        /// event fires. If this property is true, and the command's CanExecute 
+        /// method returns false, the element will be disabled. If this property
+        /// is false, the element will not be disabled when the command's
+        /// CanExecute method changes. This is a DependencyProperty.
+        /// </summary>
+        public bool MustToggleIsEnabled
+        {
+            get
+            {
+                return (bool) GetValue(MustToggleIsEnabledProperty);
+            }
+
+            set
+            {
+                SetValue(MustToggleIsEnabledProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the attached element must be
+        /// disabled when the <see cref="Command" /> property's CanExecuteChanged
+        /// event fires. If this property is true, and the command's CanExecute 
+        /// method returns false, the element will be disabled. This property is here for
+        /// compatibility with the Silverlight version. This is NOT a DependencyProperty.
+        /// For databinding, use the <see cref="MustToggleIsEnabled" /> property.
+        /// </summary>
+        public bool MustToggleIsEnabledValue
+        {
+            get
+            {
+                return _mustToggleValue == null
+                           ? MustToggleIsEnabled
+                           : _mustToggleValue.Value;
+            }
+
+            set
+            {
+                _mustToggleValue = value;
+                EnableDisableElement();
+            }
+        }
+
+        /// <summary>
+        /// Called when this trigger is attached to a FrameworkElement.
+        /// </summary>
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+            EnableDisableElement();
+        }
+
+#if SILVERLIGHT
+        private Control GetAssociatedObject()
+        {
+            return AssociatedObject as Control;
+        }
+#else
+        /// <summary>
+        /// This method is here for compatibility
+        /// with the Silverlight version.
+        /// </summary>
+        /// <returns>The FrameworkElement to which this trigger
+        /// is attached.</returns>
+        private FrameworkElement GetAssociatedObject()
+        {
+            return AssociatedObject as FrameworkElement;
+        }
+#endif
+
+        /// <summary>
+        /// This method is here for compatibility
+        /// with the Silverlight 3 version.
+        /// </summary>
+        /// <returns>The command that must be executed when
+        /// this trigger is invoked.</returns>
+        private ICommand GetCommand()
+        {
+            return Command;
+        }
+
+        /// <summary>
+        /// Specifies whether the EventArgs of the event that triggered this
+        /// action should be passed to the bound RelayCommand. If this is true,
+        /// the command should accept arguments of the corresponding
+        /// type (for example RelayCommand&lt;MouseButtonEventArgs&gt;).
         /// </summary>
         public bool PassEventArgsToCommand
         {
@@ -94,7 +297,7 @@ namespace GalaSoft.MvvmLight.Command
             EventArgsConverterParameterPropertyName,
             typeof(object),
             typeof(EventToCommand),
-            new UIPropertyMetadata(null));
+            new PropertyMetadata(null));
 
         /// <summary>
         /// Provides a simple way to invoke this trigger programatically
@@ -124,8 +327,8 @@ namespace GalaSoft.MvvmLight.Command
             if (commandParameter == null
                 && PassEventArgsToCommand)
             {
-                commandParameter = EventArgsConverter == null 
-                    ? parameter 
+                commandParameter = EventArgsConverter == null
+                    ? parameter
                     : EventArgsConverter.Convert(parameter, EventArgsConverterParameter);
             }
 
@@ -163,6 +366,7 @@ namespace GalaSoft.MvvmLight.Command
         private bool AssociatedElementIsDisabled()
         {
             var element = GetAssociatedObject();
+
             return AssociatedObject == null
                 || (element != null
                    && !element.IsEnabled);
