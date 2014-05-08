@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (WP8)", "GalaSoft.MvvmLight (WP8)\GalaSoft.MvvmLight (WP8).csproj", "{9B53BF33-4261-45FD-B170-04139CB8E1F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (WP8)", "GalaSoft.MvvmLight.Extras (WP8)\GalaSoft.MvvmLight.Extras (WP8).csproj", "{B807B4CE-AFE9-49CB-95AD-107BC8C07E70}"
