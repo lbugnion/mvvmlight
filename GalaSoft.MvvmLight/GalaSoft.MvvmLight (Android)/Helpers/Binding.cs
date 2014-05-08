@@ -226,6 +226,16 @@ namespace GalaSoft.MvvmLight.Android.Helpers
                     && _propertySource.Target != null)
                 {
                     var valueLocal = _sourceProperty.GetValue(_propertySource.Target, null);
+                    var targetValue = _targetProperty.GetValue(_propertyTarget.Target, null);
+
+                    if (valueLocal == null
+                        && targetValue == null
+                        || (valueLocal != null
+                            && valueLocal.Equals(targetValue)))
+                    {
+                        return;
+                    }
+
                     _targetProperty.SetValue(_propertyTarget.Target, valueLocal, null);
                 }
 
@@ -285,6 +295,16 @@ namespace GalaSoft.MvvmLight.Android.Helpers
                     && _propertySource.Target != null)
                 {
                     var valueLocal = _sourceProperty.GetValue(_propertySource.Target, null);
+                    var targetValue = _targetProperty.GetValue(_propertyTarget.Target, null);
+
+                    if (valueLocal == null
+                        && targetValue == null
+                        || (valueLocal != null
+                            && valueLocal.Equals(targetValue)))
+                    {
+                        return;
+                    }
+
                     _targetProperty.SetValue(_propertyTarget.Target, valueLocal, null);
                 }
 
@@ -292,7 +312,7 @@ namespace GalaSoft.MvvmLight.Android.Helpers
             };
 
             ev.AddEventHandler(
-                Source,
+                _propertySource.Target,
                 handler);
 
             return this;
@@ -346,6 +366,16 @@ namespace GalaSoft.MvvmLight.Android.Helpers
                     && _propertySource.Target != null)
                 {
                     var valueLocal = _targetProperty.GetValue(_propertyTarget.Target, null);
+                    var sourceValue = _sourceProperty.GetValue(_propertySource.Target, null);
+
+                    if (valueLocal == null
+                        && sourceValue == null
+                        || (valueLocal != null
+                            && valueLocal.Equals(sourceValue)))
+                    {
+                        return;
+                    }
+
                     _sourceProperty.SetValue(_propertySource.Target, valueLocal, null);
                 }
 
@@ -406,6 +436,16 @@ namespace GalaSoft.MvvmLight.Android.Helpers
                     && _propertySource.Target != null)
                 {
                     var valueLocal = _targetProperty.GetValue(_propertyTarget.Target, null);
+                    var sourceValue = _sourceProperty.GetValue(_propertySource.Target, null);
+
+                    if (valueLocal == null
+                        && sourceValue == null
+                        || (valueLocal != null 
+                            && valueLocal.Equals(sourceValue)))
+                    {
+                        return;
+                    }
+
                     _sourceProperty.SetValue(_propertySource.Target, valueLocal, null);
                 }
 
@@ -652,7 +692,7 @@ namespace GalaSoft.MvvmLight.Android.Helpers
             if (_targetProperty != null)
             {
                 var valueLocal = _sourceProperty.GetValue(_propertySource.Target, null);
-                _targetProperty.SetValue(Target, valueLocal, null);
+                _targetProperty.SetValue(_propertyTarget.Target, valueLocal, null);
             }
 
             RaiseValueChanged();
