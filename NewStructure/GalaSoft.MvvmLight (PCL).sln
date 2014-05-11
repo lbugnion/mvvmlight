@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Platform
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (PWPSL80)", "Tests\PCL\GalaSoft.MvvmLight.Test (PWPSL80)\GalaSoft.MvvmLight.Test (PWPSL80).csproj", "{3620804D-B56B-4C22-B987-AAD7B7F40FC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Platform (Android)", "GalaSoft.MvvmLight.Platform (Android)\GalaSoft.MvvmLight.Platform (Android).csproj", "{A5B7741D-E331-438C-B3BF-596B048DB622}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -471,6 +473,20 @@ Global
 		{3620804D-B56B-4C22-B987-AAD7B7F40FC8}.Release|x86.ActiveCfg = Release|x86
 		{3620804D-B56B-4C22-B987-AAD7B7F40FC8}.Release|x86.Build.0 = Release|x86
 		{3620804D-B56B-4C22-B987-AAD7B7F40FC8}.Release|x86.Deploy.0 = Release|x86
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|ARM.ActiveCfg = Release|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|x64.ActiveCfg = Release|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

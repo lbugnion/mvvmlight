@@ -30,6 +30,7 @@ namespace GalaSoft.MvvmLight.Messaging
     /// and the sender will possibly be a ViewModel.
     /// </summary>
     ////[ClassInfo(typeof(Messenger))]
+    [Obsolete("This class is not recommended because it uses MessageBoxResult which is not good in VMs. See http://www.galasoft.ch/s/dialogmessage.")]
     public class DialogMessage : GenericMessage<string>
     {
         /// <summary>
