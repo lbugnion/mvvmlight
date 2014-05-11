@@ -29,4 +29,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("4.3.31.*")]
+[assembly: AssemblyVersion("4.4.32.*")]

@@ -11,6 +11,7 @@
         <ProjectSubType>WPF</ProjectSubType>
         <DefaultName>MvvmView.xaml</DefaultName>
         <SortOrder>2</SortOrder>
+        <TemplateGroupID>WPF</TemplateGroupID>
         <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     </TemplateData>
     <TemplateContent>

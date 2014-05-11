@@ -10,6 +10,7 @@
         <ProjectSubType>WPF</ProjectSubType>
         <DefaultName>MvvmViewModel.cs</DefaultName>
         <SortOrder>1</SortOrder>
+        <TemplateGroupID>WPF</TemplateGroupID>
         <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
     </TemplateData>
     <TemplateContent>

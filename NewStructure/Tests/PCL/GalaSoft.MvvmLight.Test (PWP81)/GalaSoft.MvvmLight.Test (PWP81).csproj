@@ -220,6 +220,9 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ObservableObjectPropertyChangedTest.cs">
       <Link>ObservableObjectPropertyChangedTest.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\Stubs\ITestClass.cs">
       <Link>Stubs\ITestClass.cs</Link>
     </Compile>
@@ -277,7 +280,6 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\ViewModelStub.cs">
       <Link>ViewModel\ViewModelStub.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
