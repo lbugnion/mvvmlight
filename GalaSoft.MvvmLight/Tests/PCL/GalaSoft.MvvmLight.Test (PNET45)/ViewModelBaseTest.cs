@@ -1,0 +1,1127 @@
+﻿using System;
+using System.ComponentModel;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Test.Stubs;
+using GalaSoft.MvvmLight.Test.ViewModel;
+
+#if NETFX_CORE || WINDOWS_PHONE
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+#else
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
+
+#if NETFX_CORE
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml;
+#elif !PORTABLE
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows;
+#endif
+
+namespace GalaSoft.MvvmLight.Test
+{
+    [TestClass]
+    public class ViewModelBaseTest
+    {
+        [TestMethod]
+        public void TestCleanup()
+        {
+            Messenger.Reset();
+
+            var vm = new TestViewModel();
+            Messenger.Default.Register<string>(vm, vm.HandleStringMessage);
+
+            const string content1 = "Hello world";
+            const string content2 = "Another message";
+
+            Messenger.Default.Send(content1);
+
+            Assert.AreEqual(content1, vm.ReceivedContent);
+
+            var cleanupVm = vm as ICleanup;
+            cleanupVm.Cleanup();
+
+            Assert.IsTrue(vm.CleanupWasCalled);
+
+            Messenger.Default.Send(content2);
+
+            Assert.AreEqual(content1, vm.ReceivedContent);
+        }
+
+        [TestMethod]
+        public void TestPropertyChangedSend()
+        {
+            Messenger.Reset();
+            var receivedDateTimeMessengerOldChanged = DateTime.MaxValue;
+            var receivedDateTimeMessengerNewChanged = DateTime.MinValue;
+            var receivedDateTimeLocalChanged = DateTime.MinValue;
+            var receivedDateTimeLocalChanging = DateTime.MinValue;
+
+            Messenger.Default.Register<PropertyChangedMessage<DateTime>>(this, m =>
+                {
+                    if (m.PropertyName == TestViewModel.LastChanged1PropertyName)
+                    {
+                        receivedDateTimeMessengerOldChanged = m.OldValue;
+                        receivedDateTimeMessengerNewChanged = m.NewValue;
+                    }
+                });
+
+            var vm = new TestViewModel();
+            vm.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == TestViewModel.LastChanged1PropertyName)
+                    {
+                        receivedDateTimeLocalChanged = vm.LastChanged1;
+                    }
+                };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == TestViewModel.LastChanged1PropertyName)
+                {
+                    receivedDateTimeLocalChanging = vm.LastChanged1;
+                }
+            };
+#endif
+
+            var now = DateTime.Now;
+            vm.LastChanged1 = now;
+
+            Assert.AreEqual(now, vm.LastChanged1);
+            Assert.AreEqual(DateTime.MaxValue, receivedDateTimeMessengerOldChanged);
+            Assert.AreEqual(now, receivedDateTimeMessengerNewChanged);
+            Assert.AreEqual(now, receivedDateTimeLocalChanged);
+#if !PORTABLE && !SL4
+            Assert.AreEqual(DateTime.MaxValue, receivedDateTimeLocalChanging);
+#endif
+        }
+
+        [TestMethod]
+        public void TestPropertyChangedSendWithCustomMessenger()
+        {
+            var receivedDateTime1 = DateTime.MinValue;
+            var receivedDateTime2 = DateTime.MinValue;
+
+            var messenger = new Messenger();
+
+            messenger.Register<PropertyChangedMessage<DateTime>>(this, m => receivedDateTime1 = m.NewValue);
+            Messenger.Default.Register<PropertyChangedMessage<DateTime>>(this, m => receivedDateTime2 = m.NewValue);
+
+            var vm = new TestViewModel(messenger);
+
+            var now = DateTime.Now;
+            vm.LastChanged1 = now;
+            Assert.AreEqual(now, vm.LastChanged1);
+            Assert.AreEqual(now, receivedDateTime1);
+            Assert.AreEqual(DateTime.MinValue, receivedDateTime2);
+        }
+
+        [TestMethod]
+        public void TestPropertyChangedNoBroadcast()
+        {
+            Messenger.Reset();
+            var receivedDateTimeLocalChanged = DateTime.MinValue;
+            var receivedDateTimeLocalChanging = DateTime.MinValue;
+            var receivedDateTimeMessenger = DateTime.MinValue;
+
+            Messenger.Default.Register<PropertyChangedMessage<DateTime>>(this, m =>
+            {
+                if (m.PropertyName == TestViewModel.LastChanged2PropertyName)
+                {
+                    receivedDateTimeMessenger = m.NewValue;
+                }
+            });
+
+            var vm = new TestViewModel();
+            vm.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == TestViewModel.LastChanged2PropertyName)
+                    {
+                        receivedDateTimeLocalChanged = vm.LastChanged2;
+                    }
+                };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == TestViewModel.LastChanged2PropertyName)
+                {
+                    receivedDateTimeLocalChanging = vm.LastChanged2;
+                }
+            };
+#endif
+
+            var now = DateTime.Now;
+            vm.LastChanged2 = now;
+            Assert.AreEqual(now, vm.LastChanged2);
+            Assert.AreEqual(now, receivedDateTimeLocalChanged);
+#if !PORTABLE && !SL4
+            Assert.AreEqual(DateTime.MaxValue, receivedDateTimeLocalChanging);
+#endif
+            Assert.AreEqual(DateTime.MinValue, receivedDateTimeMessenger);
+        }
+
+        [TestMethod]
+        public void IsInDesignModeIsFalse()
+        {
+            var vmb = new TestViewModel();
+
+            var isDesign = vmb.IsInDesignMode;
+
+            Assert.IsFalse(isDesign);
+        }
+
+        [TestMethod]
+        public void TestPropertyChangedSendNoMagicString()
+        {
+            Messenger.Reset();
+            var receivedDateTimeMessengerOld = DateTime.MaxValue;
+            var receivedDateTimeMessengerNew = DateTime.MinValue;
+            var receivedDateTimeLocalChanged = DateTime.MinValue;
+            var receivedDateTimeLocalChanging = DateTime.MinValue;
+
+            Messenger.Default.Register<PropertyChangedMessage<DateTime>>(this, m =>
+            {
+                if (m.PropertyName == "LastChanged1")
+                {
+                    receivedDateTimeMessengerOld = m.OldValue;
+                    receivedDateTimeMessengerNew = m.NewValue;
+                }
+            });
+
+            var vm = new TestViewModelNoMagicString();
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "LastChanged1")
+                {
+                    receivedDateTimeLocalChanged = vm.LastChanged1;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == "LastChanged1")
+                {
+                    receivedDateTimeLocalChanging = vm.LastChanged1;
+                }
+            };
+#endif
+
+            var now = DateTime.Now;
+            vm.LastChanged1 = now;
+
+            Assert.AreEqual(now, vm.LastChanged1);
+            Assert.AreEqual(DateTime.MaxValue, receivedDateTimeMessengerOld);
+            Assert.AreEqual(now, receivedDateTimeMessengerNew);
+            Assert.AreEqual(now, receivedDateTimeLocalChanged);
+#if !PORTABLE && !SL4
+            Assert.AreEqual(DateTime.MaxValue, receivedDateTimeLocalChanging);
+#endif
+        }
+
+        [TestMethod]
+        public void TestPropertyChangedSendWithCustomMessengerNoMagicString()
+        {
+            var receivedDateTime1 = DateTime.MinValue;
+            var receivedDateTime2 = DateTime.MinValue;
+
+            var messenger = new Messenger();
+
+            messenger.Register<PropertyChangedMessage<DateTime>>(this, m => receivedDateTime1 = m.NewValue);
+            Messenger.Default.Register<PropertyChangedMessage<DateTime>>(this, m => receivedDateTime2 = m.NewValue);
+
+            var vm = new TestViewModelNoMagicString(messenger);
+
+            var now = DateTime.Now;
+            vm.LastChanged1 = now;
+            Assert.AreEqual(now, vm.LastChanged1);
+            Assert.AreEqual(now, receivedDateTime1);
+            Assert.AreEqual(DateTime.MinValue, receivedDateTime2);
+        }
+
+        [TestMethod]
+        public void TestPropertyChangedNoBroadcastNoMagicString()
+        {
+            Messenger.Reset();
+            var receivedDateTimeLocalChanged = DateTime.MinValue;
+            var receivedDateTimeLocalChanging = DateTime.MinValue;
+            var receivedDateTimeMessenger = DateTime.MinValue;
+
+            Messenger.Default.Register<PropertyChangedMessage<DateTime>>(this, m =>
+            {
+                if (m.PropertyName == "LastChanged2")
+                {
+                    receivedDateTimeMessenger = m.NewValue;
+                }
+            });
+
+            var vm = new TestViewModelNoMagicString();
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "LastChanged2")
+                {
+                    receivedDateTimeLocalChanged = vm.LastChanged2;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == "LastChanged2")
+                {
+                    receivedDateTimeLocalChanging = vm.LastChanged2;
+                }
+            };
+#endif
+
+            var now = DateTime.Now;
+            vm.LastChanged2 = now;
+            Assert.AreEqual(now, vm.LastChanged2);
+            Assert.AreEqual(now, receivedDateTimeLocalChanged);
+#if !PORTABLE && !SL4
+            Assert.AreEqual(DateTime.MaxValue, receivedDateTimeLocalChanging);
+#endif
+            Assert.AreEqual(DateTime.MinValue, receivedDateTimeMessenger);
+        }
+
+        [TestMethod]
+        public void TestRaiseValidInvalidPropertyName()
+        {
+            var vm = new ViewModelStub();
+
+            var receivedPropertyChanged = false;
+            var invalidPropertyChangedNameReceived = false;
+#if !PORTABLE && !SL4
+            var receivedPropertyChanging = false;
+            var invalidPropertyChangingNameReceived = false;
+#endif
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.RealPropertyPropertyName)
+                {
+                    receivedPropertyChanged = true;
+                }
+                else
+                {
+                    invalidPropertyChangedNameReceived = true;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.RealPropertyPropertyName)
+                {
+                    receivedPropertyChanging = true;
+                }
+                else
+                {
+                    invalidPropertyChangingNameReceived = true;
+                }
+            };
+
+            vm.RaisePropertyChanging(ViewModelStub.RealPropertyPropertyName);
+#endif
+            vm.RaisePropertyChanged(ViewModelStub.RealPropertyPropertyName);
+
+            Assert.IsTrue(receivedPropertyChanged);
+            Assert.IsFalse(invalidPropertyChangedNameReceived);
+
+#if !PORTABLE && !SL4
+            Assert.IsTrue(receivedPropertyChanging);
+            Assert.IsFalse(invalidPropertyChangingNameReceived);
+#endif
+
+            try
+            {
+#if !PORTABLE && !SL4
+                vm.RaisePropertyChanging(ViewModelStub.RealPropertyPropertyName + "1");
+#if DEBUG
+                Assert.Fail("ArgumentException was expected");
+#endif
+                Assert.IsTrue(invalidPropertyChangingNameReceived);
+#endif
+            }
+            catch (ArgumentException)
+            {
+            }
+
+            try
+            {
+                vm.RaisePropertyChanged(ViewModelStub.RealPropertyPropertyName + "1");
+
+#if DEBUG && !PORTABLE
+                Assert.Fail("ArgumentException was expected");
+#else
+                Assert.IsTrue(invalidPropertyChangedNameReceived);
+#endif
+            }
+            catch (ArgumentException)
+            {
+            }
+        }
+
+        [TestMethod]
+        public void TestRaiseWithEmptyString()
+        {
+#if !NETFX_CORE && !PORTABLE
+            var vm = new TestViewModel();
+
+            const string value1 = "Hello";
+            const string value2 = "World";
+
+            var textBox1 = new TextBox();
+            var textBox2 = new TextBox();
+
+            var binding1 = new Binding
+            {
+                Path = new PropertyPath("TestProperty1"),
+                Source = vm,
+            };
+
+            var binding2 = new Binding
+            {
+                Path = new PropertyPath("TestProperty2"),
+                Source = vm,
+            };
+
+            BindingOperations.SetBinding(textBox1, TextBox.TextProperty, binding1);
+            BindingOperations.SetBinding(textBox2, TextBox.TextProperty, binding2);
+
+            Assert.AreEqual(string.Empty, textBox1.Text);
+            Assert.AreEqual(string.Empty, textBox2.Text);
+
+            vm.RaiseEmptyPropertyChanged(value1, value2);
+
+            Assert.AreEqual(value1, textBox1.Text);
+            Assert.AreEqual(value2, textBox2.Text);
+#else
+            var vm = new TestViewModel();
+            var raised = false;
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == string.Empty)
+                {
+                    raised = true;
+                }
+            };
+
+            vm.RaiseEmptyPropertyChanged();
+            Assert.IsTrue(raised);
+#endif
+        }
+
+        [TestMethod]
+        public void TestRaiseWithNullString()
+        {
+#if !NETFX_CORE && !PORTABLE
+            var vm = new TestViewModel();
+
+            const string value1 = "Hello";
+            const string value2 = "World";
+
+            var textBox1 = new TextBox();
+            var textBox2 = new TextBox();
+
+            var binding1 = new Binding
+            {
+                Path = new PropertyPath("TestProperty1"),
+                Source = vm,
+            };
+
+            var binding2 = new Binding
+            {
+                Path = new PropertyPath("TestProperty2"),
+                Source = vm,
+            };
+
+            BindingOperations.SetBinding(textBox1, TextBox.TextProperty, binding1);
+            BindingOperations.SetBinding(textBox2, TextBox.TextProperty, binding2);
+
+            Assert.AreEqual(string.Empty, textBox1.Text);
+            Assert.AreEqual(string.Empty, textBox2.Text);
+
+            vm.RaiseNullPropertyChanged(value1, value2);
+
+            Assert.AreEqual(value1, textBox1.Text);
+            Assert.AreEqual(value2, textBox2.Text);
+#else
+            var vm = new TestViewModel();
+            var raised = false;
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (string.IsNullOrEmpty(e.PropertyName))
+                {
+                    raised = true;
+                }
+            };
+
+            vm.RaiseNullPropertyChanged();
+            Assert.IsTrue(raised);
+#endif
+        }
+
+        [TestMethod]
+        public void TestRaiseWithEmptyStringAndBroadcast()
+        {
+            var vm = new TestViewModel();
+
+            const string value1 = "Hello";
+            const string value2 = "World";
+
+            var messengerValue = string.Empty;
+            vm.GetMessengerInstance().Register<string>(this, msg => messengerValue = msg);
+
+            try
+            {
+                vm.RaiseEmptyPropertyChangedWithBroadcast(value1, value2);
+                Assert.Fail("ArgumentException was expected");
+            }
+            catch (ArgumentException)
+            {
+            }
+        }
+
+        [TestMethod]
+        public void TestGettingMessengerInstanceWhenNotSet()
+        {
+            var messenger = new Messenger();
+            var vm1 = new TestViewModel(messenger);
+            var vm2 = new TestViewModel();
+
+            Assert.AreSame(messenger, vm1.GetMessengerInstance());
+            Assert.AreSame(Messenger.Default, vm2.GetMessengerInstance());
+        }
+
+        static void InstancePropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // Void
+        }
+
+        [TestMethod]
+        public void TestSetBroadcast()
+        {
+            Messenger.Reset();
+
+            var vm = new ViewModelStub();
+            const int expectedValue = 1234;
+            var receivedValueChanged = 0;
+            var receivedValueWithMessenger = 0;
+#if !PORTABLE && !SL4
+            var receivedValueChanging = 0;
+#endif
+            Messenger.Default.Register<PropertyChangedMessage<int>>(this, msg => receivedValueWithMessenger = msg.NewValue);
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetBroadcastPropertyName)
+                {
+                    receivedValueChanged = vm.PropertyWithSetBroadcast;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetBroadcastPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithSetBroadcast;
+                }
+            };
+#endif
+
+            vm.PropertyWithSetBroadcast = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValueChanged);
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(expectedValue, receivedValueWithMessenger);
+        }
+
+        [TestMethod]
+        public void TestSetNoBroadcast()
+        {
+            Messenger.Reset();
+
+            var vm = new ViewModelStub();
+            const int expectedValue = 1234;
+            var receivedValueChanged = 0;
+            var receivedValueWithMessenger = 0;
+#if !PORTABLE && !SL4
+            var receivedValueChanging = 0;
+#endif
+
+            Messenger.Default.Register<PropertyChangedMessage<int>>(this, msg => receivedValueWithMessenger = msg.NewValue);
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetNoBroadcastPropertyName)
+                {
+                    receivedValueChanged = vm.PropertyWithSetNoBroadcast;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetNoBroadcastPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithSetNoBroadcast;
+                }
+            };
+#endif
+
+            vm.PropertyWithSetNoBroadcast = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValueChanged);
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(0, receivedValueWithMessenger);
+        }
+
+        [TestMethod]
+        public void TestSetWithStringBroadcast()
+        {
+            Messenger.Reset();
+
+            var vm = new ViewModelStub();
+            const int expectedValue = 1234;
+            var receivedValueChanged = 0;
+#if !PORTABLE && !SL4
+            var receivedValueChanging = 0;
+#endif
+            var receivedValueWithMessenger = 0;
+
+            Messenger.Default.Register<PropertyChangedMessage<int>>(this, msg => receivedValueWithMessenger = msg.NewValue);
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetBroadcastPropertyName)
+                {
+                    receivedValueChanged = vm.PropertyWithStringSetBroadcast;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetBroadcastPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithStringSetBroadcast;
+                }
+            };
+#endif
+
+            vm.PropertyWithStringSetBroadcast = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValueChanged);
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(expectedValue, receivedValueWithMessenger);
+        }
+
+        [TestMethod]
+        public void TestSetWithStringNoBroadcast()
+        {
+            Messenger.Reset();
+
+            var vm = new ViewModelStub();
+            const int expectedValue = 1234;
+            var receivedValueChanged = 0;
+#if !PORTABLE && !SL4
+            var receivedValueChanging = 0;
+#endif
+            var receivedValueWithMessenger = 0;
+
+            Messenger.Default.Register<PropertyChangedMessage<int>>(this, msg => receivedValueWithMessenger = msg.NewValue);
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetNoBroadcastPropertyName)
+                {
+                    receivedValueChanged = vm.PropertyWithStringSetNoBroadcast;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetNoBroadcastPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithStringSetNoBroadcast;
+                }
+            };
+#endif
+
+            vm.PropertyWithStringSetNoBroadcast = expectedValue;
+            Assert.AreEqual(expectedValue, receivedValueChanged);
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(0, receivedValueWithMessenger);
+        }
+
+        [TestMethod]
+        public void TestReturnValueWithSetBroadcast()
+        {
+            var vm = new ViewModelStub();
+            const int firstValue = 1234;
+            var receivedValueChanged = 0;
+#if !PORTABLE && !SL4
+            var receivedValueChanging = 0;
+#endif
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetBroadcastPropertyName)
+                {
+                    receivedValueChanged = vm.PropertyWithSetBroadcast;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetBroadcastPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithSetBroadcast;
+                }
+            };
+#endif
+
+            vm.PropertyWithSetBroadcast = firstValue;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue, receivedValueChanged);
+            Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
+
+            vm.PropertyWithSetBroadcast = firstValue;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue, receivedValueChanged);
+            Assert.IsFalse(vm.SetRaisedPropertyChangedEvent);
+
+            vm.PropertyWithSetBroadcast = firstValue + 1;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(firstValue, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue + 1, receivedValueChanged);
+            Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
+        }
+
+        [TestMethod]
+        public void TestReturnValueWithStringSetBroadcast()
+        {
+            var vm = new ViewModelStub();
+            const int firstValue = 1234;
+            var receivedValueChanged = 0;
+#if !PORTABLE && !SL4
+            var receivedValueChanging = 0;
+#endif
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetBroadcastPropertyName)
+                {
+                    receivedValueChanged = vm.PropertyWithStringSetBroadcast;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetBroadcastPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithStringSetBroadcast;
+                }
+            };
+#endif
+
+            vm.PropertyWithStringSetBroadcast = firstValue;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue, receivedValueChanged);
+            Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
+
+            vm.PropertyWithStringSetBroadcast = firstValue;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue, receivedValueChanged);
+            Assert.IsFalse(vm.SetRaisedPropertyChangedEvent);
+
+            vm.PropertyWithStringSetBroadcast = firstValue + 1;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(firstValue, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue + 1, receivedValueChanged);
+            Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
+        }
+
+        [TestMethod]
+        public void TestReturnValueWithSetNoBroadcast()
+        {
+            var vm = new ViewModelStub();
+            const int firstValue = 1234;
+            var receivedValueChanged = 0;
+#if !PORTABLE && !SL4
+            var receivedValueChanging = 0;
+#endif
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetNoBroadcastPropertyName)
+                {
+                    receivedValueChanged = vm.PropertyWithSetNoBroadcast;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithSetNoBroadcastPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithSetNoBroadcast;
+                }
+            };
+#endif
+
+            vm.PropertyWithSetNoBroadcast = firstValue;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue, receivedValueChanged);
+            Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
+
+            vm.PropertyWithSetNoBroadcast = firstValue;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue, receivedValueChanged);
+            Assert.IsFalse(vm.SetRaisedPropertyChangedEvent);
+
+            vm.PropertyWithSetNoBroadcast = firstValue + 1;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(firstValue, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue + 1, receivedValueChanged);
+            Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
+        }
+
+        [TestMethod]
+        public void TestReturnValueWithStringSetNoBroadcast()
+        {
+            var vm = new ViewModelStub();
+            const int firstValue = 1234;
+            var receivedValueChanged = 0;
+#if !PORTABLE && !SL4
+            var receivedValueChanging = 0;
+#endif
+
+            vm.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetNoBroadcastPropertyName)
+                {
+                    receivedValueChanged = vm.PropertyWithStringSetNoBroadcast;
+                }
+            };
+
+#if !PORTABLE && !SL4
+            vm.PropertyChanging += (s, e) =>
+            {
+                if (e.PropertyName == ViewModelStub.PropertyWithStringSetNoBroadcastPropertyName)
+                {
+                    receivedValueChanging = vm.PropertyWithStringSetNoBroadcast;
+                }
+            };
+#endif
+
+            vm.PropertyWithStringSetNoBroadcast = firstValue;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue, receivedValueChanged);
+            Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
+
+            vm.PropertyWithStringSetNoBroadcast = firstValue;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(-1, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue, receivedValueChanged);
+            Assert.IsFalse(vm.SetRaisedPropertyChangedEvent);
+
+            vm.PropertyWithStringSetNoBroadcast = firstValue + 1;
+#if !PORTABLE && !SL4
+            Assert.AreEqual(firstValue, receivedValueChanging);
+#endif
+            Assert.AreEqual(firstValue + 1, receivedValueChanged);
+            Assert.IsTrue(vm.SetRaisedPropertyChangedEvent);
+        }
+
+        [TestMethod]
+        public void TestRaisePropertyChangedNoMagicStringNullExpression()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanged += InstancePropertyChanged;
+
+            try
+            {
+                instance.RaisePropertyChangedPublic<string>(null);
+                Assert.Fail("ArgumentNullException was expected");
+            }
+            catch (ArgumentNullException)
+            {
+            }
+        }
+
+        [TestMethod]
+        public void TestRaisePropertyChangedNoMagicStringNullExpressionWithBroadcast()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanged += InstancePropertyChanged;
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(null, "12", "34", true);
+                Assert.Fail("ArgumentNullException was expected");
+            }
+            catch (ArgumentNullException)
+            {
+            }
+        }
+
+        [TestMethod]
+        public void TestRaisePropertyChangedNoMagicStringNonPropertyExpression()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanged += InstancePropertyChanged;
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(() => DummyStringMethod());
+                Assert.Fail("ArgumentException was expected");
+            }
+            catch (ArgumentException)
+            {
+            }
+        }
+
+        [TestMethod]
+        public void TestRaisePropertyChangedNoMagicStringNonPropertyExpressionWithBroadcast()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanged += InstancePropertyChanged;
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(() => DummyStringMethod(), "12", "34", true);
+                Assert.Fail("ArgumentException was expected");
+            }
+            catch (ArgumentException)
+            {
+            }
+        }
+
+#if !PORTABLE && !SL4 && !NETFX_CORE
+        [TestMethod]
+        public void TestRaisePropertyChangingNoMagicStringNullExpression()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanging += InstancePropertyChanging;
+
+            try
+            {
+                instance.RaisePropertyChangingPublic<string>(null);
+                Assert.Fail("ArgumentNullException was expected");
+            }
+            catch (ArgumentNullException)
+            {
+            }
+        }
+
+        private static void InstancePropertyChanging(object sender, PropertyChangingEventArgs e)
+        {
+        }
+
+        [TestMethod]
+        public void TestRaisePropertyChangingNoMagicStringNonPropertyExpression()
+        {
+            var instance = new TestViewModelNoMagicString();
+            instance.PropertyChanging += InstancePropertyChanging;
+
+            try
+            {
+                instance.RaisePropertyChangingPublic(() => DummyStringMethod());
+                Assert.Fail("ArgumentException was expected");
+            }
+            catch (ArgumentException)
+            {
+            }
+        }
+#endif
+
+        private static string DummyStringMethod()
+        {
+            return string.Empty;
+        }
+
+#if !SILVERLIGHT && !NETFX_CORE && !PORTABLE
+        [TestMethod]
+        public void TestTypeDescriptor()
+        {
+            var instance = new TestCustomTypeDescriptor();
+            var argumentExceptionWasThrown = false;
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(
+                    TestCustomTypeDescriptor.TestPropertyPropertyName);
+            }
+            catch (ArgumentException)
+            {
+                argumentExceptionWasThrown = true;
+            }
+
+            Assert.IsFalse(argumentExceptionWasThrown);
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(
+                    TestCustomTypeDescriptor.TestPropertyPropertyName + TestCustomTypeDescriptor.PropertyNameSuffix);
+            }
+            catch (ArgumentException)
+            {
+                argumentExceptionWasThrown = true;
+            }
+
+            Assert.IsFalse(argumentExceptionWasThrown);
+
+            try
+            {
+                instance.RaisePropertyChangedPublic(
+                    TestCustomTypeDescriptor.TestPropertyPropertyName + "abcd");
+            }
+            catch (ArgumentException)
+            {
+                argumentExceptionWasThrown = true;
+            }
+
+#if DEBUG
+            Assert.IsTrue(argumentExceptionWasThrown);
+#else
+            Assert.IsFalse(argumentExceptionWasThrown);
+#endif
+        }
+#endif
+
+#if CMNATTR
+        [TestMethod]
+        public void TestCallerMemberNameAndBroadcastWithSet()
+        {
+            Messenger.Reset();
+
+            var instance = new TestViewModel();
+
+            const string value1 = "1234";
+            const string value2 = "5678";
+
+            instance.TestPropertyWithCallerMemberNameAndSetAndBroadcast = value1;
+
+            var changedWasRaised = false;
+            var changeWasReceived = false;
+
+            instance.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName != TestViewModel.TestPropertyWithCallerMemberNameAndSetAndBroadcastPropertyName)
+                {
+                    return;
+                }
+
+                var sender = (TestViewModel)s;
+                Assert.AreSame(instance, sender);
+
+                Assert.AreEqual(value2, instance.TestPropertyWithCallerMemberNameAndSetAndBroadcast);
+                changedWasRaised = true;
+            };
+
+            Messenger.Default.Register<PropertyChangedMessage<string>>(
+                this,
+                message =>
+                {
+                    if (message.PropertyName != TestViewModel.TestPropertyWithCallerMemberNameAndSetAndBroadcastPropertyName)
+                    {
+                        return;
+                    }
+
+                    var sender = (TestViewModel)message.Sender;
+                    Assert.AreSame(instance, sender);
+
+                    Assert.AreEqual(value1, message.OldValue);
+                    Assert.AreEqual(value2, message.NewValue);
+                    changeWasReceived = true;
+                });
+
+            instance.TestPropertyWithCallerMemberNameAndSetAndBroadcast = value2;
+            Assert.IsTrue(changedWasRaised);
+            Assert.IsTrue(changeWasReceived);
+        }
+
+        [TestMethod]
+        public void TestCallerMemberNameAndBroadcast()
+        {
+            Messenger.Reset();
+
+            var instance = new TestViewModel();
+
+            const string value1 = "1234";
+            const string value2 = "5678";
+
+            instance.TestPropertyWithCallerMemberNameAndBroadcast = value1;
+
+            var changedWasRaised = false;
+            var changeWasReceived = false;
+
+            instance.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName != TestViewModel.TestPropertyWithCallerMemberNameAndBroadcastPropertyName)
+                {
+                    return;
+                }
+
+                var sender = (TestViewModel)s;
+                Assert.AreSame(instance, sender);
+
+                Assert.AreEqual(value2, instance.TestPropertyWithCallerMemberNameAndBroadcast);
+                changedWasRaised = true;
+            };
+
+            Messenger.Default.Register<PropertyChangedMessage<string>>(
+                this,
+                message =>
+                {
+                    if (message.PropertyName != TestViewModel.TestPropertyWithCallerMemberNameAndBroadcastPropertyName)
+                    {
+                        return;
+                    }
+
+                    var sender = (TestViewModel)message.Sender;
+                    Assert.AreSame(instance, sender);
+
+                    Assert.AreEqual(value1, message.OldValue);
+                    Assert.AreEqual(value2, message.NewValue);
+                    changeWasReceived = true;
+                });
+
+            instance.TestPropertyWithCallerMemberNameAndBroadcast = value2;
+            Assert.IsTrue(changedWasRaised);
+            Assert.IsTrue(changeWasReceived);
+        }
+#endif
+    }
+}
