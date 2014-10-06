@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Android UI Element</Title>
+      <Author>Laurent Bugnion (GalaSoft)</Author>
+      <Description>A property with backing field exposing a UI element retrieved from the resources.</Description>
+      <HelpUrl>http://www.mvvmlight.net</HelpUrl>
+      <Shortcut>mvvmdroidelement</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ElementType</ID>
+          <ToolTip>Type of the UI element.</ToolTip>
+          <Default>Button</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>FieldName</ID>
+          <ToolTip>Name of the field hosting the UI element.</ToolTip>
+          <Default>_myButton</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>PropertyName</ID>
+          <ToolTip>Name of the property exposing the UI element. Should be the same as the Resource ID.</ToolTip>
+          <Default>MyButton</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[private $ElementType$ $FieldName$;
+
+        public $ElementType$ $PropertyName$
+        {
+            get
+            {
+                return $FieldName$
+                       ?? ($FieldName$ = FindViewById<$ElementType$>(Resource.Id.$PropertyName$));
+            }
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -8,7 +8,7 @@
       <Title>RelayCommand Generic</Title>
       <Author>Laurent Bugnion (GalaSoft)</Author>
       <Description>Creates and initializes a new generic RelayCommand with an Execute method and a CanExecute method. (V4.0.21.0)</Description>
-      <HelpUrl>http://www.galasoft.ch/mvvm</HelpUrl>
+      <HelpUrl>http://www.mvvmlight.net</HelpUrl>
       <Shortcut>mvvmrelaymethodgenericcanexecute</Shortcut>
     </Header>
     <Snippet>
@@ -59,6 +59,11 @@
 
         private void Execute$commandname$($type$ $parameterName$)
         {
+            if (!$commandname$.CanExecute($parameterName$))
+            {
+                return;
+            }
+
             $end$
         }
 
