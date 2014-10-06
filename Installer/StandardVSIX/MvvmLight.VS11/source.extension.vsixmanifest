@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="e8b05c55-a169-42aa-a116-064ef2205f80" Version="4.2.30.0" Language="en-US" Publisher="GalaSoft" />
+    <Identity Id="e8b05c55-a169-42aa-a116-064ef2205f80" Version="5.0.0.0" Language="en-US" Publisher="Laurent Bugnion (GalaSoft)" />
     <DisplayName>MVVM Light</DisplayName>
-    <Description>The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Windows 8, Silverlight, WPF and Windows Phone. It is a light and pragmatic framework that contains only the essential components needed.</Description>
-    <MoreInfo>http://www.galasoft.ch/mvvm</MoreInfo>
+    <Description xml:space="preserve">The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Windows 8, Silverlight, WPF, Windows Phone, Xamarin Android and Xamarin iOS. It is a light and pragmatic framework that contains only the essential components needed.</Description>
+    <MoreInfo>http://www.mvvmlight.net</MoreInfo>
     <License>License.rtf</License>
-    <ReleaseNotes>http://galasoft.ch/mvvm/installing/changes/</ReleaseNotes>
+    <ReleaseNotes>http://www.mvvmlight.net/installing/changes</ReleaseNotes>
     <Icon>Icon Purple 100x100.png</Icon>
     <PreviewImage>MvvmLight.png</PreviewImage>
   </Metadata>
