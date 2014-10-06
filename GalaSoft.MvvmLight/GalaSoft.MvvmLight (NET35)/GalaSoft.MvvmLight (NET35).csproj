@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\GalaSoft.MvvmLight.XML</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>GalaSoft.MvvmLight %28NET35%29.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -125,6 +131,7 @@
     <None Include="..\GalaSoft.MvvmLight %28PCL%29\License.txt">
       <Link>License.txt</Link>
     </None>
+    <None Include="GalaSoft.MvvmLight %28NET35%29.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
