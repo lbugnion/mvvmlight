@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>MvvmLight</id>
+        <version>5.0.0.0</version>
+        <title>MVVM Light</title>
+        <authors>Laurent Bugnion (GalaSoft)</authors>
+        <owners>Laurent Bugnion (GalaSoft)</owners>
+        <licenseUrl>http://mvvmlight.codeplex.com/license</licenseUrl>
+        <projectUrl>http://www.galasoft.ch/mvvm</projectUrl>
+        <iconUrl>http://www.galasoft.ch/mvvm/resources/Logo/icon_100x100_transparent.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 8 and Xamarin Android. It is a light and pragmatic framework that contains only the essential components needed.</description>
+        <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in all versions of Silverlight, WPF, Windows Phone and Windows 8.</summary>
+        <releaseNotes>This version includes a Powershell script that runs after the package is installed. It edits the App.xaml file to include the ViewModelLocator in the App's resources. This replaces the previous transformation files, which were too unreliable.</releaseNotes>
+        <copyright>Copyright 2009-2014 Laurent Bugnion (GalaSoft)</copyright>
+        <language>en-US</language>
+        <tags>mvvm mvvmlight silverlight wp7 windows8 winrt win8 wpf windowsphone windowsphone7 windowsphone8 xamarin android iOS</tags>
+		
+		<!--<id>MyTestPackage0610</id>
+        <version>4.4.32.28</version>
+        <title>Test only, ignore</title>
+        <authors>Laurent Bugnion (GalaSoft)</authors>
+        <owners>lbugnion</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Test only, ignore</description>
+        <copyright>Copyright 2009-2014 Laurent Bugnion (GalaSoft)</copyright>-->
+
+        <dependencies>
+            <group targetFramework="net35">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+            <group targetFramework="net40">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+            <group targetFramework="net45">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+            <group targetFramework="sl4">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+            <group targetFramework="sl5">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+            <group targetFramework="sl4-wp71">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+            <group targetFramework="wp8">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+            <group targetFramework="wpa81">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+            <group targetFramework="netcore45">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+            <group targetFramework="monoandroid">
+                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="V5Full\Content\ViewModel\MainViewModel.cs.pp" target="Content\ViewModel\MainViewModel.cs.pp" />
+        <file src="V5Full\Content\ViewModel\ViewModelLocator.cs.pp" target="Content\ViewModel\ViewModelLocator.cs.pp" />
+        <file src="V5Full\tools\install.ps1" target="tools\install.ps1" />
+    </files>
+</package>
