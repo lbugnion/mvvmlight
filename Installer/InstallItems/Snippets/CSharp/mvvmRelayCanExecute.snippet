@@ -8,7 +8,7 @@
       <Title>RelayCommand</Title>
       <Author>Laurent Bugnion (GalaSoft)</Author>
       <Description>Creates and initializes a new RelayCommand with an Execute lambda and a CanExecute lambda. (V4.0.21.0)</Description>
-      <HelpUrl>http://www.galasoft.ch/mvvm</HelpUrl>
+      <HelpUrl>http://www.mvvmlight.net</HelpUrl>
       <Shortcut>mvvmrelaycanexecute</Shortcut>
     </Header>
     <Snippet>
@@ -48,6 +48,11 @@
                     ?? ($attribute$ = new RelayCommand(
                     () =>
                     {
+                        if (!$commandname$.CanExecute(null))
+                        {
+                            return;
+                        }
+
                         $end$
                     },
                     () => $canexecute$));
