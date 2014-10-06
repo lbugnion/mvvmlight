@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flowers.Forms.MainPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Text="All flowers"
+               HorizontalOptions="Center"
+               Font="Large" />
+
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Flowers}"
+                  x:Name="FlowersList">
+            <ListView.RowHeight>
+                <OnPlatform x:TypeArguments="x:Int32"
+                            iOS="60"
+                            Android="60"
+                            WinPhone="120" />
+            </ListView.RowHeight>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <Grid Padding="20,0,20,0"
+                                  BackgroundColor="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding Model.Image}"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="StartAndExpand">
+                                    <Image.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double"
+                                                    iOS="50"
+                                                    Android="50"
+                                                    WinPhone="100" />
+                                    </Image.WidthRequest>
+                                    
+                                    <Image.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double"
+                                                    iOS="50"
+                                                    Android="50"
+                                                    WinPhone="100" />
+                                    </Image.HeightRequest>
+                                </Image>
+
+                                <StackLayout Grid.Column="1"
+                                             HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Model.Name}"
+                                           TextColor="#fffa28d4"
+                                           Font="Large" />
+
+                                    <Label Text="{Binding Model.Description}"
+                                           Font="Medium"
+                                           LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label Text="{Binding LastLoadedFormatted}"
+               HorizontalOptions="Start"
+               Font="Micro"
+               Grid.Row="2"/>
+
+        <Button Text="refresh"
+                Grid.Row="3"
+                Command="{Binding RefreshCommand}"
+                HorizontalOptions="Fill" />
+    </Grid>
+</ContentPage>
