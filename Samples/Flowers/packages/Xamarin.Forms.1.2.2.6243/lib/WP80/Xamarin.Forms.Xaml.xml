@@ -1,0 +1,118 @@
+<doc>
+    <assembly>
+        <name>Xamarin.Forms.Xaml</name>
+    </assembly>
+    <members>
+        <member name="T:Xamarin.Forms.Xaml.ArrayExtension">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.Forms.Xaml.ArrayExtension">
+            <summary>Creates a new <see cref="T:Xamarin.Forms.ArrayExtension" /> with default values.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.Forms.Xaml.ArrayExtension.Items">
+            <summary>Returns a list of the items in this <see cref="T:Xamarin.Forms.Xaml.ArrayExtension" />.</summary>
+            <value>To be added.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.Forms.Xaml.ArrayExtension.ProvideValue(System.IServiceProvider)">
+            <param name="serviceProvider">To be added.</param>
+            <summary>Returns an array that contains items of the type that is specified by the <see cref="P:Xamarin.Forms.Xaml.ArrayExtension.Type" /> property.</summary>
+            <returns>To be added.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.Forms.Xaml.ArrayExtension.Type">
+            <summary>Gets or sets the type of the items that can be stored in the array.</summary>
+            <value>To be added.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.Forms.Xaml.Extensions">
+            <summary>Extension class for <see cref="T:Xamarin.Forms.View" /> defining <see cref="M:Xamarin.Forms.Extensions.LoadFromXaml`1" /> method.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.Forms.Xaml.Extensions.LoadFromXaml``1(``0,System.Type)">
+            <typeparam name="TView">To be added.</typeparam>
+            <param name="view">To be added.</param>
+            <param name="callingType">To be added.</param>
+            <summary>Configures <paramref name="view" /> with the properties that are defined in the application manifest for <paramref name="callingType" />.</summary>
+            <returns>To be added.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.Forms.Xaml.NullExtension">
+            <summary>Extension class that differentiates between null values and empty strings.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.Forms.Xaml.NullExtension">
+            <summary>Creates a new <see cref="T:Xamarin.Forms.Xaml.NullExtension" /> object with default values.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.Forms.Xaml.NullExtension.ProvideValue(System.IServiceProvider)">
+            <param name="serviceProvider">To be added.</param>
+            <summary>Returns the null object.</summary>
+            <returns>To be added.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.Forms.Xaml.ReferenceExtension">
+            <summary>Markup extension for referring to other XAML-defined types.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.Forms.Xaml.ReferenceExtension">
+            <summary>Creates a new <see cref="T:Xamarin.Forms.Xaml.ReferenceExtension" /> with default values.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.Forms.Xaml.ReferenceExtension.Name">
+            <summary>Gets or sets the name of the entity to reference.</summary>
+            <value>To be added.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.Forms.Xaml.ReferenceExtension.ProvideValue(System.IServiceProvider)">
+            <param name="serviceProvider">To be added.</param>
+            <summary>Returns an object that represents the type that was referred to.</summary>
+            <returns>To be added.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.Forms.Xaml.StaticExtension">
+            <summary>A markup extension that gets a static member value.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.Forms.Xaml.StaticExtension">
+            <summary>Creates a new <see cref="T:Xamarin.Forms.Xaml.StaticExtension" /> object with default values.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.Forms.Xaml.StaticExtension.Member">
+            <summary>Gets or sets the member name.</summary>
+            <value>To be added.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.Forms.Xaml.StaticExtension.ProvideValue(System.IServiceProvider)">
+            <param name="serviceProvider">To be added.</param>
+            <summary>Returns the value of the member.</summary>
+            <returns>To be added.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.Forms.Xaml.TypeExtension">
+            <summary>A markup extension for parsing type descriptors.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="C:Xamarin.Forms.Xaml.TypeExtension">
+            <summary>Creates a new <see cref="T:Xamarin.Forms.Xaml.TypeExtension" /> object with default values.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="M:Xamarin.Forms.Xaml.TypeExtension.ProvideValue(System.IServiceProvider)">
+            <param name="serviceProvider">To be added.</param>
+            <summary>Returns an object that represents the type specified by the markup.</summary>
+            <returns>To be added.</returns>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="P:Xamarin.Forms.Xaml.TypeExtension.TypeName">
+            <summary>Gets or sets the name of the type.</summary>
+            <value>To be added.</value>
+            <remarks>To be added.</remarks>
+        </member>
+        <member name="T:Xamarin.Forms.Xaml.XamlParseException">
+            <summary>To be added.</summary>
+            <remarks>To be added.</remarks>
+        </member>
+    </members>
+</doc>

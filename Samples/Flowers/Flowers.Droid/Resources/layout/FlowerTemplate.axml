@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/FlowerTemplateRoot"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
+    android:paddingRight="17dp"
+    android:paddingLeft="17dp">
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:id="@+id/FlowerImageView"
+        android:layout_marginRight="10dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/FlowerImageView">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NameTextView"
+            android:textSize="24dp"
+            android:textColor="#fffa28d4" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/DescriptionTextView"
+            android:ellipsize="end"
+            android:singleLine="true" />
+    </LinearLayout>
+</RelativeLayout>
