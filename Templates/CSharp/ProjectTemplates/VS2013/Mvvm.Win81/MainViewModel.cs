@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using $safeprojectname$.Common;
 using $safeprojectname$.Model;
 
@@ -36,7 +37,7 @@ namespace $safeprojectname$.ViewModel
             {
                 return _navigateCommand
                        ?? (_navigateCommand = new RelayCommand(
-                           () => _navigationService.Navigate(typeof (SecondPage))));
+                           () => _navigationService.NavigateTo(ViewModelLocator.SecondPageKey)));
             }
         }
 

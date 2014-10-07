@@ -12,8 +12,8 @@
 using System.Diagnostics.CodeAnalysis;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
-using $safeprojectname$.Common;
 using $safeprojectname$.Design;
 using $safeprojectname$.Model;
 
@@ -28,6 +28,8 @@ namespace $safeprojectname$.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
+        public const string SecondPageKey = "SecondPage";
+
         /// <summary>
         /// Gets the Main property.
         /// </summary>
@@ -55,8 +57,11 @@ namespace $safeprojectname$.ViewModel
                 SimpleIoc.Default.Register<IDataService, DataService>();
             }
 
+            var nav = new NavigationService();
+			nav.Configure(ViewModelLocator.SecondPageKey, typeof(SecondPage));
+            SimpleIoc.Default.Register<INavigationService>(() => nav);
+
             SimpleIoc.Default.Register<IDialogService, DialogService>();
-            SimpleIoc.Default.Register<INavigationService, NavigationService>();
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
