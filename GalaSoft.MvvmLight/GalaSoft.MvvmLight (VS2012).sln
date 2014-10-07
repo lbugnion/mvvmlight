@@ -13,6 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{350D9116
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (WP71)", "Tests\GalaSoft.MvvmLight.Test (WP71)\GalaSoft.MvvmLight.Test (WP71).csproj", "{A8564789-3B29-4722-8A54-C9C82C1A5137}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (PCL)", "GalaSoft.MvvmLight (PCL)\GalaSoft.MvvmLight (PCL).csproj", "{6A912701-3BA1-4975-ADBF-160CAF66B640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (PCL)", "GalaSoft.MvvmLight.Extras (PCL)\GalaSoft.MvvmLight.Extras (PCL).csproj", "{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Platform (WIN8)", "GalaSoft.MvvmLight.Platform (WIN8)\GalaSoft.MvvmLight.Platform (WIN8).csproj", "{A6AA7B56-3B41-469A-9042-06F03DC60EFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +83,42 @@ Global
 		{A8564789-3B29-4722-8A54-C9C82C1A5137}.Release|ARM.ActiveCfg = Release|Any CPU
 		{A8564789-3B29-4722-8A54-C9C82C1A5137}.Release|x64.ActiveCfg = Release|Any CPU
 		{A8564789-3B29-4722-8A54-C9C82C1A5137}.Release|x86.ActiveCfg = Release|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Release|x64.ActiveCfg = Release|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Release|x86.ActiveCfg = Release|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Release|ARM.ActiveCfg = Release|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Release|x64.ActiveCfg = Release|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Release|x86.ActiveCfg = Release|Any CPU
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Debug|ARM.Build.0 = Debug|ARM
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Debug|x64.ActiveCfg = Debug|x64
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Debug|x64.Build.0 = Debug|x64
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Debug|x86.ActiveCfg = Debug|x86
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Debug|x86.Build.0 = Debug|x86
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Release|ARM.ActiveCfg = Release|ARM
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Release|ARM.Build.0 = Release|ARM
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Release|x64.ActiveCfg = Release|x64
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Release|x64.Build.0 = Release|x64
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Release|x86.ActiveCfg = Release|x86
+		{A6AA7B56-3B41-469A-9042-06F03DC60EFA}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

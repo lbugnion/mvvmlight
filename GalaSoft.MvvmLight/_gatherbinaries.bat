@@ -4,6 +4,7 @@ if not exist _Binaries md _Binaries
 if not exist _Binaries\Debug md _Binaries\Debug
 
 if not exist _Binaries\Debug\NET45 md _Binaries\Debug\NET45
+if not exist _Binaries\Debug\WIN8 md _Binaries\Debug\WIN8
 if not exist _Binaries\Debug\WIN81 md _Binaries\Debug\WIN81
 if not exist _Binaries\Debug\WP71 md _Binaries\Debug\WP71
 if not exist _Binaries\Debug\WP81 md _Binaries\Debug\WP81
@@ -18,6 +19,7 @@ if not exist _Binaries\Debug\iOS md _Binaries\Debug\iOS
 if not exist _Binaries\Debug\PCL md _Binaries\Debug\PCL
 
 if not exist _Binaries\Release\NET45 md _Binaries\Release\NET45
+if not exist _Binaries\Release\WIN8 md _Binaries\Release\WIN8
 if not exist _Binaries\Release\WIN81 md _Binaries\Release\WIN81
 if not exist _Binaries\Release\WP71 md _Binaries\Release\WP71
 if not exist _Binaries\Release\WP81 md _Binaries\Release\WP81
@@ -233,6 +235,38 @@ if exist ".\GalaSoft.MvvmLight.Extras (SL5)\bin\Debug\System.Windows.Interactivi
 if exist ".\GalaSoft.MvvmLight.Extras (SL5)\bin\Debug\System.Windows.Interactivity.xml" copy ".\GalaSoft.MvvmLight.Extras (SL5)\bin\Debug\System.Windows.Interactivity.xml" .\_Binaries\Debug\SL5\System.Windows.Interactivity.xml
 if exist ".\GalaSoft.MvvmLight.Extras (SL5)\bin\Release\System.Windows.Interactivity.dll" copy ".\GalaSoft.MvvmLight.Extras (SL5)\bin\Release\System.Windows.Interactivity.dll" .\_Binaries\Release\SL5\System.Windows.Interactivity.dll
 if exist ".\GalaSoft.MvvmLight.Extras (SL5)\bin\Release\System.Windows.Interactivity.xml" copy ".\GalaSoft.MvvmLight.Extras (SL5)\bin\Release\System.Windows.Interactivity.xml" .\_Binaries\Release\SL5\System.Windows.Interactivity.xml
+
+rem Win8
+
+if exist ".\GalaSoft.MvvmLight (PCL)\bin\Debug\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (PCL)\bin\Debug\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight (PCL)\bin\Debug\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (PCL)\bin\Debug\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight (PCL)\bin\Debug\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (PCL)\bin\Debug\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight (PCL)\bin\Release\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (PCL)\bin\Release\GalaSoft.MvvmLight.dll" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight (PCL)\bin\Release\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (PCL)\bin\Release\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight (PCL)\bin\Release\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (PCL)\bin\Release\GalaSoft.MvvmLight.xml" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.xml
+
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\GalaSoft.MvvmLight.Extras.dll" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\GalaSoft.MvvmLight.Extras.dll" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.Extras.dll
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\GalaSoft.MvvmLight.Extras.pdb" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\GalaSoft.MvvmLight.Extras.pdb" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.Extras.pdb
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\GalaSoft.MvvmLight.Extras.xml" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\GalaSoft.MvvmLight.Extras.xml" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.Extras.xml
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\GalaSoft.MvvmLight.Extras.dll" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\GalaSoft.MvvmLight.Extras.dll" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.Extras.dll
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\GalaSoft.MvvmLight.Extras.pdb" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\GalaSoft.MvvmLight.Extras.pdb" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.Extras.pdb
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\GalaSoft.MvvmLight.Extras.xml" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\GalaSoft.MvvmLight.Extras.xml" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.Extras.xml
+
+if exist ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Debug\GalaSoft.MvvmLight.Platform.dll" copy ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Debug\GalaSoft.MvvmLight.Platform.dll" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.Platform.dll
+if exist ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Debug\GalaSoft.MvvmLight.Platform.pdb" copy ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Debug\GalaSoft.MvvmLight.Platform.pdb" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.Platform.pdb
+if exist ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Debug\GalaSoft.MvvmLight.Platform.pri" copy ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Debug\GalaSoft.MvvmLight.Platform.pri" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.Platform.pri
+if exist ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Debug\GalaSoft.MvvmLight.Platform.xml" copy ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Debug\GalaSoft.MvvmLight.Platform.xml" .\_Binaries\Debug\WIN8\GalaSoft.MvvmLight.Platform.xml
+if exist ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Release\GalaSoft.MvvmLight.Platform.dll" copy ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Release\GalaSoft.MvvmLight.Platform.dll" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.Platform.dll
+if exist ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Release\GalaSoft.MvvmLight.Platform.pdb" copy ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Release\GalaSoft.MvvmLight.Platform.pdb" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.Platform.pdb
+if exist ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Release\GalaSoft.MvvmLight.Platform.pri" copy ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Release\GalaSoft.MvvmLight.Platform.pri" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.Platform.pri
+if exist ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Release\GalaSoft.MvvmLight.Platform.xml" copy ".\GalaSoft.MvvmLight.Platform (WIN8)\bin\Release\GalaSoft.MvvmLight.Platform.xml" .\_Binaries\Release\WIN8\GalaSoft.MvvmLight.Platform.xml
+
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.dll" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.dll" .\_Binaries\Debug\WIN8\Microsoft.Practices.ServiceLocation.dll
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.pdb" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.pdb" .\_Binaries\Debug\WIN8\Microsoft.Practices.ServiceLocation.pdb
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.xml" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.xml" .\_Binaries\Debug\WIN8\Microsoft.Practices.ServiceLocation.xml
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\Microsoft.Practices.ServiceLocation.dll" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\Microsoft.Practices.ServiceLocation.dll" .\_Binaries\Release\WIN8\Microsoft.Practices.ServiceLocation.dll
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\Microsoft.Practices.ServiceLocation.pdb" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\Microsoft.Practices.ServiceLocation.pdb" .\_Binaries\Release\WIN8\Microsoft.Practices.ServiceLocation.pdb
+if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\Microsoft.Practices.ServiceLocation.xml" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\Microsoft.Practices.ServiceLocation.xml" .\_Binaries\Release\WIN8\Microsoft.Practices.ServiceLocation.xml
 
 rem Win81
 
