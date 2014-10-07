@@ -182,8 +182,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2012\Mvvm.WPF.zip">
-      <Link>ProjectTemplates\Windows\Mvvm.WPF.zip</Link>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2012\Mvvm.WPF35.zip">
+      <Link>ProjectTemplates\Windows\Mvvm.WPF35.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -392,15 +392,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <None Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.3.nupkg">
-      <Link>Packages\CommonServiceLocator.1.3.nupkg</Link>
-    </None>
-    <None Include="..\..\InstallItems\Nuget\MvvmLightLibs.5.0.0.0.nupkg">
-      <Link>Packages\MvvmLightLibs.5.0.0.0.nupkg</Link>
-    </None>
-    <None Include="..\..\InstallItems\Snippets\CSharp\mvvmdroidelement.snippet">
+    <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.3.nupkg">
+      <Link>Packages\CommonServiceLocator.1.3.nupkg</Link>      
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.5.0.0.0.nupkg">
+      <Link>Packages\MvvmLightLibs.5.0.0.0.nupkg</Link>      
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmdroidelement.snippet">
       <Link>MvvmLightCSharpSnippets\mvvmdroidelement.snippet</Link>
-    </None>
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

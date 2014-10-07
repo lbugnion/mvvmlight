@@ -119,23 +119,23 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.Win8.zip">
-      <Link>ProjectTemplates\Windows Store\Mvvm.Win8.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.Win81.zip">
-      <Link>ProjectTemplates\Windows Store\Mvvm.Win81.zip</Link>
+      <Link>ProjectTemplates\Store Apps\Windows Apps\Mvvm.Win81.zip</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WP8.zip">
-      <Link>ProjectTemplates\Windows Phone\Mvvm.WP8.zip</Link>
+      <Link>ProjectTemplates\Store Apps\Windows Phone Apps\Mvvm.WP8.zip</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WPF.zip">
-      <Link>ProjectTemplates\Windows\Mvvm.WPF.zip</Link>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WP81.zip">
+      <Link>ProjectTemplates\Store Apps\Windows Phone Apps\Mvvm.WP81.zip</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WPF35.zip">
+      <Link>ProjectTemplates\Windows\Mvvm.WPF35.zip</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -146,6 +146,11 @@
     </Content>
     <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WPF45.zip">
       <Link>ProjectTemplates\Windows\Mvvm.WPF45.zip</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\GalaSoft.MvvmLight.Templates\ProjectTemplates\VS2013\Mvvm.WPF451.zip">
+      <Link>ProjectTemplates\Windows\Mvvm.WPF451.zip</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -274,17 +279,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-      <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.0.nupkg">
-          <Link>Packages\CommonServiceLocator.1.0.nupkg</Link>
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <IncludeInVSIX>true</IncludeInVSIX>
-      </Content>
-      <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.3.nupkg">
-          <Link>Packages\CommonServiceLocator.1.3.nupkg</Link>
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-          <IncludeInVSIX>true</IncludeInVSIX>
-      </Content>
-      <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.5.0.0.0.nupkg">
+    <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.0.nupkg">
+      <Link>Packages\CommonServiceLocator.1.0.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.3.nupkg">
+      <Link>Packages\CommonServiceLocator.1.3.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.5.0.0.0.nupkg">
       <Link>Packages\MvvmLightLibs.5.0.0.0.nupkg</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -299,9 +304,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <None Include="..\..\InstallItems\Snippets\CSharp\mvvmdroidelement.snippet">
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmdroidelement.snippet">
       <Link>MvvmLightCSharpSnippets\mvvmdroidelement.snippet</Link>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>

@@ -3,7 +3,7 @@
             Type="Project">
     <TemplateData>
         <Name>MvvmLight (WP71)</Name>
-        <Description>A "light" Windows Phone 7.1 "Mango" Silverlight Model-View-ViewModel application optimized for Expression Blend (by GalaSoft Laurent Bugnion)</Description>
+        <Description>A "light" Windows Phone 7.1 "Mango" Silverlight Model-View-ViewModel application optimized (by GalaSoft Laurent Bugnion)</Description>
         <Icon>MvvmLight.ico</Icon>
         <PreviewImage>MvvmLight.png</PreviewImage>
         <TemplateID>Microsoft.WindowsPhone.CSharp.GalaSoft.MvvmLight.WP71</TemplateID>
@@ -64,7 +64,7 @@
   <WizardData>
     <packages repository="extension"
               repositoryId="e8b05c55-a169-42aa-a116-064ef2205f80">
-      <package id="MvvmLightLibs" version="4.2.30.0" />
+      <package id="MvvmLightLibs" version="5.0.0.0" />
     </packages>
   </WizardData>	
 </VSTemplate>

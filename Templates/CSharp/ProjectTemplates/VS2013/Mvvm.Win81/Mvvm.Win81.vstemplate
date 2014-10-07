@@ -35,15 +35,9 @@
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="Design\DesignDataService.cs">DesignDataService.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true"
-                         TargetFileName="Common\DialogService.cs">DialogService.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true"
                          TargetFileName="Common\DisplayOrientationsHelper.cs">DisplayOrientationsHelper.cs</ProjectItem>
 			<ProjectItem ReplaceParameters="true"
                          TargetFileName="Model\IDataService.cs">IDataService.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true"
-                         TargetFileName="Common\IDialogService.cs">IDialogService.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true"
-                         TargetFileName="Common\INavigationService.cs">INavigationService.cs</ProjectItem>            
 			<ProjectItem ReplaceParameters="false"
                          TargetFileName="Assets\Logo.scale-100.png">Logo.scale-100.png</ProjectItem>
             <ProjectItem ReplaceParameters="true"
@@ -58,8 +52,6 @@
                          TargetFileName="MvvmLight.Win81_TemporaryKey.pfx">MvvmLight.Win81_TemporaryKey.pfx</ProjectItem>
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="Common\NavigationHelper.cs">NavigationHelper.cs</ProjectItem>
-            <ProjectItem ReplaceParameters="true"
-                         TargetFileName="Common\NavigationService.cs">NavigationService.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true"
                          TargetFileName="Common\OrientationStateBehavior.cs">OrientationStateBehavior.cs</ProjectItem>
             <ProjectItem ReplaceParameters="true"
@@ -103,7 +95,8 @@
   <WizardData>
     <packages repository="extension"
               repositoryId="e64ef649-3f37-4b97-9ca4-2578ed4cad06">
-      <package id="MvvmLightLibs" version="4.2.30.0" />
+      <package id="CommonServiceLocator" version="1.3" />
+      <package id="MvvmLightLibs" version="5.0.0.0" />
     </packages>
   </WizardData>	
 </VSTemplate>
