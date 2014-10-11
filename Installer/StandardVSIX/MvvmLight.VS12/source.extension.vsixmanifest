@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="e64ef649-3f37-4b97-9ca4-2578ed4cad06" Version="5.0.0.0" Language="en-US" Publisher="Laurent Bugnion (GalaSoft)" />
-        <DisplayName>MVVM Light</DisplayName>
+        <Identity Id="e64ef649-3f37-4b97-9ca4-2578ed4cad06" Version="5.0.0.1" Language="en-US" Publisher="Laurent Bugnion (GalaSoft)" />
+        <DisplayName>MVVM Light for VS2013</DisplayName>
         <Description xml:space="preserve">The MVVM Light Toolkit is a set of components helping people to get started in the Model - View - ViewModel pattern in Windows 8, Silverlight, WPF, Windows Phone, Xamarin Android and Xamarin iOS. It is a light and pragmatic framework that contains only the essential components needed.</Description>
         <MoreInfo>http://www.mvvmlight.net</MoreInfo>
         <License>License.rtf</License>
