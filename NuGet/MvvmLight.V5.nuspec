@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MvvmLight</id>
-        <version>5.0.0.0</version>
+        <version>5.0.0.1</version>
         <title>MVVM Light</title>
         <authors>Laurent Bugnion (GalaSoft)</authors>
         <owners>Laurent Bugnion (GalaSoft)</owners>
@@ -28,34 +28,34 @@
 
         <dependencies>
             <group targetFramework="net35">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
             <group targetFramework="net40">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
             <group targetFramework="net45">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
             <group targetFramework="sl4">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
             <group targetFramework="sl5">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
             <group targetFramework="sl4-wp71">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
             <group targetFramework="wp8">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
             <group targetFramework="wpa81">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
             <group targetFramework="netcore45">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
             <group targetFramework="monoandroid">
-                <dependency id="MvvmLightLibs" version="5.0.0.0" />
+                <dependency id="MvvmLightLibs" version="5.0.0.1" />
             </group>
         </dependencies>
     </metadata>
