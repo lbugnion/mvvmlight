@@ -68,7 +68,6 @@
                     return;
                 }
 
-                RaisePropertyChanging(() => $PropertyName$);
                 var oldValue = $AttributeName$;
                 $AttributeName$ = value;
                 RaisePropertyChanged(() => $PropertyName$, oldValue, value, true);
