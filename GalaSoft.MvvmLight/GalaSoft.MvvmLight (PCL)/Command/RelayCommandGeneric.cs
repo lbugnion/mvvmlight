@@ -175,7 +175,10 @@ namespace GalaSoft.MvvmLight.Command
                     return _canExecute.Execute(default(T));
                 }
 
-                return _canExecute.Execute((T) parameter);
+                if (parameter is T)
+                {
+                    return (_canExecute.Execute((T)parameter));
+                }
             }
 
             return false;
