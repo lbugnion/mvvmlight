@@ -99,8 +99,9 @@ namespace GalaSoft.MvvmLight.Views
         /// the dialog box is closed by the user. The callback method will get a boolean
         /// parameter indicating if the "confirm" button (true) or the "cancel" button
         /// (false) was pressed by the user.</param>
-        /// <returns>A Task allowing this async method to be awaited.</returns>
-        Task ShowMessage(
+        /// <returns>A Task allowing this async method to be awaited. The task will return
+        /// true or false depending on the dialog result.</returns>
+        Task<bool> ShowMessage(
             string message,
             string title,
             string buttonConfirmText,

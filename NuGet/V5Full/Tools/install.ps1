@@ -50,7 +50,7 @@ if ($appxamlPath -eq $null)
 	# TODO Xamarin
 	# add the required .NET assembly:
 	Add-Type -AssemblyName PresentationFramework 
-	[System.Windows.MessageBox]::Show('Cannot find App.xaml in this project, no other changes made.', 'Warning', 'OK')
+	[System.Windows.MessageBox]::Show('Cannot find App.xaml in this project, no other changes made. If you are installing in a PCL, please use "MVVM Light Libs Only" instead.', 'Warning', 'OK')
 }
 else
 {
