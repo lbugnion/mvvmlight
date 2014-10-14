@@ -31,4 +31,4 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 [assembly:NeutralResourcesLanguage("en-US")]
 
-[assembly: AssemblyVersion("5.0.0.*")]
+[assembly: AssemblyVersion("5.0.1.*")]

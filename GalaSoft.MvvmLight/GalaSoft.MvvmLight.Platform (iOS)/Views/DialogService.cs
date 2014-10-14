@@ -15,7 +15,6 @@
 
 using System;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Helpers;
 using MonoTouch.UIKit;
 
 namespace GalaSoft.MvvmLight.Views
@@ -45,6 +44,8 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(string message, string title, string buttonText, Action afterHideCallback)
         {
+            var tcs = new TaskCompletionSource<bool>();
+
             var av = new UIAlertView(
                 title,
                 message,
@@ -58,10 +59,12 @@ namespace GalaSoft.MvvmLight.Views
                 {
                     afterHideCallback();
                 }
+
+                tcs.SetResult(true);
             };
 
             av.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
 
         /// <summary>
@@ -79,6 +82,8 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(Exception error, string title, string buttonText, Action afterHideCallback)
         {
+            var tcs = new TaskCompletionSource<bool>();
+
             var av = new UIAlertView(
                 title,
                 error.Message,
@@ -92,10 +97,12 @@ namespace GalaSoft.MvvmLight.Views
                 {
                     afterHideCallback();
                 }
+
+                tcs.SetResult(true);
             };
 
             av.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
 
         /// <summary>
@@ -110,6 +117,8 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title)
         {
+            var tcs = new TaskCompletionSource<bool>();
+
             var av = new UIAlertView(
                 title,
                 message,
@@ -117,8 +126,9 @@ namespace GalaSoft.MvvmLight.Views
                 "OK",
                 null);
 
+            av.Dismissed += (s, e) => tcs.SetResult(true);
             av.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
 
         /// <summary>
@@ -141,6 +151,8 @@ namespace GalaSoft.MvvmLight.Views
             string buttonText,
             Action afterHideCallback)
         {
+            var tcs = new TaskCompletionSource<bool>();
+
             var av = new UIAlertView(
                 title,
                 message,
@@ -148,17 +160,18 @@ namespace GalaSoft.MvvmLight.Views
                 buttonText,
                 null);
 
-            av.Show();
-
             av.Dismissed += (s, e) =>
             {
                 if (afterHideCallback != null)
                 {
                     afterHideCallback();
                 }
+
+                tcs.SetResult(true);
             };
 
-            return Empty.Task;
+            av.Show();
+            return tcs.Task;
         }
 
         /// <summary>
@@ -175,17 +188,20 @@ namespace GalaSoft.MvvmLight.Views
         /// the dialog box is closed by the user. The callback method will get a boolean
         /// parameter indicating if the "confirm" button (true) or the "cancel" button
         /// (false) was pressed by the user.</param>
-        /// <returns>A Task allowing this async method to be awaited.</returns>
+        /// <returns>A Task allowing this async method to be awaited. The task will return
+        /// true or false depending on the dialog result.</returns>
         /// <remarks>Displaying dialogs in Android is synchronous. As such,
         /// this method will be executed synchronously even though it can be awaited
         /// for cross-platform compatibility purposes.</remarks>
-        public Task ShowMessage(
+        public Task<bool> ShowMessage(
             string message,
             string title,
             string buttonConfirmText,
             string buttonCancelText,
             Action<bool> afterHideCallback)
         {
+            var tcs = new TaskCompletionSource<bool>();
+
             var av = new UIAlertView(
                 title,
                 message,
@@ -202,10 +218,12 @@ namespace GalaSoft.MvvmLight.Views
                 {
                     afterHideCallback(e.ButtonIndex > 0);
                 }
+
+                tcs.SetResult(e.ButtonIndex > 0);
             };
 
             av.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
 
         /// <summary>
@@ -220,6 +238,8 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessageBox(string message, string title)
         {
+            var tcs = new TaskCompletionSource<bool>();
+
             var av = new UIAlertView(
                 title,
                 message,
@@ -227,8 +247,9 @@ namespace GalaSoft.MvvmLight.Views
                 "OK",
                 null);
 
+            av.Dismissed += (s, e) => tcs.SetResult(true);
             av.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
     }
 }

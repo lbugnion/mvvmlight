@@ -106,15 +106,26 @@ namespace GalaSoft.MvvmLight.Views
         /// parameter indicating if the "confirm" button (true) or the "cancel" button
         /// (false) was pressed by the user.</param>
         /// <returns>A Task allowing this async method to be awaited.</returns>
-        public async Task ShowMessage(
+        public async Task<bool> ShowMessage(
             string message,
             string title,
             string buttonConfirmText,
             string buttonCancelText,
             Action<bool> afterHideCallback)
         {
-            var dialog = CreateDialog(message, title, buttonConfirmText, buttonCancelText, null, afterHideCallback);
+            var result = false;
+
+            var dialog = CreateDialog(
+                message, 
+                title, 
+                buttonConfirmText, 
+                buttonCancelText, 
+                null, 
+                afterHideCallback,
+                r => result = r);
+
             await dialog.ShowAsync();
+            return result;
         }
 
         /// <summary>
@@ -136,7 +147,8 @@ namespace GalaSoft.MvvmLight.Views
             string buttonConfirmText = "OK",
             string buttonCancelText = null,
             Action afterHideCallback = null,
-            Action<bool> afterHideCallbackWithResponse = null)
+            Action<bool> afterHideCallbackWithResponse = null,
+            Action<bool> afterHideInternal = null)
         {
             var dialog = new MessageDialog(message, title);
 
@@ -153,6 +165,11 @@ namespace GalaSoft.MvvmLight.Views
                         if (afterHideCallbackWithResponse != null)
                         {
                             afterHideCallbackWithResponse(true);
+                        }
+
+                        if (afterHideInternal != null)
+                        {
+                            afterHideInternal(true);
                         }
                     }));
 
@@ -173,6 +190,11 @@ namespace GalaSoft.MvvmLight.Views
                             if (afterHideCallbackWithResponse != null)
                             {
                                 afterHideCallbackWithResponse(false);
+                            }
+
+                            if (afterHideInternal != null)
+                            {
+                                afterHideInternal(false);
                             }
                         }));
 

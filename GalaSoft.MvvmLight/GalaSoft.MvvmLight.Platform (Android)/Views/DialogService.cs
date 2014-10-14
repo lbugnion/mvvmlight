@@ -16,7 +16,6 @@
 using System;
 using System.Threading.Tasks;
 using Android.App;
-using GalaSoft.MvvmLight.Helpers;
 
 namespace GalaSoft.MvvmLight.Views
 {
@@ -45,9 +44,18 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(string message, string title, string buttonText, Action afterHideCallback)
         {
-            var builder = CreateBuilder(message, title, buttonText, null, afterHideCallback);
+            var tcs = new TaskCompletionSource<bool>();
+            var builder = CreateBuilder(
+                message, 
+                title, 
+                buttonText, 
+                null, 
+                afterHideCallback,
+                null,
+                tcs.SetResult);
+
             builder.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
 
         /// <summary>
@@ -65,9 +73,18 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(Exception error, string title, string buttonText, Action afterHideCallback)
         {
-            var builder = CreateBuilder(error.Message, title, buttonText, null, afterHideCallback);
+            var tcs = new TaskCompletionSource<bool>();
+            var builder = CreateBuilder(
+                error.Message, 
+                title, 
+                buttonText, 
+                null, 
+                afterHideCallback,
+                null,
+                tcs.SetResult);
+
             builder.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
 
         /// <summary>
@@ -82,9 +99,18 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title)
         {
-            var builder = CreateBuilder(message, title);
+            var tcs = new TaskCompletionSource<bool>();
+            var builder = CreateBuilder(
+                message, 
+                title,
+                null,
+                null,
+                null,
+                null,
+                tcs.SetResult);
+
             builder.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
 
         /// <summary>
@@ -103,9 +129,18 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title, string buttonText, Action afterHideCallback)
         {
-            var builder = CreateBuilder(message, title, buttonText, null, afterHideCallback);
+            var tcs = new TaskCompletionSource<bool>();
+            var builder = CreateBuilder(
+                message, 
+                title, 
+                buttonText, 
+                null, 
+                afterHideCallback,
+                null,
+                tcs.SetResult);
+
             builder.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
 
         /// <summary>
@@ -122,26 +157,30 @@ namespace GalaSoft.MvvmLight.Views
         /// the dialog box is closed by the user. The callback method will get a boolean
         /// parameter indicating if the "confirm" button (true) or the "cancel" button
         /// (false) was pressed by the user.</param>
-        /// <returns>A Task allowing this async method to be awaited.</returns>
+        /// <returns>A Task allowing this async method to be awaited. The task will return
+        /// true or false depending on the dialog result.</returns>
         /// <remarks>Displaying dialogs in Android is synchronous. As such,
         /// this method will be executed synchronously even though it can be awaited
         /// for cross-platform compatibility purposes.</remarks>
-        public Task ShowMessage(
+        public Task<bool> ShowMessage(
             string message,
             string title,
             string buttonConfirmText,
             string buttonCancelText,
             Action<bool> afterHideCallback)
         {
+            var tcs = new TaskCompletionSource<bool>();
             var builder = CreateBuilder(
                 message,
                 title,
                 buttonConfirmText,
                 buttonCancelText ?? "Cancel",
                 null,
-                afterHideCallback);
+                afterHideCallback,
+                tcs.SetResult);
+
             builder.Show();
-            return Empty.Task;
+            return tcs.Task;
         }
 
         /// <summary>
@@ -156,9 +195,19 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessageBox(string message, string title)
         {
-            var builder = CreateBuilder(message, title);
+            var tcs = new TaskCompletionSource<bool>();
+            var builder = CreateBuilder(
+                message,
+                title,
+                null,
+                null,
+                null,
+                null,
+                tcs.SetResult);
             builder.Show();
-            return Empty.Task;
+
+            tcs.SetResult(true);
+            return tcs.Task;
         }
 
         private static AlertDialog.Builder CreateBuilder(
@@ -167,7 +216,8 @@ namespace GalaSoft.MvvmLight.Views
             string buttonConfirmText = "OK",
             string buttonCancelText = null,
             Action afterHideCallback = null,
-            Action<bool> afterHideCallbackWithResponse = null)
+            Action<bool> afterHideCallbackWithResponse = null,
+            Action<bool> afterHideInternal = null)
         {
             var builder = new AlertDialog.Builder(ActivityBase.CurrentActivity);
 
@@ -193,6 +243,11 @@ namespace GalaSoft.MvvmLight.Views
                         {
                             afterHideCallbackWithResponse(true);
                         }
+
+                        if (afterHideInternal != null)
+                        {
+                            afterHideInternal(true);
+                        }
                     });
             }
 
@@ -205,6 +260,11 @@ namespace GalaSoft.MvvmLight.Views
                         if (afterHideCallbackWithResponse != null)
                         {
                             afterHideCallbackWithResponse(false);
+                        }
+
+                        if (afterHideInternal != null)
+                        {
+                            afterHideInternal(false);
                         }
                     });
             }

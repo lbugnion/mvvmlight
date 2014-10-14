@@ -45,6 +45,7 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(string message, string title, string buttonText, Action afterHideCallback)
         {
+            var tcs = new TaskCompletionSource<bool>();
             MessageBox.Show(message, title ?? string.Empty, MessageBoxButton.OK);
 
             if (afterHideCallback != null)
@@ -52,7 +53,8 @@ namespace GalaSoft.MvvmLight.Views
                 afterHideCallback();
             }
 
-            return Empty.Task;
+            tcs.SetResult(true);
+            return tcs.Task;
         }
 
         /// <summary>
@@ -70,6 +72,7 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(Exception error, string title, string buttonText, Action afterHideCallback)
         {
+            var tcs = new TaskCompletionSource<bool>();
             MessageBox.Show(error.Message, title ?? string.Empty, MessageBoxButton.OK);
 
             if (afterHideCallback != null)
@@ -77,7 +80,8 @@ namespace GalaSoft.MvvmLight.Views
                 afterHideCallback();
             }
 
-            return Empty.Task;
+            tcs.SetResult(true);
+            return tcs.Task;
         }
 
         /// <summary>
@@ -92,8 +96,10 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title)
         {
+            var tcs = new TaskCompletionSource<bool>();
             ShowMessage(message, title ?? string.Empty, null, null);
-            return Empty.Task;
+            tcs.SetResult(true);
+            return tcs.Task;
         }
 
         /// <summary>
@@ -112,6 +118,7 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title, string buttonText, Action afterHideCallback)
         {
+            var tcs = new TaskCompletionSource<bool>();
             MessageBox.Show(message, title ?? string.Empty, MessageBoxButton.OK);
 
             if (afterHideCallback != null)
@@ -119,7 +126,8 @@ namespace GalaSoft.MvvmLight.Views
                 afterHideCallback();
             }
 
-            return Empty.Task;
+            tcs.SetResult(true);
+            return tcs.Task;
         }
 
         /// <summary>
@@ -136,17 +144,19 @@ namespace GalaSoft.MvvmLight.Views
         /// the dialog box is closed by the user. The callback method will get a boolean
         /// parameter indicating if the "confirm" button (true) or the "cancel" button
         /// (false) was pressed by the user.</param>
-        /// <returns>A Task allowing this async method to be awaited.</returns>
+        /// <returns>A Task allowing this async method to be awaited. The task will return
+        /// true or false depending on the dialog result.</returns>
         /// <remarks>Displaying dialogs in Windows Phone is synchronous. As such,
         /// this method will be executed synchronously even though it can be awaited
         /// for cross-platform compatibility purposes.</remarks>
-        public Task ShowMessage(
+        public Task<bool> ShowMessage(
             string message,
             string title,
             string buttonConfirmText,
             string buttonCancelText,
             Action<bool> afterHideCallback)
         {
+            var tcs = new TaskCompletionSource<bool>();
             var result = MessageBox.Show(message, title ?? string.Empty, MessageBoxButton.OKCancel);
 
             if (afterHideCallback != null)
@@ -154,7 +164,8 @@ namespace GalaSoft.MvvmLight.Views
                 afterHideCallback(result == MessageBoxResult.OK || result == MessageBoxResult.Yes);
             }
 
-            return Empty.Task;
+            tcs.SetResult(result == MessageBoxResult.OK || result == MessageBoxResult.Yes);
+            return tcs.Task;
         }
 
         /// <summary>
@@ -169,7 +180,9 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessageBox(string message, string title)
         {
+            var tcs = new TaskCompletionSource<bool>();
             MessageBox.Show(message, title ?? string.Empty, MessageBoxButton.OK);
+            tcs.SetResult(true);
             return Empty.Task;
         }
     }
