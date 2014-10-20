@@ -7,7 +7,7 @@
 // <email>laurent@galasoft.ch</email>
 // <date>3.6.2009</date>
 // <project>GalaSoft.MvvmLight</project>
-// <web>http://www.galasoft.ch</web>
+// <web>http://www.mvvmlight.net</web>
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
@@ -29,4 +29,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-[assembly: AssemblyVersion("5.0.1.*")]
+[assembly: AssemblyVersion("5.0.2.*")]

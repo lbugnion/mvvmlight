@@ -7,7 +7,7 @@
 // <email>laurent@galasoft.ch</email>
 // <date>22.4.2009</date>
 // <project>GalaSoft.MvvmLight</project>
-// <web>http://www.galasoft.ch</web>
+// <web>http://www.mvvmlight.net</web>
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
@@ -27,7 +27,11 @@ using System.Reflection;
 
 ////using GalaSoft.Utilities.Attributes;
 
+#if PLATFORMNET45
+namespace GalaSoft.MvvmLight.CommandWpf
+#else
 namespace GalaSoft.MvvmLight.Command
+#endif
 {
     /// <summary>
     /// A generic command whose sole purpose is to relay its functionality to other
@@ -36,7 +40,10 @@ namespace GalaSoft.MvvmLight.Command
     /// Execute and CanExecute callback methods.
     /// </summary>
     /// <typeparam name="T">The type of the command parameter.</typeparam>
-    //// [ClassInfo(typeof(RelayCommand)]
+    /// <remarks>If you are using this class in WPF4.5 or above, you need to use the 
+    /// GalaSoft.MvvmLight.CommandWpf namespace (instead of GalaSoft.MvvmLight.Command).
+    /// This will enable (or restore) the CommandManager class which handles
+    /// automatic enabling/disabling of controls based on the CanExecute delegate.</remarks>
     public class RelayCommand<T> : ICommand
     {
         private readonly WeakAction<T> _execute;

@@ -7,7 +7,7 @@
 // <email>laurent@galasoft.ch</email>
 // <date>02.10.2014</date>
 // <project>GalaSoft.MvvmLight</project>
-// <web>http://www.galasoft.ch</web>
+// <web>http://www.mvvmlight.net</web>
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
@@ -423,7 +423,7 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             /// <summary>
-            /// When called, checks if the <see cref="ObservableTableViewController{T}.GetViewForHeader"/> 
+            /// When called, checks if the ObservableTableViewController{T}.GetViewForHeader
             /// delegate has been set. If yes, calls that delegate to get the TableView's header.
             /// </summary>
             /// <param name="tableView">The active TableView.</param>
@@ -441,7 +441,7 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             /// <summary>
-            /// When called, checks if the <see cref="ObservableTableViewController{T}.GetHeightForHeader"/> 
+            /// When called, checks if the ObservableTableViewController{T}.GetHeightForHeader
             /// delegate has been set. If yes, calls that delegate to get the TableView's header height.
             /// </summary>
             /// <param name="tableView">The active TableView.</param>
@@ -459,7 +459,7 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             /// <summary>
-            /// When called, checks if the <see cref="ObservableTableViewController{T}.GetViewForFooter"/> 
+            /// When called, checks if the ObservableTableViewController{T}.GetViewForFooter
             /// delegate has been set. If yes, calls that delegate to get the TableView's footer.
             /// </summary>
             /// <param name="tableView">The active TableView.</param>
@@ -477,7 +477,7 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             /// <summary>
-            /// When called, checks if the <see cref="ObservableTableViewController{T}.GetHeightForFooter"/> 
+            /// When called, checks if the ObservableTableViewController{T}.GetHeightForFooter
             /// delegate has been set. If yes, calls that delegate to get the TableView's footer height.
             /// </summary>
             /// <param name="tableView">The active TableView.</param>

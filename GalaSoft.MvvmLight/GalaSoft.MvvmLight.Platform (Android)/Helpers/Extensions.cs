@@ -7,7 +7,7 @@
 // <email>laurent@galasoft.ch</email>
 // <date>18.03.2014</date>
 // <project>GalaSoft.MvvmLight</project>
-// <web>http://www.galasoft.ch</web>
+// <web>http://www.mvvmlight.net</web>
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
@@ -441,12 +441,12 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <typeparam name="T">The type of the items contained in the collection.</typeparam>
         /// <param name="collection">The collection that the adapter will be created for.</param>
         /// <param name="createCellDelegate">A delegate to a method creating or reusing a <see cref="UITableViewCell"/>.
-        /// The cell will then be passed to the <see cref="bindCellDelegate"/>
+        /// The cell will then be passed to the bindCellDelegate
         /// delegate to set the elements' properties.</param>
         /// <param name="bindCellDelegate">A delegate to a method taking a <see cref="UITableViewCell"/>
         /// and setting its elements' properties according to the item
         /// passed as second parameter.
-        /// The cell must be created first in the <see cref="createCellDelegate"/>
+        /// The cell must be created first in the createCellDelegate
         /// delegate.</param>
         /// <returns>A controller adapted to the collection passed in parameter.</returns>
         public static ObservableTableViewController<T> GetController<T>(
@@ -468,12 +468,12 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <typeparam name="T">The type of the items contained in the list.</typeparam>
         /// <param name="list">The list that the adapter will be created for.</param>
         /// <param name="createCellDelegate">A delegate to a method creating or reusing a <see cref="UITableViewCell"/>.
-        /// The cell will then be passed to the <see cref="bindCellDelegate"/>
+        /// The cell will then be passed to the bindCellDelegate
         /// delegate to set the elements' properties.</param>
         /// <param name="bindCellDelegate">A delegate to a method taking a <see cref="UITableViewCell"/>
         /// and setting its elements' properties according to the item
         /// passed as second parameter.
-        /// The cell must be created first in the <see cref="createCellDelegate"/>
+        /// The cell must be created first in the createCellDelegate
         /// delegate.</param>
         /// <returns>A controller adapted to the collection passed in parameter.</returns>
         public static ObservableTableViewController<T> GetController<T>(

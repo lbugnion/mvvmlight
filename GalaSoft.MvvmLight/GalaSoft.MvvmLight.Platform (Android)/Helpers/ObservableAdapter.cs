@@ -7,7 +7,7 @@
 // <email>laurent@galasoft.ch</email>
 // <date>02.10.2014</date>
 // <project>GalaSoft.MvvmLight</project>
-// <web>http://www.galasoft.ch</web>
+// <web>http://www.mvvmlight.net</web>
 // <license>
 // See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
 // </license>
@@ -105,18 +105,18 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// Returns a unique ID for the item corresponding to the <see cref="position"/> parameter.
+        /// Returns a unique ID for the item corresponding to the position parameter.
         /// In this implementation, the method always returns the position itself.
         /// </summary>
         /// <param name="position">The position of the item for which the ID needs to be returned.</param>
-        /// <returns>A unique ID for the item corresponding to the <see cref="position"/> parameter.</returns>
+        /// <returns>A unique ID for the item corresponding to the position parameter.</returns>
         public override long GetItemId(int position)
         {
             return position;
         }
 
         /// <summary>
-        /// Prepares the view (template) for the item corresponding to the <see cref="position"/>
+        /// Prepares the view (template) for the item corresponding to the position
         /// in the DataSource. This method calls the <see cref="GetTemplateDelegate"/> method so that the caller
         /// can create (if necessary) and adapt the template for the corresponding item.
         /// </summary>
