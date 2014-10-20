@@ -7,7 +7,7 @@
 // <email>laurent@galasoft.ch</email>
 // <date>12.6.2009</date>
 // <project>GalaSoft.MvvmLight.Messaging</project>
-// <web>http://www.galasoft.ch</web>
+// <web>http://www.mvvmlight.net</web>
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
