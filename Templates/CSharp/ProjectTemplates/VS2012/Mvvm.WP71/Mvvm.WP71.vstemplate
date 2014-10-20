@@ -64,7 +64,7 @@
   <WizardData>
     <packages repository="extension"
               repositoryId="e8b05c55-a169-42aa-a116-064ef2205f80">
-      <package id="MvvmLightLibs" version="5.0.0.0" />
+      <package id="MvvmLightLibs" version="5.0.2.0" />
     </packages>
   </WizardData>	
 </VSTemplate>
