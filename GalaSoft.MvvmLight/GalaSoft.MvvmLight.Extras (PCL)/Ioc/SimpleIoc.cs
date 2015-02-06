@@ -476,14 +476,6 @@ namespace GalaSoft.MvvmLight.Ioc
                         var key = pairs[index].Key;
 
                         list.Remove(key);
-
-                        if (_factories.ContainsKey(classType))
-                        {
-                            if (_factories[classType].ContainsKey(key))
-                            {
-                                _factories[classType].Remove(key);
-                            }
-                        }
                     }
                 }
             }
