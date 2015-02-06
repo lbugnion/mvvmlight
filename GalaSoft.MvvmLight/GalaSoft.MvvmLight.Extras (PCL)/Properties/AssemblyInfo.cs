@@ -27,6 +27,14 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
+#if !NETFX_CORE
+#if !XAMARIN
+#if !WINDOWS_PHONE
+[assembly: System.Windows.Markup.XmlnsDefinition("http://www.galasoft.ch/mvvmlight", "GalaSoft.MvvmLight.Command")]
+#endif
+#endif
+#endif
+
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 [assembly:NeutralResourcesLanguage("en-US")]

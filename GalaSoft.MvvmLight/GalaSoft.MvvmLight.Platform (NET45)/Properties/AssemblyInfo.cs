@@ -36,7 +36,9 @@ using System.Windows.Markup;
 
 #if !NETFX_CORE
 #if !XAMARIN
+#if !WINDOWS_PHONE
 [assembly: XmlnsDefinition("http://www.galasoft.ch/mvvmlight", "GalaSoft.MvvmLight.Command")]
+#endif
 #endif
 #endif
 
