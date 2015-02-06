@@ -1,0 +1,5 @@
+In order to build these assemblies, start by building the VS2013 solution
+and then execute _gatherbinaries. 
+
+This is to make sure that the WIN8 references are built before this solution
+is built.
