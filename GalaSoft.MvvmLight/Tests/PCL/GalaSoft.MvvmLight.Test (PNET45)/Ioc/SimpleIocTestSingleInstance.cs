@@ -185,5 +185,65 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             {
             }
         }
+
+        [TestMethod]
+        public void TestGetDefaultWithoutCaching()
+        {
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register<TestClass1>();
+
+            var instance1 = SimpleIoc.Default.GetInstanceWithoutCaching<TestClass1>();
+            var instance2 = SimpleIoc.Default.GetInstanceWithoutCaching<TestClass1>();
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+            Assert.AreNotSame(instance1, instance2);
+        }
+
+        [TestMethod]
+        public void TestGetFromFactoryWithoutCaching()
+        {
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register(() => new TestClass1());
+
+            var instance1 = SimpleIoc.Default.GetInstanceWithoutCaching<TestClass1>();
+            var instance2 = SimpleIoc.Default.GetInstanceWithoutCaching<TestClass1>();
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+            Assert.AreNotSame(instance1, instance2);
+        }
+
+        [TestMethod]
+        public void TestGetWithKeyWithoutCaching()
+        {
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register<TestClass1>();
+
+            const string key = "key1";
+
+            var instance1 = SimpleIoc.Default.GetInstanceWithoutCaching<TestClass1>(key);
+            var instance2 = SimpleIoc.Default.GetInstanceWithoutCaching<TestClass1>(key);
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+            Assert.AreNotSame(instance1, instance2);
+        }
+
+        [TestMethod]
+        public void TestMixCacheAndNoCache()
+        {
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register<TestClass1>();
+
+            var instance1 = SimpleIoc.Default.GetInstanceWithoutCaching<TestClass1>();
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            var instance2 = SimpleIoc.Default.GetInstance<TestClass1>();
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass1>());
+            Assert.AreNotSame(instance1, instance2);
+        }
     }
 }
