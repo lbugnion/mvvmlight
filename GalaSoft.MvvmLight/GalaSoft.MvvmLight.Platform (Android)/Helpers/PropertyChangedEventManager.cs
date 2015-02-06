@@ -174,6 +174,13 @@ namespace System.Windows
 
             lock (SyncLock)
             {
+                var sourceExists = _list.Any(
+                    list => list.Value.Any(
+                        entry => entry.InstanceReference != null 
+                            && entry.InstanceReference.IsAlive 
+                            && entry.InstanceReference.Target != null 
+                            && entry.InstanceReference.Target.Equals(source)));
+
                 if (_list.ContainsKey(propertyName))
                 {
                     _list[propertyName].Add(
@@ -190,8 +197,11 @@ namespace System.Windows
                     _list.Add(propertyName, list);
                 }
 
-                // Now, start listening to source
-                StartListening(source);
+                if (!sourceExists)
+                {
+                    // Now, start listening to source
+                    StartListening(source);
+                }
             }
         }
 
