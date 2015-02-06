@@ -778,10 +778,10 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <summary>
         /// Gets the service object of the specified type.
         /// </summary>
+        /// <exception cref="ActivationException">If the type serviceType has not
+        /// been registered before calling this method.</exception>
         /// <returns>
         /// A service object of type <paramref name="serviceType" />.
-        /// -or- 
-        /// null if there is no service object of type <paramref name="serviceType" />.
         /// </returns>
         /// <param name="serviceType">An object that specifies the type of service object to get.</param>
         public object GetService(Type serviceType)
@@ -842,11 +842,9 @@ namespace GalaSoft.MvvmLight.Ioc
         /// Provides a way to get an instance of a given type. If no instance had been instantiated 
         /// before, a new instance will be created. If an instance had already
         /// been created, that same instance will be returned.
-        /// <remarks>
-        /// If the class has not been registered before, this method
-        /// returns null!
-        /// </remarks>
         /// </summary>
+        /// <exception cref="ActivationException">If the type serviceType has not
+        /// been registered before calling this method.</exception>
         /// <param name="serviceType">The class of which an instance
         /// must be returned.</param>
         /// <returns>An instance of the given type.</returns>
@@ -874,11 +872,9 @@ namespace GalaSoft.MvvmLight.Ioc
         /// to a given key. If no instance had been instantiated with this
         /// key before, a new instance will be created. If an instance had already
         /// been created with the same key, that same instance will be returned.
-        /// <remarks>
-        /// If the class has not been registered before, this method
-        /// returns null!
-        /// </remarks>
         /// </summary>
+        /// <exception cref="ActivationException">If the type serviceType has not
+        /// been registered before calling this method.</exception>
         /// <param name="serviceType">The class of which an instance must be returned.</param>
         /// <param name="key">The key uniquely identifying this instance.</param>
         /// <returns>An instance corresponding to the given type and key.</returns>
@@ -905,11 +901,9 @@ namespace GalaSoft.MvvmLight.Ioc
         /// Provides a way to get an instance of a given type. If no instance had been instantiated 
         /// before, a new instance will be created. If an instance had already
         /// been created, that same instance will be returned.
-        /// <remarks>
-        /// If the class has not been registered before, this method
-        /// returns null!
-        /// </remarks>
         /// </summary>
+        /// <exception cref="ActivationException">If the type TService has not
+        /// been registered before calling this method.</exception>
         /// <typeparam name="TService">The class of which an instance
         /// must be returned.</typeparam>
         /// <returns>An instance of the given type.</returns>
@@ -937,11 +931,9 @@ namespace GalaSoft.MvvmLight.Ioc
         /// to a given key. If no instance had been instantiated with this
         /// key before, a new instance will be created. If an instance had already
         /// been created with the same key, that same instance will be returned.
-        /// <remarks>
-        /// If the class has not been registered before, this method
-        /// returns null!
-        /// </remarks>
         /// </summary>
+        /// <exception cref="ActivationException">If the type TService has not
+        /// been registered before calling this method.</exception>
         /// <typeparam name="TService">The class of which an instance must be returned.</typeparam>
         /// <param name="key">The key uniquely identifying this instance.</param>
         /// <returns>An instance corresponding to the given type and key.</returns>
