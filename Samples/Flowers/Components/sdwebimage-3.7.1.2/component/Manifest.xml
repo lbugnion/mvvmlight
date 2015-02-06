@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="sdwebimage">
+  <name>SDWebImage</name>
+  <publisher>Xamarin Inc</publisher>
+  <publisher-url>https://xamarin.com/</publisher-url>
+  <src-url>https://github.com/rs/SDWebImage</src-url>
+  <version>3.7.1.2</version>
+  <summary>Extensions for UIImageView allowing you to asynchronously load web images.</summary>
+  <samples>
+    <sample id="SDWebImageSimpleSample">
+      <name>iOS Unified Sample Load Image</name>
+      <summary>iOS Unified Sample Load Image</summary>
+    </sample>
+    <sample id="SDWebImageMTDialogSample">
+      <name>iOS Unified Sample MTD</name>
+      <summary>iOS Unified Sample MTD</summary>
+    </sample>
+    <sample id="SDWebImageMTDialogSample-Classic">
+      <name>iOS Classic Sample MTD</name>
+      <summary>iOS Classic Sample MTD</summary>
+    </sample>
+    <sample id="SDWebImageSample-Classic">
+      <name>iOS Classic Sample TableView</name>
+      <summary>iOS Classic Sample TableView</summary>
+    </sample>
+    <sample id="SDWebImageSimpleSample-Classic">
+      <name>iOS Classic Sample Load Image</name>
+      <summary>iOS Classic Sample Load Image</summary>
+    </sample>
+    <sample id="SDWebImageSample">
+      <name>iOS Unified Sample TableView</name>
+      <summary>iOS Unified Sample TableView</summary>
+    </sample>
+  </samples>
+</component>

@@ -9,6 +9,16 @@
             Base class for bindings.
             </summary>
         </member>
+        <member name="F:GalaSoft.MvvmLight.Helpers.Binding.TopSource">
+            <summary>
+            The source at the "top" of the property chain.
+            </summary>
+        </member>
+        <member name="F:GalaSoft.MvvmLight.Helpers.Binding.TopTarget">
+            <summary>
+            The target at the "top" of the property chain.
+            </summary>
+        </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.Binding.Detach">
             <summary>
             Instructs the Binding instance to stop listening to value changes and to
@@ -566,15 +576,15 @@
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.ObservableAdapter`1.GetItemId(System.Int32)">
             <summary>
-            Returns a unique ID for the item corresponding to the <see cref="!:position"/> parameter.
+            Returns a unique ID for the item corresponding to the position parameter.
             In this implementation, the method always returns the position itself.
             </summary>
             <param name="position">The position of the item for which the ID needs to be returned.</param>
-            <returns>A unique ID for the item corresponding to the <see cref="!:position"/> parameter.</returns>
+            <returns>A unique ID for the item corresponding to the position parameter.</returns>
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.ObservableAdapter`1.GetView(System.Int32,Android.Views.View,Android.Views.ViewGroup)">
             <summary>
-            Prepares the view (template) for the item corresponding to the <see cref="!:position"/>
+            Prepares the view (template) for the item corresponding to the position
             in the DataSource. This method calls the <see cref="P:GalaSoft.MvvmLight.Helpers.ObservableAdapter`1.GetTemplateDelegate"/> method so that the caller
             can create (if necessary) and adapt the template for the corresponding item.
             </summary>
@@ -818,7 +828,8 @@
             the dialog box is closed by the user. The callback method will get a boolean
             parameter indicating if the "confirm" button (true) or the "cancel" button
             (false) was pressed by the user.</param>
-            <returns>A Task allowing this async method to be awaited.</returns>
+            <returns>A Task allowing this async method to be awaited. The task will return
+            true or false depending on the dialog result.</returns>
             <remarks>Displaying dialogs in Android is synchronous. As such,
             this method will be executed synchronously even though it can be awaited
             for cross-platform compatibility purposes.</remarks>

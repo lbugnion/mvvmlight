@@ -362,7 +362,8 @@
             the dialog box is closed by the user. The callback method will get a boolean
             parameter indicating if the "confirm" button (true) or the "cancel" button
             (false) was pressed by the user.</param>
-            <returns>A Task allowing this async method to be awaited.</returns>
+            <returns>A Task allowing this async method to be awaited. The task will return
+            true or false depending on the dialog result.</returns>
             <remarks>Displaying dialogs in Windows Phone is synchronous. As such,
             this method will be executed synchronously even though it can be awaited
             for cross-platform compatibility purposes.</remarks>

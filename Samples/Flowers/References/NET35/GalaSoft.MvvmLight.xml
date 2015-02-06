@@ -11,6 +11,10 @@
             method is 'true'.  This class does not allow you to accept command parameters in the
             Execute and CanExecute callback methods.
             </summary>
+            <remarks>If you are using this class in WPF4.5 or above, you need to use the 
+            GalaSoft.MvvmLight.CommandWpf namespace (instead of GalaSoft.MvvmLight.Command).
+            This will enable (or restore) the CommandManager class which handles
+            automatic enabling/disabling of controls based on the CanExecute delegate.</remarks>
         </member>
         <member name="M:GalaSoft.MvvmLight.Command.RelayCommand.#ctor(System.Action)">
             <summary>
@@ -59,6 +63,10 @@
             Execute and CanExecute callback methods.
             </summary>
             <typeparam name="T">The type of the command parameter.</typeparam>
+            <remarks>If you are using this class in WPF4.5 or above, you need to use the 
+            GalaSoft.MvvmLight.CommandWpf namespace (instead of GalaSoft.MvvmLight.Command).
+            This will enable (or restore) the CommandManager class which handles
+            automatic enabling/disabling of controls based on the CanExecute delegate.</remarks>
         </member>
         <member name="M:GalaSoft.MvvmLight.Command.RelayCommand`1.#ctor(System.Action{`0})">
             <summary>

@@ -9,6 +9,16 @@
             Base class for bindings.
             </summary>
         </member>
+        <member name="F:GalaSoft.MvvmLight.Helpers.Binding.TopSource">
+            <summary>
+            The source at the "top" of the property chain.
+            </summary>
+        </member>
+        <member name="F:GalaSoft.MvvmLight.Helpers.Binding.TopTarget">
+            <summary>
+            The target at the "top" of the property chain.
+            </summary>
+        </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.Binding.Detach">
             <summary>
             Instructs the Binding instance to stop listening to value changes and to
@@ -527,35 +537,35 @@
             <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
             <param name="command">The command that must be added to the element.</param>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.GetController``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{MonoTouch.Foundation.NSString,MonoTouch.UIKit.UITableViewCell},System.Action{MonoTouch.UIKit.UITableViewCell,``0,MonoTouch.Foundation.NSIndexPath})">
+        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.GetController``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{Foundation.NSString,UIKit.UITableViewCell},System.Action{UIKit.UITableViewCell,``0,Foundation.NSIndexPath})">
             <summary>
             Creates a new <see cref="T:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1"/> for a given <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.
             </summary>
             <typeparam name="T">The type of the items contained in the collection.</typeparam>
             <param name="collection">The collection that the adapter will be created for.</param>
-            <param name="createCellDelegate">A delegate to a method creating or reusing a <see cref="T:MonoTouch.UIKit.UITableViewCell"/>.
-            The cell will then be passed to the <see cref="!:bindCellDelegate"/>
+            <param name="createCellDelegate">A delegate to a method creating or reusing a <see cref="T:UIKit.UITableViewCell"/>.
+            The cell will then be passed to the bindCellDelegate
             delegate to set the elements' properties.</param>
-            <param name="bindCellDelegate">A delegate to a method taking a <see cref="T:MonoTouch.UIKit.UITableViewCell"/>
+            <param name="bindCellDelegate">A delegate to a method taking a <see cref="T:UIKit.UITableViewCell"/>
             and setting its elements' properties according to the item
             passed as second parameter.
-            The cell must be created first in the <see cref="!:createCellDelegate"/>
+            The cell must be created first in the createCellDelegate
             delegate.</param>
             <returns>A controller adapted to the collection passed in parameter.</returns>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.GetController``1(System.Collections.Generic.IList{``0},System.Func{MonoTouch.Foundation.NSString,MonoTouch.UIKit.UITableViewCell},System.Action{MonoTouch.UIKit.UITableViewCell,``0,MonoTouch.Foundation.NSIndexPath})">
+        <member name="M:GalaSoft.MvvmLight.Helpers.Extensions.GetController``1(System.Collections.Generic.IList{``0},System.Func{Foundation.NSString,UIKit.UITableViewCell},System.Action{UIKit.UITableViewCell,``0,Foundation.NSIndexPath})">
             <summary>
             Creates a new <see cref="T:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1"/> for a given <see cref="T:System.Collections.Generic.IList`1"/>.
             </summary>
             <typeparam name="T">The type of the items contained in the list.</typeparam>
             <param name="list">The list that the adapter will be created for.</param>
-            <param name="createCellDelegate">A delegate to a method creating or reusing a <see cref="T:MonoTouch.UIKit.UITableViewCell"/>.
-            The cell will then be passed to the <see cref="!:bindCellDelegate"/>
+            <param name="createCellDelegate">A delegate to a method creating or reusing a <see cref="T:UIKit.UITableViewCell"/>.
+            The cell will then be passed to the bindCellDelegate
             delegate to set the elements' properties.</param>
-            <param name="bindCellDelegate">A delegate to a method taking a <see cref="T:MonoTouch.UIKit.UITableViewCell"/>
+            <param name="bindCellDelegate">A delegate to a method taking a <see cref="T:UIKit.UITableViewCell"/>
             and setting its elements' properties according to the item
             passed as second parameter.
-            The cell must be created first in the <see cref="!:createCellDelegate"/>
+            The cell must be created first in the createCellDelegate
             delegate.</param>
             <returns>A controller adapted to the collection passed in parameter.</returns>
         </member>
@@ -647,7 +657,7 @@
         </member>
         <member name="T:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1">
             <summary>
-            A <see cref="T:MonoTouch.UIKit.UITableViewController"/> that can be used as an iOS view. After setting
+            A <see cref="T:UIKit.UITableViewController"/> that can be used as an iOS view. After setting
             the <see cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.DataSource"/> and the <see cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.BindCellDelegate"/> and <see cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.CreateCellDelegate"/> 
             properties, the controller can be loaded. If the DataSource is an <see cref="T:System.Collections.Specialized.INotifyCollectionChanged"/>,
             changes to the collection will be observed and the UI will automatically be updated.
@@ -669,7 +679,7 @@
             Initializes a new instance of this class with a plain style.
             </summary>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.#ctor(MonoTouch.UIKit.UITableViewStyle)">
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.#ctor(UIKit.UITableViewStyle)">
             <summary>
             Initializes a new instance of this class with a specific style.
             </summary>
@@ -677,22 +687,22 @@
         </member>
         <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ViewDidLoad">
             <summary>
-            Overrides the <see cref="M:MonoTouch.UIKit.UIViewController.ViewDidLoad"/> method.
+            Overrides the <see cref="M:UIKit.UIViewController.ViewDidLoad"/> method.
             </summary>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.BindCell(MonoTouch.UIKit.UITableViewCell,System.Object,MonoTouch.Foundation.NSIndexPath)">
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.BindCell(UIKit.UITableViewCell,System.Object,Foundation.NSIndexPath)">
             <summary>
-            Binds a <see cref="T:MonoTouch.UIKit.UITableViewCell"/> to an item's properties.
+            Binds a <see cref="T:UIKit.UITableViewCell"/> to an item's properties.
             If a <see cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.BindCellDelegate"/> is available, this delegate will be used.
             If not, a simple text will be shown.
             </summary>
             <param name="cell">The cell that will be prepared.</param>
             <param name="item">The item that should be used to set the cell up.</param>
-            <param name="indexPath">The <see cref="T:MonoTouch.Foundation.NSIndexPath"/> for this cell.</param>
+            <param name="indexPath">The <see cref="T:Foundation.NSIndexPath"/> for this cell.</param>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.CreateCell(MonoTouch.Foundation.NSString)">
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.CreateCell(Foundation.NSString)">
             <summary>
-            Creates a <see cref="T:MonoTouch.UIKit.UITableViewCell"/> corresponding to the reuseId.
+            Creates a <see cref="T:UIKit.UITableViewCell"/> corresponding to the reuseId.
             If it is set, the <see cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.CreateCellDelegate"/> delegate will be used.
             </summary>
             <param name="reuseId">A reuse identifier for the cell.</param>
@@ -704,7 +714,7 @@
             </summary>
             <returns>The created ObservableTableSource.</returns>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.OnRowSelected(System.Object,MonoTouch.Foundation.NSIndexPath)">
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.OnRowSelected(System.Object,Foundation.NSIndexPath)">
             <summary>
             Called when a row gets selected. Raises the SelectionChanged event.
             </summary>
@@ -717,11 +727,6 @@
             </summary>
             <param name="propertyName">The name of the property that changed.</param>
         </member>
-        <member name="E:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.PropertyChanged">
-            <summary>
-            Occurs when a property of this instance changes.
-            </summary>
-        </member>
         <member name="E:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.SelectionChanged">
             <summary>
             Occurs when a new item gets selected in the list.
@@ -732,38 +737,9 @@
             When set, specifies which animation should be used when rows change.
             </summary>
         </member>
-        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetViewForHeaderDelegate">
-            <summary>
-            When set, returns a view that can be used as the TableView's header.
-            </summary>
-            <seealso cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetHeightForHeaderDelegate"/>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetHeightForHeaderDelegate">
-            <summary>
-            When set, returns the height of the view that will be used for the TableView's header.
-            </summary>
-            <seealso cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetViewForHeaderDelegate"/>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetViewForFooterDelegate">
-            <summary>
-            When set, returns a view that can be used as the TableView's footer.
-            </summary>
-            <seealso cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetHeightForFooterDelegate"/>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetHeightForFooterDelegate">
-            <summary>
-            When set, returns the height of the view that will be used for the TableView's footer.
-            </summary>
-            <seealso cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetViewForFooterDelegate"/>
-        </member>
-        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.TableSource">
-            <summary>
-            The source of the TableView.
-            </summary>
-        </member>
         <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.BindCellDelegate">
             <summary>
-            A delegate to a method taking a <see cref="T:MonoTouch.UIKit.UITableViewCell"/>
+            A delegate to a method taking a <see cref="T:UIKit.UITableViewCell"/>
             and setting its elements' properties according to the item
             passed as second parameter.
             The cell must be created first in the <see cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.CreateCellDelegate"/>
@@ -772,7 +748,7 @@
         </member>
         <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.CreateCellDelegate">
             <summary>
-            A delegate to a method creating or reusing a <see cref="T:MonoTouch.UIKit.UITableViewCell"/>.
+            A delegate to a method creating or reusing a <see cref="T:UIKit.UITableViewCell"/>.
             The cell will then be passed to the <see cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.BindCellDelegate"/>
             delegate to set the elements' properties.
             </summary>
@@ -787,15 +763,57 @@
             When set, specifieds which animation should be used when a row is deleted.
             </summary>
         </member>
+        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetHeightForFooterDelegate">
+            <summary>
+            When set, returns the height of the view that will be used for the TableView's footer.
+            </summary>
+            <seealso cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetViewForFooterDelegate"/>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetHeightForHeaderDelegate">
+            <summary>
+            When set, returns the height of the view that will be used for the TableView's header.
+            </summary>
+            <seealso cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetViewForHeaderDelegate"/>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetViewForFooterDelegate">
+            <summary>
+            When set, returns a view that can be used as the TableView's footer.
+            </summary>
+            <seealso cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetHeightForFooterDelegate"/>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetViewForHeaderDelegate">
+            <summary>
+            When set, returns a view that can be used as the TableView's header.
+            </summary>
+            <seealso cref="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.GetHeightForHeaderDelegate"/>
+        </member>
         <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.SelectedItem">
             <summary>
             Gets the TableView's selected item.
             Changes to that property's value raise the PropertyChanged event. 
             </summary>
         </member>
+        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.TableSource">
+            <summary>
+            The source of the TableView.
+            </summary>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.TableView">
+            <summary>
+            Overrides <see cref="P:UIKit.UITableViewController.TableView"/>.
+            Sets or gets the controllers TableView. If you use a TableView
+            placed in the UI manually, use this property's setter to assign
+            your TableView to this controller.
+            </summary>
+        </member>
+        <member name="E:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.PropertyChanged">
+            <summary>
+            Occurs when a property of this instance changes.
+            </summary>
+        </member>
         <member name="T:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1">
             <summary>
-            A <see cref="T:MonoTouch.UIKit.UITableViewSource"/> that handles changes to the underlying
+            A <see cref="T:UIKit.UITableViewSource"/> that handles changes to the underlying
             data source if this data source is an <see cref="T:System.Collections.Specialized.INotifyCollectionChanged"/>.
             </summary>
             <typeparam name="T2">The type of the items that the data source contains.</typeparam>
@@ -807,7 +825,7 @@
             </summary>
             <param name="controller">The controller associated to this instance.</param>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetCell(MonoTouch.UIKit.UITableView,MonoTouch.Foundation.NSIndexPath)">
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetCell(UIKit.UITableView,Foundation.NSIndexPath)">
             <summary>
             Attempts to dequeue or create a cell for the list.
             </summary>
@@ -815,39 +833,9 @@
             <param name="indexPath">The NSIndexPath for the cell.</param>
             <returns>The created or recycled cell.</returns>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetViewForHeader(MonoTouch.UIKit.UITableView,System.Int32)">
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetHeightForFooter(UIKit.UITableView,System.nint)">
             <summary>
-            When called, checks if the <see cref="!:ObservableTableViewController&lt;T&gt;.GetViewForHeader"/> 
-            delegate has been set. If yes, calls that delegate to get the TableView's header.
-            </summary>
-            <param name="tableView">The active TableView.</param>
-            <param name="section">The section index.</param>
-            <returns>The UIView that should appear as the section's header.</returns>
-            <remarks>In the current implementation, only one section is supported.</remarks>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetHeightForHeader(MonoTouch.UIKit.UITableView,System.Int32)">
-            <summary>
-            When called, checks if the <see cref="!:ObservableTableViewController&lt;T&gt;.GetHeightForHeader"/> 
-            delegate has been set. If yes, calls that delegate to get the TableView's header height.
-            </summary>
-            <param name="tableView">The active TableView.</param>
-            <param name="section">The section index.</param>
-            <returns>The header's height.</returns>
-            <remarks>In the current implementation, only one section is supported.</remarks>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetViewForFooter(MonoTouch.UIKit.UITableView,System.Int32)">
-            <summary>
-            When called, checks if the <see cref="!:ObservableTableViewController&lt;T&gt;.GetViewForFooter"/> 
-            delegate has been set. If yes, calls that delegate to get the TableView's footer.
-            </summary>
-            <param name="tableView">The active TableView.</param>
-            <param name="section">The section index.</param>
-            <returns>The UIView that should appear as the section's footer.</returns>
-            <remarks>In the current implementation, only one section is supported.</remarks>
-        </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetHeightForFooter(MonoTouch.UIKit.UITableView,System.Int32)">
-            <summary>
-            When called, checks if the <see cref="!:ObservableTableViewController&lt;T&gt;.GetHeightForFooter"/> 
+            When called, checks if the ObservableTableViewController{T}.GetHeightForFooter
             delegate has been set. If yes, calls that delegate to get the TableView's footer height.
             </summary>
             <param name="tableView">The active TableView.</param>
@@ -855,26 +843,56 @@
             <returns>The footer's height.</returns>
             <remarks>In the current implementation, only one section is supported.</remarks>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.NumberOfSections(MonoTouch.UIKit.UITableView)">
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetHeightForHeader(UIKit.UITableView,System.nint)">
             <summary>
-            Overrides the <see cref="M:MonoTouch.UIKit.UITableViewSource.NumberOfSections(MonoTouch.UIKit.UITableView)"/> method.
+            When called, checks if the ObservableTableViewController{T}.GetHeightForHeader
+            delegate has been set. If yes, calls that delegate to get the TableView's header height.
+            </summary>
+            <param name="tableView">The active TableView.</param>
+            <param name="section">The section index.</param>
+            <returns>The header's height.</returns>
+            <remarks>In the current implementation, only one section is supported.</remarks>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetViewForFooter(UIKit.UITableView,System.nint)">
+            <summary>
+            When called, checks if the ObservableTableViewController{T}.GetViewForFooter
+            delegate has been set. If yes, calls that delegate to get the TableView's footer.
+            </summary>
+            <param name="tableView">The active TableView.</param>
+            <param name="section">The section index.</param>
+            <returns>The UIView that should appear as the section's footer.</returns>
+            <remarks>In the current implementation, only one section is supported.</remarks>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.GetViewForHeader(UIKit.UITableView,System.nint)">
+            <summary>
+            When called, checks if the ObservableTableViewController{T}.GetViewForHeader
+            delegate has been set. If yes, calls that delegate to get the TableView's header.
+            </summary>
+            <param name="tableView">The active TableView.</param>
+            <param name="section">The section index.</param>
+            <returns>The UIView that should appear as the section's header.</returns>
+            <remarks>In the current implementation, only one section is supported.</remarks>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.NumberOfSections(UIKit.UITableView)">
+            <summary>
+            Overrides the <see cref="M:UIKit.UITableViewSource.NumberOfSections(UIKit.UITableView)"/> method.
             </summary>
             <param name="tableView">The active TableView.</param>
             <returns>The number of sections of the UITableView.</returns>
             <remarks>In the current implementation, only one section is supported.</remarks>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.RowSelected(MonoTouch.UIKit.UITableView,MonoTouch.Foundation.NSIndexPath)">
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.RowSelected(UIKit.UITableView,Foundation.NSIndexPath)">
             <summary>
-            Overrides the <see cref="M:MonoTouch.UIKit.UITableViewSource.RowSelected(MonoTouch.UIKit.UITableView,MonoTouch.Foundation.NSIndexPath)"/> method
+            Overrides the <see cref="M:UIKit.UITableViewSource.RowSelected(UIKit.UITableView,Foundation.NSIndexPath)"/> method
             and notifies the associated <see cref="T:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1"/>
             that a row has been selected, so that the corresponding events can be raised.
             </summary>
             <param name="tableView">The active TableView.</param>
             <param name="indexPath">The row's NSIndexPath.</param>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.RowsInSection(MonoTouch.UIKit.UITableView,System.Int32)">
+        <member name="M:GalaSoft.MvvmLight.Helpers.ObservableTableViewController`1.ObservableTableSource`1.RowsInSection(UIKit.UITableView,System.nint)">
             <summary>
-            Overrides the <see cref="M:MonoTouch.UIKit.UITableViewSource.RowsInSection(MonoTouch.UIKit.UITableView,System.Int32)"/> method
+            Overrides the <see cref="M:UIKit.UITableViewSource.RowsInSection(UIKit.UITableView,System.nint)"/> method
             and returns the number of rows in the associated data source.
             </summary>
             <param name="tableView">The active TableView.</param>
@@ -965,7 +983,8 @@
             the dialog box is closed by the user. The callback method will get a boolean
             parameter indicating if the "confirm" button (true) or the "cancel" button
             (false) was pressed by the user.</param>
-            <returns>A Task allowing this async method to be awaited.</returns>
+            <returns>A Task allowing this async method to be awaited. The task will return
+            true or false depending on the dialog result.</returns>
             <remarks>Displaying dialogs in Android is synchronous. As such,
             this method will be executed synchronously even though it can be awaited
             for cross-platform compatibility purposes.</remarks>
@@ -988,8 +1007,8 @@
             This implementation can be used in Xamarin iOS applications (not Xamarin Forms).
             </summary>
             <remarks>For this navigation service to work properly, it should be initialized
-            using the <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Initialize(MonoTouch.UIKit.UINavigationController)"/> method, with the application's
-            <see cref="T:MonoTouch.UIKit.UINavigationController"/>.</remarks>
+            using the <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Initialize(UIKit.UINavigationController)"/> method, with the application's
+            <see cref="T:UIKit.UINavigationController"/>.</remarks>
         </member>
         <member name="M:GalaSoft.MvvmLight.Views.NavigationService.GoBack">
             <summary>
@@ -1001,7 +1020,7 @@
             <summary>
             Displays a new page corresponding to the given key. 
             Make sure to call the <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Type)"/>
-            or <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Func{System.Object,MonoTouch.UIKit.UIViewController})"/>
+            or <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Func{System.Object,UIKit.UIViewController})"/>
             method first.
             </summary>
             <param name="pageKey">The key corresponding to the page
@@ -1014,7 +1033,7 @@
             Displays a new page corresponding to the given key,
             and passes a parameter to the new page's constructor.
             Make sure to call the <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Type)"/>
-            or <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Func{System.Object,MonoTouch.UIKit.UIViewController})"/>
+            or <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Func{System.Object,UIKit.UIViewController})"/>
             method first.
             </summary>
             <param name="pageKey">The key corresponding to the page
@@ -1032,14 +1051,14 @@
             <summary>
             Adds a key/page pair to the navigation service.
             This method will create a new controller on demand, using
-            reflection. You can use <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Func{System.Object,MonoTouch.UIKit.UIViewController})"/>
+            reflection. You can use <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Func{System.Object,UIKit.UIViewController})"/>
             if you need more fine-grained control over the controller's creation.
             </summary>
             <param name="key">The key that will be used later
             in the <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.NavigateTo(System.String)"/> or <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.NavigateTo(System.String,System.Object)"/> methods.</param>
             <param name="controllerType">The type of the controller corresponding to the key.</param>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Func{System.Object,MonoTouch.UIKit.UIViewController})">
+        <member name="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.Func{System.Object,UIKit.UIViewController})">
             <summary>
             Adds a key/page pair to the navigation service.
             This method allows the caller to have fine grained control over the controller's
@@ -1050,7 +1069,7 @@
             <param name="createAction">A Func returning the controller corresponding
             to the given key.</param>
         </member>
-        <member name="M:GalaSoft.MvvmLight.Views.NavigationService.Initialize(MonoTouch.UIKit.UINavigationController)">
+        <member name="M:GalaSoft.MvvmLight.Views.NavigationService.Initialize(UIKit.UINavigationController)">
             <summary>
             Initialized the navigation service. This method must be called
             before the <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.NavigateTo(System.String)"/> or

@@ -74,7 +74,7 @@ namespace Flowers.Forms.Helpers
             }
         }
 
-        public async Task ShowMessage(
+        public async Task<bool> ShowMessage(
             string message,
             string title,
             string buttonConfirmText,
@@ -91,6 +91,8 @@ namespace Flowers.Forms.Helpers
             {
                 afterHideCallback(result);
             }
+
+            return result;
         }
 
         public async Task ShowMessageBox(
