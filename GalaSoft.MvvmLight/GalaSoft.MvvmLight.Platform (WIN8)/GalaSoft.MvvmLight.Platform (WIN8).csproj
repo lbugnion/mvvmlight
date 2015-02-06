@@ -124,10 +124,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GalaSoft.MvvmLight %28PCL%29\GalaSoft.MvvmLight %28PCL%29.csproj">
-      <Project>{6a912701-3ba1-4975-adbf-160caf66b640}</Project>
-      <Name>GalaSoft.MvvmLight %28PCL%29</Name>
-    </ProjectReference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.0.0.24261, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Binaries\Release\WIN8\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BUILDINSTRUCTIONS.txt" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
