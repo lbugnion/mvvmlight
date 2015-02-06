@@ -49,11 +49,12 @@ namespace GalaSoft.MvvmLight.Test.Ioc
 
             try
             {
-                SimpleIoc.Default.GetInstance<TestClass1>();
-                Assert.Fail("ActivationException was expected");
+                var instance2 = SimpleIoc.Default.GetInstance<TestClass1>();
+                Assert.AreSame(instance1, instance2);
             }
             catch (ActivationException)
             {
+                Assert.Fail("ActivationException was thrown");
             }
         }
 
@@ -101,23 +102,6 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             Assert.IsTrue(SimpleIoc.Default.IsRegistered<ITestClass>());
         }
 
-        [TestMethod]
-        public void TestUnregisterFromBaseClass()
-        {
-            //SimpleIoc.Default.Reset();
-
-            //SimpleIoc.Default.Register<TestChildClass>(true);
-
-            //Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestChildClass>());
-            //Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestChildClass>());
-
-            //var instance = SimpleIoc.Default.GetInstance<TestChildClass>();
-            //instance.Remove();
-
-            //Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestChildClass>());
-            //Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestChildClass>());
-        }
-
         public void TestUnregisterInstanceAndGetNewInstance()
         {
             SimpleIoc.Default.Reset();
@@ -130,6 +114,89 @@ namespace GalaSoft.MvvmLight.Test.Ioc
             var instance2 = SimpleIoc.Default.GetInstance<TestClass1>();
 
             Assert.AreNotEqual(instance1.Identifier, instance2.Identifier);
+        }
+
+        [TestMethod]
+        public void TestUnregisterFactoryInstance()
+        {
+            SimpleIoc.Default.Reset();
+
+            var instance0 = new TestClass1();
+
+            SimpleIoc.Default.Register(() => instance0);
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            var instance1 = SimpleIoc.Default.GetInstance<TestClass1>();
+            Assert.AreSame(instance0, instance1);
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            var instance2 = SimpleIoc.Default.GetInstance<TestClass1>();
+            Assert.AreSame(instance0, instance2);
+
+            SimpleIoc.Default.Unregister(instance0);
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            var instance3 = SimpleIoc.Default.GetInstance<TestClass1>();
+            Assert.AreSame(instance0, instance3);
+        }
+
+        [TestMethod]
+        public void TestUnregisterDefaultInstance()
+        {
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register<TestClass1>();
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            var instance1 = SimpleIoc.Default.GetInstance<TestClass1>();
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            var instance2 = SimpleIoc.Default.GetInstance<TestClass1>();
+            Assert.AreSame(instance1, instance2);
+
+            SimpleIoc.Default.Unregister(instance1);
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            var instance3 = SimpleIoc.Default.GetInstance<TestClass1>();
+            Assert.AreNotSame(instance1, instance3);
+        }
+
+        [TestMethod]
+        public void TestUnregisterKeyedInstance()
+        {
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register<TestClass1>();
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            const string key = "key1";
+            var instance1 = SimpleIoc.Default.GetInstance<TestClass1>(key);
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsTrue(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            var instance2 = SimpleIoc.Default.GetInstance<TestClass1>(key);
+            Assert.AreSame(instance1, instance2);
+
+            SimpleIoc.Default.Unregister(instance1);
+
+            Assert.IsTrue(SimpleIoc.Default.IsRegistered<TestClass1>());
+            Assert.IsFalse(SimpleIoc.Default.ContainsCreated<TestClass1>());
+
+            var instance3 = SimpleIoc.Default.GetInstance<TestClass1>(key);
+            Assert.AreNotSame(instance1, instance3);
         }
     }
 }
