@@ -20,8 +20,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace GalaSoft.MvvmLight.Helpers
 {
@@ -40,16 +40,6 @@ namespace GalaSoft.MvvmLight.Helpers
     public class ObservableTableViewController<T> : UITableViewController, INotifyPropertyChanged
     {
         /// <summary>
-        /// Occurs when a property of this instance changes.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Occurs when a new item gets selected in the list.
-        /// </summary>
-        public event EventHandler SelectionChanged;
-
-        /// <summary>
         /// The <see cref="SelectedItem" /> property's name.
         /// </summary>
         public const string SelectedItemPropertyName = "SelectedItem";
@@ -62,63 +52,17 @@ namespace GalaSoft.MvvmLight.Helpers
         private ObservableTableSource<T> _tableSource;
 
         /// <summary>
+        /// Occurs when a new item gets selected in the list.
+        /// </summary>
+        public event EventHandler SelectionChanged;
+
+        /// <summary>
         /// When set, specifies which animation should be used when rows change.
         /// </summary>
         public UITableViewRowAnimation AddAnimation
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// When set, returns a view that can be used as the TableView's header.
-        /// </summary>
-        /// <seealso cref="GetHeightForHeaderDelegate"/>
-        public Func<UITableView, int, UIView> GetViewForHeaderDelegate
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// When set, returns the height of the view that will be used for the TableView's header.
-        /// </summary>
-        /// <seealso cref="GetViewForHeaderDelegate"/>
-        public Func<UITableView, int, float> GetHeightForHeaderDelegate
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// When set, returns a view that can be used as the TableView's footer.
-        /// </summary>
-        /// <seealso cref="GetHeightForFooterDelegate"/>
-        public Func<UITableView, int, UIView> GetViewForFooterDelegate
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// When set, returns the height of the view that will be used for the TableView's footer.
-        /// </summary>
-        /// <seealso cref="GetViewForFooterDelegate"/>
-        public Func<UITableView, int, float> GetHeightForFooterDelegate
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// The source of the TableView.
-        /// </summary>
-        public UITableViewSource TableSource
-        {
-            get
-            {
-                return _tableSource;
-            }
         }
 
         /// <summary>
@@ -192,6 +136,46 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
+        /// When set, returns the height of the view that will be used for the TableView's footer.
+        /// </summary>
+        /// <seealso cref="GetViewForFooterDelegate"/>
+        public Func<UITableView, nint, nfloat> GetHeightForFooterDelegate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// When set, returns the height of the view that will be used for the TableView's header.
+        /// </summary>
+        /// <seealso cref="GetViewForHeaderDelegate"/>
+        public Func<UITableView, nint, nfloat> GetHeightForHeaderDelegate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// When set, returns a view that can be used as the TableView's footer.
+        /// </summary>
+        /// <seealso cref="GetHeightForFooterDelegate"/>
+        public Func<UITableView, nint, UIView> GetViewForFooterDelegate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// When set, returns a view that can be used as the TableView's header.
+        /// </summary>
+        /// <seealso cref="GetHeightForHeaderDelegate"/>
+        public Func<UITableView, nint, UIView> GetViewForHeaderDelegate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets the TableView's selected item.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
@@ -200,6 +184,46 @@ namespace GalaSoft.MvvmLight.Helpers
             get
             {
                 return _selectedItem;
+            }
+        }
+
+        /// <summary>
+        /// The source of the TableView.
+        /// </summary>
+        public UITableViewSource TableSource
+        {
+            get
+            {
+                return _tableSource;
+            }
+        }
+
+        /// <summary>
+        /// Overrides <see cref="UITableViewController.TableView"/>.
+        /// Sets or gets the controllers TableView. If you use a TableView
+        /// placed in the UI manually, use this property's setter to assign
+        /// your TableView to this controller.
+        /// </summary>
+        public override UITableView TableView
+        {
+            get
+            {
+                return base.TableView;
+            }
+            set
+            {
+                base.TableView = value;
+
+                if (_tableSource == null)
+                {
+                    base.TableView.Source = CreateSource();
+                }
+                else
+                {
+                    base.TableView.Source = _tableSource;
+                }
+
+                _loadedView = true;
             }
         }
 
@@ -223,14 +247,17 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
+        /// Occurs when a property of this instance changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Overrides the <see cref="UIViewController.ViewDidLoad"/> method.
         /// </summary>
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
             TableView.Source = CreateSource();
-
             _loadedView = true;
         }
 
@@ -267,7 +294,7 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 return new UITableViewCell(UITableViewCellStyle.Default, reuseId);
             }
-            
+
             return CreateCellDelegate(reuseId);
         }
 
@@ -277,7 +304,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <returns>The created ObservableTableSource.</returns>
         protected virtual ObservableTableSource<T> CreateSource()
         {
-            _tableSource =  new ObservableTableSource<T>(this);
+            _tableSource = new ObservableTableSource<T>(this);
             return _tableSource;
         }
 
@@ -321,7 +348,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 return;
             }
 
-            NSAction act = () =>
+            Action act = () =>
             {
                 if (e.Action == NotifyCollectionChangedAction.Reset)
                 {
@@ -379,8 +406,8 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <remarks>In the current implementation, only one section is supported.</remarks>
         protected class ObservableTableSource<T2> : UITableViewSource
         {
-            private readonly NSString _reuseId = new NSString("C");
             private readonly ObservableTableViewController<T2> _controller;
+            private readonly NSString _reuseId = new NSString("C");
 
             /// <summary>
             /// Initializes an instance of this class.
@@ -423,21 +450,21 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             /// <summary>
-            /// When called, checks if the ObservableTableViewController{T}.GetViewForHeader
-            /// delegate has been set. If yes, calls that delegate to get the TableView's header.
+            /// When called, checks if the ObservableTableViewController{T}.GetHeightForFooter
+            /// delegate has been set. If yes, calls that delegate to get the TableView's footer height.
             /// </summary>
             /// <param name="tableView">The active TableView.</param>
             /// <param name="section">The section index.</param>
-            /// <returns>The UIView that should appear as the section's header.</returns>
+            /// <returns>The footer's height.</returns>
             /// <remarks>In the current implementation, only one section is supported.</remarks>
-            public override UIView GetViewForHeader(UITableView tableView, int section)
+            public override nfloat GetHeightForFooter(UITableView tableView, nint section)
             {
-                if (_controller.GetViewForHeaderDelegate != null)
+                if (_controller.GetHeightForFooterDelegate != null)
                 {
-                    return _controller.GetViewForHeaderDelegate(tableView, section);
+                    return _controller.GetHeightForFooterDelegate(tableView, section);
                 }
 
-                return base.GetViewForHeader(tableView, section);
+                return 0;
             }
 
             /// <summary>
@@ -448,7 +475,7 @@ namespace GalaSoft.MvvmLight.Helpers
             /// <param name="section">The section index.</param>
             /// <returns>The header's height.</returns>
             /// <remarks>In the current implementation, only one section is supported.</remarks>
-            public override float GetHeightForHeader(UITableView tableView, int section)
+            public override nfloat GetHeightForHeader(UITableView tableView, nint section)
             {
                 if (_controller.GetHeightForHeaderDelegate != null)
                 {
@@ -466,7 +493,7 @@ namespace GalaSoft.MvvmLight.Helpers
             /// <param name="section">The section index.</param>
             /// <returns>The UIView that should appear as the section's footer.</returns>
             /// <remarks>In the current implementation, only one section is supported.</remarks>
-            public override UIView GetViewForFooter(UITableView tableView, int section)
+            public override UIView GetViewForFooter(UITableView tableView, nint section)
             {
                 if (_controller.GetViewForFooterDelegate != null)
                 {
@@ -477,21 +504,21 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             /// <summary>
-            /// When called, checks if the ObservableTableViewController{T}.GetHeightForFooter
-            /// delegate has been set. If yes, calls that delegate to get the TableView's footer height.
+            /// When called, checks if the ObservableTableViewController{T}.GetViewForHeader
+            /// delegate has been set. If yes, calls that delegate to get the TableView's header.
             /// </summary>
             /// <param name="tableView">The active TableView.</param>
             /// <param name="section">The section index.</param>
-            /// <returns>The footer's height.</returns>
+            /// <returns>The UIView that should appear as the section's header.</returns>
             /// <remarks>In the current implementation, only one section is supported.</remarks>
-            public override float GetHeightForFooter(UITableView tableView, int section)
+            public override UIView GetViewForHeader(UITableView tableView, nint section)
             {
-                if (_controller.GetHeightForFooterDelegate != null)
+                if (_controller.GetViewForHeaderDelegate != null)
                 {
-                    return _controller.GetHeightForFooterDelegate(tableView, section);
+                    return _controller.GetViewForHeaderDelegate(tableView, section);
                 }
 
-                return 0;
+                return base.GetViewForHeader(tableView, section);
             }
 
             /// <summary>
@@ -500,7 +527,7 @@ namespace GalaSoft.MvvmLight.Helpers
             /// <param name="tableView">The active TableView.</param>
             /// <returns>The number of sections of the UITableView.</returns>
             /// <remarks>In the current implementation, only one section is supported.</remarks>
-            public override int NumberOfSections(UITableView tableView)
+            public override nint NumberOfSections(UITableView tableView)
             {
                 return 1;
             }
@@ -515,14 +542,7 @@ namespace GalaSoft.MvvmLight.Helpers
             public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
             {
                 var item = _controller._dataSource != null ? _controller._dataSource[indexPath.Row] : default(T2);
-                try
-                {
-                    _controller.OnRowSelected(item, indexPath);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
+                _controller.OnRowSelected(item, indexPath);
             }
 
             /// <summary>
@@ -533,7 +553,7 @@ namespace GalaSoft.MvvmLight.Helpers
             /// <param name="section">The active section.</param>
             /// <returns>The number of rows in the data source.</returns>
             /// <remarks>In the current implementation, only one section is supported.</remarks>
-            public override int RowsInSection(UITableView tableView, int section)
+            public override nint RowsInSection(UITableView tableView, nint section)
             {
                 var coll = _controller._dataSource;
                 return coll != null ? coll.Count : 0;
