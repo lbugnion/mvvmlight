@@ -29,6 +29,12 @@ namespace GalaSoft.MvvmLight.Views
     public class NavigationService : INavigationService
     {
         /// <summary>
+        /// The key that is returned by the <see cref="CurrentPageKey"/> property
+        /// when the current Page is the root page.
+        /// </summary>
+        public const string RootPageKey = "-- ROOT --";
+
+        /// <summary>
         /// Use this key name to retrieve the navigation parameter.
         /// </summary>
         public const string ParameterKeyName = "ParameterKey";
@@ -57,14 +63,23 @@ namespace GalaSoft.MvvmLight.Views
             {
                 lock (PagesByKey)
                 {
-                    var currentUri = _mainFrame.CurrentSource;
+                    EnsureMainFrame();
+
+                    var currentUrl = _mainFrame.CurrentSource.OriginalString;
+
+                    if (currentUrl.IndexOf("?") > -1)
+                    {
+                        currentUrl = currentUrl.Substring(0, currentUrl.IndexOf("?"));
+                    }
+
+                    var currentUri = new Uri(currentUrl, _mainFrame.CurrentSource.IsAbsoluteUri ? UriKind.Absolute : UriKind.Relative);
 
                     if (PagesByKey.Any(p => p.Value == currentUri))
                     {
                         return PagesByKey.FirstOrDefault(p => p.Value == currentUri).Key;
                     }
 
-                    return null;
+                    return RootPageKey;
                 }
             }
         }

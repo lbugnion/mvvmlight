@@ -13,6 +13,7 @@
 // </license>
 // ****************************************************************************
 
+using System;
 using Android.App;
 
 namespace GalaSoft.MvvmLight.Views
@@ -77,6 +78,13 @@ namespace GalaSoft.MvvmLight.Views
         protected override void OnResume()
         {
             CurrentActivity = this;
+
+            if (string.IsNullOrEmpty(ActivityKey))
+            {
+                ActivityKey = NextPageKey;
+                NextPageKey = null;
+            }
+
             base.OnResume();
         }
 
@@ -86,6 +94,18 @@ namespace GalaSoft.MvvmLight.Views
             {
                 CurrentActivity = null;
             }
+        }
+
+        internal string ActivityKey
+        {
+            get;
+            private set;
+        }
+
+        internal static string NextPageKey
+        {
+            get;
+            set;
         }
     }
 }
