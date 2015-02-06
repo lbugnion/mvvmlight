@@ -4,7 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Test.Stubs;
 using GalaSoft.MvvmLight.Test.ViewModel;
 
-#if NETFX_CORE || WINDOWS_PHONE
+#if NETFX_CORE || (WINDOWS_PHONE && !WINDOWS_PHONE7)
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 #else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
