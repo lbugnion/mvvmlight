@@ -24,8 +24,8 @@ using Android.Views;
 #endif
 
 #if IOS
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 #endif
 
 namespace GalaSoft.MvvmLight.Helpers

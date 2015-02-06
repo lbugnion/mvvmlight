@@ -15,7 +15,7 @@
 
 using System;
 using System.Threading.Tasks;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace GalaSoft.MvvmLight.Views
 {

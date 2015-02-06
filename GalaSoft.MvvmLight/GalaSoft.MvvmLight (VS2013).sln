@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (PCL)", "GalaSoft.MvvmLight (PCL)\GalaSoft.MvvmLight (PCL).csproj", "{6A912701-3BA1-4975-ADBF-160CAF66B640}"
 EndProject
@@ -53,13 +53,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (PW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Platform (Android)", "GalaSoft.MvvmLight.Platform (Android)\GalaSoft.MvvmLight.Platform (Android).csproj", "{A5B7741D-E331-438C-B3BF-596B048DB622}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Platform (iOS)", "GalaSoft.MvvmLight.Platform (iOS)\GalaSoft.MvvmLight.Platform (iOS).csproj", "{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (SL5)", "GalaSoft.MvvmLight (SL5)\GalaSoft.MvvmLight (SL5).csproj", "{4A3E7910-7169-4462-B9E4-E7DF8BE6B09E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (SL5)", "GalaSoft.MvvmLight.Extras (SL5)\GalaSoft.MvvmLight.Extras (SL5).csproj", "{F0428C63-C7AD-4563-AC05-81EAA4D76D28}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (SL5)", "Tests\GalaSoft.MvvmLight.Test (SL5)\GalaSoft.MvvmLight.Test (SL5).csproj", "{0E24C663-BDCB-4702-864B-A850A9C68F03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Platform (iOS)", "GalaSoft.MvvmLight.Platform (iOS)\GalaSoft.MvvmLight.Platform (iOS).csproj", "{DE2FB1EC-A248-4980-A5E3-6835231D84CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -495,20 +495,6 @@ Global
 		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|x64.ActiveCfg = Release|Any CPU
 		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|x86.ActiveCfg = Release|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Release|ARM.ActiveCfg = Release|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Release|x64.ActiveCfg = Release|Any CPU
-		{774B2C29-23C0-4F24-A4C2-A3D8248B5E81}.Release|x86.ActiveCfg = Release|Any CPU
 		{4A3E7910-7169-4462-B9E4-E7DF8BE6B09E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A3E7910-7169-4462-B9E4-E7DF8BE6B09E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A3E7910-7169-4462-B9E4-E7DF8BE6B09E}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -551,6 +537,20 @@ Global
 		{0E24C663-BDCB-4702-864B-A850A9C68F03}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0E24C663-BDCB-4702-864B-A850A9C68F03}.Release|x64.ActiveCfg = Release|Any CPU
 		{0E24C663-BDCB-4702-864B-A850A9C68F03}.Release|x86.ActiveCfg = Release|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Release|ARM.ActiveCfg = Release|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Release|x64.ActiveCfg = Release|Any CPU
+		{DE2FB1EC-A248-4980-A5E3-6835231D84CD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

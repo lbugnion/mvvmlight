@@ -15,9 +15,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace GalaSoft.MvvmLight.Views
 {
@@ -30,7 +31,21 @@ namespace GalaSoft.MvvmLight.Views
     /// <see cref="UINavigationController"/>.</remarks>
     public class NavigationService : INavigationService
     {
-        private readonly Dictionary<string, TypeOrAction> _pagesByKey = new Dictionary<string, TypeOrAction>();
+        /// <summary>
+        /// The key that is returned by the <see cref="CurrentPageKey"/> property
+        /// when the current UIViewController is the root controller.
+        /// </summary>
+        public const string RootPageKey = "-- ROOT --";
+
+        /// <summary>
+        /// The key that is returned by the <see cref="CurrentPageKey"/> property
+        /// when the current UIViewController is not found.
+        /// This can be the case when the navigation wasn't managed by this NavigationService,
+        /// for example when it is directly triggered in the Storyboard.
+        /// </summary>
+        public const string UnknownPageKey = "-- UNKNOWN --";
+
+        private readonly Dictionary<string, TypeActionOrKey> _pagesByKey = new Dictionary<string, TypeActionOrKey>();
         private UINavigationController _navigation;
 
         /// <summary>
@@ -38,8 +53,34 @@ namespace GalaSoft.MvvmLight.Views
         /// </summary>
         public string CurrentPageKey
         {
-            get;
-            private set;
+            get
+            {
+                lock (_pagesByKey)
+                {
+                    if (_navigation.ViewControllers.Length == 0)
+                    {
+                        return UnknownPageKey;
+                    }
+
+                    if (_navigation.ViewControllers.Length == 1)
+                    {
+                        return RootPageKey;
+                    }
+
+                    var topController = _navigation.ViewControllers.Last();
+
+                    var item = _pagesByKey.Values.FirstOrDefault(
+                        i => i.ControllerType == topController.GetType());
+
+                    if (item == null)
+                    {
+                        return UnknownPageKey;
+                    }
+
+                    var pair = _pagesByKey.First(i => i.Value == item);
+                    return pair.Key;
+                }
+            }
         }
 
         /// <summary>
@@ -48,7 +89,7 @@ namespace GalaSoft.MvvmLight.Views
         /// </summary>
         public void GoBack()
         {
-            _navigation.PopViewControllerAnimated(true);
+            _navigation.PopViewController(true);
         }
 
         /// <summary>
@@ -87,12 +128,79 @@ namespace GalaSoft.MvvmLight.Views
         {
             lock (_pagesByKey)
             {
-                if (_pagesByKey.ContainsKey(pageKey))
-                {
-                    var item = _pagesByKey[pageKey];
-                    UIViewController controller = null;
+                Exception creationException = null;
+                var done = false;
 
-                    if (item.ControllerType != null)
+                if (!_pagesByKey.ContainsKey(pageKey))
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            "No such page: {0}. Did you forget to call NavigationService.Configure?",
+                            pageKey),
+                        "pageKey");
+                }
+
+                var item = _pagesByKey[pageKey];
+                UIViewController controller = null;
+
+                if (item.CreateControllerAction != null)
+                {
+                    try
+                    {
+                        controller = item.CreateControllerAction(parameter);
+                        done = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        creationException = ex;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(item.StoryboardControllerKey))
+                {
+                    if (_navigation == null)
+                    {
+                        throw new InvalidOperationException(
+                            "Unable to navigate: Did you forget to call NavigationService.Initialize?");
+                    }
+
+                    if (_navigation.Storyboard == null)
+                    {
+                        throw new InvalidOperationException(
+                            "Unable to navigate: No storyboard found");
+                    }
+
+                    try
+                    {
+                        controller = _navigation.Storyboard.InstantiateViewController(item.StoryboardControllerKey);
+                        done = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        creationException = ex;
+                    }
+
+                    if (parameter != null)
+                    {
+                        var casted = controller as ControllerBase;
+                        if (casted != null)
+                        {
+                            casted.NavigationParameter = parameter;
+                        }
+                        else
+                        {
+                            throw new InvalidCastException(
+                                string.Format(
+                                    "Cannot cast {0} to {1}",
+                                    controller.GetType().FullName,
+                                    typeof(ControllerBase).FullName));
+                        }
+                    }
+                }
+
+                if (!done && item.ControllerType != null)
+                {
+                    try
                     {
                         controller = MakeController(item.ControllerType, parameter);
 
@@ -102,23 +210,27 @@ namespace GalaSoft.MvvmLight.Views
                                 "No suitable constructor found for page " + pageKey);
                         }
                     }
-
-                    if (item.CreateControllerAction != null)
+                    catch (Exception ex)
                     {
-                        controller = item.CreateControllerAction(parameter);
+                        creationException = ex;
                     }
+                }
 
-                    _navigation.PushViewController(controller, true);
-                    CurrentPageKey = pageKey;
-                }
-                else
+                if (controller == null)
                 {
-                    throw new ArgumentException(
+                    throw new InvalidOperationException(
                         string.Format(
-                            "No such page: {0}. Did you forget to call NavigationService.Configure?",
+                            "Unable to create a controller for key {0}",
                             pageKey),
-                        "pageKey");
+                            creationException);
                 }
+
+                if (item.ControllerType == null)
+                {
+                    item.ControllerType = controller.GetType();
+                }
+
+                _navigation.PushViewController(controller, true);
             }
         }
 
@@ -133,13 +245,18 @@ namespace GalaSoft.MvvmLight.Views
         /// <param name="controllerType">The type of the controller corresponding to the key.</param>
         public void Configure(string key, Type controllerType)
         {
+            var item = new TypeActionOrKey
+            {
+                ControllerType = controllerType
+            };
+
+            SaveConfigurationItem(key, item);
+        }
+
+        private void SaveConfigurationItem(string key, TypeActionOrKey item)
+        {
             lock (_pagesByKey)
             {
-                var item = new TypeOrAction
-                {
-                    ControllerType = controllerType
-                };
-
                 if (_pagesByKey.ContainsKey(key))
                 {
                     _pagesByKey[key] = item;
@@ -162,22 +279,31 @@ namespace GalaSoft.MvvmLight.Views
         /// to the given key.</param>
         public void Configure(string key, Func<object, UIViewController> createAction)
         {
-            lock (_pagesByKey)
+            var item = new TypeActionOrKey
             {
-                var item = new TypeOrAction
-                {
-                    CreateControllerAction = createAction
-                };
+                CreateControllerAction = createAction
+            };
 
-                if (_pagesByKey.ContainsKey(key))
-                {
-                    _pagesByKey[key] = item;
-                }
-                else
-                {
-                    _pagesByKey.Add(key, item);
-                }
-            }
+            SaveConfigurationItem(key, item);
+        }
+
+        /// <summary>
+        /// Adds a key/page pair to the navigation service.
+        /// This method should be used when working with Storyboard for the UI.
+        /// </summary>
+        /// <param name="key">The key that will be used later
+        /// in the <see cref="NavigateTo(string)"/> or <see cref="NavigateTo(string, object)"/> methods.</param>
+        /// <param name="storyboardId">The idea of the UIViewController
+        /// in the Storyboard. Use the storyboardIdentifier/restorationIdentifier property
+        /// in the *.storyboard document.</param>
+        public void Configure(string key, string storyboardId)
+        {
+            var item = new TypeActionOrKey
+            {
+                StoryboardControllerKey = storyboardId
+            };
+
+            SaveConfigurationItem(key, item);
         }
 
         /// <summary>
@@ -233,10 +359,11 @@ namespace GalaSoft.MvvmLight.Views
             return controller;
         }
 
-        private struct TypeOrAction
+        private class TypeActionOrKey
         {
             public Type ControllerType;
             public Func<object, UIViewController> CreateControllerAction;
+            public string StoryboardControllerKey;
         }
     }
 }
