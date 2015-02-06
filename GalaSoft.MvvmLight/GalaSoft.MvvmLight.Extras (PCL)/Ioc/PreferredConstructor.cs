@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="PreferredConstructor.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2011-2014
+// Copyright © GalaSoft Laurent Bugnion 2011-2015
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>

@@ -1,5 +1,5 @@
 ﻿// <copyright file="RelayCommand.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2014
+// Copyright © GalaSoft Laurent Bugnion 2009-2015
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
