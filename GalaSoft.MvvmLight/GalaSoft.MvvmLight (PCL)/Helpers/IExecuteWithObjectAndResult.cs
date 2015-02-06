@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="IExecuteWithObjectAndResult.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2012-2014
+// Copyright © GalaSoft Laurent Bugnion 2012-2015
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>

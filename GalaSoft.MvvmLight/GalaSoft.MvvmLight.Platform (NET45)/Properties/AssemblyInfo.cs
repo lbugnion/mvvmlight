@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="AssemblyInfo.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2014
+// Copyright © GalaSoft Laurent Bugnion 2009-2015
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -30,7 +30,7 @@ using System.Windows.Markup;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight.Platform")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2014")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
