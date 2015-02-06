@@ -23,7 +23,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        public void CanExecuteChangedTest()
+        public void TestCanExecuteChanged()
         {
             var command = new RelayCommand<string>(
                 p =>
@@ -67,7 +67,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        public void CanExecuteTest()
+        public void TestCanExecute()
         {
             var command = new RelayCommand<string>(
                 p =>
@@ -80,7 +80,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        public void CanExecuteTestInvalidParameterType()
+        public void TestCanExecuteWithInvalidParameterType()
         {
             var command = new RelayCommand<string>(
                 p =>
@@ -88,18 +88,12 @@ namespace GalaSoft.MvvmLight.Test.Command
                 },
                 p => p == "CanExecute");
 
-            try
-            {
-                command.CanExecute(DateTime.Now);
-                Assert.Fail("InvalidCastException was not thrown");
-            }
-            catch (InvalidCastException)
-            {
-            }
+            var result = command.CanExecute(DateTime.Now);
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
-        public void CanExecuteTestNull()
+        public void TestCanExecuteNull()
         {
             var command = new RelayCommand<string>(
                 p =>
@@ -110,7 +104,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        public void CanExecuteTestNullParameter()
+        public void TestCanExecuteNullParameter()
         {
             var command = new RelayCommand<string>(
                 p =>
@@ -130,7 +124,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        public void ConstructorTestInvalidExecuteNull1()
+        public void TestConstructorInvalidExecuteNull1()
         {
             try
             {
@@ -143,7 +137,7 @@ namespace GalaSoft.MvvmLight.Test.Command
         }
 
         [TestMethod]
-        public void ConstructorTestInvalidExecuteNull2()
+        public void TestConstructorInvalidExecuteNull2()
         {
             try
             {
