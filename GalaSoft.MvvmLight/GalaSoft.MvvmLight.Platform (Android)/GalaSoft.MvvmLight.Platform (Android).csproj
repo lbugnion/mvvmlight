@@ -73,10 +73,6 @@
       <Project>{6a912701-3ba1-4975-adbf-160caf66b640}</Project>
       <Name>GalaSoft.MvvmLight %28PCL%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GalaSoft.MvvmLight.Extras %28PCL%29\GalaSoft.MvvmLight.Extras %28PCL%29.csproj">
-      <Project>{39c71a69-4ace-4b45-9a2c-c274fada78ef}</Project>
-      <Name>GalaSoft.MvvmLight.Extras %28PCL%29</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
