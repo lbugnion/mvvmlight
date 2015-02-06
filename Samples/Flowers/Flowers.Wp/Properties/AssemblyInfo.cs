@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Resources;
 
@@ -7,11 +6,11 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Flowers")]
-[assembly: AssemblyDescription("Flowers MVVM Light sample")]
+[assembly: AssemblyDescription("Flowers MVVM Light sample (WinPhone)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Laurent Bugnion (GalaSoft)")]
 [assembly: AssemblyProduct("Flowers.Wp")]
-[assembly: AssemblyCopyright("Copyright © Laurent Bugnion (GalaSoft) 2014")]
+[assembly: AssemblyCopyright("Copyright © Laurent Bugnion (GalaSoft) 2014-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
