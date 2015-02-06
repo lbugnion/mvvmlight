@@ -146,19 +146,25 @@ namespace GalaSoft.MvvmLight
             var platform = DesignerLibrary.DetectedDesignerLibrary;
 
             if (platform == DesignerPlatformLibrary.WinRt)
+            {
                 return IsInDesignModeMetro();
+            }
 
             if(platform == DesignerPlatformLibrary.Silverlight)
             {
                 var desMode = IsInDesignModeSilverlight();
                 if (!desMode)
+                {
                     desMode = IsInDesignModeNet(); // hard to tell these apart in the designer
+                }
 
                 return desMode;
             }
 
             if (platform == DesignerPlatformLibrary.Net)
+            {
                 return IsInDesignModeNet();
+            }
 
             return false;
         }
@@ -171,7 +177,18 @@ namespace GalaSoft.MvvmLight
             {
                 var dm = Type.GetType("System.ComponentModel.DesignerProperties, System.Windows, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e");
 
+                if (dm == null)
+                {
+                    return false;
+                }
+
                 var dme = dm.GetTypeInfo().GetDeclaredProperty("IsInDesignTool");
+
+                if (dme == null)
+                {
+                    return false;
+                }
+
                 return (bool)dme.GetValue(null, null);    
             }
             catch
@@ -203,6 +220,10 @@ namespace GalaSoft.MvvmLight
                     Type.GetType(
                         "System.ComponentModel.DesignerProperties, PresentationFramework, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35");
 
+                if (dm == null)
+                {
+                    return false;
+                }
 
                 var dmp = dm.GetTypeInfo().GetDeclaredField("IsInDesignModeProperty").GetValue(null);
 
@@ -212,10 +233,22 @@ namespace GalaSoft.MvvmLight
                 var typeFe =
                     Type.GetType("System.Windows.FrameworkElement, PresentationFramework, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35");
 
+                if (dpd == null
+                    || typeFe == null)
+                {
+                    return false;
+                }
 
                 var fromPropertys = dpd
                     .GetTypeInfo()
-                    .GetDeclaredMethods("FromProperty");
+                    .GetDeclaredMethods("FromProperty")
+                    .ToList();
+
+                if (fromPropertys == null
+                    || fromPropertys.Count == 0)
+                {
+                    return false;
+                }
 
                 var fromProperty = fromPropertys
                     .FirstOrDefault(mi => mi.IsPublic && mi.IsStatic && mi.GetParameters().Length == 2);
@@ -227,13 +260,33 @@ namespace GalaSoft.MvvmLight
 
                 var descriptor = fromProperty.Invoke(null, new[] {dmp, typeFe});
 
+                if (descriptor == null)
+                {
+                    return false;
+                }
+
                 var metaProp = dpd.GetTypeInfo().GetDeclaredProperty("Metadata");
 
-                var metadata = metaProp.GetValue(descriptor, null);
+                if (metaProp == null)
+                {
+                    return false;
+                }
 
+                var metadata = metaProp.GetValue(descriptor, null);
                 var tPropMeta = Type.GetType("System.Windows.PropertyMetadata, WindowsBase, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35");
 
+                if (metadata == null
+                    || tPropMeta == null)
+                {
+                    return false;
+                }
+
                 var dvProp = tPropMeta.GetTypeInfo().GetDeclaredProperty("DefaultValue");
+
+                if (dvProp == null)
+                {
+                    return false;
+                }
 
                 var dv = (bool)dvProp.GetValue(metadata, null);
                 return dv;
