@@ -15,6 +15,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -25,15 +26,57 @@ namespace GalaSoft.MvvmLight.Views
     /// </summary>
     public class NavigationService : INavigationService
     {
-        private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string,Type>();
+        /// <summary>
+        /// The key that is returned by the <see cref="CurrentPageKey"/> property
+        /// when the current Page is the root page.
+        /// </summary>
+        public const string RootPageKey = "-- ROOT --";
+
+        /// <summary>
+        /// The key that is returned by the <see cref="CurrentPageKey"/> property
+        /// when the current Page is not found.
+        /// This can be the case when the navigation wasn't managed by this NavigationService,
+        /// for example when it is directly triggered in the code behind, and the
+        /// NavigationService was not configured for this page type.
+        /// </summary>
+        public const string UnknownPageKey = "-- UNKNOWN --";
+
+        private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
 
         /// <summary>
         /// The key corresponding to the currently displayed page.
         /// </summary>
         public string CurrentPageKey
         {
-            get;
-            private set;
+            get
+            {
+                lock (_pagesByKey)
+                {
+                    var frame = ((Frame)Window.Current.Content);
+
+                    if (frame.BackStackDepth == 0)
+                    {
+                        return RootPageKey;
+                    }
+
+                    if (frame.Content == null)
+                    {
+                        return UnknownPageKey;
+                    }
+
+                    var currentType = frame.Content.GetType();
+
+                    if (_pagesByKey.All(p => p.Value != currentType))
+                    {
+                        return UnknownPageKey;
+                    }
+
+                    var item = _pagesByKey.FirstOrDefault(
+                        i => i.Value == currentType);
+
+                    return item.Key;
+                }
+            }
         }
 
         /// <summary>
@@ -89,8 +132,8 @@ namespace GalaSoft.MvvmLight.Views
                         "pageKey");
                 }
 
-                ((Frame)Window.Current.Content).Navigate(_pagesByKey[pageKey], parameter);
-                CurrentPageKey = pageKey;
+                var frame = ((Frame)Window.Current.Content);
+                frame.Navigate(_pagesByKey[pageKey], parameter);
             }
         }
 
@@ -106,12 +149,18 @@ namespace GalaSoft.MvvmLight.Views
             {
                 if (_pagesByKey.ContainsKey(key))
                 {
-                    _pagesByKey[key] = pageType;
+                    throw new ArgumentException("This key is already used: " + key);
                 }
-                else
+
+                if (_pagesByKey.Any(p => p.Value == pageType))
                 {
-                    _pagesByKey.Add(key, pageType);
+                    throw new ArgumentException(
+                        "This type is already configured with key " + _pagesByKey.First(p => p.Value == pageType).Key);
                 }
+
+                _pagesByKey.Add(
+                    key,
+                    pageType);
             }
         }
     }

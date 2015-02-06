@@ -27,6 +27,12 @@ namespace GalaSoft.MvvmLight.Views
     /// should derive from the <see cref="ActivityBase"/> class.</remarks>
     public class NavigationService : INavigationService
     {
+        /// <summary>
+        /// The key that is returned by the <see cref="CurrentPageKey"/> property
+        /// when the current Activiy is the root activity.
+        /// </summary>
+        public const string RootPageKey = "-- ROOT --";
+
         private const string ParameterKeyName = "ParameterKey";
 
         private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
@@ -37,8 +43,10 @@ namespace GalaSoft.MvvmLight.Views
         /// </summary>
         public string CurrentPageKey
         {
-            get;
-            private set;
+            get
+            {
+                return ActivityBase.CurrentActivity.ActivityKey ?? RootPageKey;
+            }
         }
 
         /// <summary>
@@ -107,7 +115,7 @@ namespace GalaSoft.MvvmLight.Views
                 }
 
                 ActivityBase.CurrentActivity.StartActivity(intent);
-                CurrentPageKey = pageKey;
+                ActivityBase.NextPageKey = pageKey;
             }
         }
 
