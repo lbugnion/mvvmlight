@@ -102,6 +102,8 @@ namespace GalaSoft.MvvmLight.Command
         /// </summary>
         public event EventHandler CanExecuteChanged;
 #else
+        private EventHandler _requerySuggestedLocal;
+        
         /// <summary>
         /// Occurs when changes occur that affect whether the command should execute.
         /// </summary>
@@ -111,6 +113,21 @@ namespace GalaSoft.MvvmLight.Command
             {
                 if (_canExecute != null)
                 {
+                    // add event handler to local handler backing field in a thread safe manner
+                    EventHandler handler2;
+                    EventHandler canExecuteChanged = _requerySuggestedLocal;
+
+                    do
+                    {
+                        handler2 = canExecuteChanged;
+                        EventHandler handler3 = (EventHandler)Delegate.Combine(handler2, value);
+                        canExecuteChanged = System.Threading.Interlocked.CompareExchange<EventHandler>(
+                            ref _requerySuggestedLocal, 
+                            handler3, 
+                            handler2);
+                    } 
+                    while (canExecuteChanged != handler2); 
+                    
                     CommandManager.RequerySuggested += value;
                 }
             }
@@ -119,6 +136,21 @@ namespace GalaSoft.MvvmLight.Command
             {
                 if (_canExecute != null)
                 {
+                    // removes an event handler from local backing field in a thread safe manner
+                    EventHandler handler2;
+                    EventHandler canExecuteChanged = this._requerySuggestedLocal;
+
+                    do
+                    {
+                        handler2 = canExecuteChanged;
+                        EventHandler handler3 = (EventHandler)Delegate.Remove(handler2, value);
+                        canExecuteChanged = System.Threading.Interlocked.CompareExchange<EventHandler>(
+                            ref this._requerySuggestedLocal, 
+                            handler3, 
+                            handler2);
+                    } 
+                    while (canExecuteChanged != handler2); 
+                    
                     CommandManager.RequerySuggested -= value;
                 }
             }
