@@ -29,6 +29,7 @@ namespace GalaSoft.MvvmLight.Views
     /// <remarks>For this navigation service to work properly, it should be initialized
     /// using the <see cref="Initialize"/> method, with the application's
     /// <see cref="UINavigationController"/>.</remarks>
+    ////[ClassInfo(typeof(INavigationService))]
     public class NavigationService : INavigationService
     {
         /// <summary>

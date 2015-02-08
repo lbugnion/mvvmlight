@@ -23,6 +23,11 @@ namespace GalaSoft.MvvmLight.Views
     /// be displayed in various frameworks such as Windows, 
     /// Windows Phone, Android, iOS etc.
     /// </summary>
+    ////[ClassInfo(typeof(IDialogService),
+    ////    VersionString = "5.1.1",
+    ////    DateString = "201502072030",
+    ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
+    ////    Email = "laurent@galasoft.ch")]
     public interface IDialogService
     {
         /// <summary>

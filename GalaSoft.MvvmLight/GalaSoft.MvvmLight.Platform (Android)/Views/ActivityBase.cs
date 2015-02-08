@@ -22,6 +22,7 @@ namespace GalaSoft.MvvmLight.Views
     /// A base class for Activities that allow the <see cref="NavigationService"/>
     /// to keep track of the navigation journal.
     /// </summary>
+    ////[ClassInfo(typeof(INavigationService))]
     public class ActivityBase : Activity
     {
         /// <summary>

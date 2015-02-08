@@ -25,8 +25,8 @@ namespace GalaSoft.MvvmLight.Helpers
     /// to be created to the Action's owner. The owner can be garbage collected at any time.
     /// </summary>
     ////[ClassInfo(typeof(WeakAction),
-    ////    VersionString = "4.2.16",
-    ////    DateString = "201309262235",
+    ////    VersionString = "5.1.16",
+    ////    DateString = "201502072030",
     ////    Description = "A class allowing to store and invoke actions without keeping a hard reference to the action's target.",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]

@@ -28,6 +28,7 @@ namespace GalaSoft.MvvmLight.Views
     /// but feel free to develop your own IDialogService implementation
     /// if needed.
     /// </summary>
+    ////[ClassInfo(typeof(IDialogService))]
     public class DialogService : IDialogService
     {
         /// <summary>

@@ -26,6 +26,7 @@ namespace GalaSoft.MvvmLight.Views
     /// Windows Phone Silverlight implementation of <see cref="INavigationService"/>.
     /// This implementation can be used in Windows Phone applications (not Xamarin Forms).
     /// </summary>
+    ////[ClassInfo(typeof(INavigationService))]
     public class NavigationService : INavigationService
     {
         /// <summary>

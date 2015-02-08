@@ -43,8 +43,8 @@ namespace GalaSoft.MvvmLight.Command
     /// This will enable (or restore) the CommandManager class which handles
     /// automatic enabling/disabling of controls based on the CanExecute delegate.</remarks>
     ////[ClassInfo(typeof(RelayCommand),
-    ////  VersionString = "4.0.11",
-    ////  DateString = "201206191330",
+    ////  VersionString = "5.1.13",
+    ////  DateString = "201502072030",
     ////  Description = "A command whose sole purpose is to relay its functionality to other objects by invoking delegates.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
