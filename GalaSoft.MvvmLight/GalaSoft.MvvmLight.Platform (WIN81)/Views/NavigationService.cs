@@ -24,6 +24,7 @@ namespace GalaSoft.MvvmLight.Views
     /// <summary>
     /// Windows 8 and Windows Phone Application 8.1 implementation of <see cref="INavigationService"/>.
     /// </summary>
+    ////[ClassInfo(typeof(INavigationService))]
     public class NavigationService : INavigationService
     {
         /// <summary>

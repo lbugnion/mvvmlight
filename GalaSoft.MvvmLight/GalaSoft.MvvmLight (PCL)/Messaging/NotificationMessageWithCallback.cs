@@ -27,6 +27,7 @@ namespace GalaSoft.MvvmLight.Messaging
     /// <seealso cref="NotificationMessageAction"/> and
     /// <seealso cref="NotificationMessageAction&lt;TCallbackParameter&gt;"/>.
     /// </summary>
+    ////[ClassInfo(typeof(Messenger))]
     public class NotificationMessageWithCallback : NotificationMessage
     {
         private readonly Delegate _callback;

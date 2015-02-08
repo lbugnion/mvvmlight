@@ -44,6 +44,7 @@ namespace GalaSoft.MvvmLight.Command
     /// GalaSoft.MvvmLight.CommandWpf namespace (instead of GalaSoft.MvvmLight.Command).
     /// This will enable (or restore) the CommandManager class which handles
     /// automatic enabling/disabling of controls based on the CanExecute delegate.</remarks>
+    ////[ClassInfo(typeof(RelayCommand))]
     public class RelayCommand<T> : ICommand
     {
         private readonly WeakAction<T> _execute;

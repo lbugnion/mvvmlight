@@ -46,4 +46,5 @@ using System.Windows.Markup;
 [assembly: CLSCompliant(true)]
 [assembly:NeutralResourcesLanguage("en-US")]
 
-[assembly: AssemblyVersion("5.0.2.*")]
+// BL0034
+[assembly: AssemblyVersion("5.1.0.*")]

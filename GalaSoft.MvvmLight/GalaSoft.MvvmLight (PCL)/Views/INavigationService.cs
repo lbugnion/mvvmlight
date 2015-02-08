@@ -20,6 +20,11 @@ namespace GalaSoft.MvvmLight.Views
     /// be performed in various frameworks such as Windows, 
     /// Windows Phone, Android, iOS etc.
     /// </summary>
+    ////[ClassInfo(typeof(INavigationService),
+    ////    VersionString = "5.1.2",
+    ////    DateString = "201502072030",
+    ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
+    ////    Email = "laurent@galasoft.ch")]
     public interface INavigationService
     {
         /// <summary>

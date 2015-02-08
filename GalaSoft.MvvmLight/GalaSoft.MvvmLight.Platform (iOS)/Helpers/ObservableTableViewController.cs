@@ -37,6 +37,11 @@ namespace GalaSoft.MvvmLight.Helpers
     /// <para>https://gist.github.com/praeclarum/10024108</para>
     /// </remarks>
     /// <typeparam name="T">The type of the items contained in the <see cref="DataSource"/>.</typeparam>
+    ////[ClassInfo(typeof(ObservableTableViewController<T>),
+    ////    VersionString = "5.1.1",
+    ////    DateString = "201502072030",
+    ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
+    ////    Email = "laurent@galasoft.ch")]
     public class ObservableTableViewController<T> : UITableViewController, INotifyPropertyChanged
     {
         /// <summary>

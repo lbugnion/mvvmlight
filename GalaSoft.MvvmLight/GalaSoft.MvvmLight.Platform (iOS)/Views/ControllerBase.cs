@@ -7,6 +7,7 @@ namespace GalaSoft.MvvmLight.Views
     /// A base class to be used with the <see cref="NavigationService" /> when
     /// using Storyboards.
     /// </summary>
+    ////[ClassInfo(typeof(INavigationService))]
     public class ControllerBase : UIViewController
     {
         /// <summary>

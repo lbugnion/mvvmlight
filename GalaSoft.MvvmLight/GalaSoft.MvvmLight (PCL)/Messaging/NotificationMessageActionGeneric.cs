@@ -28,6 +28,7 @@ namespace GalaSoft.MvvmLight.Messaging
     /// </summary>
     /// <typeparam name="TCallbackParameter">The type of the callback method's
     /// only parameter.</typeparam>
+    ////[ClassInfo(typeof(Messenger))]
     public class NotificationMessageAction<TCallbackParameter> : NotificationMessageWithCallback
     {
         /// <summary>

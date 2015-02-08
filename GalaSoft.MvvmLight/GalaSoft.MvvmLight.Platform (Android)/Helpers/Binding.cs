@@ -18,8 +18,14 @@ using System;
 namespace GalaSoft.MvvmLight.Helpers
 {
     /// <summary>
-    /// Base class for bindings.
+    /// Base class for bindings in Xamarin.iOS and Xamarin.Android.
     /// </summary>
+    ////[ClassInfo(typeof(Binding),
+    ////    VersionString = "5.1.2",
+    ////    DateString = "201502072030",
+    ////    Description = "Base class for bindings in Xamarin.iOS and Xamarin.Android",
+    ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
+    ////    Email = "laurent@galasoft.ch")]
     public abstract class Binding
     {
         /// <summary>

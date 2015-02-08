@@ -29,8 +29,8 @@ namespace GalaSoft.MvvmLight.Helpers
     /// </summary>
     /// <typeparam name="T">The type of the items contained in the <see cref="DataSource"/>.</typeparam>
     ////[ClassInfo(typeof(ObservableAdapter<T>),
-    ////    VersionString = "1.0.0",
-    ////    DateString = "201410012233",
+    ////    VersionString = "5.1.1",
+    ////    DateString = "201502072030",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
     public class ObservableAdapter<T> : BaseAdapter<T>

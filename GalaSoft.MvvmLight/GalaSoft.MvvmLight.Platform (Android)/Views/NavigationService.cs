@@ -25,6 +25,7 @@ namespace GalaSoft.MvvmLight.Views
     /// </summary>
     /// <remarks>For this navigation service to work properly, your Activities
     /// should derive from the <see cref="ActivityBase"/> class.</remarks>
+    ////[ClassInfo(typeof(INavigationService))]
     public class NavigationService : INavigationService
     {
         /// <summary>
