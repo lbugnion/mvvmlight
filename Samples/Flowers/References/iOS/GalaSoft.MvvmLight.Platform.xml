@@ -6,7 +6,7 @@
     <members>
         <member name="T:GalaSoft.MvvmLight.Helpers.Binding">
             <summary>
-            Base class for bindings.
+            Base class for bindings in Xamarin.iOS and Xamarin.Android.
             </summary>
         </member>
         <member name="F:GalaSoft.MvvmLight.Helpers.Binding.TopSource">
@@ -900,6 +900,24 @@
             <returns>The number of rows in the data source.</returns>
             <remarks>In the current implementation, only one section is supported.</remarks>
         </member>
+        <member name="T:GalaSoft.MvvmLight.Views.ControllerBase">
+            <summary>
+            A base class to be used with the <see cref="T:GalaSoft.MvvmLight.Views.NavigationService"/> when
+            using Storyboards.
+            </summary>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Views.ControllerBase.#ctor(System.IntPtr)">
+            <summary>
+            Initializes a new instance of this class.
+            </summary>
+            <param name="handle"></param>
+        </member>
+        <member name="P:GalaSoft.MvvmLight.Views.ControllerBase.NavigationParameter">
+            <summary>
+            The parameter passed to this controller by the
+            <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.NavigateTo(System.String,System.Object)"/>  method.
+            </summary>
+        </member>
         <member name="T:GalaSoft.MvvmLight.Views.DialogService">
             <summary>
             An implementation of <see cref="T:GalaSoft.MvvmLight.Views.IDialogService"/> allowing
@@ -1010,6 +1028,20 @@
             using the <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.Initialize(UIKit.UINavigationController)"/> method, with the application's
             <see cref="T:UIKit.UINavigationController"/>.</remarks>
         </member>
+        <member name="F:GalaSoft.MvvmLight.Views.NavigationService.RootPageKey">
+            <summary>
+            The key that is returned by the <see cref="P:GalaSoft.MvvmLight.Views.NavigationService.CurrentPageKey"/> property
+            when the current UIViewController is the root controller.
+            </summary>
+        </member>
+        <member name="F:GalaSoft.MvvmLight.Views.NavigationService.UnknownPageKey">
+            <summary>
+            The key that is returned by the <see cref="P:GalaSoft.MvvmLight.Views.NavigationService.CurrentPageKey"/> property
+            when the current UIViewController is not found.
+            This can be the case when the navigation wasn't managed by this NavigationService,
+            for example when it is directly triggered in the Storyboard.
+            </summary>
+        </member>
         <member name="M:GalaSoft.MvvmLight.Views.NavigationService.GoBack">
             <summary>
             If possible, discards the current page and displays the previous page
@@ -1068,6 +1100,17 @@
             in the <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.NavigateTo(System.String)"/> or <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.NavigateTo(System.String,System.Object)"/> methods.</param>
             <param name="createAction">A Func returning the controller corresponding
             to the given key.</param>
+        </member>
+        <member name="M:GalaSoft.MvvmLight.Views.NavigationService.Configure(System.String,System.String)">
+            <summary>
+            Adds a key/page pair to the navigation service.
+            This method should be used when working with Storyboard for the UI.
+            </summary>
+            <param name="key">The key that will be used later
+            in the <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.NavigateTo(System.String)"/> or <see cref="M:GalaSoft.MvvmLight.Views.NavigationService.NavigateTo(System.String,System.Object)"/> methods.</param>
+            <param name="storyboardId">The idea of the UIViewController
+            in the Storyboard. Use the storyboardIdentifier/restorationIdentifier property
+            in the *.storyboard document.</param>
         </member>
         <member name="M:GalaSoft.MvvmLight.Views.NavigationService.Initialize(UIKit.UINavigationController)">
             <summary>

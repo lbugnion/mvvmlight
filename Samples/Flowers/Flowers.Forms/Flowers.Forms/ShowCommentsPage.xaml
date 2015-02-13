@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flowers.Forms.ShowCommentsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label x:Name="PageTitle"
+               FontSize="Large"
+               Style="{StaticResource SecondaryPageTitleStyle}"
+               Text="{Binding Model.Name, StringFormat=Comments for \{0\}}"/>
+
+        <ListView ItemsSource="{Binding Model.Comments}"
+                  Grid.Row="1"
+                  ItemTemplate="{StaticResource CommentTemplate}">
+            <ListView.RowHeight>
+                <OnPlatform x:TypeArguments="x:Int32"
+                            iOS="75"
+                            Android="50"
+                            WinPhone="90" />
+            </ListView.RowHeight>
+        </ListView>
+
+        <Button Text="Add comment"
+                Grid.Row="2"
+                Command="{Binding AddCommentCommand}"
+                Style="{StaticResource ButtonStyle}" />
+    </Grid>
+</ContentPage>

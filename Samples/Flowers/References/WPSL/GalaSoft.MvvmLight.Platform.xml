@@ -201,6 +201,12 @@
             This implementation can be used in Windows Phone applications (not Xamarin Forms).
             </summary>
         </member>
+        <member name="F:GalaSoft.MvvmLight.Views.NavigationService.RootPageKey">
+            <summary>
+            The key that is returned by the <see cref="P:GalaSoft.MvvmLight.Views.NavigationService.CurrentPageKey"/> property
+            when the current Page is the root page.
+            </summary>
+        </member>
         <member name="F:GalaSoft.MvvmLight.Views.NavigationService.ParameterKeyName">
             <summary>
             Use this key name to retrieve the navigation parameter.

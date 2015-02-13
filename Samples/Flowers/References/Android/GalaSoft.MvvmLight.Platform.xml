@@ -6,7 +6,7 @@
     <members>
         <member name="T:GalaSoft.MvvmLight.Helpers.Binding">
             <summary>
-            Base class for bindings.
+            Base class for bindings in Xamarin.iOS and Xamarin.Android.
             </summary>
         </member>
         <member name="F:GalaSoft.MvvmLight.Helpers.Binding.TopSource">
@@ -853,6 +853,12 @@
             </summary>
             <remarks>For this navigation service to work properly, your Activities
             should derive from the <see cref="T:GalaSoft.MvvmLight.Views.ActivityBase"/> class.</remarks>
+        </member>
+        <member name="F:GalaSoft.MvvmLight.Views.NavigationService.RootPageKey">
+            <summary>
+            The key that is returned by the <see cref="P:GalaSoft.MvvmLight.Views.NavigationService.CurrentPageKey"/> property
+            when the current Activiy is the root activity.
+            </summary>
         </member>
         <member name="M:GalaSoft.MvvmLight.Views.NavigationService.GoBack">
             <summary>

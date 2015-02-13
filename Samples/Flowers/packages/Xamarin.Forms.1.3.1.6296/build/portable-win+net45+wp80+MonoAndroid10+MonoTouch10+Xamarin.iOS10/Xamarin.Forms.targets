@@ -1,0 +1,53 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask TaskName="Xamarin.Forms.Build.Tasks.XamlGTask" AssemblyFile="Xamarin.Forms.Build.Tasks.dll"/>
+		
+	<!-- generate xaml.g.cs files at edit time, to feed intellisense, as well as at build time, for msbuild and XS -->
+	<PropertyGroup>
+		<CompileDependsOn>
+			XamlG;
+			$(CompileDependsOn);
+		</CompileDependsOn>
+	</PropertyGroup>
+
+	<Target Name="UpdateDesignTimeXaml" Condition="'$(UseHostCompilerIfAvailable)' == 'true'" DependsOnTargets="Compile"/>
+
+	<Target Name="XamlG" DependsOnTargets="$(XamlGDependsOn)"/>
+
+	<PropertyGroup>
+		<XamlGDependsOn>
+			_PreXamlG;
+			_CollectXamlFiles;
+			_CoreXamlG;
+			_PostXamlG
+		</XamlGDependsOn>
+	</PropertyGroup>
+
+	<Target Name="_PreXamlG">
+		<MakeDir Directories="$(IntermediateOutputPath)"/>
+	</Target>
+
+	<Target Name="_CollectXamlFiles">
+		<ItemGroup>
+			<XamlFiles Include="@(EmbeddedResource)" Condition="'%(Extension)' == '.xaml'"/>
+			<XamlGFiles Include="@(XamlFiles->'$(IntermediateOutputPath)%(Filename).xaml.g$(DefaultLanguageSourceExtension)')"/>
+		</ItemGroup>
+	</Target>
+
+	<Target Name="_CoreXamlG"
+		Inputs = "@(XamlFiles)"
+		Outputs = "$(IntermediateOutputPath)%(Filename).xaml.g$(DefaultLanguageSourceExtension)">
+		<XamlGTask
+			Source="@(XamlFiles)"
+			Language = "$(Language)"
+			AssemblyName = "$(AssemblyName)"
+			OutputFile = "$(IntermediateOutputPath)%(Filename).xaml.g$(DefaultLanguageSourceExtension)">
+		</XamlGTask>
+	</Target>
+
+	<Target Name="_PostXamlG">
+		<ItemGroup>
+			<Compile Include="@(XamlgFiles)"/>
+			<FileWrites Include="@(XamlgFiles)"/>
+		</ItemGroup>
+	</Target>
+</Project>
