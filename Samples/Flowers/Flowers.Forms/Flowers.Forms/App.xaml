@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Flowers.Data.ViewModel;assembly=Flowers.Data"
+             x:Class="Flowers.Forms.App">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="MainPageTitleStyle"
+                   TargetType="Label">
+
+                <!--Cannot set the FontSize in Style, known bug in Forms V1.3-->
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+
+            </Style>
+
+            <Style x:Key="SecondaryPageTitleStyle"
+                   TargetType="Label"
+                   BasedOn="{StaticResource MainPageTitleStyle}">
+
+                <!--Cannot set the FontSize in Style, known bug in Forms V1.3-->
+                <Setter Property="TextColor"
+                        Value="#FFFA28D4" />
+
+            </Style>
+
+            <Style x:Key="DetailsPageTitleStyle"
+                   TargetType="Label"
+                   BasedOn="{StaticResource SecondaryPageTitleStyle}">
+
+                <!--Cannot set the FontSize in Style, known bug in Forms V1.3-->
+                <Setter Property="HorizontalOptions"
+                        Value="Start" />
+
+                <Setter Property="TextColor"
+                        Value="#FFFA28D4" />
+
+            </Style>
+
+            <Style x:Key="LastLoadedTextStyle"
+                   TargetType="Label">
+
+                <!--Cannot set the FontSize in Style, known bug in Forms V1.3-->
+                <Setter Property="HorizontalOptions"
+                        Value="Start" />
+
+            </Style>
+            
+            <Style x:Key="ButtonStyle"
+                   TargetType="Button">
+                
+                <Setter Property="BackgroundColor"
+                        Value="#FFAAAAAA" />
+
+                <Setter Property="HorizontalOptions"
+                        Value="Fill" />
+                
+                <Setter Property="BorderRadius"
+                        Value="0" />
+
+                <Setter Property="BorderColor"
+                        Value="White" />
+
+                <Setter Property="TextColor"
+                        Value="White" />
+
+                <Setter Property="BorderWidth"
+                        Value="2" />
+            </Style>
+
+            <DataTemplate x:Key="FlowerTemplate">
+                <ViewCell>
+                    <ViewCell.View>
+                        <Grid Padding="20,0,20,0"
+                              BackgroundColor="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding Model.Image}"
+                                   VerticalOptions="Start"
+                                   HorizontalOptions="StartAndExpand">
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                                iOS="50"
+                                                Android="50"
+                                                WinPhone="100" />
+                                </Image.WidthRequest>
+
+                                <Image.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                                iOS="50"
+                                                Android="50"
+                                                WinPhone="100" />
+                                </Image.HeightRequest>
+                            </Image>
+
+                            <StackLayout Grid.Column="1"
+                                         HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Model.Name}"
+                                       TextColor="#FFFA28D4"
+                                       Font="Large" />
+
+                                <Label Text="{Binding Model.Description}"
+                                       Font="Medium"
+                                       LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+
+            <DataTemplate x:Key="CommentTemplate">
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout Padding="20,0,20,0">
+                            <Label Text="{Binding Text}"
+                                   Font="Medium" />
+
+                            <Label Text="{Binding InputDate}"
+                                   Font="Micro" />
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+
+            <vm:ViewModelLocator x:Key="Locator" />
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

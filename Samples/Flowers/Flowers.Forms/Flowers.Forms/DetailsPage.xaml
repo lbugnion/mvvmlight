@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flowers.Forms.DetailsPage">
+
+    <Grid Padding="20,0,20,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid VerticalOptions="Start">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="{Binding Model.Image}"
+                   VerticalOptions="StartAndExpand"
+                   HorizontalOptions="StartAndExpand" />
+
+            <Button Text="See Comments"
+                    x:Name="ShowCommentsButton"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center" />
+        </Grid>
+
+        <Label Text="{Binding Model.Name}"
+               Grid.Row="1"
+               Style="{StaticResource DetailsPageTitleStyle}"
+               Font="Large" />
+
+        <ScrollView Grid.Row="2">
+            <Label Text="{Binding Model.Description}"
+                   Font="Medium" />
+        </ScrollView>
+    </Grid>
+</ContentPage>

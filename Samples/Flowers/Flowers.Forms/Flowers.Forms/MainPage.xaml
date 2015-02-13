@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flowers.Forms.MainPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Text="All flowers"
+               FontSize="Large"
+               Style="{StaticResource MainPageTitleStyle}"/>
+
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Flowers}"
+                  x:Name="FlowersList"
+                  ItemTemplate="{StaticResource FlowerTemplate}">
+            <ListView.RowHeight>
+                <OnPlatform x:TypeArguments="x:Int32"
+                            iOS="60"
+                            Android="60"
+                            WinPhone="120" />
+            </ListView.RowHeight>
+        </ListView>
+
+        <ContentView Grid.Row="2"
+                     Padding="10,0">
+            <Label Text="{Binding LastLoadedFormatted}"
+                   Style="{StaticResource LastLoadedTextStyle}"
+                   FontSize="Micro" />
+        </ContentView>
+
+        <Button Text="refresh"
+                Grid.Row="3"
+                Command="{Binding RefreshCommand}"
+                Style="{StaticResource ButtonStyle}" />
+    </Grid>
+</ContentPage>
