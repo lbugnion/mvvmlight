@@ -21,8 +21,8 @@ namespace GalaSoft.MvvmLight.Views
     /// Windows Phone, Android, iOS etc.
     /// </summary>
     ////[ClassInfo(typeof(INavigationService),
-    ////    VersionString = "5.1.2",
-    ////    DateString = "201502072030",
+    ////    VersionString = "5.1.3",
+    ////    DateString = "201502151930",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
     public interface INavigationService
