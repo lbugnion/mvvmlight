@@ -30,4 +30,4 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 
 // BL0034
-[assembly: AssemblyVersion("5.1.0.*")]
+[assembly: AssemblyVersion("5.1.1.*")]

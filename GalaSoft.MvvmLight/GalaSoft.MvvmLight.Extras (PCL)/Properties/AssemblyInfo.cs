@@ -40,4 +40,4 @@ using System.Runtime.InteropServices;
 [assembly:NeutralResourcesLanguage("en-US")]
 
 // BL0034
-[assembly: AssemblyVersion("5.1.0.*")]
+[assembly: AssemblyVersion("5.1.1.*")]
