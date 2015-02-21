@@ -32,6 +32,11 @@ namespace Flowers
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
 
+            // Avoid aggressive linker problem which removes the Click event
+            RefreshButton.Click += (s, e) =>
+            {
+            };
+
             RefreshButton.SetCommand(
                 "Click",
                 Vm.RefreshCommand);

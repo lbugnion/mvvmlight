@@ -25,8 +25,18 @@ namespace Flowers
             // Retrieve navigation parameter and set as current "DataContext"
             Vm = GlobalNavigation.GetAndRemoveParameter<FlowerViewModel>(Intent);
 
+            // Avoid aggressive linker problem which removes the TextChanged event
+            CommentText.TextChanged += (s, e) =>
+            {
+            };
+
             _saveBinding = this.SetBinding(
                 () => CommentText.Text);
+
+            // Avoid aggressive linker problem which removes the Click event
+            SaveCommentButton.Click += (s, e) =>
+            {
+            };
 
             SaveCommentButton.SetCommand(
                 "Click",
