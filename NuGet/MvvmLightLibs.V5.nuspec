@@ -12,7 +12,7 @@
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern.</description>
         <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows Store, Xamarin Android and Xamarin iOS. It is a light and pragmatic framework that contains only the essential components needed. This version contains only the libraries!</summary>
-        <releaseNotes>See http://www.galasoft.ch/mvvm/installing/changes for a list of changes.</releaseNotes>
+        <releaseNotes>http://www.mvvmlight.net/installing/changes</releaseNotes>
         <copyright>Copyright 2009-2015 Laurent Bugnion (GalaSoft)</copyright>
         <language>en-US</language>
         <tags>mvvm mvvmlight silverlight windowsstore winrt winstore wpf windowsphone windowsphone7 windowsphone8 xamarin android iOS pcl</tags>
