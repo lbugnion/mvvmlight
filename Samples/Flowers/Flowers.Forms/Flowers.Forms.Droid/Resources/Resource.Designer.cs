@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("Flowers.Forms.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Flowers.Forms.Resource", IsApplication=true)]
 
-namespace Flowers.Forms.Droid
+namespace Flowers.Forms
 {
 	
 	

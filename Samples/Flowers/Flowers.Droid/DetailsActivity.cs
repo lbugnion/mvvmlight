@@ -36,6 +36,11 @@ namespace Flowers
 
             ImageDownloader.AssignImageAsync(FlowerImageView, Vm.Model.Image, this);
 
+            // Avoid aggressive linker problem which removes the Click event
+            AddCommentButton.Click += (s, e) =>
+            {
+            };
+
             AddCommentButton.SetCommand(
                 "Click",
                 Vm.AddCommentCommand);
