@@ -369,6 +369,36 @@ namespace GalaSoft.MvvmLight.Test.Command
             Assert.IsTrue(vm.CommandExecuted);
 #endif
         }
+
+        [TestMethod]
+        public void TestAlwaysInvoke()
+        {
+            var button = new Button
+            {
+                IsEnabled = false
+            };
+
+            var result = false;
+
+            var command = new RelayCommand(
+                () =>
+                {
+                    result = true;
+                });
+
+            var trigger = new EventToCommand
+            {
+                Command = command
+            };
+
+            ((IAttachedObject)trigger).Attach(button);
+            trigger.Invoke();
+            Assert.IsFalse(result);
+
+            trigger.AlwaysInvokeCommand = true;
+            trigger.Invoke();
+            Assert.IsTrue(result);
+        }
 #endif
     }
 }
