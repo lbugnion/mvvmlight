@@ -47,30 +47,6 @@ namespace GalaSoft.MvvmLight.Views
         }
 
         /// <summary>
-        /// Overrides <see cref="Activity.OnDestroy"/>. If you override
-        /// this method in your own Activities, make sure to call
-        /// base.OnDestroy to allow the <see cref="NavigationService"/>
-        /// to work properly.
-        /// </summary>
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            Cleanup();
-        }
-
-        /// <summary>
-        /// Overrides <see cref="Activity.OnPause"/>. If you override
-        /// this method in your own Activities, make sure to call
-        /// base.OnPause to allow the <see cref="NavigationService"/>
-        /// to work properly.
-        /// </summary>
-        protected override void OnPause()
-        {
-            base.OnPause();
-            Cleanup();
-        }
-
-        /// <summary>
         /// Overrides <see cref="Activity.OnResume"/>. If you override
         /// this method in your own Activities, make sure to call
         /// base.OnResume to allow the <see cref="NavigationService"/>
@@ -87,14 +63,6 @@ namespace GalaSoft.MvvmLight.Views
             }
 
             base.OnResume();
-        }
-
-        private void Cleanup()
-        {
-            if (CurrentActivity == this)
-            {
-                CurrentActivity = null;
-            }
         }
 
         internal string ActivityKey
