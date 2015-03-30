@@ -300,6 +300,37 @@ namespace GalaSoft.MvvmLight.Command
             new PropertyMetadata(null));
 
         /// <summary>
+        /// The <see cref="AlwaysInvokeCommand" /> dependency property's name.
+        /// </summary>
+        public const string AlwaysInvokeCommandPropertyName = "AlwaysInvokeCommand";
+
+        /// <summary>
+        /// Gets or sets a value indicating if the command should be invoked even
+        /// if the attached control is disabled. This is a dependency property.
+        /// </summary>
+        public bool AlwaysInvokeCommand
+        {
+            get
+            {
+                return (bool)GetValue(AlwaysInvokeCommandProperty);
+            }
+            set
+            {
+                SetValue(AlwaysInvokeCommandProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Identifies the <see cref="AlwaysInvokeCommand" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty AlwaysInvokeCommandProperty = DependencyProperty.Register(
+            AlwaysInvokeCommandPropertyName,
+            typeof(bool),
+            typeof(EventToCommand),
+            new PropertyMetadata(false));
+
+
+        /// <summary>
         /// Provides a simple way to invoke this trigger programatically
         /// without any EventArgs.
         /// </summary>
@@ -316,7 +347,8 @@ namespace GalaSoft.MvvmLight.Command
         /// <param name="parameter">The EventArgs of the fired event.</param>
         protected override void Invoke(object parameter)
         {
-            if (AssociatedElementIsDisabled())
+            if (AssociatedElementIsDisabled() 
+                && !AlwaysInvokeCommand)
             {
                 return;
             }
