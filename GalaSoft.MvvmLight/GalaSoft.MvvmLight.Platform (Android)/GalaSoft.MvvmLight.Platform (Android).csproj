@@ -58,6 +58,7 @@
     <Compile Include="Helpers\PropertyChangedEventManager.cs" />
     <Compile Include="Helpers\UpdateSourceTriggerMode.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Threading\DispatcherHelper.cs" />
     <Compile Include="Views\ActivityBase.cs" />
     <Compile Include="Views\DialogService.cs" />
     <Compile Include="Views\NavigationService.cs" />

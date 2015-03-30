@@ -62,6 +62,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Helpers\ObservableTableViewController.cs" />
+    <Compile Include="Threading\DispatcherHelper.cs" />
     <Compile Include="Views\ControllerBase.cs" />
     <Compile Include="Views\DialogService.cs" />
     <Compile Include="Views\NavigationService.cs" />
