@@ -16,6 +16,7 @@
 using System;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Content;
 
 namespace GalaSoft.MvvmLight.Views
 {
@@ -45,18 +46,24 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(string message, string title, string buttonText, Action afterHideCallback)
         {
-            var tcs = new TaskCompletionSource<bool>();
-            var builder = CreateBuilder(
+            Action<bool> callback = r =>
+            {
+                if (afterHideCallback != null)
+                {
+                    afterHideCallback();
+                    afterHideCallback = null;
+                }
+            };
+
+            var info = CreateDialog(
                 message, 
                 title, 
                 buttonText, 
                 null, 
-                afterHideCallback,
-                null,
-                tcs.SetResult);
+                callback);
 
-            builder.Show();
-            return tcs.Task;
+            info.Dialog.Show();
+            return info.Tcs.Task;
         }
 
         /// <summary>
@@ -74,18 +81,24 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowError(Exception error, string title, string buttonText, Action afterHideCallback)
         {
-            var tcs = new TaskCompletionSource<bool>();
-            var builder = CreateBuilder(
+            Action<bool> callback = r =>
+            {
+                if (afterHideCallback != null)
+                {
+                    afterHideCallback();
+                    afterHideCallback = null;
+                }
+            };
+
+            var info = CreateDialog(
                 error.Message, 
                 title, 
                 buttonText, 
                 null, 
-                afterHideCallback,
-                null,
-                tcs.SetResult);
+                callback);
 
-            builder.Show();
-            return tcs.Task;
+            info.Dialog.Show();
+            return info.Tcs.Task;
         }
 
         /// <summary>
@@ -100,18 +113,12 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title)
         {
-            var tcs = new TaskCompletionSource<bool>();
-            var builder = CreateBuilder(
+            var info = CreateDialog(
                 message, 
-                title,
-                null,
-                null,
-                null,
-                null,
-                tcs.SetResult);
+                title);
 
-            builder.Show();
-            return tcs.Task;
+            info.Dialog.Show();
+            return info.Tcs.Task;
         }
 
         /// <summary>
@@ -130,18 +137,24 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title, string buttonText, Action afterHideCallback)
         {
-            var tcs = new TaskCompletionSource<bool>();
-            var builder = CreateBuilder(
+            Action<bool> callback = r =>
+            {
+                if (afterHideCallback != null)
+                {
+                    afterHideCallback();
+                    afterHideCallback = null;
+                }
+            };
+
+            var info = CreateDialog(
                 message, 
                 title, 
                 buttonText, 
                 null, 
-                afterHideCallback,
-                null,
-                tcs.SetResult);
+                callback);
 
-            builder.Show();
-            return tcs.Task;
+            info.Dialog.Show();
+            return info.Tcs.Task;
         }
 
         /// <summary>
@@ -170,18 +183,24 @@ namespace GalaSoft.MvvmLight.Views
             string buttonCancelText,
             Action<bool> afterHideCallback)
         {
-            var tcs = new TaskCompletionSource<bool>();
-            var builder = CreateBuilder(
+            Action<bool> callback = r =>
+            {
+                if (afterHideCallback != null)
+                {
+                    afterHideCallback(r);
+                    afterHideCallback = null;
+                }
+            };
+
+            var info = CreateDialog(
                 message,
                 title,
                 buttonConfirmText,
                 buttonCancelText ?? "Cancel",
-                null,
-                afterHideCallback,
-                tcs.SetResult);
+                callback);
 
-            builder.Show();
-            return tcs.Task;
+            info.Dialog.Show();
+            return info.Tcs.Task;
         }
 
         /// <summary>
@@ -196,81 +215,101 @@ namespace GalaSoft.MvvmLight.Views
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessageBox(string message, string title)
         {
-            var tcs = new TaskCompletionSource<bool>();
-            var builder = CreateBuilder(
-                message,
-                title,
-                null,
-                null,
-                null,
-                null,
-                tcs.SetResult);
-            builder.Show();
-
-            tcs.SetResult(true);
-            return tcs.Task;
+            return ShowMessage(message, title);
         }
 
-        private static AlertDialog.Builder CreateBuilder(
-            string message,
+        private static AlertDialogInfo CreateDialog(
+            string content,
             string title,
-            string buttonConfirmText = "OK",
-            string buttonCancelText = null,
-            Action afterHideCallback = null,
-            Action<bool> afterHideCallbackWithResponse = null,
-            Action<bool> afterHideInternal = null)
+            string okText = null,
+            string cancelText = null,
+            Action<bool> afterHideCallbackWithResponse = null)
         {
+            var tcs = new TaskCompletionSource<bool>();
+
             var builder = new AlertDialog.Builder(ActivityBase.CurrentActivity);
+            builder.SetMessage(content);
+            builder.SetTitle(title);
 
-            builder.SetMessage(message);
+            AlertDialog dialog = null;
 
-            if (!string.IsNullOrEmpty(title))
+            builder.SetPositiveButton(okText ?? "OK", (d, index) =>
             {
-                builder.SetTitle(title);
+                tcs.TrySetResult(true);
+
+                // ReSharper disable AccessToModifiedClosure
+                if (dialog != null)
+                {
+                    dialog.Dismiss();
+                    dialog.Dispose();
             }
 
-            if (!string.IsNullOrEmpty(buttonConfirmText))
+                if (afterHideCallbackWithResponse != null)
             {
-                builder.SetPositiveButton(
-                    buttonConfirmText,
-                    (s, e) =>
+                    afterHideCallbackWithResponse(true);
+                }
+                // ReSharper restore AccessToModifiedClosure
+            });
+
+            if (cancelText != null)
                     {
-                        if (afterHideCallback != null)
+                builder.SetNegativeButton(cancelText, (d, index) =>
                         {
-                            afterHideCallback();
+                    tcs.TrySetResult(false);
+
+                    // ReSharper disable AccessToModifiedClosure
+                    if (dialog != null)
+                        {
+                        dialog.Dismiss();
+                        dialog.Dispose();
                         }
 
-                        if (afterHideCallbackWithResponse != null)
+                    if (afterHideCallbackWithResponse != null)
                         {
-                            afterHideCallbackWithResponse(true);
+                        afterHideCallbackWithResponse(false);
                         }
-
-                        if (afterHideInternal != null)
-                        {
-                            afterHideInternal(true);
-                        }
+                    // ReSharper restore AccessToModifiedClosure
                     });
             }
 
-            if (!string.IsNullOrEmpty(buttonCancelText))
-            {
-                builder.SetNegativeButton(
-                    buttonCancelText,
-                    (s, e) =>
+            builder.SetOnDismissListener(new OnDismissListener(() =>
                     {
+                tcs.TrySetResult(false);
+
                         if (afterHideCallbackWithResponse != null)
                         {
                             afterHideCallbackWithResponse(false);
                         }
+            }));
 
-                        if (afterHideInternal != null)
+            dialog = builder.Create();
+
+            return new AlertDialogInfo
+            {
+                Dialog = dialog,
+                Tcs = tcs
+            };
+        }
+
+        private struct AlertDialogInfo
                         {
-                            afterHideInternal(false);
+            public AlertDialog Dialog;
+            public TaskCompletionSource<bool> Tcs;
                         }
-                    });
+
+        private sealed class OnDismissListener : Java.Lang.Object, IDialogInterfaceOnDismissListener
+        {
+            private readonly Action _action;
+
+            public OnDismissListener(Action action)
+            {
+                _action = action;
             }
 
-            return builder;
+            public void OnDismiss(IDialogInterface dialog)
+            {
+                _action();
+            }
         }
     }
 }

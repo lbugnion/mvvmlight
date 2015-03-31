@@ -199,7 +199,7 @@ namespace GalaSoft.MvvmLight.Views
                             }
                         }));
 
-                dialog.CancelCommandIndex = 0;
+                dialog.CancelCommandIndex = 1;
             }
 
             return dialog;
