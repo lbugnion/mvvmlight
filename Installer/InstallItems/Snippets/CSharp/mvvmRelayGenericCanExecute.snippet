@@ -62,11 +62,6 @@
                     ?? ($attribute$ = new RelayCommand<$type$>(
                     $param$ =>
                     {
-                        if (!$commandname$.CanExecute($param$))
-                        {
-                            return;
-                        }
-
                         $end$
                     },
                     $param$ => $canexecutevalue$));
