@@ -47,7 +47,6 @@ if ($appxamlPath -eq $null)
 
 if ($appxamlPath -eq $null)
 {
-	# TODO Xamarin
 	# add the required .NET assembly:
 	Add-Type -AssemblyName PresentationFramework 
 	[System.Windows.MessageBox]::Show('Cannot find App.xaml in this project, no other changes made. If you are installing in a PCL, please use "MVVM Light Libs Only" instead.', 'Warning', 'OK')
@@ -64,6 +63,8 @@ else
 	foreach ($propertyGroup in $propertyGroups)
 	{
 		$targetFrameworkProfile = $propertyGroup.SelectNodes("//*") | where {$_.Name -eq "TargetFrameworkProfile" }
+
+#		[System.Windows.MessageBox]::Show("targetFrameworkProfile " + $targetFrameworkProfile, 'TEST', 'OK')
 
 		if ($targetFrameworkProfile -ne $null)
 		{
@@ -149,29 +150,42 @@ else
 		}
 	}
 
+#	[System.Windows.MessageBox]::Show("found " + $found, 'TEST', 'OK')
+	
 	# load App.xaml as XML 
 	$appXamlXml = New-Object xml 
 	$appXamlXml.Load($appxamlPath)
 
-	#$comment = $appXamlXml.CreateComment($found)
-	#$appXamlXml.AppendChild($comment)
+	$appresources = $appXamlXml.SelectNodes("//*") | where { $_.Name -eq "Application.Resources" }
+	$resources = null
 
-	#$comment2 = $appXamlXml.CreateComment($projectPath)
-	#$appXamlXml.AppendChild($comment2)
-	 
-	$resources = $appXamlXml.SelectNodes("//*") | where { $_.Name -eq "Application.Resources" }
-
-	if ($resources -eq $null)
+	if ($appresources -eq $null)
 	{
-		$resources = $appXamlXml.CreateNode("element", "Application.Resources", "http://schemas.microsoft.com/winfx/2006/xaml/presentation")
+#		[System.Windows.MessageBox]::Show("No resources found", 'TEST', 'OK')
+
 		$app = $appXamlXml.SelectNodes("//*") | where { $_.Name -eq "Application" }
 		
 		if ($app -eq $null)
 		{
+#			[System.Windows.MessageBox]::Show("No application node found", 'TEST', 'OK')
 			break
 		}
 
-		$app.AppendChild($resources)
+		$appresources = $appXamlXml.CreateNode("element", "Application.Resources", "http://schemas.microsoft.com/winfx/2006/xaml/presentation")
+		$resources = $appXamlXml.CreateNode("element", "ResourceDictionary", "http://schemas.microsoft.com/winfx/2006/xaml/presentation")
+		
+		$appresources.AppendChild($resources)		
+		$app.AppendChild($appresources)
+	}
+	else
+	{
+		$resources = $appresources.SelectNodes("//*") | where { $_.Name -eq "ResourceDictionary" }
+		
+		if ($resources -eq $null)
+		{
+			$resources = $appXamlXml.CreateNode("element", "ResourceDictionary", "http://schemas.microsoft.com/winfx/2006/xaml/presentation")
+			$appresources.AppendChild($resources)		
+		}
 	}
 
 	$xmlnsPrefix = "clr-namespace:"
@@ -181,11 +195,11 @@ else
 		$xmlnsPrefix = "using:"
 	}
 
+#	[System.Windows.MessageBox]::Show("xmlnsPrefix " + $xmlnsPrefix, 'TEST', 'OK')
+
 	$vml = $appXamlXml.CreateNode("element", "vm:ViewModelLocator", $xmlnsPrefix + $namespace + ".ViewModel")
 	$vml.SetAttribute("Key", "http://schemas.microsoft.com/winfx/2006/xaml", "Locator")
 
-	if ($found -ne "win8")
-	{
 		$app = $appXamlXml.ChildNodes | where { $_.Name -eq "Application" }
 
 		# Check presence of design time XMLNS
@@ -225,37 +239,15 @@ else
 		$attribute = $appXamlXml.CreateAttribute("d", "IsDataSource", "http://schemas.microsoft.com/expression/blend/2008");
 		$attribute.Value = "True";
 		$vml.Attributes.Append($attribute)
-	}
-
-	$mergedDictionaries = $resources.SelectNodes("//*") | where { $_.Name -eq "ResourceDictionary" }
-
-	if ($mergedDictionaries -eq $null)
-	{
-#		Add-Type -AssemblyName PresentationFramework 
-#		[System.Windows.MessageBox]::Show('Found Resources, no merged, checking Locator now', 'Warning', 'OK')
 
 		$existingLocator = $resources.SelectNodes("//*") | where { $_.Name -eq "vm:ViewModelLocator" }
-
-		if ($existingLocator -eq $null)
-		{
-#			[System.Windows.MessageBox]::Show("No locator found")
-			$resources.AppendChild($vml)
-		}
-	}
-	else
-	{
-#		Add-Type -AssemblyName PresentationFramework 
-#		[System.Windows.MessageBox]::Show('Found Resources, merged, checking Locator now', 'Warning', 'OK')
-
-		$existingLocator = $mergedDictionaries.SelectNodes("//*") | where { $_.Name -eq "vm:ViewModelLocator" }
 
 #		[System.Windows.MessageBox]::Show($existingLocator -ne $null)
 
 		if ($existingLocator -eq $null)
 		{
 #			[System.Windows.MessageBox]::Show("No locator found")
-			$mergedDictionaries[0].AppendChild($vml)
-		}
+		$resources.AppendChild($vml)
 	}
 
 	$appXamlXml.Save($appxamlPath)
@@ -268,6 +260,12 @@ else
 		
 		$ie = New-Object -ComObject InternetExplorer.Application
 		$ie.Navigate("http://www.mvvmlight.net/nuget-univ")
+		$ie.Visible = $true
+	}
+	else
+	{
+		$ie = New-Object -ComObject InternetExplorer.Application
+		$ie.Navigate("http://www.mvvmlight.net/")
 		$ie.Visible = $true
 	}
 }
