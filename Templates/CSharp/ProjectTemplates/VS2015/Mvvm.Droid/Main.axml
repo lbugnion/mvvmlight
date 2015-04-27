@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <TextView
+        android:text="Welcome to MVVM Light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/WelcomeText"
+        android:textColor="#ffa703ff"
+        android:textSize="36dp"
+        android:gravity="center"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:height="100dp" />
+    <Button
+        android:text="Hello Android, Click me!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/IncrementButton"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp" />
+    <TextView
+        android:text="Tap to second page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TapText"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="#ffa703ff" />
+    <Button
+        android:text="Show a dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ShowDialogButton"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DialogNavText"
+        android:text="Enter a message for dialog and nav"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp" />
+    <TextView
+        android:text="Clock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ClockText"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:textSize="24dp"
+        android:textColor="#ffa703ff" />
+    <Button
+        android:text="Send message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SendMessageButton"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp" />
+</LinearLayout>

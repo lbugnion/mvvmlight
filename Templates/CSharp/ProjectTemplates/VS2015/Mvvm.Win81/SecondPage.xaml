@@ -1,0 +1,125 @@
+﻿<common:PageBase xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:common="using:$safeprojectname$.Common"
+                 xmlns:ignore="http://www.galasoft.ch/ignore"
+                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                 x:Name="PageRoot"
+                 x:Class="$safeprojectname$.SecondPage"
+                 mc:Ignorable="d ignore">
+
+    <common:PageBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </common:PageBase.Resources>
+
+    <interactivity:Interaction.Behaviors>
+        <common:OrientationStateBehavior PortraitFlippedStateName="Portrait" />
+    </interactivity:Interaction.Behaviors>
+
+    <Grid x:Name="Root"
+          Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OrientationStates">
+                <VisualState x:Name="Landscape" />
+                <VisualState x:Name="Portrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)"
+                                                       Storyboard.TargetName="Placeholder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>29,59,29,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)"
+                                                       Storyboard.TargetName="BackButton">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>29,59,29,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="Snap">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0"
+                                         To="24"
+                                         Storyboard.TargetProperty="(TextBlock.FontSize)"
+                                         Storyboard.TargetName="PageTitle"
+                                         d:IsOptimized="True" />
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)"
+                                                       Storyboard.TargetName="BackButton">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>20,40,20,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)"
+                                                       Storyboard.TargetName="PageTitle">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>0,0,30,73</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)"
+                                                       Storyboard.TargetName="Placeholder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Thickness>20,40,20,0</Thickness>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Rectangle x:Name="Placeholder"
+                       Fill="#00000000"
+                       HorizontalAlignment="Left"
+                       Height="41"
+                       VerticalAlignment="Top"
+                       Width="41"
+                       Margin="39,63,39,0"
+                       IsHitTestVisible="False" />
+
+            <Button x:Name="BackButton"
+                    Command="{Binding NavigationHelper.GoBackCommand, ElementName=PageRoot}"
+                    Style="{StaticResource NavigationBackButtonNormalStyle}"
+                    Margin="39,63,39,0"
+                    VerticalAlignment="Top"
+                    AutomationProperties.Name="Back"
+                    AutomationProperties.AutomationId="BackButton"
+                    AutomationProperties.ItemType="Navigation Button" />
+
+            <TextBlock x:Name="PageTitle"
+                       Text="second page"
+                       Style="{StaticResource HeaderTextBlockStyle}"
+                       Grid.Column="1"
+                       IsHitTestVisible="false"
+                       TextWrapping="NoWrap"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,30,40" />
+        </Grid>
+    </Grid>
+</common:PageBase>
