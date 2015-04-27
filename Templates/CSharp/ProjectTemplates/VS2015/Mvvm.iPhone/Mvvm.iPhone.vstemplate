@@ -1,0 +1,70 @@
+<VSTemplate Version="3.0.0"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            Type="Project">
+    <TemplateData>
+        <Name>MvvmLight (iPhone)</Name>
+        <Description>A "light" Xamarin.iOS (iPhone) Model-View-ViewModel application (by GalaSoft Laurent Bugnion)</Description>
+        <Icon>MvvmLight.ico</Icon>
+        <TemplateID>GalaSoft.MvvmLight.iPhone</TemplateID>
+        <ProjectType>CSharp</ProjectType>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>MvvmLight</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <SortOrder>1</SortOrder>
+        <LocationField>Enabled</LocationField>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <TemplateGroupID>iOS;Mvvm</TemplateGroupID>
+        <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+        <PreviewImage>MvvmLight.png</PreviewImage>
+    </TemplateData>
+    <TemplateContent>
+        <Project File="Mvvm.iPhone.csproj"
+                 ReplaceParameters="true">
+            <ProjectItem ReplaceParameters="true" 
+                         TargetFileName="AppDelegate.cs">AppDelegate.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataItem.cs">DataItem.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataService.cs">DataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Resources\Default-568h@2x.png">Default-568h@2x.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Design\DesignDataService.cs">DesignDataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Entitlements.plist">Entitlements.plist</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\IDataService.cs">IDataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Info.plist">Info.plist</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Main.cs">Main.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Main_iPhone.storyboard">Main_iPhone.storyboard</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainViewController.cs">MainViewController.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainViewController.designer.cs">MainViewController.designer.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\MainViewModel.cs">MainViewModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="SecondViewController.cs">SecondViewController.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="SecondViewController.designer.cs">SecondViewController.designer.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\ViewModelLocator.cs">ViewModelLocator.cs</ProjectItem>
+        </Project>
+    </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="extension"
+              repositoryId="2d913f29-2e2e-4138-a4fb-e9b78d212d7c">
+      <package id="CommonServiceLocator" version="1.3" />
+      <package id="MvvmLightLibs" version="5.2.0.0" />
+    </packages>
+  </WizardData>
+</VSTemplate>

@@ -1,0 +1,44 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:common="using:$safeprojectname$.Common"
+			 xmlns:ignore="http://www.galasoft.ch/ignore"
+             x:Class="$safeprojectname$.TestUserControl"
+             mc:Ignorable="d ignore"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <interactivity:Interaction.Behaviors>
+        <common:OrientationStateControlBehavior PortraitFlippedStateName="Portrait" />
+    </interactivity:Interaction.Behaviors>
+
+    <Grid x:Name="Root"
+          Background="Red">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="OrientationStates">
+                <VisualState x:Name="Landscape" />
+                <VisualState x:Name="Portrait">
+                    <Storyboard>
+                        <ColorAnimation Duration="0"
+                                        To="#FF07A400"
+                                        Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                        Storyboard.TargetName="Root"
+                                        d:IsOptimized="True" />
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="Snap">
+                    <Storyboard>
+                        <ColorAnimation Duration="0"
+                                        To="#FFA200FF"
+                                        Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                                        Storyboard.TargetName="Root"
+                                        d:IsOptimized="True" />
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</UserControl>
