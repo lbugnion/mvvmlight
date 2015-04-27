@@ -1,0 +1,84 @@
+<VSTemplate Version="3.0.0"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            Type="Project">
+    <TemplateData>
+        <Name>MvvmLight (Wpa81)</Name>
+        <Description>A "light" Windows 10 XAML/C# Model-View-ViewModel application for Windows Phone (RT) (by GalaSoft Laurent Bugnion)</Description>
+        <Icon>MvvmLight.ico</Icon>
+        <PreviewImage>MvvmLight.png</PreviewImage>
+        <TemplateID>Microsoft.Windows.CSharp.GalaSoft.MvvmLight.Wpa81</TemplateID>
+        <ProjectType>CSharp</ProjectType>
+        <ProjectSubType></ProjectSubType>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>MvvmLight</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <SortOrder>0</SortOrder>
+        <LocationField>Enabled</LocationField>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+    </TemplateData>
+    <TemplateContent>
+        <Project File="Mvvm.Wpa81.csproj"
+                 ReplaceParameters="true">
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="App.xaml">App.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Styles\ButtonStyles.xaml">ButtonStyles.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Styles\Colors.xaml">Colors.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataItem.cs">DataItem.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataService.cs">DataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Design\DesignDataService.cs">DesignDataService.cs</ProjectItem>
+			<ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\IDataService.cs">IDataService.cs</ProjectItem>
+			<ProjectItem ReplaceParameters="false"
+                         TargetFileName="Assets\Logo.scale-240.png">Logo.scale-240.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainPage.xaml">MainPage.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainPage.xaml.cs">MainPage.xaml.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Styles\MainStyles.xaml">MainStyles.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\MainViewModel.cs">MainViewModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Package.appxmanifest">Package.appxmanifest</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="SecondPage.xaml">SecondPage.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="SecondPage.xaml.cs">SecondPage.xaml.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Assets\SmallLogo.scale-240.png">SmallLogo.scale-240.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Assets\SplashScreen.scale-240.png">SplashScreen.scale-240.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Assets\Square71x71Logo.scale-240.png">Square71x71Logo.scale-240.png</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Assets\StoreLogo.scale-240.png">StoreLogo.scale-240.png</ProjectItem>            
+			<ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\ViewModelLocator.cs">ViewModelLocator.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Styles\TextStyles.xaml">TextStyles.xaml</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Assets\WideLogo.scale-240.png">WideLogo.scale-240.png</ProjectItem>            
+        </Project>
+    </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="extension"
+              repositoryId="e64ef649-3f37-4b97-9ca4-2578ed4cad06">
+      <package id="CommonServiceLocator" version="1.3" />
+      <package id="MvvmLightLibs" version="5.2.0.0" />
+    </packages>
+  </WizardData>	
+</VSTemplate>

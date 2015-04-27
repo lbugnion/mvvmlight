@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4451" systemVersion="13A461" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733.0"/>
+    </dependencies>
+    <scenes>
+        <!--class Prefix:identifier View Controller-->
+        <scene sceneID="7">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="11">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="10" kind="relationship" relationship="rootViewController" id="9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39" y="75"/>
+        </scene>
+        <scene sceneID="13">
+            <objects>
+                <viewController id="10" sceneMemberID="viewController" customClass="MainViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5"/>
+                        <viewControllerLayoutGuide type="bottom" id="6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="15">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00:00:00" lineBreakMode="tailTruncation" minimumFontSize="10" id="19" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
+                                <rect key="frame" x="20" y="364" width="280" height="39"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.50196078431372548" green="0.023529411764705882" blue="0.92549019607843142" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome to MVVM Light" lineBreakMode="wordWrap" minimumFontSize="10" id="24" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0" textAlignment="center">
+                                <rect key="frame" x="20" y="74" width="280" height="90"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0.45882352941176469" green="0.011764705882352941" blue="0.8" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="38" firstItem="24" firstAttribute="height" constant="90"/>
+                                </constraints>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="25" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="174" width="280" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Hello iOS, Click Me!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="27" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="260" width="280" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Show a dialog">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter a message for dialog and nav" borderStyle="roundedRect" minimumFontSize="17" id="29" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
+                                <rect key="frame" x="20" y="220" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="30" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="413" width="280" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Send message">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="107" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="306" width="280" height="48"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <state key="normal" title="Tap to second page">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="0.596078431372549" green="0.027450980392156862" blue="0.97254901960784312" alpha="1"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="24" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="20" id="31"/>
+                            <constraint firstItem="15" firstAttribute="trailing" secondItem="24" secondAttribute="trailing" constant="20" id="32"/>
+                            <constraint firstItem="24" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="10" id="33"/>
+                            <constraint firstItem="25" firstAttribute="top" secondItem="24" secondAttribute="bottom" constant="10" id="39"/>
+                            <constraint firstItem="15" firstAttribute="trailing" secondItem="25" secondAttribute="trailing" constant="20" id="40"/>
+                            <constraint firstItem="25" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="20" id="41"/>
+                            <constraint firstItem="27" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="20" id="46"/>
+                            <constraint firstItem="15" firstAttribute="trailing" secondItem="27" secondAttribute="trailing" constant="20" id="47"/>
+                            <constraint firstItem="29" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="20" id="48"/>
+                            <constraint firstItem="15" firstAttribute="trailing" secondItem="29" secondAttribute="trailing" constant="20" id="49"/>
+                            <constraint firstItem="19" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="20" id="52"/>
+                            <constraint firstItem="15" firstAttribute="trailing" secondItem="19" secondAttribute="trailing" constant="20" id="53"/>
+                            <constraint firstItem="30" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="10" id="54"/>
+                            <constraint firstItem="30" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="20" id="55"/>
+                            <constraint firstItem="15" firstAttribute="trailing" secondItem="30" secondAttribute="trailing" constant="20" id="56"/>
+                            <constraint firstItem="29" firstAttribute="top" secondItem="25" secondAttribute="bottom" constant="10" id="73"/>
+                            <constraint firstItem="27" firstAttribute="top" secondItem="29" secondAttribute="bottom" constant="10" id="100"/>
+                            <constraint firstItem="107" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="20" id="108"/>
+                            <constraint firstItem="15" firstAttribute="trailing" secondItem="107" secondAttribute="trailing" constant="20" id="109"/>
+                            <constraint firstItem="107" firstAttribute="top" secondItem="27" secondAttribute="bottom" constant="10" id="110"/>
+                            <constraint firstItem="19" firstAttribute="top" secondItem="107" secondAttribute="bottom" constant="10" id="111"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="First page" id="14"/>
+                    <connections>
+                        <outlet property="ClockText" destination="19" id="name-outlet-19"/>
+                        <outlet property="WelcomeText" destination="24" id="name-outlet-24"/>
+                        <outlet property="IncrementButton" destination="25" id="name-outlet-25"/>
+                        <outlet property="ShowDialogButton" destination="27" id="name-outlet-27"/>
+                        <outlet property="DialogNavText" destination="29" id="name-outlet-29"/>
+                        <outlet property="SendMessageButton" destination="30" id="name-outlet-30"/>
+                        <outlet property="NavigateButton" destination="107" id="name-outlet-107"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="16" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="393" y="79"/>
+        </scene>
+        <scene sceneID="120">
+            <objects>
+                <viewController id="121" sceneMemberID="viewController" title="Second page" storyboardIdentifier="SecondPage" restorationIdentifier="SecondPage" customClass="SecondViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="118"/>
+                        <viewControllerLayoutGuide type="bottom" id="119"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="122">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Press the Back button to go back" lineBreakMode="tailTruncation" minimumFontSize="10" id="129" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
+                                <rect key="frame" x="20" y="60" width="280" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="130" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="121" width="280" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="or press this button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" minimumFontSize="10" id="131" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" numberOfLines="0">
+                                <rect key="frame" x="20" y="197" width="280" height="24"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="129" firstAttribute="leading" secondItem="122" secondAttribute="leading" constant="20" id="132"/>
+                            <constraint firstItem="122" firstAttribute="trailing" secondItem="129" secondAttribute="trailing" constant="20" id="133"/>
+                            <constraint firstItem="129" firstAttribute="top" secondItem="118" secondAttribute="bottom" constant="40" id="134"/>
+                            <constraint firstItem="130" firstAttribute="leading" secondItem="122" secondAttribute="leading" constant="20" id="135"/>
+                            <constraint firstItem="122" firstAttribute="trailing" secondItem="130" secondAttribute="trailing" constant="20" id="136"/>
+                            <constraint firstItem="130" firstAttribute="top" secondItem="129" secondAttribute="bottom" constant="40" id="137"/>
+                            <constraint firstItem="131" firstAttribute="leading" secondItem="122" secondAttribute="leading" constant="20" id="138"/>
+                            <constraint firstItem="122" firstAttribute="trailing" secondItem="131" secondAttribute="trailing" constant="20" id="139"/>
+                            <constraint firstItem="131" firstAttribute="top" secondItem="130" secondAttribute="bottom" constant="40" id="140"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="NavigationParameterText" destination="131" id="name-outlet-131"/>
+                        <outlet property="BackButton" destination="130" id="name-outlet-130"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="123" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="784" y="82"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <resources>
+        <image name="Default-568h.png" width="640" height="1136"/>
+    </resources>
+</document>

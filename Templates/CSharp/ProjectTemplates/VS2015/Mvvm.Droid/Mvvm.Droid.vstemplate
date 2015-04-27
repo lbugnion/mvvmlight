@@ -1,0 +1,76 @@
+<VSTemplate Version="3.0.0"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            Type="Project">
+    <TemplateData>
+        <Name>MvvmLight (Android)</Name>
+        <Description>A "light" Xamarin.Android Model-View-ViewModel application (by GalaSoft Laurent Bugnion)</Description>
+        <Icon>MvvmLight.ico</Icon>
+        <TemplateID>GalaSoft.MvvmLight.Android</TemplateID>
+        <ProjectType>CSharp</ProjectType>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>MvvmLight</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <SortOrder>1</SortOrder>
+        <LocationField>Enabled</LocationField>
+        <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+        <TemplateGroupID>Android;Mvvm</TemplateGroupID>
+        <NumberOfParentCategoriesToRollUp>2</NumberOfParentCategoriesToRollUp>
+        <PreviewImage>MvvmLight.png</PreviewImage>
+    </TemplateData>
+    <TemplateContent>
+        <Project File="Mvvm.Droid.csproj"
+                 ReplaceParameters="true">
+            <ProjectItem ReplaceParameters="false" 
+                         TargetFileName="Assets\AboutAssets.txt">AboutAssets.txt</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Resources\AboutResources.txt">AboutResources.txt</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\AndroidManifest.xml">AndroidManifest.xml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="App.cs">App.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataItem.cs">DataItem.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\DataService.cs">DataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Design\DesignDataService.cs">DesignDataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Resources\drawable\Icon.png">Icon.png</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Model\IDataService.cs">IDataService.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Resources\layout\Main.axml">Main.axml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainActivity.cs">MainActivity.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="MainActivity.ui.cs">MainActivity.ui.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\MainViewModel.cs">MainViewModel.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="Resources\Resource.Designer.cs">Resource.Designer.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Resources\layout\Second.axml">Second.axml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="SecondActivity.cs">SecondActivity.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="SecondActivity.ui.cs">SecondActivity.ui.cs</ProjectItem>
+            <ProjectItem ReplaceParameters="false"
+                         TargetFileName="Resources\values\Strings.xml">Strings.xml</ProjectItem>
+            <ProjectItem ReplaceParameters="true"
+                         TargetFileName="ViewModel\ViewModelLocator.cs">ViewModelLocator.cs</ProjectItem>
+        </Project>
+    </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="extension"
+              repositoryId="2d913f29-2e2e-4138-a4fb-e9b78d212d7c">
+      <package id="CommonServiceLocator" version="1.3" />
+      <package id="MvvmLightLibs" version="5.2.0.0" />
+    </packages>
+  </WizardData>
+</VSTemplate>

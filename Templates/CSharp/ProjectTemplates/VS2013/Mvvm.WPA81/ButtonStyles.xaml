@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="ButtonStyle"
+           TargetType="Button">
+        <Setter Property="FontFamily"
+                Value="{StaticResource FontFamilyNormal}" />
+        <Setter Property="FontSize"
+                Value="24" />
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="Margin"
+                Value="24,0" />
+    </Style>
+
+</ResourceDictionary>
