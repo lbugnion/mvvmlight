@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="b3cbc7ac-25e8-4dda-a091-231a51997222" Publisher="CN=Laurent" Version="1.0.0.0" />
+  <Identity Name="$guid9$" Publisher="CN=AuthorName" Version="1.0.0.0" />
   <Properties>
-    <DisplayName>ProjectForTemplates.Win81</DisplayName>
-    <PublisherDisplayName>Laurent</PublisherDisplayName>
+    <DisplayName>$safeprojectname$</DisplayName>
+    <PublisherDisplayName>PublisherName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -14,8 +14,8 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ProjectForTemplates.Win81.App">
-      <m2:VisualElements DisplayName="ProjectForTemplates.Win81" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="ProjectForTemplates.Win81" ForegroundText="light" BackgroundColor="#464646">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$safeprojectname$.Win81.App">
+      <m2:VisualElements DisplayName="$safeprojectname$" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="$safeprojectname$" ForegroundText="light" BackgroundColor="#464646">
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
         <m2:ApplicationView MinWidth="width320" />
       </m2:VisualElements>

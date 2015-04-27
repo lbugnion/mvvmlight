@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:common="using:$safeprojectname$.Common"
+			 xmlns:ignore="http://www.galasoft.ch/ignore"
              x:Class="$safeprojectname$.TestUserControl"
-             mc:Ignorable="d"
+             mc:Ignorable="d ignore"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
