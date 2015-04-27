@@ -1,0 +1,87 @@
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ignore="http://www.galasoft.ch/ignore"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      x:Class="$safeprojectname$.MainPage"
+      mc:Ignorable="d ignore"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      DataContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/MainStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="ActionTextBlockStyle"
+                   TargetType="TextBlock"
+                   BasedOn="{StaticResource MainTextBlockStyle}">
+                <Setter Property="FontWeight"
+                        Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel"
+                    Margin="12,17,0,28">
+            <TextBlock Text="MVVM LIGHT"
+                       Margin="12,0"
+                       Style="{StaticResource PhoneTextNormalStyle}" />
+            <TextBlock Text="first page"
+                       Margin="9,-7,0,0"
+                       Style="{StaticResource PhoneTextTitle1Style}" />
+        </StackPanel>
+
+        <StackPanel Width="400"
+                    VerticalAlignment="Top"
+                    Grid.Row="1">
+            <TextBlock Style="{StaticResource MainTextBlockStyle}"
+                       Text="{Binding WelcomeTitle}"
+                       Margin="24,0,24,20"
+                       Height="87" />
+
+            <Button Content="Hello WP, Click Me!"
+                    Style="{StaticResource ButtonStyle}"
+                    Command="{Binding IncrementCommand, Mode=OneWay}" />
+
+            <TextBlock Style="{StaticResource ActionTextBlockStyle}"
+                       Text="Tap to second page"
+                       Margin="0,15">
+				<interactivity:Interaction.Behaviors>
+					<core:EventTriggerBehavior EventName="Tapped">
+						<core:InvokeCommandAction Command="{Binding NavigateCommand, Mode=OneWay}"
+                                                  CommandParameter="{Binding Text, ElementName=ParameterText}" />
+					</core:EventTriggerBehavior>
+				</interactivity:Interaction.Behaviors>
+            </TextBlock>
+
+            <Button Content="Show a dialog"
+                    Style="{StaticResource ButtonStyle}"
+                    Command="{Binding ShowDialogCommand, Mode=OneWay}"
+                    CommandParameter="{Binding Text, ElementName=ParameterText}" />
+
+            <TextBox x:Name="ParameterText"
+                     Style="{StaticResource TextBoxStyle}"
+                     Margin="24,10,24,20"
+                     Text="Enter a message for dialog and nav" />
+
+            <TextBlock Text="{Binding Clock}"
+                       Style="{StaticResource MainTextBlockStyle}"
+                       Margin="0,10"
+                       FontSize="24" />
+            
+            <Button Content="Send message"
+                    Command="{Binding SendMessageCommand}"
+                    Style="{StaticResource ButtonStyle}" />
+        </StackPanel>
+    </Grid>
+</Page>
