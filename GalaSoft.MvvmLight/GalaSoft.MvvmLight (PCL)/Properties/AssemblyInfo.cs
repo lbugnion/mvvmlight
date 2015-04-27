@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-// BL0034
-[assembly: AssemblyVersion("5.1.1.*")]
+// BL0035
+[assembly: AssemblyVersion("5.2.0.*")]
