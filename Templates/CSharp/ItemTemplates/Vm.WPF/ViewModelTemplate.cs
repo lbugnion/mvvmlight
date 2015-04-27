@@ -5,7 +5,7 @@ namespace $rootnamespace$
     /// <summary>
     /// This class contains properties that a View can data bind to.
     /// <para>
-    /// See http://www.galasoft.ch/mvvm
+    /// See http://www.mvvmlight.net
     /// </para>
     /// </summary>
     public class $safeitemname$ : ViewModelBase

@@ -7,7 +7,7 @@
       </SnippetTypes>
       <Title>RelayCommand</Title>
       <Author>Laurent Bugnion (GalaSoft)</Author>
-      <Description>Creates and initializes a new RelayCommand with an Execute method and a CanExecute method. (V4.0.21.0)</Description>
+      <Description>Creates and initializes a new RelayCommand with an Execute method and a CanExecute method. (V5.2.4.0)</Description>
       <HelpUrl>http://www.mvvmlight.net</HelpUrl>
       <Shortcut>mvvmrelaymethodcanexecute</Shortcut>
     </Header>
@@ -52,11 +52,6 @@
 
         private void Execute$commandname$()
         {
-            if (!$commandname$.CanExecute(null))
-            {
-                return;
-            }
-
             $end$
         }
 

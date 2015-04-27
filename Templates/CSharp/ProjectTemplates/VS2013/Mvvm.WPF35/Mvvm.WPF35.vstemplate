@@ -2,7 +2,7 @@
             xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
             Type="Project">
     <TemplateData>
-        <Name>MvvmLight (WPF3.5)</Name>
+        <Name>MvvmLight (WPF35)</Name>
         <Description>A "light" WPF 3.5 Model-View-ViewModel application (by GalaSoft Laurent Bugnion)</Description>
         <Icon>MvvmLight.ico</Icon>
         <TemplateID>GalaSoft.MvvmLight</TemplateID>
@@ -64,7 +64,7 @@
     <packages repository="extension"
               repositoryId="e64ef649-3f37-4b97-9ca4-2578ed4cad06">
       <package id="CommonServiceLocator" version="1.0" />
-      <package id="MvvmLightLibs" version="5.0.2.0" />
+      <package id="MvvmLightLibs" version="5.2.0.0" />
     </packages>
   </WizardData>	
 </VSTemplate>

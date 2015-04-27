@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Xamarin Forms Bindable Property</Title>
+      <Author>Laurent Bugnion</Author>
+      <Description>Create a Bindable Property for Xamarin Forms. (V5.2.6.0)</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>mvvmformsbprop</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>property</ID>
+          <ToolTip>Property Name</ToolTip>
+          <Default>MyProperty</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>type</ID>
+          <ToolTip>Property Type</ToolTip>
+          <Default>int</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>ownerclass</ID>
+          <ToolTip>The owning class of this Property.  Typically the class that it is declared in.</ToolTip>
+          <Default>ownerclass</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>defaultvalue</ID>
+          <ToolTip>The default value for this property.</ToolTip>
+          <Default>0</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+	  <Code Language="csharp"><![CDATA[// Bindable property
+public static readonly BindableProperty $property$Property =
+  BindableProperty.Create<$ownerclass$, $type$>(p => p.$property$, $defaultvalue$);
+
+// Gets or sets value of this BindableProperty
+public $type$ $property$
+{
+	get { return ($type$)GetValue($property$Property); }
+	set { SetValue($property$Property, value); }
+}]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

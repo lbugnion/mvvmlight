@@ -1,7 +1,7 @@
 ﻿/*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocatorTemplate xmlns:vm="using:ProjectForTemplates.ViewModel"
+      <vm:ViewModelLocatorTemplate xmlns:vm="using:$safeprojectname$.ViewModel"
                                    x:Key="Locator" />
   </Application.Resources>
   
@@ -20,7 +20,7 @@ namespace $safeprojectname$.ViewModel
     /// This class contains static references to all the view models in the
     /// application and provides an entry point for the bindings.
     /// <para>
-    /// See http://www.galasoft.ch/mvvm
+    /// See http://www.mvvmlight.net
     /// </para>
     /// </summary>
     public class ViewModelLocator
