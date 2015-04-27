@@ -1,6 +1,0 @@
-MvvmLight.VS10 -> Visual Studio 2010 (WPF, Silverlight, Windows Phone 7)
-MvvmLight.VCSx10 -> Visual Studio Express 2010 for WPF
-MvvmLight.VWDx10 -> Visual Studio Express 2010 for Silverlight
-NB: No VPD Express 2010 support for VSIX!!
-
-MvvmLight.VS11 -> Visual Studio 2011 (WPF, Silverlight, Windows Phone 8)
