@@ -3,7 +3,7 @@
             Type="Project">
     <TemplateData>
         <Name>MvvmLight (WPF4)</Name>
-        <Description>A "light" WPF 4 Model-View-ViewModel application optimized (by GalaSoft Laurent Bugnion)</Description>
+        <Description>A "light" WPF 4 Model-View-ViewModel application (by GalaSoft Laurent Bugnion)</Description>
         <Icon>MvvmLight.ico</Icon>
         <TemplateID>GalaSoft.MvvmLight.WPF4</TemplateID>
         <ProjectType>CSharp</ProjectType>
@@ -63,7 +63,7 @@
     <packages repository="extension"
               repositoryId="e8b05c55-a169-42aa-a116-064ef2205f80">
       <package id="CommonServiceLocator" version="1.3" />
-      <package id="MvvmLightLibs" version="5.0.2.0" />
+      <package id="MvvmLightLibs" version="5.2.0.0" />
     </packages>
   </WizardData>	
 </VSTemplate>

@@ -4,8 +4,8 @@
          xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest"
          xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
 
-  <Identity Name="88141067-0c14-492d-8f7f-453272988d9a"
-            Publisher="CN=$safeprojectname$Author"
+  <Identity Name="$guid9$"
+            Publisher="CN=AuthorName"
             Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="$guid1$"
@@ -13,7 +13,7 @@
 
   <Properties>
     <DisplayName>$safeprojectname$</DisplayName>
-    <PublisherDisplayName>$safeprojectname$ author</PublisherDisplayName>
+    <PublisherDisplayName>PublisherName</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

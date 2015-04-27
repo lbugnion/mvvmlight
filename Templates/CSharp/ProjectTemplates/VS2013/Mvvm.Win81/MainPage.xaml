@@ -5,7 +5,7 @@
                  xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                  xmlns:common="using:$safeprojectname$.Common"
                  xmlns:local="using:$safeprojectname$"
-                 xmlns:ignore="http://www.ignore.com"
+                 xmlns:ignore="http://www.galasoft.ch/ignore"
                  x:Name="PageRoot"
                  x:Class="$safeprojectname$.MainPage"
                  mc:Ignorable="d ignore"
