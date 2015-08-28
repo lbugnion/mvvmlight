@@ -120,7 +120,7 @@ namespace GalaSoft.MvvmLight.Views
                 message, 
                 title, 
                 buttonConfirmText, 
-                buttonCancelText, 
+                buttonCancelText,
                 null, 
                 afterHideCallback,
                 r => result = r);
