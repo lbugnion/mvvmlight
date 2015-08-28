@@ -58,8 +58,8 @@ namespace GalaSoft.MvvmLight.Views
             var info = CreateDialog(
                 message, 
                 title, 
-                buttonText, 
-                null, 
+                buttonText,
+                null,
                 callback);
 
             info.Dialog.Show();
@@ -94,7 +94,7 @@ namespace GalaSoft.MvvmLight.Views
                 error.Message, 
                 title, 
                 buttonText, 
-                null, 
+                null,
                 callback);
 
             info.Dialog.Show();
@@ -150,7 +150,7 @@ namespace GalaSoft.MvvmLight.Views
                 message, 
                 title, 
                 buttonText, 
-                null, 
+                null,
                 callback);
 
             info.Dialog.Show();
@@ -242,44 +242,44 @@ namespace GalaSoft.MvvmLight.Views
                 {
                     dialog.Dismiss();
                     dialog.Dispose();
-            }
+                }
 
                 if (afterHideCallbackWithResponse != null)
-            {
+                {
                     afterHideCallbackWithResponse(true);
                 }
                 // ReSharper restore AccessToModifiedClosure
             });
 
             if (cancelText != null)
-                    {
+            {
                 builder.SetNegativeButton(cancelText, (d, index) =>
-                        {
+                {
                     tcs.TrySetResult(false);
 
                     // ReSharper disable AccessToModifiedClosure
                     if (dialog != null)
-                        {
+                    {
                         dialog.Dismiss();
                         dialog.Dispose();
-                        }
+                    }
 
                     if (afterHideCallbackWithResponse != null)
-                        {
+                    {
                         afterHideCallbackWithResponse(false);
-                        }
+                    }
                     // ReSharper restore AccessToModifiedClosure
-                    });
+                });
             }
 
             builder.SetOnDismissListener(new OnDismissListener(() =>
-                    {
+            {
                 tcs.TrySetResult(false);
 
-                        if (afterHideCallbackWithResponse != null)
-                        {
-                            afterHideCallbackWithResponse(false);
-                        }
+                if (afterHideCallbackWithResponse != null)
+                {
+                    afterHideCallbackWithResponse(false);
+                }
             }));
 
             dialog = builder.Create();
@@ -292,10 +292,10 @@ namespace GalaSoft.MvvmLight.Views
         }
 
         private struct AlertDialogInfo
-                        {
+        {
             public AlertDialog Dialog;
             public TaskCompletionSource<bool> Tcs;
-                        }
+        }
 
         private sealed class OnDismissListener : Java.Lang.Object, IDialogInterfaceOnDismissListener
         {
