@@ -1,8 +1,8 @@
 param($installPath, $toolsPath, $package, $project)
 
 # find the App.xaml file 
-$appxaml = $project.ProjectItems | where {$_.Name -eq "App.xaml"}
-$appxamlPath = ($appxaml.Properties | where {$_.Name -eq "LocalPath"}).Value
+#$appxaml = $project.ProjectItems | where {$_.Name -eq "App.xaml"}
+#$appxamlPath = ($appxaml.Properties | where {$_.Name -eq "LocalPath"}).Value
 
 # find the CSPROJ file 
 $projectPath = ($project.Properties | where {$_.Name -eq "LocalPath"}).Value + $project.Name + ".csproj"
@@ -47,6 +47,7 @@ if ($appxamlPath -eq $null)
 
 if ($appxamlPath -eq $null)
 {
+	# TODO Xamarin
 	# add the required .NET assembly:
 	Add-Type -AssemblyName PresentationFramework 
 	[System.Windows.MessageBox]::Show('Cannot find App.xaml in this project, no other changes made. If you are installing in a PCL, please use "MVVM Light Libs Only" instead.', 'Warning', 'OK')
@@ -63,8 +64,6 @@ else
 	foreach ($propertyGroup in $propertyGroups)
 	{
 		$targetFrameworkProfile = $propertyGroup.SelectNodes("//*") | where {$_.Name -eq "TargetFrameworkProfile" }
-
-#		[System.Windows.MessageBox]::Show("targetFrameworkProfile " + $targetFrameworkProfile, 'TEST', 'OK')
 
 		if ($targetFrameworkProfile -ne $null)
 		{
@@ -150,42 +149,29 @@ else
 		}
 	}
 
-#	[System.Windows.MessageBox]::Show("found " + $found, 'TEST', 'OK')
-	
 	# load App.xaml as XML 
 	$appXamlXml = New-Object xml 
 	$appXamlXml.Load($appxamlPath)
 
-	$appresources = $appXamlXml.SelectNodes("//*") | where { $_.Name -eq "Application.Resources" }
-	$resources = null
+	#$comment = $appXamlXml.CreateComment($found)
+	#$appXamlXml.AppendChild($comment)
 
-	if ($appresources -eq $null)
+	#$comment2 = $appXamlXml.CreateComment($projectPath)
+	#$appXamlXml.AppendChild($comment2)
+	 
+	$resources = $appXamlXml.SelectNodes("//*") | where { $_.Name -eq "Application.Resources" }
+
+	if ($resources -eq $null)
 	{
-#		[System.Windows.MessageBox]::Show("No resources found", 'TEST', 'OK')
-
+		$resources = $appXamlXml.CreateNode("element", "Application.Resources", "http://schemas.microsoft.com/winfx/2006/xaml/presentation")
 		$app = $appXamlXml.SelectNodes("//*") | where { $_.Name -eq "Application" }
 		
 		if ($app -eq $null)
 		{
-#			[System.Windows.MessageBox]::Show("No application node found", 'TEST', 'OK')
 			break
 		}
 
-		$appresources = $appXamlXml.CreateNode("element", "Application.Resources", "http://schemas.microsoft.com/winfx/2006/xaml/presentation")
-		$resources = $appXamlXml.CreateNode("element", "ResourceDictionary", "http://schemas.microsoft.com/winfx/2006/xaml/presentation")
-		
-		$appresources.AppendChild($resources)		
-		$app.AppendChild($appresources)
-	}
-	else
-	{
-		$resources = $appresources.SelectNodes("//*") | where { $_.Name -eq "ResourceDictionary" }
-		
-		if ($resources -eq $null)
-		{
-			$resources = $appXamlXml.CreateNode("element", "ResourceDictionary", "http://schemas.microsoft.com/winfx/2006/xaml/presentation")
-			$appresources.AppendChild($resources)		
-		}
+		$app.AppendChild($resources)
 	}
 
 	$xmlnsPrefix = "clr-namespace:"
@@ -195,59 +181,81 @@ else
 		$xmlnsPrefix = "using:"
 	}
 
-#	[System.Windows.MessageBox]::Show("xmlnsPrefix " + $xmlnsPrefix, 'TEST', 'OK')
-
 	$vml = $appXamlXml.CreateNode("element", "vm:ViewModelLocator", $xmlnsPrefix + $namespace + ".ViewModel")
 	$vml.SetAttribute("Key", "http://schemas.microsoft.com/winfx/2006/xaml", "Locator")
 
-	$app = $appXamlXml.ChildNodes | where { $_.Name -eq "Application" }
-
-	# Check presence of design time XMLNS
-	$dWasFound = $app.HasAttribute("xmlns:d")
-
-	if (!$dWasFound)
+	if ($found -ne "win8")
 	{
-		$app.SetAttribute("xmlns:d", "http://schemas.microsoft.com/expression/blend/2008")
-	}
+		$app = $appXamlXml.ChildNodes | where { $_.Name -eq "Application" }
 
-	# Check presence of Ignorable attribute on Application element
-	$ignorable = $app.GetAttribute("Ignorable", "http://schemas.openxmlformats.org/markup-compatibility/2006")
-	
-	if ($ignorable -ne "")
-	{
-		$allIgnorables = $ignorable.Split(' ')
-		$dWasFound = "False"
+		# Check presence of design time XMLNS
+		$dWasFound = $app.HasAttribute("xmlns:d")
 
-		foreach ($ign in $allIgnorables)
+		if (!$dWasFound)
 		{
-			if ($ign -eq "d")
-			{
-				$dWasFound = "True"
-			}
+			$app.SetAttribute("xmlns:d", "http://schemas.microsoft.com/expression/blend/2008")
 		}
 
-		if ($dWasFound -eq "False")
+		# Check presence of Ignorable attribute on Application element
+		$ignorable = $app.GetAttribute("Ignorable", "http://schemas.openxmlformats.org/markup-compatibility/2006")
+		
+		if ($ignorable -ne "")
 		{
-			$app.SetAttribute("Ignorable", "http://schemas.openxmlformats.org/markup-compatibility/2006", $ignorable + " d")
+			$allIgnorables = $ignorable.Split(' ')
+			$dWasFound = "False"
+
+			foreach ($ign in $allIgnorables)
+			{
+				if ($ign -eq "d")
+				{
+					$dWasFound = "True"
+				}
+			}
+
+			if ($dWasFound -eq "False")
+			{
+				$app.SetAttribute("Ignorable", "http://schemas.openxmlformats.org/markup-compatibility/2006", $ignorable + " d")
+			}
+		}
+		else
+		{
+			$app.SetAttribute("Ignorable", "http://schemas.openxmlformats.org/markup-compatibility/2006", "d")
+		}
+
+		$attribute = $appXamlXml.CreateAttribute("d", "IsDataSource", "http://schemas.microsoft.com/expression/blend/2008");
+		$attribute.Value = "True";
+		$vml.Attributes.Append($attribute)
+	}
+
+	$mergedDictionaries = $resources.SelectNodes("//*") | where { $_.Name -eq "ResourceDictionary" }
+
+	if ($mergedDictionaries -eq $null)
+	{
+#		Add-Type -AssemblyName PresentationFramework 
+#		[System.Windows.MessageBox]::Show('Found Resources, no merged, checking Locator now', 'Warning', 'OK')
+
+		$existingLocator = $resources.SelectNodes("//*") | where { $_.Name -eq "vm:ViewModelLocator" }
+
+		if ($existingLocator -eq $null)
+		{
+#			[System.Windows.MessageBox]::Show("No locator found")
+			$resources.AppendChild($vml)
 		}
 	}
 	else
 	{
-		$app.SetAttribute("Ignorable", "http://schemas.openxmlformats.org/markup-compatibility/2006", "d")
-	}
+#		Add-Type -AssemblyName PresentationFramework 
+#		[System.Windows.MessageBox]::Show('Found Resources, merged, checking Locator now', 'Warning', 'OK')
 
-	$attribute = $appXamlXml.CreateAttribute("d", "IsDataSource", "http://schemas.microsoft.com/expression/blend/2008");
-	$attribute.Value = "True";
-	$vml.Attributes.Append($attribute)
+		$existingLocator = $mergedDictionaries.SelectNodes("//*") | where { $_.Name -eq "vm:ViewModelLocator" }
 
-	$existingLocator = $resources.SelectNodes("//*") | where { $_.Name -eq "vm:ViewModelLocator" }
+#		[System.Windows.MessageBox]::Show($existingLocator -ne $null)
 
-#	[System.Windows.MessageBox]::Show($existingLocator -ne $null)
-
-	if ($existingLocator -eq $null)
-	{
-#		[System.Windows.MessageBox]::Show("No locator found")
-		$resources.AppendChild($vml)
+		if ($existingLocator -eq $null)
+		{
+#			[System.Windows.MessageBox]::Show("No locator found")
+			$mergedDictionaries[0].AppendChild($vml)
+		}
 	}
 
 	$appXamlXml.Save($appxamlPath)
@@ -260,12 +268,6 @@ else
 		
 		$ie = New-Object -ComObject InternetExplorer.Application
 		$ie.Navigate("http://www.mvvmlight.net/nuget-univ")
-		$ie.Visible = $true
-	}
-	else
-	{
-		$ie = New-Object -ComObject InternetExplorer.Application
-		$ie.Navigate("http://www.mvvmlight.net/")
 		$ie.Visible = $true
 	}
 }
