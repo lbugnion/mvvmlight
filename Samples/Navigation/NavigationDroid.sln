@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavigationDroid", "NavigationDroid\NavigationDroid.csproj", "{559F05DF-73E6-4D7A-A830-74F8BEE9780A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight (PCL)", "..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight (PCL)\GalaSoft.MvvmLight (PCL).csproj", "{6A912701-3BA1-4975-ADBF-160CAF66B640}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extras (PCL)", "..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Extras (PCL)\GalaSoft.MvvmLight.Extras (PCL).csproj", "{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Platform (Android)", "..\..\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform (Android)\GalaSoft.MvvmLight.Platform (Android).csproj", "{A5B7741D-E331-438C-B3BF-596B048DB622}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{559F05DF-73E6-4D7A-A830-74F8BEE9780A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559F05DF-73E6-4D7A-A830-74F8BEE9780A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559F05DF-73E6-4D7A-A830-74F8BEE9780A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{559F05DF-73E6-4D7A-A830-74F8BEE9780A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559F05DF-73E6-4D7A-A830-74F8BEE9780A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559F05DF-73E6-4D7A-A830-74F8BEE9780A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A912701-3BA1-4975-ADBF-160CAF66B640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39C71A69-4ACE-4B45-9A2C-C274FADA78EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B7741D-E331-438C-B3BF-596B048DB622}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
