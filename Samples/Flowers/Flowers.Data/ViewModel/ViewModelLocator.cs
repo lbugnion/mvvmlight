@@ -29,8 +29,12 @@ namespace Flowers.Data.ViewModel
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
+                if (!SimpleIoc.Default.IsRegistered<GalaSoft.MvvmLight.Views.INavigationService>())
+                {
+                    SimpleIoc.Default.Register<GalaSoft.MvvmLight.Views.INavigationService, DesignNavigationService>();
+                }
+
                 SimpleIoc.Default.Register<IFlowersService, DesignFlowersService>();
-                SimpleIoc.Default.Register<GalaSoft.MvvmLight.Views.INavigationService, DesignNavigationService>();
             }
             else
             {

@@ -61,7 +61,10 @@ namespace Flowers.Data.ViewModel
                         Flowers.Clear();
 
                         _isLoading = true;
+                        RefreshCommand.RaiseCanExecuteChanged();
                         RaisePropertyChanged(() => LastLoadedFormatted);
+
+                        Exception error = null;
 
                         try
                         {
@@ -77,13 +80,21 @@ namespace Flowers.Data.ViewModel
                         }
                         catch (Exception ex)
                         {
+                            error = ex;
+                        }
+
+                        if (error != null)
+                        {
                             var dialog = ServiceLocator.Current.GetInstance<IDialogService>();
-                            dialog.ShowError(ex, "Error when refreshing", "OK", null);
+                            await dialog.ShowError(error, "Error when refreshing", "OK", null);
                         }
 
                         _isLoading = false;
+                        RefreshCommand.RaiseCanExecuteChanged();
                         RaisePropertyChanged(() => LastLoadedFormatted);
-                    }));
+                    },
+                    
+                    () => !_isLoading));
             }
         }
 
@@ -114,12 +125,10 @@ namespace Flowers.Data.ViewModel
             _navigationService = navigationService;
             Flowers = new ObservableCollection<FlowerViewModel>();
 
-#if DEBUG
             if (IsInDesignMode)
             {
                 RefreshCommand.Execute(null);
             }
-#endif
         }
     }
 }
