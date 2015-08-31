@@ -1,28 +1,18 @@
-﻿using $safeprojectname$.ViewModel;
-using Windows.Foundation.Metadata;
-using Windows.Phone.UI.Input;
+﻿using Windows.UI.Core;
 using Windows.UI.Xaml.Navigation;
+using $safeprojectname$.ViewModel;
 
 namespace $safeprojectname$
 {
     public sealed partial class MainPage
     {
-        public MainViewModel Vm
-        {
-            get
-            {
-                return (MainViewModel)DataContext;
-            }
-        }
+        public MainViewModel Vm => (MainViewModel)DataContext;
 
         public MainPage()
         {
             InitializeComponent();
 
-            if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
-            {
-                HardwareButtons.BackPressed += OnBackPressed;
-            }
+            SystemNavigationManager.GetForCurrentView().BackRequested += SystemNavigationManagerBackRequested;
 
             Loaded += (s, e) =>
             {
@@ -30,19 +20,19 @@ namespace $safeprojectname$
             };
         }
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            Vm.StopClock();
-            base.OnNavigatingFrom(e);
-        }
-
-        private void OnBackPressed(object sender, BackPressedEventArgs e)
+        private void SystemNavigationManagerBackRequested(object sender, BackRequestedEventArgs e)
         {
             if (Frame.CanGoBack)
             {
                 e.Handled = true;
                 Frame.GoBack();
             }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            Vm.StopClock();
+            base.OnNavigatingFrom(e);
         }
     }
 }

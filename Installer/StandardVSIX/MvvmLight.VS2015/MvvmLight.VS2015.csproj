@@ -114,11 +114,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2015\Mvvm.iPhone.zip">
-      <Link>ProjectTemplates\iOS\iPhone\Mvvm.iPhone.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2015\Mvvm.SL5.zip">
       <Link>ProjectTemplates\Silverlight\Mvvm.SL5.zip</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -145,7 +140,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2015\Mvvm.WPF451.zip">
-      <Link>ProjectTemplates\Windows\Windows Desktop\Mvvm.WPF451.zip</Link>
+      <Link>ProjectTemplates\Windows\Classic Desktop\Mvvm.WPF451.zip</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -310,7 +305,12 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2015\Mvvm.Win10Univ.zip">
-      <Link>ProjectTemplates\Windows\Windows Universal\Mvvm.Win10Univ.zip</Link>
+      <Link>ProjectTemplates\Windows\Universal\Mvvm.Win10Univ.zip</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2015\Mvvm.iPhone.zip">
+      <Link>ProjectTemplates\iOS\iPhone\Mvvm.iPhone.zip</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

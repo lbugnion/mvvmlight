@@ -1,9 +1,10 @@
-﻿<Page x:Class="$safeprojectname$.MainPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:$safeprojectname$"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      x:Class="$safeprojectname$.MainPage"
       mc:Ignorable="d"
       DataContext="{Binding Main, Source={StaticResource Locator}}">
 
@@ -30,15 +31,22 @@
                     FontSize="24"
                     Command="{Binding IncrementCommand, Mode=OneWay}"
                     Foreground="White" />
-            
-            <Button Content="Navigate to page 2"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Margin="0,0,0,20"
-                    FontSize="24"
-                    Command="{Binding NavigateCommand, Mode=OneWay}"
-                    CommandParameter="{Binding Text, ElementName=NavigationParameterText}"
-                    Foreground="White" />
+
+            <TextBlock Text="Navigate to page 2"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       Margin="0,0,0,20"
+                       FontSize="24"
+                       Foreground="White"
+                       TextAlignment="Center">
+            	<interactivity:Interaction.Behaviors>
+            		<core:EventTriggerBehavior EventName="Tapped">
+            			<core:InvokeCommandAction Command="{Binding NavigateCommand, Mode=OneWay}"
+                                                  CommandParameter="{Binding Text, ElementName=NavigationParameterText}" />
+            		</core:EventTriggerBehavior>
+            	</interactivity:Interaction.Behaviors>
+
+            </TextBlock>
 
             <TextBox x:Name="NavigationParameterText"
                      Text="Enter any text for nav..."
