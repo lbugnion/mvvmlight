@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="b2140175-5bbc-4f15-b44b-1d01493a20cd"
+    Name="$guid9$"
     Publisher="CN=YourName"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="b2140175-5bbc-4f15-b44b-1d01493a20cd" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="$guid9$" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>$safeprojectname$</DisplayName>
@@ -20,7 +20,7 @@
   </Properties>
 
   <Dependencies>
-    <TargetPlatform Name="Windows.Universal" MinVersion="10.0.10030.0" MaxVersionTested="10.0.10030.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
 
   <Resources>
@@ -33,11 +33,11 @@
       EntryPoint="$safeprojectname$.App">
       <uap:VisualElements
         DisplayName="$safeprojectname$"
-        Square150x150Logo="Assets\Logo.png"
-        Square44x44Logo="Assets\SmallLogo.png"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png"
         Description="$safeprojectname$"
-        ForegroundText="light"
-        BackgroundColor="#464646">
+        BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>

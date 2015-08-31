@@ -1,7 +1,7 @@
-﻿using GalaSoft.MvvmLight.Views;
-using Microsoft.Practices.ServiceLocation;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using GalaSoft.MvvmLight.Views;
+using Microsoft.Practices.ServiceLocation;
 
 namespace $safeprojectname$
 {
@@ -12,7 +12,7 @@ namespace $safeprojectname$
             InitializeComponent();
         }
 
-        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        private void GoBackButtonClick(object sender, RoutedEventArgs e)
         {
             var nav = ServiceLocator.Current.GetInstance<INavigationService>();
             nav.GoBack();

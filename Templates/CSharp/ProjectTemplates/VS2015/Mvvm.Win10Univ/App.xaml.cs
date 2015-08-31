@@ -1,20 +1,20 @@
 ﻿using System;
-using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Threading;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
 
 namespace $safeprojectname$
 {
-    sealed partial class App : Application
+    sealed partial class App
     {
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            InitializeComponent();
+            Suspending += OnSuspending;
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace $safeprojectname$
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
 
@@ -40,8 +40,6 @@ namespace $safeprojectname$
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-                // Set the default language
-                rootFrame.Language = Windows.Globalization.ApplicationLanguages.Languages[0];
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
@@ -66,7 +64,7 @@ namespace $safeprojectname$
             DispatcherHelper.Initialize();
 
             Messenger.Default.Register<NotificationMessageAction<string>>(
-                this, 
+                this,
                 HandleNotificationMessage);
         }
 
