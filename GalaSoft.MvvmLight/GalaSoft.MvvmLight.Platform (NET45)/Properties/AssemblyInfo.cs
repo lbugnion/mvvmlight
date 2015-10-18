@@ -47,4 +47,4 @@ using System.Windows.Markup;
 [assembly:NeutralResourcesLanguage("en-US")]
 
 // BL0035
-[assembly: AssemblyVersion("5.2.0.*")]
+[assembly: AssemblyVersion("5.2.1.*")]

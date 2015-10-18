@@ -20,8 +20,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows;
-
 #if ANDROID
+using Android.Views;
 using Android.Text;
 using Android.Widget;
 #endif
@@ -44,10 +44,10 @@ namespace GalaSoft.MvvmLight.Helpers
     {
         private readonly SimpleConverter _converter = new SimpleConverter();
         private readonly List<IWeakEventListener> _listeners = new List<IWeakEventListener>();
-        private readonly Dictionary<string, Delegate> _sourceHandlers = new Dictionary<string, Delegate>();
+        private readonly Dictionary<string, DelegateInfo> _sourceHandlers = new Dictionary<string, DelegateInfo>();
         private readonly Expression<Func<TSource>> _sourcePropertyExpression;
         private readonly string _sourcePropertyName;
-        private readonly Dictionary<string, Delegate> _targetHandlers = new Dictionary<string, Delegate>();
+        private readonly Dictionary<string, DelegateInfo> _targetHandlers = new Dictionary<string, DelegateInfo>();
         private readonly Expression<Func<TTarget>> _targetPropertyExpression;
         private readonly string _targetPropertyName;
         private WeakAction _onSourceUpdate;
@@ -210,7 +210,8 @@ namespace GalaSoft.MvvmLight.Helpers
 
             _listeners.Clear();
 
-            DetachHandlers();
+            DetachSourceHandlers();
+            DetachTargetHandlers();
         }
 
         /// <summary>
@@ -337,7 +338,27 @@ namespace GalaSoft.MvvmLight.Helpers
 
             // TODO Do we need weak events here?
             EventHandler handler = HandleSourceEvent;
-            _sourceHandlers.Add(eventName, handler);
+
+            var defaultHandlerInfo = _sourceHandlers.Values.FirstOrDefault(i => i.IsDefault);
+
+            if (defaultHandlerInfo != null)
+            {
+                DetachSourceHandlers();
+            }
+
+            var info = new DelegateInfo
+            {
+                Delegate = handler
+            };
+
+            if (_sourceHandlers.ContainsKey(eventName))
+            {
+                _sourceHandlers[eventName] = info;
+            }
+            else
+            {
+                _sourceHandlers.Add(eventName, info);
+            }
 
             ev.AddEventHandler(
                 _propertySource.Target,
@@ -431,7 +452,13 @@ namespace GalaSoft.MvvmLight.Helpers
             switch (mode)
             {
                 case UpdateTriggerMode.LostFocus:
-                    return UpdateSourceTrigger("FocusChanged");
+#if ANDROID
+                    return UpdateSourceTrigger<View.FocusChangeEventArgs>("FocusChange");
+#else
+                    throw new ArgumentException(
+                        "UpdateTriggerMode.LostFocus is only supported in Android at this time",
+                        "mode");
+#endif
 
                 case UpdateTriggerMode.PropertyChanged:
                     return CheckControlSource();
@@ -498,7 +525,27 @@ namespace GalaSoft.MvvmLight.Helpers
 
             // TODO Do we need weak events here?
             EventHandler<TEventArgs> handler = HandleSourceEvent;
-            _sourceHandlers.Add(eventName, handler);
+
+            var defaultHandlerInfo = _sourceHandlers.Values.FirstOrDefault(i => i.IsDefault);
+
+            if (defaultHandlerInfo != null)
+            {
+                DetachSourceHandlers();
+            }
+
+            var info = new DelegateInfo
+            {
+                Delegate = handler
+            };
+
+            if (_sourceHandlers.ContainsKey(eventName))
+            {
+                _sourceHandlers[eventName] = info;
+            }
+            else
+            {
+                _sourceHandlers.Add(eventName, info);
+            }
 
             ev.AddEventHandler(
                 _propertySource.Target,
@@ -592,7 +639,13 @@ namespace GalaSoft.MvvmLight.Helpers
             switch (mode)
             {
                 case UpdateTriggerMode.LostFocus:
-                    return UpdateTargetTrigger("FocusChanged");
+#if ANDROID
+                    return UpdateTargetTrigger<View.FocusChangeEventArgs>("FocusChange");
+#else
+                    throw new ArgumentException(
+                        "UpdateTriggerMode.LostFocus is only supported in Android at this time",
+                        "mode");
+#endif
 
                 case UpdateTriggerMode.PropertyChanged:
                     return CheckControlTarget();
@@ -662,7 +715,27 @@ namespace GalaSoft.MvvmLight.Helpers
 
             // TODO Do we need weak events here?
             EventHandler handler = HandleTargetEvent;
-            _targetHandlers.Add(eventName, handler);
+
+            var defaultHandlerInfo = _targetHandlers.Values.FirstOrDefault(i => i.IsDefault);
+
+            if (defaultHandlerInfo != null)
+            {
+                DetachTargetHandlers();
+            }
+
+            var info = new DelegateInfo
+            {
+                Delegate = handler
+            };
+
+            if (_targetHandlers.ContainsKey(eventName))
+            {
+                _targetHandlers[eventName] = info;
+            }
+            else
+            {
+                _targetHandlers.Add(eventName, info);
+            }
 
             ev.AddEventHandler(
                 _propertyTarget.Target,
@@ -734,7 +807,27 @@ namespace GalaSoft.MvvmLight.Helpers
 
             // TODO Do we need weak events here?
             EventHandler<TEventArgs> handler = HandleTargetEvent;
-            _targetHandlers.Add(eventName, handler);
+
+            var defaultHandlerInfo = _targetHandlers.Values.FirstOrDefault(i => i.IsDefault);
+
+            if (defaultHandlerInfo != null)
+            {
+                DetachTargetHandlers();
+            }
+
+            var info = new DelegateInfo
+            {
+                Delegate = handler
+            };
+
+            if (_targetHandlers.ContainsKey(eventName))
+            {
+                _targetHandlers[eventName] = info;
+            }
+            else
+            {
+                _targetHandlers.Add(eventName, info);
+            }
 
             ev.AddEventHandler(
                 _propertyTarget.Target,
@@ -1068,13 +1161,17 @@ namespace GalaSoft.MvvmLight.Helpers
             var textBox = _propertySource.Target as EditText;
             if (textBox != null)
             {
-                return UpdateSourceTrigger<TextChangedEventArgs>("TextChanged");
+                var binding = UpdateSourceTrigger<TextChangedEventArgs>("TextChanged");
+                binding._sourceHandlers["TextChanged"].IsDefault = true;
+                return binding;
             }
 
             var checkbox = _propertySource.Target as CompoundButton;
             if (checkbox != null)
             {
-                return UpdateSourceTrigger<CompoundButton.CheckedChangeEventArgs>("CheckedChange");
+                var binding = UpdateSourceTrigger<CompoundButton.CheckedChangeEventArgs>("CheckedChange");
+                binding._sourceHandlers["CheckedChange"].IsDefault = true;
+                return binding;
             }
 
             return this;
@@ -1096,13 +1193,17 @@ namespace GalaSoft.MvvmLight.Helpers
             var textBox = _propertyTarget.Target as EditText;
             if (textBox != null)
             {
-                return UpdateTargetTrigger<TextChangedEventArgs>("TextChanged");
+                var binding = UpdateTargetTrigger<TextChangedEventArgs>("TextChanged");
+                binding._targetHandlers["TextChanged"].IsDefault = true;
+                return binding;
             }
 
             var checkbox = _propertyTarget.Target as CompoundButton;
             if (checkbox != null)
             {
-                return UpdateTargetTrigger<CompoundButton.CheckedChangeEventArgs>("CheckedChange");
+                var binding = UpdateTargetTrigger<CompoundButton.CheckedChangeEventArgs>("CheckedChange");
+                binding._targetHandlers["CheckedChange"].IsDefault = true;
+                return binding;
             }
 
             return this;
@@ -1113,7 +1214,7 @@ namespace GalaSoft.MvvmLight.Helpers
 #endif
         }
 
-        private void DetachHandlers()
+        private void DetachSourceHandlers()
         {
             if (_propertySource == null
                 || !_propertySource.IsAlive
@@ -1131,7 +1232,19 @@ namespace GalaSoft.MvvmLight.Helpers
                     return;
                 }
 
-                ev.RemoveEventHandler(_propertySource.Target, _sourceHandlers[eventName]);
+                ev.RemoveEventHandler(_propertySource.Target, _sourceHandlers[eventName].Delegate);
+            }
+
+            _sourceHandlers.Clear();
+        }
+
+        private void DetachTargetHandlers()
+        {
+            if (_propertySource == null
+                || !_propertySource.IsAlive
+                || _propertySource.Target == null)
+            {
+                return;
             }
 
             foreach (var eventName in _targetHandlers.Keys)
@@ -1143,8 +1256,10 @@ namespace GalaSoft.MvvmLight.Helpers
                     return;
                 }
 
-                ev.RemoveEventHandler(_propertyTarget.Target, _targetHandlers[eventName]);
+                ev.RemoveEventHandler(_propertyTarget.Target, _targetHandlers[eventName].Delegate);
             }
+
+            _targetHandlers.Clear();
         }
 
         private TTarget GetSourceValue()
@@ -1379,6 +1494,12 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 _convertBack = new WeakFunc<TTarget, TSource>(convertBack);
             }
+        }
+
+        private class DelegateInfo
+        {
+            public Delegate Delegate;
+            public bool IsDefault;
         }
     }
 }
