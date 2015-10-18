@@ -37,25 +37,25 @@
     <DocumentationFile>bin\iPhone\Release\GalaSoft.MvvmLight.Platform.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\..\..\MvvmLight\Source\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\Binding.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\Binding.cs">
       <Link>Helpers\Binding.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\..\..\..\MvvmLight\Source\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\BindingGeneric.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\BindingGeneric.cs">
       <Link>Helpers\BindingGeneric.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\..\..\..\MvvmLight\Source\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\BindingMode.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\BindingMode.cs">
       <Link>Helpers\BindingMode.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\..\..\..\MvvmLight\Source\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\Extensions.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\Extensions.cs">
       <Link>Helpers\Extensions.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\..\..\..\MvvmLight\Source\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\IWeakEventListener.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\IWeakEventListener.cs">
       <Link>Helpers\IWeakEventListener.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\..\..\..\MvvmLight\Source\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\PropertyChangedEventManager.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\PropertyChangedEventManager.cs">
       <Link>Helpers\PropertyChangedEventManager.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\..\..\..\MvvmLight\Source\GalaSoft.MvvmLight\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\UpdateSourceTriggerMode.cs">
+    <Compile Include="..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\UpdateSourceTriggerMode.cs">
       <Link>Helpers\UpdateSourceTriggerMode.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Platform %28NET45%29\Properties\AssemblyInfo.cs">
