@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace GalaSoft.MvvmLight.Test.ViewModel

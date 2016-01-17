@@ -129,7 +129,7 @@ namespace GalaSoft.MvvmLight
             "Microsoft.Design", 
             "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
-        protected virtual void RaisePropertyChanging(
+        public virtual void RaisePropertyChanging(
             [CallerMemberName] string propertyName = null)
 #else
         /// <summary>
@@ -144,7 +144,7 @@ namespace GalaSoft.MvvmLight
             "Microsoft.Design", 
             "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
-        protected virtual void RaisePropertyChanging(
+        public virtual void RaisePropertyChanging(
             string propertyName)
 #endif
         {
@@ -171,7 +171,7 @@ namespace GalaSoft.MvvmLight
             "Microsoft.Design", 
             "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
-        protected virtual void RaisePropertyChanged(
+        public virtual void RaisePropertyChanged(
             [CallerMemberName] string propertyName = null)
 #else
         /// <summary>
@@ -186,7 +186,7 @@ namespace GalaSoft.MvvmLight
             "Microsoft.Design", 
             "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
-        protected virtual void RaisePropertyChanged(
+        public virtual void RaisePropertyChanged(
             string propertyName) 
 #endif
         {
@@ -215,7 +215,7 @@ namespace GalaSoft.MvvmLight
             "Microsoft.Design",
             "CA1006:GenericMethodsShouldProvideTypeParameter",
             Justification = "This syntax is more convenient than other alternatives.")]
-        protected virtual void RaisePropertyChanging<T>(Expression<Func<T>> propertyExpression)
+        public virtual void RaisePropertyChanging<T>(Expression<Func<T>> propertyExpression)
         {
             var handler = PropertyChanging;
             if (handler != null)
@@ -241,13 +241,19 @@ namespace GalaSoft.MvvmLight
             "Microsoft.Design",
             "CA1006:GenericMethodsShouldProvideTypeParameter",
             Justification = "This syntax is more convenient than other alternatives.")]
-        protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
+        public virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
         {
             var handler = PropertyChanged;
+
             if (handler != null)
             {
                 var propertyName = GetPropertyName(propertyExpression);
-                handler(this, new PropertyChangedEventArgs(propertyName));
+
+                if (!string.IsNullOrEmpty(propertyName))
+                {
+                    // ReSharper disable once ExplicitCallerInfoArgument
+                    RaisePropertyChanged(propertyName);
+                }
             }
         }
 

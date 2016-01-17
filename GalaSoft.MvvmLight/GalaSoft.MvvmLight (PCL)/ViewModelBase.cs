@@ -122,7 +122,6 @@ namespace GalaSoft.MvvmLight
 #elif NETFX_CORE
                     _isInDesignMode = DesignMode.DesignModeEnabled;
 #elif XAMARIN
-                    // TODO XAMARIN Is there such a thing as design mode? How to detect it?
                     _isInDesignMode = false;
 #else
                     var prop = DesignerProperties.IsInDesignModeProperty;
@@ -168,8 +167,6 @@ namespace GalaSoft.MvvmLight
 
             return false;
         }
-
-
 
         private static bool IsInDesignModeSilverlight()
         {
@@ -368,7 +365,7 @@ namespace GalaSoft.MvvmLight
         SuppressMessage(
             "Microsoft.Design", "CA1030:UseEventsWhereAppropriate",
             Justification = "This cannot be an event")]
-        protected virtual void RaisePropertyChanged<T>(
+        public virtual void RaisePropertyChanged<T>(
 #if CMNATTR
             [CallerMemberName] string propertyName = null, 
 #else
@@ -416,24 +413,15 @@ namespace GalaSoft.MvvmLight
             "Microsoft.Design",
             "CA1006:GenericMethodsShouldProvideTypeParameter",
             Justification = "This syntax is more convenient than the alternatives.")]
-        protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue, bool broadcast)
+        public virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue, bool broadcast)
         {
-            var handler = PropertyChangedHandler;
+            RaisePropertyChanged(propertyExpression);
 
-            if (handler != null
-                || broadcast)
+            if (broadcast)
             {
+                // Unfortunately I don't see a reliable way to not call GetPropertyName twice.
                 var propertyName = GetPropertyName(propertyExpression);
-
-                if (handler != null)
-                {
-                    handler(this, new PropertyChangedEventArgs(propertyName));
-                }
-
-                if (broadcast)
-                {
-                    Broadcast(oldValue, newValue, propertyName);
-                }
+                Broadcast(oldValue, newValue, propertyName);
             }
         }
 

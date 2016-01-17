@@ -95,8 +95,17 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\ObservableObjectTest.cs">
+      <Link>ObservableObjectTest.cs</Link>
+    </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Stubs\TestClass1.cs">
       <Link>Stubs\TestClass1.cs</Link>
+    </Compile>
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\TestObservableObject.cs">
+      <Link>ViewModels\TestObservableObject.cs</Link>
+    </Compile>
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\TestViewModelForPropertyChanged.cs">
+      <Link>ViewModels\TestViewModelForPropertyChanged.cs</Link>
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\EventArgsConverter.cs">
       <Link>Command\EventArgsConverter.cs</Link>
