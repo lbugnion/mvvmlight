@@ -229,6 +229,9 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ObservableObjectPropertyChangedTest.cs">
       <Link>ObservableObjectPropertyChangedTest.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ObservableObjectTest.cs">
+      <Link>ObservableObjectTest.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -274,14 +277,23 @@
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\Threading\DispatcherHelperTest.cs">
       <Link>Threading\DispatcherHelperTest.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModelBaseAndPropertyChangedTest.cs">
+      <Link>ViewModelBaseAndPropertyChangedTest.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModelBaseTest.cs">
       <Link>ViewModelBaseTest.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\TestClassWithObservableObject.cs">
       <Link>ViewModel\TestClassWithObservableObject.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\TestObservableObject.cs">
+      <Link>ViewModel\TestObservableObject.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\TestViewModel.cs">
       <Link>ViewModel\TestViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\TestViewModelForPropertyChanged.cs">
+      <Link>ViewModel\TestViewModelForPropertyChanged.cs</Link>
     </Compile>
     <Compile Include="..\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\TestViewModelNoMagicString.cs">
       <Link>ViewModel\TestViewModelNoMagicString.cs</Link>
