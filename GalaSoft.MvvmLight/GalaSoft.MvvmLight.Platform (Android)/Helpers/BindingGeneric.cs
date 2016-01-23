@@ -20,11 +20,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Windows;
-#if ANDROID
-using Android.Views;
-using Android.Text;
-using Android.Widget;
-#endif
 
 namespace GalaSoft.MvvmLight.Helpers
 {
@@ -40,7 +35,7 @@ namespace GalaSoft.MvvmLight.Helpers
     /// simple types can be converted. For more complex conversions, use the <see cref="ConvertSourceToTarget"/>
     /// and <see cref="ConvertTargetToSource"/> methods to define custom converters.</typeparam>
     ////[ClassInfo(typeof(Binding))]
-    public class Binding<TSource, TTarget> : Binding
+    public partial class Binding<TSource, TTarget> : Binding
     {
         private readonly SimpleConverter _converter = new SimpleConverter();
         private readonly List<IWeakEventListener> _listeners = new List<IWeakEventListener>();
@@ -50,6 +45,7 @@ namespace GalaSoft.MvvmLight.Helpers
         private readonly Dictionary<string, DelegateInfo> _targetHandlers = new Dictionary<string, DelegateInfo>();
         private readonly Expression<Func<TTarget>> _targetPropertyExpression;
         private readonly string _targetPropertyName;
+        private bool _isFallbackValueActive;
         private WeakAction _onSourceUpdate;
         private WeakReference _propertySource;
         private WeakReference _propertyTarget;
@@ -59,9 +55,23 @@ namespace GalaSoft.MvvmLight.Helpers
         private PropertyInfo _targetProperty;
 
         /// <summary>
-        /// Occurs when the value of the databound property changes.
+        /// Gets or sets the value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.
         /// </summary>
-        public override event EventHandler ValueChanged;
+        public TSource FallbackValue
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets of sets the value used when the source property is null (or equals to default(TSource)).
+        /// </summary>
+        public TSource TargetNullValue
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the current value of the binding.
@@ -97,14 +107,22 @@ namespace GalaSoft.MvvmLight.Helpers
         /// if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
         /// property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
         /// implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+        /// <param name="fallbackValue">Tthe value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.</param>
+        /// <param name="targetNullValue">The value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.</param>
         public Binding(
             object source,
             string sourcePropertyName,
             object target = null,
             string targetPropertyName = null,
-            BindingMode mode = BindingMode.Default)
+            BindingMode mode = BindingMode.Default,
+            TSource fallbackValue = default(TSource),
+            TSource targetNullValue = default(TSource))
         {
             Mode = mode;
+            FallbackValue = fallbackValue;
+            TargetNullValue = targetNullValue;
 
             TopSource = new WeakReference(source);
             _propertySource = new WeakReference(source);
@@ -142,14 +160,22 @@ namespace GalaSoft.MvvmLight.Helpers
         /// if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
         /// property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
         /// implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+        /// <param name="fallbackValue">Tthe value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.</param>
+        /// <param name="targetNullValue">The value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.</param>
         public Binding(
             object source,
             Expression<Func<TSource>> sourcePropertyExpression,
             object target = null,
             Expression<Func<TTarget>> targetPropertyExpression = null,
-            BindingMode mode = BindingMode.Default)
+            BindingMode mode = BindingMode.Default,
+            TSource fallbackValue = default(TSource),
+            TSource targetNullValue = default(TSource))
         {
             Mode = mode;
+            FallbackValue = fallbackValue;
+            TargetNullValue = targetNullValue;
 
             TopSource = new WeakReference(source);
             _sourcePropertyExpression = sourcePropertyExpression;
@@ -233,14 +259,26 @@ namespace GalaSoft.MvvmLight.Helpers
 
             if (_targetProperty != null)
             {
-                var value = GetSourceValue();
-                var targetValue = _targetProperty.GetValue(_propertyTarget.Target);
-
-                if (!Equals(value, targetValue))
+                try
                 {
-                    _settingSourceToTarget = true;
-                    _targetProperty.SetValue(_propertyTarget.Target, value, null);
-                    _settingSourceToTarget = false;
+                    var value = GetSourceValue();
+                    var targetValue = _targetProperty.GetValue(_propertyTarget.Target);
+
+                    if (!Equals(value, targetValue))
+                    {
+                        _settingSourceToTarget = true;
+                        SetTargetValue(value);
+                        _settingSourceToTarget = false;
+                    }
+                }
+                catch
+                {
+                    if (!Equals(FallbackValue, default(TSource)))
+                    {
+                        _settingSourceToTarget = true;
+                        _targetProperty.SetValue(_propertyTarget.Target, FallbackValue, null);
+                        _settingSourceToTarget = false;
+                    }
                 }
             }
 
@@ -277,7 +315,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 if (!Equals(value, sourceValue))
                 {
                     _settingTargetToSource = true;
-                    _sourceProperty.SetValue(_propertySource.Target, value, null);
+                    SetSourceValue(value);
                     _settingTargetToSource = false;
                 }
             }
@@ -302,7 +340,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// or is an empty string.</exception>
         /// <exception cref="ArgumentException">When the requested event does not exist on the
         /// source control.</exception>
-        public Binding<TSource, TTarget> UpdateSourceTrigger(string eventName)
+        public Binding<TSource, TTarget> ObserveSourceEvent(string eventName)
         {
             if (string.IsNullOrEmpty(eventName))
             {
@@ -336,7 +374,6 @@ namespace GalaSoft.MvvmLight.Helpers
                     "eventName");
             }
 
-            // TODO Do we need weak events here?
             EventHandler handler = HandleSourceEvent;
 
             var defaultHandlerInfo = _sourceHandlers.Values.FirstOrDefault(i => i.IsDefault);
@@ -367,106 +404,6 @@ namespace GalaSoft.MvvmLight.Helpers
             return this;
         }
 
-#if IOS
-        /// <summary>
-        /// Define that the binding should be evaluated when the bound control's source property changes. 
-        /// Because Xamarin controls are not DependencyObjects, the
-        /// bound property will not automatically update the binding attached to it. Instead,
-        /// use this method to specify that the binding must be updated when the property changes.
-        /// </summary>
-        /// <remarks>At this point, this method is inactive on iOS. Use
-        /// <see cref="UpdateSourceTrigger(string)"/> instead.</remarks>
-        /// <returns>The Binding instance.</returns>
-        /// <exception cref="InvalidOperationException">When this method is called
-        /// on a OneTime binding. Such bindings cannot be updated. This exception can
-        /// also be thrown when the source object is null or has already been
-        /// garbage collected before this method is called.</exception>
-#endif
-#if ANDROID
-        /// <summary>
-        /// Define that the binding should be evaluated when the bound control's source property changes. 
-        /// Because Xamarin controls are not DependencyObjects, the
-        /// bound property will not automatically update the binding attached to it. Instead,
-        /// use this method to specify that the binding must be updated when the property changes.
-        /// </summary>
-        /// <remarks>This method should only be used with the following items:
-        /// <para>- an EditText control and its Text property (TextChanged event).</para>
-        /// <para>- a CompoundButton control and its Checked property (CheckedChange event).</para>
-        /// </remarks>
-        /// <returns>The Binding instance.</returns>
-        /// <exception cref="InvalidOperationException">When this method is called
-        /// on a OneTime binding. Such bindings cannot be updated. This exception can
-        /// also be thrown when the source object is null or has already been
-        /// garbage collected before this method is called.</exception>
-#endif
-        public Binding<TSource, TTarget> UpdateSourceTrigger()
-        {
-            return UpdateSourceTrigger(UpdateTriggerMode.PropertyChanged);
-        }
-
-#if IOS
-        /// <summary>
-        /// Define when the binding should be evaluated when the bound source object
-        /// is a control. Because Xamarin controls are not DependencyObjects, the
-        /// bound property will not automatically update the binding attached to it. Instead,
-        /// use this method to define which of the control's events should be observed.
-        /// </summary>
-        /// <param name="mode">Defines the binding's update mode. Use 
-        /// <see cref="UpdateTriggerMode.LostFocus"/> to update the binding when
-        /// the source control loses the focus. You can also use
-        /// <see cref="UpdateTriggerMode.PropertyChanged"/> to update the binding
-        /// when the source control's property changes.
-        /// NOTE: At this time the PropertyChanged mode is inactive on iOS. Use
-        /// <see cref="UpdateSourceTrigger(string)"/> instead.
-        /// </param>
-        /// <returns>The Binding instance.</returns>
-        /// <exception cref="InvalidOperationException">When this method is called
-        /// on a OneTime binding. Such bindings cannot be updated. This exception can
-        /// also be thrown when the source object is null or has already been
-        /// garbage collected before this method is called.</exception>
-#endif
-#if ANDROID
-        /// <summary>
-        /// Define when the binding should be evaluated when the bound source object
-        /// is a control. Because Xamarin controls are not DependencyObjects, the
-        /// bound property will not automatically update the binding attached to it. Instead,
-        /// use this method to define which of the control's events should be observed.
-        /// </summary>
-        /// <param name="mode">Defines the binding's update mode. Use 
-        /// <see cref="UpdateTriggerMode.LostFocus"/> to update the binding when
-        /// the source control loses the focus. You can also use
-        /// <see cref="UpdateTriggerMode.PropertyChanged"/> to update the binding
-        /// when the source control's property changes.
-        /// The PropertyChanged mode should only be used with the following items:
-        /// <para>- an EditText control and its Text property (TextChanged event).</para>
-        /// <para>- a CompoundButton control and its Checked property (CheckedChange event).</para>
-        /// </param>
-        /// <returns>The Binding instance.</returns>
-        /// <exception cref="InvalidOperationException">When this method is called
-        /// on a OneTime binding. Such bindings cannot be updated. This exception can
-        /// also be thrown when the source object is null or has already been
-        /// garbage collected before this method is called.</exception>
-#endif
-        public Binding<TSource, TTarget> UpdateSourceTrigger(UpdateTriggerMode mode)
-        {
-            switch (mode)
-            {
-                case UpdateTriggerMode.LostFocus:
-#if ANDROID
-                    return UpdateSourceTrigger<View.FocusChangeEventArgs>("FocusChange");
-#else
-                    throw new ArgumentException(
-                        "UpdateTriggerMode.LostFocus is only supported in Android at this time",
-                        "mode");
-#endif
-
-                case UpdateTriggerMode.PropertyChanged:
-                    return CheckControlSource();
-            }
-
-            return this;
-        }
-
         /// <summary>
         /// Define when the binding should be evaluated when the bound source object
         /// is a control. Because Xamarin controls are not DependencyObjects, the
@@ -487,7 +424,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// or is an empty string.</exception>
         /// <exception cref="ArgumentException">When the requested event does not exist on the
         /// source control.</exception>
-        public Binding<TSource, TTarget> UpdateSourceTrigger<TEventArgs>(string eventName)
+        public Binding<TSource, TTarget> ObserveSourceEvent<TEventArgs>(string eventName)
             where TEventArgs : EventArgs
         {
             if (string.IsNullOrEmpty(eventName)
@@ -523,7 +460,6 @@ namespace GalaSoft.MvvmLight.Helpers
                     "eventName");
             }
 
-            // TODO Do we need weak events here?
             EventHandler<TEventArgs> handler = HandleSourceEvent;
 
             var defaultHandlerInfo = _sourceHandlers.Values.FirstOrDefault(i => i.IsDefault);
@@ -554,106 +490,6 @@ namespace GalaSoft.MvvmLight.Helpers
             return this;
         }
 
-#if IOS
-        /// <summary>
-        /// Define that the binding should be evaluated when the bound control's target property changes. 
-        /// Because Xamarin controls are not DependencyObjects, the
-        /// bound property will not automatically update the binding attached to it. Instead,
-        /// use this method to specify that the binding must be updated when the property changes.
-        /// </summary>
-        /// <remarks>At this point, this method is inactive on iOS. Use
-        /// <see cref="UpdateTargetTrigger(string)"/> instead.</remarks>
-        /// <returns>The Binding instance.</returns>
-        /// <exception cref="InvalidOperationException">When this method is called
-        /// on a OneTime or a OneWay binding. This exception can
-        /// also be thrown when the target object is null or has already been
-        /// garbage collected before this method is called.</exception>
-#endif
-#if ANDROID
-        /// <summary>
-        /// Define that the binding should be evaluated when the bound control's target property changes. 
-        /// Because Xamarin controls are not DependencyObjects, the
-        /// bound property will not automatically update the binding attached to it. Instead,
-        /// use this method to specify that the binding must be updated when the property changes.
-        /// </summary>
-        /// <remarks>This method should only be used with the following items:
-        /// <para>- an EditText control and its Text property (TextChanged event).</para>
-        /// <para>- a CompoundButton control and its Checked property (CheckedChange event).</para>
-        /// </remarks>
-        /// <returns>The Binding instance.</returns>
-        /// <exception cref="InvalidOperationException">When this method is called
-        /// on a OneTime or a OneWay binding. This exception can
-        /// also be thrown when the target object is null or has already been
-        /// garbage collected before this method is called.</exception>
-#endif
-        public Binding<TSource, TTarget> UpdateTargetTrigger()
-        {
-            return UpdateSourceTrigger(UpdateTriggerMode.PropertyChanged);
-        }
-
-#if IOS
-        /// <summary>
-        /// Define when the binding should be evaluated when the bound target object
-        /// is a control. Because Xamarin controls are not DependencyObjects, the
-        /// bound property will not automatically update the binding attached to it. Instead,
-        /// use this method to define which of the control's events should be observed.
-        /// </summary>
-        /// <param name="mode">Defines the binding's update mode. Use 
-        /// <see cref="UpdateTriggerMode.LostFocus"/> to update the binding when
-        /// the source control loses the focus. You can also use
-        /// <see cref="UpdateTriggerMode.PropertyChanged"/> to update the binding
-        /// when the source control's property changes.
-        /// NOTE: At this time the PropertyChanged mode is inactive on iOS. Use
-        /// <see cref="UpdateTargetTrigger(string)"/> instead.
-        /// </param>
-        /// <returns>The Binding instance.</returns>
-        /// <exception cref="InvalidOperationException">When this method is called
-        /// on a OneTime or a OneWay binding. This exception can
-        /// also be thrown when the source object is null or has already been
-        /// garbage collected before this method is called.</exception>
-#endif
-#if ANDROID
-        /// <summary>
-        /// Define when the binding should be evaluated when the bound target object
-        /// is a control. Because Xamarin controls are not DependencyObjects, the
-        /// bound property will not automatically update the binding attached to it. Instead,
-        /// use this method to define which of the control's events should be observed.
-        /// </summary>
-        /// <param name="mode">Defines the binding's update mode. Use 
-        /// <see cref="UpdateTriggerMode.LostFocus"/> to update the binding when
-        /// the source control loses the focus. You can also use
-        /// <see cref="UpdateTriggerMode.PropertyChanged"/> to update the binding
-        /// when the source control's property changes.
-        /// The PropertyChanged mode should only be used with the following items:
-        /// <para>- an EditText control and its Text property (TextChanged event).</para>
-        /// <para>- a CompoundButton control and its Checked property (CheckedChange event).</para>
-        /// </param>
-        /// <returns>The Binding instance.</returns>
-        /// <exception cref="InvalidOperationException">When this method is called
-        /// on a OneTime or a OneWay binding. This exception can
-        /// also be thrown when the source object is null or has already been
-        /// garbage collected before this method is called.</exception>
-#endif
-        public Binding<TSource, TTarget> UpdateTargetTrigger(UpdateTriggerMode mode)
-        {
-            switch (mode)
-            {
-                case UpdateTriggerMode.LostFocus:
-#if ANDROID
-                    return UpdateTargetTrigger<View.FocusChangeEventArgs>("FocusChange");
-#else
-                    throw new ArgumentException(
-                        "UpdateTriggerMode.LostFocus is only supported in Android at this time",
-                        "mode");
-#endif
-
-                case UpdateTriggerMode.PropertyChanged:
-                    return CheckControlTarget();
-            }
-
-            return this;
-        }
-
         /// <summary>
         /// Define when the binding should be evaluated when the bound target object
         /// is a control. Because Xamarin controls are not DependencyObjects, the
@@ -671,7 +507,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// or is an empty string.</exception>
         /// <exception cref="ArgumentException">When the requested event does not exist on the
         /// target control.</exception>
-        public Binding<TSource, TTarget> UpdateTargetTrigger(string eventName)
+        public Binding<TSource, TTarget> ObserveTargetEvent(string eventName)
         {
             if (string.IsNullOrEmpty(eventName))
             {
@@ -688,8 +524,6 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 throw new InvalidOperationException("Cannot use SetTargetEvent with onSourceUpdate");
             }
-
-            // TODO Should also use the target chain
 
             if (_propertyTarget == null
                 || !_propertyTarget.IsAlive
@@ -713,7 +547,6 @@ namespace GalaSoft.MvvmLight.Helpers
                     "eventName");
             }
 
-            // TODO Do we need weak events here?
             EventHandler handler = HandleTargetEvent;
 
             var defaultHandlerInfo = _targetHandlers.Values.FirstOrDefault(i => i.IsDefault);
@@ -764,7 +597,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// or is an empty string.</exception>
         /// <exception cref="ArgumentException">When the requested event does not exist on the
         /// target control.</exception>
-        public Binding<TSource, TTarget> UpdateTargetTrigger<TEventArgs>(string eventName)
+        public Binding<TSource, TTarget> ObserveTargetEvent<TEventArgs>(string eventName)
             where TEventArgs : EventArgs
         {
             if (string.IsNullOrEmpty(eventName))
@@ -805,7 +638,6 @@ namespace GalaSoft.MvvmLight.Helpers
                     "eventName");
             }
 
-            // TODO Do we need weak events here?
             EventHandler<TEventArgs> handler = HandleTargetEvent;
 
             var defaultHandlerInfo = _targetHandlers.Values.FirstOrDefault(i => i.IsDefault);
@@ -860,6 +692,254 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             return this;
+        }
+
+        private void Attach(
+            object source,
+            object target,
+            BindingMode mode)
+        {
+            var sourceChain = GetPropertyChain(
+                source,
+                null,
+                _sourcePropertyExpression.Body as MemberExpression,
+                _sourcePropertyName);
+
+            var lastSourceInChain = sourceChain.Last();
+            sourceChain.Remove(lastSourceInChain);
+
+            _propertySource = new WeakReference(lastSourceInChain.Instance);
+
+            if (mode != BindingMode.OneTime)
+            {
+                foreach (var instance in sourceChain)
+                {
+                    var inpc = instance.Instance as INotifyPropertyChanged;
+                    if (inpc != null)
+                    {
+                        var listener = new ObjectSwappedEventListener(
+                            this,
+                            inpc);
+                        _listeners.Add(listener);
+                        PropertyChangedEventManager.AddListener(inpc, listener, instance.Name);
+                    }
+                }
+            }
+
+            if (target != null
+                && _targetPropertyExpression != null
+                && _targetPropertyName != null)
+            {
+                var targetChain = GetPropertyChain(
+                    target,
+                    null,
+                    _targetPropertyExpression.Body as MemberExpression,
+                    _targetPropertyName);
+
+                var lastTargetInChain = targetChain.Last();
+                targetChain.Remove(lastTargetInChain);
+
+                _propertyTarget = new WeakReference(lastTargetInChain.Instance);
+
+                if (mode != BindingMode.OneTime)
+                {
+                    foreach (var instance in targetChain)
+                    {
+                        var inpc = instance.Instance as INotifyPropertyChanged;
+                        if (inpc != null)
+                        {
+                            var listener = new ObjectSwappedEventListener(
+                                this,
+                                inpc);
+                            _listeners.Add(listener);
+                            PropertyChangedEventManager.AddListener(inpc, listener, instance.Name);
+                        }
+                    }
+                }
+            }
+
+            _isFallbackValueActive = false;
+
+            if (sourceChain.Any(r => r.Instance == null))
+            {
+                _isFallbackValueActive = true;
+            }
+            else
+            {
+                if (lastSourceInChain.Instance == null)
+                {
+                    _isFallbackValueActive = true;
+                }
+            }
+
+            Attach();
+        }
+
+        private void Attach()
+        {
+            if (_propertyTarget != null
+                && _propertyTarget.IsAlive
+                && _propertyTarget.Target != null
+                && !string.IsNullOrEmpty(_targetPropertyName))
+            {
+                var targetType = _propertyTarget.Target.GetType();
+                _targetProperty = targetType.GetProperty(_targetPropertyName);
+
+                if (_targetProperty == null)
+                {
+                    throw new InvalidOperationException("Property not found: " + _targetPropertyName);
+                }
+            }
+
+            if (_propertySource == null
+                || !_propertySource.IsAlive
+                || _propertySource.Target == null)
+            {
+                SetSpecialValues();
+                return;
+            }
+
+            var sourceType = _propertySource.Target.GetType();
+            _sourceProperty = sourceType.GetProperty(_sourcePropertyName);
+
+            if (_sourceProperty == null)
+            {
+                throw new InvalidOperationException("Property not found: " + _sourcePropertyName);
+            }
+
+            // OneTime binding
+
+            if (CanBeConverted(_sourceProperty, _targetProperty))
+            {
+                var value = GetSourceValue();
+
+                if (_targetProperty != null
+                    && _propertyTarget != null
+                    && _propertyTarget.IsAlive
+                    && _propertyTarget.Target != null)
+                {
+                    SetTargetValue(value);
+                }
+
+                if (_onSourceUpdate != null
+                    && _onSourceUpdate.IsAlive)
+                {
+                    _onSourceUpdate.Execute();
+                }
+            }
+
+            if (Mode == BindingMode.OneTime)
+            {
+                return;
+            }
+
+            // Check OneWay binding
+            var inpc = _propertySource.Target as INotifyPropertyChanged;
+
+            if (inpc != null)
+            {
+                var listener = new PropertyChangedEventListener(
+                    this,
+                    true);
+
+                _listeners.Add(listener);
+                PropertyChangedEventManager.AddListener(inpc, listener, _sourcePropertyName);
+            }
+            else
+            {
+                CheckControlSource();
+            }
+
+            if (Mode == BindingMode.OneWay
+                || Mode == BindingMode.Default)
+            {
+                return;
+            }
+
+            // Check TwoWay binding
+            if (_onSourceUpdate == null
+                && _propertyTarget != null
+                && _propertyTarget.IsAlive
+                && _propertyTarget.Target != null)
+            {
+                var inpc2 = _propertyTarget.Target as INotifyPropertyChanged;
+
+                if (inpc2 != null)
+                {
+                    var listener = new PropertyChangedEventListener(
+                        this,
+                        false);
+
+                    _listeners.Add(listener);
+                    PropertyChangedEventManager.AddListener(inpc2, listener, _targetPropertyName);
+                }
+                else
+                {
+                    CheckControlTarget();
+                }
+            }
+        }
+
+        private bool CanBeConverted(PropertyInfo sourceProperty, PropertyInfo targetProperty)
+        {
+            if (targetProperty == null)
+            {
+                return true;
+            }
+
+            var sourceType = sourceProperty.PropertyType;
+            var targetType = targetProperty.PropertyType;
+
+            return sourceType == targetType
+                   || (IsValueType(sourceType) && IsValueType(targetType));
+        }
+
+        private void DetachSourceHandlers()
+        {
+            if (_propertySource == null
+                || !_propertySource.IsAlive
+                || _propertySource.Target == null)
+            {
+                return;
+            }
+
+            foreach (var eventName in _sourceHandlers.Keys)
+            {
+                var type = _propertySource.Target.GetType();
+                var ev = type.GetEvent(eventName);
+                if (ev == null)
+                {
+                    return;
+                }
+
+                ev.RemoveEventHandler(_propertySource.Target, _sourceHandlers[eventName].Delegate);
+            }
+
+            _sourceHandlers.Clear();
+        }
+
+        private void DetachTargetHandlers()
+        {
+            if (_propertySource == null
+                || !_propertySource.IsAlive
+                || _propertySource.Target == null)
+            {
+                return;
+            }
+
+            foreach (var eventName in _targetHandlers.Keys)
+            {
+                var type = _propertyTarget.Target.GetType();
+                var ev = type.GetEvent(eventName);
+                if (ev == null)
+                {
+                    return;
+                }
+
+                ev.RemoveEventHandler(_propertyTarget.Target, _targetHandlers[eventName].Delegate);
+            }
+
+            _targetHandlers.Clear();
         }
 
         private static IList<PropertyAndName> GetPropertyChain(
@@ -970,300 +1050,13 @@ namespace GalaSoft.MvvmLight.Helpers
             return property.Name;
         }
 
-        private void Attach(
-            object source,
-            object target,
-            BindingMode mode)
-        {
-            var sourceChain = GetPropertyChain(
-                source,
-                null,
-                _sourcePropertyExpression.Body as MemberExpression,
-                _sourcePropertyName);
-
-            var lastSourceInChain = sourceChain.Last();
-            sourceChain.Remove(lastSourceInChain);
-
-            _propertySource = new WeakReference(lastSourceInChain.Instance);
-
-            if (mode != BindingMode.OneTime)
-            {
-                foreach (var instance in sourceChain)
-                {
-                    var inpc = instance.Instance as INotifyPropertyChanged;
-                    if (inpc != null)
-                    {
-                        var listener = new ObjectSwappedEventListener(
-                            this,
-                            inpc);
-                        _listeners.Add(listener);
-                        PropertyChangedEventManager.AddListener(inpc, listener, instance.Name);
-                    }
-                }
-            }
-
-            if (target != null
-                && _targetPropertyExpression != null
-                && _targetPropertyName != null)
-            {
-                var targetChain = GetPropertyChain(
-                    target,
-                    null,
-                    _targetPropertyExpression.Body as MemberExpression,
-                    _targetPropertyName);
-
-                var lastTargetInChain = targetChain.Last();
-                targetChain.Remove(lastTargetInChain);
-
-                _propertyTarget = new WeakReference(lastTargetInChain.Instance);
-
-                if (mode != BindingMode.OneTime)
-                {
-                    foreach (var instance in targetChain)
-                    {
-                        var inpc = instance.Instance as INotifyPropertyChanged;
-                        if (inpc != null)
-                        {
-                            var listener = new ObjectSwappedEventListener(
-                                this,
-                                inpc);
-                            _listeners.Add(listener);
-                            PropertyChangedEventManager.AddListener(inpc, listener, instance.Name);
-                        }
-                    }
-                }
-            }
-
-            Attach();
-        }
-
-        private void Attach()
-        {
-            if (_propertySource == null
-                || !_propertySource.IsAlive
-                || _propertySource.Target == null)
-            {
-                return;
-            }
-
-            if (_propertyTarget != null
-                && _propertyTarget.IsAlive
-                && _propertyTarget.Target != null
-                && !string.IsNullOrEmpty(_targetPropertyName))
-            {
-                var targetType = _propertyTarget.Target.GetType();
-                _targetProperty = targetType.GetProperty(_targetPropertyName);
-
-                if (_targetProperty == null)
-                {
-                    throw new InvalidOperationException("Property not found: " + _targetPropertyName);
-                }
-            }
-
-            var sourceType = _propertySource.Target.GetType();
-            _sourceProperty = sourceType.GetProperty(_sourcePropertyName);
-
-            if (_sourceProperty == null)
-            {
-                throw new InvalidOperationException("Property not found: " + _sourcePropertyName);
-            }
-
-            // OneTime binding
-
-            if (CanBeConverted(_sourceProperty, _targetProperty))
-            {
-                var value = GetSourceValue();
-
-                if (_targetProperty != null
-                    && _propertyTarget != null
-                    && _propertyTarget.IsAlive
-                    && _propertyTarget.Target != null)
-                {
-                    _targetProperty.SetValue(_propertyTarget.Target, value, null);
-                }
-
-                if (_onSourceUpdate != null
-                    && _onSourceUpdate.IsAlive)
-                {
-                    _onSourceUpdate.Execute();
-                }
-            }
-
-            if (Mode == BindingMode.OneTime)
-            {
-                return;
-            }
-
-            // Check OneWay binding
-            var inpc = _propertySource.Target as INotifyPropertyChanged;
-
-            if (inpc != null)
-            {
-                var listener = new PropertyChangedEventListener(
-                    this,
-                    true);
-
-                _listeners.Add(listener);
-                PropertyChangedEventManager.AddListener(inpc, listener, _sourcePropertyName);
-            }
-            else
-            {
-                CheckControlSource();
-            }
-
-            if (Mode == BindingMode.OneWay
-                || Mode == BindingMode.Default)
-            {
-                return;
-            }
-
-            // Check TwoWay binding
-            if (_onSourceUpdate == null
-                && _propertyTarget != null
-                && _propertyTarget.IsAlive
-                && _propertyTarget.Target != null)
-            {
-                var inpc2 = _propertyTarget.Target as INotifyPropertyChanged;
-
-                if (inpc2 != null)
-                {
-                    var listener = new PropertyChangedEventListener(
-                        this,
-                        false);
-
-                    _listeners.Add(listener);
-                    PropertyChangedEventManager.AddListener(inpc2, listener, _targetPropertyName);
-                }
-                else
-                {
-                    CheckControlTarget();
-                }
-            }
-        }
-
-        private bool CanBeConverted(PropertyInfo sourceProperty, PropertyInfo targetProperty)
-        {
-            if (targetProperty == null)
-            {
-                return true;
-            }
-
-            var sourceType = sourceProperty.PropertyType;
-            var targetType = targetProperty.PropertyType;
-
-            return sourceType == targetType
-                   || (IsValueType(sourceType) && IsValueType(targetType));
-        }
-
-        private Binding<TSource, TTarget> CheckControlSource()
-        {
-#if ANDROID
-            var textBox = _propertySource.Target as EditText;
-            if (textBox != null)
-            {
-                var binding = UpdateSourceTrigger<TextChangedEventArgs>("TextChanged");
-                binding._sourceHandlers["TextChanged"].IsDefault = true;
-                return binding;
-            }
-
-            var checkbox = _propertySource.Target as CompoundButton;
-            if (checkbox != null)
-            {
-                var binding = UpdateSourceTrigger<CompoundButton.CheckedChangeEventArgs>("CheckedChange");
-                binding._sourceHandlers["CheckedChange"].IsDefault = true;
-                return binding;
-            }
-
-            return this;
-#endif
-
-#if IOS
-            return this;
-#endif
-        }
-
-        private Binding<TSource, TTarget> CheckControlTarget()
-        {
-            if (Mode != BindingMode.TwoWay)
-            {
-                return this;
-            }
-
-#if ANDROID
-            var textBox = _propertyTarget.Target as EditText;
-            if (textBox != null)
-            {
-                var binding = UpdateTargetTrigger<TextChangedEventArgs>("TextChanged");
-                binding._targetHandlers["TextChanged"].IsDefault = true;
-                return binding;
-            }
-
-            var checkbox = _propertyTarget.Target as CompoundButton;
-            if (checkbox != null)
-            {
-                var binding = UpdateTargetTrigger<CompoundButton.CheckedChangeEventArgs>("CheckedChange");
-                binding._targetHandlers["CheckedChange"].IsDefault = true;
-                return binding;
-            }
-
-            return this;
-#endif
-
-#if IOS
-            return this;
-#endif
-        }
-
-        private void DetachSourceHandlers()
-        {
-            if (_propertySource == null
-                || !_propertySource.IsAlive
-                || _propertySource.Target == null)
-            {
-                return;
-            }
-
-            foreach (var eventName in _sourceHandlers.Keys)
-            {
-                var type = _propertySource.Target.GetType();
-                var ev = type.GetEvent(eventName);
-                if (ev == null)
-                {
-                    return;
-                }
-
-                ev.RemoveEventHandler(_propertySource.Target, _sourceHandlers[eventName].Delegate);
-            }
-
-            _sourceHandlers.Clear();
-        }
-
-        private void DetachTargetHandlers()
-        {
-            if (_propertySource == null
-                || !_propertySource.IsAlive
-                || _propertySource.Target == null)
-            {
-                return;
-            }
-
-            foreach (var eventName in _targetHandlers.Keys)
-            {
-                var type = _propertyTarget.Target.GetType();
-                var ev = type.GetEvent(eventName);
-                if (ev == null)
-                {
-                    return;
-                }
-
-                ev.RemoveEventHandler(_propertyTarget.Target, _targetHandlers[eventName].Delegate);
-            }
-
-            _targetHandlers.Clear();
-        }
-
         private TTarget GetSourceValue()
         {
+            if (_sourceProperty == null)
+            {
+                return default(TTarget);
+            }
+
             var sourceValue = (TSource)_sourceProperty.GetValue(_propertySource.Target, null);
             return _converter.Convert(sourceValue);
         }
@@ -1293,7 +1086,7 @@ namespace GalaSoft.MvvmLight.Helpers
 
                 if (_targetProperty != null)
                 {
-                    _targetProperty.SetValue(_propertyTarget.Target, valueLocal, null);
+                    SetTargetValue(valueLocal);
                 }
             }
 
@@ -1322,10 +1115,21 @@ namespace GalaSoft.MvvmLight.Helpers
                     return;
                 }
 
-                _sourceProperty.SetValue(_propertySource.Target, valueLocal, null);
+                SetSourceValue(valueLocal);
             }
 
             RaiseValueChanged();
+        }
+
+        private bool IsSourceDefaultValue()
+        {
+            if (_sourceProperty == null)
+            {
+                return true;
+            }
+
+            var sourceValue = (TSource)_sourceProperty.GetValue(_propertySource.Target, null);
+            return Equals(default(TSource), sourceValue);
         }
 
         private bool IsValueType(Type type)
@@ -1341,6 +1145,44 @@ namespace GalaSoft.MvvmLight.Helpers
                 handler(this, EventArgs.Empty);
             }
         }
+
+        private void SetSourceValue(TSource value)
+        {
+            _sourceProperty.SetValue(_propertySource.Target, value, null);
+        }
+
+        private bool SetSpecialValues()
+        {
+            if (_isFallbackValueActive)
+            {
+                _targetProperty.SetValue(_propertyTarget.Target, FallbackValue, null);
+                return true;
+            }
+
+            if (!Equals(default(TTarget), TargetNullValue))
+            {
+                if (IsSourceDefaultValue())
+                {
+                    _targetProperty.SetValue(_propertyTarget.Target, _converter.Convert(TargetNullValue), null);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void SetTargetValue(TTarget value)
+        {
+            if (!SetSpecialValues())
+            {
+                _targetProperty.SetValue(_propertyTarget.Target, value, null);
+            }
+        }
+
+        /// <summary>
+        /// Occurs when the value of the databound property changes.
+        /// </summary>
+        public override event EventHandler ValueChanged;
 
         internal class ObjectSwappedEventListener : IWeakEventListener
         {
@@ -1444,6 +1286,12 @@ namespace GalaSoft.MvvmLight.Helpers
             }
         }
 
+        private class DelegateInfo
+        {
+            public Delegate Delegate;
+            public bool IsDefault;
+        }
+
         private class SimpleConverter
         {
             private WeakFunc<TSource, TTarget> _convert;
@@ -1494,12 +1342,6 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 _convertBack = new WeakFunc<TTarget, TSource>(convertBack);
             }
-        }
-
-        private class DelegateInfo
-        {
-            public Delegate Delegate;
-            public bool IsDefault;
         }
     }
 }

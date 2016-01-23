@@ -53,13 +53,7 @@ namespace GalaSoft.MvvmLight.Helpers
         private bool _loadedView;
         private Thread _mainThread;
         private INotifyCollectionChanged _notifier;
-        private T _selectedItem;
         private ObservableTableSource<T> _tableSource;
-
-        /// <summary>
-        /// Occurs when a new item gets selected in the list.
-        /// </summary>
-        public event EventHandler SelectionChanged;
 
         /// <summary>
         /// When set, specifies which animation should be used when rows change.
@@ -186,10 +180,8 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         public T SelectedItem
         {
-            get
-            {
-                return _selectedItem;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -218,16 +210,7 @@ namespace GalaSoft.MvvmLight.Helpers
             set
             {
                 base.TableView = value;
-
-                if (_tableSource == null)
-                {
-                    base.TableView.Source = CreateSource();
-                }
-                else
-                {
-                    base.TableView.Source = _tableSource;
-                }
-
+                base.TableView.Source = _tableSource ?? CreateSource();
                 _loadedView = true;
             }
         }
@@ -250,11 +233,6 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             Initialize();
         }
-
-        /// <summary>
-        /// Occurs when a property of this instance changes.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Overrides the <see cref="UIViewController.ViewDidLoad"/> method.
@@ -320,7 +298,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <param name="indexPath">The NSIndexPath for the selected row.</param>
         protected virtual void OnRowSelected(object item, NSIndexPath indexPath)
         {
-            _selectedItem = (T)item;
+            SelectedItem = (T)item;
 
             // ReSharper disable ExplicitCallerInfoArgument
             RaisePropertyChanged(SelectedItemPropertyName);
@@ -402,6 +380,16 @@ namespace GalaSoft.MvvmLight.Helpers
             AddAnimation = UITableViewRowAnimation.Automatic;
             DeleteAnimation = UITableViewRowAnimation.Automatic;
         }
+
+        /// <summary>
+        /// Occurs when a property of this instance changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Occurs when a new item gets selected in the list.
+        /// </summary>
+        public event EventHandler SelectionChanged;
 
         /// <summary>
         /// A <see cref="UITableViewSource"/> that handles changes to the underlying

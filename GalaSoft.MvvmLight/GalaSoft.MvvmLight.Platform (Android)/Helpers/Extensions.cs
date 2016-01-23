@@ -14,19 +14,10 @@
 // ****************************************************************************
 
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq.Expressions;
+using System.Reflection;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-
-#if ANDROID
-using Android.Views;
-#endif
-
-#if IOS
-using Foundation;
-using UIKit;
-#endif
 
 namespace GalaSoft.MvvmLight.Helpers
 {
@@ -221,14 +212,70 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// Sets a generic RelayCommand to an object and actuate the command when a specific event is raised. This method
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// can only be used when the event uses a standard EventHandler. 
+        /// </summary>
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="commandParameterBinding">A <see cref="Binding{T, T}">Binding</see> instance subscribed to
+        /// the CommandParameter that will passed to the RelayCommand. Depending on the Binding, the CommandParameter
+        /// will be observed and changes will be passed to the command, for example to update the CanExecute.</param>
+        public static void SetCommand<T>(
+            this object element,
+            string eventName,
+            RelayCommand<T> command,
+            Binding commandParameterBinding)
+        {
+            var t = element.GetType();
+            var e = t.GetEventInfoForControl(eventName);
+
+            var castedBinding = (Binding<T, T>)commandParameterBinding;
+
+            EventHandler handler = (s, args) =>
+            {
+                var param = castedBinding == null ? default(T) : castedBinding.Value;
+
+                if (command.CanExecute(param))
+                {
+                    command.Execute(param);
+                }
+            };
+
+            e.AddEventHandler(
+                element,
+                handler);
+
+            if (commandParameterBinding == null)
+            {
+                return;
+            }
+
+            var enabledProperty = t.GetProperty("Enabled");
+            if (enabledProperty != null)
+            {
+                enabledProperty.SetValue(element, command.CanExecute(castedBinding.Value));
+
+                command.CanExecuteChanged += (s, args) => enabledProperty.SetValue(
+                    element,
+                    command.CanExecute(castedBinding.Value));
+
+                commandParameterBinding.ValueChanged += (s, args) => enabledProperty.SetValue(
+                    element,
+                    command.CanExecute(castedBinding.Value));
+            }
+        }
+
+        /// <summary>
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
         /// should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
         /// </summary>
         /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
         /// <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
         /// <param name="element">The element to which the command is added.</param>
-        /// <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
         /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
         /// <param name="commandParameterBinding">A <see cref="Binding&lt;TSource, TTarget&gt;">Binding</see> instance subscribed to
         /// the CommandParameter that will passed to the RelayCommand. Depending on the Binding, the CommandParameter
         /// will be observed and changes will be passed to the command, for example to update the CanExecute.</param>
@@ -236,17 +283,12 @@ namespace GalaSoft.MvvmLight.Helpers
             this object element,
             string eventName,
             RelayCommand<T> command,
-            Binding commandParameterBinding = null)
+            Binding commandParameterBinding)
         {
             var castedBinding = (Binding<T, T>)commandParameterBinding;
 
             var t = element.GetType();
-            var e = t.GetEvent(eventName);
-
-            if (e == null)
-            {
-                throw new ArgumentException("Event not found: " + eventName, "eventName");
-            }
+            var e = t.GetEventInfoForControl(eventName);
 
             EventHandler<TEventArgs> handler = (s, args) =>
             {
@@ -283,68 +325,7 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
-        /// Sets a generic RelayCommand to an object and actuate the command when a specific event is raised. This method
-        /// can only be used when the event uses a standard EventHandler. 
-        /// </summary>
-        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
-        /// <param name="element">The element to which the command is added.</param>
-        /// <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
-        /// <param name="command">The command that must be added to the element.</param>
-        /// <param name="commandParameterBinding">A <see cref="Binding{T, T}">Binding</see> instance subscribed to
-        /// the CommandParameter that will passed to the RelayCommand. Depending on the Binding, the CommandParameter
-        /// will be observed and changes will be passed to the command, for example to update the CanExecute.</param>
-        public static void SetCommand<T>(
-            this object element,
-            string eventName,
-            RelayCommand<T> command,
-            Binding commandParameterBinding = null)
-        {
-            var castedBinding = (Binding<T, T>)commandParameterBinding;
-
-            var t = element.GetType();
-            var e = t.GetEvent(eventName);
-
-            if (e == null)
-            {
-                throw new ArgumentException("Event not found: " + eventName, "eventName");
-            }
-
-            EventHandler handler = (s, args) =>
-            {
-                var param = castedBinding == null ? default(T) : castedBinding.Value;
-
-                if (command.CanExecute(param))
-                {
-                    command.Execute(param);
-                }
-            };
-
-            e.AddEventHandler(
-                element,
-                handler);
-
-            if (commandParameterBinding == null)
-            {
-                return;
-            }
-
-            var enabledProperty = t.GetProperty("Enabled");
-            if (enabledProperty != null)
-            {
-                enabledProperty.SetValue(element, command.CanExecute(castedBinding.Value));
-
-                commandParameterBinding.ValueChanged += (s, args) => enabledProperty.SetValue(
-                    element,
-                    command.CanExecute(castedBinding.Value));
-
-                command.CanExecuteChanged += (s, args) => enabledProperty.SetValue(
-                    element,
-                    command.CanExecute(castedBinding.Value));
-            }
-        }
-
-        /// <summary>
-        /// Sets a non-generic RelayCommand to an object and actuate the command when a specific event is raised. This method
+        /// Sets a non-generic RelayCommand to an object and actuates the command when a specific event is raised. This method
         /// can only be used when the event uses a standard EventHandler. 
         /// </summary>
         /// <param name="element">The element to which the command is added.</param>
@@ -353,15 +334,10 @@ namespace GalaSoft.MvvmLight.Helpers
         public static void SetCommand(
             this object element,
             string eventName,
-            RelayCommand command)
+            ICommand command)
         {
             var t = element.GetType();
-            var e = t.GetEvent(eventName);
-
-            if (e == null)
-            {
-                throw new ArgumentException("Event not found: " + eventName, "eventName");
-            }
+            var e = t.GetEventInfoForControl(eventName);
 
             EventHandler handler = (s, args) =>
             {
@@ -379,117 +355,393 @@ namespace GalaSoft.MvvmLight.Helpers
             if (enabledProperty != null)
             {
                 enabledProperty.SetValue(element, command.CanExecute(null));
-            }
 
-            command.CanExecuteChanged += (s, args) =>
+                command.CanExecuteChanged += (s, args) => enabledProperty.SetValue(
+                    element,
+                    command.CanExecute(null));
+            }
+        }
+
+        /// <summary>
+        /// Sets a non-generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
+        /// </summary>
+        /// <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        public static void SetCommand<TEventArgs>(
+            this object element,
+            string eventName,
+            ICommand command)
+        {
+            var t = element.GetType();
+            var e = t.GetEventInfoForControl(eventName);
+
+            EventHandler<TEventArgs> handler = (s, args) =>
             {
-                if (enabledProperty != null)
+                if (command.CanExecute(null))
                 {
-                    enabledProperty.SetValue(element, command.CanExecute(null));
+                    command.Execute(null);
                 }
             };
+
+            e.AddEventHandler(
+                element,
+                handler);
+
+            var enabledProperty = t.GetProperty("Enabled");
+            if (enabledProperty != null)
+            {
+                enabledProperty.SetValue(element, command.CanExecute(null));
+
+                command.CanExecuteChanged += (s, args) => enabledProperty.SetValue(
+                    element,
+                    command.CanExecute(null));
+            }
+        }
+
+        /// <summary>
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// can only be used when the event uses a standard EventHandler. 
+        /// </summary>
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
+        /// <param name="commandParameter">The command parameter that will be passed to the RelayCommand when it
+        /// is executed. This is a fixed value. To pass an observable value, use one of the SetCommand
+        /// overloads that uses a Binding as CommandParameter.</param>
+        public static void SetCommand<T>(
+            this object element,
+            string eventName,
+            RelayCommand<T> command,
+            T commandParameter)
+        {
+            var t = element.GetType();
+            var e = t.GetEventInfoForControl(eventName);
+
+            EventHandler handler = (s, args) =>
+            {
+                if (command.CanExecute(commandParameter))
+                {
+                    command.Execute(commandParameter);
+                }
+            };
+
+            e.AddEventHandler(
+                element,
+                handler);
+
+            var enabledProperty = t.GetProperty("Enabled");
+            if (enabledProperty != null)
+            {
+                enabledProperty.SetValue(element, command.CanExecute(commandParameter));
+
+                command.CanExecuteChanged += (s, args) => enabledProperty.SetValue(
+                    element,
+                    command.CanExecute(commandParameter));
+            }
+        }
+
+        /// <summary>
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
+        /// </summary>
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="eventName">The name of the event that will be subscribed to to actuate the command.</param>
+        /// <param name="commandParameter">The command parameter that will be passed to the RelayCommand when it
+        /// is executed. This is a fixed value. To pass an observable value, use one of the SetCommand
+        /// overloads that uses a Binding as CommandParameter.</param>
+        public static void SetCommand<T, TEventArgs>(
+            this object element,
+            string eventName,
+            RelayCommand<T> command,
+            T commandParameter)
+        {
+            var t = element.GetType();
+            var e = t.GetEventInfoForControl(eventName);
+
+            EventHandler<TEventArgs> handler = (s, args) =>
+            {
+                if (command.CanExecute(commandParameter))
+                {
+                    command.Execute(commandParameter);
+                }
+            };
+
+            e.AddEventHandler(
+                element,
+                handler);
+
+            var enabledProperty = t.GetProperty("Enabled");
+            if (enabledProperty != null)
+            {
+                enabledProperty.SetValue(element, command.CanExecute(commandParameter));
+
+                command.CanExecuteChanged += (s, args) => enabledProperty.SetValue(
+                    element,
+                    command.CanExecute(commandParameter));
+            }
         }
 
 #if ANDROID
-
         /// <summary>
-        /// Creates a new <see cref="ObservableAdapter{T}"/> for a given <see cref="ObservableCollection{T}"/>.
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// can only be used when the event uses a standard EventHandler.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For CheckBox: CheckedChange.
+        /// - For Button: Click.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
         /// </summary>
-        /// <typeparam name="T">The type of the items contained in the <see cref="ObservableCollection{T}"/>.</typeparam>
-        /// <param name="collection">The collection that the adapter will be created for.</param>
-        /// <param name="getTemplateDelegate">A method taking an item's position in the list, the item itself,
-        /// and a recycled Android View, and returning an adapted View for this item. Note that the recycled
-        /// view might be null, in which case a new View must be inflated by this method.</param>
-        /// <returns>A View adapted for the item passed as parameter.</returns>
-        public static ObservableAdapter<T> GetAdapter<T>(
-            this ObservableCollection<T> collection,
-            Func<int, T, View, View> getTemplateDelegate)
-        {
-            return new ObservableAdapter<T>
-            {
-                DataSource = collection,
-                GetTemplateDelegate = getTemplateDelegate
-            };
-        }
-
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="commandParameterBinding">A <see cref="Binding&lt;TSource, TTarget&gt;">Binding</see> instance subscribed to
+        /// the CommandParameter that will passed to the RelayCommand. Depending on the Binding, the CommandParameter
+        /// will be observed and changes will be passed to the command, for example to update the CanExecute.</param>
+#elif __IOS__
         /// <summary>
-        /// Creates a new <see cref="ObservableAdapter{T}"/> for a given <see cref="IList{T}"/>.
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// can only be used when the event uses a standard EventHandler.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For UIBarButtonItem: Clicked.
+        /// - For UIButton: TouchUpInside.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
         /// </summary>
-        /// <typeparam name="T">The type of the items contained in the <see cref="IList{T}"/>.</typeparam>
-        /// <param name="list">The list that the adapter will be created for.</param>
-        /// <param name="getTemplateDelegate">A method taking an item's position in the list, the item itself,
-        /// and a recycled Android <see cref="View"/>, and returning an adapted View for this item. Note that the recycled
-        /// View might be null, in which case a new View must be inflated by this method.</param>
-        /// <returns>An adapter adapted to the collection passed in parameter..</returns>
-        public static ObservableAdapter<T> GetAdapter<T>(
-            this IList<T> list,
-            Func<int, T, View, View> getTemplateDelegate)
-        {
-            return new ObservableAdapter<T>
-            {
-                DataSource = list,
-                GetTemplateDelegate = getTemplateDelegate
-            };
-        }
-
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="commandParameterBinding">A <see cref="Binding&lt;TSource, TTarget&gt;">Binding</see> instance subscribed to
+        /// the CommandParameter that will passed to the RelayCommand. Depending on the Binding, the CommandParameter
+        /// will be observed and changes will be passed to the command, for example to update the CanExecute.</param>
 #endif
-
-#if IOS
-
-        /// <summary>
-        /// Creates a new <see cref="ObservableTableViewController{T}"/> for a given <see cref="ObservableCollection{T}"/>.
-        /// </summary>
-        /// <typeparam name="T">The type of the items contained in the collection.</typeparam>
-        /// <param name="collection">The collection that the adapter will be created for.</param>
-        /// <param name="createCellDelegate">A delegate to a method creating or reusing a <see cref="UITableViewCell"/>.
-        /// The cell will then be passed to the bindCellDelegate
-        /// delegate to set the elements' properties.</param>
-        /// <param name="bindCellDelegate">A delegate to a method taking a <see cref="UITableViewCell"/>
-        /// and setting its elements' properties according to the item
-        /// passed as second parameter.
-        /// The cell must be created first in the createCellDelegate
-        /// delegate.</param>
-        /// <returns>A controller adapted to the collection passed in parameter.</returns>
-        public static ObservableTableViewController<T> GetController<T>(
-            this ObservableCollection<T> collection,
-            Func<NSString, UITableViewCell> createCellDelegate,
-            Action<UITableViewCell, T, NSIndexPath> bindCellDelegate)
+        public static void SetCommand<T>(
+            this object element,
+            RelayCommand<T> command,
+            Binding commandParameterBinding)
         {
-            return new ObservableTableViewController<T>
-            {
-                DataSource = collection,
-                CreateCellDelegate = createCellDelegate,
-                BindCellDelegate = bindCellDelegate
-            };
+            SetCommand(element, string.Empty, command, commandParameterBinding);
         }
 
+#if ANDROID
         /// <summary>
-        /// Creates a new <see cref="ObservableTableViewController{T}"/> for a given <see cref="IList{T}"/>.
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For CheckBox: CheckedChange.
+        /// - For Button: Click.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
         /// </summary>
-        /// <typeparam name="T">The type of the items contained in the list.</typeparam>
-        /// <param name="list">The list that the adapter will be created for.</param>
-        /// <param name="createCellDelegate">A delegate to a method creating or reusing a <see cref="UITableViewCell"/>.
-        /// The cell will then be passed to the bindCellDelegate
-        /// delegate to set the elements' properties.</param>
-        /// <param name="bindCellDelegate">A delegate to a method taking a <see cref="UITableViewCell"/>
-        /// and setting its elements' properties according to the item
-        /// passed as second parameter.
-        /// The cell must be created first in the createCellDelegate
-        /// delegate.</param>
-        /// <returns>A controller adapted to the collection passed in parameter.</returns>
-        public static ObservableTableViewController<T> GetController<T>(
-            this IList<T> list,
-            Func<NSString, UITableViewCell> createCellDelegate,
-            Action<UITableViewCell, T, NSIndexPath> bindCellDelegate)
-        {
-            return new ObservableTableViewController<T>
-            {
-                DataSource = list,
-                CreateCellDelegate = createCellDelegate,
-                BindCellDelegate = bindCellDelegate
-            };
-        }
-
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="commandParameterBinding">A <see cref="Binding&lt;TSource, TTarget&gt;">Binding</see> instance subscribed to
+        /// the CommandParameter that will passed to the RelayCommand. Depending on the Binding, the CommandParameter
+        /// will be observed and changes will be passed to the command, for example to update the CanExecute.</param>
+#elif __IOS__
+        /// <summary>
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For UIBarButtonItem: Clicked.
+        /// - For UIButton: TouchUpInside.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
+        /// </summary>
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="commandParameterBinding">A <see cref="Binding&lt;TSource, TTarget&gt;">Binding</see> instance subscribed to
+        /// the CommandParameter that will passed to the RelayCommand. Depending on the Binding, the CommandParameter
+        /// will be observed and changes will be passed to the command, for example to update the CanExecute.</param>
 #endif
+        public static void SetCommand<T, TEventArgs>(
+            this object element,
+            RelayCommand<T> command,
+            Binding commandParameterBinding)
+        {
+            SetCommand<T, TEventArgs>(element, string.Empty, command, commandParameterBinding);
+        }
+
+#if ANDROID
+        /// <summary>
+        /// Sets an ICommand to an object and actuates the command when a specific event is raised. This method
+        /// can only be used when the event uses a standard EventHandler. 
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For CheckBox: CheckedChange.
+        /// - For Button: Click.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
+        /// </summary>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+#elif __IOS__
+        /// <summary>
+        /// Sets an ICommand to an object and actuates the command when a specific event is raised. This method
+        /// can only be used when the event uses a standard EventHandler. 
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For UIBarButtonItem: Clicked.
+        /// - For UIButton: TouchUpInside.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
+        /// </summary>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+#endif
+        public static void SetCommand(
+            this object element,
+            ICommand command)
+        {
+            SetCommand(element, string.Empty, command);
+        }
+
+#if ANDROID
+        /// <summary>
+        /// Sets an ICommand to an object and actuates the command when a specific event is raised. This method
+        /// should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For CheckBox: CheckedChange.
+        /// - For Button: Click.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
+        /// </summary>
+        /// <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+#elif __IOS__
+        /// <summary>
+        /// Sets an ICommand to an object and actuates the command when a specific event is raised. This method
+        /// should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For UIBarButtonItem: Clicked.
+        /// - For UIButton: TouchUpInside.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
+        /// </summary>
+        /// <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+#endif
+        public static void SetCommand<TEventArgs>(
+            this object element,
+            ICommand command)
+        {
+            SetCommand<TEventArgs>(element, string.Empty, command);
+        }
+
+#if ANDROID
+        /// <summary>
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// can only be used when the event uses a standard EventHandler.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For CheckBox: CheckedChange.
+        /// - For Button: Click.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
+        /// </summary>
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="commandParameter">The command parameter that will be passed to the RelayCommand when it
+        /// is executed. This is a fixed value. To pass an observable value, use one of the SetCommand
+        /// overloads that uses a Binding as CommandParameter.</param>
+#elif __IOS__
+        /// <summary>
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// can only be used when the event uses a standard EventHandler.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For UIBarButtonItem: Clicked.
+        /// - For UIButton: TouchUpInside.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
+        /// </summary>
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="commandParameter">The command parameter that will be passed to the RelayCommand when it
+        /// is executed. This is a fixed value. To pass an observable value, use one of the SetCommand
+        /// overloads that uses a Binding as CommandParameter.</param>
+#endif
+        public static void SetCommand<T>(
+            this object element,
+            RelayCommand<T> command,
+            T commandParameter)
+        {
+            SetCommand(element, string.Empty, command, commandParameter);
+        }
+
+#if ANDROID
+        /// <summary>
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For CheckBox: CheckedChange.
+        /// - For Button: Click.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
+        /// </summary>
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="commandParameter">The command parameter that will be passed to the RelayCommand when it
+        /// is executed. This is a fixed value. To pass an observable value, use one of the SetCommand
+        /// overloads that uses a Binding as CommandParameter.</param>
+#elif __IOS__
+        /// <summary>
+        /// Sets a generic RelayCommand to an object and actuates the command when a specific event is raised. This method
+        /// should be used when the event uses an EventHandler&lt;TEventArgs&gt;.
+        /// This method does not specify the observed event explicitly. The following events are used:
+        /// - For UIBarButtonItem: Clicked.
+        /// - For UIButton: TouchUpInside.
+        /// - At the moment, no other controls are supported. For other controls, use another SetCommand overload
+        /// and specify the eventName parameter explicitly.
+        /// </summary>
+        /// <typeparam name="T">The type of the CommandParameter that will be passed to the RelayCommand.</typeparam>
+        /// <typeparam name="TEventArgs">The type of the event's arguments.</typeparam>
+        /// <param name="element">The element to which the command is added.</param>
+        /// <param name="command">The command that must be added to the element.</param>
+        /// <param name="commandParameter">The command parameter that will be passed to the RelayCommand when it
+        /// is executed. This is a fixed value. To pass an observable value, use one of the SetCommand
+        /// overloads that uses a Binding as CommandParameter.</param>
+#endif
+        public static void SetCommand<T, TEventArgs>(
+            this object element,
+            RelayCommand<T> command,
+            T commandParameter)
+        {
+            SetCommand<T, TEventArgs>(element, string.Empty, command, commandParameter);
+        }
+
+        internal static EventInfo GetEventInfoForControl(this Type type, string eventName)
+        {
+            if (string.IsNullOrEmpty(eventName))
+            {
+                eventName = type.GetDefaultEventNameForControl();
+            }
+
+            if (string.IsNullOrEmpty(eventName))
+            {
+                throw new ArgumentException("Event not found", "eventName");
+            }
+
+            var info = type.GetEvent(eventName);
+
+            if (info == null)
+            {
+                throw new ArgumentException("Event not found: " + eventName, "eventName");
+            }
+
+            return info;
+        }
     }
 }
