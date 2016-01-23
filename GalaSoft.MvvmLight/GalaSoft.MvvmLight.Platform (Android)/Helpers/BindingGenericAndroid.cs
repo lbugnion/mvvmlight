@@ -131,7 +131,7 @@ namespace GalaSoft.MvvmLight.Helpers
             return this;
         }
 
-        private Binding<TSource, TTarget> CheckControl()
+        private Binding<TSource, TTarget> CheckControlSource()
         {
             var textBox = _propertySource.Target as EditText;
             if (textBox != null)
@@ -152,11 +152,6 @@ namespace GalaSoft.MvvmLight.Helpers
             return this;
         }
 
-        private Binding<TSource, TTarget> CheckControlSource()
-        {
-            return CheckControl();
-        }
-
         private Binding<TSource, TTarget> CheckControlTarget()
         {
             if (Mode != BindingMode.TwoWay)
@@ -164,7 +159,23 @@ namespace GalaSoft.MvvmLight.Helpers
                 return this;
             }
 
-            return CheckControl();
+            var textBox = _propertyTarget.Target as EditText;
+            if (textBox != null)
+            {
+                var binding = ObserveTargetEvent<TextChangedEventArgs>("TextChanged");
+                binding._targetHandlers["TextChanged"].IsDefault = true;
+                return binding;
+            }
+
+            var checkbox = _propertyTarget.Target as CompoundButton;
+            if (checkbox != null)
+            {
+                var binding = ObserveTargetEvent<CompoundButton.CheckedChangeEventArgs>("CheckedChange");
+                binding._targetHandlers["CheckedChange"].IsDefault = true;
+                return binding;
+            }
+
+            return this;
         }
     }
 }
