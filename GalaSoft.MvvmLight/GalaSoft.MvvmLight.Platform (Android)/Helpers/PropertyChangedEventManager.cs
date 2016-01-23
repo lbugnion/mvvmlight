@@ -13,9 +13,9 @@
 // </license>
 // ****************************************************************************
 
-using System.Linq;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
 // ReSharper disable CheckNamespace
 namespace System.Windows
@@ -29,30 +29,20 @@ namespace System.Windows
     ////[ClassInfo(typeof(Binding))]
     public class PropertyChangedEventManager
     {
-        private class ListenerInfo
+        private static PropertyChangedEventManager _manager;
+        private static readonly object SyncLock = new object();
+        private Dictionary<string, List<ListenerInfo>> _list;
+
+        /// <summary>
+        /// Get the current instance of <see cref="PropertyChangedEventManager"/>
+        /// </summary>
+        private static PropertyChangedEventManager Instance
         {
-            public IWeakEventListener Listener
+            get
             {
-                get;
-                private set;
-            }
-
-            public WeakReference InstanceReference
-            {
-                get;
-                private set;
-            }
-
-            public ListenerInfo(IWeakEventListener listener, INotifyPropertyChanged inpc)
-            {
-                Listener = listener;
-                InstanceReference = new WeakReference(inpc);
+                return _manager ?? (_manager = new PropertyChangedEventManager());
             }
         }
-
-        private Dictionary<string, List<ListenerInfo>> _list;
-        private static readonly object SyncLock = new object();
-        private static PropertyChangedEventManager _manager;
 
         /// <summary>
         /// Adds the specified listener to the list of listeners on the specified source. 
@@ -62,8 +52,8 @@ namespace System.Windows
         /// <param name="propertyName">The name of the property that exists on
         /// source upon which to listen for changes.</param>
         public static void AddListener(
-            INotifyPropertyChanged source, 
-            IWeakEventListener listener, 
+            INotifyPropertyChanged source,
+            IWeakEventListener listener,
             string propertyName)
         {
             Instance.PrivateAddListener(source, listener, propertyName);
@@ -80,77 +70,6 @@ namespace System.Windows
         }
 
         /// <summary>
-        /// Get the current instance of <see cref="PropertyChangedEventManager"/>
-        /// </summary>
-        private static PropertyChangedEventManager Instance
-        {
-            get
-            {
-                return _manager ?? (_manager = new PropertyChangedEventManager());
-            }
-        }
-
-        /// <summary>
-        /// Begin listening for the <see cref="PropertyChanged"/> event on 
-        /// the provided source.
-        /// </summary>
-        /// <param name="source">The object on which to start listening 
-        /// for <see cref="PropertyChanged"/>.</param>
-        private void StartListening(INotifyPropertyChanged source)
-        {
-            if (source != null)
-            {
-                source.PropertyChanged += PropertyChanged;
-            }
-        }
-
-        /// <summary>
-        /// Stop listening for the <see cref="PropertyChanged"/> event on the 
-        /// provided source.
-        /// </summary>
-        /// <param name="source">The object on which to start listening for 
-        /// <see cref="PropertyChanged"/>.</param>
-        private void StopListening(INotifyPropertyChanged source)
-        {
-            if (source != null)
-            {
-                source.PropertyChanged -= PropertyChanged;
-            }
-        }
-
-        /// <summary>
-        /// The method that handles the <see cref="INotifyPropertyChanged.PropertyChanged"/> event.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="args">A <see cref="PropertyChangedEventArgs"/> that 
-        /// contains the event data.</param>
-        private void PropertyChanged(object sender, PropertyChangedEventArgs args)
-        {
-            if (!_list.ContainsKey(args.PropertyName))
-            {
-                return;
-            }
-
-            var list = _list[args.PropertyName];
-            if (list != null)
-            {
-                var recipients =
-                    list.Where(
-                        i => i.InstanceReference != null 
-                         && i.InstanceReference.IsAlive
-                         && i.InstanceReference.Target == sender
-                         && i.Listener != null)
-                    .ToList();
-
-                // We have the listeners. Deal with them
-                foreach (var item in recipients)
-                {
-                    item.Listener.ReceiveWeakEvent(GetType(), sender, args);
-                }
-            }
-        }
-
-        /// <summary>
         /// Private method to add the specified listener to the list of listeners 
         /// on the specified source. 
         /// </summary>
@@ -159,8 +78,8 @@ namespace System.Windows
         /// <param name="propertyName">The name of the property that exists 
         /// on source upon which to listen for changes.</param>
         private void PrivateAddListener(
-            INotifyPropertyChanged source, 
-            IWeakEventListener listener, 
+            INotifyPropertyChanged source,
+            IWeakEventListener listener,
             string propertyName)
         {
             if (source == null)
@@ -168,19 +87,19 @@ namespace System.Windows
                 return;
             }
 
-            if (_list == null)
-            {
-                _list = new Dictionary<string, List<ListenerInfo>>();
-            }
-
             lock (SyncLock)
             {
+                if (_list == null)
+                {
+                    _list = new Dictionary<string, List<ListenerInfo>>();
+                }
+
                 var sourceExists = _list.Any(
                     list => list.Value.Any(
-                        entry => entry.InstanceReference != null 
-                            && entry.InstanceReference.IsAlive 
-                            && entry.InstanceReference.Target != null 
-                            && entry.InstanceReference.Target.Equals(source)));
+                        entry => entry.InstanceReference != null
+                                 && entry.InstanceReference.IsAlive
+                                 && entry.InstanceReference.Target != null
+                                 && entry.InstanceReference.Target.Equals(source)));
 
                 if (_list.ContainsKey(propertyName))
                 {
@@ -252,6 +171,87 @@ namespace System.Windows
 
                     StopListening((INotifyPropertyChanged)toRemove.InstanceReference.Target);
                 }
+            }
+        }
+
+        /// <summary>
+        /// The method that handles the <see cref="INotifyPropertyChanged.PropertyChanged"/> event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="args">A <see cref="PropertyChangedEventArgs"/> that 
+        /// contains the event data.</param>
+        private void PropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if (!_list.ContainsKey(args.PropertyName))
+            {
+                return;
+            }
+
+            var list = _list[args.PropertyName];
+            if (list != null)
+            {
+                var recipients =
+                    list.Where(
+                        i => i.InstanceReference != null
+                             && i.InstanceReference.IsAlive
+                             && i.InstanceReference.Target == sender
+                             && i.Listener != null)
+                        .ToList();
+
+                // We have the listeners. Deal with them
+                foreach (var item in recipients)
+                {
+                    item.Listener.ReceiveWeakEvent(GetType(), sender, args);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Begin listening for the <see cref="PropertyChanged"/> event on 
+        /// the provided source.
+        /// </summary>
+        /// <param name="source">The object on which to start listening 
+        /// for <see cref="PropertyChanged"/>.</param>
+        private void StartListening(INotifyPropertyChanged source)
+        {
+            if (source != null)
+            {
+                source.PropertyChanged += PropertyChanged;
+            }
+        }
+
+        /// <summary>
+        /// Stop listening for the <see cref="PropertyChanged"/> event on the 
+        /// provided source.
+        /// </summary>
+        /// <param name="source">The object on which to start listening for 
+        /// <see cref="PropertyChanged"/>.</param>
+        private void StopListening(INotifyPropertyChanged source)
+        {
+            if (source != null)
+            {
+                source.PropertyChanged -= PropertyChanged;
+            }
+        }
+
+        private class ListenerInfo
+        {
+            public WeakReference InstanceReference
+            {
+                get;
+                private set;
+            }
+
+            public IWeakEventListener Listener
+            {
+                get;
+                private set;
+            }
+
+            public ListenerInfo(IWeakEventListener listener, INotifyPropertyChanged inpc)
+            {
+                Listener = listener;
+                InstanceReference = new WeakReference(inpc);
             }
         }
     }

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7141046B-7E7F-4D20-9F84-D2A65A9FA2CA}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
+    <AssemblyName>UnitTestApp1</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidApplication>true</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ANDROID</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Android.NUnitLite" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\Binding.cs">
+      <Link>Helpers\Binding.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\BindingGeneric.cs">
+      <Link>Helpers\BindingGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\BindingGenericAndroid.cs">
+      <Link>Helpers\BindingGenericAndroid.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\BindingGenericObsolete.cs">
+      <Link>Helpers\BindingGenericObsolete.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\BindingGenericObsoleteAndroid.cs">
+      <Link>Helpers\BindingGenericObsoleteAndroid.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\BindingMode.cs">
+      <Link>Helpers\BindingMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\Extensions.cs">
+      <Link>Helpers\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\ExtensionsAndroid.cs">
+      <Link>Helpers\ExtensionsAndroid.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\IWeakEventListener.cs">
+      <Link>Helpers\IWeakEventListener.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\ObservableAdapter.cs">
+      <Link>Helpers\ObservableAdapter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\PropertyChangedEventManager.cs">
+      <Link>Helpers\PropertyChangedEventManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\UpdateSourceTriggerMode.cs">
+      <Link>Helpers\UpdateSourceTriggerMode.cs</Link>
+    </Compile>
+    <Compile Include="Binding\BindingTest.cs" />
+    <Compile Include="Binding\SetCommandTest.cs" />
+    <Compile Include="Binding\ObserveEventImplicitTest.cs" />
+    <Compile Include="Binding\ObserveEventLostFocusTest.cs" />
+    <Compile Include="Binding\UpdateTriggerLostFocusTest.cs" />
+    <Compile Include="Binding\ObserveEventNoArgumentTest.cs" />
+    <Compile Include="Binding\UpdateTriggerNoArgumentTest.cs" />
+    <Compile Include="Binding\ObserveEventNonDefaultEventTest.cs" />
+    <Compile Include="Binding\ObserveEventPropertyChangedTest.cs" />
+    <Compile Include="Binding\UpdateTriggerPropertyChangedTest.cs" />
+    <Compile Include="Binding\UpdateTriggerImplicitTest.cs" />
+    <Compile Include="Binding\UpdateTriggerNonDefaultEventTest.cs" />
+    <Compile Include="Binding\ObserveEventTest.cs" />
+    <Compile Include="Binding\UpdateTriggerTest.cs" />
+    <Compile Include="Controls\ButtonEx.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CommandImpl.cs" />
+    <Compile Include="ViewModel\TestModel.cs" />
+    <Compile Include="ViewModel\TestViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\GalaSoft.MvvmLight %28PCL%29\GalaSoft.MvvmLight %28PCL%29.csproj">
+      <Project>{6a912701-3ba1-4975-adbf-160caf66b640}</Project>
+      <Name>GalaSoft.MvvmLight %28PCL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GalaSoft.MvvmLight.Extras %28PCL%29\GalaSoft.MvvmLight.Extras %28PCL%29.csproj">
+      <Project>{39c71a69-4ace-4b45-9a2c-c274fada78ef}</Project>
+      <Name>GalaSoft.MvvmLight.Extras %28PCL%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+     Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

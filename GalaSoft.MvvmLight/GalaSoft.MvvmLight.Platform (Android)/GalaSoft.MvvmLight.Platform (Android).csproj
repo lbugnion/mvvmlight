@@ -53,8 +53,12 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Helpers\Binding.cs" />
+    <Compile Include="Helpers\BindingGenericObsoleteAndroid.cs" />
+    <Compile Include="Helpers\BindingGenericObsolete.cs" />
     <Compile Include="Helpers\BindingGeneric.cs" />
+    <Compile Include="Helpers\BindingGenericAndroid.cs" />
     <Compile Include="Helpers\BindingMode.cs" />
+    <Compile Include="Helpers\ExtensionsAndroid.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\IWeakEventListener.cs" />
     <Compile Include="Helpers\ObservableAdapter.cs" />
