@@ -53,6 +53,7 @@ namespace GalaSoft.MvvmLight.Helpers
         private bool _settingTargetToSource;
         private PropertyInfo _sourceProperty;
         private PropertyInfo _targetProperty;
+        private bool _resolveTopField;
 
         /// <summary>
         /// Gets or sets the value to use when the binding is unable to return a value. This can happen if one of the
@@ -188,7 +189,8 @@ namespace GalaSoft.MvvmLight.Helpers
             Attach(
                 TopSource.Target,
                 TopTarget.Target,
-                mode);
+                mode,
+                target == null && targetPropertyExpression != null);
         }
 
         /// <summary>
@@ -699,11 +701,23 @@ namespace GalaSoft.MvvmLight.Helpers
             object target,
             BindingMode mode)
         {
+            Attach(source, target, mode, _resolveTopField);
+        }
+
+        private void Attach(
+            object source,
+            object target,
+            BindingMode mode,
+            bool resolveTopField)
+        {
+            _resolveTopField = resolveTopField;
+
             var sourceChain = GetPropertyChain(
                 source,
                 null,
                 _sourcePropertyExpression.Body as MemberExpression,
-                _sourcePropertyName);
+                _sourcePropertyName,
+                resolveTopField);
 
             var lastSourceInChain = sourceChain.Last();
             sourceChain.Remove(lastSourceInChain);
@@ -734,7 +748,8 @@ namespace GalaSoft.MvvmLight.Helpers
                     target,
                     null,
                     _targetPropertyExpression.Body as MemberExpression,
-                    _targetPropertyName);
+                    _targetPropertyName,
+                    resolveTopField);
 
                 var lastTargetInChain = targetChain.Last();
                 targetChain.Remove(lastTargetInChain);
@@ -947,6 +962,7 @@ namespace GalaSoft.MvvmLight.Helpers
             IList<PropertyAndName> instances,
             MemberExpression expression,
             string propertyName,
+            bool resolveTopField,
             bool top = true)
         {
             if (instances == null)
@@ -971,7 +987,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 return instances;
             }
 
-            var list = GetPropertyChain(topInstance, instances, ex, propertyName, false);
+            var list = GetPropertyChain(topInstance, instances, ex, propertyName, resolveTopField, false);
 
             if (list.Count == 0)
             {
@@ -1002,19 +1018,55 @@ namespace GalaSoft.MvvmLight.Helpers
 
                 if (prop != null)
                 {
-                    var newInstance = prop.GetMethod.Invoke(
-                        lastInstance.Instance,
-                        new object[]
-                        {
-                        });
+                    try
+                    {
+                        var newInstance = prop.GetMethod.Invoke(
+                            lastInstance.Instance,
+                            new object[]
+                            {
+                            });
 
-                    lastInstance.Name = prop.Name;
+                        lastInstance.Name = prop.Name;
 
-                    list.Add(
-                        new PropertyAndName
+                        list.Add(
+                            new PropertyAndName
+                            {
+                                Instance = newInstance,
+                            });
+                    }
+                    catch (TargetException)
+                    {
+                        
+                    }
+                }
+                else
+                {
+                    if (lastInstance.Instance == topInstance
+                        && resolveTopField)
+                    {
+                        var field = ex.Member as FieldInfo;
+                        if (field != null)
                         {
-                            Instance = newInstance,
-                        });
+                            try
+                            {
+                                var newInstance = field.GetValue(lastInstance.Instance);
+
+                                lastInstance.Name = field.Name;
+
+                                list.Add(
+                                    new PropertyAndName
+                                    {
+                                        Instance = newInstance,
+                                    });
+                            }
+                            catch (ArgumentException)
+                            {
+                                throw new InvalidOperationException(
+                                    "Are you trying to use SetBinding with a local variable? "
+                                    + "Try to use new Binding instead");
+                            }
+                        }
+                    }
                 }
 
                 if (top)
