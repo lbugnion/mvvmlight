@@ -85,6 +85,11 @@
     <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\UpdateSourceTriggerMode.cs">
       <Link>Helpers\UpdateSourceTriggerMode.cs</Link>
     </Compile>
+    <Compile Include="Binding\BindingDeepPathTest.cs" />
+    <Compile Include="Binding\BindingSourceControlTest.cs" />
+    <Compile Include="Binding\BindingTargetControlTest.cs" />
+    <Compile Include="Binding\BindingTargetTest.cs" />
+    <Compile Include="Binding\BindingSourceTest.cs" />
     <Compile Include="Binding\BindingTest.cs" />
     <Compile Include="Binding\SetCommandTest.cs" />
     <Compile Include="Binding\ObserveEventImplicitTest.cs" />

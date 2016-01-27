@@ -61,14 +61,18 @@ namespace GalaSoft.MvvmLight.Helpers
             Expression<Func<TSource>> sourcePropertyExpression,
             object target,
             Expression<Func<TTarget>> targetPropertyExpression = null,
-            BindingMode mode = BindingMode.Default)
+            BindingMode mode = BindingMode.Default,
+            TSource fallbackValue = default(TSource),
+            TSource targetNullValue = default(TSource))
         {
             return new Binding<TSource, TTarget>(
                 source,
                 sourcePropertyExpression,
                 target,
                 targetPropertyExpression,
-                mode);
+                mode,
+                fallbackValue,
+                targetNullValue);
         }
 
         /// <summary>
@@ -91,14 +95,18 @@ namespace GalaSoft.MvvmLight.Helpers
         public static Binding<TSource, TSource> SetBinding<TSource>(
             this object source,
             Expression<Func<TSource>> sourcePropertyExpression,
-            BindingMode mode = BindingMode.Default)
+            BindingMode mode = BindingMode.Default,
+            TSource fallbackValue = default(TSource),
+            TSource targetNullValue = default(TSource))
         {
             return new Binding<TSource, TSource>(
                 source,
                 sourcePropertyExpression,
                 null,
                 null,
-                mode);
+                mode,
+                fallbackValue,
+                targetNullValue);
         }
 
         /// <summary>
@@ -128,14 +136,18 @@ namespace GalaSoft.MvvmLight.Helpers
             this object source,
             Expression<Func<TSource>> sourcePropertyExpression,
             Expression<Func<TTarget>> targetPropertyExpression = null,
-            BindingMode mode = BindingMode.Default)
+            BindingMode mode = BindingMode.Default,
+            TSource fallbackValue = default(TSource),
+            TSource targetNullValue = default(TSource))
         {
             return new Binding<TSource, TTarget>(
                 source,
                 sourcePropertyExpression,
                 null,
                 targetPropertyExpression,
-                mode);
+                mode,
+                fallbackValue,
+                targetNullValue);
         }
 
         /// <summary>
@@ -166,14 +178,18 @@ namespace GalaSoft.MvvmLight.Helpers
             string sourcePropertyName,
             object target,
             string targetPropertyName = null,
-            BindingMode mode = BindingMode.Default)
+            BindingMode mode = BindingMode.Default,
+            TSource fallbackValue = default(TSource),
+            TSource targetNullValue = default(TSource))
         {
             return new Binding<TSource, TTarget>(
                 source,
                 sourcePropertyName,
                 target,
                 targetPropertyName,
-                mode);
+                mode,
+                fallbackValue,
+                targetNullValue);
         }
 
         /// <summary>
@@ -201,14 +217,18 @@ namespace GalaSoft.MvvmLight.Helpers
             this object source,
             string sourcePropertyName,
             string targetPropertyName = null,
-            BindingMode mode = BindingMode.Default)
+            BindingMode mode = BindingMode.Default,
+            TSource fallbackValue = default(TSource),
+            TSource targetNullValue = default(TSource))
         {
             return new Binding<TSource, TTarget>(
                 source,
                 sourcePropertyName,
                 null,
                 targetPropertyName,
-                mode);
+                mode,
+                fallbackValue,
+                targetNullValue);
         }
 
         /// <summary>
