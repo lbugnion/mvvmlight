@@ -1,8 +1,16 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using GalaSoft.MvvmLight.Helpers;
+using GalaSoft.MvvmLight.Test.Controls;
 using GalaSoft.MvvmLight.Test.ViewModel;
 using NUnit.Framework;
+
+#if ANDROID
+using Android.App;
+using Android.Widget;
+#elif __IOS__
+using UIKit;
+#endif
 
 namespace GalaSoft.MvvmLight.Test.Binding
 {
@@ -89,10 +97,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
         }
 
         [Test]
-        public void
-            Binding_MultipleLevelsOfNullWithConverter_ShouldCallConverterWithNullThenTargetNullValueButNotFallbackValue(
-            
-            )
+        public void Binding_MultipleLevelsOfNullWithConverter_ShouldCallConverterWithNullThenTargetNullValueButNotFallbackValue()
         {
             var vmSource = new TestViewModel();
             var vmTarget = new TestViewModel();
@@ -256,6 +261,105 @@ namespace GalaSoft.MvvmLight.Test.Binding
             };
 
             Assert.AreEqual(vmSource.Model.MyProperty, vmTarget.TargetProperty);
+        }
+
+        private TestViewModel _vmField;
+
+#if ANDROID
+        public EditText TextBox
+        {
+            get;
+            private set;
+        }
+#elif __IOS__
+        public UITextView TextBox
+        {
+            get;
+            private set;
+        }
+#endif
+
+        [Test]
+        public void Binding_SetBindingWithPrivateField_ShouldCreateBinding()
+        {
+            // Just for comparison
+            var vm = new TestViewModel
+            {
+                Model = new TestModel
+                {
+                    MyProperty = "Initial value for local var"
+                }
+            };
+
+#if ANDROID
+            var textBox = new EditText(Application.Context);
+#elif __IOS__
+            var textBox = new UITextViewEx();
+#endif
+
+            _binding = new Binding<string, string>(
+                vm,
+                () => vm.Model.MyProperty,
+                textBox,
+                () => textBox.Text);
+
+            Assert.IsNotNull(_binding);
+            Assert.AreEqual(textBox.Text, vm.Model.MyProperty);
+            vm.Model.MyProperty = "New value";
+            Assert.AreEqual(textBox.Text, vm.Model.MyProperty);
+
+            _vmField = new TestViewModel
+            {
+                Model = new TestModel
+                {
+                    MyProperty = "Initial value for field"
+                }
+            };
+
+            _binding = new Binding<string, string>(
+                _vmField,
+                () => _vmField.Model.MyProperty,
+                textBox,
+                () => textBox.Text);
+
+            Assert.IsNotNull(_binding);
+            Assert.AreEqual(textBox.Text, _vmField.Model.MyProperty);
+            _vmField.Model.MyProperty = "New value";
+            Assert.AreEqual(textBox.Text, _vmField.Model.MyProperty);
+
+            VmSource = new TestViewModel
+            {
+                Model = new TestModel
+                {
+                    MyProperty = "Initial value for public property"
+                }
+            };
+
+#if ANDROID
+            TextBox = new EditText(Application.Context);
+#elif __IOS__
+            TextBox = new UITextViewEx();
+#endif
+
+            _binding = this.SetBinding(
+                () => VmSource.Model.MyProperty,
+                () => TextBox.Text);
+
+            Assert.IsNotNull(_binding);
+            Assert.AreEqual(textBox.Text, _vmField.Model.MyProperty);
+            _vmField.Model.MyProperty = "New value";
+            Assert.AreEqual(textBox.Text, _vmField.Model.MyProperty);
+
+            _vmField.Model.MyProperty = "Initial value for field again";
+
+            _binding = this.SetBinding(
+                () => _vmField.Model.MyProperty,
+                () => TextBox.Text);
+
+            Assert.IsNotNull(_binding);
+            Assert.AreEqual(textBox.Text, _vmField.Model.MyProperty);
+            _vmField.Model.MyProperty = "New value";
+            Assert.AreEqual(textBox.Text, _vmField.Model.MyProperty);
         }
     }
 }
