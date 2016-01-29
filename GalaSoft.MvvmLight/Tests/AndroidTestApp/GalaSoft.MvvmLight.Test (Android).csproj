@@ -85,6 +85,7 @@
     <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\UpdateSourceTriggerMode.cs">
       <Link>Helpers\UpdateSourceTriggerMode.cs</Link>
     </Compile>
+    <Compile Include="Binding\BindingAccountTest.cs" />
     <Compile Include="Binding\BindingDeepPathTest.cs" />
     <Compile Include="Binding\BindingSourceControlTest.cs" />
     <Compile Include="Binding\BindingTargetControlTest.cs" />
@@ -108,6 +109,8 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AccountModel.cs" />
+    <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\CommandImpl.cs" />
     <Compile Include="ViewModel\TestModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
