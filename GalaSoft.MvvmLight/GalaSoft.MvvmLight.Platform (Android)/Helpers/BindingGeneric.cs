@@ -855,6 +855,7 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 var listener = new PropertyChangedEventListener(
                     this,
+                    inpc,
                     true);
 
                 _listeners.Add(listener);
@@ -883,6 +884,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 {
                     var listener = new PropertyChangedEventListener(
                         this,
+                        inpc2,
                         false);
 
                     _listeners.Add(listener);
@@ -1241,6 +1243,14 @@ namespace GalaSoft.MvvmLight.Helpers
             private readonly WeakReference _bindingReference;
             private readonly WeakReference _instanceReference;
 
+            public WeakReference InstanceReference
+            {
+                get
+                {
+                    return _instanceReference;
+                }
+            }
+
             public ObjectSwappedEventListener(
                 Binding<TSource, TTarget> binding,
                 INotifyPropertyChanged instance)
@@ -1285,13 +1295,24 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             private readonly WeakReference _bindingReference;
             private readonly bool _updateFromSourceToTarget;
+            private readonly WeakReference _instanceReference;
+
+            public WeakReference InstanceReference
+            {
+                get
+                {
+                    return _instanceReference;
+                }
+            }
 
             public PropertyChangedEventListener(
                 Binding<TSource, TTarget> binding,
+                INotifyPropertyChanged instance,
                 bool updateFromSourceToTarget)
             {
                 _updateFromSourceToTarget = updateFromSourceToTarget;
                 _bindingReference = new WeakReference(binding);
+                _instanceReference = new WeakReference(instance);
             }
 
             public bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
