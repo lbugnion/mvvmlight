@@ -169,7 +169,16 @@ namespace System.Windows
                         _list.Remove(propertyName);
                     }
 
-                    StopListening((INotifyPropertyChanged)toRemove.InstanceReference.Target);
+                    var checkInstance =
+                        _list.Any(l => l.Value.Any(i => i.InstanceReference != null
+                            && i.InstanceReference.IsAlive
+                            && i.InstanceReference.Target != null
+                            && i.InstanceReference.Target.Equals(toRemove.InstanceReference.Target)));
+
+                    if (!checkInstance)
+                    {
+                        StopListening((INotifyPropertyChanged)toRemove.InstanceReference.Target);
+                    }
                 }
             }
         }

@@ -36,5 +36,13 @@ namespace System.Windows
         /// an event that it does not recognize or handle.
         /// </returns>
         bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e);
+
+        /// <summary>
+        /// Gets the WeakReference holding the instance that raised the event.
+        /// </summary>
+        WeakReference InstanceReference
+        {
+            get;
+        }
     }
 }
