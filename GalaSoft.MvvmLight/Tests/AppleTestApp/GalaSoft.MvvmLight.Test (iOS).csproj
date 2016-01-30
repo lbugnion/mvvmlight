@@ -141,6 +141,9 @@
     <Compile Include="..\AndroidTestApp\Binding\BindingTest.cs">
       <Link>Binding\BindingTest.cs</Link>
     </Compile>
+    <Compile Include="..\AndroidTestApp\Binding\ConverterTest.cs">
+      <Link>Binding\ConverterTest.cs</Link>
+    </Compile>
     <Compile Include="..\AndroidTestApp\ViewModel\AccountModel.cs">
       <Link>ViewModel\AccountModel.cs</Link>
     </Compile>

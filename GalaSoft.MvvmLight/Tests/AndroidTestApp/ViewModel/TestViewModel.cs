@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 
@@ -6,12 +7,26 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
     public class TestViewModel : ViewModelBase
     {
         public const string ValueForCommand = "Command value";
+
+        private DateTime _date;
         private TestModel _model;
         private TestViewModel _nested;
         private string _propertyValue;
         private RelayCommand<string> _setPropertyCommand;
         private RelayCommand _setPropertyWithoutValueCommand;
         private ICommand _testCommandImpl;
+
+        public DateTime Date
+        {
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                Set(ref _date, value);
+            }
+        }
 
         public TestModel Model
         {
