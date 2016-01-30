@@ -833,7 +833,9 @@ namespace GalaSoft.MvvmLight.Helpers
                     && _propertyTarget.IsAlive
                     && _propertyTarget.Target != null)
                 {
+                    _settingSourceToTarget = true;
                     SetTargetValue(value);
+                    _settingSourceToTarget = false;
                 }
 
                 if (_onSourceUpdate != null
@@ -1128,7 +1130,8 @@ namespace GalaSoft.MvvmLight.Helpers
                 && _propertyTarget.Target != null
                 && _propertySource != null
                 && _propertySource.IsAlive
-                && _propertySource.Target != null)
+                && _propertySource.Target != null
+                && !_settingTargetToSource)
             {
                 var valueLocal = GetSourceValue();
                 var targetValue = _targetProperty.GetValue(_propertyTarget.Target, null);
@@ -1140,7 +1143,9 @@ namespace GalaSoft.MvvmLight.Helpers
 
                 if (_targetProperty != null)
                 {
+                    _settingSourceToTarget = true;
                     SetTargetValue(valueLocal);
+                    _settingSourceToTarget = false;
                 }
             }
 
@@ -1159,7 +1164,8 @@ namespace GalaSoft.MvvmLight.Helpers
                 && _propertyTarget.Target != null
                 && _propertySource != null
                 && _propertySource.IsAlive
-                && _propertySource.Target != null)
+                && _propertySource.Target != null
+                && !_settingSourceToTarget)
             {
                 var valueLocal = GetTargetValue();
                 var sourceValue = _sourceProperty.GetValue(_propertySource.Target, null);
@@ -1169,7 +1175,9 @@ namespace GalaSoft.MvvmLight.Helpers
                     return;
                 }
 
+                _settingTargetToSource = true;
                 SetSourceValue(valueLocal);
+                _settingTargetToSource = false;
             }
 
             RaiseValueChanged();

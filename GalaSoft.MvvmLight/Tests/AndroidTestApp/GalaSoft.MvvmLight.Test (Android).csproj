@@ -92,6 +92,7 @@
     <Compile Include="Binding\BindingTargetTest.cs" />
     <Compile Include="Binding\BindingSourceTest.cs" />
     <Compile Include="Binding\BindingTest.cs" />
+    <Compile Include="Binding\ConverterTest.cs" />
     <Compile Include="Binding\SetCommandTest.cs" />
     <Compile Include="Binding\ObserveEventImplicitTest.cs" />
     <Compile Include="Binding\ObserveEventLostFocusTest.cs" />
