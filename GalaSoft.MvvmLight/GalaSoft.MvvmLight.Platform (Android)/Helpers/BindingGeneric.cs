@@ -1114,13 +1114,36 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             var sourceValue = (TSource)_sourceProperty.GetValue(_propertySource.Target, null);
-            return _converter.Convert(sourceValue);
+
+            try
+            {
+                return _converter.Convert(sourceValue);
+            }
+            catch (Exception)
+            {
+                if (!Equals(FallbackValue, default(TSource)))
+                {
+                    return _converter.Convert(FallbackValue);
+                }
+
+                var targetValue = (TTarget)_targetProperty.GetValue(_propertyTarget.Target, null);
+                return targetValue;
+            }
         }
 
         private TSource GetTargetValue()
         {
             var targetValue = (TTarget)_targetProperty.GetValue(_propertyTarget.Target, null);
-            return _converter.ConvertBack(targetValue);
+
+            try
+            {
+                return _converter.ConvertBack(targetValue);
+            }
+            catch (Exception)
+            {
+                var sourceValue = (TSource)_sourceProperty.GetValue(_propertySource.Target, null);
+                return sourceValue;
+            }
         }
 
         private void HandleSourceEvent<TEventArgs>(object sender, TEventArgs args)
