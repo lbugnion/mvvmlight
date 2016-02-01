@@ -228,5 +228,39 @@ namespace GalaSoft.MvvmLight.Test.Binding
             referenceDate = new DateTime(1972, 4, 13);
             Assert.AreEqual(referenceDate, vmTarget.Date);
         }
+
+        [Test]
+        public void BindingConverter_ConvertBackFromMinDate_NoError()
+        {
+            Vm = new TestViewModel();
+
+#if ANDROID
+            Text = new EditText(Application.Context);
+#elif __IOS__
+            Text = new UITextViewEx();
+#endif
+
+            this.SetBinding(
+                () => Vm.Date,
+                () => Text.Text,
+                BindingMode.TwoWay)
+                .ConvertSourceToTarget(d => d.Date.ToShortDateString())
+                .ConvertTargetToSource(d => DateTime.ParseExact(d, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+
+            Assert.AreEqual(DateTime.MinValue, Vm.Date);
+            Assert.AreEqual(DateTime.MinValue.ToShortDateString(), Text.Text);
+
+            var newDateString = "01/01/000"; // Invalid date string
+            Text.Text = newDateString;
+
+            Assert.AreEqual(newDateString, Text.Text);
+            Assert.AreEqual(DateTime.MinValue, Vm.Date);
+
+            newDateString = "01/01/0002"; // Valid date string
+            Text.Text = newDateString;
+
+            Assert.AreEqual(newDateString, Text.Text);
+            Assert.AreEqual(new DateTime(2, 1, 1), Vm.Date);
+        }
     }
 }
