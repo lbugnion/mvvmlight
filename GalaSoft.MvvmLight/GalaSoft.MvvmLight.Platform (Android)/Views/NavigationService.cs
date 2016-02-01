@@ -159,6 +159,7 @@ namespace GalaSoft.MvvmLight.Views
             }
 
             var key = intent.GetStringExtra(ParameterKeyName);
+            intent.RemoveExtra(ParameterKeyName);
 
             if (string.IsNullOrEmpty(key))
             {
@@ -169,7 +170,9 @@ namespace GalaSoft.MvvmLight.Views
             {
                 if (_parametersByKey.ContainsKey(key))
                 {
-                    return _parametersByKey[key];
+                    var param = _parametersByKey[key];
+                    _parametersByKey.Remove(key);
+                    return param;
                 }
 
                 return null;
