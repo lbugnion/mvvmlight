@@ -36,21 +36,22 @@ namespace GalaSoft.MvvmLight.Helpers
         /// The cell will then be passed to the bindCellDelegate
         /// delegate to set the elements' properties.</param>
         /// <param name="bindCellDelegate">A delegate to a method taking a <see cref="UITableViewCell"/>
-        /// and setting its elements' properties according to the item
-        /// passed as second parameter.
-        /// The cell must be created first in the createCellDelegate
-        /// delegate.</param>
+        /// and setting its elements' properties according to the item passed as second parameter.
+        /// The cell must be created first in the createCellDelegate delegate, unless a <see cref="reuseId"/> is passed to the method.</param>
+        /// <param name="reuseId">A reuse identifier for the TableView's cells.</param>
         /// <returns>A controller adapted to the collection passed in parameter.</returns>
         public static ObservableTableViewController<T> GetController<T>(
             this ObservableCollection<T> collection,
             Func<NSString, UITableViewCell> createCellDelegate,
-            Action<UITableViewCell, T, NSIndexPath> bindCellDelegate)
+            Action<UITableViewCell, T, NSIndexPath> bindCellDelegate,
+            string reuseId = null)
         {
             return new ObservableTableViewController<T>
             {
                 DataSource = collection,
                 CreateCellDelegate = createCellDelegate,
-                BindCellDelegate = bindCellDelegate
+                BindCellDelegate = bindCellDelegate,
+                ReuseId = reuseId,
             };
         }
 
@@ -63,21 +64,22 @@ namespace GalaSoft.MvvmLight.Helpers
         /// The cell will then be passed to the bindCellDelegate
         /// delegate to set the elements' properties.</param>
         /// <param name="bindCellDelegate">A delegate to a method taking a <see cref="UITableViewCell"/>
-        /// and setting its elements' properties according to the item
-        /// passed as second parameter.
-        /// The cell must be created first in the createCellDelegate
-        /// delegate.</param>
+        /// and setting its elements' properties according to the item passed as second parameter.
+        /// The cell must be created first in the createCellDelegate delegate, unless a <see cref="reuseId"/> is passed to the method.</param>
+        /// <param name="reuseId">A reuse identifier for the TableView's cells.</param>
         /// <returns>A controller adapted to the collection passed in parameter.</returns>
         public static ObservableTableViewController<T> GetController<T>(
             this IList<T> list,
             Func<NSString, UITableViewCell> createCellDelegate,
-            Action<UITableViewCell, T, NSIndexPath> bindCellDelegate)
+            Action<UITableViewCell, T, NSIndexPath> bindCellDelegate,
+            string reuseId = null)
         {
             return new ObservableTableViewController<T>
             {
                 DataSource = list,
                 CreateCellDelegate = createCellDelegate,
-                BindCellDelegate = bindCellDelegate
+                BindCellDelegate = bindCellDelegate,
+                ReuseId = reuseId,
             };
         }
 

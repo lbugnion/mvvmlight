@@ -113,6 +113,7 @@
     <Compile Include="ViewModel\AccountModel.cs" />
     <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\CommandImpl.cs" />
+    <Compile Include="ViewModel\TestItem.cs" />
     <Compile Include="ViewModel\TestModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />
   </ItemGroup>

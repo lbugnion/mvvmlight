@@ -153,6 +153,9 @@
     <Compile Include="..\AndroidTestApp\ViewModel\CommandImpl.cs">
       <Link>ViewModel\CommandImpl.cs</Link>
     </Compile>
+    <Compile Include="..\AndroidTestApp\ViewModel\TestItem.cs">
+      <Link>ViewModel\TestItem.cs</Link>
+    </Compile>
     <Compile Include="..\AndroidTestApp\ViewModel\TestModel.cs">
       <Link>ViewModel\TestModel.cs</Link>
     </Compile>
@@ -176,6 +179,8 @@
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
+    <Compile Include="ObservableTable\ReuseIdTest.cs" />
+    <Compile Include="ObservableTable\TestUiTableViewCell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
   </ItemGroup>

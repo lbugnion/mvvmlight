@@ -56,6 +56,15 @@ namespace GalaSoft.MvvmLight.Helpers
         private ObservableTableSource<T> _tableSource;
 
         /// <summary>
+        /// A reuse identifier for the TableView's cells.
+        /// </summary>
+        public string ReuseId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// When set, specifies which animation should be used when rows change.
         /// </summary>
         public UITableViewRowAnimation AddAnimation
@@ -287,7 +296,11 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <returns>The created ObservableTableSource.</returns>
         protected virtual ObservableTableSource<T> CreateSource()
         {
-            _tableSource = new ObservableTableSource<T>(this);
+            _tableSource = new ObservableTableSource<T>(this)
+            {
+                ReuseId = ReuseId
+            };
+
             return _tableSource;
         }
 
@@ -400,7 +413,33 @@ namespace GalaSoft.MvvmLight.Helpers
         protected class ObservableTableSource<T2> : UITableViewSource
         {
             private readonly ObservableTableViewController<T2> _controller;
-            private readonly NSString _reuseId = new NSString("C");
+            private readonly NSString _defaultReuseId = new NSString("C");
+
+            private NSString _reuseId;
+
+            /// <summary>
+            /// A reuse identifier for the TableView's cells.
+            /// </summary>
+            public string ReuseId
+            {
+                get
+                {
+                    return NsReuseId.ToString();
+                }
+
+                set
+                {
+                    _reuseId = string.IsNullOrEmpty(value) ? null : new NSString(value);
+                }
+            }
+
+            private NSString NsReuseId
+            {
+                get
+                {
+                    return _reuseId ?? _defaultReuseId;
+                }
+            }
 
             /// <summary>
             /// Initializes an instance of this class.
@@ -419,8 +458,8 @@ namespace GalaSoft.MvvmLight.Helpers
             /// <returns>The created or recycled cell.</returns>
             public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
             {
-                var cell = tableView.DequeueReusableCell(_reuseId) ??
-                           _controller.CreateCell(_reuseId);
+                var cell = tableView.DequeueReusableCell(NsReuseId) ??
+                           _controller.CreateCell(NsReuseId);
 
                 try
                 {
