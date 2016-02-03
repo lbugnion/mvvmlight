@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="WeakFunc.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2012-2015
+// Copyright © GalaSoft Laurent Bugnion 2012-2016
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>

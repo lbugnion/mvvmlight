@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GalaSoft.MvvmLight.Test.ViewModel
+﻿namespace GalaSoft.MvvmLight.Test.ViewModel
 {
     public class AccountViewModel : ViewModelBase
     {

@@ -1,5 +1,3 @@
-using System;
-
 namespace GalaSoft.MvvmLight.Test.ViewModel
 {
     public class AccountModel : ObservableObject

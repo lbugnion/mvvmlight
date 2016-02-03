@@ -1,6 +1,6 @@
 // ****************************************************************************
 // <copyright file="DialogService.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2015
+// Copyright © GalaSoft Laurent Bugnion 2009-2016
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -207,11 +207,8 @@ namespace GalaSoft.MvvmLight.Views
                 title,
                 message,
                 null,
-                buttonCancelText,
-                new[]
-                {
-                    buttonConfirmText
-                });
+                buttonCancelText, 
+                buttonConfirmText);
 
             av.Dismissed += (s, e) =>
             {

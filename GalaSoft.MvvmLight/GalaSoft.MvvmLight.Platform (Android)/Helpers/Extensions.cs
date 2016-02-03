@@ -1,6 +1,6 @@
 ﻿// ****************************************************************************
 // <copyright file="Extensions.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2015
+// Copyright © GalaSoft Laurent Bugnion 2009-2016
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -55,6 +55,9 @@ namespace GalaSoft.MvvmLight.Helpers
         /// if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
         /// property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
         /// implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+        /// <param name="fallbackValue">The value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.</param>
+        /// <param name="targetNullValue">The value used when the source property is null (or equals to default(TSource)).</param>
         /// <returns>The new Binding instance.</returns>
         public static Binding<TSource, TTarget> SetBinding<TSource, TTarget>(
             this object source,
@@ -90,6 +93,9 @@ namespace GalaSoft.MvvmLight.Helpers
         /// if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
         /// property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
         /// implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+        /// <param name="fallbackValue">The value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.</param>
+        /// <param name="targetNullValue">The value used when the source property is null (or equals to default(TSource)).</param>
         /// <typeparam name="TSource">The type of the bound property.</typeparam>
         /// <returns>The created binding instance.</returns>
         public static Binding<TSource, TSource> SetBinding<TSource>(
@@ -131,6 +137,9 @@ namespace GalaSoft.MvvmLight.Helpers
         /// if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
         /// property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
         /// implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+        /// <param name="fallbackValue">The value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.</param>
+        /// <param name="targetNullValue">The value used when the source property is null (or equals to default(TSource)).</param>
         /// <returns>The new Binding instance.</returns>
         public static Binding<TSource, TTarget> SetBinding<TSource, TTarget>(
             this object source,
@@ -172,6 +181,9 @@ namespace GalaSoft.MvvmLight.Helpers
         /// if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
         /// property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
         /// implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+        /// <param name="fallbackValue">The value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.</param>
+        /// <param name="targetNullValue">The value used when the source property is null (or equals to default(TSource)).</param>
         /// <returns>The new Binding instance.</returns>
         public static Binding<TSource, TTarget> SetBinding<TSource, TTarget>(
             this object source,
@@ -212,6 +224,9 @@ namespace GalaSoft.MvvmLight.Helpers
         /// if the PropertyChanged event is raised by the source, the target property will be updated. TwoWay means that the source
         /// property will also be updated if the target raises the PropertyChanged event. Default means OneWay if only the source
         /// implements INPC, and TwoWay if both the source and the target implement INPC.</param>
+        /// <param name="fallbackValue">The value to use when the binding is unable to return a value. This can happen if one of the
+        /// items on the Path (except the source property itself) is null, or if the Converter throws an exception.</param>
+        /// <param name="targetNullValue">The value used when the source property is null (or equals to default(TSource)).</param>
         /// <returns>The new Binding instance.</returns>
         public static Binding<TSource, TTarget> SetBinding<TSource, TTarget>(
             this object source,

@@ -1,6 +1,6 @@
 // ****************************************************************************
 // <copyright file="BindingGeneric.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2015
+// Copyright © GalaSoft Laurent Bugnion 2009-2016
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -1326,14 +1326,13 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             private readonly WeakReference _bindingReference;
             private readonly bool _updateFromSourceToTarget;
-            private readonly WeakReference _instanceReference;
 
+            /// <summary>
+            /// Gets a reference to the instance that this listener listens to.
+            /// </summary>
             public WeakReference InstanceReference
             {
-                get
-                {
-                    return _instanceReference;
-                }
+                get;
             }
 
             public PropertyChangedEventListener(
@@ -1343,7 +1342,7 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 _updateFromSourceToTarget = updateFromSourceToTarget;
                 _bindingReference = new WeakReference(binding);
-                _instanceReference = new WeakReference(instance);
+                InstanceReference = new WeakReference(instance);
             }
 
             public bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
