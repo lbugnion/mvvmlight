@@ -13,13 +13,15 @@ namespace GalaSoft.MvvmLight.Test.Binding
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class ObserveEventTest
     {
+        private Helpers.Binding _binding;
+
         [Test]
         public void Binding_OneWayFromCheckBoxToCheckBoxWithObserveEvent_BindingGetsUpdated()
         {
             var control1 = new CheckBox(Application.Context);
             var control2 = new CheckBox(Application.Context);
 
-            var binding = new Binding<bool, bool>(
+            _binding = new Binding<bool, bool>(
                 control1,
                 () => control1.Checked,
                 control2,
@@ -39,7 +41,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new EditText(Application.Context);
             var control2 = new CheckBox(Application.Context);
 
-            var binding = new Binding<bool, string>(
+            _binding = new Binding<bool, string>(
                 control2,
                 () => control2.Checked,
                 control1,
@@ -63,7 +65,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new CheckBox(Application.Context);
 
-            var binding = new Binding<bool, string>(
+            _binding = new Binding<bool, string>(
                 control1,
                 () => control1.Checked,
                 vm,
@@ -83,7 +85,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new EditText(Application.Context);
             var control2 = new CheckBox(Application.Context);
 
-            var binding = new Binding<string, bool>(
+            _binding = new Binding<string, bool>(
                 control1,
                 () => control1.Text,
                 control2,
@@ -104,7 +106,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new EditText(Application.Context);
             var control2 = new EditText(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 control2,
@@ -129,7 +131,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new EditText(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 vm,
@@ -154,7 +156,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new CheckBox(Application.Context);
 
-            var binding = new Binding<string, bool>(
+            _binding = new Binding<string, bool>(
                 vm,
                 () => vm.Model.MyProperty,
                 control1,
@@ -177,7 +179,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new EditText(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vm,
                 () => vm.Model.MyProperty,
                 control1,
@@ -197,7 +199,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new CheckBox(Application.Context);
             var control2 = new CheckBox(Application.Context);
 
-            var binding = new Binding<bool, bool>(
+            _binding = new Binding<bool, bool>(
                 control1,
                 () => control1.Checked,
                 control2,
@@ -223,7 +225,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new EditText(Application.Context);
             var control2 = new CheckBox(Application.Context);
 
-            var binding = new Binding<bool, string>(
+            _binding = new Binding<bool, string>(
                 control2,
                 () => control2.Checked,
                 control1,
@@ -254,7 +256,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new CheckBox(Application.Context);
 
-            var binding = new Binding<bool, string>(
+            _binding = new Binding<bool, string>(
                 control1,
                 () => control1.Checked,
                 vm,
@@ -280,7 +282,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new EditText(Application.Context);
             var control2 = new CheckBox(Application.Context);
 
-            var binding = new Binding<string, bool>(
+            _binding = new Binding<string, bool>(
                 control1,
                 () => control1.Text,
                 control2,
@@ -307,7 +309,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new EditText(Application.Context);
             var control2 = new EditText(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 control2,
@@ -339,7 +341,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new EditText(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 vm,
@@ -370,7 +372,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new CheckBox(Application.Context);
 
-            var binding = new Binding<string, bool>(
+            _binding = new Binding<string, bool>(
                 vm,
                 () => vm.Model.MyProperty,
                 control1,
@@ -399,7 +401,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new EditText(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vm,
                 () => vm.Model.MyProperty,
                 control1,

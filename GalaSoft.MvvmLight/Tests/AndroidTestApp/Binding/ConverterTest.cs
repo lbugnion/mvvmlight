@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using GalaSoft.MvvmLight.Helpers;
-using GalaSoft.MvvmLight.Test.Controls;
 using GalaSoft.MvvmLight.Test.ViewModel;
 using NUnit.Framework;
 
@@ -10,6 +9,7 @@ using NUnit.Framework;
 using Android.App;
 using Android.Widget;
 #elif __IOS__
+using GalaSoft.MvvmLight.Test.Controls;
 using UIKit;
 #endif
 
@@ -19,6 +19,8 @@ namespace GalaSoft.MvvmLight.Test.Binding
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class ConverterTest
     {
+        private Helpers.Binding _binding;
+
         public TestViewModel Vm
         {
             get;
@@ -117,7 +119,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var vmTarget = new TestViewModel();
 
-            var binding = new Binding<string, DateTime>(
+            _binding = new Binding<string, DateTime>(
                 vmSource,
                 () => vmSource.Model.MyProperty,
                 vmTarget,
@@ -196,7 +198,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var vmTarget = new TestViewModel();
 
-            var binding = new Binding<string, DateTime>(
+            _binding = new Binding<string, DateTime>(
                 vmSource,
                 () => vmSource.Model.MyProperty,
                 vmTarget,

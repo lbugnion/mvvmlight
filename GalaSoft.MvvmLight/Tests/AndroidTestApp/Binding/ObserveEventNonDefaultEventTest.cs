@@ -12,13 +12,15 @@ namespace GalaSoft.MvvmLight.Test.Binding
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class ObserveEventNonDefaultEventTest
     {
+        private Helpers.Binding _binding;
+
         [Test]
         public void Binding_OneWayFromEditTextToEditTextWithObserveEvent_BindingGetsUpdated()
         {
             var control1 = new EditText(Application.Context);
             var control2 = new EditText(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 control2,
@@ -41,7 +43,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new EditText(Application.Context);
             var control2 = new EditText(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 control2,

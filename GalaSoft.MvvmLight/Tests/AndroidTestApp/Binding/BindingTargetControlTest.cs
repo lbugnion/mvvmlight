@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using GalaSoft.MvvmLight.Helpers;
-using GalaSoft.MvvmLight.Test.Controls;
 using GalaSoft.MvvmLight.Test.ViewModel;
 using NUnit.Framework;
 
@@ -9,6 +8,7 @@ using NUnit.Framework;
 using Android.App;
 using Android.Widget;
 #elif __IOS__
+using GalaSoft.MvvmLight.Test.Controls;
 #endif
 
 namespace GalaSoft.MvvmLight.Test.Binding
@@ -17,6 +17,8 @@ namespace GalaSoft.MvvmLight.Test.Binding
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class BindingTargetControlTest
     {
+        private Helpers.Binding _binding;
+
 #if ANDROID
         public EditText _target;
         private EditText _targetPrivate;
@@ -72,7 +74,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             Target = new UITextViewEx();
 #endif
 
-            var binding = new Helpers.Binding<string, string>(
+            _binding = new Binding<string, string>(
                 VmSource,
                 () => VmSource.Model.MyProperty,
                 Target,
@@ -101,7 +103,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             TargetPrivate = new UITextViewEx();
 #endif
 
-            var binding = new Helpers.Binding<string, string>(
+            _binding = new Binding<string, string>(
                 VmSource,
                 () => VmSource.Model.MyProperty,
                 TargetPrivate,
@@ -130,7 +132,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             _target = new UITextViewEx();
 #endif
 
-            var binding = new Helpers.Binding<string, string>(
+            _binding = new Binding<string, string>(
                 VmSource,
                 () => VmSource.Model.MyProperty,
                 _target,
@@ -159,7 +161,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             _targetPrivate = new UITextViewEx();
 #endif
 
-            var binding = new Helpers.Binding<string, string>(
+            _binding = new Binding<string, string>(
                 VmSource,
                 () => VmSource.Model.MyProperty,
                 _targetPrivate,
@@ -188,7 +190,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var target = new UITextViewEx();
 #endif
 
-            var binding = new Helpers.Binding<string, string>(
+            _binding = new Binding<string, string>(
                 VmSource,
                 () => VmSource.Model.MyProperty,
                 target,
@@ -217,7 +219,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             Target = new UITextViewEx();
 #endif
 
-            var binding = this.SetBinding(
+            _binding = this.SetBinding(
                 () => VmSource.Model.MyProperty,
                 () => Target.Text);
 
@@ -244,7 +246,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             TargetPrivate = new UITextViewEx();
 #endif
 
-            var binding = this.SetBinding(
+            _binding = this.SetBinding(
                 () => VmSource.Model.MyProperty,
                 () => TargetPrivate.Text);
 
@@ -271,7 +273,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             _target = new UITextViewEx();
 #endif
 
-            var binding = this.SetBinding(
+            _binding = this.SetBinding(
                 () => VmSource.Model.MyProperty,
                 () => _target.Text);
 
@@ -298,7 +300,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             _targetPrivate = new UITextViewEx();
 #endif
 
-            var binding = this.SetBinding(
+            _binding = this.SetBinding(
                 () => VmSource.Model.MyProperty,
                 () => _targetPrivate.Text);
 

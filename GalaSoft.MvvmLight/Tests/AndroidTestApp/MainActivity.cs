@@ -20,4 +20,3 @@ namespace GalaSoft.MvvmLight.Test
         }
     }
 }
-

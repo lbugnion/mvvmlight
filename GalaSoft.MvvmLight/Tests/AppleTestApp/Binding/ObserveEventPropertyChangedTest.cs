@@ -11,13 +11,15 @@ namespace GalaSoft.MvvmLight.Test.Binding
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class ObserveEventPropertyChangedTest
     {
+        private Helpers.Binding _binding;
+
         [Test]
         public void Binding_OneWayFromCheckBoxToCheckBoxWithUpdateTrigger_BindingGetsUpdated()
         {
             var control1 = new UISwitchEx();
             var control2 = new UISwitchEx();
 
-            var binding = new Binding<bool, bool>(
+            _binding = new Binding<bool, bool>(
                 control1,
                 () => control1.On,
                 control2,
@@ -37,7 +39,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new UITextViewEx();
             var control2 = new UISwitchEx();
 
-            var binding = new Binding<bool, string>(
+            _binding = new Binding<bool, string>(
                 control2,
                 () => control2.On,
                 control1,
@@ -61,7 +63,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new UISwitchEx();
 
-            var binding = new Binding<bool, string>(
+            _binding = new Binding<bool, string>(
                 control1,
                 () => control1.On,
                 vm,
@@ -81,7 +83,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new UITextViewEx();
             var control2 = new UISwitchEx();
 
-            var binding = new Binding<string, bool>(
+            _binding = new Binding<string, bool>(
                 control1,
                 () => control1.Text,
                 control2,
@@ -102,7 +104,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new UITextViewEx();
             var control2 = new UITextViewEx();
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 control2,
@@ -127,7 +129,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new UITextViewEx();
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 vm,
@@ -152,7 +154,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new UISwitchEx();
 
-            var binding = new Binding<string, bool>(
+            _binding = new Binding<string, bool>(
                 vm,
                 () => vm.Model.MyProperty,
                 control1,
@@ -175,7 +177,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new UITextViewEx();
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vm,
                 () => vm.Model.MyProperty,
                 control1,
@@ -195,7 +197,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new UISwitchEx();
             var control2 = new UISwitchEx();
 
-            var binding = new Binding<bool, bool>(
+            _binding = new Binding<bool, bool>(
                 control1,
                 () => control1.On,
                 control2,
@@ -221,7 +223,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new UITextViewEx();
             var control2 = new UISwitchEx();
 
-            var binding = new Binding<bool, string>(
+            _binding = new Binding<bool, string>(
                 control2,
                 () => control2.On,
                 control1,
@@ -252,7 +254,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new UISwitchEx();
 
-            var binding = new Binding<bool, string>(
+            _binding = new Binding<bool, string>(
                 control1,
                 () => control1.On,
                 vm,
@@ -278,7 +280,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new UITextViewEx();
             var control2 = new UISwitchEx();
 
-            var binding = new Binding<string, bool>(
+            _binding = new Binding<string, bool>(
                 control1,
                 () => control1.Text,
                 control2,
@@ -305,7 +307,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var control1 = new UITextViewEx();
             var control2 = new UITextViewEx();
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 control2,
@@ -337,7 +339,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new UITextViewEx();
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 control1,
                 () => control1.Text,
                 vm,
@@ -368,7 +370,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new UISwitchEx();
 
-            var binding = new Binding<string, bool>(
+            _binding = new Binding<string, bool>(
                 vm,
                 () => vm.Model.MyProperty,
                 control1,
@@ -397,7 +399,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var control1 = new UITextViewEx();
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vm,
                 () => vm.Model.MyProperty,
                 control1,

@@ -13,6 +13,8 @@ namespace GalaSoft.MvvmLight.Test.Binding
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class SetCommandTest
     {
+        private Helpers.Binding _binding;
+
         [Test]
         public void SetCommand_OnButtonExWithSimpleValue_NoError()
         {
@@ -97,14 +99,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var button = new Button(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vmSource,
                 () => vmSource.Model.MyProperty);
 
             button.SetCommand(
                 "Click",
                 vmTarget.SetPropertyCommand,
-                binding);
+                _binding);
 
             Assert.IsNull(vmTarget.TargetProperty);
             button.PerformClick();
@@ -133,13 +135,13 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var button = new Button(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vmSource,
                 () => vmSource.Model.MyProperty);
 
             button.SetCommand(
                 vmTarget.SetPropertyCommand,
-                binding);
+                _binding);
 
             Assert.IsNull(vmTarget.TargetProperty);
             button.PerformClick();
@@ -237,14 +239,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var checkBox = new CheckBox(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vmSource,
                 () => vmSource.Model.MyProperty);
 
             checkBox.SetCommand<string, CompoundButton.CheckedChangeEventArgs>(
                 "CheckedChange",
                 vmTarget.SetPropertyCommand,
-                binding);
+                _binding);
 
             Assert.IsNull(vmTarget.TargetProperty);
             checkBox.PerformClick();
@@ -273,13 +275,13 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var checkBox = new CheckBox(Application.Context);
 
-            var binding = new Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vmSource,
                 () => vmSource.Model.MyProperty);
 
             checkBox.SetCommand<string, CompoundButton.CheckedChangeEventArgs>(
                 vmTarget.SetPropertyCommand,
-                binding);
+                _binding);
 
             Assert.IsNull(vmTarget.TargetProperty);
             checkBox.PerformClick();

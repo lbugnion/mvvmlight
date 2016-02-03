@@ -11,9 +11,16 @@ namespace GalaSoft.MvvmLight.Test.Binding
     public class BindingSourceTest
     {
         public TestViewModel _vmSource;
+        private Helpers.Binding _binding;
         private TestViewModel _vmSourcePrivate;
 
         public TestViewModel VmSource
+        {
+            get;
+            private set;
+        }
+
+        public TestViewModel VmTarget
         {
             get;
             private set;
@@ -25,16 +32,10 @@ namespace GalaSoft.MvvmLight.Test.Binding
             set;
         }
 
-        public TestViewModel VmTarget
-        {
-            get;
-            private set;
-        }
-
         [Test]
-        public void BindingSource_NewBindingWithPublicProperty_NoError()
+        public void BindingSource_NewBindingWithPrivateField_NoError()
         {
-            VmSource = new TestViewModel
+            _vmSourcePrivate = new TestViewModel
             {
                 Model = new TestModel
                 {
@@ -44,16 +45,16 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmTarget = new TestViewModel();
 
-            var binding = new Helpers.Binding<string, string>(
-                VmSource,
-                () => VmSource.Model.MyProperty,
+            _binding = new Binding<string, string>(
+                _vmSourcePrivate,
+                () => _vmSourcePrivate.Model.MyProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Model.MyProperty = newValue;
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            _vmSourcePrivate.Model.MyProperty = newValue;
+            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var vmTarget = new TestViewModel();
 
-            var binding = new Helpers.Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vmSource,
                 () => vmSource.Model.MyProperty,
                 vmTarget,
@@ -94,7 +95,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmTarget = new TestViewModel();
 
-            binding = new Helpers.Binding<string, string>(
+            _binding = new Binding<string, string>(
                 VmSourcePrivate,
                 () => VmSourcePrivate.Model.MyProperty,
                 VmTarget,
@@ -119,7 +120,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmTarget = new TestViewModel();
 
-            var binding = new Helpers.Binding<string, string>(
+            _binding = new Binding<string, string>(
                 _vmSource,
                 () => _vmSource.Model.MyProperty,
                 VmTarget,
@@ -132,9 +133,9 @@ namespace GalaSoft.MvvmLight.Test.Binding
         }
 
         [Test]
-        public void BindingSource_NewBindingWithPrivateField_NoError()
+        public void BindingSource_NewBindingWithPublicProperty_NoError()
         {
-            _vmSourcePrivate = new TestViewModel
+            VmSource = new TestViewModel
             {
                 Model = new TestModel
                 {
@@ -144,16 +145,16 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmTarget = new TestViewModel();
 
-            var binding = new Helpers.Binding<string, string>(
-                _vmSourcePrivate,
-                () => _vmSourcePrivate.Model.MyProperty,
+            _binding = new Binding<string, string>(
+                VmSource,
+                () => VmSource.Model.MyProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            _vmSourcePrivate.Model.MyProperty = newValue;
-            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            VmSource.Model.MyProperty = newValue;
+            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -169,7 +170,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmTarget = new TestViewModel();
 
-            var binding = new Helpers.Binding<string, string>(
+            _binding = new Binding<string, string>(
                 vmSource,
                 () => vmSource.Model.MyProperty,
                 VmTarget,
@@ -182,9 +183,9 @@ namespace GalaSoft.MvvmLight.Test.Binding
         }
 
         [Test]
-        public void BindingSource_SetBindingWithPublicProperty_NoError()
+        public void BindingSource_SetBindingWithPrivateField_NoError()
         {
-            VmSource = new TestViewModel
+            _vmSourcePrivate = new TestViewModel
             {
                 Model = new TestModel
                 {
@@ -194,14 +195,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmTarget = new TestViewModel();
 
-            var binding = this.SetBinding(
-                () => VmSource.Model.MyProperty,
+            _binding = this.SetBinding(
+                () => _vmSourcePrivate.Model.MyProperty,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Model.MyProperty = newValue;
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            _vmSourcePrivate.Model.MyProperty = newValue;
+            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -217,7 +218,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmTarget = new TestViewModel();
 
-            var binding = this.SetBinding(
+            _binding = this.SetBinding(
                 () => VmSourcePrivate.Model.MyProperty,
                 () => VmTarget.TargetProperty);
 
@@ -240,7 +241,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmTarget = new TestViewModel();
 
-            var binding = this.SetBinding(
+            _binding = this.SetBinding(
                 () => _vmSource.Model.MyProperty,
                 () => VmTarget.TargetProperty);
 
@@ -251,9 +252,9 @@ namespace GalaSoft.MvvmLight.Test.Binding
         }
 
         [Test]
-        public void BindingSource_SetBindingWithPrivateField_NoError()
+        public void BindingSource_SetBindingWithPublicProperty_NoError()
         {
-            _vmSourcePrivate = new TestViewModel
+            VmSource = new TestViewModel
             {
                 Model = new TestModel
                 {
@@ -263,14 +264,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmTarget = new TestViewModel();
 
-            var binding = this.SetBinding(
-                () => _vmSourcePrivate.Model.MyProperty,
+            _binding = this.SetBinding(
+                () => VmSource.Model.MyProperty,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            _vmSourcePrivate.Model.MyProperty = newValue;
-            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            VmSource.Model.MyProperty = newValue;
+            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
         }
     }
 }
