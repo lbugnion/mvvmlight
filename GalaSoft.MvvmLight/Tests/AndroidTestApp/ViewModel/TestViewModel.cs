@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 
@@ -26,6 +28,18 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
             {
                 Set(ref _date, value);
             }
+        }
+
+        public ObservableCollection<TestItem> ItemsCollection
+        {
+            get;
+            set;
+        }
+
+        public List<TestItem> ItemsList
+        {
+            get;
+            set;
         }
 
         public TestModel Model
