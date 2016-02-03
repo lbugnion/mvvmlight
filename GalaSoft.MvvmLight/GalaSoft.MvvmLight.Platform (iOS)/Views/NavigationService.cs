@@ -15,7 +15,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using UIKit;
@@ -48,6 +47,17 @@ namespace GalaSoft.MvvmLight.Views
 
         private readonly Dictionary<string, TypeActionOrKey> _pagesByKey = new Dictionary<string, TypeActionOrKey>();
         private UINavigationController _navigation;
+
+        /// <summary>
+        /// Gets the NavigationController that was passed in the <see cref="Initialize"/> method.
+        /// </summary>
+        public UINavigationController NavigationController
+        {
+            get
+            {
+                return _navigation;
+            }
+        }
 
         /// <summary>
         /// The key corresponding to the currently displayed page.
@@ -193,7 +203,7 @@ namespace GalaSoft.MvvmLight.Views
                             throw new InvalidCastException(
                                 string.Format(
                                     "Cannot cast {0} to {1}",
-                                    controller.GetType().FullName,
+                                    controller == null ? "Unknown controller type" : controller.GetType().FullName,
                                     typeof(ControllerBase).FullName));
                         }
                     }
@@ -341,7 +351,7 @@ namespace GalaSoft.MvvmLight.Views
                         c =>
                         {
                             var p = c.GetParameters();
-                            return p.Count() == 1
+                            return p.Length == 1
                                    && p[0].ParameterType == parameter.GetType();
                         });
 
