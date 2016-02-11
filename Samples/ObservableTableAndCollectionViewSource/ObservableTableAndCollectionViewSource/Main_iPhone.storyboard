@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4451" systemVersion="13A461" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733.0"/>
+    </dependencies>
+    <scenes>
+        <!--class Prefix:identifier View Controller-->
+        <scene sceneID="7">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="8" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="11">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="10" kind="relationship" relationship="rootViewController" id="9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-39" y="75"/>
+        </scene>
+        <scene sceneID="13">
+            <objects>
+                <viewController id="10" sceneMemberID="viewController" customClass="MainViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5"/>
+                        <viewControllerLayoutGuide type="bottom" id="6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="15">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="164" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="10" y="84" width="300" height="30"/>
+                                <state key="normal" title="Controller in code">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="172" firstItem="164" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="165" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="10" y="134" width="300" height="30"/>
+                                <state key="normal" title="TableSource with CreateCell">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="176" firstItem="165" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="166" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="10" y="184" width="300" height="30"/>
+                                <state key="normal" title="TableSource with Reuse ID">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="180" firstItem="166" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="167" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="10" y="234" width="300" height="30"/>
+                                <state key="normal" title="CollectionView (Grid)">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="184" firstItem="167" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="168" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="10" y="284" width="300" height="30"/>
+                                <state key="normal" title="CollectionView (Circle)">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="188" firstItem="168" firstAttribute="height" constant="30"/>
+                                </constraints>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="169" firstItem="164" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="20"/>
+                            <constraint id="170" firstItem="164" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="10"/>
+                            <constraint id="171" firstItem="15" firstAttribute="trailing" secondItem="164" secondAttribute="trailing" constant="10"/>
+                            <constraint id="173" firstItem="165" firstAttribute="top" secondItem="164" secondAttribute="bottom" constant="20"/>
+                            <constraint id="174" firstItem="165" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="10"/>
+                            <constraint id="175" firstItem="15" firstAttribute="trailing" secondItem="165" secondAttribute="trailing" constant="10"/>
+                            <constraint id="177" firstItem="166" firstAttribute="top" secondItem="165" secondAttribute="bottom" constant="20"/>
+                            <constraint id="178" firstItem="166" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="10"/>
+                            <constraint id="179" firstItem="15" firstAttribute="trailing" secondItem="166" secondAttribute="trailing" constant="10"/>
+                            <constraint id="181" firstItem="167" firstAttribute="top" secondItem="166" secondAttribute="bottom" constant="20"/>
+                            <constraint id="182" firstItem="167" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="10"/>
+                            <constraint id="183" firstItem="15" firstAttribute="trailing" secondItem="167" secondAttribute="trailing" constant="10"/>
+                            <constraint id="185" firstItem="168" firstAttribute="top" secondItem="167" secondAttribute="bottom" constant="20"/>
+                            <constraint id="186" firstItem="168" firstAttribute="leading" secondItem="15" secondAttribute="leading" constant="10"/>
+                            <constraint id="187" firstItem="15" firstAttribute="trailing" secondItem="168" secondAttribute="trailing" constant="10"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Observable TVS and CVS" id="14"/>
+                    <connections>
+                        <outlet property="ControllerInCodeButton" destination="164" id="name-outlet-164"/>
+                        <outlet property="TableSourceWithCreateCellButton" destination="165" id="name-outlet-165"/>
+                        <outlet property="TableSourceWithReuseIdButton" destination="166" id="name-outlet-166"/>
+                        <outlet property="CollectionViewGridButton" destination="167" id="name-outlet-167"/>
+                        <outlet property="CollectionViewCircleButton" destination="168" id="name-outlet-168"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="16" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="393" y="79"/>
+        </scene>
+        <scene sceneID="146">
+            <objects>
+                <tableViewController id="147" sceneMemberID="viewController" customClass="UITableViewTableSourceController" storyboardIdentifier="UITableViewTableSourceController" useStoryboardIdentifierAsRestorationIdentifier="YES">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="148">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="151" rowHeight="44">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="151" id="152">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="147" id="149"/>
+                            <outlet property="delegate" destination="147" id="150"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="153" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="791" y="84"/>
+        </scene>
+        <scene sceneID="155">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="156" sceneMemberID="viewController" customClass="CollectionViewController" storyboardIdentifier="CollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="157">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="161">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="160">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="156" id="158"/>
+                            <outlet property="delegate" destination="156" id="159"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="162" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1189" y="89"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <resources>
+        <image name="Default-568h.png" width="320" height="568"/>
+    </resources>
+</document>
