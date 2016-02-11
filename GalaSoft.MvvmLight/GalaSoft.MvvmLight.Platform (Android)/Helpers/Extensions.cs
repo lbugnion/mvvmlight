@@ -71,6 +71,7 @@ namespace GalaSoft.MvvmLight.Helpers
             return new Binding<TSource, TTarget>(
                 source,
                 sourcePropertyExpression,
+                null,
                 target,
                 targetPropertyExpression,
                 mode,
@@ -110,6 +111,7 @@ namespace GalaSoft.MvvmLight.Helpers
             return new Binding<TSource, TSource>(
                 source,
                 sourcePropertyExpression,
+                true,
                 null,
                 null,
                 mode,

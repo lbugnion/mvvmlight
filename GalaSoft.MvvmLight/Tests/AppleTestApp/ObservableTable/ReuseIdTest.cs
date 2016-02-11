@@ -54,7 +54,10 @@ namespace GalaSoft.MvvmLight.Test.ObservableTable
         [Test]
         public void ObservableTableViewController_WithListAndSetReuseId()
         {
-            Vm = GetViewModel();
+            Vm = new TestViewModel
+            {
+                ItemsCollection = new ObservableCollection<TestItem>()
+            };
 
             const string reuseId = "1234";
 
@@ -65,6 +68,8 @@ namespace GalaSoft.MvvmLight.Test.ObservableTable
 
         private void BindCell(UITableViewCell cell, TestItem item, NSIndexPath path)
         {
+            item.RowIndexPath = path;
+            cell.TextLabel.Text = item.Title;
         }
 
         private UITableViewCell CreateCell(NSString reuseId)
@@ -78,18 +83,17 @@ namespace GalaSoft.MvvmLight.Test.ObservableTable
             {
                 ItemsCollection = new ObservableCollection<TestItem>
                 {
-                    new TestItem(),
-                    new TestItem(),
-                    new TestItem(),
-                    new TestItem(),
+                    new TestItem("123"),
+                    new TestItem("234"),
+                    new TestItem("345"),
+                    new TestItem("456"),
                 },
-
                 ItemsList = new List<TestItem>
                 {
-                    new TestItem(),
-                    new TestItem(),
-                    new TestItem(),
-                    new TestItem(),
+                    new TestItem("123"),
+                    new TestItem("234"),
+                    new TestItem("345"),
+                    new TestItem("456"),
                 }
             };
         }
