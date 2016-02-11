@@ -3,13 +3,14 @@ using System.Diagnostics.CodeAnalysis;
 using GalaSoft.MvvmLight.Helpers;
 using GalaSoft.MvvmLight.Test.ViewModel;
 using NUnit.Framework;
-
 #if ANDROID
 using Android.App;
 using Android.Widget;
+
 #elif __IOS__
 using GalaSoft.MvvmLight.Test.Controls;
 using UIKit;
+
 #endif
 
 namespace GalaSoft.MvvmLight.Test.Binding
@@ -99,6 +100,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
         [Test]
         public void
             Binding_MultipleLevelsOfNullWithConverter_ShouldCallConverterWithNullThenTargetNullValueButNotFallbackValue(
+            
             )
         {
             var vmSource = new TestViewModel();

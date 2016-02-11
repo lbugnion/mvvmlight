@@ -49,11 +49,11 @@ namespace GalaSoft.MvvmLight.Helpers
         private WeakAction _onSourceUpdate;
         private WeakReference _propertySource;
         private WeakReference _propertyTarget;
+        private bool _resolveTopField;
         private bool _settingSourceToTarget;
         private bool _settingTargetToSource;
         private PropertyInfo _sourceProperty;
         private PropertyInfo _targetProperty;
-        private bool _resolveTopField;
 
         /// <summary>
         /// Gets or sets the value to use when the binding is unable to return a value. This can happen if one of the
@@ -1040,7 +1040,6 @@ namespace GalaSoft.MvvmLight.Helpers
                     }
                     catch (TargetException)
                     {
-                        
                     }
                 }
                 else

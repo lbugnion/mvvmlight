@@ -56,15 +56,6 @@ namespace GalaSoft.MvvmLight.Helpers
         private ObservableTableSource<T> _tableSource;
 
         /// <summary>
-        /// A reuse identifier for the TableView's cells.
-        /// </summary>
-        public string ReuseId
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// When set, specifies which animation should be used when rows change.
         /// </summary>
         public UITableViewRowAnimation AddAnimation
@@ -178,6 +169,15 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <seealso cref="GetHeightForHeaderDelegate"/>
         public Func<UITableView, nint, UIView> GetViewForHeaderDelegate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// A reuse identifier for the TableView's cells.
+        /// </summary>
+        public string ReuseId
         {
             get;
             set;

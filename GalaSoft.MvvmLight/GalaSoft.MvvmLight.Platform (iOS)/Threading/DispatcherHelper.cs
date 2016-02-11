@@ -16,9 +16,8 @@
 
 using System;
 using System.Text;
-
-////using GalaSoft.Utilities.Attributes;
 using Foundation;
+////using GalaSoft.Utilities.Attributes;
 
 namespace GalaSoft.MvvmLight.Threading
 {
@@ -51,7 +50,7 @@ namespace GalaSoft.MvvmLight.Threading
         /// thread.</param>
         // ReSharper disable InconsistentNaming
         public static void CheckBeginInvokeOnUI(Action action)
-        // ReSharper restore InconsistentNaming
+            // ReSharper restore InconsistentNaming
         {
             if (action == null)
             {
@@ -60,18 +59,6 @@ namespace GalaSoft.MvvmLight.Threading
 
             CheckDispatcher();
             MainThreadContext.InvokeOnMainThread(action);
-        }
-
-        private static void CheckDispatcher()
-        {
-            if (MainThreadContext == null)
-            {
-                var error = new StringBuilder("The DispatcherHelper is not initialized.");
-                error.AppendLine();
-                error.Append("Call DispatcherHelper.Initialize(app) at the end of AppDelegate.FinishedLaunching.");
-
-                throw new InvalidOperationException(error.ToString());
-            }
         }
 
         /// <summary>
@@ -94,6 +81,18 @@ namespace GalaSoft.MvvmLight.Threading
         public static void Reset()
         {
             MainThreadContext = null;
+        }
+
+        private static void CheckDispatcher()
+        {
+            if (MainThreadContext == null)
+            {
+                var error = new StringBuilder("The DispatcherHelper is not initialized.");
+                error.AppendLine();
+                error.Append("Call DispatcherHelper.Initialize(app) at the end of AppDelegate.FinishedLaunching.");
+
+                throw new InvalidOperationException(error.ToString());
+            }
         }
     }
 }

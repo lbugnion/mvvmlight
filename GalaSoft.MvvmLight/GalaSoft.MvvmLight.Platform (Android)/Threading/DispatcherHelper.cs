@@ -16,9 +16,8 @@
 
 using System;
 using System.Text;
-
-////using GalaSoft.Utilities.Attributes;
 using GalaSoft.MvvmLight.Views;
+////using GalaSoft.Utilities.Attributes;
 
 namespace GalaSoft.MvvmLight.Threading
 {
@@ -38,7 +37,7 @@ namespace GalaSoft.MvvmLight.Threading
         /// thread.</param>
         // ReSharper disable InconsistentNaming
         public static void CheckBeginInvokeOnUI(Action action)
-        // ReSharper restore InconsistentNaming
+            // ReSharper restore InconsistentNaming
         {
             if (action == null)
             {
@@ -47,18 +46,6 @@ namespace GalaSoft.MvvmLight.Threading
 
             CheckDispatcher();
             ActivityBase.CurrentActivity.RunOnUiThread(action);
-        }
-
-        private static void CheckDispatcher()
-        {
-            if (ActivityBase.CurrentActivity == null)
-            {
-                var error = new StringBuilder("The DispatcherHelper cannot be called.");
-                error.AppendLine();
-                error.Append("Make sure that your main Activity derives from ActivityBase.");
-
-                throw new InvalidOperationException(error.ToString());
-            }
         }
 
         /// <summary>
@@ -75,6 +62,18 @@ namespace GalaSoft.MvvmLight.Threading
         /// </summary>
         public static void Reset()
         {
+        }
+
+        private static void CheckDispatcher()
+        {
+            if (ActivityBase.CurrentActivity == null)
+            {
+                var error = new StringBuilder("The DispatcherHelper cannot be called.");
+                error.AppendLine();
+                error.Append("Make sure that your main Activity derives from ActivityBase.");
+
+                throw new InvalidOperationException(error.ToString());
+            }
         }
     }
 }

@@ -1,17 +1,20 @@
-﻿using GalaSoft.MvvmLight.Helpers;
+﻿using System.Diagnostics.CodeAnalysis;
+using GalaSoft.MvvmLight.Helpers;
 using GalaSoft.MvvmLight.Test.ViewModel;
 using NUnit.Framework;
-
 #if ANDROID
 using Android.App;
 using Android.Widget;
+
 #elif __IOS__
 using UIKit;
+
 #endif
 
 namespace GalaSoft.MvvmLight.Test.Binding
 {
     [TestFixture]
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class BindingAccountTest
     {
         private Binding<string, string> _binding1;

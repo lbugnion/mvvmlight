@@ -56,8 +56,8 @@ namespace GalaSoft.MvvmLight.Views
             };
 
             var info = CreateDialog(
-                message, 
-                title, 
+                message,
+                title,
                 buttonText,
                 null,
                 callback);
@@ -91,9 +91,9 @@ namespace GalaSoft.MvvmLight.Views
             };
 
             var info = CreateDialog(
-                error.Message, 
-                title, 
-                buttonText, 
+                error.Message,
+                title,
+                buttonText,
                 null,
                 callback);
 
@@ -114,7 +114,7 @@ namespace GalaSoft.MvvmLight.Views
         public Task ShowMessage(string message, string title)
         {
             var info = CreateDialog(
-                message, 
+                message,
                 title);
 
             info.Dialog.Show();
@@ -147,9 +147,9 @@ namespace GalaSoft.MvvmLight.Views
             };
 
             var info = CreateDialog(
-                message, 
-                title, 
-                buttonText, 
+                message,
+                title,
+                buttonText,
                 null,
                 callback);
 
@@ -233,29 +233,11 @@ namespace GalaSoft.MvvmLight.Views
 
             AlertDialog dialog = null;
 
-            builder.SetPositiveButton(okText ?? "OK", (d, index) =>
-            {
-                tcs.TrySetResult(true);
-
-                // ReSharper disable AccessToModifiedClosure
-                if (dialog != null)
+            builder.SetPositiveButton(
+                okText ?? "OK",
+                (d, index) =>
                 {
-                    dialog.Dismiss();
-                    dialog.Dispose();
-                }
-
-                if (afterHideCallbackWithResponse != null)
-                {
-                    afterHideCallbackWithResponse(true);
-                }
-                // ReSharper restore AccessToModifiedClosure
-            });
-
-            if (cancelText != null)
-            {
-                builder.SetNegativeButton(cancelText, (d, index) =>
-                {
-                    tcs.TrySetResult(false);
+                    tcs.TrySetResult(true);
 
                     // ReSharper disable AccessToModifiedClosure
                     if (dialog != null)
@@ -266,21 +248,45 @@ namespace GalaSoft.MvvmLight.Views
 
                     if (afterHideCallbackWithResponse != null)
                     {
-                        afterHideCallbackWithResponse(false);
+                        afterHideCallbackWithResponse(true);
                     }
                     // ReSharper restore AccessToModifiedClosure
                 });
+
+            if (cancelText != null)
+            {
+                builder.SetNegativeButton(
+                    cancelText,
+                    (d, index) =>
+                    {
+                        tcs.TrySetResult(false);
+
+                        // ReSharper disable AccessToModifiedClosure
+                        if (dialog != null)
+                        {
+                            dialog.Dismiss();
+                            dialog.Dispose();
+                        }
+
+                        if (afterHideCallbackWithResponse != null)
+                        {
+                            afterHideCallbackWithResponse(false);
+                        }
+                        // ReSharper restore AccessToModifiedClosure
+                    });
             }
 
-            builder.SetOnDismissListener(new OnDismissListener(() =>
-            {
-                tcs.TrySetResult(false);
+            builder.SetOnDismissListener(
+                new OnDismissListener(
+                    () =>
+                    {
+                        tcs.TrySetResult(false);
 
-                if (afterHideCallbackWithResponse != null)
-                {
-                    afterHideCallbackWithResponse(false);
-                }
-            }));
+                        if (afterHideCallbackWithResponse != null)
+                        {
+                            afterHideCallbackWithResponse(false);
+                        }
+                    }));
 
             dialog = builder.Create();
 
