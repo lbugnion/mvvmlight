@@ -16,6 +16,8 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
         private string _propertyValue;
         private RelayCommand<string> _setPropertyCommand;
         private RelayCommand _setPropertyWithoutValueCommand;
+
+        private string _targetPropertyObservable;
         private ICommand _testCommandImpl;
 
         public DateTime Date
@@ -96,6 +98,18 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
         {
             get;
             set;
+        }
+
+        public string TargetPropertyObservable
+        {
+            get
+            {
+                return _targetPropertyObservable;
+            }
+            set
+            {
+                Set(ref _targetPropertyObservable, value);
+            }
         }
 
         public ICommand TestCommandImpl

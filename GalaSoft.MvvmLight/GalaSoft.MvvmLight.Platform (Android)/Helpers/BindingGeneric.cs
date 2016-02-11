@@ -173,6 +173,27 @@ namespace GalaSoft.MvvmLight.Helpers
             BindingMode mode = BindingMode.Default,
             TSource fallbackValue = default(TSource),
             TSource targetNullValue = default(TSource))
+            : this(
+                source,
+                sourcePropertyExpression,
+                null,
+                target,
+                targetPropertyExpression,
+                mode,
+                fallbackValue,
+                targetNullValue)
+        {
+        }
+
+        internal Binding(
+            object source,
+            Expression<Func<TSource>> sourcePropertyExpression,
+            bool? resolveTopField,
+            object target = null,
+            Expression<Func<TTarget>> targetPropertyExpression = null,
+            BindingMode mode = BindingMode.Default,
+            TSource fallbackValue = default(TSource),
+            TSource targetNullValue = default(TSource))
         {
             Mode = mode;
             FallbackValue = fallbackValue;
@@ -190,7 +211,9 @@ namespace GalaSoft.MvvmLight.Helpers
                 TopSource.Target,
                 TopTarget.Target,
                 mode,
-                target == null && targetPropertyExpression != null);
+                resolveTopField == null
+                    ? (target == null && targetPropertyExpression != null)
+                    : resolveTopField.Value);
         }
 
         /// <summary>
@@ -249,10 +272,7 @@ namespace GalaSoft.MvvmLight.Helpers
         public override void ForceUpdateValueFromSourceToTarget()
         {
             if (_onSourceUpdate == null
-                && (_propertyTarget == null
-                    || !_propertyTarget.IsAlive
-                    || _propertyTarget.Target == null
-                    || _propertySource == null
+                && (_propertySource == null
                     || !_propertySource.IsAlive
                     || _propertySource.Target == null))
             {
@@ -1271,14 +1291,10 @@ namespace GalaSoft.MvvmLight.Helpers
         internal class ObjectSwappedEventListener : IWeakEventListener
         {
             private readonly WeakReference _bindingReference;
-            private readonly WeakReference _instanceReference;
 
             public WeakReference InstanceReference
             {
-                get
-                {
-                    return _instanceReference;
-                }
+                get;
             }
 
             public ObjectSwappedEventListener(
@@ -1286,14 +1302,14 @@ namespace GalaSoft.MvvmLight.Helpers
                 INotifyPropertyChanged instance)
             {
                 _bindingReference = new WeakReference(binding);
-                _instanceReference = new WeakReference(instance);
+                InstanceReference = new WeakReference(instance);
             }
 
             public bool ReceiveWeakEvent(Type managerType, object sender, EventArgs e)
             {
                 var propArgs = e as PropertyChangedEventArgs;
 
-                if (_instanceReference.Target == sender
+                if (InstanceReference.Target == sender
                     && propArgs != null
                     && _bindingReference != null
                     && _bindingReference.IsAlive
