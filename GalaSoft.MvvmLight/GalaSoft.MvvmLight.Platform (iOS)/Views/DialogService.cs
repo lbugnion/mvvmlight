@@ -207,7 +207,7 @@ namespace GalaSoft.MvvmLight.Views
                 title,
                 message,
                 null,
-                buttonCancelText, 
+                buttonCancelText,
                 buttonConfirmText);
 
             av.Dismissed += (s, e) =>

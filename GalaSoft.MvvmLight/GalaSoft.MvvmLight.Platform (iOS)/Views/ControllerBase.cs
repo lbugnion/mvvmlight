@@ -22,17 +22,6 @@ namespace GalaSoft.MvvmLight.Views
         }
 
         /// <summary>
-        /// A constructor used when creating managed representations of unmanaged objects;
-        /// Called by the runtime.
-        /// </summary>
-        /// <param name="handle">Pointer (handle) to the unmanaged object.</param>
-        /// <remarks>Check the remarks on <see cref="UIViewController(IntPtr)"/></remarks>
-        protected internal ControllerBase(IntPtr handle)
-            : base(handle)
-        {
-        }
-
-        /// <summary>
         /// A constructor that initializes the object from the data stored in the unarchiver
         /// object.
         /// </summary>
@@ -72,6 +61,17 @@ namespace GalaSoft.MvvmLight.Views
         /// Initializes an instance of this class.
         /// </summary>
         public ControllerBase()
+        {
+        }
+
+        /// <summary>
+        /// A constructor used when creating managed representations of unmanaged objects;
+        /// Called by the runtime.
+        /// </summary>
+        /// <param name="handle">Pointer (handle) to the unmanaged object.</param>
+        /// <remarks>Check the remarks on <see cref="UIViewController(IntPtr)"/></remarks>
+        protected internal ControllerBase(IntPtr handle)
+            : base(handle)
         {
         }
     }

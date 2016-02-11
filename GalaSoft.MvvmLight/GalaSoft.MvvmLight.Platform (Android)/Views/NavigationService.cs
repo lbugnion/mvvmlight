@@ -51,76 +51,6 @@ namespace GalaSoft.MvvmLight.Views
         }
 
         /// <summary>
-        /// If possible, discards the current page and displays the previous page
-        /// on the navigation stack.
-        /// </summary>
-        public void GoBack()
-        {
-            ActivityBase.GoBack();
-        }
-
-        /// <summary>
-        /// Displays a new page corresponding to the given key. 
-        /// Make sure to call the <see cref="Configure"/>
-        /// method first.
-        /// </summary>
-        /// <param name="pageKey">The key corresponding to the page
-        /// that should be displayed.</param>
-        /// <exception cref="ArgumentException">When this method is called for 
-        /// a key that has not been configured earlier.</exception>
-        public void NavigateTo(string pageKey)
-        {
-            NavigateTo(pageKey, null);
-        }
-
-        /// <summary>
-        /// Displays a new page corresponding to the given key,
-        /// and passes a parameter to the new page.
-        /// Make sure to call the <see cref="Configure"/>
-        /// method first.
-        /// </summary>
-        /// <param name="pageKey">The key corresponding to the page
-        /// that should be displayed.</param>
-        /// <param name="parameter">The parameter that should be passed
-        /// to the new page.</param>
-        /// <exception cref="ArgumentException">When this method is called for 
-        /// a key that has not been configured earlier.</exception>
-        public void NavigateTo(string pageKey, object parameter)
-        {
-            if (ActivityBase.CurrentActivity == null)
-            {
-                throw new InvalidOperationException("No CurrentActivity found");
-            }
-
-            lock (_pagesByKey)
-            {
-                if (!_pagesByKey.ContainsKey(pageKey))
-                {
-                    throw new ArgumentException(
-                        string.Format(
-                            "No such page: {0}. Did you forget to call NavigationService.Configure?",
-                            pageKey),
-                        "pageKey");
-                }
-
-                var intent = new Intent(ActivityBase.CurrentActivity, _pagesByKey[pageKey]);
-
-                if (parameter != null)
-                {
-                    lock (_parametersByKey)
-                    {
-                        var guid = Guid.NewGuid().ToString();
-                        _parametersByKey.Add(guid, parameter);
-                        intent.PutExtra(ParameterKeyName, guid);
-                    }
-                }
-
-                ActivityBase.CurrentActivity.StartActivity(intent);
-                ActivityBase.NextPageKey = pageKey;
-            }
-        }
-
-        /// <summary>
         /// Adds a key/page pair to the navigation service.
         /// </summary>
         /// <remarks>For this navigation service to work properly, your Activities
@@ -191,6 +121,76 @@ namespace GalaSoft.MvvmLight.Views
         public T GetAndRemoveParameter<T>(Intent intent)
         {
             return (T)GetAndRemoveParameter(intent);
+        }
+
+        /// <summary>
+        /// If possible, discards the current page and displays the previous page
+        /// on the navigation stack.
+        /// </summary>
+        public void GoBack()
+        {
+            ActivityBase.GoBack();
+        }
+
+        /// <summary>
+        /// Displays a new page corresponding to the given key. 
+        /// Make sure to call the <see cref="Configure"/>
+        /// method first.
+        /// </summary>
+        /// <param name="pageKey">The key corresponding to the page
+        /// that should be displayed.</param>
+        /// <exception cref="ArgumentException">When this method is called for 
+        /// a key that has not been configured earlier.</exception>
+        public void NavigateTo(string pageKey)
+        {
+            NavigateTo(pageKey, null);
+        }
+
+        /// <summary>
+        /// Displays a new page corresponding to the given key,
+        /// and passes a parameter to the new page.
+        /// Make sure to call the <see cref="Configure"/>
+        /// method first.
+        /// </summary>
+        /// <param name="pageKey">The key corresponding to the page
+        /// that should be displayed.</param>
+        /// <param name="parameter">The parameter that should be passed
+        /// to the new page.</param>
+        /// <exception cref="ArgumentException">When this method is called for 
+        /// a key that has not been configured earlier.</exception>
+        public void NavigateTo(string pageKey, object parameter)
+        {
+            if (ActivityBase.CurrentActivity == null)
+            {
+                throw new InvalidOperationException("No CurrentActivity found");
+            }
+
+            lock (_pagesByKey)
+            {
+                if (!_pagesByKey.ContainsKey(pageKey))
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            "No such page: {0}. Did you forget to call NavigationService.Configure?",
+                            pageKey),
+                        "pageKey");
+                }
+
+                var intent = new Intent(ActivityBase.CurrentActivity, _pagesByKey[pageKey]);
+
+                if (parameter != null)
+                {
+                    lock (_parametersByKey)
+                    {
+                        var guid = Guid.NewGuid().ToString();
+                        _parametersByKey.Add(guid, parameter);
+                        intent.PutExtra(ParameterKeyName, guid);
+                    }
+                }
+
+                ActivityBase.CurrentActivity.StartActivity(intent);
+                ActivityBase.NextPageKey = pageKey;
+            }
         }
     }
 }

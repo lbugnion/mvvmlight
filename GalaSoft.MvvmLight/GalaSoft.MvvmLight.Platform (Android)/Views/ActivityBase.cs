@@ -33,6 +33,18 @@ namespace GalaSoft.MvvmLight.Views
             private set;
         }
 
+        internal string ActivityKey
+        {
+            get;
+            private set;
+        }
+
+        internal static string NextPageKey
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// If possible, discards the current page and displays the previous page
         /// on the navigation stack.
@@ -62,18 +74,6 @@ namespace GalaSoft.MvvmLight.Views
             }
 
             base.OnResume();
-        }
-
-        internal string ActivityKey
-        {
-            get;
-            private set;
-        }
-
-        internal static string NextPageKey
-        {
-            get;
-            set;
         }
     }
 }

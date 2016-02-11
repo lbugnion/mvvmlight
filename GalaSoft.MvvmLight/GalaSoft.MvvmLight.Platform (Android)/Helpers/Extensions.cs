@@ -80,8 +80,10 @@ namespace GalaSoft.MvvmLight.Helpers
 
         /// <summary>
         /// Creates a <see cref="Binding{TSource, TSource}"/> with a source property but without a target.
-        /// This type of bindings is useful for the <see cref="SetCommand{TIn, TOut}"/>
-        /// and <see cref="SetCommand{T, TEventArgs}"/> methods, to use as CommandParameter
+        /// This type of bindings is useful for the <see cref="SetCommand{T}(object, string, RelayCommand{T}, Binding)"/>,
+        /// <see cref="SetCommand{T}(object, RelayCommand{T}, Binding)"/>,
+        /// <see cref="SetCommand{T, TEventArgs}(object, string, RelayCommand{T}, Binding)"/>
+        /// and <see cref="SetCommand{T, TEventArgs}(object, RelayCommand{T}, Binding)"/> methods, to use as CommandParameter
         /// binding.
         /// </summary>
         /// <param name="source">The source of the binding. If this object implements INotifyPropertyChanged and the
