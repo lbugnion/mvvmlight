@@ -9,6 +9,7 @@ namespace GalaSoft.MvvmLight.Views
     /// using Storyboards.
     /// </summary>
     ////[ClassInfo(typeof(INavigationService))]
+    [Obsolete("This class is not needed anymore. Instead, use a normal UIViewController, and then use NavigationService.GetAndRemoveParameter to retrieve the navigation parameter.")]
     public class ControllerBase : UIViewController
     {
         /// <summary>

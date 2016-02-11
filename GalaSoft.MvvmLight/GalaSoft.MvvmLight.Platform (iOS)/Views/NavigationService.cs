@@ -31,6 +31,8 @@ namespace GalaSoft.MvvmLight.Views
     ////[ClassInfo(typeof(INavigationService))]
     public class NavigationService : INavigationService
     {
+        private readonly Dictionary<WeakReference, object> _parametersByController = new Dictionary<WeakReference, object>();
+
         /// <summary>
         /// The key that is returned by the <see cref="CurrentPageKey"/> property
         /// when the current UIViewController is the root controller.
@@ -46,16 +48,42 @@ namespace GalaSoft.MvvmLight.Views
         public const string UnknownPageKey = "-- UNKNOWN --";
 
         private readonly Dictionary<string, TypeActionOrKey> _pagesByKey = new Dictionary<string, TypeActionOrKey>();
-        private UINavigationController _navigation;
 
         /// <summary>
-        /// Gets the NavigationController that was passed in the <see cref="Initialize"/> method.
+        /// Allows a caller to get the navigation parameter corresponding 
+        /// to the Intent parameter.
         /// </summary>
-        public UINavigationController NavigationController
+        /// <param name="controller">The <see cref="UIViewController"/> that was navigated to.</param>
+        /// <returns>The navigation parameter. If no parameter is found,
+        /// returns null.</returns>
+        public object GetAndRemoveParameter(UIViewController controller)
         {
-            get
+            if (controller == null)
             {
-                return _navigation;
+                throw new ArgumentNullException("controller", "This method must be called with a valid UIViewController");
+            }
+
+            lock (_parametersByController)
+            {
+                object value = null;
+                WeakReference key = null;
+
+                foreach (var pair in _parametersByController)
+                {
+                    if (Equals(pair.Key.Target, controller))
+                    {
+                        key = pair.Key;
+                        value = pair.Value;
+                        break;
+                    }
+                }
+
+                if (key != null)
+                {
+                    _parametersByController.Remove(key);
+                }
+
+                return value;
             }
         }
 
@@ -68,17 +96,17 @@ namespace GalaSoft.MvvmLight.Views
             {
                 lock (_pagesByKey)
                 {
-                    if (_navigation.ViewControllers.Length == 0)
+                    if (NavigationController.ViewControllers.Length == 0)
                     {
                         return UnknownPageKey;
                     }
 
-                    if (_navigation.ViewControllers.Length == 1)
+                    if (NavigationController.ViewControllers.Length == 1)
                     {
                         return RootPageKey;
                     }
 
-                    var topController = _navigation.ViewControllers.Last();
+                    var topController = NavigationController.ViewControllers.Last();
 
                     var item = _pagesByKey.Values.FirstOrDefault(
                         i => i.ControllerType == topController.GetType());
@@ -95,12 +123,89 @@ namespace GalaSoft.MvvmLight.Views
         }
 
         /// <summary>
+        /// Gets the NavigationController that was passed in the <see cref="Initialize"/> method.
+        /// </summary>
+        public UINavigationController NavigationController
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Adds a key/page pair to the navigation service.
+        /// This method will create a new controller on demand, using
+        /// reflection. You can use <see cref="Configure(string, Func{object,UIViewController})"/>
+        /// if you need more fine-grained control over the controller's creation.
+        /// </summary>
+        /// <param name="key">The key that will be used later
+        /// in the <see cref="NavigateTo(string)"/> or <see cref="NavigateTo(string, object)"/> methods.</param>
+        /// <param name="controllerType">The type of the controller corresponding to the key.</param>
+        public void Configure(string key, Type controllerType)
+        {
+            var item = new TypeActionOrKey
+            {
+                ControllerType = controllerType
+            };
+
+            SaveConfigurationItem(key, item);
+        }
+
+        /// <summary>
+        /// Adds a key/page pair to the navigation service.
+        /// This method allows the caller to have fine grained control over the controller's
+        /// creation.
+        /// </summary>
+        /// <param name="key">The key that will be used later
+        /// in the <see cref="NavigateTo(string)"/> or <see cref="NavigateTo(string, object)"/> methods.</param>
+        /// <param name="createAction">A Func returning the controller corresponding
+        /// to the given key.</param>
+        public void Configure(string key, Func<object, UIViewController> createAction)
+        {
+            var item = new TypeActionOrKey
+            {
+                CreateControllerAction = createAction
+            };
+
+            SaveConfigurationItem(key, item);
+        }
+
+        /// <summary>
+        /// Adds a key/page pair to the navigation service.
+        /// This method should be used when working with Storyboard for the UI.
+        /// </summary>
+        /// <param name="key">The key that will be used later
+        /// in the <see cref="NavigateTo(string)"/> or <see cref="NavigateTo(string, object)"/> methods.</param>
+        /// <param name="storyboardId">The idea of the UIViewController
+        /// in the Storyboard. Use the storyboardIdentifier/restorationIdentifier property
+        /// in the *.storyboard document.</param>
+        public void Configure(string key, string storyboardId)
+        {
+            var item = new TypeActionOrKey
+            {
+                StoryboardControllerKey = storyboardId
+            };
+
+            SaveConfigurationItem(key, item);
+        }
+
+        /// <summary>
         /// If possible, discards the current page and displays the previous page
         /// on the navigation stack.
         /// </summary>
         public void GoBack()
         {
-            _navigation.PopViewController(true);
+            NavigationController.PopViewController(true);
+        }
+
+        /// <summary>
+        /// Initialized the navigation service. This method must be called
+        /// before the <see cref="NavigateTo(string)"/> or
+        /// <see cref="NavigateTo(string, object)"/> methods are called.
+        /// </summary>
+        /// <param name="navigation">The application's navigation controller.</param>
+        public void Initialize(UINavigationController navigation)
+        {
+            NavigationController = navigation;
         }
 
         /// <summary>
@@ -169,13 +274,13 @@ namespace GalaSoft.MvvmLight.Views
 
                 if (!string.IsNullOrEmpty(item.StoryboardControllerKey))
                 {
-                    if (_navigation == null)
+                    if (NavigationController == null)
                     {
                         throw new InvalidOperationException(
                             "Unable to navigate: Did you forget to call NavigationService.Initialize?");
                     }
 
-                    if (_navigation.Storyboard == null)
+                    if (NavigationController.Storyboard == null)
                     {
                         throw new InvalidOperationException(
                             "Unable to navigate: No storyboard found");
@@ -183,7 +288,8 @@ namespace GalaSoft.MvvmLight.Views
 
                     try
                     {
-                        controller = _navigation.Storyboard.InstantiateViewController(item.StoryboardControllerKey);
+                        controller =
+                            NavigationController.Storyboard.InstantiateViewController(item.StoryboardControllerKey);
                         done = true;
                     }
                     catch (Exception ex)
@@ -198,18 +304,14 @@ namespace GalaSoft.MvvmLight.Views
                         {
                             casted.NavigationParameter = parameter;
                         }
-                        else
-                        {
-                            throw new InvalidCastException(
-                                string.Format(
-                                    "Cannot cast {0} to {1}",
-                                    controller == null ? "Unknown controller type" : controller.GetType().FullName,
-                                    typeof(ControllerBase).FullName));
-                        }
+
+                        // Save parameter in list for later
+                        _parametersByController.Add(new WeakReference(controller), parameter);
                     }
                 }
 
-                if (!done && item.ControllerType != null)
+                if (!done
+                    && item.ControllerType != null)
                 {
                     try
                     {
@@ -233,7 +335,7 @@ namespace GalaSoft.MvvmLight.Views
                         string.Format(
                             "Unable to create a controller for key {0}",
                             pageKey),
-                            creationException);
+                        creationException);
                 }
 
                 if (item.ControllerType == null)
@@ -241,91 +343,8 @@ namespace GalaSoft.MvvmLight.Views
                     item.ControllerType = controller.GetType();
                 }
 
-                _navigation.PushViewController(controller, true);
+                NavigationController.PushViewController(controller, true);
             }
-        }
-
-        /// <summary>
-        /// Adds a key/page pair to the navigation service.
-        /// This method will create a new controller on demand, using
-        /// reflection. You can use <see cref="Configure(string, Func{object,UIViewController})"/>
-        /// if you need more fine-grained control over the controller's creation.
-        /// </summary>
-        /// <param name="key">The key that will be used later
-        /// in the <see cref="NavigateTo(string)"/> or <see cref="NavigateTo(string, object)"/> methods.</param>
-        /// <param name="controllerType">The type of the controller corresponding to the key.</param>
-        public void Configure(string key, Type controllerType)
-        {
-            var item = new TypeActionOrKey
-            {
-                ControllerType = controllerType
-            };
-
-            SaveConfigurationItem(key, item);
-        }
-
-        private void SaveConfigurationItem(string key, TypeActionOrKey item)
-        {
-            lock (_pagesByKey)
-            {
-                if (_pagesByKey.ContainsKey(key))
-                {
-                    _pagesByKey[key] = item;
-                }
-                else
-                {
-                    _pagesByKey.Add(key, item);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Adds a key/page pair to the navigation service.
-        /// This method allows the caller to have fine grained control over the controller's
-        /// creation.
-        /// </summary>
-        /// <param name="key">The key that will be used later
-        /// in the <see cref="NavigateTo(string)"/> or <see cref="NavigateTo(string, object)"/> methods.</param>
-        /// <param name="createAction">A Func returning the controller corresponding
-        /// to the given key.</param>
-        public void Configure(string key, Func<object, UIViewController> createAction)
-        {
-            var item = new TypeActionOrKey
-            {
-                CreateControllerAction = createAction
-            };
-
-            SaveConfigurationItem(key, item);
-        }
-
-        /// <summary>
-        /// Adds a key/page pair to the navigation service.
-        /// This method should be used when working with Storyboard for the UI.
-        /// </summary>
-        /// <param name="key">The key that will be used later
-        /// in the <see cref="NavigateTo(string)"/> or <see cref="NavigateTo(string, object)"/> methods.</param>
-        /// <param name="storyboardId">The idea of the UIViewController
-        /// in the Storyboard. Use the storyboardIdentifier/restorationIdentifier property
-        /// in the *.storyboard document.</param>
-        public void Configure(string key, string storyboardId)
-        {
-            var item = new TypeActionOrKey
-            {
-                StoryboardControllerKey = storyboardId
-            };
-
-            SaveConfigurationItem(key, item);
-        }
-
-        /// <summary>
-        /// Initialized the navigation service. This method must be called
-        /// before the <see cref="NavigateTo(string)"/> or
-        /// <see cref="NavigateTo(string, object)"/> methods are called.
-        /// </summary>
-        /// <param name="navigation">The application's navigation controller.</param>
-        public void Initialize(UINavigationController navigation)
-        {
-            _navigation = navigation;
         }
 
         private UIViewController MakeController(Type controllerType, object parameter)
@@ -368,6 +387,21 @@ namespace GalaSoft.MvvmLight.Views
 
             var controller = constructor.Invoke(parameters) as UIViewController;
             return controller;
+        }
+
+        private void SaveConfigurationItem(string key, TypeActionOrKey item)
+        {
+            lock (_pagesByKey)
+            {
+                if (_pagesByKey.ContainsKey(key))
+                {
+                    _pagesByKey[key] = item;
+                }
+                else
+                {
+                    _pagesByKey.Add(key, item);
+                }
+            }
         }
 
         private class TypeActionOrKey
