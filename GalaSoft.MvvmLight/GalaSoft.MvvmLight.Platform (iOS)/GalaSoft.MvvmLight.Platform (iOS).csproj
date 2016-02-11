@@ -68,6 +68,8 @@
     <Compile Include="Helpers\BindingGenericApple.cs" />
     <Compile Include="Helpers\ExtensionsApple.cs" />
     <Compile Include="Helpers\ObservableTableViewController.cs" />
+    <Compile Include="Helpers\ObservableCollectionViewSource.cs" />
+    <Compile Include="Helpers\ObservableTableViewSource.cs" />
     <Compile Include="Threading\DispatcherHelper.cs" />
     <Compile Include="Views\ControllerBase.cs" />
     <Compile Include="Views\DialogService.cs" />

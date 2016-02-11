@@ -117,8 +117,14 @@
     <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28iOS%29\Helpers\ExtensionsApple.cs">
       <Link>Helpers\ExtensionsApple.cs</Link>
     </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28iOS%29\Helpers\ObservableCollectionViewSource.cs">
+      <Link>Helpers\ObservableCollectionViewSource.cs</Link>
+    </Compile>
     <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28iOS%29\Helpers\ObservableTableViewController.cs">
       <Link>Helpers\ObservableTableViewController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28iOS%29\Helpers\ObservableTableViewSource.cs">
+      <Link>Binding\ObservableTableViewSource.cs</Link>
     </Compile>
     <Compile Include="..\AndroidTestApp\Binding\BindingAccountTest.cs">
       <Link>Binding\BindingAccountTest.cs</Link>
@@ -191,6 +197,7 @@
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
+    <Compile Include="ObservableTable\ObservableTableViewSourceTest.cs" />
     <Compile Include="ObservableTable\ReuseIdTest.cs" />
     <Compile Include="ObservableTable\TestUiTableViewCell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
