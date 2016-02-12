@@ -246,17 +246,20 @@ namespace GalaSoft.MvvmLight.Views
             {
                 Exception creationException = null;
                 var done = false;
+                TypeActionOrKey item;
 
-                if (!_pagesByKey.ContainsKey(pageKey))
+                if (_pagesByKey.ContainsKey(pageKey))
                 {
-                    throw new ArgumentException(
-                        string.Format(
-                            "No such page: {0}. Did you forget to call NavigationService.Configure?",
-                            pageKey),
-                        "pageKey");
+                    item = _pagesByKey[pageKey];
+                }
+                else
+                {
+                    item = new TypeActionOrKey
+                    {
+                        StoryboardControllerKey = pageKey
+                    };
                 }
 
-                var item = _pagesByKey[pageKey];
                 UIViewController controller = null;
 
                 if (item.CreateControllerAction != null)
@@ -283,7 +286,7 @@ namespace GalaSoft.MvvmLight.Views
                     if (NavigationController.Storyboard == null)
                     {
                         throw new InvalidOperationException(
-                            "Unable to navigate: No storyboard found");
+                            "Unable to navigate: No storyboard found. You need to call NavigationService.Configure!");
                     }
 
                     try
