@@ -17,8 +17,8 @@ namespace GalaSoft.MvvmLight.Test.Binding
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class BindingAccountTest
     {
-        private Binding<string, string> _binding1;
-        private Binding<string, string> _binding2;
+        private Helpers.Binding _binding1;
+        private Helpers.Binding _binding2;
 
         public AccountViewModel Vm
         {
@@ -76,7 +76,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 targetNullValue: "TargetNull");
 
             Assert.AreEqual(AccountViewModel.EmptyText, Operation.Text);
-            Assert.AreEqual(_binding2.FallbackValue, ChildName.Text);
+            Assert.AreEqual(((Binding<string, string>)_binding2).FallbackValue, ChildName.Text);
 
             Vm.SetAccount();
 
