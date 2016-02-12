@@ -19,7 +19,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class BindingTest
     {
-        private Binding<string, string> _binding;
+        private Helpers.Binding _binding;
 
         public TestViewModel VmSource
         {
@@ -364,6 +364,34 @@ namespace GalaSoft.MvvmLight.Test.Binding
             Assert.AreEqual(textBox.Text, _vmField.Model.MyProperty);
             _vmField.Model.MyProperty = "New value";
             Assert.AreEqual(textBox.Text, _vmField.Model.MyProperty);
+        }
+
+        [Test]
+        public void Binding_SetTextBoxToTrueInTwoWayBinding_ShouldRemainLowCaps()
+        {
+            VmSource = new TestViewModel
+            {
+                Model = new TestModel()
+            };
+            VmTarget = new TestViewModel();
+
+            _binding = this.SetBinding(
+                () => VmSource.Model.MyProperty,
+                () => VmTarget.BoolProperty,
+                BindingMode.TwoWay);
+
+            Assert.AreEqual(null, VmSource.Model.MyProperty);
+            Assert.IsFalse(VmTarget.BoolProperty);
+
+            VmSource.Model.MyProperty = "true";
+
+            Assert.AreEqual("true", VmSource.Model.MyProperty);
+            Assert.IsTrue(VmTarget.BoolProperty);
+
+            VmTarget.BoolProperty = false;
+
+            Assert.IsFalse(VmTarget.BoolProperty);
+            Assert.AreEqual("False", VmSource.Model.MyProperty);
         }
     }
 }

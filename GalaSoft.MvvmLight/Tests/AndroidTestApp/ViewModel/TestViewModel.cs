@@ -10,6 +10,8 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
     {
         public const string ValueForCommand = "Command value";
 
+        private bool _boolProperty;
+
         private DateTime _date;
         private TestModel _model;
         private TestViewModel _nested;
@@ -19,6 +21,18 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
 
         private string _targetPropertyObservable;
         private ICommand _testCommandImpl;
+
+        public bool BoolProperty
+        {
+            get
+            {
+                return _boolProperty;
+            }
+            set
+            {
+                Set(ref _boolProperty, value);
+            }
+        }
 
         public DateTime Date
         {
