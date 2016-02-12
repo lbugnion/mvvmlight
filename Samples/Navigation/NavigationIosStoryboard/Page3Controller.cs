@@ -7,8 +7,16 @@ using UIKit;
 
 namespace NavigationIosStoryboard
 {
-    partial class Page3Controller : ControllerBase
+    partial class Page3Controller : UIViewController
     {
+        public NavigationService Nav
+        {
+            get
+            {
+                return (NavigationService)ServiceLocator.Current.GetInstance<INavigationService>();
+            }
+        }
+
         public Page3Controller(IntPtr handle)
             : base(handle)
         {
@@ -20,11 +28,18 @@ namespace NavigationIosStoryboard
 
             GoBackButton.TouchUpInside += (s, e) =>
             {
-                var nav = ServiceLocator.Current.GetInstance<INavigationService>();
-                nav.GoBack();
+                Nav.GoBack();
             };
 
-            var param = (string)NavigationParameter;
+            GoToPage4Button.TouchUpInside += (s, e) =>
+            {
+                // Page4Key was never configured. However the storyboard ID
+                // is equal to AppDelegate.Page4Key, so the NavigationService
+                // will know how to navigate to it.
+                Nav.NavigateTo(AppDelegate.Page4Key);
+            };
+
+            var param = (string)Nav.GetAndRemoveParameter(this);
             DisplayLabel.Text = param;
         }
     }

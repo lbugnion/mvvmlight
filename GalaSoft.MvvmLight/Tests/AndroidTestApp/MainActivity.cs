@@ -5,7 +5,7 @@ using Xamarin.Android.NUnitLite;
 
 namespace GalaSoft.MvvmLight.Test
 {
-    [Activity(Label = "AndroidTestApp", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "MVVM UNIT", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : TestSuiteActivity
     {
         protected override void OnCreate(Bundle bundle)

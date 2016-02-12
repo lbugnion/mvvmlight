@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalaSoft.MvvmLight.Test</RootNamespace>
-    <AssemblyName>UnitTestApp1</AssemblyName>
+    <AssemblyName>MvvmLightUnitTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>

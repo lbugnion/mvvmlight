@@ -211,7 +211,13 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon.png" />
     <Content Include="Entitlements.plist" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\GalaSoft.MvvmLight %28PCL%29\GalaSoft.MvvmLight %28PCL%29.csproj">
