@@ -25,6 +25,7 @@ namespace NavigationIosStoryboard
 
         public const string Page2Key = "Page2";
         public const string Page3Key = "Page3";
+        public const string Page4Key = "Page4";
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
@@ -34,6 +35,7 @@ namespace NavigationIosStoryboard
             nav.Initialize((UINavigationController)Window.RootViewController);
             nav.Configure(Page2Key, "Page2Controller");
             nav.Configure(Page3Key, "Page3Controller");
+            // Do Not configure Page 4
 
             SimpleIoc.Default.Register<INavigationService>(() => nav);
             return true;

@@ -29,8 +29,6 @@ namespace NavigationIosStoryboard
             // Release any cached data, images, etc that aren't in use.
         }
 
-        #region View lifecycle
-
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -41,27 +39,5 @@ namespace NavigationIosStoryboard
                 nav.NavigateTo(AppDelegate.Page2Key);
             };
         }
-
-        public override void ViewWillAppear(bool animated)
-        {
-            base.ViewWillAppear(animated);
-        }
-
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-        }
-
-        public override void ViewWillDisappear(bool animated)
-        {
-            base.ViewWillDisappear(animated);
-        }
-
-        public override void ViewDidDisappear(bool animated)
-        {
-            base.ViewDidDisappear(animated);
-        }
-
-        #endregion
     }
 }

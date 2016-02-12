@@ -22,6 +22,10 @@ namespace NavigationIosStoryboard
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UIButton GoBackButton { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton GoToPage4Button { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (DisplayLabel != null) {
@@ -31,6 +35,10 @@ namespace NavigationIosStoryboard
 			if (GoBackButton != null) {
 				GoBackButton.Dispose ();
 				GoBackButton = null;
+			}
+			if (GoToPage4Button != null) {
+				GoToPage4Button.Dispose ();
+				GoToPage4Button = null;
 			}
 		}
 	}

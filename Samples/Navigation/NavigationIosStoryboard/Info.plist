@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>NavigationIosStoryboard</string>
+	<string>NavigationStoryboard</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.your-company.NavigationIosStoryboard</string>
+	<string>com.galasoft.NavigationIosStoryboard</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -24,5 +24,14 @@
 	<string>7.0</string>
 	<key>UIMainStoryboardFile</key>
 	<string>MainViewController</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon@2x.png</string>
+		<string>Icon.png</string>
+		<string>Icon-60@2x.png</string>
+		<string>Icon-Small@2x.png</string>
+		<string>Icon-Small.png</string>
+		<string>Icon-Small-40@2x.png</string>
+	</array>
 </dict>
 </plist>
