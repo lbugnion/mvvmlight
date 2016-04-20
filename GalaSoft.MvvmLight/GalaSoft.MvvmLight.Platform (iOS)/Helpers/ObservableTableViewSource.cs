@@ -1,4 +1,19 @@
-﻿using System;
+﻿// ****************************************************************************
+// <copyright file="ObservableTableViewSource.cs" company="GalaSoft Laurent Bugnion">
+// Copyright © GalaSoft Laurent Bugnion 2009-2016
+// </copyright>
+// ****************************************************************************
+// <author>Laurent Bugnion</author>
+// <email>laurent@galasoft.ch</email>
+// <date>17.04.2016</date>
+// <project>GalaSoft.MvvmLight</project>
+// <web>http://www.mvvmlight.net</web>
+// <license>
+// See license.txt in this solution or http://www.galasoft.ch/license_MIT.txt
+// </license>
+// ****************************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -175,7 +190,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 return _selectedItem;
             }
 
-            set
+            protected set
             {
                 if (Equals(_selectedItem, value))
                 {
@@ -274,6 +289,16 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             return 0;
+        }
+
+        /// <summary>
+        /// Gets the item selected by the NSIndexPath passed as parameter.
+        /// </summary>
+        /// <param name="indexPath">The NSIndexPath pointing to the desired item.</param>
+        /// <returns>The item selected by the NSIndexPath passed as parameter.</returns>
+        public TItem GetItem(NSIndexPath indexPath)
+        {
+            return _dataSource[indexPath.Row];
         }
 
         /// <summary>
@@ -398,16 +423,6 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             return CreateCellDelegate(reuseId);
-        }
-
-        /// <summary>
-        /// Gets the item selected by the NSIndexPath passed as parameter.
-        /// </summary>
-        /// <param name="indexPath">The NSIndexPath pointing to the desired item.</param>
-        /// <returns>The item selected by the NSIndexPath passed as parameter.</returns>
-        protected TItem GetItem(NSIndexPath indexPath)
-        {
-            return _dataSource[indexPath.Row];
         }
 
         /// <summary>

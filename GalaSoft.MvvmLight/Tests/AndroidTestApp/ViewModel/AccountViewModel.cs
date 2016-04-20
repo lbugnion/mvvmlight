@@ -1,5 +1,8 @@
 ﻿namespace GalaSoft.MvvmLight.Test.ViewModel
 {
+    /// <summary>
+    /// Test class used for Unit test purposes.
+    /// </summary>
     public class AccountViewModel : ViewModelBase
     {
         public const string EmptyText = "Empty";

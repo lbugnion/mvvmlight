@@ -31,8 +31,6 @@ namespace GalaSoft.MvvmLight.Views
     ////[ClassInfo(typeof(INavigationService))]
     public class NavigationService : INavigationService
     {
-        private readonly Dictionary<WeakReference, object> _parametersByController = new Dictionary<WeakReference, object>();
-
         /// <summary>
         /// The key that is returned by the <see cref="CurrentPageKey"/> property
         /// when the current UIViewController is the root controller.
@@ -49,43 +47,8 @@ namespace GalaSoft.MvvmLight.Views
 
         private readonly Dictionary<string, TypeActionOrKey> _pagesByKey = new Dictionary<string, TypeActionOrKey>();
 
-        /// <summary>
-        /// Allows a caller to get the navigation parameter corresponding 
-        /// to the Intent parameter.
-        /// </summary>
-        /// <param name="controller">The <see cref="UIViewController"/> that was navigated to.</param>
-        /// <returns>The navigation parameter. If no parameter is found,
-        /// returns null.</returns>
-        public object GetAndRemoveParameter(UIViewController controller)
-        {
-            if (controller == null)
-            {
-                throw new ArgumentNullException("controller", "This method must be called with a valid UIViewController");
-            }
-
-            lock (_parametersByController)
-            {
-                object value = null;
-                WeakReference key = null;
-
-                foreach (var pair in _parametersByController)
-                {
-                    if (Equals(pair.Key.Target, controller))
-                    {
-                        key = pair.Key;
-                        value = pair.Value;
-                        break;
-                    }
-                }
-
-                if (key != null)
-                {
-                    _parametersByController.Remove(key);
-                }
-
-                return value;
-            }
-        }
+        private readonly Dictionary<WeakReference, object> _parametersByController =
+            new Dictionary<WeakReference, object>();
 
         /// <summary>
         /// The key corresponding to the currently displayed page.
@@ -186,6 +149,46 @@ namespace GalaSoft.MvvmLight.Views
             };
 
             SaveConfigurationItem(key, item);
+        }
+
+        /// <summary>
+        /// Allows a caller to get the navigation parameter corresponding 
+        /// to the Intent parameter.
+        /// </summary>
+        /// <param name="controller">The <see cref="UIViewController"/> that was navigated to.</param>
+        /// <returns>The navigation parameter. If no parameter is found,
+        /// returns null.</returns>
+        public object GetAndRemoveParameter(UIViewController controller)
+        {
+            if (controller == null)
+            {
+                throw new ArgumentNullException(
+                    "controller",
+                    "This method must be called with a valid UIViewController");
+            }
+
+            lock (_parametersByController)
+            {
+                object value = null;
+                WeakReference key = null;
+
+                foreach (var pair in _parametersByController)
+                {
+                    if (Equals(pair.Key.Target, controller))
+                    {
+                        key = pair.Key;
+                        value = pair.Value;
+                        break;
+                    }
+                }
+
+                if (key != null)
+                {
+                    _parametersByController.Remove(key);
+                }
+
+                return value;
+            }
         }
 
         /// <summary>

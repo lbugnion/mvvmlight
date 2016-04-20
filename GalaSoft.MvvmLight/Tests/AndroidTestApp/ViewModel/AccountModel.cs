@@ -1,5 +1,8 @@
 namespace GalaSoft.MvvmLight.Test.ViewModel
 {
+    /// <summary>
+    /// Test class used for Unit test purposes.
+    /// </summary>
     public class AccountModel : ObservableObject
     {
         private string _name = "Account name";

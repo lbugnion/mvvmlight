@@ -3,6 +3,9 @@ using System.Windows.Input;
 
 namespace GalaSoft.MvvmLight.Test.ViewModel
 {
+    /// <summary>
+    /// Test class used for Unit test purposes.
+    /// </summary>
     public class CommandImpl : ICommand
     {
         private readonly string _initialValue;
