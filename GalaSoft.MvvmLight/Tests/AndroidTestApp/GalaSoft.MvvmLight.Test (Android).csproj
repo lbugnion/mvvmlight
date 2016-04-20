@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Binding\BindingAccountTest.cs" />
     <Compile Include="Binding\BindingDeepPathTest.cs" />
+    <Compile Include="Binding\BindingThreadingTest.cs" />
     <Compile Include="Binding\BindingValueChangedFromTargetControlTest.cs" />
     <Compile Include="Binding\BindingValueChangedFromTargetTest.cs" />
     <Compile Include="Binding\BindingTargetTest.cs" />
