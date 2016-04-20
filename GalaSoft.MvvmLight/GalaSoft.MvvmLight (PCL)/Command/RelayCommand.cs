@@ -58,7 +58,8 @@ namespace GalaSoft.MvvmLight.Command
         /// Initializes a new instance of the RelayCommand class that 
         /// can always execute.
         /// </summary>
-        /// <param name="execute">The execution logic.</param>
+        /// <param name="execute">The execution logic. IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
         /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
         public RelayCommand(Action execute)
             : this(execute, null)
@@ -68,9 +69,11 @@ namespace GalaSoft.MvvmLight.Command
         /// <summary>
         /// Initializes a new instance of the RelayCommand class.
         /// </summary>
-        /// <param name="execute">The execution logic.</param>
+        /// <param name="execute">The execution logic. IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
         /// <param name="canExecute">The execution status logic.</param>
-        /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
+        /// <exception cref="ArgumentNullException">If the execute argument is null. IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </exception>
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
             if (execute == null)
