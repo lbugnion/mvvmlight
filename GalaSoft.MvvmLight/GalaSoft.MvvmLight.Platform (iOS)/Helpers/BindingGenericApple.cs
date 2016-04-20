@@ -137,6 +137,14 @@ namespace GalaSoft.MvvmLight.Helpers
                 return binding;
             }
 
+            var textField = _propertySource.Target as UITextField;
+            if (textField != null)
+            {
+                var binding = ObserveSourceEvent("EditingChanged");
+                binding._sourceHandlers["EditingChanged"].IsDefault = true;
+                return binding;
+            }
+
             var checkbox = _propertySource.Target as UISwitch;
             if (checkbox != null)
             {
@@ -160,6 +168,14 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 var binding = ObserveTargetEvent("Changed");
                 binding._targetHandlers["Changed"].IsDefault = true;
+                return binding;
+            }
+
+            var textField = _propertyTarget.Target as UITextField;
+            if (textField != null)
+            {
+                var binding = ObserveTargetEvent("EditingChanged");
+                binding._targetHandlers["EditingChanged"].IsDefault = true;
                 return binding;
             }
 

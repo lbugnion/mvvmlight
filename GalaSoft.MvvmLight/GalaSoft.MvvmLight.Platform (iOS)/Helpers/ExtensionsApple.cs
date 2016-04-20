@@ -349,6 +349,11 @@ namespace GalaSoft.MvvmLight.Helpers
             {
                 eventName = "Clicked";
             }
+            else if (type == typeof (UISwitch)
+                     || typeof (UISwitch).IsAssignableFrom(type))
+            {
+                eventName = "ValueChanged";
+            }
 
             return eventName;
         }
