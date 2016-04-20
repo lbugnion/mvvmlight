@@ -324,11 +324,7 @@ namespace GalaSoft.MvvmLight.Helpers
             EventHandler<TEventArgs> handler = (s, args) =>
             {
                 var param = castedBinding == null ? default(T) : castedBinding.Value;
-
-                if (command.CanExecute(param))
-                {
-                    command.Execute(param);
-                }
+                command.Execute(param);
             };
 
             e.AddEventHandler(
@@ -484,13 +480,7 @@ namespace GalaSoft.MvvmLight.Helpers
             var t = element.GetType();
             var e = t.GetEventInfoForControl(eventName);
 
-            EventHandler<TEventArgs> handler = (s, args) =>
-            {
-                if (command.CanExecute(commandParameter))
-                {
-                    command.Execute(commandParameter);
-                }
-            };
+            EventHandler<TEventArgs> handler = (s, args) => command.Execute(commandParameter);
 
             e.AddEventHandler(
                 element,
