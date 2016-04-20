@@ -6,6 +6,9 @@ using Android.Widget;
 
 namespace GalaSoft.MvvmLight.Test.Controls
 {
+    /// <summary>
+    /// Extending the Button control for unit test purposes (triggering events).
+    /// </summary>
     public class ButtonEx : Button
     {
         public ButtonEx(IntPtr javaReference, JniHandleOwnership transfer)

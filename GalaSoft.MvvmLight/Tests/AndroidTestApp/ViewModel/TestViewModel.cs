@@ -6,19 +6,20 @@ using GalaSoft.MvvmLight.Command;
 
 namespace GalaSoft.MvvmLight.Test.ViewModel
 {
+    /// <summary>
+    /// Test class used for Unit test purposes.
+    /// </summary>
     public class TestViewModel : ViewModelBase
     {
         public const string ValueForCommand = "Command value";
 
         private bool _boolProperty;
-
         private DateTime _date;
         private TestModel _model;
         private TestViewModel _nested;
         private string _propertyValue;
         private RelayCommand<string> _setPropertyCommand;
         private RelayCommand _setPropertyWithoutValueCommand;
-
         private string _targetPropertyObservable;
         private ICommand _testCommandImpl;
 
