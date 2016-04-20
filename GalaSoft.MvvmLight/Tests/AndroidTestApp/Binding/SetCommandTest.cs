@@ -207,7 +207,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
         }
 
         [Test]
-        public void SetCommand_OnCheckBoxNoValueNoEventName_ClickEventShouldBeUsed()
+        public void SetCommand_OnCheckBoxNoValueNoEventName_CheckedChangeEventShouldBeUsed()
         {
             var value = DateTime.Now.Ticks.ToString();
             var vmTarget = new TestViewModel();
@@ -215,7 +215,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var checkBox = new CheckBox(Application.Context);
 
-            checkBox.SetCommand<CompoundButton.CheckedChangeEventArgs>(vmTarget.SetPropertyWithoutValueCommand);
+            checkBox.SetCommand(vmTarget.SetPropertyWithoutValueCommand);
 
             Assert.IsNull(vmTarget.TargetProperty);
             checkBox.PerformClick();
@@ -279,7 +279,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 vmSource,
                 () => vmSource.Model.MyProperty);
 
-            checkBox.SetCommand<string, CompoundButton.CheckedChangeEventArgs>(
+            checkBox.SetCommand(
                 vmTarget.SetPropertyCommand,
                 _binding);
 
@@ -319,7 +319,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             var checkBox = new CheckBox(Application.Context);
 
-            checkBox.SetCommand<string, CompoundButton.CheckedChangeEventArgs>(
+            checkBox.SetCommand(
                 vmTarget.SetPropertyCommand,
                 value);
 
@@ -379,7 +379,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             var vmTarget = new TestViewModel();
             var checkBox = new CheckBox(Application.Context);
 
-            checkBox.SetCommand<CompoundButton.CheckedChangeEventArgs>(vmTarget.TestCommandImpl);
+            checkBox.SetCommand(vmTarget.TestCommandImpl);
 
             var castedCommand = (CommandImpl)vmTarget.TestCommandImpl;
 
