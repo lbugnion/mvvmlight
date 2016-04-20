@@ -95,7 +95,8 @@ namespace GalaSoft.MvvmLight.Messaging
         /// for.</typeparam>
         /// <param name="recipient">The recipient that will receive the messages.</param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent.</param>
+        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
         public virtual void Register<TMessage>(object recipient, Action<TMessage> action)
         {
             Register(recipient, null, false, action);
@@ -125,7 +126,8 @@ namespace GalaSoft.MvvmLight.Messaging
         /// and ExecuteOrderMessage to the recipient that registered.</para>
         /// </param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent.</param>
+        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
         public virtual void Register<TMessage>(object recipient, bool receiveDerivedMessagesToo, Action<TMessage> action)
         {
             Register(recipient, null, receiveDerivedMessagesToo, action);
@@ -148,7 +150,8 @@ namespace GalaSoft.MvvmLight.Messaging
         /// get the message. Similarly, messages sent without any token, or with a different
         /// token, will not be delivered to that recipient.</param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent.</param>
+        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
         public virtual void Register<TMessage>(object recipient, object token, Action<TMessage> action)
         {
             Register(recipient, token, false, action);
@@ -184,7 +187,8 @@ namespace GalaSoft.MvvmLight.Messaging
         /// and ExecuteOrderMessage to the recipient that registered.</para>
         /// </param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent.</param>
+        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
         public virtual void Register<TMessage>(
             object recipient,
             object token,

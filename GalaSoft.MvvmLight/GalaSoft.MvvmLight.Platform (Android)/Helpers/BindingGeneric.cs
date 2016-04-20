@@ -223,7 +223,9 @@ namespace GalaSoft.MvvmLight.Helpers
         /// values).
         /// </summary>
         /// <param name="convert">A func that will be called with the source
-        /// property's value, and will return the target property's value.</param>
+        /// property's value, and will return the target property's value.
+        ///  IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
         /// <returns>The Binding instance.</returns>
         public Binding<TSource, TTarget> ConvertSourceToTarget(Func<TSource, TTarget> convert)
         {
@@ -239,7 +241,9 @@ namespace GalaSoft.MvvmLight.Helpers
         /// values).
         /// </summary>
         /// <param name="convertBack">A func that will be called with the source
-        /// property's value, and will return the target property's value.</param>
+        /// property's value, and will return the target property's value.
+        ///  IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
         /// <returns>The Binding instance.</returns>
         /// <remarks>This method is inactive on OneTime or OneWay bindings.</remarks>
         public Binding<TSource, TTarget> ConvertTargetToSource(Func<TTarget, TSource> convertBack)
@@ -694,7 +698,9 @@ namespace GalaSoft.MvvmLight.Helpers
         /// Defines an action that will be executed every time that the binding value
         /// changes.
         /// </summary>
-        /// <param name="callback">The action that will be executed when the binding changes.</param>
+        /// <param name="callback">The action that will be executed when the binding changes.
+        /// IMPORTANT: Note that closures are not supported at the moment
+        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
         /// <returns>The Binding instance.</returns>
         /// <exception cref="InvalidOperationException">When WhenSourceChanges is called on
         /// a binding which already has a target property set.</exception>
