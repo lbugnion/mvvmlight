@@ -16,7 +16,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Reflection;
+using System.Windows.Input;
 using Foundation;
+using GalaSoft.MvvmLight.Command;
 using UIKit;
 
 namespace GalaSoft.MvvmLight.Helpers
@@ -348,6 +351,60 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             return eventName;
+        }
+
+
+        internal static Delegate GetCommandHandler(
+            this EventInfo info,
+            string eventName,
+            Type elementType,
+            ICommand command)
+        {
+            // At the moment, all supported controls with default events
+            // in iOS are using EventHandler, and not EventHandler<...>.
+
+            EventHandler handler = (s, args) =>
+            {
+                if (command.CanExecute(null))
+                {
+                    command.Execute(null);
+                }
+            };
+
+            return handler;
+        }
+
+        internal static Delegate GetCommandHandler<T>(
+            this EventInfo info,
+            string eventName,
+            Type elementType,
+            RelayCommand<T> command,
+            Binding<T, T> castedBinding)
+        {
+            // At the moment, all supported controls with default events
+            // in iOS are using EventHandler, and not EventHandler<...>.
+
+            EventHandler handler = (s, args) =>
+            {
+                var param = castedBinding == null ? default(T) : castedBinding.Value;
+                command.Execute(param);
+            };
+
+            return handler;
+        }
+
+        internal static Delegate GetCommandHandler<T>(
+            this EventInfo info,
+            string eventName,
+            Type elementType,
+            RelayCommand<T> command,
+            T commandParameter)
+        {
+            // At the moment, all supported controls with default events
+            // in iOS are using EventHandler, and not EventHandler<...>.
+
+            EventHandler handler = (s, args) => command.Execute(commandParameter);
+            return handler;
         }
     }
 }

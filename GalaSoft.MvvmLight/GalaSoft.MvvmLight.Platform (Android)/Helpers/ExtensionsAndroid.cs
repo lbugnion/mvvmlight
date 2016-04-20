@@ -16,8 +16,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Reflection;
+using System.Windows.Input;
 using Android.Views;
 using Android.Widget;
+using GalaSoft.MvvmLight.Command;
 
 namespace GalaSoft.MvvmLight.Helpers
 {
@@ -83,6 +86,101 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             return eventName;
+        }
+
+        internal static Delegate GetCommandHandler(
+            this EventInfo info,
+            string eventName, 
+            Type elementType, 
+            ICommand command)
+        {
+            Delegate result;
+
+            if (string.IsNullOrEmpty(eventName)
+                && elementType == typeof (CheckBox))
+            {
+                EventHandler<CompoundButton.CheckedChangeEventArgs> handler = (s, args) =>
+                {
+                    if (command.CanExecute(null))
+                    {
+                        command.Execute(null);
+                    }
+                };
+
+                result = handler;
+            }
+            else
+            {
+                EventHandler handler = (s, args) =>
+                {
+                    if (command.CanExecute(null))
+                    {
+                        command.Execute(null);
+                    }
+                };
+
+                result = handler;
+            }
+
+            return result;
+        }
+
+        internal static Delegate GetCommandHandler<T>(
+            this EventInfo info,
+            string eventName,
+            Type elementType,
+            RelayCommand<T> command,
+            Binding<T, T> castedBinding)
+        {
+            Delegate result;
+
+            if (string.IsNullOrEmpty(eventName)
+                && elementType == typeof(CheckBox))
+            {
+                EventHandler<CompoundButton.CheckedChangeEventArgs> handler = (s, args) =>
+                {
+                    var param = castedBinding == null ? default(T) : castedBinding.Value;
+                    command.Execute(param);
+                };
+
+                result = handler;
+            }
+            else
+            {
+                EventHandler handler = (s, args) =>
+                {
+                    var param = castedBinding == null ? default(T) : castedBinding.Value;
+                    command.Execute(param);
+                };
+
+                result = handler;
+            }
+
+            return result;
+        }
+
+        internal static Delegate GetCommandHandler<T>(
+            this EventInfo info,
+            string eventName,
+            Type elementType,
+            RelayCommand<T> command,
+            T commandParameter)
+        {
+            Delegate result;
+
+            if (string.IsNullOrEmpty(eventName)
+                && elementType == typeof(CheckBox))
+            {
+                EventHandler<CompoundButton.CheckedChangeEventArgs> handler = (s, args) => command.Execute(commandParameter);
+                result = handler;
+            }
+            else
+            {
+                EventHandler handler = (s, args) => command.Execute(commandParameter);
+                result = handler;
+            }
+
+            return result;
         }
     }
 }
