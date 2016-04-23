@@ -35,7 +35,7 @@ namespace GalaSoft.MvvmLight.Helpers
     ////    Email = "laurent@galasoft.ch")]
     public class ObservableAdapter<T> : BaseAdapter<T>
     {
-        private IList<T> _list;
+        private IList<T> _dataSource;
         private INotifyCollectionChanged _notifier;
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             get
             {
-                return _list == null ? 0 : _list.Count;
+                return _dataSource == null ? 0 : _dataSource.Count;
             }
         }
 
@@ -56,11 +56,11 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             get
             {
-                return _list;
+                return _dataSource;
             }
             set
             {
-                if (Equals(_list, value))
+                if (Equals(_dataSource, value))
                 {
                     return;
                 }
@@ -70,8 +70,8 @@ namespace GalaSoft.MvvmLight.Helpers
                     _notifier.CollectionChanged -= NotifierCollectionChanged;
                 }
 
-                _list = value;
-                _notifier = _list as INotifyCollectionChanged;
+                _dataSource = value;
+                _notifier = _dataSource as INotifyCollectionChanged;
 
                 if (_notifier != null)
                 {
@@ -100,7 +100,7 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             get
             {
-                return _list == null ? default(T) : _list[index];
+                return _dataSource == null ? default(T) : _dataSource[index];
             }
         }
 
@@ -132,7 +132,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 return convertView;
             }
 
-            var item = _list[position];
+            var item = _dataSource[position];
             var view = GetTemplateDelegate(position, item, convertView);
             return view;
         }
