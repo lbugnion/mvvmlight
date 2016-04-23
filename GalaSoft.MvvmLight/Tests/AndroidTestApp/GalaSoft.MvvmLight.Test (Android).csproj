@@ -47,8 +47,22 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="Xamarin.Android.NUnitLite" />
+    <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Android.Support.v7.RecyclerView.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\GalaSoft.MvvmLight.AndroidSupport\Helpers\CachingViewHolder.cs">
+      <Link>Helpers\CachingViewHolder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GalaSoft.MvvmLight.AndroidSupport\Helpers\ObservableRecyclerAdapter.cs">
+      <Link>Helpers\ObservableRecyclerAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\Binding.cs">
       <Link>Helpers\Binding.cs</Link>
     </Compile>
@@ -123,6 +137,7 @@
     <Compile Include="ViewModel\TestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
