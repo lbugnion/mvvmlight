@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A5B7741D-E331-438C-B3BF-596B048DB622}</ProjectGuid>
+    <ProjectGuid>{04369985-476F-47EE-8B20-E89104FDE03F}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
-    <AssemblyName>GalaSoft.MvvmLight.Platform</AssemblyName>
+    <AssemblyName>GalaSoft.MvvmLight.Platform.AndroidSupport</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
@@ -25,7 +25,7 @@
     <DefineConstants>TRACE;XAMARIN;ANDROID;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\GalaSoft.MvvmLight.Platform.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\GalaSoft.MvvmLight.Platform.AndroidSupport.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,46 +34,40 @@
     <DefineConstants>TRACE;XAMARIN;ANDROID</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\GalaSoft.MvvmLight.Platform.XML</DocumentationFile>
-    <NoWarn>
-    </NoWarn>
+    <DocumentationFile>bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime" />
-    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\GalaSoft.MvvmLight.Platform %28NET45%29\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\Binding.cs" />
-    <Compile Include="Helpers\BindingGenericObsoleteAndroid.cs" />
-    <Compile Include="Helpers\BindingGenericObsolete.cs" />
-    <Compile Include="Helpers\BindingGeneric.cs" />
-    <Compile Include="Helpers\BindingGenericAndroid.cs" />
-    <Compile Include="Helpers\BindingMode.cs" />
-    <Compile Include="Helpers\ExtensionsAndroid.cs" />
-    <Compile Include="Helpers\Extensions.cs" />
-    <Compile Include="Helpers\IWeakEventListener.cs" />
-    <Compile Include="Helpers\ObservableAdapter.cs" />
-    <Compile Include="Helpers\PropertyChangedEventManager.cs" />
-    <Compile Include="Helpers\UpdateSourceTriggerMode.cs" />
+    <Compile Include="Helpers\CachingViewHolder.cs" />
+    <Compile Include="Helpers\ExtensionsAndroid2.cs" />
+    <Compile Include="Helpers\ObservableRecyclerAdapter.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
-    <Compile Include="Threading\DispatcherHelper.cs" />
-    <Compile Include="Views\ActivityBase.cs" />
-    <Compile Include="Views\DialogService.cs" />
-    <Compile Include="Views\NavigationService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GalaSoft.MvvmLight %28PCL%29\GalaSoft.MvvmLight %28PCL%29.csproj">
-      <Project>{6a912701-3ba1-4975-adbf-160caf66b640}</Project>
-      <Name>GalaSoft.MvvmLight %28PCL%29</Name>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GalaSoft.MvvmLight.Platform %28Android%29\GalaSoft.MvvmLight.Platform %28Android%29.csproj">
+      <Project>{a5b7741d-e331-438c-b3bf-596b048db622}</Project>
+      <Name>GalaSoft.MvvmLight.Platform %28Android%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
