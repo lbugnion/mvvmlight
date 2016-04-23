@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>MvvmLightAndroidSupport</id>
+        <version>5.3.0.0</version>
+        <title>MVVM Light Android Support</title>
+        <authors>Laurent Bugnion (GalaSoft)</authors>
+        <owners>Laurent Bugnion (GalaSoft)</owners>
+        <licenseUrl>http://mvvmlight.codeplex.com/license</licenseUrl>
+        <projectUrl>http://www.mvvmlight.net</projectUrl>
+        <iconUrl>http://www.galasoft.ch/mvvm/resources/Logo/icon_100x100_transparent.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the Android Support libraries. At the moment this includes support for RecyclerView with an ObservableRecyclerAdapter and a CachingViewHolder.</description>
+        <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the Android Support libraries. At the moment this includes support for RecyclerView with an ObservableRecyclerAdapter and a CachingViewHolder.</summary>
+        <releaseNotes>http://www.mvvmlight.net/installing/changes</releaseNotes>
+        <copyright>Copyright 2009-2016 Laurent Bugnion (GalaSoft)</copyright>
+        <language>en-US</language>
+        <tags>mvvm mvvmlight silverlight windowsstore winrt win10 uwp winstore wpf windowsphone windowsphone8 xamarin android iOS xamarinforms pcl</tags>
+
+		<!--<id>MyTestPackage0610</id>
+        <version>5.1.0.10</version>
+        <title>Test only, ignore</title>
+        <authors>Laurent Bugnion (GalaSoft)</authors>
+        <owners>lbugnion</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Test only, ignore</description>
+        <copyright>Copyright 2009-2015 Laurent Bugnion (GalaSoft)</copyright>-->
+		
+		<dependencies>
+			<group targetFramework="monoandroid1">
+				<dependency id="Xamarin.Android.Support.v7.RecyclerView" version="23.0" />
+				<dependency id="mvvmlightlibs" version="5.3" />
+			</group>
+		</dependencies>
+    </metadata>
+	
+    <files>
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\Android\GalaSoft.MvvmLight.Platform.AndroidSupport.dll" target="lib\monoandroid1\GalaSoft.MvvmLight.Platform.AndroidSupport.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\Android\GalaSoft.MvvmLight.Platform.AndroidSupport.PDB" target="lib\monoandroid1\GalaSoft.MvvmLight.Platform.AndroidSupport.PDB" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\Android\GalaSoft.MvvmLight.Platform.AndroidSupport.XML" target="lib\monoandroid1\GalaSoft.MvvmLight.Platform.AndroidSupport.XML" />
+	</files>
+</package>
