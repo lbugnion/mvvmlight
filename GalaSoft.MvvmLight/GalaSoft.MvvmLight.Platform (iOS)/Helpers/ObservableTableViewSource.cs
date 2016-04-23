@@ -30,6 +30,7 @@ namespace GalaSoft.MvvmLight.Helpers
     /// implements <see cref="INotifyCollectionChanged"/>.
     /// </summary>
     /// <typeparam name="TItem">The type of the items in the data source.</typeparam>
+    ////[ClassInfo(typeof(ObservableTableViewController<T>)]
     public class ObservableTableViewSource<TItem> : UITableViewSource, INotifyPropertyChanged
     {
         /// <summary>
