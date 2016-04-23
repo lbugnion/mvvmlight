@@ -38,8 +38,8 @@ namespace GalaSoft.MvvmLight.Helpers
     /// </remarks>
     /// <typeparam name="T">The type of the items contained in the <see cref="DataSource"/>.</typeparam>
     ////[ClassInfo(typeof(ObservableTableViewController<T>),
-    ////    VersionString = "5.1.1",
-    ////    DateString = "201502072030",
+    ////    VersionString = "5.3.2",
+    ////    DateString = "201604212130",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
     public class ObservableTableViewController<T> : UITableViewController, INotifyPropertyChanged

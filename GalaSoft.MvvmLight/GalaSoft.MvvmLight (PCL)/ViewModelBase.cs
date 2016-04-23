@@ -46,8 +46,8 @@ namespace GalaSoft.MvvmLight
     /// A base class for the ViewModel classes in the MVVM pattern.
     /// </summary>
     //// [ClassInfo(typeof(ViewModelBase),
-    ////  VersionString = "5.1.17",
-    ////  DateString = "201502072030",
+    ////  VersionString = "5.3.18",
+    ////  DateString = "201604212130",
     ////  Description = "A base class for the ViewModel classes in the MVVM pattern.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]

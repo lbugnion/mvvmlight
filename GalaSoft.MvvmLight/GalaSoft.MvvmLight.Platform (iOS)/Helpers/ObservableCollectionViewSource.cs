@@ -32,6 +32,7 @@ namespace GalaSoft.MvvmLight.Helpers
     /// <typeparam name="TItem">The type of the items in the data source.</typeparam>
     /// <typeparam name="TCell">The type of the <see cref="UICollectionViewCell"/> used in the CollectionView.
     /// This can either be UICollectionViewCell or a derived type.</typeparam>
+    ////[ClassInfo(typeof(ObservableTableViewController<T>)]
     public class ObservableCollectionViewSource<TItem, TCell> : UICollectionViewSource, INotifyPropertyChanged
         where TCell : UICollectionViewCell
     {
