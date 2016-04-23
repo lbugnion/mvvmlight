@@ -157,7 +157,7 @@ else
 	$appXamlXml.Load($appxamlPath)
 
 	$appresources = $appXamlXml.SelectNodes("//*") | where { $_.Name -eq "Application.Resources" }
-	$resources = null
+	$resources = $null
 
 	if ($appresources -eq $null)
 	{
