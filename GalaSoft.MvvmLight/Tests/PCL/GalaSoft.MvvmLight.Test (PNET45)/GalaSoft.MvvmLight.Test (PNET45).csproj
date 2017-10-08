@@ -42,7 +42,10 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\External\NET45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -59,6 +62,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helpers\WeakActionTestCase.cs" />
+    <Compile Include="ViewModel\CommandViewModel.cs" />
     <Compile Include="Command\EventArgsConverter.cs" />
     <Compile Include="Command\EventToCommandEventArgsTest.cs" />
     <Compile Include="Command\EventToCommandStub.cs" />
@@ -67,7 +72,6 @@
     <Compile Include="Command\RelayCommandTest.cs" />
     <Compile Include="Command\StringEventArgs.cs" />
     <Compile Include="Command\TemporaryClass.cs" />
-    <Compile Include="Command\TestViewModel.cs" />
     <Compile Include="Helpers\CommonTestClass.cs" />
     <Compile Include="Helpers\InternalTestClass.cs" />
     <Compile Include="Helpers\InternalTestClassGeneric.cs" />
@@ -77,7 +81,6 @@
     <Compile Include="Helpers\PublicTestClassGeneric.cs" />
     <Compile Include="Helpers\PublicTestClassGenericWithResult.cs" />
     <Compile Include="Helpers\PublicTestClassWithResult.cs" />
-    <Compile Include="Helpers\TestCase.cs" />
     <Compile Include="Helpers\WeakActionGenericNestedTest.cs" />
     <Compile Include="Helpers\WeakActionGenericTest.cs" />
     <Compile Include="Helpers\WeakActionNestedTest.cs" />

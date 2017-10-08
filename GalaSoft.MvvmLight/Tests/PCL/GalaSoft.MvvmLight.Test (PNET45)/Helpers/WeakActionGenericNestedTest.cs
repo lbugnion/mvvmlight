@@ -12,15 +12,12 @@ namespace GalaSoft.MvvmLight.Test.Helpers
     [TestClass]
     public class WeakActionGenericNestedTest
     {
-#if !WP70 // Somehow these tests make all tests fail to run in WP7.0. Use WP7.1 to test.
         private PublicNestedTestClass<string> _itemPublic;
-#endif
         private InternalNestedTestClass<string> _itemInternal;
         private PrivateNestedTestClass<string> _itemPrivate;
         private WeakReference _reference;
         private WeakAction<string> _action;
 
-#if !WP70
         [TestMethod]
         public void TestPublicClassPublicNamedMethod()
         {
@@ -261,7 +258,6 @@ namespace GalaSoft.MvvmLight.Test.Helpers
 
             Assert.IsFalse(_reference.IsAlive);
         }
-#endif
 
         [TestMethod]
         public void TestInternalClassPublicNamedMethod()
@@ -761,9 +757,7 @@ namespace GalaSoft.MvvmLight.Test.Helpers
 
         private void Reset()
         {
-#if !WP70
             _itemPublic = null;
-#endif
             _itemInternal = null;
             _itemPrivate = null;
             _reference = null;

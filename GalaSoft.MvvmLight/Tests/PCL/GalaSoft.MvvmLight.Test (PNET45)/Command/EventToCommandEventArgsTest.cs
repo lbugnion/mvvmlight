@@ -4,6 +4,7 @@ using System.Windows.Data;
 using System.Windows.Interactivity;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Test.ViewModel;
 using System;
 
 #if NEWUNITTEST
@@ -27,7 +28,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             trigger.PassEventArgsToCommand = true;
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.SimpleCommand
@@ -51,7 +52,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             trigger.PassEventArgsToCommand = true;
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.ParameterCommand
@@ -74,7 +75,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             trigger.PassEventArgsToCommand = true;
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.CommandWithEventArgs
@@ -97,7 +98,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             trigger.PassEventArgsToCommand = true;
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.ParameterCommand
@@ -123,7 +124,7 @@ namespace GalaSoft.MvvmLight.Test.Command
 
             trigger.PassEventArgsToCommand = true;
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.ParameterCommand
@@ -163,7 +164,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 TestPrefix = prefix
             };
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.SimpleCommand
@@ -191,7 +192,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 TestPrefix = prefix
             };
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.ParameterCommand
@@ -219,7 +220,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 TestPrefix = prefix
             };
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.CommandWithEventArgsConverted
@@ -247,7 +248,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 TestPrefix = prefix
             };
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.ParameterCommand
@@ -278,7 +279,7 @@ namespace GalaSoft.MvvmLight.Test.Command
                 TestPrefix = prefix
             };
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.ParameterCommand
@@ -319,7 +320,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             };
             trigger.EventArgsConverterParameter = "Suffix";
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.SimpleCommand
@@ -348,7 +349,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             };
             trigger.EventArgsConverterParameter = "Suffix";
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.ParameterCommand
@@ -377,7 +378,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             };
             trigger.EventArgsConverterParameter = "Suffix";
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.CommandWithEventArgsConverted
@@ -406,7 +407,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             };
             trigger.EventArgsConverterParameter = "Suffix";
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.ParameterCommand
@@ -438,7 +439,7 @@ namespace GalaSoft.MvvmLight.Test.Command
             };
             trigger.EventArgsConverterParameter = "Suffix";
 
-            var vm = new TestViewModel();
+            var vm = new CommandViewModel();
             var binding = new Binding
             {
                 Source = vm.ParameterCommand

@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Helpers;
 
 namespace GalaSoft.MvvmLight.Test.Helpers
 {
-#if !WP70
     public class PublicTestClass<T>
     {
         private int _index; // Just here to force instance methods
@@ -208,5 +207,4 @@ namespace GalaSoft.MvvmLight.Test.Helpers
             return action;
         }
     }
-#endif
 }

@@ -95,11 +95,17 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\WeakActionTestCase.cs">
+      <Link>Helpers\WeakActionTestCase.cs</Link>
+    </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\ObservableObjectTest.cs">
       <Link>ObservableObjectTest.cs</Link>
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Stubs\TestClass1.cs">
       <Link>Stubs\TestClass1.cs</Link>
+    </Compile>
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\CommandViewModel.cs">
+      <Link>ViewModels\CommandViewModel.cs</Link>
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\TestObservableObject.cs">
       <Link>ViewModels\TestObservableObject.cs</Link>
@@ -130,9 +136,6 @@
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\TemporaryClass.cs">
       <Link>Command\TemporaryClass.cs</Link>
-    </Compile>
-    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Command\TestViewModel.cs">
-      <Link>Command\TestViewModel.cs</Link>
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\InternalTestClassGenericWithResult.cs">
       <Link>Helpers\InternalTestClassGenericWithResult.cs</Link>
@@ -181,9 +184,6 @@
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\PublicTestClassGeneric.cs">
       <Link>Helpers\PublicTestClassGeneric.cs</Link>
-    </Compile>
-    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\TestCase.cs">
-      <Link>Helpers\TestCase.cs</Link>
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test (PNET45)\Helpers\WeakActionGenericTest.cs">
       <Link>Helpers\WeakActionGenericTest.cs</Link>

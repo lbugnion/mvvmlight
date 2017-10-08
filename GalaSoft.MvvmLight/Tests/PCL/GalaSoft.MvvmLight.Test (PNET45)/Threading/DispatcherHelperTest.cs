@@ -22,7 +22,7 @@ namespace GalaSoft.MvvmLight.Test.Threading
         private const string NewContent = "New content";
         private Button _button;
 
-#if !WINDOWS_PHONE_APP && !WPSL81 && !WPSL80
+#if !WINDOWS_PHONE_APP && !WPSL81 && !WPSL80 && !NETFX_CORE
         [TestMethod]
         public void TestDirectAccessToUiThread()
         {

@@ -12,16 +12,13 @@ namespace GalaSoft.MvvmLight.Test.Helpers
     [TestClass]
     public class WeakFuncTest
     {
-#if !WP70 // Somehow these tests make all tests fail to run in WP7.0. Use WP7.1 to test.
         private PublicTestClass _itemPublic;
-#endif
         private InternalTestClass _itemInternal;
         private CommonTestClass _common;
         private WeakReference _reference;
         private WeakFunc<string> _action;
         private string _local;
 
-#if !WP70
         [TestMethod]
         public void TestPublicClassPublicNamedMethod()
         {
@@ -274,7 +271,6 @@ namespace GalaSoft.MvvmLight.Test.Helpers
 
             Assert.IsFalse(_reference.IsAlive);
         }
-#endif
 
         [TestMethod]
         public void TestInternalClassPublicNamedMethod()
@@ -584,9 +580,7 @@ namespace GalaSoft.MvvmLight.Test.Helpers
 
         private void Reset()
         {
-#if !WP70
             _itemPublic = null;
-#endif
             _itemInternal = null;
             _reference = null;
         }

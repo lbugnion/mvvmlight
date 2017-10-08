@@ -95,9 +95,6 @@
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Command\TemporaryClass.cs">
       <Link>Command\TemporaryClass.cs</Link>
     </Compile>
-    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Command\TestViewModel.cs">
-      <Link>Command\TestViewModel.cs</Link>
-    </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\CommonTestClass.cs">
       <Link>Helpers\CommonTestClass.cs</Link>
     </Compile>
@@ -125,9 +122,6 @@
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\PublicTestClassWithResult.cs">
       <Link>Helpers\PublicTestClassWithResult.cs</Link>
     </Compile>
-    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\TestCase.cs">
-      <Link>Helpers\TestCase.cs</Link>
-    </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\WeakActionGenericNestedTest.cs">
       <Link>Helpers\WeakActionGenericNestedTest.cs</Link>
     </Compile>
@@ -139,6 +133,9 @@
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\WeakActionTest.cs">
       <Link>Helpers\WeakActionTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\WeakActionTestCase.cs">
+      <Link>Helpers\WeakActionTestCase.cs</Link>
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\Helpers\WeakFuncGenericNestedTest.cs">
       <Link>Helpers\WeakFuncGenericNestedTest.cs</Link>
@@ -283,6 +280,9 @@
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModelBaseTest.cs">
       <Link>ViewModelBaseTest.cs</Link>
+    </Compile>
+    <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\CommandViewModel.cs">
+      <Link>ViewModel\CommandViewModel.cs</Link>
     </Compile>
     <Compile Include="..\PCL\GalaSoft.MvvmLight.Test %28PNET45%29\ViewModel\TestClassWithObservableObject.cs">
       <Link>ViewModel\TestClassWithObservableObject.cs</Link>
