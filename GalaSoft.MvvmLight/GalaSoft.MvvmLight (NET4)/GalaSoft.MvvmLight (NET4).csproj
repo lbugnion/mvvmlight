@@ -58,6 +58,9 @@
     <Compile Include="..\GalaSoft.MvvmLight %28PCL%29\Command\RelayCommandGeneric.cs">
       <Link>Command\RelayCommandGeneric.cs</Link>
     </Compile>
+    <Compile Include="..\GalaSoft.MvvmLight %28PCL%29\Helpers\DesignerPlatformLibrary.cs">
+      <Link>Helpers\DesignerPlatformLibrary.cs</Link>
+    </Compile>
     <Compile Include="..\GalaSoft.MvvmLight %28PCL%29\Helpers\IExecuteWithObject.cs">
       <Link>Helpers\IExecuteWithObject.cs</Link>
     </Compile>
