@@ -20,7 +20,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+
+#if !NETSTANDARD1_0
 using Microsoft.Practices.ServiceLocation;
+#endif
 
 namespace GalaSoft.MvvmLight.Ioc
 {
@@ -181,11 +184,19 @@ namespace GalaSoft.MvvmLight.Ioc
                 {
                     if (_interfaceToClassMap[interfaceType] != classType)
                     {
-                        throw new InvalidOperationException(
-                            string.Format(
-                                CultureInfo.InvariantCulture,
-                                "There is already a class registered for {0}.",
-                                interfaceType.FullName));
+#if DEBUG
+                        // Avoid some issues in the designer when the ViewModelLocator is instantiated twice
+                        if (!Helpers.DesignerLibrary.IsInDesignMode)
+                        {
+#endif
+                            throw new InvalidOperationException(
+                                string.Format(
+                                    CultureInfo.InvariantCulture,
+                                    "There is already a class registered for {0}.",
+                                    interfaceType.FullName));
+#if DEBUG
+                        }
+#endif
                     }
                 }
                 else
@@ -249,14 +260,22 @@ namespace GalaSoft.MvvmLight.Ioc
                 {
                     if (!_constructorInfos.ContainsKey(classType))
                     {
-                        // Throw only if constructorinfos have not been
-                        // registered, which means there is a default factory
-                        // for this class.
-                        throw new InvalidOperationException(
-                            string.Format(
-                                CultureInfo.InvariantCulture,
-                                "Class {0} is already registered.", 
-                                classType));
+#if DEBUG
+                        // Avoid some issues in the designer when the ViewModelLocator is instantiated twice
+                        if (!Helpers.DesignerLibrary.IsInDesignMode)
+                        {
+#endif
+                            // Throw only if constructorinfos have not been
+                            // registered, which means there is a default factory
+                            // for this class.
+                            throw new InvalidOperationException(
+                                string.Format(
+                                    CultureInfo.InvariantCulture,
+                                    "Class {0} is already registered.",
+                                    classType));
+#if DEBUG
+                        }
+#endif
                     }
 
                     return;
@@ -314,11 +333,19 @@ namespace GalaSoft.MvvmLight.Ioc
                 if (_factories.ContainsKey(classType)
                     && _factories[classType].ContainsKey(_defaultKey))
                 {
-                    throw new InvalidOperationException(
-                        string.Format(
-                            CultureInfo.InvariantCulture, 
-                            "There is already a factory registered for {0}.", 
-                            classType.FullName));
+#if DEBUG
+                    // Avoid some issues in the designer when the ViewModelLocator is instantiated twice
+                    if (!Helpers.DesignerLibrary.IsInDesignMode)
+                    {
+#endif
+                        throw new InvalidOperationException(
+                            string.Format(
+                                CultureInfo.InvariantCulture,
+                                "There is already a factory registered for {0}.",
+                                classType.FullName));
+#if DEBUG
+                    }
+#endif
                 }
 
                 if (!_interfaceToClassMap.ContainsKey(classType))
@@ -371,12 +398,20 @@ namespace GalaSoft.MvvmLight.Ioc
                 if (_factories.ContainsKey(classType)
                     && _factories[classType].ContainsKey(key))
                 {
-                    throw new InvalidOperationException(
-                        string.Format(
-                            CultureInfo.InvariantCulture,
-                            "There is already a factory registered for {0} with key {1}.",
-                            classType.FullName,
-                            key));
+#if DEBUG
+                    // Avoid some issues in the designer when the ViewModelLocator is instantiated twice
+                    if (!Helpers.DesignerLibrary.IsInDesignMode)
+                    {
+#endif
+                        throw new InvalidOperationException(
+                            string.Format(
+                                CultureInfo.InvariantCulture,
+                                "There is already a factory registered for {0} with key {1}.",
+                                classType.FullName,
+                                key));
+#if DEBUG
+                    }
+#endif
                 }
 
                 if (!_interfaceToClassMap.ContainsKey(classType))
@@ -534,7 +569,11 @@ namespace GalaSoft.MvvmLight.Ioc
                 {
                     if (!_interfaceToClassMap.ContainsKey(serviceType))
                     {
+#if NETSTANDARD1_0
+                        throw new InvalidOperationException(
+#else
                         throw new ActivationException(
+#endif
                             string.Format(
                                 CultureInfo.InvariantCulture,
                                 "Type not found in cache: {0}.",
@@ -574,7 +613,11 @@ namespace GalaSoft.MvvmLight.Ioc
                         }
                         else
                         {
+#if NETSTANDARD1_0
+                            throw new InvalidOperationException(
+#else
                             throw new ActivationException(
+#endif
                                 string.Format(
                                     CultureInfo.InvariantCulture,
                                     "Type not found in cache without a key: {0}", 
@@ -655,7 +698,11 @@ namespace GalaSoft.MvvmLight.Ioc
                 if (first == null
                     || !first.IsPublic)
                 {
+#if NETSTANDARD1_0
+                    throw new InvalidOperationException(
+#else
                     throw new ActivationException(
+#endif
                         string.Format(
                             CultureInfo.InvariantCulture,
                             "Cannot register: No public constructor found in {0}.", 
@@ -669,7 +716,11 @@ namespace GalaSoft.MvvmLight.Ioc
                 || (constructorInfos.Length == 1
                     && !constructorInfos[0].IsPublic))
             {
+#if NETSTANDARD1_0
+                throw new InvalidOperationException(
+#else
                 throw new ActivationException(
+#endif
                     string.Format(
                         CultureInfo.InvariantCulture,
                         "Cannot register: No public constructor found in {0}.", 
@@ -697,7 +748,11 @@ namespace GalaSoft.MvvmLight.Ioc
 
             if (preferredConstructorInfo == null)
             {
+#if NETSTANDARD1_0
+                throw new InvalidOperationException(
+#else
                 throw new ActivationException(
+#endif
                     string.Format(
                         CultureInfo.InvariantCulture,
                         "Cannot register: Multiple constructors found in {0} but none marked with PreferredConstructor.",
@@ -773,7 +828,7 @@ namespace GalaSoft.MvvmLight.Ioc
                 .Select(instance => (TService)instance);
         }
 
-        #region Implementation of IServiceProvider
+#region Implementation of IServiceProvider
 
         /// <summary>
         /// Gets the service object of the specified type.
@@ -789,9 +844,9 @@ namespace GalaSoft.MvvmLight.Ioc
             return DoGetService(serviceType, _defaultKey);
         }
 
-        #endregion
+#endregion
 
-        #region Implementation of IServiceLocator
+#region Implementation of IServiceLocator
 
         /// <summary>
         /// Provides a way to get all the created instances of a given type available in the
@@ -956,6 +1011,6 @@ namespace GalaSoft.MvvmLight.Ioc
             return (TService)DoGetService(typeof(TService), key, false);
         }
 
-        #endregion
+#endregion
     }
 }

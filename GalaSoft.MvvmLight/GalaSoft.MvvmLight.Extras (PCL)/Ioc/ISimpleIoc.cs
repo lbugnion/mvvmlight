@@ -15,7 +15,10 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+
+#if !NETSTANDARD1_0
 using Microsoft.Practices.ServiceLocation;
+#endif
 
 namespace GalaSoft.MvvmLight.Ioc
 {
@@ -31,7 +34,10 @@ namespace GalaSoft.MvvmLight.Ioc
         "Microsoft.Naming", 
         "CA1704:IdentifiersShouldBeSpelledCorrectly", 
         MessageId = "Ioc")]
-    public interface ISimpleIoc : IServiceLocator
+    public interface ISimpleIoc
+#if !NETSTANDARD1_0
+        : IServiceLocator
+#endif
     {
         /// <summary>
         /// Checks whether at least one instance of a given class is already created in the container.

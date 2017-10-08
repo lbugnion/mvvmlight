@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>MvvmLightLibsStd10</id>
+        <version>5.4.0.1-alpha</version>
+        <title>MVVM Light libraries only, .NET Standard 1.0</title>
+        <authors>Laurent Bugnion (GalaSoft)</authors>
+        <owners>Laurent Bugnion (GalaSoft)</owners>
+        <licenseUrl>http://mvvmlight.codeplex.com/license</licenseUrl>
+        <projectUrl>http://www.mvvmlight.net</projectUrl>
+        <iconUrl>http://www.galasoft.ch/mvvm/resources/Logo/icon_100x100_transparent.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>V5.4.0.1 ALPHA, see http://galasoft.ch/s/mvvmstandard10. The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</description>
+        <summary>V5.4.0.1 ALPHA, see http://galasoft.ch/s/mvvmstandard10. The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</summary>
+        <releaseNotes>http://www.mvvmlight.net/installing/changes</releaseNotes>
+        <copyright>Copyright 2009-2017 Laurent Bugnion (GalaSoft)</copyright>
+        <language>en-US</language>
+        <tags>mvvm mvvmlight win10 uwp wpf xamarin android iOS xamarinforms netstandard netstandard10</tags>
+    </metadata>
+	
+    <files>
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.dll" target="lib\net45\GalaSoft.MvvmLight.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.pdb" target="lib\net45\GalaSoft.MvvmLight.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.xml" target="lib\net45\GalaSoft.MvvmLight.xml" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\NET45Std\GalaSoft.MvvmLight.Platform.dll" target="lib\net45\GalaSoft.MvvmLight.Platform.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\NET45Std\GalaSoft.MvvmLight.Platform.pdb" target="lib\net45\GalaSoft.MvvmLight.Platform.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\NET45Std\GalaSoft.MvvmLight.Platform.xml" target="lib\net45\GalaSoft.MvvmLight.Platform.xml" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\NET45Std\System.Windows.Interactivity.dll" target="lib\net45\System.Windows.Interactivity.dll" />
+
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.dll" target="lib\monoandroid1\GalaSoft.MvvmLight.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.pdb" target="lib\monoandroid1\GalaSoft.MvvmLight.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.XML" target="lib\monoandroid1\GalaSoft.MvvmLight.XML" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.Platform.dll" target="lib\monoandroid1\GalaSoft.MvvmLight.Platform.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.Platform.pdb" target="lib\monoandroid1\GalaSoft.MvvmLight.Platform.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.Platform.XML" target="lib\monoandroid1\GalaSoft.MvvmLight.Platform.XML" />		
+
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.dll" target="lib\xamarin.ios10\GalaSoft.MvvmLight.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.pdb" target="lib\xamarin.ios10\GalaSoft.MvvmLight.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.XML" target="lib\xamarin.ios10\GalaSoft.MvvmLight.XML" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\iOSStd\GalaSoft.MvvmLight.Platform.dll" target="lib\xamarin.ios10\GalaSoft.MvvmLight.Platform.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\iOSStd\GalaSoft.MvvmLight.Platform.XML" target="lib\xamarin.ios10\GalaSoft.MvvmLight.Platform.XML" />		
+
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.dll" target="lib\uap10.0\GalaSoft.MvvmLight.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.pdb" target="lib\uap10.0\GalaSoft.MvvmLight.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.xml" target="lib\uap10.0\GalaSoft.MvvmLight.xml" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.Platform.dll" target="lib\uap10.0\GalaSoft.MvvmLight.Platform.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.Platform.pdb" target="lib\uap10.0\GalaSoft.MvvmLight.Platform.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.Platform.pri" target="lib\uap10.0\GalaSoft.MvvmLight.Platform.pri" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.Platform.xml" target="lib\uap10.0\GalaSoft.MvvmLight.Platform.xml" />
+		
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.dll" target="lib\netstandard1.0\GalaSoft.MvvmLight.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.pdb" target="lib\netstandard1.0\GalaSoft.MvvmLight.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.XML" target="lib\netstandard1.0\GalaSoft.MvvmLight.XML" />
+	</files>
+</package>

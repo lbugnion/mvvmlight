@@ -1,0 +1,118 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <Description>.NET Standard 1.0. A lightweight framework to implement Model-View-ViewModel applications in WPF, Windows Store, Windows Phone, Silverlight, Xamarin.</Description>
+    <Product />
+    <Company>GalaSoft Laurent Bugnion @ http://www.galasoft.ch</Company>
+    <Authors>Laurent Bugnion (GalaSoft)</Authors>
+    <Version>5.4.0.1</Version>
+    <PackageId>MvvmLightLibsStd10-alpha</PackageId>
+    <Copyright>Copyright © GalaSoft Laurent Bugnion 2009-2017</Copyright>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://mvvmlight.codeplex.com/license</PackageLicenseUrl>
+    <PackageProjectUrl>http://www.mvvmlight.net</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl>https://mvvmlight.codeplex.com</RepositoryUrl>
+    <AssemblyName>GalaSoft.MvvmLight</AssemblyName>
+    <RootNamespace>GalaSoft.MvvmLight</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>GalaSoft.MvvmLight (STD10).snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <AssemblyVersion>5.4.0.1</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;CMNATTR;PORTABLE;NETSTANDARD1_0</DefineConstants>
+    <DocumentationFile>bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;RELEASE;NETFX_CORE;CMNATTR;PORTABLE;NETSTANDARD1_0</DefineConstants>
+    <DocumentationFile>bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Command\RelayCommand.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Command\RelayCommandGeneric.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Helpers\DesignerPlatformLibrary.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Helpers\Empty.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Helpers\FeatureDetection.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Helpers\IExecuteWithObject.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Helpers\IExecuteWithObjectAndResult.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Helpers\WeakAction.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Helpers\WeakActionGeneric.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Helpers\WeakFunc.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Helpers\WeakFuncGeneric.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\ICleanup.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\GenericMessage.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\IMessenger.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\MessageBase.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\Messenger.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\NotificationMessage.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\NotificationMessageAction.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\NotificationMessageActionGeneric.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\NotificationMessageGeneric.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\NotificationMessageWithCallback.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\PropertyChangedMessage.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Messaging\PropertyChangedMessageBase.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\ObservableObject.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\ViewModelBase.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Views\IDialogService.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight (PCL)\Views\INavigationService.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight.Extras (PCL)\Ioc\ISimpleIoc.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight.Extras (PCL)\Ioc\PreferredConstructor.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight.Extras (PCL)\Ioc\SimpleIoc.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\GalaSoft.MvvmLight (PCL)\License.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Command\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Messaging\" />
+    <Folder Include="Ioc\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Command\RelayCommand.cs" Link="Command\RelayCommand.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Command\RelayCommandGeneric.cs" Link="Command\RelayCommandGeneric.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Helpers\DesignerPlatformLibrary.cs" Link="Helpers\DesignerPlatformLibrary.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Helpers\Empty.cs" Link="Helpers\Empty.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Helpers\FeatureDetection.cs" Link="Helpers\FeatureDetection.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Helpers\IExecuteWithObject.cs" Link="Helpers\IExecuteWithObject.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Helpers\IExecuteWithObjectAndResult.cs" Link="Helpers\IExecuteWithObjectAndResult.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Helpers\WeakAction.cs" Link="Helpers\WeakAction.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Helpers\WeakActionGeneric.cs" Link="Helpers\WeakActionGeneric.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Helpers\WeakFunc.cs" Link="Helpers\WeakFunc.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Helpers\WeakFuncGeneric.cs" Link="Helpers\WeakFuncGeneric.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\ICleanup.cs" Link="ICleanup.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\GenericMessage.cs" Link="Messaging\GenericMessage.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\IMessenger.cs" Link="Messaging\IMessenger.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\MessageBase.cs" Link="Messaging\MessageBase.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\Messenger.cs" Link="Messaging\Messenger.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\NotificationMessage.cs" Link="Messaging\NotificationMessage.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\NotificationMessageAction.cs" Link="Messaging\NotificationMessageAction.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\NotificationMessageActionGeneric.cs" Link="Messaging\NotificationMessageActionGeneric.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\NotificationMessageGeneric.cs" Link="Messaging\NotificationMessageGeneric.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\NotificationMessageWithCallback.cs" Link="Messaging\NotificationMessageWithCallback.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\PropertyChangedMessage.cs" Link="Messaging\PropertyChangedMessage.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Messaging\PropertyChangedMessageBase.cs" Link="Messaging\PropertyChangedMessageBase.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\ObservableObject.cs" Link="ObservableObject.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\ViewModelBase.cs" Link="ViewModelBase.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Views\IDialogService.cs" Link="Views\IDialogService.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight %28PCL%29\Views\INavigationService.cs" Link="Views\INavigationService.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight.Extras %28PCL%29\Ioc\ISimpleIoc.cs" Link="Ioc\ISimpleIoc.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight.Extras %28PCL%29\Ioc\PreferredConstructor.cs" Link="Ioc\PreferredConstructor.cs" />
+    <Compile Update="..\GalaSoft.MvvmLight.Extras %28PCL%29\Ioc\SimpleIoc.cs" Link="Ioc\SimpleIoc.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="..\GalaSoft.MvvmLight %28PCL%29\License.txt" Link="License.txt" />
+  </ItemGroup>
+
+</Project>

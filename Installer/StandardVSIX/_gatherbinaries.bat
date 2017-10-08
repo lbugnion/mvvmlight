@@ -7,3 +7,4 @@ if exist ".\MvvmLight.VS2010\bin\Release\MvvmLight.VS2010.vsix" copy ".\MvvmLigh
 if exist ".\MvvmLight.VS2012\bin\Release\MvvmLight.VS2012.vsix" copy ".\MvvmLight.VS2012\bin\Release\MvvmLight.VS2012.vsix" ..\InstallItems\VSIX\Release\MvvmLight.VS2012.vsix
 if exist ".\MvvmLight.VS2013\bin\Release\MvvmLight.VS2013.vsix" copy ".\MvvmLight.VS2013\bin\Release\MvvmLight.VS2013.vsix" ..\InstallItems\VSIX\Release\MvvmLight.VS2013.vsix
 if exist ".\MvvmLight.VS2015\bin\Release\MvvmLight.VS2015.vsix" copy ".\MvvmLight.VS2015\bin\Release\MvvmLight.VS2015.vsix" ..\InstallItems\VSIX\Release\MvvmLight.VS2015.vsix
+if exist ".\MvvmLight.VS2017\bin\Release\MvvmLight.VS2017.vsix" copy ".\MvvmLight.VS2017\bin\Release\MvvmLight.VS2017.vsix" ..\InstallItems\VSIX\Release\MvvmLight.VS2017.vsix
