@@ -289,8 +289,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.5.2.0.0.nupkg">
-      <Link>Packages\MvvmLightLibs.5.2.0.0.nupkg</Link>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.5.3.0.0.nupkg">
+      <Link>Packages\MvvmLightLibs.5.3.0.0.nupkg</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
