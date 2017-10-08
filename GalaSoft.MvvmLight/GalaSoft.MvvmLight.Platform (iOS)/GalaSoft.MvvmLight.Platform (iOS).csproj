@@ -36,6 +36,12 @@
     <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;__IOS__;__UNIFIED__;__MOBILE__;XAMARIN;IOS;XAMARIN</DefineConstants>
     <DocumentationFile>bin\iPhone\Release\GalaSoft.MvvmLight.Platform.XML</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>GalaSoft.MvvmLight.Platform %28iOS%29.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\GalaSoft.MvvmLight.Platform %28Android%29\Helpers\Binding.cs">
       <Link>Helpers\Binding.cs</Link>
@@ -86,6 +92,9 @@
       <Project>{6a912701-3ba1-4975-adbf-160caf66b640}</Project>
       <Name>GalaSoft.MvvmLight %28PCL%29</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GalaSoft.MvvmLight.Platform %28iOS%29.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

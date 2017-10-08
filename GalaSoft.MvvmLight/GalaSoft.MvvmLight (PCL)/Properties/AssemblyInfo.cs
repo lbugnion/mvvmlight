@@ -22,12 +22,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2016")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 
-// BL0035
-[assembly: AssemblyVersion("5.3.0.*")]
+// BL0037
+[assembly: AssemblyVersion("5.4.0.1")]
