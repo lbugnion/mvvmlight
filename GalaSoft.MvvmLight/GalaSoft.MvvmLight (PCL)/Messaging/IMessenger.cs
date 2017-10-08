@@ -38,7 +38,14 @@ namespace GalaSoft.MvvmLight.Messaging
         /// <param name="action">The action that will be executed when a message
         /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
         /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
-        void Register<TMessage>(object recipient, Action<TMessage> action);
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        void Register<TMessage>(
+            object recipient,
+            Action<TMessage> action,
+            bool keepTargetAlive = false);
 
         /// <summary>
         /// Registers a recipient for a type of message TMessage.
@@ -59,9 +66,16 @@ namespace GalaSoft.MvvmLight.Messaging
         /// get the message. Similarly, messages sent without any token, or with a different
         /// token, will not be delivered to that recipient.</param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
-        void Register<TMessage>(object recipient, object token, Action<TMessage> action);
+        /// of type TMessage is sent.</param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        void Register<TMessage>(
+            object recipient,
+            object token,
+            Action<TMessage> action,
+            bool keepTargetAlive = false);
 
         /// <summary>
         /// Registers a recipient for a type of message TMessage.
@@ -93,9 +107,17 @@ namespace GalaSoft.MvvmLight.Messaging
         /// and ExecuteOrderMessage to the recipient that registered.</para>
         /// </param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
-        void Register<TMessage>(object recipient, object token, bool receiveDerivedMessagesToo, Action<TMessage> action);
+        /// of type TMessage is sent.</param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        void Register<TMessage>(
+            object recipient,
+            object token,
+            bool receiveDerivedMessagesToo,
+            Action<TMessage> action,
+            bool keepTargetAlive = false);
 
         /// <summary>
         /// Registers a recipient for a type of message TMessage.
@@ -121,9 +143,16 @@ namespace GalaSoft.MvvmLight.Messaging
         /// and ExecuteOrderMessage to the recipient that registered.</para>
         /// </param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
-        void Register<TMessage>(object recipient, bool receiveDerivedMessagesToo, Action<TMessage> action);
+        /// of type TMessage is sent.</param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        void Register<TMessage>(
+            object recipient, 
+            bool receiveDerivedMessagesToo, 
+            Action<TMessage> action,
+            bool keepTargetAlive = false);
 
         /// <summary>
         /// Sends a message to registered recipients. The message will

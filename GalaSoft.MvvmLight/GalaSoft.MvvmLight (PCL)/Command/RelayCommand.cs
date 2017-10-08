@@ -10,7 +10,6 @@
 // <license>
 // See license.txt in this project or http://www.galasoft.ch/license_MIT.txt
 // </license>
-// <LastBaseLevel>BL0011</LastBaseLevel>
 // ****************************************************************************
 // <credits>This class was developed by Josh Smith (http://joshsmithonwpf.wordpress.com) and
 // slightly modified with his permission.</credits>
@@ -43,8 +42,8 @@ namespace GalaSoft.MvvmLight.Command
     /// This will enable (or restore) the CommandManager class which handles
     /// automatic enabling/disabling of controls based on the CanExecute delegate.</remarks>
     ////[ClassInfo(typeof(RelayCommand),
-    ////  VersionString = "5.3.14",
-    ////  DateString = "201604212130",
+    ////  VersionString = "5.4.15",
+    ////  DateString = "201612041700",
     ////  Description = "A command whose sole purpose is to relay its functionality to other objects by invoking delegates.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -58,34 +57,42 @@ namespace GalaSoft.MvvmLight.Command
         /// Initializes a new instance of the RelayCommand class that 
         /// can always execute.
         /// </summary>
-        /// <param name="execute">The execution logic. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
+        /// <param name="execute">The execution logic. IMPORTANT: If the action causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is causing a closure. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
         /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
-        public RelayCommand(Action execute)
-            : this(execute, null)
+        public RelayCommand(Action execute, bool keepTargetAlive = false)
+            : this(execute, null, keepTargetAlive)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the RelayCommand class.
         /// </summary>
-        /// <param name="execute">The execution logic. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
-        /// <param name="canExecute">The execution status logic.</param>
-        /// <exception cref="ArgumentNullException">If the execute argument is null. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </exception>
-        public RelayCommand(Action execute, Func<bool> canExecute)
+        /// <param name="execute">The execution logic. IMPORTANT: If the action causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="canExecute">The execution status logic.  IMPORTANT: If the func causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is causing a closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
+        public RelayCommand(Action execute, Func<bool> canExecute, bool keepTargetAlive = false)
         {
             if (execute == null)
             {
                 throw new ArgumentNullException("execute");
             }
 
-            _execute = new WeakAction(execute);
+            _execute = new WeakAction(execute, keepTargetAlive);
 
             if (canExecute != null)
             {
-                _canExecute = new WeakFunc<bool>(canExecute);
+                _canExecute = new WeakFunc<bool>(canExecute, keepTargetAlive);
             }
         }
 

@@ -55,34 +55,42 @@ namespace GalaSoft.MvvmLight.Command
         /// Initializes a new instance of the RelayCommand class that 
         /// can always execute.
         /// </summary>
-        /// <param name="execute">The execution logic. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
+        /// <param name="execute">The execution logic. IMPORTANT: If the action causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is causing a closure. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
         /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
-        public RelayCommand(Action<T> execute)
-            : this(execute, null)
+        public RelayCommand(Action<T> execute, bool keepTargetAlive = false)
+            : this(execute, null, keepTargetAlive)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the RelayCommand class.
         /// </summary>
-        /// <param name="execute">The execution logic. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
-        /// <param name="canExecute">The execution status logic. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
+        /// <param name="execute">The execution logic. IMPORTANT: If the action causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="canExecute">The execution status logic.  IMPORTANT: If the func causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is causing a closure. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
         /// <exception cref="ArgumentNullException">If the execute argument is null.</exception>
-        public RelayCommand(Action<T> execute, Func<T, bool> canExecute)
+        public RelayCommand(Action<T> execute, Func<T, bool> canExecute, bool keepTargetAlive = false)
         {
             if (execute == null)
             {
                 throw new ArgumentNullException("execute");
             }
 
-            _execute = new WeakAction<T>(execute);
+            _execute = new WeakAction<T>(execute, keepTargetAlive);
 
             if (canExecute != null)
             {
-                _canExecute = new WeakFunc<T,bool>(canExecute);
+                _canExecute = new WeakFunc<T,bool>(canExecute, keepTargetAlive);
             }
         }
 

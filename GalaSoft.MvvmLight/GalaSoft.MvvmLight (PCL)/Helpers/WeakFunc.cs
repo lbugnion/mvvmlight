@@ -106,6 +106,17 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
+        /// Saves the <see cref="FuncReference"/> as a hard reference. This is
+        /// used in relation with this instance's constructor and only if
+        /// the constructor's keepTargetAlive parameter is true.
+        /// </summary>
+        protected object LiveReference
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets a WeakReference to the target passed when constructing
         /// the WeakFunc. This is not necessarily the same as
         /// <see cref="FuncReference" />, for example if the
@@ -128,8 +139,12 @@ namespace GalaSoft.MvvmLight.Helpers
         /// Initializes a new instance of the WeakFunc class.
         /// </summary>
         /// <param name="func">The Func that will be associated to this instance.</param>
-        public WeakFunc(Func<TResult> func)
-            : this(func == null ? null : func.Target, func)
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        public WeakFunc(Func<TResult> func, bool keepTargetAlive = false)
+            : this(func == null ? null : func.Target, func, keepTargetAlive)
         {
         }
 
@@ -138,12 +153,16 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <param name="target">The Func's owner.</param>
         /// <param name="func">The Func that will be associated to this instance.</param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
         [SuppressMessage(
-            "Microsoft.Design", 
+            "Microsoft.Design",
             "CA1062:Validate arguments of public methods",
             MessageId = "1",
             Justification = "Method should fail with an exception if func is null.")]
-        public WeakFunc(object target, Func<TResult> func)
+        public WeakFunc(object target, Func<TResult> func, bool keepTargetAlive = false)
         {
 #if NETFX_CORE
             if (func.GetMethodInfo().IsStatic)
@@ -185,6 +204,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 {
                     Method = func.Method;
                     FuncReference = new WeakReference(func.Target);
+                    LiveReference = keepTargetAlive ? func.Target : null;
                 }
             }
 #else
@@ -196,7 +216,24 @@ namespace GalaSoft.MvvmLight.Helpers
             FuncReference = new WeakReference(func.Target);
 #endif
 
+            LiveReference = keepTargetAlive ? func.Target : null;
             Reference = new WeakReference(target);
+
+#if DEBUG
+            if (FuncReference != null
+                && FuncReference.Target != null
+                && !keepTargetAlive)
+            {
+                var type = FuncReference.Target.GetType();
+
+                if (type.Name.StartsWith("<>")
+                    && type.Name.Contains("DisplayClass"))
+                {
+                    System.Diagnostics.Debug.WriteLine(
+                        "You are attempting to register a lambda with a closure without using keepTargetAlive. Are you sure? Check http://galasoft.ch/s/mvvmweakaction for more info.");
+                }
+            }
+#endif
         }
 
         /// <summary>
@@ -208,7 +245,8 @@ namespace GalaSoft.MvvmLight.Helpers
             get
             {
                 if (_staticFunc == null
-                    && Reference == null)
+                    && Reference == null
+                    && LiveReference == null)
                 {
                     return false;
                 }
@@ -223,7 +261,19 @@ namespace GalaSoft.MvvmLight.Helpers
                     return true;
                 }
 
-                return Reference.IsAlive;
+                // Non static action
+
+                if (LiveReference != null)
+                {
+                    return true;
+                }
+
+                if (Reference != null)
+                {
+                    return Reference.IsAlive;
+                }
+
+                return false;
             }
         }
 
@@ -254,6 +304,11 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             get
             {
+                if (LiveReference != null)
+                {
+                    return LiveReference;
+                }
+
                 if (FuncReference == null)
                 {
                     return null;
@@ -280,7 +335,8 @@ namespace GalaSoft.MvvmLight.Helpers
             if (IsAlive)
             {
                 if (Method != null
-                    && FuncReference != null
+                    && (LiveReference != null
+                        || FuncReference != null)
                     && funcTarget != null)
                 {
                     return (TResult)Method.Invoke(funcTarget, null);
@@ -304,6 +360,7 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             Reference = null;
             FuncReference = null;
+            LiveReference = null;
             Method = null;
             _staticFunc = null;
 

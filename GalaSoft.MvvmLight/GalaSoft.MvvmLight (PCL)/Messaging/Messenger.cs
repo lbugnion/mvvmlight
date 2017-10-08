@@ -43,8 +43,8 @@ namespace GalaSoft.MvvmLight.Messaging
     /// The Messenger is a class allowing objects to exchange messages.
     /// </summary>
     ////[ClassInfo(typeof(Messenger),
-    ////    VersionString = "5.3.19",
-    ////    DateString = "201604212130",
+    ////    VersionString = "5.4.21",
+    ////    DateString = "201708281410",
     ////    Description = "A messenger class allowing a class to send a message to multiple recipients",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
@@ -95,11 +95,18 @@ namespace GalaSoft.MvvmLight.Messaging
         /// for.</typeparam>
         /// <param name="recipient">The recipient that will receive the messages.</param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
-        public virtual void Register<TMessage>(object recipient, Action<TMessage> action)
+        /// of type TMessage is sent. IMPORTANT: If the action causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        public virtual void Register<TMessage>(
+            object recipient, 
+            Action<TMessage> action,
+            bool keepTargetAlive = false)
         {
-            Register(recipient, null, false, action);
+            Register(recipient, null, false, action, keepTargetAlive);
         }
 
         /// <summary>
@@ -110,35 +117,8 @@ namespace GalaSoft.MvvmLight.Messaging
         /// messages implementing TMessage) can be received too.
         /// <para>Registering a recipient does not create a hard reference to it,
         /// so if this recipient is deleted, no memory leak is caused.</para>
-        /// </summary>
-        /// <typeparam name="TMessage">The type of message that the recipient registers
-        /// for.</typeparam>
-        /// <param name="recipient">The recipient that will receive the messages.</param>
-        /// <param name="receiveDerivedMessagesToo">If true, message types deriving from
-        /// TMessage will also be transmitted to the recipient. For example, if a SendOrderMessage
-        /// and an ExecuteOrderMessage derive from OrderMessage, registering for OrderMessage
-        /// and setting receiveDerivedMessagesToo to true will send SendOrderMessage
-        /// and ExecuteOrderMessage to the recipient that registered.
-        /// <para>Also, if TMessage is an interface, message types implementing TMessage will also be
-        /// transmitted to the recipient. For example, if a SendOrderMessage
-        /// and an ExecuteOrderMessage implement IOrderMessage, registering for IOrderMessage
-        /// and setting receiveDerivedMessagesToo to true will send SendOrderMessage
-        /// and ExecuteOrderMessage to the recipient that registered.</para>
-        /// </param>
-        /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
-        public virtual void Register<TMessage>(object recipient, bool receiveDerivedMessagesToo, Action<TMessage> action)
-        {
-            Register(recipient, null, receiveDerivedMessagesToo, action);
-        }
-
-        /// <summary>
-        /// Registers a recipient for a type of message TMessage.
-        /// The action parameter will be executed when a corresponding 
-        /// message is sent.
-        /// <para>Registering a recipient does not create a hard reference to it,
-        /// so if this recipient is deleted, no memory leak is caused.</para>
+        /// <para>However if you use closures and set keepTargetAlive to true, you might
+        /// cause a memory leak if you don't call <see cref="Unregister"/> when you are cleaning up.</para>
         /// </summary>
         /// <typeparam name="TMessage">The type of message that the recipient registers
         /// for.</typeparam>
@@ -150,11 +130,19 @@ namespace GalaSoft.MvvmLight.Messaging
         /// get the message. Similarly, messages sent without any token, or with a different
         /// token, will not be delivered to that recipient.</param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
-        public virtual void Register<TMessage>(object recipient, object token, Action<TMessage> action)
+        /// of type TMessage is sent. IMPORTANT: If the action causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        public virtual void Register<TMessage>(
+            object recipient,
+            object token,
+            Action<TMessage> action,
+            bool keepTargetAlive = false)
         {
-            Register(recipient, token, false, action);
+            Register(recipient, token, false, action, keepTargetAlive);
         }
 
         /// <summary>
@@ -187,13 +175,18 @@ namespace GalaSoft.MvvmLight.Messaging
         /// and ExecuteOrderMessage to the recipient that registered.</para>
         /// </param>
         /// <param name="action">The action that will be executed when a message
-        /// of type TMessage is sent. IMPORTANT: Note that closures are not supported at the moment
-        /// due to the use of WeakActions (see http://stackoverflow.com/questions/25730530/). </param>
+        /// of type TMessage is sent. IMPORTANT: If the action causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
         public virtual void Register<TMessage>(
             object recipient,
             object token,
             bool receiveDerivedMessagesToo,
-            Action<TMessage> action)
+            Action<TMessage> action,
+            bool keepTargetAlive = false)
         {
             lock (_registerLock)
             {
@@ -234,7 +227,7 @@ namespace GalaSoft.MvvmLight.Messaging
                         list = recipients[messageType];
                     }
 
-                    var weakAction = new WeakAction<TMessage>(recipient, action);
+                    var weakAction = new WeakAction<TMessage>(recipient, action, keepTargetAlive);
 
                     var item = new WeakActionAndToken
                     {
@@ -247,6 +240,45 @@ namespace GalaSoft.MvvmLight.Messaging
             }
 
             RequestCleanup();
+        }
+
+        /// <summary>
+        /// Registers a recipient for a type of message TMessage.
+        /// The action parameter will be executed when a corresponding 
+        /// message is sent. See the receiveDerivedMessagesToo parameter
+        /// for details on how messages deriving from TMessage (or, if TMessage is an interface,
+        /// messages implementing TMessage) can be received too.
+        /// <para>Registering a recipient does not create a hard reference to it,
+        /// so if this recipient is deleted, no memory leak is caused.</para>
+        /// </summary>
+        /// <typeparam name="TMessage">The type of message that the recipient registers
+        /// for.</typeparam>
+        /// <param name="recipient">The recipient that will receive the messages.</param>
+        /// <param name="receiveDerivedMessagesToo">If true, message types deriving from
+        /// TMessage will also be transmitted to the recipient. For example, if a SendOrderMessage
+        /// and an ExecuteOrderMessage derive from OrderMessage, registering for OrderMessage
+        /// and setting receiveDerivedMessagesToo to true will send SendOrderMessage
+        /// and ExecuteOrderMessage to the recipient that registered.
+        /// <para>Also, if TMessage is an interface, message types implementing TMessage will also be
+        /// transmitted to the recipient. For example, if a SendOrderMessage
+        /// and an ExecuteOrderMessage implement IOrderMessage, registering for IOrderMessage
+        /// and setting receiveDerivedMessagesToo to true will send SendOrderMessage
+        /// and ExecuteOrderMessage to the recipient that registered.</para>
+        /// </param>
+        /// <param name="action">The action that will be executed when a message
+        /// of type TMessage is sent. IMPORTANT: If the action causes a closure,
+        /// you must set keepTargetAlive to true to avoid side effects. </param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        public virtual void Register<TMessage>(
+            object recipient,
+            bool receiveDerivedMessagesToo,
+            Action<TMessage> action,
+            bool keepTargetAlive = false)
+        {
+            Register(recipient, null, receiveDerivedMessagesToo, action, keepTargetAlive);
         }
 
         private bool _isCleanupRegistered;

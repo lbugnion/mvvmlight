@@ -15,9 +15,9 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-
 // ReSharper disable RedundantUsingDirective
 using System.Reflection;
+
 // ReSharper restore RedundantUsingDirective
 
 namespace GalaSoft.MvvmLight.Helpers
@@ -101,8 +101,12 @@ namespace GalaSoft.MvvmLight.Helpers
         /// Initializes a new instance of the WeakAction class.
         /// </summary>
         /// <param name="action">The action that will be associated to this instance.</param>
-        public WeakAction(Action<T> action)
-            : this(action == null ? null : action.Target, action)
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        public WeakAction(Action<T> action, bool keepTargetAlive = false)
+            : this(action == null ? null : action.Target, action, keepTargetAlive)
         {
         }
 
@@ -111,12 +115,16 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <param name="target">The action's owner.</param>
         /// <param name="action">The action that will be associated to this instance.</param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
         [SuppressMessage(
-            "Microsoft.Design", 
-            "CA1062:Validate arguments of public methods", 
+            "Microsoft.Design",
+            "CA1062:Validate arguments of public methods",
             MessageId = "1",
             Justification = "Method should fail with an exception if action is null.")]
-        public WeakAction(object target, Action<T> action)
+        public WeakAction(object target, Action<T> action, bool keepTargetAlive = false)
         {
 #if NETFX_CORE
             if (action.GetMethodInfo().IsStatic)
@@ -157,6 +165,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 {
                     Method = action.Method;
                     ActionReference = new WeakReference(action.Target);
+                    LiveReference = keepTargetAlive ? action.Target : null;
                 }
             }
 #else
@@ -168,7 +177,24 @@ namespace GalaSoft.MvvmLight.Helpers
             ActionReference = new WeakReference(action.Target);
 #endif
 
+            LiveReference = keepTargetAlive ? action.Target : null;
             Reference = new WeakReference(target);
+
+#if DEBUG
+            if (ActionReference != null
+                && ActionReference.Target != null
+                && !keepTargetAlive)
+            {
+                var type = ActionReference.Target.GetType();
+
+                if (type.Name.StartsWith("<>")
+                    && type.Name.Contains("DisplayClass"))
+                {
+                    System.Diagnostics.Debug.WriteLine(
+                        "You are attempting to register a lambda with a closure without using keepTargetAlive. Are you sure? Check http://galasoft.ch/s/mvvmweakaction for more info.");
+                }
+            }
+#endif
         }
 
         /// <summary>
@@ -198,7 +224,8 @@ namespace GalaSoft.MvvmLight.Helpers
             if (IsAlive)
             {
                 if (Method != null
-                    && ActionReference != null
+                    && (LiveReference != null
+                        || ActionReference != null)
                     && actionTarget != null)
                 {
                     Method.Invoke(
@@ -228,7 +255,7 @@ namespace GalaSoft.MvvmLight.Helpers
         /// being casted to T.</param>
         public void ExecuteWithObject(object parameter)
         {
-            var parameterCasted = (T) parameter;
+            var parameterCasted = (T)parameter;
             Execute(parameterCasted);
         }
 

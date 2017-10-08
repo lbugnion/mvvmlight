@@ -25,8 +25,8 @@ namespace GalaSoft.MvvmLight.Helpers
     /// to be created to the Action's owner. The owner can be garbage collected at any time.
     /// </summary>
     ////[ClassInfo(typeof(WeakAction),
-    ////    VersionString = "5.1.16",
-    ////    DateString = "201502072030",
+    ////    VersionString = "5.4.18",
+    ////    DateString = "201708281410",
     ////    Description = "A class allowing to store and invoke actions without keeping a hard reference to the action's target.",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]
@@ -94,6 +94,17 @@ namespace GalaSoft.MvvmLight.Helpers
         }
 
         /// <summary>
+        /// Saves the <see cref="ActionReference"/> as a hard reference. This is
+        /// used in relation with this instance's constructor and only if
+        /// the constructor's keepTargetAlive parameter is true.
+        /// </summary>
+        protected object LiveReference
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets a WeakReference to the target passed when constructing
         /// the WeakAction. This is not necessarily the same as
         /// <see cref="ActionReference" />, for example if the
@@ -132,8 +143,12 @@ namespace GalaSoft.MvvmLight.Helpers
         /// Initializes a new instance of the <see cref="WeakAction" /> class.
         /// </summary>
         /// <param name="action">The action that will be associated to this instance.</param>
-        public WeakAction(Action action)
-            : this(action == null ? null : action.Target, action)
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
+        public WeakAction(Action action, bool keepTargetAlive = false)
+            : this(action == null ? null : action.Target, action, keepTargetAlive)
         {
         }
 
@@ -142,12 +157,16 @@ namespace GalaSoft.MvvmLight.Helpers
         /// </summary>
         /// <param name="target">The action's owner.</param>
         /// <param name="action">The action that will be associated to this instance.</param>
+        /// <param name="keepTargetAlive">If true, the target of the Action will
+        /// be kept as a hard reference, which might cause a memory leak. You should only set this
+        /// parameter to true if the action is using closures. See
+        /// http://galasoft.ch/s/mvvmweakaction. </param>
         [SuppressMessage(
-            "Microsoft.Design", 
+            "Microsoft.Design",
             "CA1062:Validate arguments of public methods",
             MessageId = "1",
             Justification = "Method should fail with an exception if action is null.")]
-        public WeakAction(object target, Action action)
+        public WeakAction(object target, Action action, bool keepTargetAlive = false)
         {
 #if NETFX_CORE
             if (action.GetMethodInfo().IsStatic)
@@ -189,6 +208,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 {
                     Method = action.Method;
                     ActionReference = new WeakReference(action.Target);
+                    LiveReference = keepTargetAlive ? action.Target : null;
                 }
             }
 #else
@@ -200,7 +220,24 @@ namespace GalaSoft.MvvmLight.Helpers
             ActionReference = new WeakReference(action.Target);
 #endif
 
+            LiveReference = keepTargetAlive ? action.Target : null;
             Reference = new WeakReference(target);
+
+#if DEBUG
+            if (ActionReference != null
+                && ActionReference.Target != null
+                && !keepTargetAlive)
+            {
+                var type = ActionReference.Target.GetType();
+
+                if (type.Name.StartsWith("<>")
+                    && type.Name.Contains("DisplayClass"))
+                {
+                    System.Diagnostics.Debug.WriteLine(
+                        "You are attempting to register a lambda with a closure without using keepTargetAlive. Are you sure? Check http://galasoft.ch/s/mvvmweakaction for more info.");
+                }
+            }
+#endif
         }
 
         /// <summary>
@@ -212,7 +249,8 @@ namespace GalaSoft.MvvmLight.Helpers
             get
             {
                 if (_staticAction == null
-                    && Reference == null)
+                    && Reference == null
+                    && LiveReference == null)
                 {
                     return false;
                 }
@@ -227,7 +265,19 @@ namespace GalaSoft.MvvmLight.Helpers
                     return true;
                 }
 
-                return Reference.IsAlive;
+                // Non static action
+
+                if (LiveReference != null)
+                {
+                    return true;
+                }
+
+                if (Reference != null)
+                {
+                    return Reference.IsAlive;
+                }
+
+                return false;
             }
         }
 
@@ -255,6 +305,11 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             get
             {
+                if (LiveReference != null)
+                {
+                    return LiveReference;
+                }
+
                 if (ActionReference == null)
                 {
                     return null;
@@ -281,11 +336,12 @@ namespace GalaSoft.MvvmLight.Helpers
             if (IsAlive)
             {
                 if (Method != null
-                    && ActionReference != null
+                    && (LiveReference != null
+                        || ActionReference != null)
                     && actionTarget != null)
                 {
                     Method.Invoke(actionTarget, null);
-                    
+
                     // ReSharper disable RedundantJumpStatement
                     return;
                     // ReSharper restore RedundantJumpStatement
@@ -307,6 +363,7 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             Reference = null;
             ActionReference = null;
+            LiveReference = null;
             Method = null;
             _staticAction = null;
 
