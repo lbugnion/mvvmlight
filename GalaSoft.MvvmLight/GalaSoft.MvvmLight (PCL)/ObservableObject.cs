@@ -87,10 +87,29 @@ namespace GalaSoft.MvvmLight
             var myType = GetType();
 
 #if NETFX_CORE
+            var info = myType.GetTypeInfo();
+
             if (!string.IsNullOrEmpty(propertyName)
-                && myType.GetTypeInfo().GetDeclaredProperty(propertyName) == null)
+                && info.GetDeclaredProperty(propertyName) == null)
             {
-                throw new ArgumentException("Property not found", propertyName);
+                // Check base types
+                var found = false;
+
+                while (info.BaseType != typeof(Object))
+                {
+                    info = info.BaseType.GetTypeInfo();
+
+                    if (info.GetDeclaredProperty(propertyName) != null)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    throw new ArgumentException("Property not found", propertyName);
+                }
             }
 #else
             if (!string.IsNullOrEmpty(propertyName)
