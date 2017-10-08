@@ -236,7 +236,16 @@ namespace GalaSoft.MvvmLight.Helpers
                 _view = view;
             }
 
-            var cell = view.DequeueReusableCell(NsReuseId) ?? CreateCell(NsReuseId);
+            UITableViewCell cell;
+
+            if (CreateCellDelegate != null)
+            {
+                cell = CreateCell(NsReuseId);
+            }
+            else
+            {
+                cell = view.DequeueReusableCell(NsReuseId) ?? CreateCell(NsReuseId);
+            }
 
             try
             {
