@@ -253,3 +253,4 @@ paket-files/
 *.sln.iml
 /LbCoinValue/packages/
 /LbCoinValue - Start/packages
+/Samples/DispatcherHelperSampleStd/packages/
