@@ -31,7 +31,7 @@ The Model-View-ViewModel pattern is implemented in the following manner:
 
 * The [App.xaml](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd/App.xaml) for the WPF application creates the ViewModelLocator in the Application resources.
 
-* SImilarly we also have the ViewModelLocator in the [UWP's App.xaml](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Uwp/App.xaml)'s resources.
+* Similarly we also have the ViewModelLocator in the [UWP's App.xaml](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Uwp/App.xaml)'s resources.
 
 * The [MainPage.xaml](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Uwp/MainPage.xaml) (for UWP) and the [MainWindow.xaml](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd/MainWindow.xaml) (for WPF) use the ViewModelLocator's ```Main``` property as DataContext.
 
@@ -72,7 +72,7 @@ We can use a workaround to get access to DispatcherHelper within the Data librar
 
 * In the Data library, add an interface named [IDispatcherHelper](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Data/Helpers/IDispatcherHelper.cs). This interface has a single method called ```CheckBeginInvokeOnUi```.
 
-* In the WPF application, we implement the IDispatcherHelper interface in a helper class that we name DispatcherHelperEx (the Ex is only there to help differentiate from MVVM Light's DispatcherHelper class). The implementation is simply forwarding the call to MVVM Light as shown here. Yes this is unnecessarily complicated and we will improve this in a future version of MVVM Light (see below).
+* In the WPF application, we implement the IDispatcherHelper interface in a helper class that we name [DispatcherHelperEx](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd/Helpers/DispatcherHelperEx.cs) (the Ex is only there to help differentiate from MVVM Light's DispatcherHelper class). The implementation is simply forwarding the call to MVVM Light as shown here. Yes this is unnecessarily complicated and we will improve this in a future version of MVVM Light (see below).
 
 ```CS
 public class DispatcherHelperEx : IDispatcherHelper
