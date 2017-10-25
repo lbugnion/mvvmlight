@@ -12,12 +12,12 @@ For .NET Standard, concretely, what this means is that the DispatcherHelper comp
 
 The sample described here contains a WPF application and a UWP application, both using the .NET Standard data library. As you can see in the sample, we have the following Solution:
 
-![The sample solution](/Img/2017-10-24_16-26-09.png)
+![The sample solution](./Img/2017-10-24_16-26-09.png)
 
 The following references have been set up:
 
 * A reference to the .NET Standard Data library was added to both the WPF and the UWP applications.
-* [The MVVM Light Toolkit for .NET Standard Nuget package](TODO_Link) was added to the WPF and UWP applications, as well as to the Data library.
+* [The MVVM Light Toolkit for .NET Standard Nuget package](https://www.nuget.org/packages/MvvmLightLibsStd10) was added to the WPF and UWP applications, as well as to the Data library.
 
 Note that there is only one DLL in the MVVM Light Nuget package referenced by the Data library, while there are two DLLs (GalaSoft.MvvmLight and GalaSoft.MvvmLight.Platform) referenced by the WPF and by the UWP applications. The DispatcherHelper component is in the Platform DLL.
 
@@ -25,19 +25,21 @@ Note that there is only one DLL in the MVVM Light Nuget package referenced by th
 
 The Model-View-ViewModel pattern is implemented in the following manner:
 
-* The [MainViewModel](TODO_LINK) contains a ```Time``` property which uses MVVM Light's ```Set``` method to raise the PropertyChanged event. 
+* The [MainViewModel](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Data/ViewModel/MainViewModel.cs) contains a ```Time``` property which uses MVVM Light's ```Set``` method to raise the PropertyChanged event. 
 
-* The [ViewModelLocator](TODO_LINK) contains a reference (```Main```) to the MainViewModel for data binding.
+* The [ViewModelLocator](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Data/ViewModel/ViewModelLocator.cs) contains a reference (```Main```) to the MainViewModel for data binding.
 
-* The [App.xaml](TODO_LINK) creates the ViewModelLocator in the Application resources.
+* The [App.xaml](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd/App.xaml) for the WPF application creates the ViewModelLocator in the Application resources.
 
-* The [MainPage.xaml](TODO_LINK) (for UWP) and the [MainWindow.xaml](TODO_LINK) (for WPF) use the ViewModelLocator's ```Main``` property as DataContext.
+* SImilarly we also have the ViewModelLocator in the [UWP's App.xaml](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Uwp/App.xaml)'s resources.
+
+* The [MainPage.xaml](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Uwp/MainPage.xaml) (for UWP) and the [MainWindow.xaml](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd/MainWindow.xaml) (for WPF) use the ViewModelLocator's ```Main``` property as DataContext.
 
 * In the same XAML documents, we databind the TextBlock's ```Text``` property to the ```Time``` property of the MainViewModel.
 
 ## Why dispatching?
 
-The [MainViewModel](TODO_LINK) contains the code running a clock in a background thread. This is seen in the Start method.
+The [MainViewModel](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Data/ViewModel/MainViewModel.cs) contains the code running a clock in a background thread. This is seen in the Start method.
 
 ```CS
 public void StartClock()
@@ -68,7 +70,7 @@ To fix this, we can use MVVM Light's DispatcherHelper, but  as explained before,
 
 We can use a workaround to get access to DispatcherHelper within the Data library:
 
-* In the Data library, add an interface named [IDispatcherHelper](TOODO_LINK). This interface has a single method called ```CheckBeginInvokeOnUi```.
+* In the Data library, add an interface named [IDispatcherHelper](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Data/Helpers/IDispatcherHelper.cs). This interface has a single method called ```CheckBeginInvokeOnUi```.
 
 * In the WPF application, we implement the IDispatcherHelper interface in a helper class that we name DispatcherHelperEx (the Ex is only there to help differentiate from MVVM Light's DispatcherHelper class). The implementation is simply forwarding the call to MVVM Light as shown here. Yes this is unnecessarily complicated and we will improve this in a future version of MVVM Light (see below).
 
@@ -84,11 +86,11 @@ public class DispatcherHelperEx : IDispatcherHelper
 
 * We also add this same DispatcherHelperEx class into the UWP application, simply by sharing a link to the DispatcherHelperEx.cs class (see the Helper folder in the UWP application):
 
-![Adding a shortcut to DispatcherHelperEx](/Img/2017-10-24_19-37-12.png)
+![Adding a shortcut to DispatcherHelperEx](./Img/2017-10-24_19-37-12.png)
 
 Finally, we can pass the instance of IDispatcherHelper to the Data library with the help of MVVM Light's SimpleIoc IOC container.
 
-* We register the DispatcherHelperEx class in SimpleIoc in [the WPF application's App.xaml.cs](TODO_LINK). We also take the occasion to initialize the DispatcherHelper.
+* We register the DispatcherHelperEx class in SimpleIoc in [the WPF application's App.xaml.cs](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd/App.xaml.cs). We also take the occasion to initialize the DispatcherHelper.
 
 ```CS
 static App()
@@ -98,7 +100,7 @@ static App()
 }
 ```
 
-* We also do the same in the [UWP application's App.xaml.cs](TODO_LINK) (see lines 68 and 69).
+* We also do the same in the [UWP application's App.xaml.cs](https://github.com/lbugnion/mvvmlight/blob/master/Samples/DispatcherHelperSampleStd/DispatcherHelperSampleStd.Uwp/App.xaml.cs) (see lines 68 and 69).
 
 * In the MainViewModel, we can now gain access to the DispatcherHelper by modifying the ```Start``` method as shown here:
 
