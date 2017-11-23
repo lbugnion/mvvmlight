@@ -77,7 +77,6 @@
       <Link>License.txt</Link>
     </None>
     <None Include="GalaSoft.MvvmLight.Platform %28NET45Std%29.snk" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GalaSoft.MvvmLight %28STD10%29\GalaSoft.MvvmLight %28STD10%29.csproj">
