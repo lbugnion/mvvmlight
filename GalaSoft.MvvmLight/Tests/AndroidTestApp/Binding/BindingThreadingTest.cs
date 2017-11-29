@@ -31,28 +31,28 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
             VmTarget = new TestViewModel();
 
             _binding = this.SetBinding(
-                () => VmSource.Model.MyProperty,
+                () => VmSource.Model.StringProperty,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.TargetProperty);
 
             const string newValue = "New value";
 
             await Task.Run(
                 () =>
                 {
-                    VmSource.Model.MyProperty = newValue;
+                    VmSource.Model.StringProperty = newValue;
                 });
 
-            Assert.AreEqual(newValue, VmSource.Model.MyProperty);
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(newValue, VmSource.Model.StringProperty);
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -62,24 +62,24 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
             VmTarget = new TestViewModel();
 
             _binding = this.SetBinding(
-                () => VmSource.Model.MyProperty,
+                () => VmSource.Model.StringProperty,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.TargetProperty);
 
             const string newValue = "New value";
 
-            VmSource.Model.MyProperty = newValue;
+            VmSource.Model.StringProperty = newValue;
 
-            Assert.AreEqual(newValue, VmSource.Model.MyProperty);
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(newValue, VmSource.Model.StringProperty);
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.TargetProperty);
         }
     }
 }

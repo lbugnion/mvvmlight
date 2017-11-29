@@ -113,7 +113,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "13/04/1971"
+                    StringProperty = "13/04/1971"
                 }
             };
 
@@ -121,7 +121,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, DateTime>(
                 vmSource,
-                () => vmSource.Model.MyProperty,
+                () => vmSource.Model.StringProperty,
                 vmTarget,
                 () => vmTarget.Date)
                 .ConvertSourceToTarget(d => DateTime.ParseExact(d, "dd/MM/yyyy", CultureInfo.InvariantCulture));
@@ -130,12 +130,12 @@ namespace GalaSoft.MvvmLight.Test.Binding
             Assert.AreEqual(referenceDate, vmTarget.Date);
 
             var newDateString = "13/04/197"; // Invalid date string
-            vmSource.Model.MyProperty = newDateString;
+            vmSource.Model.StringProperty = newDateString;
 
             Assert.AreEqual(referenceDate, vmTarget.Date);
 
             newDateString = "13/04/1972"; // Valid date string
-            vmSource.Model.MyProperty = newDateString;
+            vmSource.Model.StringProperty = newDateString;
 
             referenceDate = new DateTime(1972, 4, 13);
             Assert.AreEqual(referenceDate, vmTarget.Date);
@@ -192,7 +192,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "13/04/1971"
+                    StringProperty = "13/04/1971"
                 }
             };
 
@@ -200,7 +200,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, DateTime>(
                 vmSource,
-                () => vmSource.Model.MyProperty,
+                () => vmSource.Model.StringProperty,
                 vmTarget,
                 () => vmTarget.Date)
                 .ConvertSourceToTarget(
@@ -220,12 +220,12 @@ namespace GalaSoft.MvvmLight.Test.Binding
             Assert.AreEqual(referenceDate, vmTarget.Date);
 
             var newDateString = "13/04/197"; // Invalid date string
-            vmSource.Model.MyProperty = newDateString;
+            vmSource.Model.StringProperty = newDateString;
 
             Assert.AreEqual(DateTime.MinValue, vmTarget.Date);
 
             newDateString = "13/04/1972"; // Valid date string
-            vmSource.Model.MyProperty = newDateString;
+            vmSource.Model.StringProperty = newDateString;
 
             referenceDate = new DateTime(1972, 4, 13);
             Assert.AreEqual(referenceDate, vmTarget.Date);

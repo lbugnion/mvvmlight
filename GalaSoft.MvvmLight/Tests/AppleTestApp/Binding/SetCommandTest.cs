@@ -54,7 +54,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = value
+                    StringProperty = value
                 }
             };
 
@@ -64,7 +64,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 vmSource,
-                () => vmSource.Model.MyProperty);
+                () => vmSource.Model.StringProperty);
 
             control.SetCommand(
                 "Clicked",
@@ -76,7 +76,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             Assert.AreEqual(value, vmTarget.TargetProperty);
 
             value += "Test";
-            vmSource.Model.MyProperty = value;
+            vmSource.Model.StringProperty = value;
             control.PerformEvent();
             Assert.AreEqual(value, vmTarget.TargetProperty);
         }
@@ -90,7 +90,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = value
+                    StringProperty = value
                 }
             };
 
@@ -100,7 +100,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 vmSource,
-                () => vmSource.Model.MyProperty);
+                () => vmSource.Model.StringProperty);
 
             control.SetCommand(
                 vmTarget.SetPropertyCommand,
@@ -111,7 +111,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             Assert.AreEqual(value, vmTarget.TargetProperty);
 
             value += "Test";
-            vmSource.Model.MyProperty = value;
+            vmSource.Model.StringProperty = value;
             control.PerformEvent();
             Assert.AreEqual(value, vmTarget.TargetProperty);
         }
@@ -192,7 +192,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = value
+                    StringProperty = value
                 }
             };
 
@@ -202,7 +202,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 vmSource,
-                () => vmSource.Model.MyProperty);
+                () => vmSource.Model.StringProperty);
 
             control.SetCommand(
                 "TouchUpInside",
@@ -214,7 +214,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             Assert.AreEqual(value, vmTarget.TargetProperty);
 
             value += "Test";
-            vmSource.Model.MyProperty = value;
+            vmSource.Model.StringProperty = value;
             control.PerformEvent();
             Assert.AreEqual(value, vmTarget.TargetProperty);
         }
@@ -228,7 +228,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = value
+                    StringProperty = value
                 }
             };
 
@@ -238,7 +238,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 vmSource,
-                () => vmSource.Model.MyProperty);
+                () => vmSource.Model.StringProperty);
 
             control.SetCommand(
                 vmTarget.SetPropertyCommand,
@@ -249,7 +249,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             Assert.AreEqual(value, vmTarget.TargetProperty);
 
             value += "Test";
-            vmSource.Model.MyProperty = value;
+            vmSource.Model.StringProperty = value;
             control.PerformEvent();
             Assert.AreEqual(value, vmTarget.TargetProperty);
         }

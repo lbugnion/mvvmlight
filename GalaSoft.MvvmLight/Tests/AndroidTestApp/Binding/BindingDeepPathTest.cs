@@ -35,7 +35,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
                     {
                         Model = new TestModel
                         {
-                            MyProperty = "Initial value"
+                            StringProperty = "Initial value"
                         }
                     }
                 }
@@ -45,14 +45,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 VmSource,
-                () => VmSource.Nested.Nested.Model.MyProperty,
+                () => VmSource.Nested.Nested.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSource.Nested.Nested.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSource.Nested.Nested.Model.StringProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Nested.Nested.Model.MyProperty = newValue;
-            Assert.AreEqual(VmSource.Nested.Nested.Model.MyProperty, VmTarget.TargetProperty);
+            VmSource.Nested.Nested.Model.StringProperty = newValue;
+            Assert.AreEqual(VmSource.Nested.Nested.Model.StringProperty, VmTarget.TargetProperty);
 
             const string value2 = "Value 2";
 
@@ -62,7 +62,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 {
                     Model = new TestModel
                     {
-                        MyProperty = value2
+                        StringProperty = value2
                     }
                 }
             };
@@ -75,7 +75,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = value3
+                    StringProperty = value3
                 }
             };
 
@@ -85,14 +85,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             VmSource.Nested.Nested.Model = new TestModel
             {
-                MyProperty = value4
+                StringProperty = value4
             };
 
             Assert.AreEqual(value4, VmTarget.TargetProperty);
 
             const string value5 = "Value 5";
 
-            VmSource.Nested.Nested.Model.MyProperty = value5;
+            VmSource.Nested.Nested.Model.StringProperty = value5;
 
             Assert.AreEqual(value5, VmTarget.TargetProperty);
         }
@@ -108,7 +108,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 VmSource,
-                () => VmSource.Nested.Nested.Model.MyProperty,
+                () => VmSource.Nested.Nested.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty,
                 fallbackValue: fallback,
@@ -122,10 +122,10 @@ namespace GalaSoft.MvvmLight.Test.Binding
             VmSource.Nested.Nested.Model = new TestModel();
             Assert.AreEqual(targetNull, VmTarget.TargetProperty);
             var initialValue = "Initial value";
-            VmSource.Nested.Nested.Model.MyProperty = initialValue;
+            VmSource.Nested.Nested.Model.StringProperty = initialValue;
             Assert.AreEqual(initialValue, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Nested.Nested.Model.MyProperty = newValue;
+            VmSource.Nested.Nested.Model.StringProperty = newValue;
             Assert.AreEqual(newValue, VmTarget.TargetProperty);
         }
 
@@ -140,7 +140,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
                     {
                         Model = new TestModel
                         {
-                            MyProperty = "Initial value"
+                            StringProperty = "Initial value"
                         }
                     }
                 }
@@ -150,14 +150,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 VmSource,
-                () => VmSource.Nested.Nested.Model.MyProperty,
+                () => VmSource.Nested.Nested.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSource.Nested.Nested.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSource.Nested.Nested.Model.StringProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Nested.Nested.Model.MyProperty = newValue;
-            Assert.AreEqual(VmSource.Nested.Nested.Model.MyProperty, VmTarget.TargetProperty);
+            VmSource.Nested.Nested.Model.StringProperty = newValue;
+            Assert.AreEqual(VmSource.Nested.Nested.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -167,7 +167,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
@@ -184,13 +184,13 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 VmSource,
-                () => VmSource.Model.MyProperty,
+                () => VmSource.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.Nested.Nested.Nested.TargetProperty);
 
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.Nested.Nested.Nested.TargetProperty);
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.Nested.Nested.Nested.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Model.MyProperty = newValue;
+            VmSource.Model.StringProperty = newValue;
             Assert.AreEqual(newValue, VmTarget.Nested.Nested.Nested.TargetProperty);
 
             VmTarget.Nested = new TestViewModel
@@ -222,7 +222,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
@@ -230,7 +230,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 VmSource,
-                () => VmSource.Model.MyProperty,
+                () => VmSource.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.Nested.Nested.Nested.TargetProperty);
 
@@ -242,9 +242,9 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 }
             };
 
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.Nested.Nested.Nested.TargetProperty);
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.Nested.Nested.Nested.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Model.MyProperty = newValue;
+            VmSource.Model.StringProperty = newValue;
             Assert.AreEqual(newValue, VmTarget.Nested.Nested.Nested.TargetProperty);
         }
 
@@ -266,19 +266,19 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
             _binding = new Binding<string, string>(
                 VmSource,
-                () => VmSource.Model.MyProperty,
+                () => VmSource.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.Nested.Nested.Nested.TargetProperty);
 
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.Nested.Nested.Nested.TargetProperty);
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.Nested.Nested.Nested.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Model.MyProperty = newValue;
+            VmSource.Model.StringProperty = newValue;
             Assert.AreEqual(newValue, VmTarget.Nested.Nested.Nested.TargetProperty);
         }
     }

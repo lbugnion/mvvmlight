@@ -68,13 +68,13 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 control1,
                 () => control1.Checked,
                 vm,
-                () => vm.Model.MyProperty)
+                () => vm.Model.StringProperty)
                 .ObserveSourceEvent();
 
-            Assert.AreEqual("False", vm.Model.MyProperty);
+            Assert.AreEqual("False", vm.Model.StringProperty);
             Assert.IsFalse(control1.Checked);
             control1.Checked = true;
-            Assert.AreEqual("True", vm.Model.MyProperty);
+            Assert.AreEqual("True", vm.Model.StringProperty);
             Assert.IsTrue(control1.Checked);
         }
 
@@ -134,15 +134,15 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 control1,
                 () => control1.Text,
                 vm,
-                () => vm.Model.MyProperty)
+                () => vm.Model.StringProperty)
                 .ObserveSourceEvent();
 
             Assert.AreEqual(string.Empty, control1.Text);
-            Assert.AreEqual(control1.Text, vm.Model.MyProperty);
+            Assert.AreEqual(control1.Text, vm.Model.StringProperty);
             var value = DateTime.Now.Ticks.ToString();
             control1.Text = value;
             Assert.AreEqual(value, control1.Text);
-            Assert.AreEqual(control1.Text, vm.Model.MyProperty);
+            Assert.AreEqual(control1.Text, vm.Model.StringProperty);
         }
 
         [Test]
@@ -212,19 +212,19 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 control1,
                 () => control1.Checked,
                 vm,
-                () => vm.Model.MyProperty,
+                () => vm.Model.StringProperty,
                 BindingMode.TwoWay)
                 .ObserveSourceEvent();
 
-            Assert.AreEqual("False", vm.Model.MyProperty);
+            Assert.AreEqual("False", vm.Model.StringProperty);
             Assert.IsFalse(control1.Checked);
             control1.Checked = true;
-            Assert.AreEqual("True", vm.Model.MyProperty);
+            Assert.AreEqual("True", vm.Model.StringProperty);
             Assert.IsTrue(control1.Checked);
 
             var value = "False";
-            vm.Model.MyProperty = value;
-            Assert.AreEqual(value, vm.Model.MyProperty);
+            vm.Model.StringProperty = value;
+            Assert.AreEqual(value, vm.Model.StringProperty);
             Assert.IsFalse(control1.Checked);
         }
 
@@ -297,21 +297,21 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 control1,
                 () => control1.Text,
                 vm,
-                () => vm.Model.MyProperty,
+                () => vm.Model.StringProperty,
                 BindingMode.TwoWay)
                 .ObserveSourceEvent();
 
             Assert.AreEqual(string.Empty, control1.Text);
-            Assert.AreEqual(control1.Text, vm.Model.MyProperty);
+            Assert.AreEqual(control1.Text, vm.Model.StringProperty);
             var value = DateTime.Now.Ticks.ToString();
             control1.Text = value;
             Assert.AreEqual(value, control1.Text);
-            Assert.AreEqual(control1.Text, vm.Model.MyProperty);
+            Assert.AreEqual(control1.Text, vm.Model.StringProperty);
 
             value += "Suffix";
-            vm.Model.MyProperty = value;
-            Assert.AreEqual(value, vm.Model.MyProperty);
-            Assert.AreEqual(vm.Model.MyProperty, control1.Text);
+            vm.Model.StringProperty = value;
+            Assert.AreEqual(value, vm.Model.StringProperty);
+            Assert.AreEqual(vm.Model.StringProperty, control1.Text);
         }
 
         [Test]
@@ -326,21 +326,21 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, bool>(
                 vm,
-                () => vm.Model.MyProperty,
+                () => vm.Model.StringProperty,
                 control1,
                 () => control1.Checked,
                 BindingMode.TwoWay)
                 .ObserveTargetEvent();
 
-            Assert.AreEqual(null, vm.Model.MyProperty);
+            Assert.AreEqual(null, vm.Model.StringProperty);
             Assert.IsFalse(control1.Checked);
-            vm.Model.MyProperty = "True";
-            Assert.AreEqual("True", vm.Model.MyProperty);
+            vm.Model.StringProperty = "True";
+            Assert.AreEqual("True", vm.Model.StringProperty);
             Assert.IsTrue(control1.Checked);
 
             control1.Checked = false;
             Assert.IsFalse(control1.Checked);
-            Assert.AreEqual("False", vm.Model.MyProperty);
+            Assert.AreEqual("False", vm.Model.StringProperty);
         }
 
         [Test]
@@ -355,23 +355,23 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 vm,
-                () => vm.Model.MyProperty,
+                () => vm.Model.StringProperty,
                 control1,
                 () => control1.Text,
                 BindingMode.TwoWay)
                 .ObserveTargetEvent();
 
-            Assert.AreEqual(null, vm.Model.MyProperty);
+            Assert.AreEqual(null, vm.Model.StringProperty);
             Assert.AreEqual(string.Empty, control1.Text);
             var value = DateTime.Now.Ticks.ToString();
-            vm.Model.MyProperty = value;
-            Assert.AreEqual(value, vm.Model.MyProperty);
-            Assert.AreEqual(vm.Model.MyProperty, control1.Text);
+            vm.Model.StringProperty = value;
+            Assert.AreEqual(value, vm.Model.StringProperty);
+            Assert.AreEqual(vm.Model.StringProperty, control1.Text);
 
             value += "Suffix";
             control1.Text = value;
             Assert.AreEqual(value, control1.Text);
-            Assert.AreEqual(control1.Text, vm.Model.MyProperty);
+            Assert.AreEqual(control1.Text, vm.Model.StringProperty);
         }
     }
 }

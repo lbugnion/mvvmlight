@@ -68,14 +68,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 control1,
                 () => control1.Checked,
                 vm,
-                () => vm.Model.MyProperty)
+                () => vm.Model.StringProperty)
                 .ObserveSourceEvent(); // LostFocus doesn't work programatically with CheckBoxes
 
-            Assert.AreEqual("False", vm.Model.MyProperty);
+            Assert.AreEqual("False", vm.Model.StringProperty);
             Assert.IsFalse(control1.Checked);
             control1.Checked = true;
             Assert.IsTrue(control1.Checked);
-            Assert.AreEqual("True", vm.Model.MyProperty);
+            Assert.AreEqual("True", vm.Model.StringProperty);
         }
 
         [Test]
@@ -140,18 +140,18 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 control1,
                 () => control1.Text,
                 vm,
-                () => vm.Model.MyProperty)
+                () => vm.Model.StringProperty)
                 .ObserveSourceEvent(UpdateTriggerMode.LostFocus);
 
             Assert.AreEqual(string.Empty, control1.Text);
-            Assert.AreEqual(string.Empty, vm.Model.MyProperty);
+            Assert.AreEqual(string.Empty, vm.Model.StringProperty);
             var value = DateTime.Now.Ticks.ToString();
             control1.RequestFocus();
             control1.Text = value;
             Assert.AreEqual(value, control1.Text);
-            Assert.AreEqual(string.Empty, vm.Model.MyProperty);
+            Assert.AreEqual(string.Empty, vm.Model.StringProperty);
             control1.ClearFocus();
-            Assert.AreEqual(control1.Text, vm.Model.MyProperty);
+            Assert.AreEqual(control1.Text, vm.Model.StringProperty);
         }
 
         [Test]
@@ -225,19 +225,19 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 control1,
                 () => control1.Checked,
                 vm,
-                () => vm.Model.MyProperty,
+                () => vm.Model.StringProperty,
                 BindingMode.TwoWay)
                 .ObserveSourceEvent(); // LostFocus doesn't work programatically with CheckBoxes
 
-            Assert.AreEqual("False", vm.Model.MyProperty);
+            Assert.AreEqual("False", vm.Model.StringProperty);
             Assert.IsFalse(control1.Checked);
             control1.Checked = true;
             Assert.IsTrue(control1.Checked);
-            Assert.AreEqual("True", vm.Model.MyProperty);
+            Assert.AreEqual("True", vm.Model.StringProperty);
 
             var value = "False";
-            vm.Model.MyProperty = value;
-            Assert.AreEqual(value, vm.Model.MyProperty);
+            vm.Model.StringProperty = value;
+            Assert.AreEqual(value, vm.Model.StringProperty);
             Assert.IsFalse(control1.Checked);
         }
 
@@ -319,24 +319,24 @@ namespace GalaSoft.MvvmLight.Test.Binding
                 control1,
                 () => control1.Text,
                 vm,
-                () => vm.Model.MyProperty,
+                () => vm.Model.StringProperty,
                 BindingMode.TwoWay)
                 .ObserveSourceEvent(UpdateTriggerMode.LostFocus);
 
             Assert.AreEqual(string.Empty, control1.Text);
-            Assert.AreEqual(string.Empty, vm.Model.MyProperty);
+            Assert.AreEqual(string.Empty, vm.Model.StringProperty);
             var value = DateTime.Now.Ticks.ToString();
             control1.RequestFocus();
             control1.Text = value;
             Assert.AreEqual(value, control1.Text);
-            Assert.AreEqual(string.Empty, vm.Model.MyProperty);
+            Assert.AreEqual(string.Empty, vm.Model.StringProperty);
             control1.ClearFocus();
-            Assert.AreEqual(control1.Text, vm.Model.MyProperty);
+            Assert.AreEqual(control1.Text, vm.Model.StringProperty);
 
             value += "Suffix";
-            vm.Model.MyProperty = value;
-            Assert.AreEqual(value, vm.Model.MyProperty);
-            Assert.AreEqual(vm.Model.MyProperty, control1.Text);
+            vm.Model.StringProperty = value;
+            Assert.AreEqual(value, vm.Model.StringProperty);
+            Assert.AreEqual(vm.Model.StringProperty, control1.Text);
         }
 
         [Test]
@@ -351,22 +351,22 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, bool>(
                 vm,
-                () => vm.Model.MyProperty,
+                () => vm.Model.StringProperty,
                 control1,
                 () => control1.Checked,
                 BindingMode.TwoWay)
                 .ObserveTargetEvent(); // LostFocus doesn't work programatically with CheckBoxes
 
-            Assert.AreEqual(null, vm.Model.MyProperty);
+            Assert.AreEqual(null, vm.Model.StringProperty);
             Assert.IsFalse(control1.Checked);
-            vm.Model.MyProperty = "True";
-            Assert.AreEqual("True", vm.Model.MyProperty);
+            vm.Model.StringProperty = "True";
+            Assert.AreEqual("True", vm.Model.StringProperty);
             Assert.IsTrue(control1.Checked);
 
             control1.RequestFocus();
             control1.Checked = false;
             Assert.IsFalse(control1.Checked);
-            Assert.AreEqual("False", vm.Model.MyProperty);
+            Assert.AreEqual("False", vm.Model.StringProperty);
         }
 
         [Test]
@@ -381,26 +381,26 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 vm,
-                () => vm.Model.MyProperty,
+                () => vm.Model.StringProperty,
                 control1,
                 () => control1.Text,
                 BindingMode.TwoWay)
                 .ObserveTargetEvent(UpdateTriggerMode.LostFocus);
 
-            Assert.AreEqual(null, vm.Model.MyProperty);
+            Assert.AreEqual(null, vm.Model.StringProperty);
             Assert.AreEqual(string.Empty, control1.Text);
             var value = DateTime.Now.Ticks.ToString();
-            vm.Model.MyProperty = value;
-            Assert.AreEqual(value, vm.Model.MyProperty);
-            Assert.AreEqual(vm.Model.MyProperty, control1.Text);
+            vm.Model.StringProperty = value;
+            Assert.AreEqual(value, vm.Model.StringProperty);
+            Assert.AreEqual(vm.Model.StringProperty, control1.Text);
 
             var newValue = value + "Suffix";
             control1.RequestFocus();
             control1.Text = newValue;
             Assert.AreEqual(newValue, control1.Text);
-            Assert.AreEqual(value, vm.Model.MyProperty);
+            Assert.AreEqual(value, vm.Model.StringProperty);
             control1.ClearFocus();
-            Assert.AreEqual(newValue, vm.Model.MyProperty);
+            Assert.AreEqual(newValue, vm.Model.StringProperty);
         }
     }
 }

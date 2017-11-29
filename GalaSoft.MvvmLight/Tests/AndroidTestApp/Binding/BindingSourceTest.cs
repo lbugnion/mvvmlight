@@ -39,7 +39,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
@@ -47,14 +47,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 _vmSourcePrivate,
-                () => _vmSourcePrivate.Model.MyProperty,
+                () => _vmSourcePrivate.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(_vmSourcePrivate.Model.StringProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            _vmSourcePrivate.Model.MyProperty = newValue;
-            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            _vmSourcePrivate.Model.StringProperty = newValue;
+            Assert.AreEqual(_vmSourcePrivate.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -66,7 +66,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
@@ -74,14 +74,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 vmSource,
-                () => vmSource.Model.MyProperty,
+                () => vmSource.Model.StringProperty,
                 vmTarget,
                 () => vmTarget.TargetProperty);
 
-            Assert.AreEqual(vmSource.Model.MyProperty, vmTarget.TargetProperty);
+            Assert.AreEqual(vmSource.Model.StringProperty, vmTarget.TargetProperty);
             var newValue1 = DateTime.Now.Ticks.ToString();
-            vmSource.Model.MyProperty = newValue1;
-            Assert.AreEqual(vmSource.Model.MyProperty, vmTarget.TargetProperty);
+            vmSource.Model.StringProperty = newValue1;
+            Assert.AreEqual(vmSource.Model.StringProperty, vmTarget.TargetProperty);
 
             // Actual test
 
@@ -89,7 +89,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
@@ -97,14 +97,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 VmSourcePrivate,
-                () => VmSourcePrivate.Model.MyProperty,
+                () => VmSourcePrivate.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSourcePrivate.Model.StringProperty, VmTarget.TargetProperty);
             var newValue2 = DateTime.Now.Ticks.ToString();
-            VmSourcePrivate.Model.MyProperty = newValue2;
-            Assert.AreEqual(VmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            VmSourcePrivate.Model.StringProperty = newValue2;
+            Assert.AreEqual(VmSourcePrivate.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -114,7 +114,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
@@ -122,14 +122,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 _vmSource,
-                () => _vmSource.Model.MyProperty,
+                () => _vmSource.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(_vmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(_vmSource.Model.StringProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            _vmSource.Model.MyProperty = newValue;
-            Assert.AreEqual(_vmSource.Model.MyProperty, VmTarget.TargetProperty);
+            _vmSource.Model.StringProperty = newValue;
+            Assert.AreEqual(_vmSource.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
@@ -147,14 +147,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 VmSource,
-                () => VmSource.Model.MyProperty,
+                () => VmSource.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Model.MyProperty = newValue;
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            VmSource.Model.StringProperty = newValue;
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -164,7 +164,7 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
@@ -172,14 +172,14 @@ namespace GalaSoft.MvvmLight.Test.Binding
 
             _binding = new Binding<string, string>(
                 vmSource,
-                () => vmSource.Model.MyProperty,
+                () => vmSource.Model.StringProperty,
                 VmTarget,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(vmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(vmSource.Model.StringProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            vmSource.Model.MyProperty = newValue;
-            Assert.AreEqual(vmSource.Model.MyProperty, VmTarget.TargetProperty);
+            vmSource.Model.StringProperty = newValue;
+            Assert.AreEqual(vmSource.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -189,20 +189,20 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
             VmTarget = new TestViewModel();
 
             _binding = this.SetBinding(
-                () => _vmSourcePrivate.Model.MyProperty,
+                () => _vmSourcePrivate.Model.StringProperty,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(_vmSourcePrivate.Model.StringProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            _vmSourcePrivate.Model.MyProperty = newValue;
-            Assert.AreEqual(_vmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            _vmSourcePrivate.Model.StringProperty = newValue;
+            Assert.AreEqual(_vmSourcePrivate.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -212,20 +212,20 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
             VmTarget = new TestViewModel();
 
             _binding = this.SetBinding(
-                () => VmSourcePrivate.Model.MyProperty,
+                () => VmSourcePrivate.Model.StringProperty,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSourcePrivate.Model.StringProperty, VmTarget.TargetProperty);
             var newValue2 = DateTime.Now.Ticks.ToString();
-            VmSourcePrivate.Model.MyProperty = newValue2;
-            Assert.AreEqual(VmSourcePrivate.Model.MyProperty, VmTarget.TargetProperty);
+            VmSourcePrivate.Model.StringProperty = newValue2;
+            Assert.AreEqual(VmSourcePrivate.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -235,20 +235,20 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
             VmTarget = new TestViewModel();
 
             _binding = this.SetBinding(
-                () => _vmSource.Model.MyProperty,
+                () => _vmSource.Model.StringProperty,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(_vmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(_vmSource.Model.StringProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            _vmSource.Model.MyProperty = newValue;
-            Assert.AreEqual(_vmSource.Model.MyProperty, VmTarget.TargetProperty);
+            _vmSource.Model.StringProperty = newValue;
+            Assert.AreEqual(_vmSource.Model.StringProperty, VmTarget.TargetProperty);
         }
 
         [Test]
@@ -258,20 +258,20 @@ namespace GalaSoft.MvvmLight.Test.Binding
             {
                 Model = new TestModel
                 {
-                    MyProperty = "Initial value"
+                    StringProperty = "Initial value"
                 }
             };
 
             VmTarget = new TestViewModel();
 
             _binding = this.SetBinding(
-                () => VmSource.Model.MyProperty,
+                () => VmSource.Model.StringProperty,
                 () => VmTarget.TargetProperty);
 
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.TargetProperty);
             var newValue = DateTime.Now.Ticks.ToString();
-            VmSource.Model.MyProperty = newValue;
-            Assert.AreEqual(VmSource.Model.MyProperty, VmTarget.TargetProperty);
+            VmSource.Model.StringProperty = newValue;
+            Assert.AreEqual(VmSource.Model.StringProperty, VmTarget.TargetProperty);
         }
     }
 }

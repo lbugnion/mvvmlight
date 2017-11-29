@@ -5,17 +5,31 @@ namespace GalaSoft.MvvmLight.Test.ViewModel
     /// </summary>
     public class TestModel : ObservableObject
     {
-        private string _myProperty;
+        private string _stringProperty;
 
-        public string MyProperty
+        public string StringProperty
         {
             get
             {
-                return _myProperty;
+                return _stringProperty;
             }
             set
             {
-                Set(ref _myProperty, value);
+                Set(ref _stringProperty, value);
+            }
+        }
+
+        private double _doubleProperty = 0.0;
+
+        public double DoubleProperty
+        {
+            get
+            {
+                return _doubleProperty;
+            }
+            set
+            {
+                Set(ref _doubleProperty, value);
             }
         }
     }
