@@ -63,6 +63,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Helpers\WeakActionTestCase.cs" />
+    <Compile Include="Ioc\SimpleIocTestExceptions.cs" />
     <Compile Include="ViewModel\CommandViewModel.cs" />
     <Compile Include="Command\EventArgsConverter.cs" />
     <Compile Include="Command\EventToCommandEventArgsTest.cs" />
