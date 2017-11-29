@@ -165,8 +165,8 @@ namespace GalaSoft.MvvmLight.Ioc
             "CA1004",
             Justification = "This syntax is better than the alternatives.")]
         public void Register<TInterface, TClass>()
-            where TClass : class
             where TInterface : class
+            where TClass : class, TInterface
         {
             Register<TInterface, TClass>(false);
         }
@@ -184,8 +184,8 @@ namespace GalaSoft.MvvmLight.Ioc
             "CA1004",
             Justification = "This syntax is better than the alternatives.")]
         public void Register<TInterface, TClass>(bool createInstanceImmediately)
-            where TClass : class
             where TInterface : class
+            where TClass : class, TInterface
         {
             lock (_syncLock)
             {

@@ -98,8 +98,8 @@ namespace GalaSoft.MvvmLight.Ioc
             "CA1004:GenericMethodsShouldProvideTypeParameter",
             Justification = "This syntax is more convenient than the alternatives.")]
         void Register<TInterface, TClass>()
-            where TClass : class 
-            where TInterface : class;
+            where TInterface : class
+            where TClass : class, TInterface;
 
         /// <summary>
         /// Registers a given type for a given interface with the possibility for immediate
@@ -114,8 +114,8 @@ namespace GalaSoft.MvvmLight.Ioc
             "CA1004:GenericMethodsShouldProvideTypeParameter",
             Justification = "This syntax is more convenient than the alternatives.")]
         void Register<TInterface, TClass>(bool createInstanceImmediately)
-            where TClass : class
-            where TInterface : class;
+            where TInterface : class
+            where TClass : class, TInterface;
 
         /// <summary>
         /// Registers a given type.
