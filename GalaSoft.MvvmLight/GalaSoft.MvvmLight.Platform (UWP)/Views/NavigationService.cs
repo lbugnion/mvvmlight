@@ -22,7 +22,7 @@ using Windows.UI.Xaml.Controls;
 namespace GalaSoft.MvvmLight.Views
 {
     /// <summary>
-    /// Windows 8 and Windows Phone Application 8.1 implementation of <see cref="INavigationService"/>.
+    /// Windows 10 UWP implementation of <see cref="INavigationService"/>.
     /// </summary>
     ////[ClassInfo(typeof(INavigationService))]
     public class NavigationService : INavigationService
@@ -45,6 +45,10 @@ namespace GalaSoft.MvvmLight.Views
         private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
         private Frame _currentFrame;
 
+        /// <summary>
+        /// Gets or sets the Frame that should be use for the navigation.
+        /// If this is not set explicitly, then (Frame)Window.Current.Content is used.
+        /// </summary>
         public Frame CurrentFrame
         {
             get
@@ -58,9 +62,20 @@ namespace GalaSoft.MvvmLight.Views
             }
         }
 
+        /// <summary>
+        /// Gets a flag indicating if the CurrentFrame can navigate backwards.
+        /// </summary>
         public bool CanGoBack => CurrentFrame.CanGoBack;
+
+        /// <summary>
+        /// Gets a flag indicating if the CurrentFrame can navigate forward.
+        /// </summary>
         public bool CanGoForward => CurrentFrame.CanGoForward;
 
+        /// <summary>
+        /// Check if the CurrentFrame can navigate forward, and if yes, performs
+        /// a forward navigation.
+        /// </summary>
         public void GoForward()
         {
             if (CurrentFrame.CanGoForward)
@@ -185,6 +200,11 @@ namespace GalaSoft.MvvmLight.Views
             }
         }
 
+        /// <summary>
+        /// Gets the key corresponding to a given page type.
+        /// </summary>
+        /// <param name="page">The type of the page for which the key must be returned.</param>
+        /// <returns>The key corresponding to the page type.</returns>
         public string GetKeyForPage(Type page)
         {
             lock (_pagesByKey)
