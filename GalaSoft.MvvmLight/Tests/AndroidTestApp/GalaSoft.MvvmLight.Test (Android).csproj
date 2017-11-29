@@ -100,6 +100,7 @@
       <Link>Helpers\UpdateSourceTriggerMode.cs</Link>
     </Compile>
     <Compile Include="Binding\BindingAccountTest.cs" />
+    <Compile Include="Binding\BindingDeepPathHybridTest.cs" />
     <Compile Include="Binding\BindingDeepPathTest.cs" />
     <Compile Include="Binding\BindingThreadingTest.cs" />
     <Compile Include="Binding\BindingToListTest.cs" />

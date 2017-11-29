@@ -1265,7 +1265,9 @@ namespace GalaSoft.MvvmLight.Helpers
         {
             if (_isFallbackValueActive)
             {
-                _targetProperty.SetValue(_propertyTarget.Target, FallbackValue, null);
+                var type = typeof(TTarget);
+                var castedValue = Convert.ChangeType(FallbackValue, type);
+                _targetProperty.SetValue(_propertyTarget.Target, castedValue, null);
                 return true;
             }
 
