@@ -63,6 +63,7 @@ namespace GalaSoft.MvvmLight.Ioc
             = new Dictionary<Type, Type>();
 
         private readonly object _syncLock = new object();
+        private static readonly object _instanceLock = new object();
 
         private static SimpleIoc _default;
 
@@ -73,7 +74,18 @@ namespace GalaSoft.MvvmLight.Ioc
         {
             get
             {
-                return _default ?? (_default = new SimpleIoc());
+                if (_default == null)
+                {
+                    lock (_instanceLock)
+                    {
+                        if (_default == null)
+                        {
+                            _default = new SimpleIoc();
+                        }
+                    }
+                }
+
+                return _default;
             }
         }
 
