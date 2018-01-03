@@ -35,8 +35,8 @@ namespace GalaSoft.MvvmLight.Ioc
     /// been extended with additional features.
     /// </summary>
     //// [ClassInfo(typeof(SimpleIoc),
-    ////  VersionString = "5.1.9",
-    ////  DateString = "201502072030",
+    ////  VersionString = "5.4.10",
+    ////  DateString = "201801022330",
     ////  Description = "A very simple IOC container.",
     ////  UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////  Email = "laurent@galasoft.ch")]
@@ -840,8 +840,19 @@ namespace GalaSoft.MvvmLight.Ioc
                 .Select(instance => (TService)instance);
         }
 
-#region Implementation of IServiceProvider
+        #region Implementation of IServiceProvider
 
+#if NETSTANDARD1_0
+        /// <summary>
+        /// Gets the service object of the specified type.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If the type serviceType has not
+        /// been registered before calling this method.</exception>
+        /// <returns>
+        /// A service object of type <paramref name="serviceType" />.
+        /// </returns>
+        /// <param name="serviceType">An object that specifies the type of service object to get.</param>
+#else
         /// <summary>
         /// Gets the service object of the specified type.
         /// </summary>
@@ -851,6 +862,7 @@ namespace GalaSoft.MvvmLight.Ioc
         /// A service object of type <paramref name="serviceType" />.
         /// </returns>
         /// <param name="serviceType">An object that specifies the type of service object to get.</param>
+#endif
         public object GetService(Type serviceType)
         {
             return DoGetService(serviceType, _defaultKey);
@@ -905,6 +917,18 @@ namespace GalaSoft.MvvmLight.Ioc
                 .Select(instance => (TService)instance);
         }
 
+#if NETSTANDARD1_0
+        /// <summary>
+        /// Provides a way to get an instance of a given type. If no instance had been instantiated 
+        /// before, a new instance will be created. If an instance had already
+        /// been created, that same instance will be returned.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If the type serviceType has not
+        /// been registered before calling this method.</exception>
+        /// <param name="serviceType">The class of which an instance
+        /// must be returned.</param>
+        /// <returns>An instance of the given type.</returns>
+#else
         /// <summary>
         /// Provides a way to get an instance of a given type. If no instance had been instantiated 
         /// before, a new instance will be created. If an instance had already
@@ -915,11 +939,23 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <param name="serviceType">The class of which an instance
         /// must be returned.</param>
         /// <returns>An instance of the given type.</returns>
+#endif
         public object GetInstance(Type serviceType)
         {
             return DoGetService(serviceType, _defaultKey);
         }
 
+#if NETSTANDARD1_0
+        /// <summary>
+        /// Provides a way to get an instance of a given type. This method
+        /// always returns a new instance and doesn't cache it in the IOC container.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If the type serviceType has not
+        /// been registered before calling this method.</exception>
+        /// <param name="serviceType">The class of which an instance
+        /// must be returned.</param>
+        /// <returns>An instance of the given type.</returns>
+#else
         /// <summary>
         /// Provides a way to get an instance of a given type. This method
         /// always returns a new instance and doesn't cache it in the IOC container.
@@ -929,11 +965,25 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <param name="serviceType">The class of which an instance
         /// must be returned.</param>
         /// <returns>An instance of the given type.</returns>
+#endif
         public object GetInstanceWithoutCaching(Type serviceType)
         {
             return DoGetService(serviceType, _defaultKey, false);
         }
 
+#if NETSTANDARD1_0
+        /// <summary>
+        /// Provides a way to get an instance of a given type corresponding
+        /// to a given key. If no instance had been instantiated with this
+        /// key before, a new instance will be created. If an instance had already
+        /// been created with the same key, that same instance will be returned.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If the type serviceType has not
+        /// been registered before calling this method.</exception>
+        /// <param name="serviceType">The class of which an instance must be returned.</param>
+        /// <param name="key">The key uniquely identifying this instance.</param>
+        /// <returns>An instance corresponding to the given type and key.</returns>
+#else
         /// <summary>
         /// Provides a way to get an instance of a given type corresponding
         /// to a given key. If no instance had been instantiated with this
@@ -945,11 +995,23 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <param name="serviceType">The class of which an instance must be returned.</param>
         /// <param name="key">The key uniquely identifying this instance.</param>
         /// <returns>An instance corresponding to the given type and key.</returns>
+#endif
         public object GetInstance(Type serviceType, string key)
         {
             return DoGetService(serviceType, key);
         }
 
+#if NETSTANDARD1_0
+        /// <summary>
+        /// Provides a way to get an instance of a given type. This method
+        /// always returns a new instance and doesn't cache it in the IOC container.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If the type serviceType has not
+        /// been registered before calling this method.</exception>
+        /// <param name="serviceType">The class of which an instance must be returned.</param>
+        /// <param name="key">The key uniquely identifying this instance.</param>
+        /// <returns>An instance corresponding to the given type and key.</returns>
+#else
         /// <summary>
         /// Provides a way to get an instance of a given type. This method
         /// always returns a new instance and doesn't cache it in the IOC container.
@@ -959,11 +1021,24 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <param name="serviceType">The class of which an instance must be returned.</param>
         /// <param name="key">The key uniquely identifying this instance.</param>
         /// <returns>An instance corresponding to the given type and key.</returns>
+#endif
         public object GetInstanceWithoutCaching(Type serviceType, string key)
         {
             return DoGetService(serviceType, key, false);
         }
 
+#if NETSTANDARD1_0
+        /// <summary>
+        /// Provides a way to get an instance of a given type. If no instance had been instantiated 
+        /// before, a new instance will be created. If an instance had already
+        /// been created, that same instance will be returned.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If the type TService has not
+        /// been registered before calling this method.</exception>
+        /// <typeparam name="TService">The class of which an instance
+        /// must be returned.</typeparam>
+        /// <returns>An instance of the given type.</returns>
+#else
         /// <summary>
         /// Provides a way to get an instance of a given type. If no instance had been instantiated 
         /// before, a new instance will be created. If an instance had already
@@ -974,11 +1049,23 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <typeparam name="TService">The class of which an instance
         /// must be returned.</typeparam>
         /// <returns>An instance of the given type.</returns>
+#endif
         public TService GetInstance<TService>()
         {
             return (TService)DoGetService(typeof(TService), _defaultKey);
         }
 
+#if NETSTANDARD1_0
+        /// <summary>
+        /// Provides a way to get an instance of a given type. This method
+        /// always returns a new instance and doesn't cache it in the IOC container.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If the type TService has not
+        /// been registered before calling this method.</exception>
+        /// <typeparam name="TService">The class of which an instance
+        /// must be returned.</typeparam>
+        /// <returns>An instance of the given type.</returns>
+#else
         /// <summary>
         /// Provides a way to get an instance of a given type. This method
         /// always returns a new instance and doesn't cache it in the IOC container.
@@ -988,11 +1075,25 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <typeparam name="TService">The class of which an instance
         /// must be returned.</typeparam>
         /// <returns>An instance of the given type.</returns>
+#endif
         public TService GetInstanceWithoutCaching<TService>()
         {
             return (TService)DoGetService(typeof(TService), _defaultKey, false);
         }
 
+#if NETSTANDARD1_0
+        /// <summary>
+        /// Provides a way to get an instance of a given type corresponding
+        /// to a given key. If no instance had been instantiated with this
+        /// key before, a new instance will be created. If an instance had already
+        /// been created with the same key, that same instance will be returned.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If the type TService has not
+        /// been registered before calling this method.</exception>
+        /// <typeparam name="TService">The class of which an instance must be returned.</typeparam>
+        /// <param name="key">The key uniquely identifying this instance.</param>
+        /// <returns>An instance corresponding to the given type and key.</returns>
+#else
         /// <summary>
         /// Provides a way to get an instance of a given type corresponding
         /// to a given key. If no instance had been instantiated with this
@@ -1004,11 +1105,23 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <typeparam name="TService">The class of which an instance must be returned.</typeparam>
         /// <param name="key">The key uniquely identifying this instance.</param>
         /// <returns>An instance corresponding to the given type and key.</returns>
+#endif
         public TService GetInstance<TService>(string key)
         {
             return (TService)DoGetService(typeof(TService), key);
         }
 
+#if NETSTANDARD1_0
+        /// <summary>
+        /// Provides a way to get an instance of a given type. This method
+        /// always returns a new instance and doesn't cache it in the IOC container.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">If the type TService has not
+        /// been registered before calling this method.</exception>
+        /// <typeparam name="TService">The class of which an instance must be returned.</typeparam>
+        /// <param name="key">The key uniquely identifying this instance.</param>
+        /// <returns>An instance corresponding to the given type and key.</returns>
+#else
         /// <summary>
         /// Provides a way to get an instance of a given type. This method
         /// always returns a new instance and doesn't cache it in the IOC container.
@@ -1018,6 +1131,7 @@ namespace GalaSoft.MvvmLight.Ioc
         /// <typeparam name="TService">The class of which an instance must be returned.</typeparam>
         /// <param name="key">The key uniquely identifying this instance.</param>
         /// <returns>An instance corresponding to the given type and key.</returns>
+#endif
         public TService GetInstanceWithoutCaching<TService>(string key)
         {
             return (TService)DoGetService(typeof(TService), key, false);
