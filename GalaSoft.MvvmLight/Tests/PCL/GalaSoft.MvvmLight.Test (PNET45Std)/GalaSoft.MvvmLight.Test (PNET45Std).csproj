@@ -291,13 +291,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GalaSoft.MvvmLight %28STD10%29\GalaSoft.MvvmLight %28STD10%29.csproj">
-      <Project>{9e33963e-fc19-4ccb-a4f2-b0aecd8a092f}</Project>
-      <Name>GalaSoft.MvvmLight %28STD10%29</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\GalaSoft.MvvmLight.Platform %28NET45Std%29\GalaSoft.MvvmLight.Platform %28NET45Std%29.csproj">
       <Project>{c5634d8e-924f-4e00-8c4d-cc048f3ec6d9}</Project>
       <Name>GalaSoft.MvvmLight.Platform %28NET45Std%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GalaSoft.MvvmLight.STD10\GalaSoft.MvvmLight.STD10.csproj">
+      <Project>{673098c2-8fd4-4284-99e9-3b6a8d6b989a}</Project>
+      <Name>GalaSoft.MvvmLight.STD10</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

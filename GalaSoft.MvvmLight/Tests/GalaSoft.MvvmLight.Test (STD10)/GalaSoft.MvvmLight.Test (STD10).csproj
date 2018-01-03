@@ -276,9 +276,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\GalaSoft.MvvmLight %28STD10%29\GalaSoft.MvvmLight %28STD10%29.csproj">
-      <Project>{9e33963e-fc19-4ccb-a4f2-b0aecd8a092f}</Project>
-      <Name>GalaSoft.MvvmLight %28STD10%29</Name>
+    <ProjectReference Include="..\..\GalaSoft.MvvmLight.STD10\GalaSoft.MvvmLight.STD10.csproj">
+      <Project>{673098c2-8fd4-4284-99e9-3b6a8d6b989a}</Project>
+      <Name>GalaSoft.MvvmLight.STD10</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

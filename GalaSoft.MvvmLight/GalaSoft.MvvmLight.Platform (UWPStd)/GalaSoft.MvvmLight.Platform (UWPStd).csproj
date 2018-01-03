@@ -11,7 +11,7 @@
     <AssemblyName>GalaSoft.MvvmLight.Platform</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -130,9 +130,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GalaSoft.MvvmLight %28STD10%29\GalaSoft.MvvmLight %28STD10%29.csproj">
-      <Project>{9e33963e-fc19-4ccb-a4f2-b0aecd8a092f}</Project>
-      <Name>GalaSoft.MvvmLight %28STD10%29</Name>
+    <ProjectReference Include="..\GalaSoft.MvvmLight.STD10\GalaSoft.MvvmLight.STD10.csproj">
+      <Project>{673098c2-8fd4-4284-99e9-3b6a8d6b989a}</Project>
+      <Name>GalaSoft.MvvmLight.STD10</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

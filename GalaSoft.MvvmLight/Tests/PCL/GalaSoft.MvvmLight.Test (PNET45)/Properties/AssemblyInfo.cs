@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight.Test")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2017")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -28,4 +28,4 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("5.4.0.1")]
+[assembly: AssemblyVersion("5.4.1.0")]

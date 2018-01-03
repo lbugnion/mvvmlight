@@ -19,7 +19,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
@@ -146,6 +146,9 @@
     </Compile>
     <Compile Include="..\AndroidTestApp\Binding\BindingTest.cs">
       <Link>Binding\BindingTest.cs</Link>
+    </Compile>
+    <Compile Include="..\AndroidTestApp\Binding\BindingToListTest.cs">
+      <Link>Binding\BindingToListTest.cs</Link>
     </Compile>
     <Compile Include="..\AndroidTestApp\Binding\BindingValueChangedFromSourceControlTest.cs">
       <Link>Binding\BindingValueChangedFromSourceControlTest.cs</Link>

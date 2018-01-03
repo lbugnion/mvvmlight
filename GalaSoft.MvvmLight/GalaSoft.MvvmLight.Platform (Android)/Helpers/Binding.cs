@@ -21,8 +21,8 @@ namespace GalaSoft.MvvmLight.Helpers
     /// Base class for bindings in Xamarin.iOS and Xamarin.Android.
     /// </summary>
     ////[ClassInfo(typeof(Binding),
-    ////    VersionString = "5.3.4",
-    ////    DateString = "201604212130",
+    ////    VersionString = "5.4.4",
+    ////    DateString = "201801022330",
     ////    Description = "Base class for bindings in Xamarin.iOS and Xamarin.Android",
     ////    UrlContacts = "http://www.galasoft.ch/contact_en.html",
     ////    Email = "laurent@galasoft.ch")]

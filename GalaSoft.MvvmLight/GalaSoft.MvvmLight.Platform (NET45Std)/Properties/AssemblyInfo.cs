@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GalaSoft Laurent Bugnion @ http://www.galasoft.ch")]
 [assembly: AssemblyProduct("GalaSoft.MvvmLight.Platform")]
-[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2017")]
+[assembly: AssemblyCopyright("Copyright © GalaSoft Laurent Bugnion 2009-2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
