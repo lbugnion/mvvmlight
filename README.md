@@ -13,6 +13,11 @@ Documentation: See http://www.mvvmlight.net/doc
 | [MvvmLightLibs](https://www.nuget.org/packages/MvvmLightLibs/)  | [MvvmLight](https://www.nuget.org/packages/MvvmLight/) | [MvvmLightAndroidSupport](https://www.nuget.org/packages/MvvmLightAndroidSupport/) | [MvvmLightLibsStd10](https://www.nuget.org/packages/MvvmLightLibsStd10/) |
 | ------------- | ------------- | ------------- | ------------- |
 
+## VSIX packages for Visual Studio
+
+| [VS2012](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2012)  | [VS2013](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2013) | [VS2015](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2015) | [VS2017](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2017) |
+| ------------- | ------------- | ------------- | ------------- |
+
 ## License
 
 Under [MIT License](http://www.galasoft.ch/license_MIT.txt).
