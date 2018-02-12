@@ -22,7 +22,11 @@ using System.Linq;
 using System.Reflection;
 
 #if !NETSTANDARD1_0
+#if NEWLOCATOR
+using CommonServiceLocator;
+#else
 using Microsoft.Practices.ServiceLocation;
+#endif
 #endif
 
 namespace GalaSoft.MvvmLight.Ioc

@@ -17,7 +17,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 
 #if !NETSTANDARD1_0
+#if NEWLOCATOR
+using CommonServiceLocator;
+#else
 using Microsoft.Practices.ServiceLocation;
+#endif
 #endif
 
 namespace GalaSoft.MvvmLight.Ioc
