@@ -5,13 +5,12 @@ The main purpose of the toolkit is to accelerate the creation and development of
 ## Get started
 
 More information about the MVVM Light Toolkit can be found on http://www.mvvmlight.net.
-Documentation
 
-See http://www.mvvmlight.net/doc
+Documentation: See http://www.mvvmlight.net/doc
 
 ## Nuget versions
 
-| [MvvmLightLibs](https://www.nuget.org/packages/MvvmLightLibs/5.3.0)  | [MvvmLight](https://www.nuget.org/packages/MvvmLight/) | [MvvmLightAndroidSupport](https://www.nuget.org/packages/MvvmLightAndroidSupport/) | [MvvmLightLibsStd10](https://www.nuget.org/packages/MvvmLightLibsStd10/5.4.0.1-alpha) |
+| [MvvmLightLibs](https://www.nuget.org/packages/MvvmLightLibs/)  | [MvvmLight](https://www.nuget.org/packages/MvvmLight/) | [MvvmLightAndroidSupport](https://www.nuget.org/packages/MvvmLightAndroidSupport/) | [MvvmLightLibsStd10](https://www.nuget.org/packages/MvvmLightLibsStd10/) |
 | ------------- | ------------- | ------------- | ------------- |
 
 ## License
