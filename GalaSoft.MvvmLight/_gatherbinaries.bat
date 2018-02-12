@@ -64,12 +64,12 @@ if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\Microsoft.Practices.Serv
 
 rem .NET Standard 1.0
 
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\STD10\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\STD10\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\STD10\GalaSoft.MvvmLight.xml
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\STD10\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\STD10\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\STD10\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\STD10\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\STD10\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\STD10\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\STD10\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\STD10\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\STD10\GalaSoft.MvvmLight.xml
 
 rem NET35
 
@@ -164,12 +164,12 @@ if exist ".\GalaSoft.MvvmLight.Platform (NET45)\bin\Release\System.Windows.Inter
 
 rem NET45Std
 
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\NET45Std\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\NET45Std\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\NET45Std\GalaSoft.MvvmLight.xml
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\NET45Std\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\NET45Std\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\NET45Std\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\NET45Std\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\NET45Std\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\NET45Std\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\NET45Std\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\NET45Std\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\NET45Std\GalaSoft.MvvmLight.xml
 
 if exist ".\GalaSoft.MvvmLight.Platform (NET45Std)\bin\Debug\GalaSoft.MvvmLight.Platform.dll" copy ".\GalaSoft.MvvmLight.Platform (NET45Std)\bin\Debug\GalaSoft.MvvmLight.Platform.dll" .\_Binaries\Debug\NET45Std\GalaSoft.MvvmLight.Platform.dll
 if exist ".\GalaSoft.MvvmLight.Platform (NET45Std)\bin\Debug\GalaSoft.MvvmLight.Platform.pdb" copy ".\GalaSoft.MvvmLight.Platform (NET45Std)\bin\Debug\GalaSoft.MvvmLight.Platform.pdb" .\_Binaries\Debug\NET45Std\GalaSoft.MvvmLight.Platform.pdb
@@ -217,12 +217,12 @@ if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\Microsoft.Practices.Serv
 
 rem UWPStd
 
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\UWPStd\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\UWPStd\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\UWPStd\GalaSoft.MvvmLight.xml
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\UWPStd\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\UWPStd\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\UWPStd\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\UWPStd\GalaSoft.MvvmLight.xml
 
 if exist ".\GalaSoft.MvvmLight.Platform (UWPStd)\bin\Debug\GalaSoft.MvvmLight.Platform.dll" copy ".\GalaSoft.MvvmLight.Platform (UWPStd)\bin\Debug\GalaSoft.MvvmLight.Platform.dll" .\_Binaries\Debug\UWPStd\GalaSoft.MvvmLight.Platform.dll
 if exist ".\GalaSoft.MvvmLight.Platform (UWPStd)\bin\Debug\GalaSoft.MvvmLight.Platform.pdb" copy ".\GalaSoft.MvvmLight.Platform (UWPStd)\bin\Debug\GalaSoft.MvvmLight.Platform.pdb" .\_Binaries\Debug\UWPStd\GalaSoft.MvvmLight.Platform.pdb
@@ -272,12 +272,12 @@ if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Release\Microsoft.Practices.Serv
 
 rem AndroidStd
 
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.xml
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.xml
 
 if exist ".\GalaSoft.MvvmLight.Platform (AndroidStd)\bin\Debug\GalaSoft.MvvmLight.Platform.dll" copy ".\GalaSoft.MvvmLight.Platform (AndroidStd)\bin\Debug\GalaSoft.MvvmLight.Platform.dll" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.Platform.dll
 if exist ".\GalaSoft.MvvmLight.Platform (AndroidStd)\bin\Debug\GalaSoft.MvvmLight.Platform.pdb" copy ".\GalaSoft.MvvmLight.Platform (AndroidStd)\bin\Debug\GalaSoft.MvvmLight.Platform.pdb" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.Platform.pdb
@@ -325,12 +325,12 @@ if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\\Release\Microsoft.Practices.Ser
 
 rem iOSStd
 
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\iOSStd\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\iOSStd\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\iOSStd\GalaSoft.MvvmLight.xml
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\iOSStd\GalaSoft.MvvmLight.dll
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\iOSStd\GalaSoft.MvvmLight.pdb
-if exist ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight (STD10)\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\iOSStd\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\iOSStd\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\iOSStd\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\iOSStd\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\iOSStd\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\iOSStd\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\iOSStd\GalaSoft.MvvmLight.xml
 
 if exist ".\GalaSoft.MvvmLight.Platform (iOSStd)\bin\iPhone\Debug\GalaSoft.MvvmLight.Platform.dll" copy ".\GalaSoft.MvvmLight.Platform (iOSStd)\bin\iPhone\Debug\GalaSoft.MvvmLight.Platform.dll" .\_Binaries\Debug\iOSStd\GalaSoft.MvvmLight.Platform.dll
 if exist ".\GalaSoft.MvvmLight.Platform (iOSStd)\bin\iPhone\Debug\GalaSoft.MvvmLight.Platform.pdb" copy ".\GalaSoft.MvvmLight.Platform (iOSStd)\bin\iPhone\Debug\GalaSoft.MvvmLight.Platform.pdb" .\_Binaries\Debug\iOSStd\GalaSoft.MvvmLight.Platform.pdb
