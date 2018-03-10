@@ -14,6 +14,8 @@
 // ****************************************************************************
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UIKit;
 
@@ -22,7 +24,7 @@ namespace GalaSoft.MvvmLight.Views
     /// <summary>
     /// An implementation of <see cref="IDialogService"/> allowing
     /// to display simple dialogs to the user. Note that this class
-    /// uses the built in Windows Phone dialogs which may or may not
+    /// uses the built in UIAlertController which may or may not
     /// be sufficient for your needs. Using this class is easy
     /// but feel free to develop your own IDialogService implementation
     /// if needed.
@@ -30,6 +32,8 @@ namespace GalaSoft.MvvmLight.Views
     ////[ClassInfo(typeof(IDialogService))]
     public class DialogService : IDialogService
     {
+        private Stack<UIWindow> _windows = new Stack<UIWindow>();
+
         /// <summary>
         /// Displays information about an error.
         /// </summary>
@@ -47,24 +51,14 @@ namespace GalaSoft.MvvmLight.Views
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var av = new UIAlertView(
+            Show(
                 title,
                 message,
+                buttonText ?? "OK",
                 null,
-                buttonText,
+                () => { afterHideCallback?.Invoke(); tcs.SetResult(true); },
                 null);
-
-            av.Dismissed += (s, e) =>
-            {
-                if (afterHideCallback != null)
-                {
-                    afterHideCallback();
-                }
-
-                tcs.SetResult(true);
-            };
-
-            av.Show();
+            
             return tcs.Task;
         }
 
@@ -85,24 +79,15 @@ namespace GalaSoft.MvvmLight.Views
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var av = new UIAlertView(
+            Show(
                 title,
                 error.Message,
+                buttonText ?? "OK",
                 null,
-                buttonText,
-                null);
+                () => { afterHideCallback?.Invoke(); tcs.SetResult(true); }, 
+                null
+            );
 
-            av.Dismissed += (s, e) =>
-            {
-                if (afterHideCallback != null)
-                {
-                    afterHideCallback();
-                }
-
-                tcs.SetResult(true);
-            };
-
-            av.Show();
             return tcs.Task;
         }
 
@@ -113,22 +98,21 @@ namespace GalaSoft.MvvmLight.Views
         /// <param name="message">The message to be shown to the user.</param>
         /// <param name="title">The title of the dialog box. This may be null.</param>
         /// <returns>A Task allowing this async method to be awaited.</returns>
-        /// <remarks>Displaying dialogs in Android is synchronous. As such,
+        /// <remarks>Displaying dialogs in iOS is synchronous. As such,
         /// this method will be executed synchronously even though it can be awaited
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(string message, string title)
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var av = new UIAlertView(
+            Show(
                 title,
                 message,
-                null,
                 "OK",
+                null,
+                () => tcs.SetResult(true),
                 null);
 
-            av.Dismissed += (s, e) => tcs.SetResult(true);
-            av.Show();
             return tcs.Task;
         }
 
@@ -143,7 +127,7 @@ namespace GalaSoft.MvvmLight.Views
         /// <param name="afterHideCallback">A callback that should be executed after
         /// the dialog box is closed by the user.</param>
         /// <returns>A Task allowing this async method to be awaited.</returns>
-        /// <remarks>Displaying dialogs in Android is synchronous. As such,
+        /// <remarks>Displaying dialogs in iOS is synchronous. As such,
         /// this method will be executed synchronously even though it can be awaited
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessage(
@@ -154,30 +138,20 @@ namespace GalaSoft.MvvmLight.Views
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var av = new UIAlertView(
+            Show(
                 title,
                 message,
+                buttonText ?? "OK",
                 null,
-                buttonText,
+                () => { afterHideCallback?.Invoke(); tcs.SetResult(true); },
                 null);
 
-            av.Dismissed += (s, e) =>
-            {
-                if (afterHideCallback != null)
-                {
-                    afterHideCallback();
-                }
-
-                tcs.SetResult(true);
-            };
-
-            av.Show();
             return tcs.Task;
         }
 
         /// <summary>
-        /// Displays information to the user. The dialog box will have only
-        /// one button.
+        /// Displays information to the user. The dialog box will have two
+        /// buttons.
         /// </summary>
         /// <param name="message">The message to be shown to the user.</param>
         /// <param name="title">The title of the dialog box. This may be null.</param>
@@ -191,7 +165,7 @@ namespace GalaSoft.MvvmLight.Views
         /// (false) was pressed by the user.</param>
         /// <returns>A Task allowing this async method to be awaited. The task will return
         /// true or false depending on the dialog result.</returns>
-        /// <remarks>Displaying dialogs in Android is synchronous. As such,
+        /// <remarks>Displaying dialogs in iOS is synchronous. As such,
         /// this method will be executed synchronously even though it can be awaited
         /// for cross-platform compatibility purposes.</remarks>
         public Task<bool> ShowMessage(
@@ -203,24 +177,14 @@ namespace GalaSoft.MvvmLight.Views
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var av = new UIAlertView(
+            Show(
                 title,
                 message,
-                null,
-                buttonCancelText,
-                buttonConfirmText);
+                buttonCancelText ?? "Cancel",
+                buttonConfirmText ?? "OK",
+                () => { afterHideCallback?.Invoke(false); tcs.SetResult(false); },
+                () => { afterHideCallback?.Invoke(true); tcs.SetResult(true); });
 
-            av.Dismissed += (s, e) =>
-            {
-                if (afterHideCallback != null)
-                {
-                    afterHideCallback(e.ButtonIndex > 0);
-                }
-
-                tcs.SetResult(e.ButtonIndex > 0);
-            };
-
-            av.Show();
             return tcs.Task;
         }
 
@@ -231,23 +195,100 @@ namespace GalaSoft.MvvmLight.Views
         /// <param name="message">The message to be shown to the user.</param>
         /// <param name="title">The title of the dialog box. This may be null.</param>
         /// <returns>A Task allowing this async method to be awaited.</returns>
-        /// <remarks>Displaying dialogs in Android is synchronous. As such,
+        /// <remarks>Displaying dialogs in iOS is synchronous. As such,
         /// this method will be executed synchronously even though it can be awaited
         /// for cross-platform compatibility purposes.</remarks>
         public Task ShowMessageBox(string message, string title)
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            var av = new UIAlertView(
-                title,
-                message,
-                null,
+            Show(
+                title, 
+                message, 
                 "OK",
+                null,
+                () => tcs.SetResult(true),
                 null);
 
-            av.Dismissed += (s, e) => tcs.SetResult(true);
-            av.Show();
             return tcs.Task;
+        }
+
+        private void Show(
+                string title,
+                string message,
+                string cancelButtonText,
+                string otherButtonText,
+                Action cancelButtonAction,
+                Action otherButtonAction)
+        {
+            var alertController = CreateAlertController(
+                title,
+                message,
+                cancelButtonText,
+                otherButtonText,
+                cancelButtonAction,
+                otherButtonAction);
+
+            var window = CreateWindow();
+            _windows.Push(window);
+
+            window.MakeKeyAndVisible();
+            window.RootViewController.PresentViewController(alertController, true, null);
+        }
+
+        private UIAlertController CreateAlertController(
+                string title,
+                string message,
+                string cancelButtonText,
+                string otherButtonText,
+                Action cancelButtonAction,
+                Action confirmButtonAction)
+        {
+            var alertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+
+            if (!string.IsNullOrEmpty(cancelButtonText))
+            {
+                alertController.AddAction(UIAlertAction.Create(
+                    cancelButtonText,
+                    UIAlertActionStyle.Cancel,
+                    (action) =>
+                    {
+                        cancelButtonAction?.Invoke();
+                        PopWindow();
+                    }));
+            }
+
+            if (!string.IsNullOrEmpty(otherButtonText))
+            {
+                alertController.AddAction(UIAlertAction.Create(
+                    otherButtonText,
+                    UIAlertActionStyle.Default,
+                    (action) =>
+                    {
+                        confirmButtonAction?.Invoke();
+                        PopWindow();
+                    }));
+            }
+
+            return alertController;
+        }
+
+
+        private UIWindow CreateWindow()
+        {
+            var window = new UIWindow(UIScreen.MainScreen.Bounds);
+            window.RootViewController = new UIViewController();
+
+            window.TintColor = UIApplication.SharedApplication.KeyWindow?.TintColor;
+            window.WindowLevel = (UIApplication.SharedApplication.Windows.LastOrDefault()?.WindowLevel ?? 0) + 1;
+
+            return window;
+        }
+
+        private void PopWindow()
+        {
+            var window = _windows.Pop();
+            window.Hidden = true;
         }
     }
 }
