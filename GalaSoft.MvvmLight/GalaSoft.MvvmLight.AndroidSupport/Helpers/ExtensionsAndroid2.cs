@@ -41,12 +41,14 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <param name="bindViewHolderDelegate">A delegate to the method used to bind the view to the corresponding item.</param>
         /// <param name="createViewHolderDelegate">A delegate to the method used to create the view for the corresponding item.</param>
         /// <param name="clickCallback">An optional delegate to a method called when an item is clicked or tapped.</param>
+        /// <param name="getItemViewType">A delegate to the method used to decide the view type id.</param>
         /// <returns>The created <see cref="ObservableRecyclerAdapter{TItem, THolder}"/>.</returns>
         public static ObservableRecyclerAdapter<TItem, THolder> GetRecyclerAdapter<TItem, THolder>(
             this IList<TItem> list,
             Action<THolder, TItem, int> bindViewHolderDelegate,
             Func<ViewGroup, int, THolder> createViewHolderDelegate,
-            Action<int, View, int, View> clickCallback = null)
+            Action<int, View, int, View> clickCallback = null,
+            Func<int, int> getItemViewType = null)
             where THolder : RecyclerView.ViewHolder
         {
             return new ObservableRecyclerAdapter<TItem, THolder>
@@ -54,6 +56,7 @@ namespace GalaSoft.MvvmLight.Helpers
                 DataSource = list,
                 BindViewHolderDelegate = bindViewHolderDelegate,
                 CreateViewHolderDelegate = createViewHolderDelegate,
+                GetItemViewTypeDelegate = getItemViewType,
                 ClickCallback = clickCallback
             };
         }
