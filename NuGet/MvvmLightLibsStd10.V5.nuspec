@@ -2,16 +2,16 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MvvmLightLibsStd10</id>
-        <version>5.4.1.0</version>
+        <version>5.4.1.1</version>
         <title>MVVM Light libraries only, .NET Standard 1.0</title>
         <authors>Laurent Bugnion (GalaSoft)</authors>
         <owners>Laurent Bugnion (GalaSoft)</owners>
-        <licenseUrl>http://mvvmlight.codeplex.com/license</licenseUrl>
+        <licenseUrl>https://github.com/lbugnion/mvvmlight/blob/master/LICENSE</licenseUrl>
         <projectUrl>http://www.mvvmlight.net</projectUrl>
-        <iconUrl>http://www.galasoft.ch/mvvm/resources/Logo/icon_100x100_transparent.png</iconUrl>
+        <iconUrl>http://mvvmlight.net/resources/logo/icon_100x100_transparent.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>V5.4.1.0, see http://galasoft.ch/s/mvvmstandard10. The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</description>
-        <summary>V5.4.1.0, see http://galasoft.ch/s/mvvmstandard10. The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</summary>
+        <description>V5.4.1.1 for .NET Standard; see http://www.mvvmlight.net/std10. The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</description>
+        <summary>V5.4.1.1 for .NET Standard; see http://www.mvvmlight.net/std10. The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</summary>
         <releaseNotes>http://www.mvvmlight.net/installing/changes</releaseNotes>
         <copyright>Copyright 2009-2018 Laurent Bugnion (GalaSoft)</copyright>
         <language>en-US</language>
