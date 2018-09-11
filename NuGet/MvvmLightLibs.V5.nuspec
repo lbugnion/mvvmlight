@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MvvmLightLibs</id>
-        <version>5.4.1-alpha</version>
+        <version>5.4.1.0</version>
         <title>MVVM Light libraries only</title>
         <authors>Laurent Bugnion (GalaSoft)</authors>
         <owners>Laurent Bugnion (GalaSoft)</owners>
@@ -10,10 +10,10 @@
         <projectUrl>http://www.mvvmlight.net</projectUrl>
         <iconUrl>http://www.galasoft.ch/mvvm/resources/Logo/icon_100x100_transparent.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>V5.4.1.0 ALPHA. The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</description>
-        <summary>V5.4.1.0 ALPHA. The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</summary>
+        <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</description>
+        <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the libraries and doesn't add any scaffolding to your application!</summary>
         <releaseNotes>http://www.mvvmlight.net/installing/changes</releaseNotes>
-        <copyright>Copyright 2009-2017 Laurent Bugnion (GalaSoft)</copyright>
+        <copyright>Copyright 2009-2018 Laurent Bugnion (GalaSoft)</copyright>
         <language>en-US</language>
         <tags>mvvm mvvmlight silverlight windowsstore winrt win10 uwp winstore wpf windowsphone windowsphone8 xamarin android iOS xamarinforms pcl</tags>
 
@@ -31,34 +31,34 @@
 				<dependency id="CommonServiceLocator" version="1.0" />
 			</group>
 			<group targetFramework="net40">
-				<dependency id="CommonServiceLocator" version="1.3" />
+				<dependency id="CommonServiceLocator" version="2.0.2" />
 			</group>
 			<group targetFramework="net45">
-				<dependency id="CommonServiceLocator" version="1.3" />
+				<dependency id="CommonServiceLocator" version="2.0.2" />
 			</group>
 			<group targetFramework="sl5">
 				<dependency id="CommonServiceLocator" version="1.3" />
 			</group>
 			<group targetFramework="wp81">
-				<dependency id="CommonServiceLocator" version="1.3" />
+				<dependency id="CommonServiceLocator" version="2.0.2" />
 			</group>
 			<group targetFramework="wpa81">
-				<dependency id="CommonServiceLocator" version="1.3" />
+				<dependency id="CommonServiceLocator" version="2.0.2" />
 			</group>
 			<group targetFramework="windows81">
-				<dependency id="CommonServiceLocator" version="1.3" />
+				<dependency id="CommonServiceLocator" version="2.0.2" />
 			</group>
 			<group targetFramework="uap10.0">
-				<dependency id="CommonServiceLocator" version="1.3" />
+				<dependency id="CommonServiceLocator" version="2.0.2" />
 			</group>
 			<group targetFramework="monoandroid1">
-				<dependency id="CommonServiceLocator" version="1.3" />
+				<dependency id="CommonServiceLocator" version="2.0.2" />
 			</group>
 			<group targetFramework="xamarin.ios10">
-				<dependency id="CommonServiceLocator" version="1.3" />
+				<dependency id="CommonServiceLocator" version="2.0.2" />
 			</group>
 			<group targetFramework="portable-net45+wp81+wpa81+netcore45+monoandroid1+xamarin.ios10+uap10.0">
-				<dependency id="CommonServiceLocator" version="1.3" />
+				<dependency id="CommonServiceLocator" version="2.0.2" />
 			</group>
 		</dependencies>
     </metadata>
