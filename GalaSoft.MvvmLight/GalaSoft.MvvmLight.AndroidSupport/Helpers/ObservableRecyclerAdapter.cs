@@ -1,6 +1,6 @@
 // ****************************************************************************
 // <copyright file="ObservableRecyclerAdapter.cs" company="GalaSoft Laurent Bugnion">
-// Copyright © GalaSoft Laurent Bugnion 2009-2016
+// Copyright Â© GalaSoft Laurent Bugnion 2009-2016
 // </copyright>
 // ****************************************************************************
 // <author>Laurent Bugnion</author>
@@ -88,6 +88,16 @@ namespace GalaSoft.MvvmLight.Helpers
         /// <see cref="CellLayoutId"/> property.
         /// </summary>
         public Func<ViewGroup, int, THolder> CreateViewHolderDelegate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// A delegate to a method taking an item's position and returning the view type.
+        /// If null, defult view type will always be 0.
+        /// </summary>
+        public Func<int, int> GetItemViewTypeDelegate
         {
             get;
             set;
@@ -185,6 +195,23 @@ namespace GalaSoft.MvvmLight.Helpers
             }
 
             BindViewHolderDelegate((THolder)holder, _dataSource[position], position);
+        }
+        
+        /// <summary>
+        /// Gets the type of the item view and it will be passed to OnCreateViewHolder method
+        /// to handle multiple layout based on position.
+        /// </summary>
+        /// <returns>The item view type.</returns>
+        /// <param name="position">Position.</param>
+        public override int GetItemViewType(int position)
+        {
+            if (GetItemViewTypeDelegate == null)
+            {
+                return 0;
+            }
+
+            // No ViewHolderType specified --> Call the delegate
+            return GetItemViewTypeDelegate(position);
         }
 
         /// <summary>
