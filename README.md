@@ -10,8 +10,8 @@ Documentation: See http://www.mvvmlight.net/doc
 
 ## Nuget versions
 
-| [MvvmLightLibs](https://www.nuget.org/packages/MvvmLightLibs/)  | [MvvmLight](https://www.nuget.org/packages/MvvmLight/) | [MvvmLightAndroidSupport](https://www.nuget.org/packages/MvvmLightAndroidSupport/) | [MvvmLightLibsStd10](https://www.nuget.org/packages/MvvmLightLibsStd10/) |
-| ------------- | ------------- | ------------- | ------------- |
+| [MvvmLightLibs](https://www.nuget.org/packages/MvvmLightLibs/)  | [MvvmLight](https://www.nuget.org/packages/MvvmLight/) | [MvvmLightAndroidSupport](https://www.nuget.org/packages/MvvmLightAndroidSupport/) | [MvvmLightLibsStd10](https://www.nuget.org/packages/MvvmLightLibsStd10/) | [MvvmLightStd10](https://www.nuget.org/packages/MvvmLightStd10/)
+| ------------- | ------------- | ------------- | ------------- | ------------- |
 
 ## VSIX packages for Visual Studio
 
