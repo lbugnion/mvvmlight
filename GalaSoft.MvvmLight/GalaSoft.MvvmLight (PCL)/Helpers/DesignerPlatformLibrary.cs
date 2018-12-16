@@ -44,10 +44,18 @@ namespace GalaSoft.MvvmLight.Helpers
             // When running in WinRT, it will not load the PresentationFramework lib
 
             // Check Silverlight
-            var dm = Type.GetType("System.ComponentModel.DesignerProperties, System.Windows, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e");
-            if (dm != null)
+            try
             {
-                return DesignerPlatformLibrary.Silverlight;
+                var dm = Type.GetType("System.ComponentModel.DesignerProperties, System.Windows, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e");
+                if (dm != null)
+                {
+                    return DesignerPlatformLibrary.Silverlight;
+                }
+            }
+            catch
+            {
+                // Fix for https://github.com/lbugnion/mvvmlight/issues/41
+                // Ignore exceptions here and fall through to the next check
             }
 
             // Check .NET 
