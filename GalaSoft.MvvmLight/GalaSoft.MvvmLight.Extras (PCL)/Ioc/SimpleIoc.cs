@@ -407,6 +407,12 @@ namespace GalaSoft.MvvmLight.Ioc
             bool createInstanceImmediately)
             where TClass : class
         {
+        
+            if (factory == null)
+            {
+                throw new ArgumentNullException("factory");
+            }
+            
             lock (_syncLock)
             {
                 var classType = typeof(TClass);
