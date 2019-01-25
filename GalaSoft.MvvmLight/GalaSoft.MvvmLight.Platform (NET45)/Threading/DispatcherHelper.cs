@@ -61,7 +61,7 @@ namespace GalaSoft.MvvmLight.Threading
 
         /// <summary>
         /// Executes an action on the UI thread. If this method is called
-        /// from the UI thread, the action is executed immendiately. If the
+        /// from the UI thread, the action is executed immediately. If the
         /// method is called from another thread, the action will be enqueued
         /// on the UI thread's dispatcher and executed asynchronously.
         /// <para>For additional operations on the UI thread, you can get a
