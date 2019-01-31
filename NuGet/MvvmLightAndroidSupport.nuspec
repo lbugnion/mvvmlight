@@ -27,9 +27,9 @@
         <copyright>Copyright 2009-2015 Laurent Bugnion (GalaSoft)</copyright>-->
 		
 		<dependencies>
-			<group targetFramework="monoandroid1">
-				<dependency id="Xamarin.Android.Support.v7.RecyclerView" version="23.0" />
-				<dependency id="mvvmlightlibs" version="5.3" />
+			<group targetFramework="monoandroid90">
+				<dependency id="Xamarin.Android.Support.v7.RecyclerView" version="28.0.0.1" />
+				<dependency id="MvvmLightLibs" version="5.4.1.1" />
 			</group>
 		</dependencies>
     </metadata>
