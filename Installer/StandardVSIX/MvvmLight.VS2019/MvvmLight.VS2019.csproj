@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>15.0</OldToolsVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{11E23DA3-0E07-4A71-9ED7-7EBEACDBB12C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MvvmLight.VS2019</RootNamespace>
+    <AssemblyName>MvvmLight.VS2019</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <GeneratePkgDefFile>false</GeneratePkgDefFile>
+    <IncludeAssemblyInVSIXContainer>false</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Assets\MvvmLightCSharpSnippets.pkgdef">
+      <Link>MvvmLightCSharpSnippets\MvvmLightCSharpSnippets.pkgdef</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmdroidelement.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmdroidelement.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmFormsBindableProp.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmFormsBindableProp.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmInpc.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmInpc.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmInpcLambda.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmInpcLambda.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmInpcLambdaMsg.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmInpcLambdaMsg.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmInpcMsg.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmInpcMsg.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmInpcSet.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmInpcSet.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmInpcSetLambda.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmInpcSetLambda.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmInpcSetLambdaMsg.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmInpcSetLambdaMsg.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmInpcSetMsg.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmInpcSetMsg.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmPropA.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmPropA.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmPropDP.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmPropDP.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmRelay.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmRelay.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmRelayCanExecute.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmRelayCanExecute.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmRelayGeneric.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmRelayGeneric.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmRelayGenericCanExecute.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmRelayGenericCanExecute.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmRelayMethod.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmRelayMethod.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmRelayMethodCanExecute.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmRelayMethodCanExecute.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmRelayMethodGeneric.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmRelayMethodGeneric.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmRelayMethodGenericCanExecute.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmRelayMethodGenericCanExecute.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmSLPropA.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmSLPropA.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmSLPropDP.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmSLPropDP.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmViewModelLocatorProperty.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmViewModelLocatorProperty.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\CSharp\mvvmVm.snippet">
+      <Link>MvvmLightCSharpSnippets\mvvmVm.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\VB\mvvmInpc.snippet">
+      <Link>MvvmLightVbSnippets\mvvmInpc.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\VB\mvvmInpcLambda.snippet">
+      <Link>MvvmLightVbSnippets\mvvmInpcLambda.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Snippets\VB\mvvmInpcSet.snippet">
+      <Link>MvvmLightVbSnippets\mvvmInpcSet.snippet</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.0.nupkg">
+      <Link>Packages\CommonServiceLocator.1.0.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.1.3.nupkg">
+      <Link>Packages\CommonServiceLocator.1.3.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.2.0.2.nupkg">
+      <Link>Packages\CommonServiceLocator.2.0.2.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLight.5.4.1.1.nupkg">
+      <Link>Packages\MvvmLightLibs.5.4.1.1.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightAndroidSupport.5.4.1.1.nupkg">
+      <Link>Packages\MvvmLightAndroidSupport.5.4.1.1.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.5.4.1.1.nupkg">
+      <Link>Packages\MvvmLightLibs.5.4.1.1.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibsStd10.5.4.1.1.nupkg">
+      <Link>Packages\MvvmLightLibsStd10.5.4.1.1.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightStd10.5.4.1.2.nupkg">
+      <Link>Packages\MvvmLightStd10.5.4.1.2.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\Assets\MvvmLightVbSnippets.pkgdef">
+      <Link>MvvmLightVbSnippets\MvvmLightVbSnippets.pkgdef</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\Assets\License.rtf">
+      <Link>License.rtf</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2019\Mvvm.Droid.zip">
+      <Link>ProjectTemplates\Android\Mvvm.Droid.zip</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2019\Mvvm.iPhone.zip">
+      <Link>ProjectTemplates\iOS\iPhone\Mvvm.iPhone.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2019\Mvvm.Win10Univ.zip">
+      <Link>ProjectTemplates\Windows Universal\Mvvm.Win10Univ.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2019\Mvvm.WPF451.zip">
+      <Link>ProjectTemplates\Windows Classic Desktop\Mvvm.WPF451.zip</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Assets\Icon Purple 100x100.png">
+      <Link>Icon Purple 100x100.png</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\Assets\MvvmLight.png">
+      <Link>MvvmLight.png</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
