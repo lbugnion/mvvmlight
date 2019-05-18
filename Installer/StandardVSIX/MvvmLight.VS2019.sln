@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+# Visual Studio 16
+VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmLight.VS2017", "MvvmLight.VS2017\MvvmLight.VS2017.csproj", "{11E23DA3-0E07-4A71-9ED7-7EBEACDBB12C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvvmLight.VS2019", "MvvmLight.VS2019\MvvmLight.VS2019.csproj", "{11E23DA3-0E07-4A71-9ED7-7EBEACDBB12C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

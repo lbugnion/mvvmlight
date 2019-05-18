@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="16.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>14.0</OldToolsVersion>
+    <OldToolsVersion>15.0</OldToolsVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -18,8 +18,8 @@
     <ProjectGuid>{11E23DA3-0E07-4A71-9ED7-7EBEACDBB12C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvvmLight.VS2017</RootNamespace>
-    <AssemblyName>MvvmLight.VS2017</AssemblyName>
+    <RootNamespace>MvvmLight.VS2019</RootNamespace>
+    <AssemblyName>MvvmLight.VS2019</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>false</IncludeAssemblyInVSIXContainer>
@@ -199,8 +199,33 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.5.3.0.0.nupkg">
-      <Link>Packages\MvvmLightLibs.5.3.0.0.nupkg</Link>
+    <Content Include="..\..\InstallItems\Nuget\CommonServiceLocator.2.0.2.nupkg">
+      <Link>Packages\CommonServiceLocator.2.0.2.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLight.5.4.1.1.nupkg">
+      <Link>Packages\MvvmLightLibs.5.4.1.1.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightAndroidSupport.5.4.1.1.nupkg">
+      <Link>Packages\MvvmLightAndroidSupport.5.4.1.1.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibs.5.4.1.1.nupkg">
+      <Link>Packages\MvvmLightLibs.5.4.1.1.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightLibsStd10.5.4.1.1.nupkg">
+      <Link>Packages\MvvmLightLibsStd10.5.4.1.1.nupkg</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\..\InstallItems\Nuget\MvvmLightStd10.5.4.1.2.nupkg">
+      <Link>Packages\MvvmLightStd10.5.4.1.2.nupkg</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -214,22 +239,22 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2017\Mvvm.Droid.zip">
+    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2019\Mvvm.Droid.zip">
       <Link>ProjectTemplates\Android\Mvvm.Droid.zip</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2017\Mvvm.iPhone.zip">
+    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2019\Mvvm.iPhone.zip">
       <Link>ProjectTemplates\iOS\iPhone\Mvvm.iPhone.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2017\Mvvm.Win10Univ.zip">
+    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2019\Mvvm.Win10Univ.zip">
       <Link>ProjectTemplates\Windows Universal\Mvvm.Win10Univ.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2017\Mvvm.WPF451.zip">
+    <Content Include="..\..\InstallItems\Templates\ProjectTemplates\VS2019\Mvvm.WPF451.zip">
       <Link>ProjectTemplates\Windows Classic Desktop\Mvvm.WPF451.zip</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
