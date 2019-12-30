@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Description>.NET Core 3.0. A lightweight framework to implement Model-View-ViewModel applications in WPF, Windows Store, Windows Phone, Silverlight, Xamarin.</Description>
+    <Product />
+    <Company>GalaSoft Laurent Bugnion @ http://www.galasoft.ch</Company>
+    <Authors>Laurent Bugnion (GalaSoft)</Authors>
+    <Version>5.4.1.0</Version>
+    <PackageId>MvvmLightLibsStd10</PackageId>
+    <Copyright>Copyright @ GalaSoft Laurent Bugnion 2009-2018</Copyright>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://mvvmlight.codeplex.com/license</PackageLicenseUrl>
+    <PackageProjectUrl>http://www.mvvmlight.net</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl>https://mvvmlight.codeplex.com</RepositoryUrl>
+    <OutputType>Library</OutputType>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>GalaSoft.MvvmLight.Platform</AssemblyName>
+    <RootNamespace>GalaSoft.MvvmLight.Platform</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\GalaSoft.MvvmLight.STD10\GalaSoft.MvvmLight.STD10.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <AssemblyVersion>5.4.1.0</AssemblyVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NET_CORE</DefineConstants>
+    <DocumentationFile>bin\Debug\netcoreapp3.0\GalaSoft.MvvmLight.Platform.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;RELEASE;NET_CORE</DefineConstants>
+    <DocumentationFile>bin\Release\netcoreapp3.0\GalaSoft.MvvmLight.Platform.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\GalaSoft.MvvmLight.Platform %28NET45%29\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\GalaSoft.MvvmLight.Platform %28NET45%29\Threading\DispatcherHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\GalaSoft.MvvmLight %28PCL%29\License.txt" Link="License.txt" />
+  </ItemGroup>
+
+</Project>

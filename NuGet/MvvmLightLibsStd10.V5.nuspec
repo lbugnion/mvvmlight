@@ -51,5 +51,12 @@
         <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.dll" target="lib\netstandard1.0\GalaSoft.MvvmLight.dll" />
         <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.pdb" target="lib\netstandard1.0\GalaSoft.MvvmLight.pdb" />
         <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.XML" target="lib\netstandard1.0\GalaSoft.MvvmLight.XML" />
+        
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.dll" target="lib\netcoreapp3.0\GalaSoft.MvvmLight.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.pdb" target="lib\netcoreapp3.0\GalaSoft.MvvmLight.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\STD10\GalaSoft.MvvmLight.xml" target="lib\netcoreapp3.0\GalaSoft.MvvmLight.xml" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\NETCORE30\GalaSoft.MvvmLight.Platform.dll" target="lib\netcoreapp3.0\GalaSoft.MvvmLight.Platform.dll" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\NETCORE30\GalaSoft.MvvmLight.Platform.pdb" target="lib\netcoreapp3.0\GalaSoft.MvvmLight.Platform.pdb" />
+        <file src="..\GalaSoft.MvvmLight\_Binaries\Release\NETCORE30\GalaSoft.MvvmLight.Platform.xml" target="lib\netcoreapp3.0\GalaSoft.MvvmLight.Platform.xml" />
 	</files>
 </package>
