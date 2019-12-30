@@ -42,6 +42,9 @@
             <group targetFramework="netstandard1.0">
                 <dependency id="MvvmLightLibsStd10" version="5.4.1.1" />
             </group>
+            <group targetFramework="netcoreapp3.0">
+                <dependency id="MvvmLightLibsStd10" version="5.4.1.1" />
+            </group>
         </dependencies>
     </metadata>
     <files>
