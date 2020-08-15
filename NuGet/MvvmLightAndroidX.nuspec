@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>MvvmLightAndroidX</id>
@@ -10,8 +10,8 @@
         <projectUrl>http://www.mvvmlight.net</projectUrl>
         <iconUrl>http://mvvmlight.net/resources/logo/icon_100x100_transparent.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the Android Support libraries. At the moment this includes support for RecyclerView with an ObservableRecyclerAdapter and a CachingViewHolder.</description>
-        <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the Android Support libraries. At the moment this includes support for RecyclerView with an ObservableRecyclerAdapter and a CachingViewHolder.</summary>
+        <description>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the AndroidX libraries. At the moment this includes support for RecyclerView with an ObservableRecyclerAdapter and a CachingViewHolder.</description>
+        <summary>The MVVM Light Toolkit is a set of components helping people to get started in the Model-View-ViewModel pattern in Silverlight, WPF, Windows Phone, Windows 10 UWP, Xamarin.Android, Xamarin.iOS, Xamarin.Forms. It is a light and pragmatic framework that allows you to pick which components you want to use. This version contains only the AndroidX libraries. At the moment this includes support for RecyclerView with an ObservableRecyclerAdapter and a CachingViewHolder.</summary>
         <releaseNotes>http://www.mvvmlight.net/installing/changes</releaseNotes>
         <copyright>Copyright 2009-2018 Laurent Bugnion (GalaSoft)</copyright>
         <language>en-US</language>
@@ -28,7 +28,7 @@
 		
 		<dependencies>
 			<group targetFramework="monoandroid1">
-				<dependency id="Xamarin.AndroidX.RecyclerView" version="1.1.0-rc1" />
+				<dependency id="Xamarin.AndroidX.RecyclerView" version="1.1.0.1" />
 				<dependency id="mvvmlightlibs" version="5.3" />
 			</group>
 		</dependencies>
