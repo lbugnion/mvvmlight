@@ -34,7 +34,6 @@ namespace GalaSoft.MvvmLight.Test
 			global::Xamarin.Android.NUnitLite.Resource.Id.ResultMessage = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultMessage;
 			global::Xamarin.Android.NUnitLite.Resource.Id.ResultResultState = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultResultState;
 			global::Xamarin.Android.NUnitLite.Resource.Id.ResultRunSingleMethodTest = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultRunSingleMethodTest;
-			global::Xamarin.Android.NUnitLite.Resource.Id.ResultStackTrace = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultStackTrace;
 			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsFailed = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultsFailed;
 			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsId = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultsId;
 			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsIgnored = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultsIgnored;
@@ -42,6 +41,7 @@ namespace GalaSoft.MvvmLight.Test
 			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsMessage = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultsMessage;
 			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsPassed = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultsPassed;
 			global::Xamarin.Android.NUnitLite.Resource.Id.ResultsResult = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultsResult;
+			global::Xamarin.Android.NUnitLite.Resource.Id.ResultStackTrace = global::GalaSoft.MvvmLight.Test.Resource.Id.ResultStackTrace;
 			global::Xamarin.Android.NUnitLite.Resource.Id.RunTestsButton = global::GalaSoft.MvvmLight.Test.Resource.Id.RunTestsButton;
 			global::Xamarin.Android.NUnitLite.Resource.Id.TestSuiteListView = global::GalaSoft.MvvmLight.Test.Resource.Id.TestSuiteListView;
 			global::Xamarin.Android.NUnitLite.Resource.Layout.options = global::GalaSoft.MvvmLight.Test.Resource.Layout.options;
@@ -53,18 +53,6 @@ namespace GalaSoft.MvvmLight.Test
 		public partial class Attribute
 		{
 			
-			// aapt resource value: 0x7f010000
-			public const int layoutManager = 2130771968;
-			
-			// aapt resource value: 0x7f010002
-			public const int reverseLayout = 2130771970;
-			
-			// aapt resource value: 0x7f010001
-			public const int spanCount = 2130771969;
-			
-			// aapt resource value: 0x7f010003
-			public const int stackFromEnd = 2130771971;
-			
 			static Attribute()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -75,33 +63,11 @@ namespace GalaSoft.MvvmLight.Test
 			}
 		}
 		
-		public partial class Dimension
-		{
-			
-			// aapt resource value: 0x7f040000
-			public const int item_touch_helper_max_drag_scroll_per_frame = 2130968576;
-			
-			// aapt resource value: 0x7f040001
-			public const int item_touch_helper_swipe_escape_max_velocity = 2130968577;
-			
-			// aapt resource value: 0x7f040002
-			public const int item_touch_helper_swipe_escape_velocity = 2130968578;
-			
-			static Dimension()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Dimension()
-			{
-			}
-		}
-		
 		public partial class Drawable
 		{
 			
-			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			// aapt resource value: 0x7F010000
+			public const int Icon = 2130771968;
 			
 			static Drawable()
 			{
@@ -116,62 +82,59 @@ namespace GalaSoft.MvvmLight.Test
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050002
-			public const int OptionHostName = 2131034114;
+			// aapt resource value: 0x7F020000
+			public const int OptionHostName = 2130837504;
 			
-			// aapt resource value: 0x7f050003
-			public const int OptionPort = 2131034115;
+			// aapt resource value: 0x7F020001
+			public const int OptionPort = 2130837505;
 			
-			// aapt resource value: 0x7f050001
-			public const int OptionRemoteServer = 2131034113;
+			// aapt resource value: 0x7F020002
+			public const int OptionRemoteServer = 2130837506;
 			
-			// aapt resource value: 0x7f050011
-			public const int OptionsButton = 2131034129;
+			// aapt resource value: 0x7F020003
+			public const int OptionsButton = 2130837507;
 			
-			// aapt resource value: 0x7f05000c
-			public const int ResultFullName = 2131034124;
+			// aapt resource value: 0x7F020004
+			public const int ResultFullName = 2130837508;
 			
-			// aapt resource value: 0x7f05000e
-			public const int ResultMessage = 2131034126;
+			// aapt resource value: 0x7F020005
+			public const int ResultMessage = 2130837509;
 			
-			// aapt resource value: 0x7f05000d
-			public const int ResultResultState = 2131034125;
+			// aapt resource value: 0x7F020006
+			public const int ResultResultState = 2130837510;
 			
-			// aapt resource value: 0x7f05000b
-			public const int ResultRunSingleMethodTest = 2131034123;
+			// aapt resource value: 0x7F020007
+			public const int ResultRunSingleMethodTest = 2130837511;
 			
-			// aapt resource value: 0x7f05000f
-			public const int ResultStackTrace = 2131034127;
+			// aapt resource value: 0x7F020009
+			public const int ResultsFailed = 2130837513;
 			
-			// aapt resource value: 0x7f050007
-			public const int ResultsFailed = 2131034119;
+			// aapt resource value: 0x7F02000A
+			public const int ResultsId = 2130837514;
 			
-			// aapt resource value: 0x7f050004
-			public const int ResultsId = 2131034116;
+			// aapt resource value: 0x7F02000B
+			public const int ResultsIgnored = 2130837515;
 			
-			// aapt resource value: 0x7f050008
-			public const int ResultsIgnored = 2131034120;
+			// aapt resource value: 0x7F02000C
+			public const int ResultsInconclusive = 2130837516;
 			
-			// aapt resource value: 0x7f050009
-			public const int ResultsInconclusive = 2131034121;
+			// aapt resource value: 0x7F02000D
+			public const int ResultsMessage = 2130837517;
 			
-			// aapt resource value: 0x7f05000a
-			public const int ResultsMessage = 2131034122;
+			// aapt resource value: 0x7F02000E
+			public const int ResultsPassed = 2130837518;
 			
-			// aapt resource value: 0x7f050006
-			public const int ResultsPassed = 2131034118;
+			// aapt resource value: 0x7F02000F
+			public const int ResultsResult = 2130837519;
 			
-			// aapt resource value: 0x7f050005
-			public const int ResultsResult = 2131034117;
+			// aapt resource value: 0x7F020008
+			public const int ResultStackTrace = 2130837512;
 			
-			// aapt resource value: 0x7f050010
-			public const int RunTestsButton = 2131034128;
+			// aapt resource value: 0x7F020010
+			public const int RunTestsButton = 2130837520;
 			
-			// aapt resource value: 0x7f050012
-			public const int TestSuiteListView = 2131034130;
-			
-			// aapt resource value: 0x7f050000
-			public const int item_touch_helper_previous_elevation = 2131034112;
+			// aapt resource value: 0x7F020011
+			public const int TestSuiteListView = 2130837521;
 			
 			static Id()
 			{
@@ -186,16 +149,16 @@ namespace GalaSoft.MvvmLight.Test
 		public partial class Layout
 		{
 			
-			// aapt resource value: 0x7f030000
+			// aapt resource value: 0x7F030000
 			public const int options = 2130903040;
 			
-			// aapt resource value: 0x7f030001
+			// aapt resource value: 0x7F030001
 			public const int results = 2130903041;
 			
-			// aapt resource value: 0x7f030002
+			// aapt resource value: 0x7F030002
 			public const int test_result = 2130903042;
 			
-			// aapt resource value: 0x7f030003
+			// aapt resource value: 0x7F030003
 			public const int test_suite = 2130903043;
 			
 			static Layout()
@@ -211,11 +174,11 @@ namespace GalaSoft.MvvmLight.Test
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f060001
-			public const int ApplicationName = 2131099649;
+			// aapt resource value: 0x7F040000
+			public const int ApplicationName = 2130968576;
 			
-			// aapt resource value: 0x7f060000
-			public const int Hello = 2131099648;
+			// aapt resource value: 0x7F040001
+			public const int Hello = 2130968577;
 			
 			static String()
 			{
@@ -223,41 +186,6 @@ namespace GalaSoft.MvvmLight.Test
 			}
 			
 			private String()
-			{
-			}
-		}
-		
-		public partial class Styleable
-		{
-			
-			public static int[] RecyclerView = new int[] {
-					16842948,
-					2130771968,
-					2130771969,
-					2130771970,
-					2130771971};
-			
-			// aapt resource value: 0
-			public const int RecyclerView_android_orientation = 0;
-			
-			// aapt resource value: 1
-			public const int RecyclerView_layoutManager = 1;
-			
-			// aapt resource value: 3
-			public const int RecyclerView_reverseLayout = 3;
-			
-			// aapt resource value: 2
-			public const int RecyclerView_spanCount = 2;
-			
-			// aapt resource value: 4
-			public const int RecyclerView_stackFromEnd = 4;
-			
-			static Styleable()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Styleable()
 			{
 			}
 		}
