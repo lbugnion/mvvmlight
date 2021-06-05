@@ -15,7 +15,7 @@ Documentation: See http://www.mvvmlight.net/doc
 
 ## VSIX packages for Visual Studio
 
-| [VS2012](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2012)  | [VS2013](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2013) | [VS2015](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2015) | [VS2017](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2017) |
+| [VS2012](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2012&WT.mc_id=dotnet-0000-lbugnion)  | [VS2013](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2013&WT.mc_id=dotnet-0000-lbugnion) | [VS2015](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2015&WT.mc_id=dotnet-0000-lbugnion) | [VS2017](https://marketplace.visualstudio.com/items?itemName=LaurentBugnion.MVVMLightforVS2017&WT.mc_id=dotnet-0000-lbugnion) |
 | ------------- | ------------- | ------------- | ------------- |
 
 ## License
