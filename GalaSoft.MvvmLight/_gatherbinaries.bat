@@ -20,6 +20,7 @@ if not exist _Binaries\Debug\WIN81 md _Binaries\Debug\WIN81
 if not exist _Binaries\Debug\WP81 md _Binaries\Debug\WP81
 if not exist _Binaries\Debug\WPSL80 md _Binaries\Debug\WPSL80
 if not exist _Binaries\Debug\WPSL81 md _Binaries\Debug\WPSL81
+if not exist _Binaries\Debug\NETCORE30 md _Binaries\Debug\NETCORE30
 
 if not exist _Binaries\Release\PCL md _Binaries\Release\PCL
 if not exist _Binaries\Release\STD10 md _Binaries\Release\STD10
@@ -38,6 +39,7 @@ if not exist _Binaries\Release\WIN81 md _Binaries\Release\WIN81
 if not exist _Binaries\Release\WP81 md _Binaries\Release\WP81
 if not exist _Binaries\Release\WPSL80 md _Binaries\Release\WPSL80
 if not exist _Binaries\Release\WPSL81 md _Binaries\Release\WPSL81
+if not exist _Binaries\Release\NETCORE30 md _Binaries\Release\NETCORE30
 
 rem PCL
 
@@ -498,3 +500,19 @@ if exist ".\GalaSoft.MvvmLight.Platform (WPSL81)\bin\Debug\System.Windows.Intera
 if exist ".\GalaSoft.MvvmLight.Platform (WPSL81)\bin\Debug\System.Windows.Interactivity.xml" copy ".\GalaSoft.MvvmLight.Platform (WPSL81)\bin\Debug\System.Windows.Interactivity.xml" .\_Binaries\Debug\WPSL81\System.Windows.Interactivity.xml
 if exist ".\GalaSoft.MvvmLight.Platform (WPSL81)\bin\Release\System.Windows.Interactivity.dll" copy ".\GalaSoft.MvvmLight.Platform (WPSL81)\bin\Release\System.Windows.Interactivity.dll" .\_Binaries\Release\WPSL81\System.Windows.Interactivity.dll
 if exist ".\GalaSoft.MvvmLight.Platform (WPSL81)\bin\Release\System.Windows.Interactivity.xml" copy ".\GalaSoft.MvvmLight.Platform (WPSL81)\bin\Release\System.Windows.Interactivity.xml" .\_Binaries\Release\WPSL81\System.Windows.Interactivity.xml
+
+rem NETCORE30
+
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Debug\NETCORE30\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Debug\NETCORE30\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Debug\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Debug\NETCORE30\GalaSoft.MvvmLight.xml
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.dll" .\_Binaries\Release\NETCORE30\GalaSoft.MvvmLight.dll
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.pdb" .\_Binaries\Release\NETCORE30\GalaSoft.MvvmLight.pdb
+if exist ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" copy ".\GalaSoft.MvvmLight.STD10\bin\Release\netstandard1.0\GalaSoft.MvvmLight.xml" .\_Binaries\Release\NETCORE30\GalaSoft.MvvmLight.xml
+
+if exist ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Debug\netcoreapp3.0\GalaSoft.MvvmLight.Platform.dll" copy ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Debug\netcoreapp3.0\GalaSoft.MvvmLight.Platform.dll" .\_Binaries\Debug\NETCORE30\GalaSoft.MvvmLight.Platform.dll
+if exist ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Debug\netcoreapp3.0\GalaSoft.MvvmLight.Platform.pdb" copy ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Debug\netcoreapp3.0\GalaSoft.MvvmLight.Platform.pdb" .\_Binaries\Debug\NETCORE30\GalaSoft.MvvmLight.Platform.pdb
+if exist ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Debug\netcoreapp3.0\GalaSoft.MvvmLight.Platform.xml" copy ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Debug\netcoreapp3.0\GalaSoft.MvvmLight.Platform.xml" .\_Binaries\Debug\NETCORE30\GalaSoft.MvvmLight.Platform.xml
+if exist ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Release\netcoreapp3.0\GalaSoft.MvvmLight.Platform.dll" copy ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Release\netcoreapp3.0\GalaSoft.MvvmLight.Platform.dll" .\_Binaries\Release\NETCORE30\GalaSoft.MvvmLight.Platform.dll
+if exist ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Release\netcoreapp3.0\GalaSoft.MvvmLight.Platform.pdb" copy ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Release\netcoreapp3.0\GalaSoft.MvvmLight.Platform.pdb" .\_Binaries\Release\NETCORE30\GalaSoft.MvvmLight.Platform.pdb
+if exist ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Release\netcoreapp3.0\GalaSoft.MvvmLight.Platform.xml" copy ".\GalaSoft.MvvmLight.Platform (NETCORE30)\bin\Release\netcoreapp3.0\GalaSoft.MvvmLight.Platform.xml" .\_Binaries\Release\NETCORE30\GalaSoft.MvvmLight.Platform.xml
