@@ -263,6 +263,13 @@ if exist ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Pla
 if exist ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.pdb" copy ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.pdb" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Platform.AndroidSupport.pdb
 if exist ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.xml" copy ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.xml" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Platform.AndroidSupport.xml
 
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.dll" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.dll" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Platform.AndroidX.dll
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.pdb" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.pdb" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Platform.AndroidX.pdb
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.xml" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.xml" .\_Binaries\Debug\Android\GalaSoft.MvvmLight.Platform.AndroidX.xml
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.dll" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.dll" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Platform.AndroidX.dll
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.pdb" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.pdb" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Platform.AndroidX.pdb
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.xml" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.xml" .\_Binaries\Release\Android\GalaSoft.MvvmLight.Platform.AndroidX.xml
+
 if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.dll" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.dll" .\_Binaries\Debug\Android\Microsoft.Practices.ServiceLocation.dll
 if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.pdb" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.pdb" .\_Binaries\Debug\Android\Microsoft.Practices.ServiceLocation.pdb
 if exist ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.xml" copy ".\GalaSoft.MvvmLight.Extras (PCL)\bin\Debug\Microsoft.Practices.ServiceLocation.xml" .\_Binaries\Debug\Android\Microsoft.Practices.ServiceLocation.xml
@@ -292,6 +299,13 @@ if exist ".\GalaSoft.MvvmLight.AndroidSupport\bin\Debug\GalaSoft.MvvmLight.Platf
 if exist ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.dll" copy ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.dll" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.Platform.AndroidSupport.dll
 if exist ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.pdb" copy ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.pdb" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.Platform.AndroidSupport.pdb
 if exist ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.xml" copy ".\GalaSoft.MvvmLight.AndroidSupport\bin\Release\GalaSoft.MvvmLight.Platform.AndroidSupport.xml" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.Platform.AndroidSupport.xml
+
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.dll" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.dll" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.Platform.AndroidX.dll
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.pdb" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.pdb" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.Platform.AndroidX.pdb
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.xml" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Debug\GalaSoft.MvvmLight.Platform.AndroidX.xml" .\_Binaries\Debug\AndroidStd\GalaSoft.MvvmLight.Platform.AndroidX.xml
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.dll" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.dll" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.Platform.AndroidX.dll
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.pdb" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.pdb" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.Platform.AndroidX.pdb
+if exist ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.xml" copy ".\GalaSoft.MvvmLight.AndroidX\bin\Release\GalaSoft.MvvmLight.Platform.AndroidX.xml" .\_Binaries\Release\AndroidStd\GalaSoft.MvvmLight.Platform.AndroidX.xml
 
 rem iOS
 
