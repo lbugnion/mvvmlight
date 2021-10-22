@@ -65,6 +65,7 @@
     <Compile Include="Command\EventToCommand.cs" />
     <Compile Include="Command\IEventArgsConverter.cs" />
     <Compile Include="Threading\DispatcherHelper.cs" />
+    <Compile Include="Views\DialogService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GalaSoft.MvvmLight %28PCL%29\GalaSoft.MvvmLight %28PCL%29.csproj">
