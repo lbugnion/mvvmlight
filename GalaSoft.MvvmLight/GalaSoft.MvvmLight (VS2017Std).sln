@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (ST
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Test (PNET45Std)", "Tests\PCL\GalaSoft.MvvmLight.Test (PNET45Std)\GalaSoft.MvvmLight.Test (PNET45Std).csproj", "{D6C92A0B-4F54-4340-B0F0-5FACBCF127D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Platform.AndroidSupport (AndroidStd)", "GalaSoft.MvvmLight.AndroidSupport (AndroidStd)\GalaSoft.MvvmLight.Platform.AndroidSupport (AndroidStd).csproj", "{BC2F5D9B-6303-4296-A743-FDA5909416CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,22 @@ Global
 		{D6C92A0B-4F54-4340-B0F0-5FACBCF127D6}.Release|x64.Build.0 = Release|Any CPU
 		{D6C92A0B-4F54-4340-B0F0-5FACBCF127D6}.Release|x86.ActiveCfg = Release|Any CPU
 		{D6C92A0B-4F54-4340-B0F0-5FACBCF127D6}.Release|x86.Build.0 = Release|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Debug|ARM.Build.0 = Debug|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Debug|x64.Build.0 = Debug|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Debug|x86.Build.0 = Debug|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Release|ARM.Build.0 = Release|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Release|x64.ActiveCfg = Release|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Release|x64.Build.0 = Release|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Release|x86.ActiveCfg = Release|Any CPU
+		{BC2F5D9B-6303-4296-A743-FDA5909416CA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
